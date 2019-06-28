@@ -63,3 +63,7 @@ winston_console_colorize=true
 
 6) In a terminal window start the application
 `$ npm start`
+
+7) To see some data try this http://localhost:4300/expressbase/api/v1/
+
+8) To see some visual stuff try this http://localhost:4300/expressbase/ui

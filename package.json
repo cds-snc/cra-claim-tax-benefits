@@ -1,0 +1,38 @@
+{
+  "name": "expressbase",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "test": "mocha routes/**/*spec.js"
+  },
+  "dependencies": {
+    "@hapi/joi": "^15.1.0",
+    "app-root-path": "^2.2.1",
+    "compression": "^1.7.4",
+    "connect-redis": "^3.4.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.0.0",
+    "express": "~4.16.1",
+    "express-jwt": "^5.3.1",
+    "express-jwt-authz": "^2.3.1",
+    "express-session": "^1.16.2",
+    "fs": "0.0.1-security",
+    "helmet": "^3.18.0",
+    "https": "^1.0.0",
+    "jwks-rsa": "^1.5.1",
+    "mongodb": "^3.2.7",
+    "morgan": "~1.9.1",
+    "path": "^0.12.7",
+    "pug": "^2.0.4",
+    "redis": "^2.8.0",
+    "uniqid": "^5.0.3",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^6.1.4",
+    "mongodb": "^3.2.7",
+    "nodemon": "^1.19.1"
+  }
+}

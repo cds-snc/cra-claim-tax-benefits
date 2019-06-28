@@ -1,0 +1,9 @@
+body {
+  padding: 0 150px;
+}
+
+.jumbotron {
+  background-color: #fff;
+  border-radius: .3rem;
+  border: 1px solid #e5e5e5;
+}

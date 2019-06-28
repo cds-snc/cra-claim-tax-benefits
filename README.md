@@ -11,7 +11,7 @@ Express JS basic application.
 ### Quick Start
 
 1) Navigate to your project directory and run the following command ...  
-`npm install`
+`$ npm install`
 
 2) In your app root directory create a *.env* file and copy and paste the following ...
 
@@ -53,13 +53,13 @@ winston_console_colorize=true
 ```
 
 
-3) In your app root directory create a *logs/* directory
+3) In your app root directory create a `logs/` directory
 
 4) In a terminal window start the Mongo DB daemon
-`mongod`
+`$ mongod`
 
 5) In a terminal window start the Redis daemon
-`redis-server`
+`$ redis-server`
 
 6) In a terminal window start the application
-`npm start`
+`$ npm start`

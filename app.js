@@ -35,14 +35,8 @@ if (app.get('env') !== 'development') {
 // configure routes ... basic api strategy.
 app.use('/expressbase/api/v1/', require('./routes/index/index.controller')); 
 
-// configure routes ... basic crud api strategy w/h mongodb.
-app.use('/expressbase/api/v1/employee', require('./routes/employee/employee.controller'));
-
 // configure routes  ... basic session api strategy w/h redis.
 require('../expressbase/routes/session/session.controller')(app); 
-
-// configure routes  ... basic auth api strategy w/h auth0.
-require('../expressbase/routes/auth/auth.controller')(app); 
 
 // configure routes  ... basic ui strategy w/h pug.
 require('../expressbase/routes/ui/ui.controller')(app); 

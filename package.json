@@ -32,7 +32,6 @@
   },
   "devDependencies": {
     "mocha": "^6.1.4",
-    "mongodb": "^3.2.7",
     "nodemon": "^1.19.1"
   }
 }

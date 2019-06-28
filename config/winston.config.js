@@ -2,8 +2,13 @@
 require('dotenv').config();
 
 const 
-  {createLogger, transports} = require('winston'),
+  { createLogger, transports, format } = require('winston'),
+  { combine, timestamp, label, printf } = format;
   appRoot = require('app-root-path');
+
+const logginFormat = printf(({ level, message, label, timestamp }) => {
+  return `${timestamp} [${label}] ${level}: ${message}`;
+});
 
 // define settings for transports.
 const options = {
@@ -63,7 +68,11 @@ else
 let logger = new createLogger({
   transports : transportsArray,
   exitOnError : false,
-  
+  format: combine(
+    label({ label: 'expressbase' }),
+    timestamp(),
+    logginFormat
+  ),
 });
 
 // create a stream object that will be used by morgan.

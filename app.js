@@ -32,9 +32,6 @@ if (app.get('env') !== 'development') {
   app.use(compression());
 }
 
-// configure routes ... basic api strategy.
-app.use('/expressbase/api/v1/', require('./routes/index/index.controller')); 
-
 // configure routes  ... basic session api strategy w/h redis.
 require('../expressbase/routes/session/session.controller')(app); 
 

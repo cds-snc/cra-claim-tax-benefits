@@ -6,6 +6,11 @@ html(lang='en')
     meta(name="description" content="[WIP] A benefit signup prototype by the Canadian Digital Service")
     link(rel="shortcut icon" href="/favicon.png" type="image/x-icon" sizes="32x32")
     link(rel='stylesheet', href='/styles.css')
-    title Hello, world!
+
+    if title
+      title #{title} — Claim tax benefits
+    else
+      title Claim tax benefits
+
   body
     block content

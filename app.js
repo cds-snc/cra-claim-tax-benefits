@@ -27,8 +27,8 @@ app.set('view engine', 'pug')
 /* in a real-life use case, we would precompile the CSS */
 app.use(
   sassMiddleware({
-    src: path.join(__dirname),
-    dest: path.join(__dirname),
+    src: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'public'),
     debug: true,
     indentedSyntax: false,
     sourceMap: true,

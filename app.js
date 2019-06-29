@@ -35,7 +35,7 @@ app.use(
   }),
 )
 
-// public assests go here (css, js, etc)
+// public assets go here (css, js, etc)
 app.use(express.static(path.join(__dirname, 'public')))
 
 if (app.get('env') === 'production') {

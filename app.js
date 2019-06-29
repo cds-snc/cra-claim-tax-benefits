@@ -1,25 +1,39 @@
 // import environment variables.
-require('dotenv').config();
+require("dotenv").config();
 
 // import node modules.
-const 
-  express      = require('express'),
-  cookieParser = require('cookie-parser'),
-  compression  = require('compression'),
-  helmet       = require('helmet')
-  morgan       = require('morgan'),
-  winston      = require('./config/winston.config');
+const express = require("express"),
+  cookieParser = require("cookie-parser"),
+  compression = require("compression"),
+  helmet = require("helmet"),
+  morgan = require("morgan"),
+  winston = require("./config/winston.config"),
+  sassMiddleware = require("node-sass-middleware"),
+  path = require("path");
 
 // initialize application.
 var app = express();
 
-// general app configuration. 
-app.use(morgan('combined', { stream: winston.stream }));
+// general app configuration.
+app.use(morgan("combined", { stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.app_session_secret));
 
-if (app.get('env') !== 'development') {
+/* in a real-life use case, we would precompile the CSS */
+app.use(
+  sassMiddleware({
+    root: "public",
+    src: path.join(__dirname),
+    dest: path.join(__dirname),
+    debug: true,
+    indentedSyntax: false,
+    sourceMap: true
+  })
+);
+app.use(express.static(path.join(__dirname, "public")));
+
+if (app.get("env") !== "development") {
   // dnsPrefetchControl controls browser DNS prefetching
   // frameguard to prevent clickjacking
   // hidePoweredBy to remove the X-Powered-By header
@@ -33,21 +47,24 @@ if (app.get('env') !== 'development') {
 }
 
 // configure routes  ... basic session api strategy w/h redis.
-require('../expressbase/routes/session/session.controller')(app); 
+require("../expressbase/routes/session/session.controller")(app);
 
 // configure routes  ... basic ui strategy w/h pug.
-require('../expressbase/routes/ui/ui.controller')(app); 
+require("../expressbase/routes/ui/ui.controller")(app);
 
 // handle global errors.
 app.use(function(err, req, res, next) {
-  
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-  
-  winston.debug(`Service error: ${err}`);
-  winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-  
-  res.status(err.status || 500).json({ message : "Internal service error." });
-})
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
-module.exports = app; 
+  winston.debug(`Service error: ${err}`);
+  winston.error(
+    `${err.status || 500} - ${err.message} - ${req.originalUrl} - ${
+      req.method
+    } - ${req.ip}`
+  );
+
+  res.status(err.status || 500).json({ message: "Internal service error." });
+});
+
+module.exports = app;

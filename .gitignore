@@ -63,3 +63,6 @@ typings/
 # certs
 .csr
 .pem
+
+# CSS files are compiled
+public/styles.css*

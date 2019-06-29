@@ -38,7 +38,7 @@ app.use(
 // public assests go here (css, js, etc)
 app.use(express.static(path.join(__dirname, 'public')))
 
-if (app.get('env') !== 'development') {
+if (app.get('env') === 'production') {
   // dnsPrefetchControl controls browser DNS prefetching
   // frameguard to prevent clickjacking
   // hidePoweredBy to remove the X-Powered-By header
@@ -51,8 +51,8 @@ if (app.get('env') !== 'development') {
   app.use(compression())
 }
 
-// configure routes  ... basic ui strategy w/h pug.
-require('./routes/ui/ui.controller')(app)
+// configure routes
+require('./routes/start/start.controller')(app)
 
 // handle global errors.
 app.use(function(err, req, res, next) {

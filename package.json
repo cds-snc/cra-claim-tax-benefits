@@ -1,7 +1,13 @@
 {
-  "name": "expressbase",
+  "name": "claim-tax-benefits",
   "version": "0.0.0",
+  "description": "We believe that preparing returns on behalf of people who are eligible for CVITP will result in more people receiving benefits",
+  "author": "pcraig3",
+  "license": "MIT",
   "private": true,
+  "engines": {
+    "node": ">=10.15"
+  },
   "scripts": {
     "start": "nodemon ./bin/www",
     "test": "mocha routes/**/*spec.js"
@@ -18,7 +24,6 @@
     "express-session": "^1.16.2",
     "fs": "0.0.1-security",
     "helmet": "^3.18.0",
-    "https": "^1.0.0",
     "morgan": "~1.9.1",
     "node-sass-middleware": "^0.11.0",
     "path": "^0.12.7",

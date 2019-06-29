@@ -1,20 +1,10 @@
 /* Base styling from pure.css: https://purecss.io/ */
-@import "../node_modules/purecss/build/base";
-@import "../node_modules/purecss/build/buttons-core";
-@import "../node_modules/purecss/build/forms";
-@import "../node_modules/purecss/build/grids-responsive";
-@import "../node_modules/purecss/build/tables";
+@import '../node_modules/purecss/build/base';
+@import '../node_modules/purecss/build/buttons-core';
+@import '../node_modules/purecss/build/forms';
+@import '../node_modules/purecss/build/grids-responsive';
+@import '../node_modules/purecss/build/tables';
 
 body {
   padding: 20px 150px;
-}
-
-.jumbotron {
-  background-color: orange;
-  border-radius: 0.3rem;
-  border: 10px solid #e5e5e5;
-}
-
-a.btn-primary {
-  background-color: red !important;
 }

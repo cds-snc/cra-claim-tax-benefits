@@ -23,7 +23,6 @@ app.use(cookieParser(process.env.app_session_secret));
 /* in a real-life use case, we would precompile the CSS */
 app.use(
   sassMiddleware({
-    root: "public",
     src: path.join(__dirname),
     dest: path.join(__dirname),
     debug: true,

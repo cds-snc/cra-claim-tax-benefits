@@ -1,3 +1,10 @@
+/* Base styling from pure.css: https://purecss.io/ */
+@import "../node_modules/purecss/build/base";
+@import "../node_modules/purecss/build/buttons-core";
+@import "../node_modules/purecss/build/forms";
+@import "../node_modules/purecss/build/grids-responsive";
+@import "../node_modules/purecss/build/tables";
+
 body {
   padding: 20px 150px;
 }

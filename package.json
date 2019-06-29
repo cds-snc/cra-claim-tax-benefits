@@ -23,6 +23,7 @@
     "node-sass-middleware": "^0.11.0",
     "path": "^0.12.7",
     "pug": "^2.0.4",
+    "purecss": "^1.0.0",
     "redis": "^2.8.0",
     "winston": "^3.2.1"
   },

@@ -30,8 +30,9 @@ app.use(
     src: path.join(__dirname, 'public'),
     dest: path.join(__dirname, 'public'),
     debug: true,
-    indentedSyntax: false,
+    indentedSyntax: false, // look for .scss files, not .sass files
     sourceMap: true,
+    outputStyle: 'compressed',
   }),
 )
 

@@ -3,7 +3,7 @@ require('dotenv').config()
 
 const { createLogger, transports, format } = require('winston'),
   { combine, timestamp, label, printf } = format
-appRoot = require('app-root-path')
+const appRoot = require('app-root-path')
 
 const loggingFormat = printf(({ level, message, label, timestamp }) => {
   return `${timestamp} [${label}] ${level}: ${message}`
@@ -72,7 +72,7 @@ let logger = new createLogger({
 
 // create a stream object that will be used by morgan.
 logger.stream = {
-  write: function(message, encoding) {
+  write: function(message) {
     logger.info(message)
   },
 }

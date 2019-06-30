@@ -58,7 +58,7 @@ require('./routes/start/start.controller')(app)
 require('./routes/login/login.controller')(app)
 
 // handle global errors.
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
 

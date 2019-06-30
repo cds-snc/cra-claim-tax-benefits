@@ -10,6 +10,7 @@
   },
   "scripts": {
     "dev": "nodemon ./bin/www",
+    "lint": "node_modules/eslint/bin/eslint.js config routes app.js",
     "start": "node ./bin/www",
     "test": "node node_modules/jest/bin/jest.js"
   },
@@ -35,6 +36,8 @@
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "eslint": "^6.0.1",
+    "eslint-plugin-jest": "^22.7.1",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
     "supertest": "^4.0.2"

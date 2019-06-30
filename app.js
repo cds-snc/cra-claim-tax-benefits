@@ -9,7 +9,9 @@ const express = require('express'),
   morgan = require('morgan'),
   winston = require('./config/winston.config'),
   sassMiddleware = require('node-sass-middleware'),
-  path = require('path')
+  path = require('path'),
+  cookieSession = require('cookie-session'),
+  cookieSessionConfig = require('./config/cookieSession.config')
 
 // initialize application.
 var app = express()
@@ -27,7 +29,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.app_session_secret))
 app.use(require('./config/i18n.config').init)
 
-// in a real-life use case, we would precompile the CSS
+// in production: use redis for sessions
+// but this works for now
+app.use(cookieSession(cookieSessionConfig))
+
+// in production: precompile CSS
 app.use(
   sassMiddleware({
     src: path.join(__dirname, 'public'),
@@ -56,6 +62,12 @@ app.use(compression())
 // configure routes
 require('./routes/start/start.controller')(app)
 require('./routes/login/login.controller')(app)
+
+// clear session
+app.get('/clear', (req, res) => {
+  req.session = null
+  res.redirect(302, '/')
+})
 
 // handle global errors.
 app.use(function(err, req, res) {

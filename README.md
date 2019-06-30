@@ -1,46 +1,30 @@
 # expressbase
-Express JS basic application.
 
-### Environment
- - Node JS v12.3.1
- - NPM v6.9.0
- - GIT v2.20.1
- - Mongo DB v4.0.10
- - Redis v5.0.5
+This is a small frontend to trial user flows for a future CRA service.
 
-### Quick Start
+It's a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server.
 
-1) Navigate to your project directory and run the following command ...  
-`$ npm install`
+## Getting started (npm)
 
-2) In your app root directory create a *.env* file and copy and paste the following ...
+### [Install `npm`](https://www.npmjs.com/get-npm)
+
+`npm` is a javascript package manager. It downloads project dependencies and runs node applications.
+
+`npm` will complain if you're not on node version `v10.15.0` or higher when you boot up the app.
+
+### .env file (optional)
+
+It's possible to bootstrap this application with no `/.env` file, but if you want one, go nuts.
+
+<details>
+  <summary>Example `.env` file</summary>
 
 ```
 # environment
 NODE_ENV=development
 PORT=4300
 
-# app config
-app_session_name=sid
-app_session_secret=createabettersecretthanthis
-app_session_resave=false
-app_session_rolling=false
-app_session_save_uninitialized=false
-app_session_path=/
-app_session_secure=false
-app_session_max_age=60000
-app_session_httpOnly=false
-
-# mongo db 
-mongoclient_url=mongodb://localhost:27017
-mongoclient_db_name=expressbasedb_01
-
-# redis config
-redisclient_host=127.0.0.1
-redisclient_port=6379
-redisclient_ttl=86400
-
-# winston 
+# winston
 winston_file_handleExecptions=true
 winston_file_json=false
 winston_file_maxsize=5242880
@@ -52,18 +36,55 @@ winston_console_json=false
 winston_console_colorize=true
 ```
 
+</details>
 
-3) In your app root directory create a `logs/` directory
+### Build and run
 
-4) In a terminal window start the Mongo DB daemon
-`$ mongod`
+Guess what? There is **no build step**. Just install the dependencies and run it.
 
-5) In a terminal window start the Redis daemon
-`$ redis-server`
+Pretty slick. 😎
 
-6) In a terminal window start the application
-`$ npm start`
+```bash
+# install dependencies
+npm install
 
-7) To see some data try this http://localhost:4300/expressbase/api/v1/
+# run application in 'dev' mode
+npm run dev
 
-8) To see some visual stuff try this http://localhost:4300/expressbase/ui
+# run application in 'prod' mode
+npm start
+```
+
+The app should be running at [http://localhost:3005/](http://localhost:3005/). With `npm run dev`, saving a file will restart the server automatically.
+
+On a Mac, press `Control` + `C` to quit the running application.
+
+### Run tests
+
+```bash
+# run unit tests
+npm test
+
+# run linting
+npm run lint
+```
+
+## Using Docker
+
+### [Install `docker`](https://docs.docker.com/install/)
+
+A docker container allows a developer to package up an application and all of its parts. This means we can build an app in any language, in any stack, and then run it anywhere — whether locally or on a server.
+
+### Build and run as a Docker container
+
+```bash
+# build an image locally
+docker build -t pcraig3/expressbase .
+
+# run the container
+docker run -it -p 3005:3005 pcraig3/expressbase
+```
+
+The container should be running at [http://localhost:3005/](http://localhost:3005/).
+
+On a Mac, press `Control` + `C` to quit the running docker container.

@@ -7,12 +7,12 @@ block content
   p Your personal access code is the 8 character code found in your notification letter.
 
     form.pure-form.pure-form-stacked(method='post')
-        .pure-u-4-5.pure-u-sm-1-2.pure-u-md-1-3
-          div
-            label(for='code') Personal access code
-            span.pure-form-message For Example: A23XGY12
-            input#code(name='code', type='text', value=data.code, autocomplete='off')
+      .pure-u-4-5.pure-u-sm-1-2.pure-u-md-1-3
+        div
+          label(for='code') Personal access code
+          span.pure-form-message For Example: A23XGY12
+          input#code(name='code', type='text', value=data.code, autocomplete='off')
 
-          button(type='submit') Continue
+        button(type='submit') Continue
 
-  a(href="/start") Cancel
+  a(href='/start') Cancel

@@ -1,0 +1,14 @@
+extends ../base
+
+block content
+
+  h1 #{title}
+
+  if data.code
+    p Great! Thanks so much!
+    p Your personal access code is “<strong>#{data.code}</strong>”
+  else
+    p Whoops, you don’t have an access code.
+    p Please return to the start page.
+
+  a(href='/start') Start over

@@ -1,6 +1,12 @@
+%page-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 * {
   box-sizing: border-box;
 }
+
 *:focus {
   outline: 3px solid #ffbf47;
   outline-offset: 0;
@@ -18,10 +24,6 @@ body {
   min-height: 100vh;
 }
 
-%page-container {
-  max-width: 900px;
-  margin: 0 auto;
-}
 .page--container {
   @extend %page-container;
 }

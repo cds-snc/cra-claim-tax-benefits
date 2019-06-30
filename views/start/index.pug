@@ -1,21 +1,13 @@
-extends ../layout
+extends ../base
 
 block content
-  .container
-    header
-      .page--container Canada 🍁
 
-    main
+  h1 #{__('Claim tax benefits')}
 
-      h1 #{__('Claim tax benefits')}
-      p #{__('This service is to claim tax benefits online.')} You need to be eligible to use this service.
-      p In order to claim tax benefits online, you must have the following:
-      ul
-        li Personal Code
-        li Social Insurance Number (SIN)
-        li Income Information
-      a(href='#') Start now
-
-    footer
-      .page--container
-        a(href='#') Terms
+  p #{__('This service is to claim tax benefits online.')} You need to be eligible to use this service.
+  p In order to claim tax benefits online, you must have the following:
+  ul
+    li Personal Code
+    li Social Insurance Number (SIN)
+    li Income Information
+  a(href='#') Start now

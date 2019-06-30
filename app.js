@@ -31,7 +31,7 @@ app.use(
   sassMiddleware({
     src: path.join(__dirname, 'public'),
     dest: path.join(__dirname, 'public'),
-    debug: true,
+    debug: false,
     indentedSyntax: false, // look for .scss files, not .sass files
     sourceMap: true,
     outputStyle: 'compressed',

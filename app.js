@@ -25,6 +25,7 @@ process.env.NODE_ENV !== 'test' && app.use(morgan('combined', { stream: winston.
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.app_session_secret))
+app.use(require('./config/i18n.config').init)
 
 // in a real-life use case, we would precompile the CSS
 app.use(

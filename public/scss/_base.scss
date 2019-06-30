@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+*:focus {
+  outline: 3px solid #ffbf47;
+  outline-offset: 0;
+}
+
+body {
+  margin: 0;
+  font-size: 1.3em;
+  font-family: sans-serif;
+  line-height: 1.33;
+}
+
+.container {
+  position: relative;
+  min-height: 100vh;
+}
+
+%page-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.page--container {
+  @extend %page-container;
+}
+
+main {
+  @extend %page-container;
+  padding: 0 20px;
+  padding-bottom: calc(50px + 60px);
+}
+
+.banner > * {
+  padding: 0 20px;
+}
+
+header {
+  background: #000;
+  color: #fff;
+  padding: 20px 0 20px 40px;
+  text-align: left;
+  font-size: 2em;
+}
+
+footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 2px solid #000000;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

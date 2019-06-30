@@ -2,8 +2,10 @@ extends ../layout
 
 block content
   .container
-    header Canada 🍁
-    .banner I am the alpha banner
+    header
+      .page--container Canada 🍁
+    .banner
+      .page--container I am the alpha banner
     main
 
       h1 Claim tax benefits
@@ -16,4 +18,5 @@ block content
       a(href='#') Start now
 
     footer
-      a(href='#') Terms
+      .page--container
+        a(href='#') Terms

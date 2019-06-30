@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "nodemon ./bin/www",
-    "lint": "node_modules/eslint/bin/eslint.js config routes app.js",
+    "lint": "node_modules/eslint/bin/eslint.js config routes bin/www app.js",
     "start": "node ./bin/www",
     "test": "node node_modules/jest/bin/jest.js"
   },

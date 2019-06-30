@@ -1,0 +1,49 @@
+form.pure-form.pure-form-stacked {
+  label,
+  label + span {
+    margin: 0 0 10px 0;
+    font-size: inherit;
+  }
+
+  label {
+    font-weight: 700;
+  }
+
+  input,
+  button {
+    font-family: sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+    width: 100%;
+    border-radius: 0;
+    -webkit-appearance: none;
+    vertical-align: top;
+  }
+
+  input {
+    height: 40px;
+    border: 2px solid #000000;
+    margin-top: 0;
+    padding: 5px;
+
+    &:focus {
+      @include focus();
+      border-color: black;
+    }
+  }
+
+  button {
+    line-height: 1.1875;
+    display: inline-block;
+    position: relative;
+    margin-top: 10px;
+    padding: 7px 10px;
+    border-radius: 0;
+    color: #fff;
+    background-color: #335075;
+    border: 2px solid #335075;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}

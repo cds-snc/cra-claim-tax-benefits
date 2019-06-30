@@ -6,11 +6,13 @@ block content
 
   p Your access code is the 8 character code found in your notification letter.
 
-  br
-  p Personal Code
-  p For Example: A23XGY12
-  input(type="text", name="personalCode")
-  br
-  button Continue
-  br
+    form.pure-form.pure-form-stacked(method='get')
+        .pure-u-sm-1-2.pure-u-md-1-3
+          div
+            label(for='code') Personal access code
+            span.pure-form-message For Example: A23XGY12
+            input#code(name='code', type='text', value='', autocomplete='off')
+
+          button(type='submit') Continue
+
   a(href="/start") Cancel

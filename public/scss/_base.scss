@@ -8,8 +8,7 @@
 }
 
 *:focus {
-  outline: 3px solid #ffbf47;
-  outline-offset: 0;
+  @include focus();
 }
 
 body {

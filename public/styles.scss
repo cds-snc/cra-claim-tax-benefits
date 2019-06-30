@@ -2,8 +2,13 @@
 @import '../node_modules/purecss/build/base';
 @import '../node_modules/purecss/build/buttons-core';
 @import '../node_modules/purecss/build/forms';
+@import '../node_modules/purecss/build/grids-core';
 @import '../node_modules/purecss/build/grids-responsive';
 @import '../node_modules/purecss/build/tables';
 
+/* Utilities */
+@import './scss/_mixins';
+
 /* App-wide styles */
 @import './scss/_base';
+@import './scss/_forms';

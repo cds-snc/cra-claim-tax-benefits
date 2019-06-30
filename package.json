@@ -9,7 +9,8 @@
     "node": ">=10.15"
   },
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www",
     "test": "node node_modules/jest/bin/jest.js"
   },
   "dependencies": {

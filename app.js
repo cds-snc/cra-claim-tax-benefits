@@ -55,6 +55,7 @@ app.use(compression())
 
 // configure routes
 require('./routes/start/start.controller')(app)
+require('./routes/login/login.controller')(app)
 
 // handle global errors.
 app.use(function(err, req, res, next) {

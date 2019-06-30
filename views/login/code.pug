@@ -1,0 +1,16 @@
+extends ../base
+
+block content
+
+  h1 #{title}
+
+  p Your access code is the 8 character code found in your notification letter.
+
+  br
+  p Personal Code
+  p For Example: A23XGY12
+  input(type="text", name="personalCode")
+  br
+  button Continue
+  br
+  a(href="/start") Cancel

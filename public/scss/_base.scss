@@ -13,6 +13,41 @@ body {
   line-height: 1.33;
 }
 
+a {
+  color: #284162;
+
+  &:visited {
+    color: #7834bc;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', sans-serif;
+}
+
+main {
+  @extend %page-container;
+  padding: 0 20px;
+  padding-bottom: calc(#{$footerHeight} + 60px);
+
+  h1 {
+    border-bottom: 1px solid #af3c43;
+  }
+}
+
+header {
+  border-bottom: #000 3px solid;
+  color: #fff;
+  padding: 20px 0;
+  text-align: left;
+  font-size: 2em;
+}
+
 .container {
   position: relative;
   min-height: 100vh;
@@ -27,26 +62,4 @@ body {
 
 .page--container {
   @extend %page-container;
-}
-
-main {
-  @extend %page-container;
-  padding: 0 20px;
-  padding-bottom: calc(#{$footerHeight} + 60px);
-}
-
-header {
-  border-bottom: #000 3px solid;
-  color: #fff;
-  padding: 20px 0;
-  text-align: left;
-  font-size: 2em;
-}
-
-a {
-  color: #284162;
-
-  &:visited {
-    color: #7834bc;
-  }
 }

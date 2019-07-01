@@ -42,3 +42,11 @@ header {
   text-align: left;
   font-size: 2em;
 }
+
+a {
+  color: #284162;
+
+  &:visited {
+    color: #7834bc;
+  }
+}

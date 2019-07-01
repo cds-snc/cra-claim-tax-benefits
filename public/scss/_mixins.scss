@@ -2,3 +2,38 @@
   outline: $outline solid #ffbf47;
   outline-offset: $outlineOffset;
 }
+
+/*
+    media queries based on Pure CSS's breakpoints: https://purecss.io/grids/
+
+    usage example:
+
+    @include sm {
+      width: 100%;
+    }
+*/
+
+/* ≥ 568px */
+@mixin sm {
+  @media screen and (min-width: 35.5em) {
+    @content;
+  }
+}
+/* ≥ 768px */
+@mixin md {
+  @media screen and (min-width: 48em) {
+    @content;
+  }
+}
+/* ≥ 1024px */
+@mixin lg {
+  @media screen and (min-width: 64em) {
+    @content;
+  }
+}
+/* ≥ 1280px */
+@mixin xl {
+  @media screen and (min-width: 80em) {
+    @content;
+  }
+}

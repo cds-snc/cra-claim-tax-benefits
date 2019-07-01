@@ -2,6 +2,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 * {
@@ -31,7 +32,7 @@ body {
 main {
   @extend %page-container;
   padding: 0 20px;
-  padding-bottom: calc(50px + 60px);
+  padding-bottom: calc(#{$footerHeight} + 60px);
 }
 
 header {
@@ -40,14 +41,4 @@ header {
   padding: 20px 0;
   text-align: left;
   font-size: 2em;
-}
-
-footer {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-top: 2px solid #000000;
-  height: 50px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 }

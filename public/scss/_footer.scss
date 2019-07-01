@@ -1,0 +1,33 @@
+$footerInnerHeight: 35px;
+
+footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 4px solid #335075;
+  height: $footerHeight;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  @include sm {
+    .page--container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      height: $footerInnerHeight;
+
+      .footer-links {
+        flex: 2;
+      }
+      .canada-wordmark {
+        flex: 1;
+        text-align: right;
+
+        img {
+          height: $footerInnerHeight;
+        }
+      }
+    }
+  }
+}

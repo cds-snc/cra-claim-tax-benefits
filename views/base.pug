@@ -15,7 +15,13 @@ html(lang='en')
   body
     .container
       header
-        .page--container Canada 🍁
+        .page--container
+          //- can also potentially put these as strings in our locales file
+          .canada-flag.pure-u-1-2.pure-u-sm-1-3
+            if getLocale() == 'fr'
+              img(src='/img/sig-blk-fr.svg', alt='Gouvernemente du Canada')
+            else
+              img(src='/img/sig-blk-en.svg', alt='Government of Canada')
 
       main
         block content

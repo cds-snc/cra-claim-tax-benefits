@@ -38,7 +38,7 @@ action "Run jest unit tests" {
 action "If master branch" {
   uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
   needs = ["Lint Dockerfile", "Run JS linter", "Run jest unit tests", "Scan for secrets"]
-  args = "branch github-actions-2-more-actions"
+  args = "branch master"
 }
 
 action "Build a Docker container" {

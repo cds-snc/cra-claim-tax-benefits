@@ -14,6 +14,12 @@
 }
 
 form.pure-form.pure-form-stacked {
+  margin: $space-xl 0;
+
+  > div > div:not(.button-left) {
+    margin-bottom: $space-lg;
+  }
+
   label,
   label + span {
     margin: 0 0 $space-xs 0;
@@ -51,8 +57,29 @@ form.pure-form.pure-form-stacked {
     @extend %button-styles;
     font-family: 'Noto Sans', sans-serif;
   }
+
+  @include sm {
+    .button-left {
+      padding-right: $space-xs;
+    }
+    .button-right {
+      padding-left: $space-xs;
+    }
+  }
 }
 
 a.button-link {
   @extend %button-styles;
+
+  &.full-width {
+    display: inline-block;
+    width: 100%;
+  }
+
+  &.transparent {
+    color: $color-blue-dark;
+    background-color: transparent;
+    border-color: transparent;
+    text-decoration: underline;
+  }
 }

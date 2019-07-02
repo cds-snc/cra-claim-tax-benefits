@@ -13,6 +13,7 @@ block content
           span.pure-form-message For Example: A23XGY12
           input#code(name='code', type='text', value=data.code, autocomplete='off')
 
-        button(type='submit') Continue
-
-  a(href='/start') Cancel
+        .button-left.pure-u-1.pure-u-sm-1-2
+          button(type='submit') Continue
+        .button-right.pure-u-1.pure-u-sm-1-2
+          a.button-link.transparent.full-width(href='/start') Cancel

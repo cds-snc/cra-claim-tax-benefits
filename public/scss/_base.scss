@@ -59,6 +59,18 @@ header {
   }
 }
 
+summary {
+  color: $color-blue-dark;
+  cursor: pointer;
+  // the little arrow disappears in firefox unless this is set explicitly
+  display: list-item;
+
+  // the summary element doesn't appear to accept underlined text
+  > span {
+    text-decoration: underline;
+  }
+}
+
 .container {
   position: relative;
   min-height: 100vh;

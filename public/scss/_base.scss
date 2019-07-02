@@ -30,6 +30,13 @@ h6 {
   font-family: 'Lato', sans-serif;
 }
 
+%page-container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 main {
   @extend %page-container;
   padding: 0 20px;
@@ -41,23 +48,20 @@ main {
 }
 
 header {
-  border-bottom: #000 3px solid;
-  color: #fff;
-  padding: 20px 0;
+  padding: 30px 0 40px 0;
   text-align: left;
   font-size: 2em;
+
+  @include sm {
+    .canada-flag {
+      width: 360px;
+    }
+  }
 }
 
 .container {
   position: relative;
   min-height: 100vh;
-}
-
-%page-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .page--container {

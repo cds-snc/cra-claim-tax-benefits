@@ -21,17 +21,24 @@ describe('Test /login responses', () => {
     expect($('h1').text()).toEqual('Enter access code')
   })
 
-  test('it reloads /login/code with a 422 status if no code is provided', async () => {
+  test('it returns a 500 response if no redirect is provided', async () => {
     const response = await request(app).post('/login/code')
+    expect(response.statusCode).toBe(500)
+  })
+
+  test('it reloads /login/code with a 422 status if no code is provided', async () => {
+    const response = await request(app)
+      .post('/login/code')
+      .send({ redirect: '/' })
     expect(response.statusCode).toBe(422)
   })
 
   test('it redirects to /login/success if a valid code is provided', async () => {
     const response = await request(app)
       .post('/login/code')
-      .send({ code: 'OK' })
+      .send({ code: 'OK', redirect: '/' })
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toEqual('/login/success')
+    expect(response.headers.location).toEqual('/')
   })
 
   test('it returns a 200 response for /login/success', async () => {

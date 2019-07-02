@@ -11,11 +11,16 @@ module.exports = function(app) {
 }
 
 const postCode = (req, res) => {
+  let redirect = req.body.redirect || null
+  if (!redirect) {
+    throw new Error(`[POST ${req.path}] 'redirect' parameter missing`)
+  }
+
   let accessCode = req.body.code || null
   req.session = accessCode ? { code: accessCode } : null
 
-  if (accessCode) {
-    return res.redirect('/login/success')
+  if (accessCode && redirect) {
+    return res.redirect(redirect)
   }
 
   res.status(422).render('login/code', { title: 'Enter access code', data: req.session || {} })

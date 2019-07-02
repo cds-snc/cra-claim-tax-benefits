@@ -1,3 +1,18 @@
+%button-styles {
+  line-height: 1.1875;
+  display: inline-block;
+  position: relative;
+  margin-top: 10px;
+  padding: 7px 10px;
+  border-radius: 0;
+  color: #fff;
+  background-color: #335075;
+  border: 2px solid #335075;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 form.pure-form.pure-form-stacked {
   label,
   label + span {
@@ -33,17 +48,11 @@ form.pure-form.pure-form-stacked {
   }
 
   button {
-    line-height: 1.1875;
-    display: inline-block;
-    position: relative;
-    margin-top: 10px;
-    padding: 7px 10px;
-    border-radius: 0;
-    color: #fff;
-    background-color: #335075;
-    border: 2px solid #335075;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
+    @extend %button-styles;
+    font-family: 'Noto Sans', sans-serif;
   }
+}
+
+a.button-link {
+  @extend %button-styles;
 }

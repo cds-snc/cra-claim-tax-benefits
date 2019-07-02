@@ -1,7 +1,7 @@
 workflow "Run tests on push" {
   on = "push"
   resolves = [
-    "Push container to Docker Hub",
+    "Update container image in Azure App Service for Containers",
   ]
 }
 
@@ -64,4 +64,18 @@ action "Push container to Docker Hub" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
   needs = ["Login to Docker Hub", "Tag :$GITHUB_SHA"]
   args = "push cdssnc/cra-claim-tax-benefits"
+}
+
+action "Login to Azure" {
+  uses = "Azure/github-actions/login@d0e5a0afc6b9d8d19c9ade8e2446ef3c20e260d4"
+  secrets = ["AZURE_SERVICE_APP_ID", "AZURE_SERVICE_PASSWORD", "AZURE_SERVICE_TENANT"]
+  needs = ["Push container to Docker Hub"]
+}
+
+action "Update container image in Azure App Service for Containers" {
+  uses = "Azure/github-actions/cli@d0e5a0afc6b9d8d19c9ade8e2446ef3c20e260d4"
+  needs = ["Login to Azure"]
+  env = {
+    AZURE_SCRIPT = "az webapp config container set --resource-group cdscracollab-innovation-rg --name claim-tax-benefits --docker-custom-image-name cdssnc/cra-claim-tax-benefits:$GITHUB_SHA"
+  }
 }

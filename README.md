@@ -1,8 +1,8 @@
-# expressbase
+# Claim tax benefits
 
-This is a small frontend to trial user flows for a future CRA service.
+This is a small frontend to trial user flows for a future CRA service that will help Canadians receive the benefits to which they are entitled.
 
-It's a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server.
+It's a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and a dash of [Pure CSS](https://purecss.io/).
 
 ## Getting started (npm)
 
@@ -14,7 +14,7 @@ It's a server-side [express](https://expressjs.com/) application using [Pug](htt
 
 ### .env file (optional)
 
-It's possible to bootstrap this application with no `/.env` file, but if you want one, go nuts.
+It's possible to bootstrap this application with no `/.env` file — but if you want one, go nuts.
 
 <details>
   <summary>Example `.env` file</summary>
@@ -79,10 +79,10 @@ A docker container allows a developer to package up an application and all of it
 
 ```bash
 # build an image locally
-docker build -t pcraig3/expressbase .
+docker build -t cdssnc/cra-claim-tax-benefits .
 
 # run the container
-docker run -it -p 3005:3005 pcraig3/expressbase
+docker run -it -p 3005:3005 cdssnc/cra-claim-tax-benefits
 ```
 
 The container should be running at [http://localhost:3005/](http://localhost:3005/).

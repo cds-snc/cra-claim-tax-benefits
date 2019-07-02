@@ -14,10 +14,10 @@ body {
 }
 
 a {
-  color: #284162;
+  color: $color-blue-dark;
 
   &:visited {
-    color: #7834bc;
+    color: $color-purple;
   }
 }
 
@@ -33,22 +33,22 @@ h6 {
 %page-container {
   max-width: 1170px;
   margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: $space-md;
+  padding-right: $space-md;
 }
 
 main {
   @extend %page-container;
-  padding: 0 20px;
-  padding-bottom: calc(#{$footerHeight} + 60px);
+  padding: 0 $space-md;
+  padding-bottom: calc(#{$height-footer} + #{$space-xxl});
 
   h1 {
-    border-bottom: 1px solid #af3c43;
+    border-bottom: 1px solid $color-red;
   }
 }
 
 header {
-  padding: 30px 0 40px 0;
+  padding: $space-lg 0 $space-xl 0;
   text-align: left;
   font-size: 2em;
 

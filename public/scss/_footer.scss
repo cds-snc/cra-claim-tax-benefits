@@ -1,10 +1,10 @@
 $footerInnerHeight: 35px;
 
 footer {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-top: 4px solid #284162;
-  height: $footerHeight;
+  padding-top: $space-md;
+  padding-bottom: $space-md;
+  border-top: 4px solid $color-blue-dark;
+  height: $height-footer;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -16,12 +16,12 @@ footer {
       list-style: none;
       margin: 0;
       padding: 0;
-      margin-bottom: 20px;
+      margin-bottom: $space-md;
     }
 
     li {
       display: inline-block;
-      margin-right: 20px;
+      margin-right: $space-md;
     }
 
     a {
@@ -30,7 +30,7 @@ footer {
   }
 
   .canada-wordmark {
-    margin-bottom: 20px;
+    margin-bottom: $space-md;
   }
 
   @include sm {
@@ -46,7 +46,7 @@ footer {
 
         ul {
           // put the footer links on the same baseline as the Canada wordmark
-          margin-bottom: -5px;
+          margin-bottom: -$space-xxs;
         }
       }
       .canada-wordmark {

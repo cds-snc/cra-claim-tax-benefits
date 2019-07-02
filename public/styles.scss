@@ -6,9 +6,8 @@
 @import '../node_modules/purecss/build/grids-responsive';
 @import '../node_modules/purecss/build/tables';
 
-$footerHeight: 80px;
-
 /* Utilities */
+@import './scss/_variables';
 @import './scss/_mixins';
 
 /* App-wide styles */

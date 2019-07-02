@@ -5,9 +5,9 @@
   margin-top: 10px;
   padding: 7px 10px;
   border-radius: 0;
-  color: #fff;
-  background-color: #335075;
-  border: 2px solid #335075;
+  color: $color-white;
+  background-color: $color-blue-light;
+  border: 2px solid $color-blue-light;
   text-align: center;
   cursor: pointer;
   text-decoration: none;
@@ -16,7 +16,7 @@
 form.pure-form.pure-form-stacked {
   label,
   label + span {
-    margin: 0 0 10px 0;
+    margin: 0 0 $space-xs 0;
     font-size: inherit;
   }
 
@@ -37,13 +37,13 @@ form.pure-form.pure-form-stacked {
 
   input {
     height: 40px;
-    border: 2px solid #000000;
+    border: 2px solid $color-black;
     margin-top: 0;
-    padding: 5px;
+    padding: $space-xxs;
 
     &:focus {
       @include focus();
-      border-color: black;
+      border-color: $color-black;
     }
   }
 

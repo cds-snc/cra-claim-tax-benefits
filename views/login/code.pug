@@ -14,7 +14,9 @@ block content
         div
           label(for='code') Personal access code
           span.pure-form-message For Example: A23XGY12
-          input#code(name='code', type='text', value=data.code, autocomplete='off' aria-describedby=(errors ? 'code_error' : false))
+          input#code(class={['has-error']: errors && errors.code} name='code', type='text', value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code_error' : false))
+          if errors
+            span.validation-message #{errors.code.msg}
 
         div
           details.

@@ -47,6 +47,10 @@ form.pure-form.pure-form-stacked {
     margin-top: 0;
     padding: $space-xxs;
 
+    &.has-error {
+      border: 2px solid $color-red;
+    }
+
     &:focus {
       @include focus();
       border-color: $color-black;

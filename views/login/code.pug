@@ -4,6 +4,9 @@ block content
 
   h1 #{title}
 
+  if errors 
+    include ../_includes/errorList.pug
+
   p Your personal access code is the 8 character code found in your notification letter.
 
     form.pure-form.pure-form-stacked(method='post')
@@ -11,7 +14,7 @@ block content
         div
           label(for='code') Personal access code
           span.pure-form-message For Example: A23XGY12
-          input#code(name='code', type='text', value=data.code, autocomplete='off')
+          input#code(name='code', type='text', value=data.code, autocomplete='off' aria-describedby=(errors ? 'code_error' : false))
 
         div
           details.

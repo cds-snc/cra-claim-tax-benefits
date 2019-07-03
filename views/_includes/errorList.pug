@@ -1,0 +1,6 @@
+div.error-list-wrapper(role='alert')
+    p There are #{Object.keys(errors).length} errors on the page
+    ol#formErrors.error-list
+    each error in errors
+        li.error-list__error
+            a(class='error-list__link' id=error.param+'_error' href='#'+error.param) #{error.msg}

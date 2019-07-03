@@ -67,3 +67,5 @@ typings/
 # CSS files are compiled
 public/styles.css
 public/styles.css*
+
+**/**/.DS_Store

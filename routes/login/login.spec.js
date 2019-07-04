@@ -39,7 +39,7 @@ describe('Test /login responses', () => {
         .post('/login/code')
         .send({ redirect: '/' })
       const $ = cheerio.load(response.text)
-      expect($('.error-list__header').text()).toEqual('Please correct the error on the page')
+      expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
       expect($('.error-list__list').children()).toHaveLength(1)
       expect($('.validation-message').text()).toEqual('Must be 8 characters')
       expect($('#code').attr('aria-describedby')).toEqual('code_error')

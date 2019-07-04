@@ -1,8 +1,5 @@
 div.error-list(role='alert')
-    if (Object.keys(errors).length > 1)
-        h3.error-list__header Please correct the #{Object.keys(errors).length} errors on the page
-    else
-        h3.error-list__header Please correct the error on the page
+    h3.error-list__header #{__('Please correct the errors on the page')}
     ol#formErrors.error-list__list
         each error in errors
             li.error-list__list-item

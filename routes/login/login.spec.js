@@ -55,6 +55,20 @@ describe('Test /login responses', () => {
     })
   })
 
+  test('it does not allow a code more than 8 characters', async () => {
+    const response = await request(app)
+      .post('/login/code')
+      .send({ code: 'A23XGY12111', redirect: '/' })
+    expect(response.statusCode).toBe(422)
+  })
+
+  test('it does not allow a code less than 8 characters', async () => {
+    const response = await request(app)
+      .post('/login/code')
+      .send({ code: 'A23X', redirect: '/' })
+    expect(response.statusCode).toBe(422)
+  })
+
   test('it redirects to /login/success if a valid code is provided', async () => {
     const response = await request(app)
       .post('/login/code')

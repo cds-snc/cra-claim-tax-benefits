@@ -1,0 +1,13 @@
+.error-list {
+    padding: $space-sm;
+    background: $color-red-light;
+    border-left: 4px solid $color-red;
+
+    &__header {
+        margin-top: $space-xs;
+    }
+}
+
+.validation-message {
+  color: $color-red;
+}

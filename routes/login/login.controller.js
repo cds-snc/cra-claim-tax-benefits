@@ -1,10 +1,6 @@
 const { validationResult, checkSchema } = require('express-validator')
-const {
-  errorArray2ErrorObject
-} = require('./../../utils.js')
-const {
-  loginSchema
-} = require('./../../formSchemas.js')
+const { errorArray2ErrorObject } = require('./../../utils.js')
+const { loginSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
   // redirect from "/login" → "/login/accessCode"
@@ -27,11 +23,11 @@ const postCode = (req, res) => {
   let accessCode = req.body.code || null
   req.session = accessCode ? { code: accessCode } : null
 
-  if (accessCode && redirect) {
-    return res.redirect(redirect)
-  }
-
   const errors = validationResult(req)
 
-  res.status(422).render('login/code', { title: 'Enter access code', data: req.session || {}, errors: errorArray2ErrorObject(errors) })
+  if(!errors.isEmpty()) {
+    res.status(422).render('login/code', { title: 'Enter access code', data: req.session || {}, errors: errorArray2ErrorObject(errors) })
+  } else if (accessCode && redirect) {
+    return res.redirect(redirect)
+  }
 }

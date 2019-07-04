@@ -1,10 +1,10 @@
 .error-list {
-    padding: 15px;
-    background: #f3e9e8;
+    padding: $space-sm;
+    background: $color-red-light;
     border-left: 4px solid $color-red;
 
     &__header {
-        margin-top: 10px;
+        margin-top: $space-xs;
     }
 }
 

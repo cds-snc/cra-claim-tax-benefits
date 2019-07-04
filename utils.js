@@ -1,7 +1,3 @@
-const pickEditSchema = (req, res, next) => {
-    const question = require(`./questions/${req.params.id}.js`)
-    return checkSchema(question.schema)[0](req, res, next)
-}
 /*
   original format is an array of error objects: https://express-validator.github.io/docs/validation-result-api.html
   convert that to an object where the key is the parameter name and value is the error object

@@ -1,9 +1,9 @@
-.error-list-wrapper {
+.error-list {
     padding: 15px;
     background: #f3e9e8;
     border-left: 4px solid $color-red;
 
-    h3 {
+    &__header {
         margin-top: 10px;
     }
 }

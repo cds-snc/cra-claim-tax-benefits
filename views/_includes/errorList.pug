@@ -1,9 +1,9 @@
-div.error-list-wrapper(role='alert')
+div.error-list(role='alert')
     if (Object.keys(errors).length > 1)
-        h3 Please correct the #{Object.keys(errors).length} errors on the page
+        h3.error-list__header Please correct the #{Object.keys(errors).length} errors on the page
     else
-        h3 Please correct the error on the page
-    ol#formErrors.error-list
+        h3.error-list__header Please correct the error on the page
+    ol#formErrors.error-list__list
         each error in errors
-            li.error-list__error
+            li.error-list__list-item
                 a(class='error-list__link' id=error.param+'_error' href='#'+error.param) #{error.msg}

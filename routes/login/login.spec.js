@@ -33,6 +33,28 @@ describe('Test /login responses', () => {
     expect(response.statusCode).toBe(422)
   })
 
+  describe('Error list tests', () => {
+    test('it renders the error-list for /login/code', async () => {
+      const response = await request(app)
+        .post('/login/code')
+        .send({ redirect: '/' })
+      const $ = cheerio.load(response.text)
+      expect($('.error-list__header').text()).toEqual('Please correct the error on the page')
+      expect($('.error-list__list').children()).toHaveLength(1)
+      expect($('.validation-message').text()).toEqual('Must be 8 characters')
+      expect($('#code').attr('aria-describedby')).toEqual('code_error')
+    })
+
+    test('it renders an inline error for /login/code with appropriate describedby', async () => {
+      const response = await request(app)
+        .post('/login/code')
+        .send({ redirect: '/' })
+      const $ = cheerio.load(response.text)
+      expect($('.validation-message').text()).toEqual('Must be 8 characters')
+      expect($('#code').attr('aria-describedby')).toEqual('code_error')
+    })
+  })
+
   test('it redirects to /login/success if a valid code is provided', async () => {
     const response = await request(app)
       .post('/login/code')

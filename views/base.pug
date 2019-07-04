@@ -27,6 +27,9 @@ html(lang='en')
               img(src='/img/sig-blk-en.svg', alt='Government of Canada')
 
       main
+        if errors 
+          include _includes/errorList.pug
+
         block content
 
       include _includes/footer.pug

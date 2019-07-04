@@ -58,7 +58,7 @@ describe('Test /login responses', () => {
   test('it redirects to /login/success if a valid code is provided', async () => {
     const response = await request(app)
       .post('/login/code')
-      .send({ code: 'OK', redirect: '/' })
+      .send({ code: 'A23XGY12', redirect: '/' })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/')
   })

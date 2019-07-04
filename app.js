@@ -59,6 +59,9 @@ app.use(helmet())
 // gzip response body compression.
 app.use(compression())
 
+// Adding GITHUB_SHA to locals so that we can access it in our templates
+app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
+
 // configure routes
 require('./routes/start/start.controller')(app)
 require('./routes/login/login.controller')(app)

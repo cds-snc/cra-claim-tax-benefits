@@ -69,6 +69,13 @@ describe('Test /login responses', () => {
     expect(response.statusCode).toBe(422)
   })
 
+  test('it does not allow non-alphanumeric characters', async () => {
+    const response = await request(app)
+      .post('/login/code')
+      .send({ code: 'A23X456@', redirect: '/' })
+    expect(response.statusCode).toBe(422)
+  })
+
   test('it redirects to /login/success if a valid code is provided', async () => {
     const response = await request(app)
       .post('/login/code')

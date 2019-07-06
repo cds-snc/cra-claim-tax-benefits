@@ -13,6 +13,12 @@
     }
 */
 
+/* ≥ 336px */
+@mixin xs {
+  @media screen and (min-width: 21em) {
+    @content;
+  }
+}
 /* ≥ 568px */
 @mixin sm {
   @media screen and (min-width: 35.5em) {

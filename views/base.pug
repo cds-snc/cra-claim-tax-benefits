@@ -23,14 +23,14 @@ html(lang='en')
       header
         .page--container
           //- can also potentially put these as strings in our locales file
-          .canada-flag.pure-u-1-2
+          .canada-flag
             if getLocale() == 'fr'
               img(src='/img/sig-blk-fr.svg', alt='Gouvernement du Canada')
             else
               img(src='/img/sig-blk-en.svg', alt='Government of Canada')
 
       main
-        if errors 
+        if errors
           include _includes/errorList.pug
 
         block content

@@ -13,7 +13,7 @@ block content
         div
           label(for='code') Personal access code
           span.pure-form-message For Example: A23XGY12
-          input#code(class={['has-error']: errors && errors.code} name='code', type='text', value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code_error' : false))
+          input.w-3-4#code(class={['has-error']: errors && errors.code} name='code', type='text', value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code_error' : false))
           if errors
             span.validation-message #{errors.code.msg}
 
@@ -24,7 +24,8 @@ block content
 
         input#redirect(name='redirect', type='hidden', value='/login/sin')
 
-        .button-left
-          button(type='submit') Continue
-        .button-right
-          a.button-link.transparent.full-width(href='/clear') Cancel
+        .buttons
+          .buttons--left
+            button(type='submit') Continue
+          .buttons--right
+            a.button-link.transparent.full-width(href='/clear') Cancel

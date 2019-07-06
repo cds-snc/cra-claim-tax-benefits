@@ -7,9 +7,9 @@ block content
 
   h1 #{title}
 
-  if data.accessCode
-    p Great! Thanks so much!
-    p Your personal access code is “<strong>#{data.accessCode}</strong>”
+  if data.login
+    p Thanks so much, #{data.personal.firstName} #{data.personal.lastName}!
+    p Your personal access code is “<strong>#{data.login.code}</strong>”
   else
     p Whoops, you don’t have an access code.
     p Please return to the start page.

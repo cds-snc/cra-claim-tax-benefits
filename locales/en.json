@@ -1,5 +1,6 @@
 {
 	"This service is to claim tax benefits online.": "This service is to claim tax benefits online.",
 	"Claim tax benefits": "Claim tax benefits",
-	"Please correct the errors on the page": "Please correct the errors on the page"
+	"Please correct the errors on the page": "Please correct the errors on the page",
+	"errors.login.code": "Sorry, login code not recognized."
 }

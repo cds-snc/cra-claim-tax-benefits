@@ -2,5 +2,7 @@
   "This service is to claim tax benefits online.": "Ce service consiste à demander des avantages fiscaux en ligne.",
   "Claim tax benefits": "Réclamer des avantages fiscaux",
   "Please correct the errors on the page": "Please correct the errors on the page",
-  "errors.login.code": "Sorry, login code not recognized."
+  "errors.login.length": "Access code must be 8 characters",
+  "errors.login.alphanumeric": "Access code should only contain letters and numbers",
+  "errors.login.code": "Access code not recognized"
 }

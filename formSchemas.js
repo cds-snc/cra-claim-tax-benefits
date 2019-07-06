@@ -3,11 +3,16 @@ const API = require('./api')
 const loginSchema = {
   code: {
     isLength: {
-      errorMessage: 'Must be 8 characters',
+      errorMessage: 'errors.login.length',
       options: { min: 8, max: 8 },
     },
     isAlphanumeric: {
-      errorMessage: 'Code can only contain letters and numbers',
+      errorMessage: 'errors.login.alphanumeric',
+    },
+    customSanitizer: {
+      options: value => {
+        return value.toUpperCase()
+      },
     },
     isIn: {
       options: [API.getMatches()],

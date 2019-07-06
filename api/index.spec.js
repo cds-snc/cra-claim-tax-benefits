@@ -11,3 +11,9 @@ test('returns null with a nonexistent login.code', () => {
   const user = API.getUser('H3LLY34H')
   expect(user).toBe(null)
 })
+
+test('returns matching login code as an array', () => {
+  const codes = API.getMatches()
+  expect(codes).toBeInstanceOf(Array)
+  expect(codes.length).toBe(1)
+})

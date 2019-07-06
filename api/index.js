@@ -11,8 +11,11 @@ var API = (function(user) {
     return null
   }
 
+  const getMatches = () => [_user.login.code]
+
   return {
     getUser,
+    getMatches,
   }
 })(user)
 

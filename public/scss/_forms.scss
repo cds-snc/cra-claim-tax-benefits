@@ -14,7 +14,7 @@
 }
 
 form.pure-form.pure-form-stacked {
-  margin: $space-xl 0;
+  margin-top: $space-xl;
   max-width: 300px;
 
   @include sm {
@@ -33,7 +33,7 @@ form.pure-form.pure-form-stacked {
 }
 
 form.pure-form.pure-form-stacked {
-  > div:not(.button-left) {
+  > div:not(:last-of-type) {
     margin-bottom: $space-lg;
   }
 

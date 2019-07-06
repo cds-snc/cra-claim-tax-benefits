@@ -11,7 +11,7 @@ const loginSchema = {
     },
     customSanitizer: {
       options: value => {
-        return value.toUpperCase()
+        return value ? value.toUpperCase() : value
       },
     },
     isIn: {

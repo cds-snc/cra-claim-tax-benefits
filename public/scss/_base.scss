@@ -75,18 +75,6 @@ li:not(:last-of-type) {
   padding-bottom: $space-xxs;
 }
 
-summary {
-  color: $color-blue-dark;
-  cursor: pointer;
-  // the little arrow disappears in firefox unless this is set explicitly
-  display: list-item;
-
-  // the summary element doesn't appear to accept underlined text
-  > span {
-    text-decoration: underline;
-  }
-}
-
 .container {
   position: relative;
   min-height: 100vh;
@@ -94,4 +82,24 @@ summary {
 
 .page--container {
   @extend %page-container;
+}
+
+.pure-table {
+  width: 100%;
+  margin-bottom: $space-xl;
+
+  @include sm {
+    width: 75%;
+  }
+
+  th {
+    border-bottom: 3px solid $color-black;
+  }
+}
+
+.buttons-row {
+  a,
+  button {
+    margin-right: $space-sm;
+  }
 }

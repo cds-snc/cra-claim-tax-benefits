@@ -34,9 +34,10 @@ const postLoginCode = (req, res) => {
     // clear session
     req.session = null
 
-    return res
-      .status(422)
-      .render('login/code', { data: req.session || {}, errors: errorArray2ErrorObject(errors) })
+    return res.status(422).render('login/code', {
+      data: { code: req.body.code } || {},
+      errors: errorArray2ErrorObject(errors),
+    })
   }
 
   let user = API.getUser(req.body.code || null)

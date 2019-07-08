@@ -12,26 +12,28 @@ block content
 
     checked=(data && data.personal.maritalStatus.toLowerCase()=='married')
 
-  div
-    fieldset.fieldset
-        legend
-            p.fieldset__legend Marital Status
-        .radios
-            .radios__item
-                input.radios__input(id="maritalStatusMarried" name="maritalStatus" type="radio" value="Married or common-law" checked=(data && data.personal.maritalStatus.toLowerCase()=='married' || !data))
-                label.radios__label(for="maritalStatusMarried") Married or common-law
-            .radios__item
-                input.radios__input(id="maritalStatusWidowed" name="maritalStatus" type="radio" value="Widowed" checked=(data && data.personal.maritalStatus.toLowerCase()=='widowed'))
-                label.radios__label(for="maritalStatusWidowed") Widowed
-            .radios__item
-                input.radios__input(id="maritalStatusDivorced" name="maritalStatus" type="radio" value="Divorced" checked=(data && data.personal.maritalStatus.toLowerCase()=='divorced'))
-                label.radios__label(for="maritalStatusDivorced") Divorced
-            .radios__item
-                input.radios__input(id="maritalStatusSeparated" name="maritalStatus" type="radio" value="Separated" checked=(data && data.personal.maritalStatus.toLowerCase()=='separated'))
-                label.radios__label(for="maritalStatusSeparated") Separated
-            .radios__item
-                input.radios__input(id="maritalStatusSingle" name="maritalStatus" type="radio" value="Single" checked=(data && data.personal.maritalStatus.toLowerCase()=='single'))
-                label.radios__label(for="maritalStatusSingle") Single
+
+  form.benefits-form(method='post')
+    div
+        fieldset.fieldset
+            legend.fieldset__legend 
+                p Marital Status
+            .radios
+                .radios__item
+                    input.radios__input(id="maritalStatusMarried" name="maritalStatus" type="radio" value="Married" checked=(data && data.personal.maritalStatus.toLowerCase()=='married' || !data))
+                    label.radios__label(for="maritalStatusMarried") Married or common-law
+                .radios__item
+                    input.radios__input(id="maritalStatusWidowed" name="maritalStatus" type="radio" value="Widowed" checked=(data && data.personal.maritalStatus.toLowerCase()=='widowed'))
+                    label.radios__label(for="maritalStatusWidowed") Widowed
+                .radios__item
+                    input.radios__input(id="maritalStatusDivorced" name="maritalStatus" type="radio" value="Divorced" checked=(data && data.personal.maritalStatus.toLowerCase()=='divorced'))
+                    label.radios__label(for="maritalStatusDivorced") Divorced
+                .radios__item
+                    input.radios__input(id="maritalStatusSeparated" name="maritalStatus" type="radio" value="Separated" checked=(data && data.personal.maritalStatus.toLowerCase()=='separated'))
+                    label.radios__label(for="maritalStatusSeparated") Separated
+                .radios__item
+                    input.radios__input(id="maritalStatusSingle" name="maritalStatus" type="radio" value="Single" checked=(data && data.personal.maritalStatus.toLowerCase()=='single'))
+                    label.radios__label(for="maritalStatusSingle") Single
 
   div
     details.

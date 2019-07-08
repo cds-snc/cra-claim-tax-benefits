@@ -93,7 +93,13 @@ form.pure-form.pure-form-stacked {
     font-weight: 600;
     font-size: 19px;
     font-size: 1.1875rem;
+    border-bottom: 0;
   }
+}
+
+// add this class because I was fighting pure form too much
+.benefits-form {
+  margin-bottom: $space-xl;
 }
 
 .radios {

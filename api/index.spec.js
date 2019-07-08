@@ -3,8 +3,8 @@ const API = require('./index')
 test('returns expected user with correct login.code', () => {
   const user = API.getUser('ABCD1234')
   expect(user).not.toBe(null)
-  expect(user.firstName).toBe('Gabrielle')
-  expect(user.lastName).toBe('Roy')
+  expect(user.personal.firstName).toBe('Gabrielle')
+  expect(user.personal.lastName).toBe('Roy')
 })
 
 test('returns null with a nonexistent login.code', () => {

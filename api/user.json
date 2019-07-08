@@ -2,20 +2,22 @@
   "login": {
     "code": "ABCD1234"
   },
-  "firstName": "Gabrielle",
-  "lastName": "Roy",
-  "sin": "111222333",
-  "dob": "1909-03-22",
-  "address": {
-    "aptNumber": "",
-    "streetNumber": "375",
-    "streetName": "Rue Deschambault",
-    "postalCode": "R2H 0J9",
-    "city": "Winnipeg",
-    "province": "Manitoba"
+  "personal": {
+    "firstName": "Gabrielle",
+    "lastName": "Roy",
+    "sin": "111222333",
+    "dob": "1909-03-22",
+    "address": {
+      "aptNumber": "",
+      "streetNumber": "375",
+      "streetName": "Rue Deschambault",
+      "postalCode": "R2H 0J9",
+      "city": "Winnipeg",
+      "province": "Manitoba"
+    },
+    "maritalStatus": "Married",
+    "disability": false
   },
-  "maritalStatus": "Married",
-  "disability": false,
   "financial": {
     "income": "$12,000.00",
     "taxableAmount": "$1,000.00"

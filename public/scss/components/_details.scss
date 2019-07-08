@@ -6,7 +6,14 @@ details {
     cursor: pointer;
     // the little arrow disappears in firefox unless this is set explicitly
     display: list-item;
-    margin-bottom: -$space-xs;
+
+    &:focus {
+      outline: 0;
+
+      > span {
+        @include focus($outlineOffset: 2px);
+      }
+    }
 
     // the summary element doesn't appear to accept underlined text
     > span {
@@ -14,6 +21,7 @@ details {
     }
 
     & + * {
+      margin-top: $space-xs;
       padding: $space-xxs $space-md;
       border-left: 5px solid $color-grey-light;
     }

@@ -10,6 +10,7 @@ module.exports = function(app) {
   app.get('/personal/maritalStatus', (req, res) =>
     res.render('personal/maritalStatus', { data: req.session || {} }),
   )
+  app.get('/personal/address/edit', (req, res) => res.render('personal/address-edit'))
 
   app.get('/personal/maritalStatus/edit', (req, res) => res.render('personal/maritalStatus-edit'))
   app.post(

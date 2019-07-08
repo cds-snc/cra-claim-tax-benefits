@@ -1,0 +1,33 @@
+extends ../base
+
+block variables
+  -var title = 'Change your mailing address'
+
+block content
+
+  h1 #{title}
+
+  div
+    p Please enter the correct mailing address information below. If a letter is sent to this address, you must be able to receive it.
+
+  div
+    form.pure-form.pure-form-stacked(method='post')
+      h3 Your mailing address
+      div
+        label(for='aptNumber') Apartment number
+        input.w-3-4#aptNumber(class={['has-error']: errors && errors.code} name='aptNumber', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.code ? 'code_error' : false))
+        if errors
+          span.validation-message #{__(errors.code.msg)}
+
+      div
+        details.
+          <summary><span>Help with mailing address</span></summary>
+          <p>It doesn’t matter if you lived here last year.</p>
+
+      input#redirect(name='redirect', type='hidden', value='/personal/address')
+
+      .buttons
+        .buttons--left
+          button(type='submit') Change mailing address
+        .buttons--right
+          a.button-link.transparent.full-width(href='/clear') Cancel

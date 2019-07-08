@@ -3,7 +3,7 @@ const cheerio = require('cheerio')
 const app = require('../../app.js')
 const API = require('../../api/index')
 
-describe('Test /[personal] responses', () => {
+describe('Test /personal responses', () => {
   test('it returns a 200 response for the /personal/address path', async () => {
     const response = await request(app).get('/personal/address')
     expect(response.statusCode).toBe(200)
@@ -66,5 +66,10 @@ describe('Test /[personal] responses', () => {
         .send({ redirect: '/personal/maritalStatus', maritalStatus: 'Widowed' })
       expect(response.statusCode).toBe(302)
     })
+  })
+
+  test('it returns a 200 response for the personal/address/edit path', async () => {
+    const response = await request(app).get('/personal/address/edit')
+    expect(response.statusCode).toBe(200)
   })
 })

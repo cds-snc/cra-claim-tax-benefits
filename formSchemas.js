@@ -29,7 +29,7 @@ const sinSchema = {
       },
     },
     isLength: {
-      errorMessage: 'errors.login.length',
+      errorMessage: 'errors.login.lengthSIN',
       options: { min: 9, max: 9 },
     },
     isInt: {

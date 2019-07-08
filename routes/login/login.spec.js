@@ -41,7 +41,7 @@ describe('Test /login responses', () => {
       const $ = cheerio.load(response.text)
       expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
       expect($('.error-list__list').children()).toHaveLength(1)
-      expect($('.validation-message').text()).toEqual('Must be 8 characters')
+      expect($('.validation-message').text()).toEqual('Access code must be 8 characters')
       expect($('#code').attr('aria-describedby')).toEqual('code_error')
     })
 
@@ -50,7 +50,7 @@ describe('Test /login responses', () => {
         .post('/login/code')
         .send({ redirect: '/' })
       const $ = cheerio.load(response.text)
-      expect($('.validation-message').text()).toEqual('Must be 8 characters')
+      expect($('.validation-message').text()).toEqual('Access code must be 8 characters')
       expect($('#code').attr('aria-describedby')).toEqual('code_error')
     })
   })
@@ -76,12 +76,15 @@ describe('Test /login responses', () => {
     expect(response.statusCode).toBe(422)
   })
 
-  test('it redirects to /login/success if a valid code is provided', async () => {
-    const response = await request(app)
-      .post('/login/code')
-      .send({ code: 'A23XGY12', redirect: '/' })
-    expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toEqual('/')
+  const codes = ['QWER1234', 'qwer1234']
+  codes.map(code => {
+    test(`it redirects if a valid code is provided: "${code}"`, async () => {
+      const response = await request(app)
+        .post('/login/code')
+        .send({ code, redirect: '/' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/')
+    })
   })
 
   test('it returns a 200 response for /login/success', async () => {

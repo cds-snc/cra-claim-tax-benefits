@@ -3,4 +3,4 @@ div.error-list(role='alert')
     ol#formErrors.error-list__list
         each error in errors
             li.error-list__list-item
-                a(class='error-list__link' id=error.param+'_error' href='#'+error.param) #{error.msg}
+                a(class='error-list__link' id=error.param+'_error' href='#'+error.param) #{__(error.msg)}

@@ -13,13 +13,12 @@
   }
 */
 const errorArray2ErrorObject = (errors = []) => {
-    return errors.array({ onlyFirstError: true }).reduce((map, obj) => {
-        map[obj.param] = obj
-        return map
-    }, {})
+  return errors.array({ onlyFirstError: true }).reduce((map, obj) => {
+    map[obj.param] = obj
+    return map
+  }, {})
 }
 
-
-  module.exports = {
-    errorArray2ErrorObject
-  }
+module.exports = {
+  errorArray2ErrorObject,
+}

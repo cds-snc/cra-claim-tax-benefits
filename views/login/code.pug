@@ -14,10 +14,10 @@ block content
     form.pure-form.pure-form-stacked(method='post')
       div
         label(for='code') Personal access code
-        span.pure-form-message For Example: A23XGY12
+        span.pure-form-message For Example: QWER1234
         input.w-3-4#code(class={['has-error']: errors && errors.code} name='code', type='text', value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code_error' : false))
         if errors
-          span.validation-message #{errors.code.msg}
+          span.validation-message #{__(errors.code.msg)}
 
       div
         details.

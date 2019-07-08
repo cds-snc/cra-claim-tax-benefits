@@ -1,18 +1,3 @@
-%button-styles {
-  line-height: 1.1875;
-  display: inline-block;
-  position: relative;
-  margin-top: 10px;
-  padding: 7px 10px;
-  border-radius: 0;
-  color: $color-white;
-  background-color: $color-blue-light;
-  border: 2px solid $color-blue-light;
-  text-align: center;
-  cursor: pointer;
-  text-decoration: none;
-}
-
 form.pure-form.pure-form-stacked {
   margin-top: $space-xl;
   max-width: 300px;
@@ -51,8 +36,7 @@ form.pure-form.pure-form-stacked {
     font-weight: 700;
   }
 
-  input,
-  button {
+  input {
     font-family: sans-serif;
     font-size: 1em;
     font-weight: 400;
@@ -78,11 +62,6 @@ form.pure-form.pure-form-stacked {
     }
   }
 
-  button {
-    @extend %button-styles;
-    font-family: 'Noto Sans', sans-serif;
-  }
-
   .buttons {
     display: flex;
     justify-content: space-between;
@@ -103,21 +82,5 @@ form.pure-form.pure-form-stacked {
         margin-left: $space-xs;
       }
     }
-  }
-}
-
-a.button-link {
-  @extend %button-styles;
-
-  &.full-width {
-    display: inline-block;
-    width: 100%;
-  }
-
-  &.transparent {
-    color: $color-blue-dark;
-    background-color: transparent;
-    border-color: transparent;
-    text-decoration: underline;
   }
 }

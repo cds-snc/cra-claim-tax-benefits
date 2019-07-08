@@ -1,0 +1,71 @@
+%button-styles {
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.1875;
+  display: inline-block;
+  position: relative;
+  margin-top: 10px;
+  padding: 7px 10px;
+  border-radius: 0;
+  color: $color-white;
+  background-color: $color-blue-light;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 0 black;
+  text-align: center;
+  vertical-align: top;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-appearance: none;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -4px;
+    left: -2px;
+    background: transparent;
+  }
+
+  &:focus {
+    @include focus();
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $color-blue-dark;
+  }
+
+  &:active {
+    top: 2px;
+    box-shadow: none;
+
+    &::before {
+      top: -4px;
+    }
+  }
+}
+
+button {
+  @extend %button-styles;
+  font-family: 'Noto Sans', sans-serif;
+  width: 100%;
+}
+
+a.button-link {
+  @extend %button-styles;
+
+  &.full-width {
+    display: inline-block;
+    width: 100%;
+  }
+
+  &.transparent {
+    color: $color-blue-dark;
+    background-color: transparent;
+    border-color: transparent;
+    text-decoration: underline;
+    box-shadow: none;
+  }
+}

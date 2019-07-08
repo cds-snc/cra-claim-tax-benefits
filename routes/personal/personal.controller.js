@@ -1,3 +1,3 @@
 module.exports = function(app) {
-  app.get('/address', (req, res) => res.render('personal/address'))
+  app.get('/personal/address', (req, res) => res.render('personal/address'))
 }

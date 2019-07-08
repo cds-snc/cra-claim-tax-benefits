@@ -11,21 +11,23 @@ block content
 
   p Please enter your Social Insurance Number (SIN) in the field below.
 
-    form.pure-form.pure-form-stacked(method='post')
-      .pure-u-4-5.pure-u-sm-1-2.pure-u-md-1-3
-        div
-          label(for='sin') Social Insurance Number
-          span.pure-form-message For Example: 123 456 789
-          input#sin(name='sin', type='text', value=data.sin, autocomplete='off')
+  form.pure-form.pure-form-stacked(method='post')
+    div
+      label(for='sin') Social Insurance Number
+      span.pure-form-message For Example: 123 456 789
+      input.w-3-4#sin(class={['has-error']: errors && errors.code} name='sin', type='text', value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code_error' : false))
+      if errors
+        span.validation-message #{errors.code.msg}
 
-        div
-          details.
-            <summary><span>Help with Social Insurance Number (SIN)</span></summary>
-            <p>This is sample text that should be changed</p>
+    div
+      details.
+        <summary><span>Help with Social Insurance Number (SIN)</span></summary>
+        <p>This is sample text that should be changed</p>
 
-        input#redirect(name='redirect', type='hidden', value='/login/success')
+    input#redirect(name='redirect', type='hidden', value='/login/sin')
 
-        .button-left.pure-u-1.pure-u-sm-1-2
-          button(type='submit') Continue
-        .button-right.pure-u-1.pure-u-sm-1-2
-          a.button-link.transparent.full-width(href='/clear') Cancel
+    .buttons
+      .buttons--left
+        button(type='submit') Continue
+      .buttons--right
+        a.button-link.transparent.full-width(href='/clear') Cancel

@@ -16,12 +16,31 @@ footer {
       list-style: none;
       margin: 0;
       padding: 0;
-      margin-bottom: $space-md;
+      margin-bottom: $space-xl;
+
+      @include sm {
+        margin-bottom: $space-md;
+      }
     }
 
     li {
-      display: inline-block;
-      margin-right: $space-md;
+      margin-right: $space-sm;
+
+      &::before {
+        content: '\2022';
+        color: $color-blue-light;
+        display: inline-block;
+        // bullets are about 5px, so add space to compensate
+        width: calc(#{$space-sm} + 5px);
+      }
+
+      @include sm {
+        &:first-of-type::before {
+          content: none;
+          width: 0;
+        }
+        display: inline-block;
+      }
     }
 
     a {
@@ -31,9 +50,10 @@ footer {
 
   .canada-wordmark {
     margin-bottom: $space-md;
+    width: 147.2px;
   }
 
-  @include sm {
+  @include md {
     .page--container {
       display: flex;
       justify-content: space-between;

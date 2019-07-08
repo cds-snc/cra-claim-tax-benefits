@@ -31,10 +31,14 @@ h6 {
 }
 
 %page-container {
-  max-width: 1170px;
+  max-width: 960px;
   margin: 0 auto;
   padding-left: $space-md;
   padding-right: $space-md;
+
+  @include xl {
+    max-width: 1170px;
+  }
 }
 
 main {
@@ -48,15 +52,27 @@ main {
 }
 
 header {
-  padding: $space-lg 0 $space-xl 0;
+  padding: $space-xs 0 0 0;
   text-align: left;
   font-size: 2em;
 
   @include sm {
-    .canada-flag {
+    padding: $space-lg 0 $space-xl 0;
+  }
+
+  .canada-flag {
+    width: 272px;
+    @include xs {
+      width: 282px;
+    }
+    @include sm {
       width: 360px;
     }
   }
+}
+
+li:not(:last-of-type) {
+  padding-bottom: $space-xxs;
 }
 
 summary {

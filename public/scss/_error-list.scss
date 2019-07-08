@@ -1,11 +1,16 @@
 .error-list {
-    padding: $space-sm;
-    background: $color-red-light;
-    border-left: 4px solid $color-red;
+  padding: $space-sm;
+  background: $color-red-light;
+  border-left: 4px solid $color-red;
 
-    &__header {
-        margin-top: $space-xs;
-    }
+  &__header {
+    margin-top: $space-xs;
+  }
+
+  margin-top: $space-sm;
+  @include sm {
+    margin: 0;
+  }
 }
 
 .validation-message {

@@ -1,9 +1,9 @@
 const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject } = require('./../../utils.js')
-const { loginSchema } = require('./../../formSchemas.js')
+const { loginSchema, sinSchema } = require('./../../formSchemas.js')
 const API = require('../../api')
 
-module.exports = function(app) {
+module.exports = function (app) {
   // redirect from "/login" → "/login/code"
   app.get('/login', (req, res) => res.redirect('/login/code'))
   app.get('/login/code', (req, res) => res.render('login/code', { data: req.session || {} }))
@@ -12,7 +12,7 @@ module.exports = function(app) {
 
   //SIN
   app.get('/login/sin', (req, res) => res.render('login/sin', { data: req.session || {} }))
-  app.post('/login/sin', postSIN)
+  app.post('/login/sin', checkSchema(sinSchema), postSIN)
 }
 
 //POST functions that handle setting the login data in the session and handle redirecting to the next page or sending an error to the client.
@@ -56,6 +56,18 @@ const postSIN = (req, res) => {
   //If sin is not set, set it to null
   let sin = req.body.sin || null
   req.session.sin = sin
+
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    // clear session
+    req.session = null
+
+    return res.status(422).render('login/sin', {
+      data: { code: req.body.code } || {},
+      errors: errorArray2ErrorObject(errors),
+    })
+  }
 
   //Success, we can redirect to the next page
   if (sin && redirect) {

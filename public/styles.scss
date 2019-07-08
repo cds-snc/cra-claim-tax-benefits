@@ -11,8 +11,10 @@
 /* App-wide styles */
 @import './scss/_base';
 @import './scss/_forms';
-@import './scss/_error-list';
 
 /* Partials */
-@import './scss/_footer';
 @import './scss/components/_buttons';
+@import './scss/components/_details';
+@import './scss/components/_error-list';
+@import './scss/components/_footer';
+@import './scss/components/_header';

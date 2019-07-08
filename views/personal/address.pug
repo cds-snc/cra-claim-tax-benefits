@@ -1,0 +1,35 @@
+extends ../base
+
+block variables
+  -var title = 'Confirm your mailing address'
+
+block content
+
+  h1 #{title}
+
+  div
+    p Please review the address details closely to make sure they’re correct. You can change your address to update our records—this is important for making sure you receive your benefits and tax refund (if any).
+
+  div
+    table.pure-table
+      thead
+        tr
+          th Mailing address
+      tbody
+        tr
+          td
+            .address
+              div 375 Rue Deschambault
+              div Winnipeg, Manitoba
+              div R2H 0J9
+
+  div
+    details.
+      <summary><span>Help with mailing address</span></summary>
+      <p>Your mailing address can be different than your current residence. What’s important is that you will receive letters sent to this address.</p>
+
+  .buttons-row
+    a.button-link(href='#') Confirm
+    a.button-link(href='#') Change address
+    a.button-link.transparent(href='#') Cancel
+

@@ -65,6 +65,7 @@ app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
 // configure routes
 require('./routes/start/start.controller')(app)
 require('./routes/login/login.controller')(app)
+require('./routes/personal/personal.controller')(app)
 
 // clear session
 app.get('/clear', (req, res) => {

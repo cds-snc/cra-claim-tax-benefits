@@ -1,0 +1,19 @@
+header {
+  padding: $space-xs 0 0 0;
+  text-align: left;
+  font-size: 2em;
+
+  @include sm {
+    padding: $space-lg 0 $space-xl 0;
+  }
+
+  .canada-flag {
+    width: 272px;
+    @include xs {
+      width: 282px;
+    }
+    @include sm {
+      width: 360px;
+    }
+  }
+}

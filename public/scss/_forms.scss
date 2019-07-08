@@ -85,13 +85,23 @@ form.pure-form.pure-form-stacked {
   }
 }
 
+.fieldset {
+  border: 0;
+  padding: 0;
+
+  &__legend {
+    font-weight: 600;
+    font-size: 19px;
+    font-size: 1.1875rem;
+  }
+}
+
 .radios {
   $radioClass: &;
 
   &__item {
-    font-weight: 400;
-    font-size: 16px;
-    font-size: 1rem;
+    font-size: 19px;
+    font-size: 1.1875rem;
     line-height: 1.25;
     display: block;
     position: relative;

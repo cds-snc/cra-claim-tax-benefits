@@ -18,7 +18,10 @@ block content
       tbody
         tr
           td
-            div married
+            if data && data.personal.maritalStatus
+              div #{data.personal.maritalStatus}
+            else
+              div N/A
 
   div
     details.
@@ -27,5 +30,5 @@ block content
 
   .buttons-row
     a.button-link(href='#') Confirm
-    a.button-link(href='#') Change Marital Status
+    a.button-link(href='/personal/maritalStatus/edit') Change Marital Status
     a.button-link.transparent(href='#') Cancel

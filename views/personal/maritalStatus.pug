@@ -1,0 +1,31 @@
+extends ../base
+
+block variables
+  -var title = 'Confirm your Marital Status'
+
+block content
+
+  h1 #{title}
+
+  div
+    p You can find the marital status we have on file below. Click confirm if this is correct or change it. Having your accurate marital status on file is important for you to properly file your taxes and get your benefits.
+
+  div
+    table.pure-table
+      thead
+        tr
+          th Marital Status
+      tbody
+        tr
+          td
+            div married
+
+  div
+    details.
+      <summary><span>Help with marital status</span></summary>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+  .buttons-row
+    a.button-link(href='#') Confirm
+    a.button-link(href='#') Change Marital Status
+    a.button-link.transparent(href='#') Cancel

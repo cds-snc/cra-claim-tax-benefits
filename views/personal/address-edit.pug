@@ -11,11 +11,60 @@ block content
     p Please enter the correct mailing address information below. If a letter is sent to this address, you must be able to receive it.
 
   div
-    form.pure-form.pure-form-stacked(method='post')
-      h3 Your mailing address
+    form.cra-form.cra-form--lg(method='post')
+      h2 Your mailing address
+
       div
-        label(for='aptNumber') Apartment number
-        input.w-3-4#aptNumber(class={['has-error']: errors && errors.code} name='aptNumber', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.code ? 'code_error' : false))
+        div.w-1-4.d--ib
+          label(for='streetNumber') Street number
+          input.w-3-4#streetNumber(class={['has-error']: errors && errors.streetNumber} name='streetNumber', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.streetNumber ? 'code_error' : false))
+          if errors
+            span.validation-message #{__(errors.streetNumber.msg)}
+
+        div.w-3-4.d--ib
+          label(for='streetName') Street name
+          input.w-3-4#streetName(class={['has-error']: errors && errors.streetName} name='streetName', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.streetName ? 'code_error' : false))
+          if errors
+            span.validation-message #{__(errors.streetName.msg)}
+
+      div.w-1-2
+              label(for='aptNumber') Apartment number
+              span.cra-form-message Optional
+              input.w-1-4#aptNumber(class={['has-error']: errors && errors.aptNumber} name='aptNumber', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.aptNumber ? 'code_error' : false))
+              if errors
+                span.validation-message #{__(errors.aptNumber.msg)}
+
+
+      div.w-1-2
+        label(for='city') City
+        input.w-3-4#city(class={['has-error']: errors && errors.city} name='city', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.city ? 'code_error' : false))
+        if errors
+          span.validation-message #{__(errors.city.msg)}
+
+      div.w-1-2
+        label(for='postalCode') Postal Code
+        span.cra-form-message For example: R2H 0J9
+        input.w-3-4#postalCode(class={['has-error']: errors && errors.postalCode} name='postalCode', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.postalCode ? 'code_error' : false))
+        if errors
+          span.validation-message #{__(errors.postalCode.msg)}
+
+      div.w-1-2
+        label(for='province') Province
+        select.w-3-4#province(name='province')
+          option(disabled='', selected='', value='')  -- select a province --
+          option(value='alberta') Alberta
+          option(value='britishColumbia') British Columbia
+          option(value='manitoba') Manitoba
+          option(value='newBrunswick') New Brunswick
+          option(value='newfoundlandAndLabrador') Newfoundland and Labrador
+          option(value='northwestTerritories') Northwest Territories
+          option(value='novaScotia') Nova Scotia
+          option(value='nunavut') Nunavut
+          option(value='ontario') Ontario
+          option(value='princeEdwardIsland') Prince Edward Island
+          option(value='quebec') Quebec
+          option(value='saskatchewan') Saskatchewan
+          option(value='yukon') Yukon
         if errors
           span.validation-message #{__(errors.code.msg)}
 

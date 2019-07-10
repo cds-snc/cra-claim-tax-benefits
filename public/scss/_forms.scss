@@ -85,11 +85,14 @@ form.cra-form {
     height: 40px;
     border: 2px solid $color-black;
     padding: $space-xxs;
-    -webkit-appearance: none;
 
     &:focus {
       @include focus();
       border-color: $color-black;
+    }
+
+    input {
+      -webkit-appearance: none;
     }
   }
 

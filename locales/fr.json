@@ -5,5 +5,6 @@
   "errors.login.length": "Access code must be 8 characters",
   "errors.login.alphanumeric": "Access code should only contain letters and numbers",
   "errors.login.code": "Access code not recognized",
-  "errors.login.numericSIN": "Votre numéro d'assurance sociale devrait être composer de 9 chiffres"
+  "errors.login.numericSIN": "Votre numéro d'assurance sociale devrait être composer de 9 chiffres",
+  "errors.login.lengthSIN": "Your SIN should have 9 numbers"
 }

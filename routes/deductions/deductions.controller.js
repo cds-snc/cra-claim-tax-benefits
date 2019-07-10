@@ -29,7 +29,7 @@ const postRRSP = (req, res) => {
 
   //If rrsp is not set, set it to null
   let rrsp = req.body.rrsp || null
-  req.session.credits.rrspClaim = rrsp
+  req.session.deductions.rrspClaim = rrsp
 
   if (!errors.isEmpty()) {
     return res.status(422).render('deductions/rrsp', {

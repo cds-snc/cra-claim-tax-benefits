@@ -38,11 +38,12 @@ const sinSchema = {
   },
 }
 
+//TODO: We'll want to store this array of marital options somewhere. This is temporary. I'll also want to use that later to create the radio buttons dynamically, to avoid having to update multiple files
 const maritalStatusSchema = {
   maritalStatus: {
-    isLength: {
+    isIn: {
       errorMessage: 'errors.maritalStatus.maritalStatus',
-      options: { min: 1 }
+      options: [['Married','Widowed','Divorced','Separated','Single']]
     }
   }
 }

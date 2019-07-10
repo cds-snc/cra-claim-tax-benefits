@@ -39,5 +39,22 @@ describe('Test /[personal] responses', () => {
       expect($('input[name=maritalStatus]:checked').val().toLowerCase).toEqual(user.personal.maritalStatus.toLowerCase)
     })
 
+    test('it returns a 422 with no marital status', async () => {
+      const response = await request(app).post('/personal/maritalStatus/edit').send({ redirect: '/personal/maritalStatus'})
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it returns a 422 with fake marital status', async () => {
+      const response = await request(app).post('/personal/maritalStatus/edit').send({ maritalStatus: 'cat lady', redirect: '/personal/maritalStatus'})
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it returns a 302 with valid marital status', async () => {
+      const response = await request(app)
+        .post('/personal/maritalStatus/edit')
+        .send({redirect: '/personal/maritalStatus', maritalStatus: 'Widowed'})
+      expect(response.statusCode).toBe(302)
+    })
+
   })
 })

@@ -57,10 +57,5 @@ const postSIN = (req, res) => {
   }
 
   //Success, we can redirect to the next page
-  if (sin) {
-    return res.redirect(req.body.redirect)
-  }
-
-  //Sad Trombone
-  res.status(422).render('login/sin', { title: 'Enter your SIN', data: req.session || {} })
+  return res.redirect(req.body.redirect)
 }

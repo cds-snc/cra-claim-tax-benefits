@@ -4,7 +4,9 @@ const { maritalStatusSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
   app.get('/personal/address', (req, res) => res.render('personal/address'))
-  app.get('/personal/maritalStatus', (req, res) => res.render('personal/maritalStatus'))
+
+  app.get('/personal/maritalStatus', (req, res) => res.render('personal/maritalStatus', { data: req.session || {} }))
+
   app.get('/personal/maritalStatus/edit', (req, res) => res.render('personal/maritalStatus-edit'))
   app.post('/personal/maritalStatus/edit', checkSchema(maritalStatusSchema),validateRedirect, postMaritalStatus)
 }
@@ -13,19 +15,17 @@ const postMaritalStatus = (req, res) => {
 
   const errors = validationResult(req)
 
+  let maritalStatus = req.body.maritalStatus || null
+  req.session.personal = {
+    maritalStatus: maritalStatus,
+  }
+
   if (!errors.isEmpty()) {
     return res.status(422).render('personal/maritalStatus-edit', {
+      data: { maritalStatus: req.body.maritalStatus } || {},
       errors: errorArray2ErrorObject(errors),
     })
   }
 
-  console.log(req.body.maritalStatus)
-  //-TODO: this temporary, until we have user flow in place
-  return res.status(200).render(req.body.redirect, { 
-    data: {
-      personal: {
-        maritalStatus: req.body.maritalStatus,
-      },
-    },
-  })
+  return res.redirect(req.body.redirect)
 }

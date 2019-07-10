@@ -1,4 +1,4 @@
-form.pure-form.pure-form-stacked {
+form.cra-form {
   margin-top: $space-xl;
   max-width: 300px;
 
@@ -17,23 +17,27 @@ form.pure-form.pure-form-stacked {
   }
 }
 
-form.pure-form.pure-form-stacked {
+form.cra-form {
   > div:not(:last-of-type) {
     margin-bottom: $space-lg;
   }
 
-  .pure-form-message {
+  .cra-form-message {
+    display: block;
+    color: $color-grey-dark;
     padding: 0;
   }
 
   label,
-  label + span {
+  label + span,
+  input {
     margin: 0 0 $space-xs 0;
     font-size: inherit;
   }
 
   label {
     font-weight: 700;
+    display: block;
   }
 
   input {
@@ -41,16 +45,13 @@ form.pure-form.pure-form-stacked {
     font-size: 1em;
     font-weight: 400;
     width: 100%;
+    margin-top: 0;
     border-radius: 0;
-    -webkit-appearance: none;
-    vertical-align: top;
-  }
-
-  input {
+    display: block;
     height: 40px;
     border: 2px solid $color-black;
-    margin-top: 0;
     padding: $space-xxs;
+    -webkit-appearance: none;
 
     &.has-error {
       border: 2px solid $color-red;

@@ -1,0 +1,7 @@
+mixin radio-buttons(radioForm)
+    .radios
+        each status in radioForm.values
+            .radios__item
+                input.radios__input(id=radioForm.common.name+status name=radioForm.common.name type="radio" value=status  aria-describedby=(errors ? radioForm.common.name+'_error' : false)
+                checked=(radioForm.common.dataKey &&radioForm.common.dataKey.toLowerCase()==status.toLowerCase()))
+                label.radios__label(for=radioForm.common.name+status) #{status}

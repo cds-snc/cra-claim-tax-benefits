@@ -10,27 +10,17 @@ block content
   div
     p Please choose the correct status from the options listed below.
 
+  - var radioFormOther = {common: { name: 'maritalStatus', dataKey: (data && data.personal && data.personal.maritalStatus ? data.personal.maritalStatus : null) }, values: ['Single','Married','Separated', 'Divorced', 'Widowed']}
+
   form.cra-form(method='post')
     div
         fieldset.fieldset
             legend.fieldset__legend 
                 p Marital Status
-            .radios
-                .radios__item
-                    input.radios__input(id="maritalStatusSingle" name="maritalStatus" type="radio" value="Single" checked=(data && data.personal.maritalStatus.toLowerCase()=='single') aria-describedby=(errors ? 'maritalStatus_error' : false))
-                    label.radios__label(for="maritalStatusSingle") Single
-                .radios__item
-                    input.radios__input(id="maritalStatusMarried" name="maritalStatus" type="radio" value="Married" checked=(data && data.personal.maritalStatus.toLowerCase()=='married' || !data) aria-describedby=(errors ? 'maritalStatus_error' : false))
-                    label.radios__label(for="maritalStatusMarried") Married or common-law
-                .radios__item
-                    input.radios__input(id="maritalStatusSeparated" name="maritalStatus" type="radio" value="Separated" checked=(data && data.personal.maritalStatus.toLowerCase()=='separated') aria-describedby=(errors ? 'maritalStatus_error' : false))
-                    label.radios__label(for="maritalStatusSeparated") Separated
-                .radios__item
-                    input.radios__input(id="maritalStatusDivorced" name="maritalStatus" type="radio" value="Divorced" checked=(data && data.personal.maritalStatus.toLowerCase()=='divorced') aria-describedby=(errors ? 'maritalStatus_error' : false))
-                    label.radios__label(for="maritalStatusDivorced") Divorced
-                .radios__item
-                    input.radios__input(id="maritalStatusWidowed" name="maritalStatus" type="radio" value="Widowed" checked=(data && data.personal.maritalStatus.toLowerCase()=='widowed') aria-describedby=(errors ? 'maritalStatus_error' : false))
-                    label.radios__label(for="maritalStatusWidowed") Widowed
+        
+            include ../_includes/radioButtons.pug
+            +radio-buttons(radioFormOther)
+
             if errors
               span.validation-message #{__(errors.maritalStatus.msg)}
     div

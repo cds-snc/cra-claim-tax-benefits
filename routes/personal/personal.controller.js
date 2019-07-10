@@ -8,6 +8,7 @@ module.exports = function(app) {
   app.get('/personal/maritalStatus', (req, res) => res.render('personal/maritalStatus', { data: req.session || {} }))
 
   app.get('/personal/maritalStatus/edit', (req, res) => res.render('personal/maritalStatus-edit'))
+
   app.post('/personal/maritalStatus/edit', checkSchema(maritalStatusSchema),validateRedirect, postMaritalStatus)
 }
 
@@ -19,6 +20,8 @@ const postMaritalStatus = (req, res) => {
   req.session.personal = {
     maritalStatus: maritalStatus,
   }
+
+  console.log(req.body.maritalStatus)
 
   if (!errors.isEmpty()) {
     return res.status(422).render('personal/maritalStatus-edit', {

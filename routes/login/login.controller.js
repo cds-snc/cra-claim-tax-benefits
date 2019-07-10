@@ -3,7 +3,7 @@ const { errorArray2ErrorObject } = require('./../../utils.js')
 const { loginSchema, sinSchema } = require('./../../formSchemas.js')
 const API = require('../../api')
 
-module.exports = function (app) {
+module.exports = function(app) {
   // redirect from "/login" → "/login/code"
   app.get('/login', (req, res) => res.redirect('/login/code'))
   app.get('/login/code', (req, res) => res.render('login/code', { data: req.session || {} }))
@@ -64,7 +64,7 @@ const postSIN = (req, res) => {
     req.session = null
 
     return res.status(422).render('login/sin', {
-      data: { code: req.body.code } || {},
+      data: { sin: req.body.sin } || {},
       errors: errorArray2ErrorObject(errors),
     })
   }

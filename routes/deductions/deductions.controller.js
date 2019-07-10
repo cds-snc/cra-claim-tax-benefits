@@ -4,11 +4,11 @@ const { errorArray2ErrorObject } = require('./../../utils.js')
 const API = require('../../api')
 
 module.exports = function (app) {
-    // redirect from "/deductions" → "/login/code", you really shouldn't be here (Unless we add a "info" page)
-    app.get('/deductions', (req, res) => res.redirect('/login/code'))
+    // redirect from "/login" → "/login/code"
+    app.get('/claims', (req, res) => res.redirect('/login/code'))
 
-    app.get('/deductions/rrsp', (req, res) => res.render('deductions/rrsp', { data: req.session || {} }))
-    app.post('/deductions/rrsp', checkSchema(loginSchema), postRRSP)
+    app.get('/credits/rrsp', (req, res) => res.render('credits/rrsp', { data: req.session || {} }))
+    app.post('/credits/rrsp', checkSchema(loginSchema), postRRSP)
 
 }
 
@@ -32,7 +32,7 @@ const postRRSP = (req, res) => {
     req.session.credits.rrspClaim = rrsp
 
     if (!errors.isEmpty()) {
-        return res.status(422).render('deductions/rrsp', {
+        return res.status(422).render('credits/rrsp', {
             data: { rrsp: req.body.rrsp } || {},
             errors: errorArray2ErrorObject(errors),
         })
@@ -44,7 +44,7 @@ const postRRSP = (req, res) => {
     }
 
     //No errors, but didn't process. Unsure if this code branch is reachable but it's a good safety.
-    res.status(422).render('deductions/rrsp', { data: req.session || {} })
+    res.status(422).render('credits/rrsp', { data: req.session || {} })
 
 }
 

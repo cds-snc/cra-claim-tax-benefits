@@ -17,35 +17,32 @@ block content
       div
         div.w-1-4.d--ib
           label(for='streetNumber') Street number
-          input.w-3-4#streetNumber(class={['has-error']: errors && errors.streetNumber} name='streetNumber', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.streetNumber ? 'code_error' : false))
-          if errors
-            span.validation-message #{__(errors.streetNumber.msg)}
+          input.w-3-4#streetNumber(name='streetNumber', type='text', value="", autocomplete='off')
 
         div.w-3-4.d--ib
           label(for='streetName') Street name
-          input.w-3-4#streetName(class={['has-error']: errors && errors.streetName} name='streetName', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.streetName ? 'code_error' : false))
-          if errors
+          if errors && errors.streetName
             span.validation-message #{__(errors.streetName.msg)}
+          input.w-3-4#streetName(class={['has-error']: errors && errors.streetName} name='streetName', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.streetName ? 'code_error' : false))
+
 
       div.w-1-2
               label(for='aptNumber') Apartment number
               span.cra-form-message Optional
-              input.w-1-4#aptNumber(class={['has-error']: errors && errors.aptNumber} name='aptNumber', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.aptNumber ? 'code_error' : false))
-              if errors
-                span.validation-message #{__(errors.aptNumber.msg)}
+              input.w-1-4#aptNumber(name='aptNumber', type='text', value="", autocomplete='off')
 
 
       div.w-1-2
         label(for='city') City
         input.w-3-4#city(class={['has-error']: errors && errors.city} name='city', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.city ? 'code_error' : false))
-        if errors
+        if errors && errors.city
           span.validation-message #{__(errors.city.msg)}
 
       div.w-1-2
         label(for='postalCode') Postal Code
         span.cra-form-message For example: R2H 0J9
         input.w-3-4#postalCode(class={['has-error']: errors && errors.postalCode} name='postalCode', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.postalCode ? 'code_error' : false))
-        if errors
+        if errors && errors.postalCode
           span.validation-message #{__(errors.postalCode.msg)}
 
       div.w-1-2
@@ -65,8 +62,8 @@ block content
           option(value='quebec') Quebec
           option(value='saskatchewan') Saskatchewan
           option(value='yukon') Yukon
-        if errors
-          span.validation-message #{__(errors.code.msg)}
+        if errors && errors.province
+          span.validation-message #{__(errors.province.msg)}
 
       div
         details.

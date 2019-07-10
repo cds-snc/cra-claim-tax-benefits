@@ -8,5 +8,6 @@
   "errors.login.numericSIN": "Your SIN should only be numbers",
   "errors.login.lengthSIN": "Your SIN should have 9 numbers",
   "errors.maritalStatus.maritalStatus": "You must select one of the options",
-  "errors.login.sin": "SIN does not match access code"
+  "errors.login.sin": "SIN does not match access code",
+  "errors.address.streetName.empty": "Street name can’t be empty"
 }

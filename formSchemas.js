@@ -60,8 +60,18 @@ const maritalStatusSchema = {
   },
 }
 
+const addressSchema = {
+  streetName: {
+    isEmpty: {
+      errorMessage: 'errors.address.streetName.empty',
+      negated: true,
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
   maritalStatusSchema,
   sinSchema,
+  addressSchema,
 }

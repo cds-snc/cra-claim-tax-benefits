@@ -8,5 +8,6 @@
   "errors.login.numericSIN": "Votre numéro d'assurance sociale devrait être composer de 9 chiffres",
   "errors.login.lengthSIN": "Your SIN should have 9 numbers",
   "errors.maritalStatus.maritalStatus": "You must select one of the options",
-  "errors.login.sin": "SIN does not match access code"
+  "errors.login.sin": "SIN does not match access code",
+  "errors.address.streetName.empty": "Street name can’t be empty"
 }

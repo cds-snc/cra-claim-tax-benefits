@@ -15,16 +15,16 @@ block content
     div
       label(for='sin') Social Insurance Number
       span.cra-form-message For Example: 123 456 789
-      input.w-3-4#sin(class={['has-error']: errors && errors.code} name='sin', type='text', value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code_error' : false))
+      input.w-3-4#sin(class={['has-error']: errors && errors.sin} name='sin', type='text', value=data.sin, autocomplete='off' aria-describedby=(errors && errors.sin ? 'sin_error' : false))
       if errors
-        span.validation-message #{errors.code.msg}
+        span.validation-message #{__(errors.sin.msg)}
 
     div
       details.
         <summary><span>Help with Social Insurance Number (SIN)</span></summary>
         <p>This is sample text that should be changed</p>
 
-    input#redirect(name='redirect', type='hidden', value='/login/sin')
+    input#redirect(name='redirect', type='hidden', value='/login/success')
 
     .buttons
       .buttons--left

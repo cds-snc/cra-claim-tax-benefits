@@ -1,6 +1,6 @@
 const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject, validateRedirect } = require('./../../utils.js')
-const { loginSchema } = require('./../../formSchemas.js')
+const { loginSchema, sinSchema } = require('./../../formSchemas.js')
 const API = require('../../api')
 
 module.exports = function(app) {
@@ -12,7 +12,7 @@ module.exports = function(app) {
 
   //SIN
   app.get('/login/sin', (req, res) => res.render('login/sin', { data: req.session || {} }))
-  app.post('/login/sin', validateRedirect, postSIN)
+  app.post('/login/sin', validateRedirect, checkSchema(sinSchema), postSIN)
 }
 
 const postLoginCode = (req, res) => {
@@ -43,6 +43,18 @@ const postSIN = (req, res) => {
   //If sin is not set, set it to null
   let sin = req.body.sin || null
   req.session.sin = sin
+
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    // clear session
+    req.session = null
+
+    return res.status(422).render('login/sin', {
+      data: { sin: req.body.sin } || {},
+      errors: errorArray2ErrorObject(errors),
+    })
+  }
 
   //Success, we can redirect to the next page
   if (sin) {

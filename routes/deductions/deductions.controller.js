@@ -27,7 +27,7 @@ const postRRSP = (req, res) => {
 
   const errors = validationResult(req)
 
-  //If sin is not set, set it to null
+  //If rrsp is not set, set it to null
   let rrsp = req.body.rrsp || null
   req.session.credits.rrspClaim = rrsp
 

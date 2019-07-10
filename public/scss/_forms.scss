@@ -35,7 +35,7 @@ form.cra-form {
     font-size: inherit;
   }
 
-  label {
+  label:not(.radios__label) {
     font-weight: 700;
     display: block;
   }
@@ -131,6 +131,11 @@ form.cra-form {
     &:checked + #{$radioClass}__label::after {
       opacity: 1;
     } 
+
+    &:focus + #{$radioClass}__label::before {
+      -webkit-box-shadow: 0 0 0 3px $color-yellow;
+      box-shadow: 0 0 0 3px $color-yellow;
+    }
   }
 
   &__label {

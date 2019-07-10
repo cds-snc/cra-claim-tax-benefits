@@ -21,6 +21,16 @@ const loginSchema = {
   },
 }
 
+const maritalStatusSchema = {
+  maritalStatus: {
+    isLength: {
+      errorMessage: 'errors.maritalStatus.maritalStatus',
+      options: { min: 1 }
+    }
+  }
+}
+
 module.exports = {
   loginSchema,
+  maritalStatusSchema
 }

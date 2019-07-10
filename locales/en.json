@@ -4,5 +4,7 @@
   "Please correct the errors on the page": "Please correct the errors on the page",
   "errors.login.length": "Access code must be 8 characters",
   "errors.login.alphanumeric": "Access code should only contain letters and numbers",
-  "errors.login.code": "Access code not recognized"
+  "errors.login.code": "Access code not recognized",
+  "errors.login.numericSIN": "Your SIN should only be numbers",
+  "errors.login.lengthSIN": "Your SIN should have 9 numbers"
 }

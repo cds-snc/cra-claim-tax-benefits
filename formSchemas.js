@@ -18,9 +18,27 @@ const loginSchema = {
       options: [API.getMatches()],
       errorMessage: 'errors.login.code',
     },
+  }
+}
+const sinSchema = {
+  sin: {
+    customSanitizer: {
+      options: value => {
+        //We want to remove any spaces, dash or underscores
+        return value ? value.replace(/[ \-_]*/g, '') : value
+      },
+    },
+    isLength: {
+      errorMessage: 'errors.login.lengthSIN',
+      options: { min: 9, max: 9 },
+    },
+    isInt: {
+      errorMessage: 'errors.login.numericSIN',
+    },
   },
 }
 
 module.exports = {
   loginSchema,
+  sinSchema,
 }

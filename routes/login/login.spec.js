@@ -126,17 +126,7 @@ describe('Test /login responses', () => {
       expect($('#sin').attr('aria-describedby')).toEqual('sin_error')
     })
   })
-  /* this test seems to be doing the same thing as the one above. Do we need it?
-      test('it renders an inline error for /login/code with appropriate describedby', async () => {
-        const response = await request(app)
-          .post('/login/code')
-          .send({ redirect: '/' })
-        const $ = cheerio.load(response.text)
-        expect($('.validation-message').text()).toEqual('Access code must be 8 characters')
-        expect($('#code').attr('aria-describedby')).toEqual('code_error')
-      })
-    })
-  */
+
   test('it does not allow a code more than 9 characters', async () => {
     const response = await request(app)
       .post('/login/sin')
@@ -157,8 +147,6 @@ describe('Test /login responses', () => {
       .send({ code: 'A23X456@1', redirect: '/' })
     expect(response.statusCode).toBe(422)
   })
-
-  //todo: validate that SIN is valid and matches the user's
 
   // Success page
   test('it returns a 200 response for /login/success', async () => {

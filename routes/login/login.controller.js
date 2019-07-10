@@ -45,7 +45,7 @@ const postSIN = (req, res) => {
   req.session.sin = sin
 
   //Success, we can redirect to the next page
-  if (sin && redirect) {
+  if (sin) {
     return res.redirect(req.body.redirect)
   }
 

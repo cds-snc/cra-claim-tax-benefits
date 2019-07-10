@@ -24,8 +24,8 @@ const postMaritalStatus = (req, res) => {
   return res.status(200).render(req.body.redirect, { 
     data: {
       personal: {
-        maritalStatus: req.body.maritalStatus
-      }
-    } 
+        maritalStatus: req.body.maritalStatus,
+      },
+    },
   })
 }

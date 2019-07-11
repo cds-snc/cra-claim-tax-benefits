@@ -19,9 +19,12 @@ block content
         tr
           td
             .address
-              div 375 Rue Deschambault
-              div Winnipeg, Manitoba
-              div R2H 0J9
+              if data.address.aptNumber
+                div #{data.address.aptNumber}-#{data.address.streetNumber} #{data.address.streetName}
+              else
+                div #{data.address.streetNumber} #{data.address.streetName}
+              div #{data.address.city}, #{data.address.province}
+              div #{data.address.postalCode}
 
   div
     details.
@@ -30,6 +33,6 @@ block content
 
   .buttons-row
     a.button-link(href='#') Confirm
-    a.button-link(href='#') Change address
+    a.button-link(href='/personal/address/edit') Change address
     a.button-link.transparent(href='#') Cancel
 

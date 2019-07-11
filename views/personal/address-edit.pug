@@ -2,6 +2,12 @@ extends ../base
 
 block variables
   -var title = 'Change your mailing address'
+  -var aptNumber = data && data.address && data.address.aptNumber ? data.address.aptNumber : ''
+  -var streetNumber = data && data.address && data.address.streetNumber ? data.address.streetNumber : ''
+  -var streetName = data && data.address && data.address.streetName ? data.address.streetName : ''
+  -var city = data && data.address && data.address.city ? data.address.city : ''
+  -var postalCode = data && data.address && data.address.postalCode ? data.address.postalCode : ''
+  -var province = data && data.address && data.address.province ? data.address.province : ''
 
 block content
 
@@ -17,51 +23,52 @@ block content
       div
         .w-1-4.d--ib
           label(for='streetNumber') Street number
-          input.w-3-4#streetNumber(name='streetNumber', type='text', value="", autocomplete='off')
+          input.w-3-4#streetNumber(name='streetNumber', type='text', value=streetNumber, autocomplete='off')
 
         .w-3-4.d--ib
           label(for='streetName') Street name
           if errors && errors.streetName
             span.validation-message #{__(errors.streetName.msg)}
-          input.w-3-4#streetName(class={['has-error']: errors && errors.streetName} name='streetName', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.streetName ? 'streetName_error' : false))
+          input.w-3-4#streetName(class={['has-error']: errors && errors.streetName} name='streetName', type='text', value=streetName, autocomplete='off' aria-describedby=(errors && errors.streetName ? 'streetName_error' : false))
 
       .w-1-2
         label(for='aptNumber') Apartment number
         span.cra-form-message Optional
-        input.w-1-4#aptNumber(name='aptNumber', type='text', value="", autocomplete='off')
+        input.w-1-4#aptNumber(name='aptNumber', type='text', value=aptNumber, autocomplete='off')
 
       .w-1-2
         label(for='city') City
         if errors && errors.city
           span.validation-message #{__(errors.city.msg)}
-        input.w-3-4#city(class={['has-error']: errors && errors.city} name='city', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.city ? 'city_error' : false))
+        input.w-3-4#city(class={['has-error']: errors && errors.city} name='city', type='text', value=city autocomplete='off' aria-describedby=(errors && errors.city ? 'city_error' : false))
 
       .w-1-2
         label(for='postalCode') Postal Code
         span.cra-form-message For example: R2H 0J9
         if errors && errors.postalCode
           span.validation-message #{__(errors.postalCode.msg)}
-        input.w-3-4#postalCode(class={['has-error']: errors && errors.postalCode} name='postalCode', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.postalCode ? 'postalCode_error' : false))
+        input.w-3-4#postalCode(class={['has-error']: errors && errors.postalCode} name='postalCode', type='text', value=postalCode, autocomplete='off' aria-describedby=(errors && errors.postalCode ? 'postalCode_error' : false))
 
       .w-1-2
         label(for='province') Province
         if errors && errors.province
           span.validation-message #{__(errors.province.msg)}
         select.w-3-4#province(name='province' aria-describedby=(errors && errors.postalCode ? 'postalCode_error' : false))
-          option(disabled='', selected='', value='')  -- select a province --
-          option(value='Alberta') Alberta
-          option(value='BritishColumbia') British Columbia
-          option(value='Manitoba') Manitoba
-          option(value='NewBrunswick') New Brunswick
-          option(value='NewfoundlandAndLabrador') Newfoundland and Labrador
-          option(value='NorthwestTerritories') Northwest Territories
-          option(value='NovaScotia') Nova Scotia
-          option(value='Nunavut') Nunavut
-          option(value='Ontario') Ontario
-          option(value='PrinceEdwardIsland') Prince Edward Island
-          option(value='Quebec') Quebec
-          option(value='Saskatchewan') Saskatchewan
-          option(value='Yukon') Yukon
+          if !province
+            option(disabled='', selected='selected', value='')  -- select a province --
+          option(value='Alberta' selected=province == 'Alberta') Alberta
+          option(value='BritishColumbia' selected=province == 'BritishColumbia') British Columbia
+          option(value='Manitoba' selected=province == 'Manitoba') Manitoba
+          option(value='NewBrunswick' selected=province == 'NewBrunswick') New Brunswick
+          option(value='NewfoundlandAndLabrador' selected=province =='NewfoundlandAndLabrador') Newfoundland and Labrador
+          option(value='NorthwestTerritories' selected=province =='NorthwestTerritories') Northwest Territories
+          option(value='NovaScotia' selected=province =='NovaScotia') Nova Scotia
+          option(value='Nunavut' selected=province =='Nunavut') Nunavut
+          option(value='Ontario' selected=province == 'Ontario') Ontario
+          option(value='PrinceEdwardIsland' selected=province =='PrinceEdwardIsland') Prince Edward Island
+          option(value='Quebec'  selected=province =='Quebec') Quebec
+          option(value='Saskatchewan' selected=province =='Saskatchewan') Saskatchewan
+          option(value='Yukon' selected=province =='Yukon') Yukon
 
       div
         details.

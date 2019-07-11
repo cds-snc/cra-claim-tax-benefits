@@ -25,14 +25,32 @@ const errorArray2ErrorObject = (errors = []) => {
 //Note that this is not the only error validation, see routes defined above.
 const validateRedirect = (req, res, next) => {
   let redirect = req.body.redirect || null
-  
+
   if (!redirect) {
     throw new Error(`[POST ${req.path}] 'redirect' parameter missing`)
   }
   return next()
 }
 
+/* Pug filters */
+/**
+ * Accepts a string (assumed to be a SIN)
+ * If it is 9 characters long 9, this function returns a string with
+ * a space inserted after the 3rd character and the 6th character
+ *
+ * ie, "111222333" => "111 222 333"
+ *
+ * @param string text a 9-character string assumed to be a social insurance number
+ */
+const SINFilter = text => {
+  if (text.length === 9) {
+    text = text.slice(0, 3) + ' ' + text.slice(3, 6) + ' ' + text.slice(6)
+  }
+  return text
+}
+
 module.exports = {
   errorArray2ErrorObject,
-  validateRedirect
+  validateRedirect,
+  SINFilter,
 }

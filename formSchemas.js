@@ -18,8 +18,9 @@ const loginSchema = {
       options: [API.getMatches()],
       errorMessage: 'errors.login.code',
     },
-  }
+  },
 }
+
 const sinSchema = {
   sin: {
     customSanitizer: {
@@ -35,6 +36,17 @@ const sinSchema = {
     isInt: {
       errorMessage: 'errors.login.numericSIN',
     },
+    custom: {
+      options: (value, { req }) => {
+        /* If there is no session, always return true */
+        if (!req.session || !req.session.personal) {
+          return true
+        }
+
+        return value === req.session.personal.sin
+      },
+      errorMessage: 'errors.login.sin',
+    },
   },
 }
 
@@ -43,9 +55,9 @@ const maritalStatusSchema = {
   maritalStatus: {
     isIn: {
       errorMessage: 'errors.maritalStatus.maritalStatus',
-      options: [['Married','Widowed','Divorced','Separated','Single']]
-    }
-  }
+      options: [['Married', 'Widowed', 'Divorced', 'Separated', 'Single']],
+    },
+  },
 }
 
 module.exports = {

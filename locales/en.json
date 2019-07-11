@@ -1,12 +1,12 @@
 {
-	"This service is to claim tax benefits online.": "This service is to claim tax benefits online.",
-	"Claim tax benefits": "Claim tax benefits",
-	"Please correct the errors on the page": "Please correct the errors on the page",
-	"errors.login.length": "Access code must be 8 characters",
-	"errors.login.alphanumeric": "Access code should only contain letters and numbers",
-	"errors.login.code": "Access code not recognized",
-	"errors.login.numericSIN": "Your SIN should only be numbers",
-	"errors.login.lengthSIN": "Your SIN should have 9 numbers",
-	"errors.maritalStatus.maritalStatus": "You must select one of the options",
-	"Invalid value": "Invalid value"
+  "This service is to claim tax benefits online.": "This service is to claim tax benefits online.",
+  "Claim tax benefits": "Claim tax benefits",
+  "Please correct the errors on the page": "Please correct the errors on the page",
+  "errors.login.length": "Access code must be 8 characters",
+  "errors.login.alphanumeric": "Access code should only contain letters and numbers",
+  "errors.login.code": "Access code not recognized",
+  "errors.login.numericSIN": "Your SIN should only be numbers",
+  "errors.login.lengthSIN": "Your SIN should have 9 numbers",
+  "errors.maritalStatus.maritalStatus": "You must select one of the options",
+  "errors.login.sin": "SIN does not match access code"
 }

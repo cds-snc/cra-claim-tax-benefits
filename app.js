@@ -75,6 +75,7 @@ app.get('/clear', (req, res) => {
   res.redirect(302, '/')
 })
 
+
 app.use(function (req, res, next) {
   next(globalError(404))
 })

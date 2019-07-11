@@ -48,7 +48,7 @@
       "relationship": "child"
     }
   ],
-  "claims": {
+  "deductions": {
     "disabilityClaim": null,
     "rrspClaim": null,
     "rrspAmount": 0,

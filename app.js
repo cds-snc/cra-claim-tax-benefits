@@ -69,6 +69,10 @@ app.locals.SINFilter = SINFilter
 require('./routes/start/start.controller')(app)
 require('./routes/login/login.controller')(app)
 require('./routes/personal/personal.controller')(app)
+require('./routes/deductions/deductions.controller')(app)
+require('./routes/dependants/dependants.controller')(app)
+require('./routes/partner/partner.controller')(app)
+require('./routes/financial/financial.controller')(app)
 
 // clear session
 app.get('/clear', (req, res) => {
@@ -76,12 +80,12 @@ app.get('/clear', (req, res) => {
   res.redirect(302, '/')
 })
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(globalError(404))
 })
 
 // handle global errors.
-app.use(function(err, req, res) {
+app.use(function (err, req, res) {
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
 

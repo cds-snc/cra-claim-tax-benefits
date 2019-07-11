@@ -10,6 +10,7 @@ block content
   div
     p Please choose the correct status from the options listed below.
 
+  //- this is messy (data && data.personal && data.personal.maritalStatus) but pug will error if a property doesn't exist. We could handle this on the controller level, and pass this to the route? Will help keep it a bit cleaner here
   - var radioFormOther = {common: { name: 'maritalStatus', dataKey: (data && data.personal && data.personal.maritalStatus ? data.personal.maritalStatus : null) }, values: maritalStatusValues.en }
 
   form.cra-form(method='post')

@@ -65,11 +65,35 @@ describe('Test /personal responses', () => {
   })
 
   describe('Test /personal/address responses', () => {
-    test('it returns a 422 with no streetName', async () => {
+    const badRequests = [
+      {
+        label: 'no streetName or city',
+        send: { streetName: '', city: '', redirect: '/personal/address' },
+      },
+      {
+        label: 'no streetName',
+        send: { streetName: '', city: 'Awesawa', redirect: '/personal/address' },
+      },
+      {
+        label: 'no city',
+        send: { streetName: 'Awesome Avenue', city: '', redirect: '/personal/address' },
+      },
+    ]
+
+    badRequests.map(badRequest => {
+      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+        const response = await request(app)
+          .post('/personal/address/edit')
+          .send(badRequest.send)
+        expect(response.statusCode).toBe(422)
+      })
+    })
+
+    test('it returns a 302 with valid address', async () => {
       const response = await request(app)
         .post('/personal/address/edit')
-        .send({ streetName: '', redirect: '/personal/address' })
-      expect(response.statusCode).toBe(422)
+        .send({ streetName: 'Awesome Avenue', city: 'Awesawa', redirect: '/personal/address' })
+      expect(response.statusCode).toBe(302)
     })
   })
 })

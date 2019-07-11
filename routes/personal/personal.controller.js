@@ -13,14 +13,16 @@ module.exports = function(app) {
   app.get('/personal/maritalStatus/edit', (req, res) => res.render('personal/maritalStatus-edit'))
   app.post(
     '/personal/maritalStatus/edit',
-    checkSchema(maritalStatusSchema),
     validateRedirect,
+    checkSchema(maritalStatusSchema),
     postMaritalStatus,
   )
 
   app.get('/personal/address/edit', (req, res) => res.render('personal/address-edit'))
   app.post('/personal/address/edit', checkSchema(addressSchema), postAddress)
 }
+
+/* eslint-disable no-console */
 
 const postAddress = (req, res) => {
   console.log(req.body)
@@ -37,8 +39,10 @@ const postAddress = (req, res) => {
     })
   }
 
-  return res.render('personal/address-edit')
+  return res.redirect(req.body.redirect)
 }
+
+/* eslint-enable no-console */
 
 const postMaritalStatus = (req, res) => {
   const errors = validationResult(req)

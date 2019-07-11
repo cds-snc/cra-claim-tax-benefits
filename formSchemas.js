@@ -67,6 +67,12 @@ const addressSchema = {
       negated: true,
     },
   },
+  city: {
+    isEmpty: {
+      errorMessage: 'errors.address.city.empty',
+      negated: true,
+    },
+  },
 }
 
 module.exports = {

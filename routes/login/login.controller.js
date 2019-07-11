@@ -1,5 +1,5 @@
 const { validationResult, checkSchema } = require('express-validator')
-const { errorArray2ErrorObject, validateRedirect } = require('./../../utils.js')
+const { errorArray2ErrorObject, validateRedirect } = require('./../../utils')
 const { loginSchema, sinSchema } = require('./../../formSchemas.js')
 const API = require('../../api')
 

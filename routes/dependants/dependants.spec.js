@@ -3,7 +3,7 @@ const app = require('../../app.js')
 
 
 
-describe('Test /deoendants responses', () => {
+describe('Test /dependants responses', () => {
 
   test('it redirects to /login/code from /dependants', async () => {
     const response = await request(app).get('/dependants')

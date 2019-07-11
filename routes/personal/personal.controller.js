@@ -1,14 +1,14 @@
 const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject, validateRedirect } = require('./../../utils.js')
 const { maritalStatusSchema } = require('./../../formSchemas.js')
-const { maritalStatusValues } = require('./../../formRadios.js')
+const { maritalStatusOptions } = require('./../../formRadios.js')
 
 module.exports = function(app) {
   app.get('/personal/address', (req, res) => res.render('personal/address'))
 
   app.get('/personal/maritalStatus', (req, res) => res.render('personal/maritalStatus', { data: req.session || {} }))
 
-  app.get('/personal/maritalStatus/edit', (req, res) => res.render('personal/maritalStatus-edit', { maritalStatusValues: maritalStatusValues }))
+  app.get('/personal/maritalStatus/edit', (req, res) => res.render('personal/maritalStatus-edit', { maritalStatusOptions: maritalStatusOptions }))
 
   app.post('/personal/maritalStatus/edit', checkSchema(maritalStatusSchema),validateRedirect, postMaritalStatus)
 }

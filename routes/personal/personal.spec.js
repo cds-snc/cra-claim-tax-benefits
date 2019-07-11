@@ -65,18 +65,48 @@ describe('Test /personal responses', () => {
   })
 
   describe('Test /personal/address responses', () => {
+    let goodRequest = {
+      streetName: 'Awesome Avenue',
+      city: 'Awesawa',
+      postalCode: 'H3L1Y4',
+      redirect: '/personal/address',
+    }
+
     const badRequests = [
       {
-        label: 'no streetName or city',
-        send: { streetName: '', city: '', redirect: '/personal/address' },
+        label: 'no streetName or city or postalCode',
+        send: {
+          ...goodRequest,
+          ...{ streetName: '', city: '', postalCode: '' },
+        },
       },
       {
         label: 'no streetName',
-        send: { streetName: '', city: 'Awesawa', redirect: '/personal/address' },
+        send: {
+          ...goodRequest,
+          ...{ streetName: '' },
+        },
       },
       {
         label: 'no city',
-        send: { streetName: 'Awesome Avenue', city: '', redirect: '/personal/address' },
+        send: {
+          ...goodRequest,
+          ...{ city: '' },
+        },
+      },
+      {
+        label: 'no postalCode',
+        send: {
+          ...goodRequest,
+          ...{ postalCode: '' },
+        },
+      },
+      {
+        label: 'bad postalCode',
+        send: {
+          ...goodRequest,
+          ...{ postalCode: '0h3 N03' },
+        },
       },
     ]
 
@@ -92,7 +122,7 @@ describe('Test /personal responses', () => {
     test('it returns a 302 with valid address', async () => {
       const response = await request(app)
         .post('/personal/address/edit')
-        .send({ streetName: 'Awesome Avenue', city: 'Awesawa', redirect: '/personal/address' })
+        .send(goodRequest)
       expect(response.statusCode).toBe(302)
     })
   })

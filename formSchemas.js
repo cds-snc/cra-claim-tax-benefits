@@ -73,6 +73,23 @@ const addressSchema = {
       negated: true,
     },
   },
+  postalCode: {
+    isEmpty: {
+      errorMessage: 'errors.address.postalCode.empty',
+      negated: true,
+    },
+    custom: {
+      options: value => {
+        // Source: https://gist.github.com/nery/9118763
+        var postalCodeRegex = new RegExp(
+          /^\s*[a-ceghj-npr-tvxy]\d[a-ceghj-npr-tv-z][-(\s)]?\d[a-ceghj-npr-tv-z]\d\s*$/i,
+        )
+
+        return postalCodeRegex.test(value)
+      },
+      errorMessage: 'errors.address.postalCode.format',
+    },
+  },
 }
 
 module.exports = {

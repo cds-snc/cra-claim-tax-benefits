@@ -1,14 +1,14 @@
 const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject } = require('./../../utils.js')
 //const { loginSchema, sinSchema } = require('./../../formSchemas.js')
-const API = require('../../api')
+//const API = require('../../api')
 
 module.exports = function (app) {
   // redirect from "/deductions" → "/login/code", you really shouldn't be here (Unless we add a "info" page)
   app.get('/deductions', (req, res) => res.redirect('/login/code'))
 
   app.get('/deductions/rrsp', (req, res) => res.render('deductions/rrsp', { data: req.session || {} }))
-  app.post('/deductions/rrsp', checkSchema(stub), postRRSP)
+  app.post('/deductions/rrsp', postRRSP)
 
 }
 

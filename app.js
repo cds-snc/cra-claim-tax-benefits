@@ -1,6 +1,6 @@
 // import environment variables.
 require('dotenv').config()
-const globalError = require('http-errors');
+const globalError = require('http-errors')
 
 // import node modules.
 const express = require('express'),
@@ -67,6 +67,7 @@ app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
 require('./routes/start/start.controller')(app)
 require('./routes/login/login.controller')(app)
 require('./routes/personal/personal.controller')(app)
+require('./routes/deductions/deductions.controller')(app)
 
 // clear session
 app.get('/clear', (req, res) => {
@@ -75,8 +76,8 @@ app.get('/clear', (req, res) => {
 })
 
 app.use(function (req, res, next) {
-  next(globalError(404));
-});
+  next(globalError(404))
+})
 
 // handle global errors.
 app.use(function (err, req, res) {

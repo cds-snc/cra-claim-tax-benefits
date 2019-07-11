@@ -4,31 +4,27 @@ const app = require('../../app.js')
 const API = require('../../api/index')
 
 describe('Test /personal responses', () => {
-  test('it returns a 200 response for the /personal/address path', async () => {
-    const response = await request(app).get('/personal/address')
-    expect(response.statusCode).toBe(200)
-  })
+  describe('Test /personal 200 responses', () => {
+    const urls = [
+      '/personal/maritalStatus',
+      '/personal/maritalStatus/edit',
+      '/personal/address',
+      '/personal/address/edit',
+    ]
 
-  test('it returns a 200 response for the /personal/name path', async () => {
-    const response = await request(app).get('/personal/name')
-    expect(response.statusCode).toBe(200)
-  })
-
-  describe('Test /personal/[maritalStatus] responses', () => {
-    test('it returns a 200 response for the /personal/maritalStatus path', async () => {
-      const response = await request(app).get('/personal/maritalStatus')
-      expect(response.statusCode).toBe(200)
+    urls.map(url => {
+      test(`it returns a 200 response for the path: "${url}" path`, async () => {
+        const response = await request(app).get(url)
+        expect(response.statusCode).toBe(200)
+      })
     })
+  })
 
+  describe('Test /personal/maritalStatus responses', () => {
     test('it has Married selected by default', async () => {
       const response = await request(app).get('/personal/maritalStatus')
       const $ = cheerio.load(response.text)
       expect($('td div').text()).toEqual('Married')
-    })
-
-    test('it returns a 200 response for the /personal/maritalStatus/edit path', async () => {
-      const response = await request(app).get('/personal/maritalStatus/edit')
-      expect(response.statusCode).toBe(200)
     })
 
     test('it defaults to Married being checked for /personal/maritalStatus/edit path', async () => {
@@ -68,8 +64,12 @@ describe('Test /personal responses', () => {
     })
   })
 
-  test('it returns a 200 response for the personal/address/edit path', async () => {
-    const response = await request(app).get('/personal/address/edit')
-    expect(response.statusCode).toBe(200)
+  describe('Test /personal/address responses', () => {
+    test('it returns a 422 with no streetName', async () => {
+      const response = await request(app)
+        .post('/personal/address/edit')
+        .send({ streetName: '', redirect: '/personal/address' })
+      expect(response.statusCode).toBe(422)
+    })
   })
 })

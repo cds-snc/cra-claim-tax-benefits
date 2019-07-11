@@ -23,7 +23,7 @@ block content
           label(for='streetName') Street name
           if errors && errors.streetName
             span.validation-message #{__(errors.streetName.msg)}
-          input.w-3-4#streetName(class={['has-error']: errors && errors.streetName} name='streetName', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.streetName ? 'code_error' : false))
+          input.w-3-4#streetName(class={['has-error']: errors && errors.streetName} name='streetName', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.streetName ? 'streetName_error' : false))
 
       .w-1-2
         label(for='aptNumber') Apartment number
@@ -34,20 +34,20 @@ block content
         label(for='city') City
         if errors && errors.city
           span.validation-message #{__(errors.city.msg)}
-        input.w-3-4#city(class={['has-error']: errors && errors.city} name='city', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.city ? 'code_error' : false))
+        input.w-3-4#city(class={['has-error']: errors && errors.city} name='city', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.city ? 'city_error' : false))
 
       .w-1-2
         label(for='postalCode') Postal Code
         span.cra-form-message For example: R2H 0J9
         if errors && errors.postalCode
           span.validation-message #{__(errors.postalCode.msg)}
-        input.w-3-4#postalCode(class={['has-error']: errors && errors.postalCode} name='postalCode', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.postalCode ? 'code_error' : false))
+        input.w-3-4#postalCode(class={['has-error']: errors && errors.postalCode} name='postalCode', type='text', value="", autocomplete='off' aria-describedby=(errors && errors.postalCode ? 'postalCode_error' : false))
 
       .w-1-2
         label(for='province') Province
         if errors && errors.province
           span.validation-message #{__(errors.province.msg)}
-        select.w-3-4#province(name='province')
+        select.w-3-4#province(name='province' aria-describedby=(errors && errors.postalCode ? 'postalCode_error' : false))
           option(disabled='', selected='', value='')  -- select a province --
           option(value='Alberta') Alberta
           option(value='BritishColumbia') British Columbia

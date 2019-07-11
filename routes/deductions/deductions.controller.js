@@ -16,10 +16,6 @@ const postRRSP = (req, res) => {
 
   const errors = validationResult(req)
 
-  //If rrsp is not set, set it to null
-  let rrsp = req.body.rrsp || null
-  req.session.deductions.rrspClaim = rrsp
-
   if (!errors.isEmpty()) {
     return res.status(422).render('deductions/rrsp', {
       data: { rrsp: req.body.rrsp } || {},
@@ -27,13 +23,16 @@ const postRRSP = (req, res) => {
     })
   }
 
-  //Success, we can redirect to the next page
-  if (rrsp && redirect) {
-    return res.redirect(redirect)
+  //If we have an amount and it's truthy (not 0) we set rrspClaim to true and then set the amount
+  if (req.body.rrsp) {
+    req.session.deductions.rrspClaim = true
+    req.session.deductions.rrspAmount = req.body.rrsp
+  } else {
+    //If we don't have an amount then we assume the user has removed any RRSP deductions
+    req.session.deductions.rrspClaim = false
+    req.session.deductions.rrspAmount = 0
   }
 
-  //No errors, but didn't process. Unsure if this code branch is reachable but it's a good safety.
-  res.status(422).render('deductions/rrsp', { data: req.session || {} })
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)
 

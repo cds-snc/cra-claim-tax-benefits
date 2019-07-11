@@ -1,4 +1,5 @@
 const request = require('supertest')
+const session = require('supertest-session')
 const cheerio = require('cheerio')
 const app = require('../../app.js')
 
@@ -89,63 +90,99 @@ describe('Test /login responses', () => {
     })
   })
 
-  // Social Insurance Number Page /login/sin
-  test('it returns a 200 response for /login/sin', async () => {
-    const response = await request(app).get('/login/sin')
-    expect(response.statusCode).toBe(200)
-  })
-
-  test('it renders the h1 text for /login/sin', async () => {
-    const response = await request(app).get('/login/sin')
-
-    const $ = cheerio.load(response.text)
-    expect($('h1').text()).toEqual('Enter your Social Insurance Number (SIN)')
-  })
-
-  test('it returns a 500 response if no redirect is provided', async () => {
-    const response = await request(app).post('/login/sin')
-    expect(response.statusCode).toBe(500)
-  })
-
-  test('it reloads /login/sin with a 422 status if no sin is provided', async () => {
-    const response = await request(app)
-      .post('/login/sin')
-      .send({ redirect: '/' })
-    expect(response.statusCode).toBe(422)
-  })
-
-  describe('Error list tests', () => {
-    test('it renders the error-list for /login/sin', async () => {
-      const response = await request(app)
-        .post('/login/sin')
-        .send({ redirect: '/' })
-      const $ = cheerio.load(response.text)
-      expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
-      expect($('.error-list__list').children()).toHaveLength(1)
-      expect($('.validation-message').text()).toEqual('Your SIN should have 9 numbers')
-      expect($('#sin').attr('aria-describedby')).toEqual('sin_error')
-    })
-  })
-
-  test('it does not allow a code more than 9 characters', async () => {
-    const response = await request(app)
-      .post('/login/sin')
-      .send({ code: '12345678910', redirect: '/' })
-    expect(response.statusCode).toBe(422)
-  })
-
-  test('it does not allow a code less than 9 characters', async () => {
-    const response = await request(app)
-      .post('/login/sin')
-      .send({ code: '12345678', redirect: '/' })
-    expect(response.statusCode).toBe(422)
-  })
-
   test('it does not allow non-numeric characters', async () => {
     const response = await request(app)
       .post('/login/code')
       .send({ code: 'A23X456@1', redirect: '/' })
     expect(response.statusCode).toBe(422)
+  })
+
+  describe('Test /login/sin responses', () => {
+    // Social Insurance Number Page /login/sin
+    test('it returns a 200 response for /login/sin', async () => {
+      const response = await request(app).get('/login/sin')
+      expect(response.statusCode).toBe(200)
+    })
+
+    test('it renders the h1 text for /login/sin', async () => {
+      const response = await request(app).get('/login/sin')
+
+      const $ = cheerio.load(response.text)
+      expect($('h1').text()).toEqual('Enter your Social Insurance Number (SIN)')
+    })
+
+    test('it returns a 500 response if no redirect is provided', async () => {
+      const response = await request(app).post('/login/sin')
+      expect(response.statusCode).toBe(500)
+    })
+
+    test('it reloads /login/sin with a 422 status if no sin is provided', async () => {
+      const response = await request(app)
+        .post('/login/sin')
+        .send({ redirect: '/' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    describe('Error list tests', () => {
+      test('it renders the error-list for /login/sin', async () => {
+        const response = await request(app)
+          .post('/login/sin')
+          .send({ redirect: '/' })
+        const $ = cheerio.load(response.text)
+        expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
+        expect($('.error-list__list').children()).toHaveLength(1)
+        expect($('.validation-message').text()).toEqual('Your SIN should have 9 numbers')
+        expect($('#sin').attr('aria-describedby')).toEqual('sin_error')
+      })
+    })
+
+    test('it does not allow a code more than 9 characters', async () => {
+      const response = await request(app)
+        .post('/login/sin')
+        .send({ code: '12345678910', redirect: '/' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it does not allow a code less than 9 characters', async () => {
+      const response = await request(app)
+        .post('/login/sin')
+        .send({ code: '12345678', redirect: '/' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    /*
+      These tests make sure that a SIN which would ordinarily be
+      accepted (ie, "123456789") is no longer accepted after
+      a user logs in.
+
+      After that, only the sin used by the user in /api/user.json
+      will be accepted.
+    */
+    describe('after entering an access code', () => {
+      let authSession
+
+      beforeEach(async () => {
+        authSession = session(app)
+        const response = await authSession
+          .post('/login/code')
+          .send({ code: 'QWER1234', redirect: '/login/sin' })
+        expect(response.statusCode).toBe(302)
+      })
+
+      it('it should return 422 for the wrong SIN', async () => {
+        const response = await authSession
+          .post('/login/sin')
+          .send({ sin: '123456789', redirect: '/login/sin' })
+        expect(response.statusCode).toBe(422)
+      })
+
+      it('it should return 302 for the right SIN', async () => {
+        const response = await authSession
+          .post('/login/sin')
+          .send({ sin: '111 222 333', redirect: '/login/sin' })
+        expect(response.statusCode).toBe(302)
+      })
+    })
   })
 
   // Success page

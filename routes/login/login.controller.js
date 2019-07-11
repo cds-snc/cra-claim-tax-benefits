@@ -1,4 +1,4 @@
-const { body, validationResult, checkSchema } = require('express-validator')
+const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject, validateRedirect } = require('./../../utils.js')
 const { loginSchema, sinSchema } = require('./../../formSchemas.js')
 const API = require('../../api')
@@ -12,18 +12,7 @@ module.exports = function(app) {
 
   //SIN
   app.get('/login/sin', (req, res) => res.render('login/sin', { data: req.session || {} }))
-  app.post(
-    '/login/sin',
-    validateRedirect,
-    checkSchema(sinSchema),
-    body('sin').custom((value, { req }) => {
-      if (value !== req.session.personal.sin) {
-        throw new Error('SIN does not match access code')
-      }
-      return true
-    }),
-    postSIN,
-  )
+  app.post('/login/sin', validateRedirect, checkSchema(sinSchema), postSIN)
 }
 
 const postLoginCode = (req, res) => {
@@ -50,10 +39,6 @@ const postLoginCode = (req, res) => {
 }
 
 const postSIN = (req, res) => {
-  //If sin is not set, set it to null
-  let sin = req.body.sin || null
-  req.session.sin = sin
-
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {

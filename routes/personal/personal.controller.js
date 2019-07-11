@@ -19,20 +19,13 @@ module.exports = function(app) {
   )
 
   app.get('/personal/address/edit', (req, res) => res.render('personal/address-edit'))
-  app.post('/personal/address/edit', checkSchema(addressSchema), postAddress)
+  app.post('/personal/address/edit', validateRedirect, checkSchema(addressSchema), postAddress)
 }
 
-/* eslint-disable no-console */
-
 const postAddress = (req, res) => {
-  console.log(req.body)
-
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
-    console.log('errors', errors)
-    console.log('errorobj', errorArray2ErrorObject(errors))
-
     return res.status(422).render('personal/address-edit', {
       data: req.body || {},
       errors: errorArray2ErrorObject(errors),
@@ -41,8 +34,6 @@ const postAddress = (req, res) => {
 
   return res.redirect(req.body.redirect)
 }
-
-/* eslint-enable no-console */
 
 const postMaritalStatus = (req, res) => {
   const errors = validationResult(req)

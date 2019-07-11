@@ -90,6 +90,28 @@ const addressSchema = {
       errorMessage: 'errors.address.postalCode.format',
     },
   },
+  province: {
+    isIn: {
+      errorMessage: 'errors.address.province.province',
+      options: [
+        [
+          'Alberta',
+          'BritishColumbia',
+          'Manitoba',
+          'NewBrunswick',
+          'NewfoundlandAndLabrador',
+          'NorthwestTerritories',
+          'NovaScotia',
+          'Nunavut',
+          'Ontario',
+          'PrinceEdwardIsland',
+          'Quebec',
+          'Saskatchewan',
+          'Yukon',
+        ],
+      ],
+    },
+  },
 }
 
 module.exports = {

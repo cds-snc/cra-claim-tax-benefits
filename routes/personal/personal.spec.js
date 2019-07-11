@@ -69,15 +69,16 @@ describe('Test /personal responses', () => {
       streetName: 'Awesome Avenue',
       city: 'Awesawa',
       postalCode: 'H3L1Y4',
+      province: 'Ontario',
       redirect: '/personal/address',
     }
 
     const badRequests = [
       {
-        label: 'no streetName or city or postalCode',
+        label: 'no streetName or city or postalCode or province',
         send: {
           ...goodRequest,
-          ...{ streetName: '', city: '', postalCode: '' },
+          ...{ streetName: '', city: '', postalCode: '', province: '' },
         },
       },
       {
@@ -106,6 +107,20 @@ describe('Test /personal responses', () => {
         send: {
           ...goodRequest,
           ...{ postalCode: '0h3 N03' },
+        },
+      },
+      {
+        label: 'no province',
+        send: {
+          ...goodRequest,
+          ...{ province: '' },
+        },
+      },
+      {
+        label: 'bad province',
+        send: {
+          ...goodRequest,
+          ...{ province: 'Aurora' },
         },
       },
     ]

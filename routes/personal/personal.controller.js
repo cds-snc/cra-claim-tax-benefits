@@ -22,8 +22,6 @@ const postMaritalStatus = (req, res) => {
     maritalStatus: maritalStatus,
   }
 
-  console.log(req.body.maritalStatus)
-
   if (!errors.isEmpty()) {
     return res.status(422).render('personal/maritalStatus-edit', {
       data: { maritalStatus: req.body.maritalStatus } || {},

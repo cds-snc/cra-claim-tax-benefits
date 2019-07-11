@@ -70,13 +70,16 @@ require('./routes/start/start.controller')(app)
 require('./routes/login/login.controller')(app)
 require('./routes/personal/personal.controller')(app)
 require('./routes/deductions/deductions.controller')(app)
+require('./routes/dependants/dependants.controller')(app)
+require('./routes/partner/partner.controller')(app)
+require('./routes/financial/financial.controller')(app)
+
 
 // clear session
 app.get('/clear', (req, res) => {
   req.session = null
   res.redirect(302, '/')
 })
-
 
 app.use(function (req, res, next) {
   next(globalError(404))

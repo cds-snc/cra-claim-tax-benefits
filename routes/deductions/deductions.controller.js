@@ -1,7 +1,5 @@
 const { validationResult } = require('express-validator')
 const { errorArray2ErrorObject, validateRedirect } = require('./../../utils.js')
-//const { loginSchema, sinSchema } = require('./../../formSchemas.js')
-//const API = require('../../api')
 
 module.exports = function (app) {
   // redirect from "/deductions" → "/login/code", you really shouldn't be here (Unless we add a "info" page)

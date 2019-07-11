@@ -11,7 +11,8 @@ const express = require('express'),
   sassMiddleware = require('node-sass-middleware'),
   path = require('path'),
   cookieSession = require('cookie-session'),
-  cookieSessionConfig = require('./config/cookieSession.config')
+  cookieSessionConfig = require('./config/cookieSession.config'),
+  { SINFilter } = require('./utils')
 
 // initialize application.
 var app = express()
@@ -59,8 +60,9 @@ app.use(helmet())
 // gzip response body compression.
 app.use(compression())
 
-// Adding GITHUB_SHA to locals so that we can access it in our templates
+// Adding values/functions to app.locals means we can access them in our templates
 app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
+app.locals.SINFilter = SINFilter
 
 // configure routes
 require('./routes/start/start.controller')(app)

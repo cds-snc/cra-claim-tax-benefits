@@ -7,6 +7,9 @@ block content
 
   h1 #{title}
 
+  if data.personal
+    h2 Thanks, #{data.personal.firstName} #{data.personal.lastName}!
+
   p Now that we have your personal code, we need some additional information in order to verify that it’s you.
 
   p Please enter your Social Insurance Number (SIN) in the field below.
@@ -14,7 +17,11 @@ block content
   form.cra-form(method='post')
     div
       label(for='sin') Social Insurance Number
-      span.cra-form-message For Example: 123 456 789
+      if data.personal
+        span.cra-form-message For Example: #{SINFilter(data.personal.sin)}
+      else
+        span.cra-form-message For Example: 123 456 789
+
       input.w-3-4#sin(class={['has-error']: errors && errors.sin} name='sin', type='text', value=data.sin, autocomplete='off' aria-describedby=(errors && errors.sin ? 'sin_error' : false))
       if errors
         span.validation-message #{__(errors.sin.msg)}

@@ -43,7 +43,7 @@ const postSIN = (req, res) => {
 
   if (!errors.isEmpty()) {
     return res.status(422).render('login/sin', {
-      data: { sin: req.body.sin } || {},
+      data: { ...req.session, ...{ sin: req.body.sin } } || {},
       errors: errorArray2ErrorObject(errors),
     })
   }

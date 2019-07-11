@@ -19,6 +19,20 @@ const errorArray2ErrorObject = (errors = []) => {
   }, {})
 }
 
+/* Middleware */
+
+//POST functions that handle setting the login data in the session and handle redirecting to the next page or sending an error to the client.
+//Note that this is not the only error validation, see routes defined above.
+const validateRedirect = (req, res, next) => {
+  let redirect = req.body.redirect || null
+  
+  if (!redirect) {
+    throw new Error(`[POST ${req.path}] 'redirect' parameter missing`)
+  }
+  return next()
+}
+
 module.exports = {
   errorArray2ErrorObject,
+  validateRedirect
 }

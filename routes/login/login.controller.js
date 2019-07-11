@@ -39,7 +39,6 @@ const postLoginCode = (req, res) => {
 }
 
 const postSIN = (req, res) => {
-
   //If sin is not set, set it to null
   let sin = req.body.sin || null
   req.session.sin = sin
@@ -47,9 +46,6 @@ const postSIN = (req, res) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
-    // clear session
-    req.session = null
-
     return res.status(422).render('login/sin', {
       data: { sin: req.body.sin } || {},
       errors: errorArray2ErrorObject(errors),

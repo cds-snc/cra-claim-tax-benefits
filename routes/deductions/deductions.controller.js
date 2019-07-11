@@ -1,4 +1,4 @@
-const { validationResult, checkSchema } = require('express-validator')
+const { validationResult } = require('express-validator')
 const { errorArray2ErrorObject } = require('./../../utils.js')
 //const { loginSchema, sinSchema } = require('./../../formSchemas.js')
 //const API = require('../../api')

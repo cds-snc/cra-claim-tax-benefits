@@ -18,8 +18,9 @@ const loginSchema = {
       options: [API.getMatches()],
       errorMessage: 'errors.login.code',
     },
-  }
+  },
 }
+
 const sinSchema = {
   sin: {
     customSanitizer: {
@@ -43,9 +44,9 @@ const maritalStatusSchema = {
   maritalStatus: {
     isIn: {
       errorMessage: 'errors.maritalStatus.maritalStatus',
-      options: [['Married','Widowed','Divorced','Separated','Single']]
-    }
-  }
+      options: [['Married', 'Widowed', 'Divorced', 'Separated', 'Single']],
+    },
+  },
 }
 
 module.exports = {

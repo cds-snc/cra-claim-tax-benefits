@@ -1,5 +1,6 @@
 // import environment variables.
 require('dotenv').config()
+const globalError = require('http-errors')
 
 // import node modules.
 const express = require('express'),
@@ -71,6 +72,10 @@ require('./routes/personal/personal.controller')(app)
 app.get('/clear', (req, res) => {
   req.session = null
   res.redirect(302, '/')
+})
+
+app.use(function(req, res, next) {
+  next(globalError(404))
 })
 
 // handle global errors.

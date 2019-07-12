@@ -11,7 +11,7 @@ block content
     p Please choose the correct status from the options listed below.
 
   form.cra-form(method='post')
-    div
+    div(class={['has-error']: errors && errors.maritalStatus})
         fieldset.fieldset
             legend.fieldset__legend
                 p Marital Status

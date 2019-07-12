@@ -28,6 +28,15 @@ form.cra-form {
     font-size: inherit;
   }
 
+  .has-error {
+    padding-left: $space-sm;
+    border-left: $space-xxs solid $color-red;
+
+    input {
+      border: 2px solid $color-red;
+    }
+  }
+
   label,
   .cra-form-message,
   .validation-message,
@@ -61,10 +70,6 @@ form.cra-form {
     border: 2px solid $color-black;
     padding: $space-xxs;
     -webkit-appearance: none;
-
-    &.has-error {
-      border: 2px solid $color-red;
-    }
 
     &:focus {
       @include focus();

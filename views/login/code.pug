@@ -12,12 +12,12 @@ block content
 
   div
     form.cra-form(method='post')
-      div
+      div(class={['has-error']: errors && errors.code})
         label(for='code') Personal access code
         span.cra-form-message For Example: QWER1234
         if errors
           +validationMessage(errors.code.msg, 'code')
-        input.w-3-4#code(class={['has-error']: errors && errors.code} name='code', type='text', value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code--error' : false))
+        input.w-3-4#code(name='code', type='text', value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code--error' : false))
 
       div
         details.

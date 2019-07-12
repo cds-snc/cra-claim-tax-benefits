@@ -23,7 +23,7 @@ block content
         span.cra-form-message For Example: 123 456 789
       if errors
         +validationMessage(errors.sin.msg, 'sin')
-      input.w-3-4#sin(name='sin', type='text', value=data.sin, autocomplete='off' aria-describedby=(errors && errors.sin ? 'sin--error' : false))
+      input.w-3-4#sin(name='sin', type='text', value=data.sin, autocomplete='off' aria-describedby=(errors && errors.sin ? 'sin-error' : false))
 
     div
       details.

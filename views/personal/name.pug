@@ -1,0 +1,34 @@
+extends ../base
+
+block variables
+  -var title = 'Confirm your name'
+
+block content
+
+  h1 #{title}
+
+  div
+    p We’ve located your file for the current tax year (filing for 2018).
+    p The first step to filing your taxes and getting your benefits is making sure your address and other personal information is up to date.
+    p Please confirm this is still your current name.
+
+  div
+    table.pure-table
+      thead
+        tr
+          th Full name
+      tbody
+        tr
+          td
+            div Gabrielle Roy
+
+  div
+    details.
+      <summary><span>Help with name confirmation</span></summary>
+      <p>If you have changed your name since the last time you filed your taxes, <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html" target="_blank">get in contact with CRA to update your information</a>.</p>
+      <p>Once updated, you can proceed to use this service.</p>
+
+  .buttons-row
+    a.button-link(href='#') Confirm
+    a.button-link.transparent(href='#') Cancel
+

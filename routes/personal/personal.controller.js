@@ -3,6 +3,8 @@ const { errorArray2ErrorObject, validateRedirect } = require('./../../utils')
 const { maritalStatusSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
+  app.get('/personal/name', (req, res) => res.render('personal/name'))
+
   app.get('/personal/address', (req, res) => res.render('personal/address'))
 
   app.get('/personal/maritalStatus', (req, res) =>

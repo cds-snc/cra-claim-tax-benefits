@@ -31,4 +31,20 @@ describe('Test hasData function', () => {
   test('returns true for city in address', () => {
     expect(hasData(user, 'personal.address.city')).toBe(true)
   })
+
+  test('returns false for non-object', () => {
+    expect(hasData('this is not an object', 'personal.address.city')).toBe(false)
+  })
+
+  test('returns false for null object', () => {
+    expect(hasData(null, 'personal.address.city')).toBe(false)
+  })
+
+  test('returns false for empty object', () => {
+    expect(hasData({}, 'personal.address.city')).toBe(false)
+  })
+
+  test('returns true for disabilityClaim', () => {
+    expect(hasData(user, 'deductions.disabilityClaim')).toBe(false)
+  })
 })

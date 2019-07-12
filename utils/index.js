@@ -58,7 +58,7 @@ const SINFilter = text => {
  */
 const hasData = (obj, key) => {
   return key.split('.').every((x) => {
-      if(typeof obj != 'object' || obj === null || !obj.hasOwnProperty(x)) {
+      if(typeof obj != 'object' || obj === null || !obj.hasOwnProperty(x) || obj[x] === null) {
         return false;
       }
       obj = obj[x];

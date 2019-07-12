@@ -17,21 +17,21 @@ block content
                 p Marital Status
             .radios
                 if errors
-                  +validationMessage(errors.maritalStatus.msg)
+                  +validationMessage(errors.maritalStatus.msg, 'maritalStatus')
                 .radios__item
-                    input.radios__input(id="maritalStatusSingle" name="maritalStatus" type="radio" value="Single" checked=(data && data.personal.maritalStatus.toLowerCase()=='single') aria-describedby=(errors ? 'maritalStatus_error' : false))
+                    input.radios__input(id="maritalStatusSingle" name="maritalStatus" type="radio" value="Single" checked=(data && data.personal.maritalStatus.toLowerCase()=='single') aria-describedby=(errors ? 'maritalStatus--error' : false))
                     label.radios__label(for="maritalStatusSingle") Single
                 .radios__item
-                    input.radios__input(id="maritalStatusMarried" name="maritalStatus" type="radio" value="Married" checked=(data && data.personal.maritalStatus.toLowerCase()=='married' || !data) aria-describedby=(errors ? 'maritalStatus_error' : false))
+                    input.radios__input(id="maritalStatusMarried" name="maritalStatus" type="radio" value="Married" checked=(data && data.personal.maritalStatus.toLowerCase()=='married' || !data) aria-describedby=(errors ? 'maritalStatus--error' : false))
                     label.radios__label(for="maritalStatusMarried") Married or common-law
                 .radios__item
-                    input.radios__input(id="maritalStatusSeparated" name="maritalStatus" type="radio" value="Separated" checked=(data && data.personal.maritalStatus.toLowerCase()=='separated') aria-describedby=(errors ? 'maritalStatus_error' : false))
+                    input.radios__input(id="maritalStatusSeparated" name="maritalStatus" type="radio" value="Separated" checked=(data && data.personal.maritalStatus.toLowerCase()=='separated') aria-describedby=(errors ? 'maritalStatus--error' : false))
                     label.radios__label(for="maritalStatusSeparated") Separated
                 .radios__item
-                    input.radios__input(id="maritalStatusDivorced" name="maritalStatus" type="radio" value="Divorced" checked=(data && data.personal.maritalStatus.toLowerCase()=='divorced') aria-describedby=(errors ? 'maritalStatus_error' : false))
+                    input.radios__input(id="maritalStatusDivorced" name="maritalStatus" type="radio" value="Divorced" checked=(data && data.personal.maritalStatus.toLowerCase()=='divorced') aria-describedby=(errors ? 'maritalStatus--error' : false))
                     label.radios__label(for="maritalStatusDivorced") Divorced
                 .radios__item
-                    input.radios__input(id="maritalStatusWidowed" name="maritalStatus" type="radio" value="Widowed" checked=(data && data.personal.maritalStatus.toLowerCase()=='widowed') aria-describedby=(errors ? 'maritalStatus_error' : false))
+                    input.radios__input(id="maritalStatusWidowed" name="maritalStatus" type="radio" value="Widowed" checked=(data && data.personal.maritalStatus.toLowerCase()=='widowed') aria-describedby=(errors ? 'maritalStatus--error' : false))
                     label.radios__label(for="maritalStatusWidowed") Widowed
 
     div

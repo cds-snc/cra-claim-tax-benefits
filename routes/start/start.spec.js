@@ -21,7 +21,7 @@ describe('Test server responses', () => {
         .set('Accept-Language', 'en')
 
       const $ = cheerio.load(response.text)
-      expect($('h1').text()).toEqual('Claim tax benefits')
+      expect($('h1').text()).toEqual('Claim Tax Benefits')
     })
 
     test('in French', async () => {

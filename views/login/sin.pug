@@ -24,7 +24,7 @@ block content
 
       input.w-3-4#sin(class={['has-error']: errors && errors.sin} name='sin', type='text', value=data.sin, autocomplete='off' aria-describedby=(errors && errors.sin ? 'sin_error' : false))
       if errors
-        span.validation-message #{__(errors.sin.msg)}
+        +validationMessage(errors.sin.msg)
 
     div
       details.

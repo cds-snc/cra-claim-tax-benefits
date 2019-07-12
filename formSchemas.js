@@ -268,7 +268,7 @@ const residenceSchema = {
   residence: {
     isIn: {
       errorMessage: 'errors.residence',
-      options: [['Alberta', 'British Columbia', 'Manitoba', 'Newfoundland and Labrador', 'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island', 'Quebec', 'Saskatchewan', 'NonResident', '0']],
+      options: [[ true , false ]],
     },
   },
 }

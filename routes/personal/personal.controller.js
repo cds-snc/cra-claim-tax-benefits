@@ -96,6 +96,9 @@ const postResidence = (req, res) => {
     residence: residence,
   }
 
+  console.log('req.body', req.body)
+  console.log('errors', errors)
+
   if (!errors.isEmpty()) {
     return res.status(422).render('personal/residence', {
       data: { residence: req.body.residence } || {},

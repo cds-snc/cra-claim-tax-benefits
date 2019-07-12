@@ -56,11 +56,12 @@ const SINFilter = text => {
  * ex. if we're trying to get to data.personal.maritalStatus
  * pass as hasData(data, 'personal.maritalStatus')
  */
-const hasData = function(obj, key) {
-  return key.split(".").every(function(prop) {
-      if(typeof obj != "object" || obj === null || ! prop in obj)
-          return false;
-      obj = obj[prop];
+const hasData = (obj, key) => {
+  return key.split('.').every((x) => {
+      if(typeof obj != 'object' || obj === null || !obj.hasOwnProperty(x)) {
+        return false;
+      }
+      obj = obj[x];
       return true;
   });
 }

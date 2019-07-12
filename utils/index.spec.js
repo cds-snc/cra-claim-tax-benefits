@@ -1,4 +1,5 @@
-const { SINFilter } = require('./index')
+const { SINFilter, hasData } = require('./index')
+const API = require('./../api')
 
 describe('Test SINFilter', () => {
   const sinFilterUnchanged = ['1', '', '1234567890', '12345678']
@@ -13,5 +14,21 @@ describe('Test SINFilter', () => {
     test(`returns "${values[1]}" for "${values[0]}"`, () => {
       expect(SINFilter(values[0])).toEqual(values[1])
     })
+  })
+})
+
+describe('Test hasData function', () => {
+  const user = API.getUser('QWER1234')
+
+  test('returns true for maritalStatus', () => {
+    expect(hasData(user, 'personal.maritalStatus')).toBe(true)
+  })
+
+  test('returns false for property that does not exist', () => {
+    expect(hasData(user, 'personal.middleName')).toBe(false)
+  })
+
+  test('returns true for city in address', () => {
+    expect(hasData(user, 'personal.address.city')).toBe(true)
   })
 })

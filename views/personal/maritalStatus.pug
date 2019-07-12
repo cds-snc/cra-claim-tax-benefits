@@ -18,7 +18,7 @@ block content
       tbody
         tr
           td
-            if data && data.personal && data.personal.maritalStatus !== ''
+            if hasData(data, 'personal.maritalStatus')
               div #{data.personal.maritalStatus}
             else
               div Married

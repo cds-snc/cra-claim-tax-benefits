@@ -20,10 +20,10 @@ block content
                 if errors
                   +validationMessage(errors.residence.msg, 'residence')
                 .radios__item
-                    input.radios__input(id="residenceYes" name="residence" type="radio" value=true checked=(data && data.personal.residence) aria-describedby=(errors ? 'residence-error' : false))
+                    input.radios__input(id="residenceYes" name="residence" type="radio" value='yes' aria-describedby=(errors ? 'residence-error' : false))
                     label.radios__label(for="residenceYes") Yes
                 .radios__item
-                    input.radios__input(id="residenceNo" name="residence" type="radio" value=false checked=(data && data.personal.residence) aria-describedby=(errors ? 'residence-error' : false))
+                    input.radios__input(id="residenceNo" name="residence" type="radio" value='no' aria-describedby=(errors ? 'residence-error' : false))
                     label.radios__label(for="residenceNo") No
 
     div

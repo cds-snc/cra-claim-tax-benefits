@@ -96,8 +96,7 @@ const postResidence = (req, res) => {
     residence: residence,
   }
 
-  console.log('req.body', req.body)
-  console.log('errors', errors)
+  console.log(req.body.residence)
 
   if (!errors.isEmpty()) {
     return res.status(422).render('personal/residence', {
@@ -106,5 +105,9 @@ const postResidence = (req, res) => {
     })
   }
 
-  return res.redirect(req.body.redirect)
+  if (errors.isEmpty() && req.body.residence === "yes") {
+    return res.redirect('address')
+  } else {
+    return res.redirect('/start')
+  }
 }

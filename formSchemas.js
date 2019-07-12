@@ -268,7 +268,7 @@ const residenceSchema = {
   residence: {
     isIn: {
       errorMessage: 'errors.residence',
-      options: [[ true , false ]],
+      options: [[ 'yes' , 'no' ]],
     },
   },
 }

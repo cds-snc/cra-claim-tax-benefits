@@ -1,0 +1,39 @@
+extends ../base
+
+block variables
+  -var title = 'Congratulations!'
+
+
+block content
+
+  h1 #{title}
+
+  div
+    h2 Your taxes have been filed with the CRA.
+
+  div
+    table.pure-table
+      thead
+        tr
+          th Confirmation number
+      tbody
+        tr
+          td 5H3P9IO5816
+
+    p Use this confirmation number if you need to contact CRA for further information or for additional help with your tax return.
+
+  div
+    a.button-link(href='#' role='button' draggable='false') Download your Notice of Assessment
+
+    p Your Notice of Assessment is an official CRA communication that confirms that you’ve filed your taxes. It also contains the details of your refund or balance owing. Please read this document carefully.
+
+  div
+    h3 Do you have questions?
+
+    p Now that your return is filed, you should be all set for the year.
+    p However, if you still have further questions, there are several ways to get help.
+    ul
+      li Speak to someone at your nearest tax clinic
+      li Go online to #[a(href="https://apps.cra-arc.gc.ca/ebci/oecv/external/prot/cli_srch_01_ld.action" target="_blank") find a free tax clinic in your area]
+      li Speak to a CRA agent by calling 1-800-PLEASE-GO-AWAY
+

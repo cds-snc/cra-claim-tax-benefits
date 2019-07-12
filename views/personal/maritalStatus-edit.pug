@@ -16,6 +16,8 @@ block content
             legend.fieldset__legend
                 p Marital Status
             .radios
+                if errors
+                  +validationMessage(errors.maritalStatus.msg)
                 .radios__item
                     input.radios__input(id="maritalStatusSingle" name="maritalStatus" type="radio" value="Single" checked=(data && data.personal.maritalStatus.toLowerCase()=='single') aria-describedby=(errors ? 'maritalStatus_error' : false))
                     label.radios__label(for="maritalStatusSingle") Single
@@ -31,8 +33,6 @@ block content
                 .radios__item
                     input.radios__input(id="maritalStatusWidowed" name="maritalStatus" type="radio" value="Widowed" checked=(data && data.personal.maritalStatus.toLowerCase()=='widowed') aria-describedby=(errors ? 'maritalStatus_error' : false))
                     label.radios__label(for="maritalStatusWidowed") Widowed
-            if errors
-              +validationMessage(errors.maritalStatus.msg)
 
     div
       details.

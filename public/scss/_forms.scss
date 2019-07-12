@@ -39,7 +39,7 @@ form.cra-form.cra-form--lg {
 
 form.cra-form {
   > div:not(:last-of-type) {
-    margin-bottom: $space-lg;
+    margin-bottom: $space-xl;
   }
 
   div *:last-child {
@@ -68,6 +68,11 @@ form.cra-form {
   input,
   select {
     @extend %form-element;
+  }
+
+  select {
+    font-weight: 100;
+    margin-top: $space-sm;
   }
 
   fieldset legend,

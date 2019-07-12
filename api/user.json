@@ -6,7 +6,12 @@
     "firstName": "Gabrielle",
     "lastName": "Roy",
     "sin": "111222333",
+<<<<<<< HEAD
     "dob": "1909/03/22",
+=======
+    "dob": "1909-03-22",
+    "residence": "Ontario",
+>>>>>>> error messages
     "address": {
       "aptNumber": "",
       "streetNumber": "375",

@@ -1,0 +1,46 @@
+extends ../base
+
+block variables
+  -var title = 'Choose your province or territory of residence'
+
+block content
+
+  h1 #{title}
+
+  div
+    p Please select your province or territory of residence on Dec 31, 2018.
+
+  form.cra-form(method='post')
+    div(class={['has-error']: errors && errors.residence})
+      label.provinceOfRes__label.requiredField(for='residence')
+        | Province or Territory of Residence
+        if errors
+          +validationMessage(errors.residence.msg, 'residence')
+        select.residence(form='residence', name='residence', aria-describedby=(errors && errors.residence ? 'residence-error' : false))
+          option(value='0', selected= true) -- Select Province or Territory of Residence --
+          option(value='Alberta') Alberta
+          option(value='British Columbia') British Columbia
+          option(value='Manitoba') Manitoba
+          option(value='Newfoundland and Labrador') Newfoundland and Labrador
+          option(value='Northwest Territories') Northwest Territories
+          option(value='Nova Scotia') Nova Scotia
+          option(value='Nunavut') Nunavut
+          option(value='Ontario') Ontario
+          option(value='Prince Edward Island') Prince Edward Island
+          option(value='Quebec') Quebec
+          option(value='Saskatchewan') Saskatchewan
+          option(value='Yukon') Yukon
+          option(value='NonResident') Non Resident or Deemed Resident
+
+    div
+      details.
+        <summary><span>Help with province or territory</span></summary>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+    input#redirect(name='redirect', type='hidden', value='/personal/residence')
+
+    .buttons
+      .buttons--left
+        button(type='submit') Continue
+      .buttons--right
+        a.button-link.transparent(href='/personal/residence') Cancel

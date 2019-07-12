@@ -1,0 +1,33 @@
+extends ../base
+
+block variables
+  -var title = 'Enter your date of birth'
+
+block content
+
+  h1 #{title}
+
+  div
+    p Your personal access code is the 8 character code found in your notification letter.
+
+  div
+    form.cra-form(method='post')
+      div
+        label(for='dob') Date of birth
+        span.cra-form-message For example: 2019/04/02
+        input.w-3-4#dob(class={['has-error']: errors && errors.dob} name='dob', type='text', value=data.dob, autocomplete='off' aria-describedby=(errors && errors.dob ? 'code_error' : false))
+        if errors
+          span.validation-message #{__(errors.dob.msg)}
+
+      div
+        details.
+          <summary><span>Help with date of birth</span></summary>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+      input#redirect(name='redirect', type='hidden', value='/login/success')
+
+      .buttons
+        .buttons--left
+          button(type='submit') Continue
+        .buttons--right
+          a.button-link.transparent.full-width(href='/clear') Cancel

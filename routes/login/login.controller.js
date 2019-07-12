@@ -13,6 +13,10 @@ module.exports = function(app) {
   //SIN
   app.get('/login/sin', (req, res) => res.render('login/sin', { data: req.session || {} }))
   app.post('/login/sin', validateRedirect, checkSchema(sinSchema), postSIN)
+
+  //Date of Birth
+  app.get('/login/dateOfBirth', (req, res) => res.render('login/dob', { data: req.session || {} }))
+  // app.post('/login/dob', validateRedirect, checkSchema(sinSchema), postSIN)
 }
 
 const postLoginCode = (req, res) => {

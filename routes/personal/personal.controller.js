@@ -1,18 +1,24 @@
 const { validationResult, checkSchema } = require('express-validator')
-const { errorArray2ErrorObject, validateRedirect } = require('./../../utils.js')
+const { errorArray2ErrorObject, validateRedirect } = require('./../../utils')
 const { maritalStatusSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
   app.get('/personal/address', (req, res) => res.render('personal/address'))
 
-  app.get('/personal/maritalStatus', (req, res) => res.render('personal/maritalStatus', { data: req.session || {} }))
+  app.get('/personal/maritalStatus', (req, res) =>
+    res.render('personal/maritalStatus', { data: req.session || {} }),
+  )
 
   app.get('/personal/maritalStatus/edit', (req, res) => res.render('personal/maritalStatus-edit'))
-  app.post('/personal/maritalStatus/edit', checkSchema(maritalStatusSchema),validateRedirect, postMaritalStatus)
+  app.post(
+    '/personal/maritalStatus/edit',
+    checkSchema(maritalStatusSchema),
+    validateRedirect,
+    postMaritalStatus,
+  )
 }
 
 const postMaritalStatus = (req, res) => {
-
   const errors = validationResult(req)
 
   let maritalStatus = req.body.maritalStatus || null

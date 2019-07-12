@@ -12,7 +12,7 @@ form.cra-form {
       width: 50%;
     }
     .w-1-4 {
-      width: 24%;
+      width: 25%;
     }
   }
 }
@@ -22,22 +22,40 @@ form.cra-form {
     margin-bottom: $space-lg;
   }
 
-  .cra-form-message {
+  %form-element {
     display: block;
-    color: $color-grey-dark;
-    padding: 0;
+    margin: 0 0 $space-xs 0;
+    font-size: inherit;
+  }
+
+  .has-error {
+    padding-left: $space-sm;
+    border-left: $space-xxs solid $color-red;
+
+    input {
+      border: 2px solid $color-red;
+    }
   }
 
   label,
-  label + span,
-  input {
-    margin: 0 0 $space-xs 0;
-    font-size: inherit;
+  .cra-form-message,
+  .validation-message,
+  input,
+  select {
+    @extend %form-element;
   }
 
   label:not(.radios__label) {
     font-weight: 700;
     display: block;
+  }
+
+  .cra-form-message {
+    color: $color-grey-dark;
+  }
+
+  .validation-message {
+    color: $color-red;
   }
 
   input {
@@ -52,10 +70,6 @@ form.cra-form {
     border: 2px solid $color-black;
     padding: $space-xxs;
     -webkit-appearance: none;
-
-    &.has-error {
-      border: 2px solid $color-red;
-    }
 
     &:focus {
       @include focus();
@@ -126,11 +140,11 @@ form.cra-form {
     width: 44px;
     height: 44px;
     margin: 0;
-    opacity: 0; 
-    
+    opacity: 0;
+
     &:checked + #{$radioClass}__label::after {
       opacity: 1;
-    } 
+    }
 
     &:focus + #{$radioClass}__label::before {
       -webkit-box-shadow: 0 0 0 3px $color-yellow;
@@ -147,7 +161,7 @@ form.cra-form {
     touch-action: manipulation;
 
     &::before {
-      content: "";
+      content: '';
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       position: absolute;
@@ -161,7 +175,7 @@ form.cra-form {
     }
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 10px;
       left: 10px;

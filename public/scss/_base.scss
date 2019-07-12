@@ -94,3 +94,7 @@ li:not(:last-of-type) {
     margin-right: $space-sm;
   }
 }
+
+.visually-hidden {
+  @include visuallyHidden();
+}

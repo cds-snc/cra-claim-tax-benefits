@@ -25,35 +25,35 @@ block content
           label(for='streetNumber') Street number
           input.w-3-4#streetNumber(name='streetNumber', type='text', value=streetNumber, autocomplete='off')
 
-        .w-3-4.d--ib
+        .w-3-4.d--ib(class={['has-error']: errors && errors.streetName})
           label(for='streetName') Street name
           if errors && errors.streetName
-            span.validation-message #{__(errors.streetName.msg)}
-          input.w-3-4#streetName(class={['has-error']: errors && errors.streetName} name='streetName', type='text', value=streetName, autocomplete='off' aria-describedby=(errors && errors.streetName ? 'streetName_error' : false))
+            +validationMessage(errors.streetName.msg, 'streetName')
+          input.w-3-4#streetName(name='streetName', type='text', value=streetName, autocomplete='off' aria-describedby=(errors && errors.streetName ? 'streetName-error' : false))
 
       .w-1-2
         label(for='aptNumber') Apartment number
         span.cra-form-message Optional
         input.w-1-4#aptNumber(name='aptNumber', type='text', value=aptNumber, autocomplete='off')
 
-      .w-1-2
+      .w-1-2(class={['has-error']: errors && errors.city})
         label(for='city') City
         if errors && errors.city
-          span.validation-message #{__(errors.city.msg)}
-        input.w-3-4#city(class={['has-error']: errors && errors.city} name='city', type='text', value=city autocomplete='off' aria-describedby=(errors && errors.city ? 'city_error' : false))
+          +validationMessage(errors.city.msg, 'city')
+        input.w-3-4#city(name='city', type='text', value=city autocomplete='off' aria-describedby=(errors && errors.city ? 'city-error' : false))
 
-      .w-1-2
+      .w-1-2(class={['has-error']: errors && errors.postalCode})
         label(for='postalCode') Postal Code
         span.cra-form-message For example: R2H 0J9
         if errors && errors.postalCode
-          span.validation-message #{__(errors.postalCode.msg)}
-        input.w-3-4#postalCode(class={['has-error']: errors && errors.postalCode} name='postalCode', type='text', value=postalCode, autocomplete='off' aria-describedby=(errors && errors.postalCode ? 'postalCode_error' : false))
+          +validationMessage(errors.postalCode.msg, 'postalCode')
+        input.w-3-4#postalCode( name='postalCode', type='text', value=postalCode, autocomplete='off' aria-describedby=(errors && errors.postalCode ? 'postalCode-error' : false))
 
-      .w-1-2
+      .w-1-2(class={['has-error']: errors && errors.province})
         label(for='province') Province
         if errors && errors.province
-          span.validation-message #{__(errors.province.msg)}
-        select.w-3-4#province(name='province' aria-describedby=(errors && errors.postalCode ? 'postalCode_error' : false))
+          +validationMessage(errors.province.msg, 'province')
+        select.w-3-4#province(name='province' aria-describedby=(errors && errors.province ? 'province-error' : false))
           if !province
             option(disabled='', selected='selected', value='')  -- select a province --
           option(value='Alberta' selected=province == 'Alberta') Alberta

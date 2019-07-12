@@ -37,6 +37,10 @@ form.cra-form {
     margin-bottom: $space-lg;
   }
 
+  div *:last-child {
+    margin-bottom: 0;
+  }
+
   %form-element {
     display: block;
     margin: 0 0 $space-xs 0;
@@ -47,7 +51,8 @@ form.cra-form {
     padding-left: $space-sm;
     border-left: $space-xxs solid $color-red;
 
-    input {
+    input,
+    select {
       border: 2px solid $color-red;
     }
   }

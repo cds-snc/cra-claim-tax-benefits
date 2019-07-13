@@ -13,7 +13,7 @@ const express = require('express'),
   path = require('path'),
   cookieSession = require('cookie-session'),
   cookieSessionConfig = require('./config/cookieSession.config'),
-  { SINFilter, hasData } = require('./utils')
+  { SINFilter, hasData, checkPublic } = require('./utils')
 
 // initialize application.
 var app = express()
@@ -60,6 +60,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(helmet())
 // gzip response body compression.
 app.use(compression())
+
+app.use(checkPublic)
 
 // Adding values/functions to app.locals means we can access them in our templates
 app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null

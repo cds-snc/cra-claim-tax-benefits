@@ -6,6 +6,7 @@ const API = require('../../api/index')
 describe('Test /personal responses', () => {
   describe('Test /personal 200 responses', () => {
     const urls = [
+      '/personal/name',
       '/personal/maritalStatus',
       '/personal/maritalStatus/edit',
       '/personal/address',

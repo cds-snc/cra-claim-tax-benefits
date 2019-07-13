@@ -50,25 +50,25 @@ const SINFilter = text => {
 }
 
 /**
- * 
  * @param {Object} obj the obj we're passing, most often 'data'
  * @param {String} key the key we're trying to access, passed as a string, not including the obj ref itself
  * ex. if we're trying to get to data.personal.maritalStatus
  * pass as hasData(data, 'personal.maritalStatus')
  */
 const hasData = (obj, key) => {
-  return key.split('.').every((x) => {
-      if(typeof obj != 'object' || obj === null || !obj.hasOwnProperty(x) || obj[x] === null) {
-        return false;
-      }
-      obj = obj[x];
-      return true;
-  });
+  return key.split('.').every(x => {
+    // eslint-disable-next-line no-prototype-builtins
+    if (typeof obj != 'object' || obj === null || !obj.hasOwnProperty(x) || obj[x] === null) {
+      return false
+    }
+    obj = obj[x]
+    return true
+  })
 }
 
 module.exports = {
   errorArray2ErrorObject,
   validateRedirect,
   SINFilter,
-  hasData
+  hasData,
 }

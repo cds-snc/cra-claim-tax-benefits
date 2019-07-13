@@ -14,7 +14,9 @@ module.exports = function(app) {
   app.get('/personal/maritalStatus', (req, res) =>
     res.render('personal/maritalStatus', { data: req.session }),
   )
-  app.get('/personal/maritalStatus/edit', (req, res) => res.render('personal/maritalStatus-edit'))
+  app.get('/personal/maritalStatus/edit', (req, res) =>
+    res.render('personal/maritalStatus-edit', { data: req.session }),
+  )
   app.post(
     '/personal/maritalStatus/edit',
     validateRedirect,
@@ -45,17 +47,14 @@ const postAddress = (req, res) => {
 const postMaritalStatus = (req, res) => {
   const errors = validationResult(req)
 
-  let maritalStatus = req.body.maritalStatus || null
-  req.session.personal = {
-    maritalStatus: maritalStatus,
-  }
-
   if (!errors.isEmpty()) {
     return res.status(422).render('personal/maritalStatus-edit', {
-      data: { maritalStatus: req.body.maritalStatus } || {},
+      data: req.session,
       errors: errorArray2ErrorObject(errors),
     })
   }
+
+  req.session.personal.maritalStatus = req.body.maritalStatus
 
   return res.redirect(req.body.redirect)
 }

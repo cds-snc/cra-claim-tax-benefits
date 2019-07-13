@@ -33,7 +33,11 @@ const postAddress = (req, res) => {
     })
   }
 
-  req.session.personal.address = req.body
+  // copy all posted parameters, but remove the redirect
+  let addressData = Object.assign({}, req.body)
+  delete addressData.redirect
+
+  req.session.personal.address = addressData
 
   return res.redirect(req.body.redirect)
 }

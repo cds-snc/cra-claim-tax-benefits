@@ -12,7 +12,7 @@ module.exports = function(app) {
   app.post('/personal/address/edit', validateRedirect, checkSchema(addressSchema), postAddress)
 
   app.get('/personal/maritalStatus', (req, res) =>
-    res.render('personal/maritalStatus', { data: req.session || {} }),
+    res.render('personal/maritalStatus', { data: req.session }),
   )
   app.get('/personal/maritalStatus/edit', (req, res) => res.render('personal/maritalStatus-edit'))
   app.post(

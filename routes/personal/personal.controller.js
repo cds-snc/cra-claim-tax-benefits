@@ -5,7 +5,7 @@ const { maritalStatusSchema, addressSchema } = require('./../../formSchemas.js')
 module.exports = function(app) {
   app.get('/personal/name', (req, res) => res.render('personal/name', { data: req.session }))
 
-  app.get('/personal/address', getAddress)
+  app.get('/personal/address', (req, res) => res.render('personal/address', { data: req.session }))
   app.get('/personal/address/edit', getAddressEdit)
   app.post('/personal/address/edit', validateRedirect, checkSchema(addressSchema), postAddress)
 
@@ -21,29 +21,7 @@ module.exports = function(app) {
   )
 }
 
-/* this is placeholder data until we get the real user info in here */
-const fakeAddress = {
-  aptNumber: '',
-  streetNumber: '375',
-  streetName: 'Rue Deschambault',
-  postalCode: 'R2H 0J9',
-  city: 'Winnipeg',
-  province: 'Manitoba',
-}
-
-const getAddress = (req, res) => {
-  // if no req.session.address, preload the fake address
-  // otherwise, keep the address that's in the session
-  req.session.address = req.session && req.session.address ? req.session.address : fakeAddress
-
-  return res.render('personal/address', { data: req.session })
-}
-
 const getAddressEdit = (req, res) => {
-  // if no req.session.address, preload the fake address
-  // otherwise, keep the address that's in the session
-  req.session.address = req.session && req.session.address ? req.session.address : fakeAddress
-
   return res.render('personal/address-edit', { data: req.session })
 }
 

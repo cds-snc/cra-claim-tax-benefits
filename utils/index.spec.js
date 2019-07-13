@@ -44,6 +44,10 @@ describe('Test hasData function', () => {
     expect(hasData({}, 'personal.address.city')).toBe(false)
   })
 
+  test('returns false for empty string', () => {
+    expect(hasData(user, 'personal.address.aptNumber')).toBe(false)
+  })
+
   test('returns true for disabilityClaim', () => {
     expect(hasData(user, 'deductions.disabilityClaim')).toBe(false)
   })

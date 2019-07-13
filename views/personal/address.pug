@@ -19,12 +19,12 @@ block content
         tr
           td
             .address
-              if data.address.aptNumber
-                div #{data.address.aptNumber}-#{data.address.streetNumber} #{data.address.streetName}
+              if hasData(data, 'personal.address.aptNumber')
+                div #{data.personal.address.aptNumber}-#{data.personal.address.streetNumber} #{data.personal.address.streetName}
               else
-                div #{data.address.streetNumber} #{data.address.streetName}
-              div #{data.address.city}, #{data.address.province}
-              div #{data.address.postalCode}
+                div #{data.personal.address.streetNumber} #{data.personal.address.streetName}
+              div #{data.personal.address.city}, #{data.personal.address.province}
+              div #{data.personal.address.postalCode}
 
   div
     details.
@@ -32,7 +32,7 @@ block content
       <p>Your mailing address can be different than your current residence. What’s important is that you will receive letters sent to this address.</p>
 
   .buttons-row
-    a.button-link(href='#') Confirm
+    a.button-link(href='/personal/maritalStatus') Confirm
     a.button-link(href='/personal/address/edit') Change address
-    a.button-link.transparent(href='#') Cancel
+    a.button-link.transparent(href='/clear') Cancel
 

@@ -60,8 +60,63 @@ const maritalStatusSchema = {
   },
 }
 
+const addressSchema = {
+  streetName: {
+    isEmpty: {
+      errorMessage: 'errors.address.streetName.empty',
+      negated: true,
+    },
+  },
+  city: {
+    isEmpty: {
+      errorMessage: 'errors.address.city.empty',
+      negated: true,
+    },
+  },
+  postalCode: {
+    isEmpty: {
+      errorMessage: 'errors.address.postalCode.empty',
+      negated: true,
+    },
+    custom: {
+      options: value => {
+        // Source: https://gist.github.com/nery/9118763
+        var postalCodeRegex = new RegExp(
+          /^\s*[a-ceghj-npr-tvxy]\d[a-ceghj-npr-tv-z][-(\s)]?\d[a-ceghj-npr-tv-z]\d\s*$/i,
+        )
+
+        return postalCodeRegex.test(value)
+      },
+      errorMessage: 'errors.address.postalCode.format',
+    },
+  },
+  province: {
+    isIn: {
+      errorMessage: 'errors.address.province.province',
+      options: [
+        [
+          'Alberta',
+          'British Columbia',
+          'Manitoba',
+          'New Brunswick',
+          'Newfoundland And Labrador',
+          'Northwest Territories',
+          'Nova Scotia',
+          'Nunavut',
+          'Ontario',
+          'Prince Edward Island',
+          'Quebec',
+          'Saskatchewan',
+          'Yukon',
+        ],
+      ],
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
   maritalStatusSchema,
   sinSchema,
+  addressSchema,
 }

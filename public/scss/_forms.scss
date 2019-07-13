@@ -1,9 +1,14 @@
 form.cra-form {
   margin-top: $space-xl;
   max-width: 300px;
+  width: 100%;
 
   @include sm {
     max-width: 400px;
+
+    .d--ib {
+      display: inline-block;
+    }
 
     .w-3-4 {
       width: 75%;
@@ -14,12 +19,26 @@ form.cra-form {
     .w-1-4 {
       width: 25%;
     }
+    .w-1-5 {
+      width: 20%;
+    }
+  }
+}
+
+form.cra-form.cra-form--lg {
+  @include sm {
+    width: 110%;
+    max-width: 800px;
   }
 }
 
 form.cra-form {
   > div:not(:last-of-type) {
     margin-bottom: $space-lg;
+  }
+
+  div *:last-child {
+    margin-bottom: 0;
   }
 
   %form-element {
@@ -32,7 +51,8 @@ form.cra-form {
     padding-left: $space-sm;
     border-left: $space-xxs solid $color-red;
 
-    input {
+    input,
+    select {
       border: 2px solid $color-red;
     }
   }
@@ -58,7 +78,8 @@ form.cra-form {
     color: $color-red;
   }
 
-  input {
+  input,
+  select {
     font-family: sans-serif;
     font-size: 1em;
     font-weight: 400;
@@ -69,11 +90,14 @@ form.cra-form {
     height: 40px;
     border: 2px solid $color-black;
     padding: $space-xxs;
-    -webkit-appearance: none;
 
     &:focus {
       @include focus();
       border-color: $color-black;
+    }
+
+    input {
+      -webkit-appearance: none;
     }
   }
 

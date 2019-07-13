@@ -6,7 +6,9 @@ module.exports = function(app) {
   app.get('/personal/name', (req, res) => res.render('personal/name', { data: req.session }))
 
   app.get('/personal/address', (req, res) => res.render('personal/address', { data: req.session }))
-  app.get('/personal/address/edit', getAddressEdit)
+  app.get('/personal/address/edit', (req, res) =>
+    res.render('personal/address-edit', { data: req.session }),
+  )
   app.post('/personal/address/edit', validateRedirect, checkSchema(addressSchema), postAddress)
 
   app.get('/personal/maritalStatus', (req, res) =>
@@ -21,10 +23,6 @@ module.exports = function(app) {
   )
 }
 
-const getAddressEdit = (req, res) => {
-  return res.render('personal/address-edit', { data: req.session })
-}
-
 const postAddress = (req, res) => {
   const errors = validationResult(req)
 
@@ -35,7 +33,7 @@ const postAddress = (req, res) => {
     })
   }
 
-  req.session.address = req.body
+  req.session.personal.address = req.body
 
   return res.redirect(req.body.redirect)
 }

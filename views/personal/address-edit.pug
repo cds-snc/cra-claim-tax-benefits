@@ -2,12 +2,12 @@ extends ../base
 
 block variables
   -var title = 'Change your mailing address'
-  -var aptNumber = data && data.address && data.address.aptNumber ? data.address.aptNumber : ''
-  -var streetNumber = data && data.address && data.address.streetNumber ? data.address.streetNumber : ''
-  -var streetName = data && data.address && data.address.streetName ? data.address.streetName : ''
-  -var city = data && data.address && data.address.city ? data.address.city : ''
-  -var postalCode = data && data.address && data.address.postalCode ? data.address.postalCode : ''
-  -var province = data && data.address && data.address.province ? data.address.province : ''
+  -var aptNumber = hasData(data, 'address.aptNumber') ? data.address.aptNumber : ''
+  -var streetNumber = hasData(data, 'address.streetNumber') ? data.address.streetNumber : ''
+  -var streetName = hasData(data, 'address.streetName') ? data.address.streetName : ''
+  -var city = hasData(data, 'address.city') ? data.address.city : ''
+  -var postalCode = hasData(data, 'address.postalCode') ? data.address.postalCode : ''
+  -var province = hasData(data, 'address.province') ? data.address.province : ''
 
 block content
 

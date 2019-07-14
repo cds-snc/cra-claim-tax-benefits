@@ -2,6 +2,8 @@
   "This service is to claim tax benefits online.": "Ce service consiste à demander des avantages fiscaux en ligne.",
   "Claim Tax Benefits": "Réclamer des avantages fiscaux",
   "Please correct the errors on the page": "Please correct the errors on the page",
+  "Enter your RRSP contributions": "Enter your RRSP contributions",
+  "Please enter your RRSP contributions for the current tax year (filing for 2018)": "Please enter your RRSP contributions for the current tax year (filing for 2018)",
   "errors.login.length": "Access code must be 8 characters",
   "errors.login.alphanumeric": "Access code should only contain letters and numbers",
   "errors.login.code": "Access code not recognized",

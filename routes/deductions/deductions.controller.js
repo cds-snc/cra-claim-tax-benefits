@@ -2,20 +2,17 @@ const { validationResult } = require('express-validator')
 const { errorArray2ErrorObject, validateRedirect } = require('./../../utils')
 
 module.exports = function(app) {
-  // redirect from "/deductions" → "/login/code", you really shouldn't be here (Unless we add a "info" page)
-  app.get('/deductions', (req, res) => res.redirect('/login/code'))
-
-  app.get('/deductions/rrsp', (req, res) =>
-    res.render('deductions/rrsp', { data: req.session || {} }),
+  app.get('/deductions/rrsp/amount', (req, res) =>
+    res.render('deductions/rrsp-amount', { data: req.session || {} }),
   )
-  app.post('/deductions/rrsp', validateRedirect, postRRSP)
+  app.post('/deductions/rrsp/amount', validateRedirect, postRRSP)
 }
 
 const postRRSP = (req, res) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
-    return res.status(422).render('deductions/rrsp', {
+    return res.status(422).render('deductions/rrsp/amount', {
       data: { rrsp: req.body.rrsp } || {},
       errors: errorArray2ErrorObject(errors),
     })

@@ -14,13 +14,13 @@ block content
 
   form.cra-form(method='post')
     div
-        fieldset.fieldset
-            legend.fieldset__legend
-                p RRSP contributions
-            .text
-                input.text__input(id="rrsp" name="rrsp" type="text" value="0.00" aria-describedby=(errors ? 'rrsp_error' : false))
-            if errors
-              span.validation-message #{__(errors.rrsp.msg)}
+      fieldset.fieldset
+        legend.fieldset__legend
+          p RRSP contributions
+        .text
+          input.text__input(id="rrsp" name="rrsp" type="text" value="0.00" aria-describedby=(errors ? 'rrsp_error' : false))
+        if errors
+          span.validation-message #{__(errors.rrsp.msg)}
     div
       details.
         <summary><span>Help with RRSP contributions</span></summary>

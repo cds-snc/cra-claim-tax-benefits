@@ -214,9 +214,9 @@ describe('Test /login responses', () => {
     const day = currentDate.getDate()
 
     const dateToString = (dateInput) => {
-      const add0 = (s) => { return (s < 10) ? '0' + s : s; }
+      const add0 = (s) => { return (s < 10) ? '0' + s : s }
       const d= new Date(dateInput)
-      return [d.getFullYear(),add0(d.getMonth()+1), add0(d.getDate())].join('/');
+      return [d.getFullYear(),add0(d.getMonth()+1), add0(d.getDate())].join('/')
     }
 
     const fewMonthsAgo = dateToString(new Date(year, month - 3, day))
@@ -326,7 +326,7 @@ describe('Test /login responses', () => {
       After that, only the date of birth corressponding to the user in /api/user.json
       will be accepted.
     */
-   describe('after entering an access code', () => {
+  describe('after entering an access code', () => {
     let authSession
 
     beforeEach(async () => {
@@ -336,8 +336,8 @@ describe('Test /login responses', () => {
         .send({ code: 'QWER1234', redirect: '/login/sin' })
         .then( () => {
           return authSession
-          .post('/login/sin')
-          .send({ code: 'QWER1234', sin:'111222333', redirect: '/login/dateOfBirth' })
+            .post('/login/sin')
+            .send({ code: 'QWER1234', sin:'111222333', redirect: '/login/dateOfBirth' })
         })
       expect(response.statusCode).toBe(302)
     })

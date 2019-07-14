@@ -2,12 +2,12 @@ extends ../base
 
 block variables
   -var title = 'Change your mailing address'
-  -var aptNumber = hasData(data, 'personal.address.aptNumber') ? data.personal.address.aptNumber : ''
-  -var streetNumber = hasData(data, 'personal.address.streetNumber') ? data.personal.address.streetNumber : ''
-  -var streetName = hasData(data, 'personal.address.streetName') ? data.personal.address.streetName : ''
-  -var city = hasData(data, 'personal.address.city') ? data.personal.address.city : ''
-  -var postalCode = hasData(data, 'personal.address.postalCode') ? data.personal.address.postalCode : ''
-  -var province = hasData(data, 'personal.address.province') ? data.personal.address.province : ''
+  -var aptNumber = hasData(body, 'aptNumber') ? body.aptNumber : hasData(data, 'personal.address.aptNumber') ? data.personal.address.aptNumber : ''
+  -var streetNumber = hasData(body, 'streetNumber') ? body.streetNumber : hasData(data, 'personal.address.streetNumber') ? data.personal.address.streetNumber : ''
+  -var streetName = hasData(body, 'streetName') ? body.streetName : hasData(data, 'personal.address.streetName') ? data.personal.address.streetName : ''
+  -var city = hasData(body, 'city') ? body.city : hasData(data, 'personal.address.city') ? data.personal.address.city : ''
+  -var postalCode = hasData(body, 'postalCode') ? body.postalCode : hasData(data, 'personal.address.postalCode') ? data.personal.address.postalCode : ''
+  -var province = hasData(body, 'province') ? body.province : hasData(data, 'personal.address.province') ? data.personal.address.province : ''
 
 block content
 

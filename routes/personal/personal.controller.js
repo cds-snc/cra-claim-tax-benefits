@@ -30,7 +30,8 @@ const postAddress = (req, res) => {
 
   if (!errors.isEmpty()) {
     return res.status(422).render('personal/address-edit', {
-      data: { ...req.session, ...{ address: req.body } },
+      data: req.session,
+      body: Object.assign({}, req.body),
       errors: errorArray2ErrorObject(errors),
     })
   }

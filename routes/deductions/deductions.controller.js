@@ -1,16 +1,39 @@
-const { validationResult } = require('express-validator')
+const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject, validateRedirect } = require('./../../utils')
+const { rrspSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
   app.get('/deductions/rrsp', (req, res) => res.render('deductions/rrsp', { data: req.session }))
+  app.post('/deductions/rrsp', validateRedirect, checkSchema(rrspSchema), postRRSP)
 
   app.get('/deductions/rrsp/amount', (req, res) =>
     res.render('deductions/rrsp-amount', { data: req.session }),
   )
-  app.post('/deductions/rrsp/amount', validateRedirect, postRRSP)
+  app.post('/deductions/rrsp/amount', validateRedirect, postRRSPAmount)
 }
 
 const postRRSP = (req, res) => {
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    return res.status(422).render('deductions/rrsp', {
+      data: req.session,
+      errors: errorArray2ErrorObject(errors),
+    })
+  }
+
+  /* TODO: SAVE THIS TO THE SESSION */
+  const rrspClaim = req.body.rrspClaim
+
+  if (rrspClaim === 'Yes') {
+    return res.redirect('/deductions/rrsp/amount')
+  }
+
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+
+const postRRSPAmount = (req, res) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {

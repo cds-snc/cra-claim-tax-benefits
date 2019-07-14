@@ -7,7 +7,7 @@ module.exports = function(app) {
   // redirect from "/login" → "/login/code"
   app.get('/login', (req, res) => res.redirect('/login/code'))
   app.get('/login/code', (req, res) => res.render('login/code', { data: req.session || {} }))
-  app.post('/login/code', checkSchema(loginSchema), validateRedirect, postLoginCode)
+  app.post('/login/code', validateRedirect, checkSchema(loginSchema), postLoginCode)
   app.get('/login/success', (req, res) => res.render('login/success', { data: req.session || {} }))
 
   //SIN

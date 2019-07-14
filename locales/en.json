@@ -20,6 +20,7 @@
   "errors.address.city.empty": "City can’t be empty",
   "errors.address.postalCode.empty": "Postal code can’t be empty",
   "errors.address.postalCode.format": "Postal code is incorrect format",
-  "errors.address.province.province": "Please select a valid province",
-  "errors.rrspClaim": "You must select one of the options"
+  "errors.address.province": "Please select a valid province",
+  "errors.rrspClaim": "You must select one of the options",
+  "errors.rrspAmount": "Enter a dollar amount higher than 0, like 120.00"
 }

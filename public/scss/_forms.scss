@@ -109,10 +109,13 @@ form.cra-form {
     -webkit-appearance: none;
 
     &.input-with-unit {
+      position: relative;
+      background-color: transparent;
       text-align: right;
       display: inline-block;
       padding-left: $space-xl;
       margin-left: -$space-xl;
+      z-index: 20;
     }
   }
 
@@ -125,9 +128,9 @@ form.cra-form {
     font-weight: 400;
     width: $space-xl;
     position: relative;
-    z-index: 10;
     pointer-events: none;
     text-align: center;
+    z-index: 10;
   }
 
   .buttons {

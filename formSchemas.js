@@ -191,6 +191,15 @@ const rrspSchema = {
   },
 }
 
+const rrspAmountSchema = {
+  rrspAmount: {
+    isCurrency: {
+      errorMessage: 'errors.rrspAmount',
+      options: { allow_negatives: false },
+    },
+  },
+}
+
 //TODO: We'll want to store this array of marital options somewhere. This is temporary. I'll also want to use that later to create the radio buttons dynamically, to avoid having to update multiple files
 const maritalStatusSchema = {
   maritalStatus: {
@@ -233,7 +242,7 @@ const addressSchema = {
   },
   province: {
     isIn: {
-      errorMessage: 'errors.address.province.province',
+      errorMessage: 'errors.address.province',
       options: [
         [
           'Alberta',
@@ -259,6 +268,7 @@ module.exports = {
   loginSchema,
   sinSchema,
   rrspSchema,
+  rrspAmountSchema,
   maritalStatusSchema,
   addressSchema,
   birthSchema,

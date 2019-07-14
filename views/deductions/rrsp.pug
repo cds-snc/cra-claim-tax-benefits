@@ -15,8 +15,7 @@ block content
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.rrspClaim})
       fieldset.fieldset
-        legend.fieldset__legend
-          h3 Did you contribute to an RRSP?
+        legend.fieldset__legend Did you contribute to an RRSP?
         .radios
           if errors
             +validationMessage(errors.rrspClaim.msg, 'rrspClaim')

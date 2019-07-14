@@ -26,6 +26,8 @@ const postRRSP = (req, res) => {
   const rrspClaim = req.body.rrspClaim
 
   if (rrspClaim === 'Yes') {
+    // It's fine not having this in the form itself (like the other redirect value)
+    // because these two pages are hardcoded together
     return res.redirect('/deductions/rrsp/amount')
   }
 

@@ -7,20 +7,17 @@ block content
 
   h1 #{title}
 
-  p Please enter RRSP info
-
   div
     p #{__('Please enter your RRSP contributions for the current tax year (filing for 2018)')}
 
   form.cra-form(method='post')
-    div
-      fieldset.fieldset
-        legend.fieldset__legend
-          p RRSP contributions
-        .text
-          input.text__input(id="rrsp" name="rrsp" type="text" value="0.00" aria-describedby=(errors ? 'rrsp_error' : false))
-        if errors
-          span.validation-message #{__(errors.rrsp.msg)}
+    div(class={['has-error']: errors && errors.code})
+      label(for='rrspAmount') Total RRSP contributions
+      if errors
+        +validationMessage(errors.rrspAmount.msg, 'rrspAmount')
+      label.input-with-unit--unit(for='rrspAmount') $
+      input.w-1-2.input-with-unit#rrspAmount(name='rrspAmount', type='text', value="0.00", autocomplete='off' aria-describedby=(errors && errors.rrspAmount ? 'rrspAmount-error' : false))
+
     div
       details.
         <summary><span>Help with RRSP contributions</span></summary>

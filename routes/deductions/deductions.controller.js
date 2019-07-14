@@ -2,8 +2,10 @@ const { validationResult } = require('express-validator')
 const { errorArray2ErrorObject, validateRedirect } = require('./../../utils')
 
 module.exports = function(app) {
+  app.get('/deductions/rrsp', (req, res) => res.render('deductions/rrsp', { data: req.session }))
+
   app.get('/deductions/rrsp/amount', (req, res) =>
-    res.render('deductions/rrsp-amount', { data: req.session || {} }),
+    res.render('deductions/rrsp-amount', { data: req.session }),
   )
   app.post('/deductions/rrsp/amount', validateRedirect, postRRSP)
 }

@@ -133,6 +133,11 @@ form.cra-form {
     font-size: 19px;
     font-size: 1.1875rem;
     border-bottom: 0;
+    margin-bottom: $space-md;
+
+    * {
+      margin: 0;
+    }
   }
 }
 

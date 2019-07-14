@@ -50,7 +50,8 @@ const postSIN = (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(422).render('login/sin', {
       // the value the user entered never replaces the actual user SIN
-      data: { ...req.session, ...{ sin: req.body.sin } } || {},
+      data: req.session,
+      body: Object.assign({}, req.body),
       errors: errorArray2ErrorObject(errors),
     })
   }

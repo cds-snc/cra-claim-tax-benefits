@@ -6,7 +6,7 @@
     "firstName": "Gabrielle",
     "lastName": "Roy",
     "sin": "111222333",
-    "dob": "1909-03-22",
+    "dob": "1909/03/22",
     "address": {
       "aptNumber": "",
       "streetNumber": "375",
@@ -26,7 +26,7 @@
     "firstName": "Marcel",
     "lastName": "Carbotte",
     "sin": "222333444",
-    "dob": "1914-02-09",
+    "dob": "1914/02/09",
     "disability": false,
     "netIncome": "$1,000.00"
   },
@@ -34,7 +34,7 @@
     {
       "firstName": "Bernadette",
       "lastName": "Roy",
-      "dob": "1948-09-25",
+      "dob": "1948/09/25",
       "disability": false,
       "netIncome": "0",
       "relationship": "child"
@@ -42,7 +42,7 @@
     {
       "firstName": "Clémence",
       "lastName": "Roy",
-      "dob": "1949-10-16",
+      "dob": "1949/10/16",
       "disability": false,
       "netIncome": "0",
       "relationship": "child"

@@ -1,9 +1,14 @@
 form.cra-form {
   margin-top: $space-xl;
   max-width: 300px;
+  width: 100%;
 
   @include sm {
     max-width: 400px;
+
+    .d--ib {
+      display: inline-block;
+    }
 
     .w-3-4 {
       width: 75%;
@@ -12,8 +17,18 @@ form.cra-form {
       width: 50%;
     }
     .w-1-4 {
-      width: 24%;
+      width: 25%;
     }
+    .w-1-5 {
+      width: 20%;
+    }
+  }
+}
+
+form.cra-form.cra-form--lg {
+  @include sm {
+    width: 110%;
+    max-width: 800px;
   }
 }
 
@@ -22,17 +37,32 @@ form.cra-form {
     margin-bottom: $space-lg;
   }
 
-  .cra-form-message {
+  div *:last-child {
+    margin-bottom: 0;
+  }
+
+  %form-element {
     display: block;
-    color: $color-grey-dark;
-    padding: 0;
+    margin: 0 0 $space-xs 0;
+    font-size: inherit;
+  }
+
+  .has-error {
+    padding-left: $space-sm;
+    border-left: $space-xxs solid $color-red;
+
+    input,
+    select {
+      border: 2px solid $color-red;
+    }
   }
 
   label,
-  label + span,
-  input {
-    margin: 0 0 $space-xs 0;
-    font-size: inherit;
+  .cra-form-message,
+  .validation-message,
+  input,
+  select {
+    @extend %form-element;
   }
 
   label:not(.radios__label) {
@@ -40,7 +70,16 @@ form.cra-form {
     display: block;
   }
 
-  input {
+  .cra-form-message {
+    color: $color-grey-dark;
+  }
+
+  .validation-message {
+    color: $color-red;
+  }
+
+  input,
+  select {
     font-family: sans-serif;
     font-size: 1em;
     font-weight: 400;
@@ -51,15 +90,14 @@ form.cra-form {
     height: 40px;
     border: 2px solid $color-black;
     padding: $space-xxs;
-    -webkit-appearance: none;
-
-    &.has-error {
-      border: 2px solid $color-red;
-    }
 
     &:focus {
       @include focus();
       border-color: $color-black;
+    }
+
+    input {
+      -webkit-appearance: none;
     }
   }
 
@@ -126,11 +164,11 @@ form.cra-form {
     width: 44px;
     height: 44px;
     margin: 0;
-    opacity: 0; 
-    
+    opacity: 0;
+
     &:checked + #{$radioClass}__label::after {
       opacity: 1;
-    } 
+    }
 
     &:focus + #{$radioClass}__label::before {
       -webkit-box-shadow: 0 0 0 3px $color-yellow;
@@ -147,7 +185,7 @@ form.cra-form {
     touch-action: manipulation;
 
     &::before {
-      content: "";
+      content: '';
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       position: absolute;
@@ -161,7 +199,7 @@ form.cra-form {
     }
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 10px;
       left: 10px;

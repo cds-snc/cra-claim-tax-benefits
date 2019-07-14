@@ -1,3 +1,5 @@
+include _includes/validationMessage
+
 doctype html
 html(lang='en')
   block variables
@@ -14,7 +16,10 @@ html(lang='en')
     link(rel='stylesheet', href='/styles.css')
 
     if title
-      title #{title} — Claim tax benefits
+      if errors
+        title Error: #{title} — Claim tax benefits
+      else
+        title #{title} — Claim tax benefits
     else
       title Claim tax benefits
 

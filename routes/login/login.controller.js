@@ -1,6 +1,6 @@
 const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject, validateRedirect } = require('./../../utils')
-const { loginSchema, sinSchema } = require('./../../formSchemas.js')
+const { loginSchema, sinSchema, birthSchema } = require('./../../formSchemas.js')
 const API = require('../../api')
 
 module.exports = function(app) {
@@ -16,7 +16,7 @@ module.exports = function(app) {
 
   //Date of Birth
   app.get('/login/dateOfBirth', (req, res) => res.render('login/dob', { data: req.session || {} }))
-  // app.post('/login/dob', validateRedirect, checkSchema(sinSchema), postSIN)
+  app.post('/login/dateOfBirth', validateRedirect, checkSchema(birthSchema), postDoB)
 }
 
 const postLoginCode = (req, res) => {
@@ -48,6 +48,20 @@ const postSIN = (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(422).render('login/sin', {
       data: { ...req.session, ...{ sin: req.body.sin } } || {},
+      errors: errorArray2ErrorObject(errors),
+    })
+  }
+
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+
+const postDoB = (req, res) => {
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    return res.status(422).render('login/dob', {
+      data: { ...req.session, ...{ dob: req.body.dateOfBirth } } || {},
       errors: errorArray2ErrorObject(errors),
     })
   }

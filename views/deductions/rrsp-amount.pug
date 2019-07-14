@@ -12,11 +12,11 @@ block content
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.code})
-      label(for='rrspAmount') Total RRSP contributions
+      label#rrspAmount__label(for='rrspAmount') Total RRSP contributions
       if errors
         +validationMessage(errors.rrspAmount.msg, 'rrspAmount')
-      label.input-with-unit--unit(for='rrspAmount') $
-      input.w-1-2.input-with-unit#rrspAmount(name='rrspAmount', type='text', value="0.00", autocomplete='off' aria-describedby=(errors && errors.rrspAmount ? 'rrspAmount-error' : false))
+      span#rrspAmount__unit.input-with-unit__unit(for='rrspAmount') $
+      input.w-1-2.input-with-unit#rrspAmount(name='rrspAmount', type='text', value="0.00", autocomplete='off' aria-describedby=(errors && errors.rrspAmount ? 'rrspAmount-error' : false) aria-labelledby="rrspAmount__label rrspAmount__unit")
 
     div
       details.

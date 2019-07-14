@@ -20,18 +20,5 @@
 	"errors.address.city.empty": "City can’t be empty",
 	"errors.address.postalCode.empty": "Postal code can’t be empty",
 	"errors.address.postalCode.format": "Postal code is incorrect format",
-	"errors.address.province.province": "Please select a valid province",
-	"make sure the length is correct": "make sure the length is correct",
-	"birthDate is not defined": "birthDate is not defined",
-	"can only use numbers": "can only use numbers",
-	"something went wrong": "something went wrong",
-	"logger is not defined": "logger is not defined",
-	"only numbers and slashes": "only numbers and slashes",
-	"Please enter a valid year": "Please enter a valid year",
-	"Please enter a valid day": "Please enter a valid day",
-	"Please enter a valid month\nPlease enter a valid year": "Please enter a valid month\nPlease enter a valid year",
-	"Please enter a valid month": "Please enter a valid month",
-	"req is not defined": "req is not defined",
-	"Cannot destructure property `req` of 'undefined' or 'null'.": "Cannot destructure property `req` of 'undefined' or 'null'.",
-	"Cannot read property 'session' of undefined": "Cannot read property 'session' of undefined"
+	"errors.address.province.province": "Please select a valid province"
 }

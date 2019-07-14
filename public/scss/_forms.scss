@@ -30,6 +30,11 @@ form.cra-form.cra-form--lg {
     width: 110%;
     max-width: 800px;
   }
+
+  fieldset legend,
+  label:not(.radios__label) {
+    font-size: 1em;
+  }
 }
 
 form.cra-form {
@@ -65,9 +70,12 @@ form.cra-form {
     @extend %form-element;
   }
 
+  fieldset legend,
   label:not(.radios__label) {
-    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
     display: block;
+    font-size: 1.07em;
   }
 
   .cra-form-message {
@@ -150,8 +158,6 @@ form.cra-form {
   padding: 0;
 
   &__legend {
-    font-weight: 600;
-    font-size: 1.07em;
     border-bottom: 0;
     margin-bottom: $space-md;
 

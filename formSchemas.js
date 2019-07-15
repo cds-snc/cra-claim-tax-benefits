@@ -264,9 +264,19 @@ const rrspAmountSchema = {
   },
 }
 
+const residenceSchema = {
+  residence: {
+    isIn: {
+      errorMessage: 'errors.residence',
+      options: [[ 'Yes' , 'No' ]],
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
   maritalStatusSchema,
+  residenceSchema,
   sinSchema,
   addressSchema,
   birthSchema,

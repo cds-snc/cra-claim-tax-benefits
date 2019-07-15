@@ -4,7 +4,7 @@ form.cra-form {
   width: 100%;
 
   @include sm {
-    max-width: 400px;
+    max-width: 450px;
 
     .d--ib {
       display: inline-block;
@@ -39,7 +39,7 @@ form.cra-form.cra-form--lg {
 
 form.cra-form {
   > div:not(:last-of-type) {
-    margin-bottom: $space-lg;
+    margin-bottom: $space-xl;
   }
 
   div *:last-child {

@@ -1,6 +1,6 @@
 const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject, validateRedirect } = require('./../../utils')
-const { maritalStatusSchema, addressSchema } = require('./../../formSchemas.js')
+const { maritalStatusSchema, residenceSchema, addressSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
   app.get('/personal/name', (req, res) => res.render('personal/name', { data: req.session }))
@@ -10,6 +10,14 @@ module.exports = function(app) {
     res.render('personal/address-edit', { data: req.session }),
   )
   app.post('/personal/address/edit', validateRedirect, checkSchema(addressSchema), postAddress)
+
+  app.get('/personal/residence', (req, res) => res.render('personal/residence'))
+  app.post(
+    '/personal/residence',
+    validateRedirect,
+    checkSchema(residenceSchema),
+    postResidence,
+  )
 
   app.get('/personal/maritalStatus', (req, res) =>
     res.render('personal/maritalStatus', { data: req.session }),
@@ -58,4 +66,21 @@ const postMaritalStatus = (req, res) => {
   req.session.personal.maritalStatus = req.body.maritalStatus
 
   return res.redirect(req.body.redirect)
+}
+
+const postResidence = (req, res) => {
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    return res.status(422).render('personal/residence', {
+      data: { residence: req.body.residence } || {},
+      errors: errorArray2ErrorObject(errors),
+    })
+  }
+
+  if (req.body.residence !== 'Yes') {
+    return res.redirect('/start')
+  } 
+
+  return res.redirect(req.body.redirect)  
 }

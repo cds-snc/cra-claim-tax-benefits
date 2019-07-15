@@ -1,0 +1,29 @@
+extends ../base
+include ../_includes/yesNoRadios
+
+block variables
+  -var title = 'Confirm you are an Ontario resident'
+
+block content
+
+  h1 #{title}
+
+  div
+    p In order to be eligible for this service, your <strong>primary residence</strong> on December 31, 2018, must have been in Ontario.
+
+
+  form.cra-form(method='post')
+    +yesNoRadios('residence', residence, 'Ontario resident on December 31, 2018?', errors)
+
+    div
+      details.
+        <summary><span>Help with Ontario residence</span></summary>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+    input#redirect(name='redirect', type='hidden', value='/personal/address')
+
+    .buttons
+      .buttons--left
+        button(type='submit') Continue
+      .buttons--right
+        a.button-link.transparent(href='/personal/residence') Cancel

@@ -9,6 +9,7 @@ describe('Test /personal responses', () => {
       '/personal/name',
       '/personal/maritalStatus',
       '/personal/maritalStatus/edit',
+      '/personal/residence',
       '/personal/address',
       '/personal/address/edit',
     ]
@@ -61,6 +62,29 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/maritalStatus/edit')
         .send({ redirect: '/personal/maritalStatus', maritalStatus: 'Widowed' })
+      expect(response.statusCode).toBe(302)
+    })
+  })
+
+  describe('Test /personal/residence responses', () => {
+    test('it returns a 422 with no option selected', async () => {
+      const response = await request(app)
+        .post('/personal/residence')
+        .send({ redirect: '/personal/address' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it returns a 302 when selecting NO', async () => {
+      const response = await request(app)
+        .post('/personal/residence')
+        .send({ redirect: '/', residence: 'No' })
+      expect(response.statusCode).toBe(302)
+    })
+
+    test('it returns a 302 when selecting YES', async () => {
+      const response = await request(app)
+        .post('/personal/residence')
+        .send({ redirect: '/personal/address', residence: 'Yes' })
       expect(response.statusCode).toBe(302)
     })
   })

@@ -193,7 +193,7 @@ describe('Test /login responses', () => {
     })
   })
 
-  //it returns a 200 response for /login/dob
+  //it returns a 200 response for /login/dateOfBirth
   //access code test (look above for sin)
 
   describe('Test login/dateOfBirth responses', () => {

@@ -15,7 +15,7 @@ module.exports = function(app) {
   app.post('/login/sin', validateRedirect, checkSchema(sinSchema), postSIN)
 
   //Date of Birth
-  app.get('/login/dateOfBirth', (req, res) => res.render('login/dob', { data: req.session || {} }))
+  app.get('/login/dateOfBirth', (req, res) => res.render('login/dateOfBirth', { data: req.session || {} }))
   app.post('/login/dateOfBirth', validateRedirect, checkSchema(birthSchema), postDoB)
 }
 
@@ -60,7 +60,7 @@ const postDoB = (req, res) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
-    return res.status(422).render('login/dob', {
+    return res.status(422).render('login/dateOfBirth', {
       data: { ...req.session, ...{ dob: req.body.dateOfBirth } } || {},
       errors: errorArray2ErrorObject(errors),
     })

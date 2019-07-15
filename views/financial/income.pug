@@ -1,11 +1,15 @@
 extends ../base
 
 block variables
-  -var title = 'Financial info stub page'
+  -var title = 'Confirm your income information'
 
 block content
 
   h1 #{title}
 
+  div
+    p Here's what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.
 
-  p Please Review your financial information
+  .buttons-row
+    a.button-link(href='/deductions/rrsp') Confirm
+    a.button-link.transparent(href='/clear') Cancel

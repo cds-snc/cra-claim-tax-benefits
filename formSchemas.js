@@ -88,8 +88,12 @@ const validBirthDateLengths = {
   errorMessage: 'errors.login.dateOfBirth.format',
   validate: value => {
     const birthDateSplit = value.split('/')
-    return birthDateSplit[0].length === 4 && birthDateSplit[1].length === 2 && birthDateSplit[2].length === 2
-  }
+    return (
+      birthDateSplit[0].length === 4 &&
+      birthDateSplit[1].length === 2 &&
+      birthDateSplit[2].length === 2
+    )
+  },
 }
 
 const validBirthDateChars = {
@@ -97,7 +101,7 @@ const validBirthDateChars = {
   validate: value => {
     const numAndSlash = new RegExp(/^[0-9\/]*$/)
     return numAndSlash.test(value)
-  }
+  },
 }
 
 const validMonth = {
@@ -119,7 +123,6 @@ const validDay = {
     const day = parseInt(dateSplit[2], 10)
     const lastDay = lastDayInMonth(dateSplit[0], month)
     return day >= 1 && day <= lastDay
-
   }
 }
 
@@ -139,7 +142,7 @@ const validYear = {
     const longAgo = new Date(year - 200, month, day)
 
     return dateEntered <= lastYear && dateEntered >= longAgo
-  }
+  },
 }
 
 const isMatchingDoB = {
@@ -151,7 +154,7 @@ const isMatchingDoB = {
     }
 
     return value === req.session.personal.dob
-  }
+  },
 }
 
 const birthSchema = {

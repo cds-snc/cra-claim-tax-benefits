@@ -2,6 +2,8 @@
   "This service is to claim tax benefits online.": "This service is to claim tax benefits online.",
   "Claim Tax Benefits": "Claim Tax Benefits",
   "Please correct the errors on the page": "Please correct the errors on the page",
+  "Enter your RRSP contributions": "Enter your RRSP contributions",
+  "Please enter your RRSP contributions for the current tax year (filing for 2018)": "Please enter your RRSP contributions for the current tax year (filing for 2018)",
   "errors.login.length": "Access code must be 8 characters",
   "errors.login.alphanumeric": "Access code should only contain letters and numbers",
   "errors.login.code": "Access code not recognized",
@@ -22,5 +24,6 @@
   "errors.address.postalCode.format": "Postal code is incorrect format",
   "errors.address.province": "Please select a valid province",
   "errors.rrspClaim": "You must select one of the options",
-  "errors.rrspAmount": "Enter a dollar amount higher than 0, like 120.00"
+  "errors.rrspAmount": "Enter a dollar amount higher than 0, like 120.00",
+  "errors.address.province.province": "errors.address.province.province"
 }

@@ -15,7 +15,7 @@ const validationArray = validators => {
       },
       options: (value, { req }, opts) => {
         errors = []
-        const results = validators.map((validator, index) => {
+        const results = validators.map(validator => {
           const result = validator.validate(value, req, opts)
           // If validation failed set current Error
           if (result === false) {
@@ -99,7 +99,7 @@ const validBirthDateLengths = {
 const validBirthDateChars = {
   errorMessage: 'errors.login.dateOfBirth.characters',
   validate: value => {
-    const numAndSlash = new RegExp(/^[0-9\/]*$/)
+    const numAndSlash = new RegExp(/^[0-9/]*$/)
     return numAndSlash.test(value)
   },
 }
@@ -182,24 +182,6 @@ const birthSchema = {
   },
 }
 
-const rrspSchema = {
-  rrspClaim: {
-    isIn: {
-      errorMessage: 'errors.rrspClaim',
-      options: [['Yes', 'No']],
-    },
-  },
-}
-
-const rrspAmountSchema = {
-  rrspAmount: {
-    isCurrency: {
-      errorMessage: 'errors.rrspAmount',
-      options: { allow_negatives: false },
-    },
-  },
-}
-
 //TODO: We'll want to store this array of marital options somewhere. This is temporary. I'll also want to use that later to create the radio buttons dynamically, to avoid having to update multiple files
 const maritalStatusSchema = {
   maritalStatus: {
@@ -242,7 +224,7 @@ const addressSchema = {
   },
   province: {
     isIn: {
-      errorMessage: 'errors.address.province',
+      errorMessage: 'errors.address.province.province',
       options: [
         [
           'Alberta',
@@ -264,12 +246,30 @@ const addressSchema = {
   },
 }
 
+const rrspSchema = {
+  rrspClaim: {
+    isIn: {
+      errorMessage: 'errors.rrspClaim',
+      options: [['Yes', 'No']],
+    },
+  },
+}
+
+const rrspAmountSchema = {
+  rrspAmount: {
+    isCurrency: {
+      errorMessage: 'errors.rrspAmount',
+      options: { allow_negatives: false },
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
-  sinSchema,
-  rrspSchema,
-  rrspAmountSchema,
   maritalStatusSchema,
+  sinSchema,
   addressSchema,
   birthSchema,
+  rrspSchema,
+  rrspAmountSchema,
 }

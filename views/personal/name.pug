@@ -20,7 +20,7 @@ block content
       tbody
         tr
           td
-            div Gabrielle Roy
+            div #{data.personal.firstName} #{data.personal.lastName}
 
   div
     details.
@@ -29,6 +29,6 @@ block content
       <p>Once updated, you can proceed to use this service.</p>
 
   .buttons-row
-    a.button-link(href='#') Confirm
-    a.button-link.transparent(href='#') Cancel
+    a.button-link(href='/personal/address') Confirm
+    a.button-link.transparent(href='/clear') Cancel
 

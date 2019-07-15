@@ -3,16 +3,20 @@ const { errorArray2ErrorObject, validateRedirect } = require('./../../utils')
 const { maritalStatusSchema, addressSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
-  app.get('/personal/name', (req, res) => res.render('personal/name'))
+  app.get('/personal/name', (req, res) => res.render('personal/name', { data: req.session }))
 
-  app.get('/personal/address', getAddress)
-  app.get('/personal/address/edit', getAddressEdit)
+  app.get('/personal/address', (req, res) => res.render('personal/address', { data: req.session }))
+  app.get('/personal/address/edit', (req, res) =>
+    res.render('personal/address-edit', { data: req.session }),
+  )
   app.post('/personal/address/edit', validateRedirect, checkSchema(addressSchema), postAddress)
 
   app.get('/personal/maritalStatus', (req, res) =>
-    res.render('personal/maritalStatus', { data: req.session || {} }),
+    res.render('personal/maritalStatus', { data: req.session }),
   )
-  app.get('/personal/maritalStatus/edit', (req, res) => res.render('personal/maritalStatus-edit'))
+  app.get('/personal/maritalStatus/edit', (req, res) =>
+    res.render('personal/maritalStatus-edit', { data: req.session }),
+  )
   app.post(
     '/personal/maritalStatus/edit',
     validateRedirect,
@@ -21,43 +25,22 @@ module.exports = function(app) {
   )
 }
 
-/* this is placeholder data until we get the real user info in here */
-const fakeAddress = {
-  aptNumber: '',
-  streetNumber: '375',
-  streetName: 'Rue Deschambault',
-  postalCode: 'R2H 0J9',
-  city: 'Winnipeg',
-  province: 'Manitoba',
-}
-
-const getAddress = (req, res) => {
-  // if no req.session.address, preload the fake address
-  // otherwise, keep the address that's in the session
-  req.session.address = req.session && req.session.address ? req.session.address : fakeAddress
-
-  return res.render('personal/address', { data: req.session })
-}
-
-const getAddressEdit = (req, res) => {
-  // if no req.session.address, preload the fake address
-  // otherwise, keep the address that's in the session
-  req.session.address = req.session && req.session.address ? req.session.address : fakeAddress
-
-  return res.render('personal/address-edit', { data: req.session })
-}
-
 const postAddress = (req, res) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
     return res.status(422).render('personal/address-edit', {
-      data: { ...req.session, ...{ address: req.body } },
+      data: req.session,
+      body: Object.assign({}, req.body),
       errors: errorArray2ErrorObject(errors),
     })
   }
 
-  req.session.address = req.body
+  // copy all posted parameters, but remove the redirect
+  let addressData = Object.assign({}, req.body)
+  delete addressData.redirect
+
+  req.session.personal.address = addressData
 
   return res.redirect(req.body.redirect)
 }
@@ -65,17 +48,14 @@ const postAddress = (req, res) => {
 const postMaritalStatus = (req, res) => {
   const errors = validationResult(req)
 
-  let maritalStatus = req.body.maritalStatus || null
-  req.session.personal = {
-    maritalStatus: maritalStatus,
-  }
-
   if (!errors.isEmpty()) {
     return res.status(422).render('personal/maritalStatus-edit', {
-      data: { maritalStatus: req.body.maritalStatus } || {},
+      data: req.session,
       errors: errorArray2ErrorObject(errors),
     })
   }
+
+  req.session.personal.maritalStatus = req.body.maritalStatus
 
   return res.redirect(req.body.redirect)
 }

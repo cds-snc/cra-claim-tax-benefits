@@ -2,6 +2,7 @@ extends ../base
 
 block variables
   -var title = 'Enter your Social Insurance Number (SIN)'
+  -var sin = hasData(body, 'sin') ? body.sin : ''
 
 block content
 
@@ -17,13 +18,10 @@ block content
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.sin})
       label(for='sin') Social Insurance Number
-      if data.personal
-        span.cra-form-message For Example: #{SINFilter(data.personal.sin)}
-      else
-        span.cra-form-message For Example: 123 456 789
+      span.cra-form-message For Example: #{SINFilter(data.personal.sin)}
       if errors
         +validationMessage(errors.sin.msg, 'sin')
-      input.w-3-4#sin(name='sin', type='text', value=data.sin, autocomplete='off' aria-describedby=(errors && errors.sin ? 'sin-error' : false))
+      input.w-3-4#sin(name='sin', type='text', value=sin, autocomplete='off' aria-describedby=(errors && errors.sin ? 'sin-error' : false))
 
     div
       details.

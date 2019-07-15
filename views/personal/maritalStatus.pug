@@ -18,10 +18,7 @@ block content
       tbody
         tr
           td
-            if hasData(data, 'personal.maritalStatus')
-              div #{data.personal.maritalStatus}
-            else
-              div Married
+            div #{data.personal.maritalStatus}
 
   div
     details.
@@ -31,4 +28,4 @@ block content
   .buttons-row
     a.button-link(href='#') Confirm
     a.button-link(href='/personal/maritalStatus/edit') Change Marital Status
-    a.button-link.transparent(href='#') Cancel
+    a.button-link.transparent(href='/clear') Cancel

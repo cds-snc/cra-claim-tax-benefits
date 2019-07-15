@@ -153,7 +153,7 @@ const isMatchingDoB = {
       return true
     }
 
-    return value === req.session.personal.dob
+    return value === req.session.personal.dateOfBirth
   },
 }
 

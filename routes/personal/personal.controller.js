@@ -12,8 +12,8 @@ module.exports = function(app) {
   app.get('/personal/residence', (req, res) => res.render('personal/residence'))
   app.post(
     '/personal/residence',
-    checkSchema(residenceSchema),
     validateRedirect,
+    checkSchema(residenceSchema),
     postResidence,
   )
 
@@ -100,7 +100,7 @@ const postResidence = (req, res) => {
 
   if (req.body.residence !== 'Yes') {
     return res.redirect('/start')
-  } else {
-    return res.redirect(req.body.redirect)
-  }
+  } 
+
+  return res.redirect(req.body.redirect)  
 }

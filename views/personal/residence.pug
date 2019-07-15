@@ -2,18 +2,18 @@ extends ../base
 include ../_includes/yesNoRadios
 
 block variables
-  -var title = 'Confirm if you are an Ontario resident'
+  -var title = 'Confirm you are an Ontario resident'
 
 block content
 
   h1 #{title}
 
   div
-    p In order to be eligible for this service and in order to apply the proper provincial taxes to your file, you must have been living in (this is your <strong>primary residence</strong>) Ontario on Dec.31, 2018.
+    p In order to be eligible for this service, your <strong>primary residence</strong> on December 31, 2018, must have been in Ontario.
 
 
   form.cra-form(method='post')
-    +yesNoRadios('residence', residence, 'Ontario resident on Dec.31, 2018?', errors)
+    +yesNoRadios('residence', residence, 'Ontario resident on December 31, 2018?', errors)
 
     div
       details.

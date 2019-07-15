@@ -1,5 +1,5 @@
 const { validationResult, checkSchema } = require('express-validator')
-const { errorArray2ErrorObject, validateRedirect } = require('./../../utils')
+const { errorArray2ErrorObject, validateRedirect, checkErrors } = require('./../../utils')
 const { loginSchema, sinSchema, birthSchema } = require('./../../formSchemas.js')
 const API = require('../../api')
 
@@ -11,13 +11,25 @@ module.exports = function(app) {
 
   // SIN
   app.get('/login/sin', (req, res) => res.render('login/sin', { data: req.session }))
-  app.post('/login/sin', validateRedirect, checkSchema(sinSchema), postSIN)
+  app.post(
+    '/login/sin',
+    validateRedirect,
+    checkSchema(sinSchema),
+    checkErrors('login/sin'),
+    postSIN,
+  )
 
   // Date of Birth
   app.get('/login/dateOfBirth', (req, res) =>
     res.render('login/dateOfBirth', { data: req.session || {} }),
   )
-  app.post('/login/dateOfBirth', validateRedirect, checkSchema(birthSchema), postDoB)
+  app.post(
+    '/login/dateOfBirth',
+    validateRedirect,
+    checkSchema(birthSchema),
+    checkErrors('login/dateOfBirth'),
+    postDoB,
+  )
 
   // Success page
   app.get('/login/success', (req, res) => res.render('login/success', { data: req.session }))
@@ -47,32 +59,11 @@ const postLoginCode = (req, res) => {
 }
 
 const postSIN = (req, res) => {
-  const errors = validationResult(req)
-
-  if (!errors.isEmpty()) {
-    return res.status(422).render('login/sin', {
-      // the value the user entered never replaces the actual user SIN
-      data: req.session,
-      body: Object.assign({}, req.body),
-      errors: errorArray2ErrorObject(errors),
-    })
-  }
-
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)
 }
 
 const postDoB = (req, res) => {
-  const errors = validationResult(req)
-
-  if (!errors.isEmpty()) {
-    return res.status(422).render('login/dateOfBirth', {
-      data: req.session,
-      body: Object.assign({}, req.body),
-      errors: errorArray2ErrorObject(errors),
-    })
-  }
-
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)
 }

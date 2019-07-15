@@ -1,4 +1,5 @@
 const API = require('./../api')
+const { validationResult } = require('express-validator')
 
 /*
   original format is an array of error objects: https://express-validator.github.io/docs/validation-result-api.html
@@ -45,6 +46,44 @@ const checkPublic = function(req, res, next) {
   }
 
   return next()
+}
+
+/**
+ * Middleware function that runs our error validation
+ *
+ * Since returning our errors is looking like a lot of boilerplate code, this function:
+ *
+ * - checks if the request parameters match the schema
+ * - checks if there are errors
+ * - if no errors, "next()"
+ * - if there are errors,
+ *   - send back a 422 status
+ *   - add the session data to the template
+ *   - put the request parameters into the template (except for the redirect)
+ *   - render the passed-in template string
+ *
+ * By including this function, we can cut down our post functions by about half
+ *
+ * @param string template The template string to render if errors are found (should match the one used for the GET request)
+ */
+const checkErrors = template => {
+  return (req, res, next) => {
+    const errors = validationResult(req)
+
+    // copy all posted parameters, but remove the redirect
+    let body = Object.assign({}, req.body)
+    delete body.redirect
+
+    if (!errors.isEmpty()) {
+      return res.status(422).render(template, {
+        data: req.session,
+        body,
+        errors: errorArray2ErrorObject(errors),
+      })
+    }
+
+    return next()
+  }
 }
 
 //POST functions that handle setting the login data in the session and handle redirecting to the next page or sending an error to the client.
@@ -100,6 +139,7 @@ const hasData = (obj, key) => {
 module.exports = {
   errorArray2ErrorObject,
   validateRedirect,
+  checkErrors,
   SINFilter,
   hasData,
   checkPublic,

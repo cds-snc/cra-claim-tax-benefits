@@ -88,6 +88,11 @@ const validBirthDateLengths = {
   errorMessage: 'errors.login.dateOfBirth.format',
   validate: value => {
     const birthDateSplit = value.split('/')
+
+    if (birthDateSplit.length !== 3) {
+      return false
+    }
+
     return (
       birthDateSplit[0].length === 4 &&
       birthDateSplit[1].length === 2 &&

@@ -24,5 +24,6 @@
   "errors.address.postalCode.format": "Postal code is incorrect format",
   "errors.address.province": "Please select a valid province",
   "errors.rrspClaim": "You must select one of the options",
-  "errors.rrspAmount": "Enter a dollar amount higher than 0, like 120.00"
+  "errors.rrspAmount": "Enter a dollar amount higher than 0, like 120.00",
+  "errors.auth": "Enter a dollar amount higher than 0, like 120.00"
 }

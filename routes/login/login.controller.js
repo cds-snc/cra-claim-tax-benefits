@@ -1,6 +1,6 @@
 const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject, validateRedirect, checkErrors } = require('./../../utils')
-const { loginSchema, sinSchema, birthSchema } = require('./../../formSchemas.js')
+const { loginSchema, sinSchema, birthSchema, authSchema } = require('./../../formSchemas.js')
 const API = require('../../api')
 
 module.exports = function(app) {
@@ -21,7 +21,7 @@ module.exports = function(app) {
 
   // Date of Birth
   app.get('/login/dateOfBirth', (req, res) =>
-    res.render('login/dateOfBirth', { data: req.session || {} }),
+    res.render('login/dateOfBirth', { data: req.session }),
   )
   app.post(
     '/login/dateOfBirth',
@@ -32,7 +32,8 @@ module.exports = function(app) {
   )
 
   // Auth page
-  app.get('/login/auth', (req, res) => res.render('login/auth', { data: { redirect: '/start' } }))
+  app.get('/login/auth', getAuth)
+  app.post('/login/auth', checkSchema(authSchema), checkErrors('login/auth'), postAuth)
 
   // Success page
   app.get('/login/success', (req, res) => res.render('login/success', { data: req.session }))
@@ -69,4 +70,23 @@ const postSIN = (req, res) => {
 const postDoB = (req, res) => {
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)
+}
+
+const getAuth = (req, res) => {
+  if (!req.query.redirect) {
+    return res.redirect('/start')
+  }
+
+  return res.render('login/auth', { data: req.session })
+}
+
+const postAuth = (req, res) => {
+  if (!req.query.redirect) {
+    return res.redirect('/start')
+  }
+
+  // set "auth" to true
+  req.session.login.auth = true
+
+  return res.redirect(decodeURIComponent(req.query.redirect))
 }

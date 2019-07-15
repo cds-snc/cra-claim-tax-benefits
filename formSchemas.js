@@ -273,7 +273,16 @@ const residenceSchema = {
   residence: {
     isIn: {
       errorMessage: 'errors.residence',
-      options: [[ 'Yes' , 'No' ]],
+      options: [['Yes', 'No']],
+    },
+  },
+}
+
+const authSchema = {
+  auth: {
+    isCurrency: {
+      errorMessage: 'errors.auth',
+      options: { allow_negatives: false },
     },
   },
 }
@@ -287,4 +296,5 @@ module.exports = {
   birthSchema,
   rrspSchema,
   rrspAmountSchema,
+  authSchema,
 }

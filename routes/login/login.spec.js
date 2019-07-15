@@ -360,8 +360,14 @@ describe('Test /login responses', () => {
   })
 
   describe('Test /login/auth responses', () => {
-    test('it returns a 200 response for /login/auth', async () => {
+    test('it returns a 302 response to the start page when no "redirect" query parameter', async () => {
       const response = await request(app).get('/login/auth')
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/start')
+    })
+
+    test('it returns a 200 response when containing a "redirect" query parameter', async () => {
+      const response = await request(app).get('/login/auth?redirect=%2Fstart')
       expect(response.statusCode).toBe(200)
     })
   })

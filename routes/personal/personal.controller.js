@@ -1,16 +1,17 @@
 const { checkSchema } = require('express-validator')
-const { validateRedirect, checkErrors } = require('./../../utils')
+const { validateRedirect, checkErrors, doAuth } = require('./../../utils')
 const { maritalStatusSchema, addressSchema, residenceSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
   app.get('/personal/name', (req, res) => res.render('personal/name', { data: req.session }))
 
   app.get('/personal/address', (req, res) => res.render('personal/address', { data: req.session }))
-  app.get('/personal/address/edit', (req, res) =>
+  app.get('/personal/address/edit', doAuth, (req, res) =>
     res.render('personal/address-edit', { data: req.session }),
   )
   app.post(
     '/personal/address/edit',
+    doAuth,
     validateRedirect,
     checkSchema(addressSchema),
     checkErrors('personal/address-edit'),
@@ -29,11 +30,12 @@ module.exports = function(app) {
   app.get('/personal/maritalStatus', (req, res) =>
     res.render('personal/maritalStatus', { data: req.session }),
   )
-  app.get('/personal/maritalStatus/edit', (req, res) =>
+  app.get('/personal/maritalStatus/edit', doAuth, (req, res) =>
     res.render('personal/maritalStatus-edit', { data: req.session }),
   )
   app.post(
     '/personal/maritalStatus/edit',
+    doAuth,
     validateRedirect,
     checkSchema(maritalStatusSchema),
     checkErrors('personal/maritalStatus-edit'),

@@ -1,0 +1,13 @@
+mixin yesNoRadios(key, value, question, errors = false)
+  div(class={['has-error']: errors && errors[key]})
+    fieldset.fieldset
+      legend.fieldset__legend #{question}
+      .radios
+        if errors
+          +validationMessage(errors[key].msg, key)
+        .radios__item
+          input.radios__input(id=`${key}Yes` name=key type="radio" value="Yes" checked=(value =='Yes') aria-describedby=(errors ? `${key}-error` : false))
+          label.radios__label(for=`${key}Yes`) Yes
+        .radios__item
+          input.radios__input(id=`${key}No` name=key type="radio" value="No" checked=(value =='No') aria-describedby=(errors ? `${key}-error` : false))
+          label.radios__label(for=`${key}No`) No

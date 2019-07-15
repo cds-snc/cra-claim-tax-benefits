@@ -8,17 +8,19 @@ module.exports = function(app) {
   app.get('/login', (req, res) => res.redirect('/login/code'))
   app.get('/login/code', (req, res) => res.render('login/code', { data: req.session || {} }))
   app.post('/login/code', validateRedirect, checkSchema(loginSchema), postLoginCode)
-  app.get('/login/success', (req, res) => res.render('login/success', { data: req.session }))
 
-  //SIN
+  // SIN
   app.get('/login/sin', (req, res) => res.render('login/sin', { data: req.session }))
   app.post('/login/sin', validateRedirect, checkSchema(sinSchema), postSIN)
 
-  //Date of Birth
+  // Date of Birth
   app.get('/login/dateOfBirth', (req, res) =>
     res.render('login/dateOfBirth', { data: req.session || {} }),
   )
   app.post('/login/dateOfBirth', validateRedirect, checkSchema(birthSchema), postDoB)
+
+  // Success page
+  app.get('/login/success', (req, res) => res.render('login/success', { data: req.session }))
 }
 
 const postLoginCode = (req, res) => {
@@ -65,7 +67,8 @@ const postDoB = (req, res) => {
 
   if (!errors.isEmpty()) {
     return res.status(422).render('login/dateOfBirth', {
-      data: { ...req.session, ...{ dob: req.body.dateOfBirth } } || {},
+      data: req.session,
+      body: Object.assign({}, req.body),
       errors: errorArray2ErrorObject(errors),
     })
   }

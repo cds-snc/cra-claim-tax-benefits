@@ -18,10 +18,7 @@ block content
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.sin})
       label(for='sin') Social Insurance Number
-      if data.personal
-        span.cra-form-message For Example: #{SINFilter(data.personal.sin)}
-      else
-        span.cra-form-message For Example: 123 456 789
+      span.cra-form-message For Example: #{SINFilter(data.personal.sin)}
       if errors
         +validationMessage(errors.sin.msg, 'sin')
       input.w-3-4#sin(name='sin', type='text', value=sin, autocomplete='off' aria-describedby=(errors && errors.sin ? 'sin-error' : false))

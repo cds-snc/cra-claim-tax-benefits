@@ -367,8 +367,42 @@ describe('Test /login responses', () => {
     })
 
     test('it returns a 200 response when containing a "redirect" query parameter', async () => {
-      const response = await request(app).get('/login/auth?redirect=%2Fstart')
+      const response = await request(app).get('/login/auth?redirect=%2Furl')
       expect(response.statusCode).toBe(200)
+    })
+
+    test('it returns a 422 response for no posted value', async () => {
+      const response = await request(app).post('/login/auth')
+      expect(response.statusCode).toBe(422)
+    })
+
+    const badAuths = ['', null, 'dinosaur', '10.0', '10.000', '-10', '.1']
+    badAuths.map(auth => {
+      test(`it returns a 422 for a bad posted value: "${auth}"`, async () => {
+        const response = await request(app)
+          .post('/login/auth')
+          .send({ auth })
+        expect(response.statusCode).toBe(422)
+      })
+    })
+
+    const goodAuths = ['0', '10', '10.00', '.10']
+    goodAuths.map(auth => {
+      test(`it returns a 302 for a good posted value: "${auth}"`, async () => {
+        const response = await request(app)
+          .post('/login/auth?redirect=%2Furl')
+          .send({ auth })
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual('/url')
+      })
+    })
+
+    test('it returns a 302 response to the start page when posting a good value but no "redirect" query parameter', async () => {
+      const response = await request(app)
+        .post('/login/auth')
+        .send({ auth: '10.00' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/start')
     })
   })
 })

@@ -91,11 +91,6 @@ const postMaritalStatus = (req, res) => {
 const postResidence = (req, res) => {
   const errors = validationResult(req)
 
-  let residence = req.body.residence || null
-  req.session.personal = {
-    residence: residence,
-  }
-
   if (!errors.isEmpty()) {
     return res.status(422).render('personal/residence', {
       data: { residence: req.body.residence } || {},
@@ -103,9 +98,9 @@ const postResidence = (req, res) => {
     })
   }
 
-  if (errors.isEmpty() && req.body.residence === 'Yes') {
-    return res.redirect('address')
-  } else {
+  if (req.body.residence !== 'Yes') {
     return res.redirect('/start')
+  } else {
+    return res.redirect(req.body.redirect)
   }
 }

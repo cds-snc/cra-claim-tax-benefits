@@ -2,14 +2,14 @@ extends ../base
 include ../_includes/yesNoRadios
 
 block variables
-  -var title = 'Choose your province or territory of residence'
+  -var title = 'Confirm if you are an Ontario resident'
 
 block content
 
   h1 #{title}
 
   div
-    p In order to be eligible for this service and in order to apply the proper provincial taxes to your file, you must have lived in Ontario on Dec.31, 2018. Please confirm this below.
+    p In order to be eligible for this service and in order to apply the proper provincial taxes to your file, you must have been living in (this is your <strong>primary residence</strong>) Ontario on Dec.31, 2018.
 
 
   form.cra-form(method='post')
@@ -17,7 +17,7 @@ block content
 
     div
       details.
-        <summary><span>Help with province or territory</span></summary>
+        <summary><span>Help with Ontario residence</span></summary>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
     input#redirect(name='redirect', type='hidden', value='/personal/residence')

@@ -31,6 +31,9 @@ module.exports = function(app) {
     postDoB,
   )
 
+  // Auth page
+  app.get('/login/auth', (req, res) => res.render('login/auth', { data: { redirect: '/start' } }))
+
   // Success page
   app.get('/login/success', (req, res) => res.render('login/success', { data: req.session }))
 }

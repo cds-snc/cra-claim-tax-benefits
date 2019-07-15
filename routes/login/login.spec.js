@@ -213,10 +213,12 @@ describe('Test /login responses', () => {
     const month = currentDate.getMonth()
     const day = currentDate.getDate()
 
-    const dateToString = (dateInput) => {
-      const add0 = (s) => { return (s < 10) ? '0' + s : s }
-      const d= new Date(dateInput)
-      return [d.getFullYear(),add0(d.getMonth()+1), add0(d.getDate())].join('/')
+    const dateToString = dateInput => {
+      const add0 = s => {
+        return s < 10 ? '0' + s : s
+      }
+      const d = new Date(dateInput)
+      return [d.getFullYear(), add0(d.getMonth() + 1), add0(d.getDate())].join('/')
     }
 
     const fewMonthsAgo = dateToString(new Date(year, month - 3, day))
@@ -334,10 +336,10 @@ describe('Test /login responses', () => {
       const response = await authSession
         .post('/login/code')
         .send({ code: 'QWER1234', redirect: '/login/sin' })
-        .then( () => {
+        .then(() => {
           return authSession
             .post('/login/sin')
-            .send({ code: 'QWER1234', sin:'111222333', redirect: '/login/dateOfBirth' })
+            .send({ code: 'QWER1234', sin: '111222333', redirect: '/login/dateOfBirth' })
         })
       expect(response.statusCode).toBe(302)
     })
@@ -354,6 +356,13 @@ describe('Test /login responses', () => {
         .post('/login/dateOfBirth')
         .send({ dateOfBirth: '1909/03/22', redirect: '/login/success' })
       expect(response.statusCode).toBe(302)
+    })
+  })
+
+  describe('Test /login/auth responses', () => {
+    test('it returns a 200 response for /login/auth', async () => {
+      const response = await request(app).get('/login/auth')
+      expect(response.statusCode).toBe(200)
     })
   })
 })

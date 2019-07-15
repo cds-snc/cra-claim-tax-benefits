@@ -30,6 +30,11 @@ form.cra-form.cra-form--lg {
     width: 110%;
     max-width: 800px;
   }
+
+  fieldset legend,
+  label:not(.radios__label) {
+    font-size: 1em;
+  }
 }
 
 form.cra-form {
@@ -65,9 +70,12 @@ form.cra-form {
     @extend %form-element;
   }
 
+  fieldset legend,
   label:not(.radios__label) {
-    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
     display: block;
+    font-size: 1.07em;
   }
 
   .cra-form-message {
@@ -95,10 +103,34 @@ form.cra-form {
       @include focus();
       border-color: $color-black;
     }
+  }
 
-    input {
-      -webkit-appearance: none;
+  input {
+    -webkit-appearance: none;
+
+    &.input-with-unit {
+      position: relative;
+      background-color: transparent;
+      text-align: right;
+      display: inline-block;
+      padding-left: $space-xl;
+      margin-left: -$space-xl;
+      z-index: 20;
     }
+  }
+
+  span.input-with-unit__unit {
+    display: inline-block;
+    background-color: $color-blue-dark;
+    color: $color-white;
+    line-height: 37px;
+    text-transform: none;
+    font-weight: 400;
+    width: $space-xl;
+    position: relative;
+    pointer-events: none;
+    text-align: center;
+    z-index: 10;
   }
 
   .buttons {
@@ -129,86 +161,11 @@ form.cra-form {
   padding: 0;
 
   &__legend {
-    font-weight: 600;
-    font-size: 19px;
-    font-size: 1.1875rem;
     border-bottom: 0;
-  }
-}
+    margin-bottom: $space-md;
 
-// add this class because I was fighting pure form too much
-.benefits-form {
-  margin-bottom: $space-xl;
-}
-
-.radios {
-  $radioClass: &;
-
-  &__item {
-    font-size: 19px;
-    font-size: 1.1875rem;
-    line-height: 1.25;
-    display: block;
-    position: relative;
-    min-height: 40px;
-    margin-bottom: 10px;
-    padding-left: 40px;
-  }
-
-  &__input {
-    cursor: pointer;
-    position: absolute;
-    z-index: 1;
-    top: -2px;
-    left: -2px;
-    width: 44px;
-    height: 44px;
-    margin: 0;
-    opacity: 0;
-
-    &:checked + #{$radioClass}__label::after {
-      opacity: 1;
-    }
-
-    &:focus + #{$radioClass}__label::before {
-      -webkit-box-shadow: 0 0 0 3px $color-yellow;
-      box-shadow: 0 0 0 3px $color-yellow;
-    }
-  }
-
-  &__label {
-    display: inline-block;
-    margin-bottom: 0;
-    padding: 8px 15px 5px;
-    cursor: pointer;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-
-    &::before {
-      content: '';
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 40px;
-      height: 40px;
-      border: 2px solid currentColor;
-      border-radius: 50%;
-      background: transparent;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 0;
-      height: 0;
-      border: 10px solid currentColor;
-      border-radius: 50%;
-      opacity: 0;
-      background: currentColor;
+    * {
+      margin: 0;
     }
   }
 }

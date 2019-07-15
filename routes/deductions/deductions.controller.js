@@ -1,14 +1,20 @@
-const { validationResult } = require('express-validator')
+const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject, validateRedirect } = require('./../../utils')
+const { rrspSchema, rrspAmountSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
-  // redirect from "/deductions" → "/login/code", you really shouldn't be here (Unless we add a "info" page)
-  app.get('/deductions', (req, res) => res.redirect('/login/code'))
+  app.get('/deductions/rrsp', (req, res) => res.render('deductions/rrsp', { data: req.session }))
+  app.post('/deductions/rrsp', validateRedirect, checkSchema(rrspSchema), postRRSP)
 
-  app.get('/deductions/rrsp', (req, res) =>
-    res.render('deductions/rrsp', { data: req.session || {} }),
+  app.get('/deductions/rrsp/amount', (req, res) =>
+    res.render('deductions/rrsp-amount', { data: req.session }),
   )
-  app.post('/deductions/rrsp', validateRedirect, postRRSP)
+  app.post(
+    '/deductions/rrsp/amount',
+    validateRedirect,
+    checkSchema(rrspAmountSchema),
+    postRRSPAmount,
+  )
 }
 
 const postRRSP = (req, res) => {
@@ -16,20 +22,35 @@ const postRRSP = (req, res) => {
 
   if (!errors.isEmpty()) {
     return res.status(422).render('deductions/rrsp', {
+      data: req.session,
+      errors: errorArray2ErrorObject(errors),
+    })
+  }
+
+  /* TODO: SAVE THIS TO THE SESSION */
+  const rrspClaim = req.body.rrspClaim
+
+  if (rrspClaim === 'Yes') {
+    // It's fine not having this in the form itself (like the other redirect value)
+    // because these two pages are hardcoded together
+    return res.redirect('/deductions/rrsp/amount')
+  }
+
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+
+const postRRSPAmount = (req, res) => {
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    return res.status(422).render('deductions/rrsp-amount', {
       data: { rrsp: req.body.rrsp } || {},
       errors: errorArray2ErrorObject(errors),
     })
   }
 
-  //If we have an amount and it's truthy (not 0) we set rrspClaim to true and then set the amount
-  if (req.body.rrsp) {
-    req.session.deductions.rrspClaim = true
-    req.session.deductions.rrspAmount = req.body.rrsp
-  } else {
-    //If we don't have an amount then we assume the user has removed any RRSP deductions
-    req.session.deductions.rrspClaim = false
-    req.session.deductions.rrspAmount = 0
-  }
+  /* TODO: SAVE THIS TO THE SESSION */
 
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)

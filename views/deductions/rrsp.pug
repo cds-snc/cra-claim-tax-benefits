@@ -1,12 +1,39 @@
 extends ../base
 
 block variables
-  -var title = 'RRSP stub page'
-
+  -var title = 'Deduct your RRSP contributions'
+  -var rrspClaim = hasData(data, 'deductions.rrspClaim') ? data.deductions.rrspClaim : ''
 
 block content
 
   h1 #{title}
-  
-  p Please enter RRSP info
 
+  div
+    p If you made RRSP contributions before March 1, 2019, you can deduct them from your total income.
+
+  form.cra-form(method='post')
+    div(class={['has-error']: errors && errors.rrspClaim})
+      fieldset.fieldset
+        legend.fieldset__legend Did you contribute to an RRSP?
+        .radios
+          if errors
+            +validationMessage(errors.rrspClaim.msg, 'rrspClaim')
+          .radios__item
+            input.radios__input(id="rrspClaimYes" name="rrspClaim" type="radio" value="Yes" checked=(rrspClaim =='Yes') aria-describedby=(errors ? 'rrspClaim-error' : false))
+            label.radios__label(for="rrspClaimYes") Yes
+          .radios__item
+            input.radios__input(id="rrspClaimNo" name="rrspClaim" type="radio" value="No" checked=(rrspClaim =='No') aria-describedby=(errors ? 'rrspClaim-error' : false))
+            label.radios__label(for="rrspClaimNo") No
+
+    div
+      details.
+        <summary><span>Help with RRSP contributions</span></summary>
+        <p>March 1, 2019, is the deadline for contributing to your RRSP for amounts you want to deduct on your 2018 income tax and benefit return.</p>
+
+    input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
+
+    .buttons
+      .buttons--left
+        button(type='submit') Continue
+      .buttons--right
+        a.button-link.transparent(href='/') Cancel

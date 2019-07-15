@@ -6,29 +6,29 @@ const API = require('./api')
  * but still maintain individual error messages
  */
 const validationArray = validators => {
-  let errors = [];
+  let errors = []
 
   return {
     custom: {
       errorMessage: () => {
-        return errors.length ? errors[0] : 'value is invalid';
+        return errors.length ? errors[0] : 'value is invalid'
       },
       options: (value, { req }, opts) => {
-        errors = [];
-        const results = validators.map((validator, index) => {
-          const result = validator.validate(value, req, opts);
+        errors = []
+        const results = validators.map(validator => {
+          const result = validator.validate(value, req, opts)
           // If validation failed set current Error
           if (result === false) {
-            const errorMessage = validator.errorMessage || `${value} is invalid`;
-            errors.push(errorMessage);
+            const errorMessage = validator.errorMessage || `${value} is invalid`
+            errors.push(errorMessage)
           }
-          return result;
-        });
-        return results.every(value => value === true);
-      }
-    }
-  };
-};
+          return result
+        })
+        return results.every(value => value === true)
+      },
+    },
+  }
+}
 
 const loginSchema = {
   code: {
@@ -81,7 +81,7 @@ const sinSchema = {
 }
 
 const lastDayInMonth = (year, month) => {
-  return new Date(year, month + 1, 0).getDate();
+  return new Date(year, month + 1, 0).getDate()
 }
 
 const validBirthDateLengths = {
@@ -99,7 +99,7 @@ const validBirthDateLengths = {
 const validBirthDateChars = {
   errorMessage: 'errors.login.dateOfBirth.characters',
   validate: value => {
-    const numAndSlash = new RegExp(/^[0-9\/]*$/)
+    const numAndSlash = new RegExp(/^[0-9/]*$/)
     return numAndSlash.test(value)
   },
 }
@@ -108,9 +108,9 @@ const validMonth = {
   errorMessage: 'errors.login.dateOfBirth.validMonth',
   validate: value => {
     //month is not less than 1 or greater than 12
-    const month = parseInt(value.split('/')[1], 10);
+    const month = parseInt(value.split('/')[1], 10)
     return month >= 1 && month <= 12
-  }
+  },
 }
 
 const validDay = {
@@ -123,7 +123,7 @@ const validDay = {
     const day = parseInt(dateSplit[2], 10)
     const lastDay = lastDayInMonth(dateSplit[0], month)
     return day >= 1 && day <= lastDay
-  }
+  },
 }
 
 const validYear = {
@@ -179,8 +179,7 @@ const birthSchema = {
       //length with slashes
       options: { min: 10, max: 10 },
     },
-
-  }
+  },
 }
 
 //TODO: We'll want to store this array of marital options somewhere. This is temporary. I'll also want to use that later to create the radio buttons dynamically, to avoid having to update multiple files
@@ -247,10 +246,30 @@ const addressSchema = {
   },
 }
 
+const rrspSchema = {
+  rrspClaim: {
+    isIn: {
+      errorMessage: 'errors.rrspClaim',
+      options: [['Yes', 'No']],
+    },
+  },
+}
+
+const rrspAmountSchema = {
+  rrspAmount: {
+    isCurrency: {
+      errorMessage: 'errors.rrspAmount',
+      options: { allow_negatives: false },
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
   maritalStatusSchema,
   sinSchema,
   addressSchema,
   birthSchema,
+  rrspSchema,
+  rrspAmountSchema,
 }

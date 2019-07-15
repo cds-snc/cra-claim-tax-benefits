@@ -88,5 +88,10 @@ const postAuth = (req, res) => {
   // set "auth" to true
   req.session.login.auth = true
 
-  return res.redirect(decodeURIComponent(req.query.redirect))
+  let redirect = decodeURIComponent(req.query.redirect)
+  if (!redirect.startsWith('/')) {
+    throw new Error(`[POST ${req.path}] can only redirect to relative URLs`)
+  }
+
+  return res.redirect(redirect)
 }

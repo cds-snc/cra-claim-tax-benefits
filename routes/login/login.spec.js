@@ -404,5 +404,18 @@ describe('Test /login responses', () => {
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/start')
     })
+
+    const badRedirects = ['https%3A%2F%2Fevilcompany.com', 'evilcompany.com']
+    badRedirects.map(redirect => {
+      test(`it throws a 500 error for a non-relative "redirect" query parameter link: "${redirect}"`, async () => {
+        const response = await request(app)
+          .post(`/login/auth?redirect=${redirect}`)
+          .send({ auth: '10.00' })
+        expect(response.statusCode).toBe(500)
+        expect(response.text).toMatch(
+          'Error: [POST /login/auth] can only redirect to relative URLs',
+        )
+      })
+    })
   })
 })

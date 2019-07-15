@@ -70,11 +70,6 @@ form.cra-form {
     @extend %form-element;
   }
 
-  select {
-    font-weight: 100;
-    margin-top: $space-sm;
-  }
-
   fieldset legend,
   label:not(.radios__label) {
     font-family: 'Lato', sans-serif;

@@ -103,7 +103,7 @@ const postResidence = (req, res) => {
     })
   }
 
-  if (errors.isEmpty() && req.body.residence === "yes") {
+  if (errors.isEmpty() && req.body.residence === "Yes") {
     return res.redirect('address')
   } else {
     return res.redirect('/start')

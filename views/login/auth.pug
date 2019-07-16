@@ -1,0 +1,32 @@
+extends ../base
+
+block variables
+  -var title = 'Confirm your most recent benefit payment'
+
+block content
+
+  h1 #{title}
+
+  div
+    p Before we can update your information, we need to ask a further question to verify your identity.
+
+    p Please enter the most recent benefit payment you received. If it matches our records, you will be able to update your information on the next page.
+
+  form.cra-form(method='post')
+    div(class={['has-error']: errors && errors.auth})
+      label#auth__label(for='auth') Enter your most recent benefit payment
+      if errors
+        +validationMessage(errors.auth.msg, 'auth')
+      span#auth__unit.input-with-unit__unit(for='auth') $
+      input.w-1-2.input-with-unit#auth(name='auth', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.auth ? 'auth-error' : false) aria-labelledby="auth__label auth__unit")
+
+    div
+      details.
+        <summary><span>Help with knowledge based question</span></summary>
+        <p>This is necessary to protect your information from unscrupulous individuals.</p>
+
+    .buttons
+      .buttons--left
+        button(type='submit') Continue
+      .buttons--right
+        a.button-link.transparent.full-width(href='/clear') Cancel

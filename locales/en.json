@@ -26,5 +26,6 @@
   "errors.rrspClaim": "You must select one of the options",
   "errors.rrspAmount": "Enter a dollar amount higher than 0, like 120.00",
   "errors.address.province.province": "errors.address.province.province",
-  "errors.residence": "You must select one of the options"
+  "errors.residence": "You must select one of the options",
+  "errors.auth": "Enter a dollar amount higher than 0, like 120.00"
 }

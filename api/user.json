@@ -1,6 +1,7 @@
 {
   "login": {
-    "code": "QWER1234"
+    "code": "QWER1234",
+    "auth": false
   },
   "personal": {
     "firstName": "Gabrielle",

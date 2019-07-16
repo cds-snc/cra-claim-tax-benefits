@@ -1,0 +1,41 @@
+.banner {
+    width: 100%;
+    position: relative;
+    padding: $space-md;
+    padding-left: $space-xxl;
+
+    p {
+        &:nth-child(2) {
+            margin-top: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__icon {
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        color: $color-white;
+        line-height: 1;
+        padding-top: 4px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
+    &--blue {
+        background: $color-banner-blue-light;
+        border-left: 5px solid $color-banner-blue;
+
+        &__icon {
+            background: $color-banner-blue;
+        }
+    }
+}

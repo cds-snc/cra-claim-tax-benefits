@@ -77,6 +77,7 @@ require('./routes/dependants/dependants.controller')(app)
 require('./routes/partner/partner.controller')(app)
 require('./routes/financial/financial.controller')(app)
 require('./routes/confirmation/confirmation.controller')(app)
+require('./routes/offramp/offramp.controller')(app)
 
 // clear session
 app.get('/clear', (req, res) => {

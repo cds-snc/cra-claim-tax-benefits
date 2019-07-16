@@ -7,11 +7,12 @@ block variables
 block content
 
   h1 #{title}
-  +blueBanner('Your tax return is too complex to be filed using this service. Nothing about your taxes is incorrect – see below for further instructions on how to complete your tax return.', 'blue')
+  +banner('<p>Your tax return is too complex to be filed using this service. Nothing about your taxes is incorrect – see below for further instructions on how to complete your tax return.</p>', 'blue')
   div
     p To finish filing your taxes for the current tax year (filing for 2018), you will need to do one of the following:
     ul
       li Use the paper form enclosed in the Claim Tax Benefits package you received in the mail
-      li Contact CRA at (123) 456-7890 for help
-      li File your taxes with another free service, listed here: #[a(href="#") Ways to file your taxes]
+      li #[a(href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html") Visit a community tax clinic near you] to have a volunteer help you submit your taxes.
+      li Contact CRA at #[a(href="tel:123-456-7890") (123) 456-7890] for help
+      li File your taxes with another #[a(href="https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/certified-software-netfile-program.html") NETFILE-compliant online service certified by the CRA]
 

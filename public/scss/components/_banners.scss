@@ -4,6 +4,16 @@
     padding: $space-md;
     padding-left: $space-xxl;
 
+    p {
+        &:nth-child(2) {
+            margin-top: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
     &__icon {
         width: 25px;
         height: 25px;

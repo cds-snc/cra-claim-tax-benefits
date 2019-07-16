@@ -1,4 +1,4 @@
-mixin blueBanner(text, variant, spanChar)
+mixin banner(text, variant, spanChar)
   div(class="banner banner--" + variant +"")
     span(class="banner__icon banner--"+ variant +"__icon" aria-hidden="true")= spanChar || 'i'
     != text

@@ -1,42 +1,41 @@
 extends ../base
 
 block variables
-  -var title = 'Congratulations!'
-
+  -var title = 'Congratulations'
 
 block content
 
-  h1 #{title}
+  h1 #{__(title)}
 
   div
-    h2 Your taxes have been filed with the CRA.
+    h2 #{__('Your taxes have been filed with the Canada Revenue Agency.')}
 
   div
     table.pure-table
       thead
         tr
-          th Confirmation number
+          th #{__('Confirmation number')}
       tbody
         tr
           td 5H3P9IO5816
 
-    p Use this confirmation number if you need to contact CRA for further information or for additional help with your tax return.
+    p #{__('Use this confirmation number if you need to contact CRA for further information or for additional help with your tax return.')}
 
-    a.button-link(href='#' role='button' draggable='false') Print a summary of your tax return
-
-  div
-
-    p Your Notice of Assessment is an official CRA communication that confirms that you’ve filed your taxes. It also contains the details of your refund or balance owing. Please read this document carefully.
-
-    a.button-link(href='#' role='button' draggable='false') Download your Notice of Assessment
+    a.button-link(href='#' role='button' draggable='false') #{__('Print a summary of your tax return')}
 
   div
-    h3 Do you have questions?
 
-    p Now that your return is filed, you should be all set for the year.
-    p However, if you still have further questions, there are several ways to get help.
+    p #{__('Your Notice of Assessment is an official CRA communication that confirms that you’ve filed your taxes. It also contains the details of your refund or balance owing. Please read this document carefully.')}
+
+    a.button-link(href='#' role='button' draggable='false') #{__('Download your Notice of Assessment')}
+
+  div
+    h3 #{__('Do you have questions?')}
+
+    p #{__('Now that your return is filed, you should be all set for the year.')}
+    p #{__('However, if you still have further questions, there are several ways to get help.')}
     ul
-      li Speak to someone at your nearest tax clinic
-      li Go online to #[a(href="https://apps.cra-arc.gc.ca/ebci/oecv/external/prot/cli_srch_01_ld.action" target="_blank") find a free tax clinic in your area]
-      li Speak to a CRA agent by calling 1-800-PLEASE-GO-AWAY
+      li #{__('Speak to someone at your nearest tax clinic')}
+      li #{__('Go online to')} <a href="https://apps.cra-arc.gc.ca/ebci/oecv/external/prot/cli_srch_01_ld.action" target="_blank">#{__('find a free tax clinic in your area')}</a>
+      li #{__('Speak to a CRA agent by calling')} #[a(href="tel:123-456-7890") (123) 456-7890]
 

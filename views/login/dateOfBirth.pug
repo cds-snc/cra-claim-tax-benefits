@@ -6,31 +6,26 @@ block variables
 
 block content
 
-  h1 #{title}
+  h1 #{__(title)}
 
   div
-    p Thanks! We just need one more piece of information to authenticate you.
+    p #{__('Thanks!')} #{__('We just need one more piece of information to authenticate you.')}
 
-    p Please enter your date of birth in the field below.
+    p #{__('Please enter your date of birth in the field below.')}
 
   div
     form.cra-form(method='post')
       div(class={['has-error']: errors && errors.dateOfBirth})
-        label(for='dateOfBirth') Date of Birth
-        span.cra-form-message For Example: #{data.personal.dateOfBirth}
+        label(for='dateOfBirth') #{__('Date of Birth')}
+        span.cra-form-message #{__('For Example:')} #{data.personal.dateOfBirth}
         if errors
           +validationMessage(errors.dateOfBirth.msg, 'dateOfBirth')
         input.w-3-4#dateOfBirth(name='dateOfBirth', type='text', value=dateOfBirth, autocomplete='off' aria-describedby=(errors && errors.dateOfBirth ? 'dateOfBirth-error' : false))
-
-      div
-        details.
-          <summary><span>Help with date of birth</span></summary>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
       input#redirect(name='redirect', type='hidden', value='/personal/name')
 
       .buttons
         .buttons--left
-          button(type='submit') Continue
+          button(type='submit') #{__('Continue')}
         .buttons--right
-          a.button-link.transparent.full-width(href='/clear') Cancel
+          a.button-link.transparent.full-width(href='/clear') #{__('Cancel')}

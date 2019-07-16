@@ -1,0 +1,17 @@
+extends ../base
+
+block variables
+  -var title = 'Review your estimated benefits'
+
+block content
+
+  h1 #{title}
+
+  div
+    p This is an overview of what you will be submitting to the Canada Revenue Agency (CRA) and all of the benefits you will receive once you have filed.
+    p Make sure that everything looks up-to-date before continuing.
+    p If anything is incorrect, please <a href="#">contact CRA</a>.
+
+  .buttons-row
+    a.button-link(href='/confirmation') Submit my return
+    a.button-link.transparent(href='/clear') Cancel

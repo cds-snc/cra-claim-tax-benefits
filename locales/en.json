@@ -1,9 +1,4 @@
 {
-  "This service is to claim tax benefits online.": "This service is to claim tax benefits online.",
-  "Claim Tax Benefits": "Claim Tax Benefits",
-  "Please correct the errors on the page": "Please correct the errors on the page",
-  "Enter your RRSP contributions": "Enter your RRSP contributions",
-  "Please enter your RRSP contributions for the current tax year (filing for 2018)": "Please enter your RRSP contributions for the current tax year (filing for 2018)",
   "errors.login.length": "Access code must be 8 characters",
   "errors.login.alphanumeric": "Access code should only contain letters and numbers",
   "errors.login.code": "Access code not recognized",
@@ -27,5 +22,18 @@
   "errors.rrspAmount": "Enter a dollar amount higher than 0, like 120.00",
   "errors.address.province.province": "errors.address.province.province",
   "errors.residence": "You must select one of the options",
-  "errors.auth": "Enter a dollar amount higher than 0, like 120.00"
+  "errors.auth": "Enter a dollar amount higher than 0, like 120.00",
+  "This service is to claim tax benefits online.": "This service is to claim tax benefits online.",
+  "Claim Tax Benefits": "Claim Tax Benefits",
+  "Please correct the errors on the page": "Please correct the errors on the page",
+  "Enter your RRSP contributions": "Enter your RRSP contributions",
+  "Please enter your RRSP contributions for the current tax year (filing for 2018)": "Please enter your RRSP contributions for the current tax year (filing for 2018)",
+  "Welcome to the Canada Revenue Agency’s new": "Welcome to the Canada Revenue Agency’s new",
+  "service": "service",
+  "You need to be eligible to use this service.": "You need to be eligible to use this service.",
+  "In order to claim tax benefits online, you must have the following:": "In order to claim tax benefits online, you must have the following:",
+  "Your personal access code": "Your personal access code",
+  "Social Insurance Number (SIN)": "Social Insurance Number (SIN)",
+  "Income information": "Income information",
+  "Start now": "Start now"
 }

@@ -296,17 +296,14 @@ const politicalSchema = {
   },
 }
 
-const politicalAmountProvincialSchema = {
-  politicalAmount: {
+const politicalAmountSchema = {
+  politicalProvincialAmount: {
     isCurrency: {
       errorMessage: 'errors.politicalAmount', //Both federal and provincial have the same error message
       options: { allow_negatives: false },
     },
   },
-}
-
-const politicalAmountFederalSchema = {
-  politicalAmount: {
+  politicalFederalAmount: {
     isCurrency: {
       errorMessage: 'errors.politicalAmount', //Both federal and provincial have the same error message
       options: { allow_negatives: false },
@@ -344,7 +341,6 @@ module.exports = {
   donationsSchema,
   donationsAmountSchema,
   politicalSchema,
-  politicalAmountFederalSchema,
-  politicalAmountProvincialSchema,
+  politicalAmountSchema,
   authSchema,
 }

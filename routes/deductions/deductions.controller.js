@@ -51,7 +51,7 @@ module.exports = function (app) {
   app.post(
     '/deductions/political',
     validateRedirect,
-    checkSchema(donationsSchema),
+    checkSchema(politicalSchema),
     checkErrors('deductions/political'),
     postPolitical,
   )

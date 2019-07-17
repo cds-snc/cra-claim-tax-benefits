@@ -15,12 +15,7 @@ block content
   form.cra-form(method='post')
     +yesNoRadios('politicalClaim', politicalClaim, 'Political Contributions?', errors)
 
-    div
-      details.
-        <summary><span>#{__('Help with politicalcontribution')}</span></summary>
-        <p>#{__('lorem ipsum')}</p>
-
-    input#redirect(name='redirect', type='hidden', value='/personal/political-amount')
+    input#redirect(name='redirect', type='hidden', value='/deductions/donations')
 
     .buttons
       .buttons--left

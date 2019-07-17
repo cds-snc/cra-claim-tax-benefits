@@ -23,12 +23,8 @@ block content
         +validationMessage(errors.politicalAmountProvincial.msg, 'politicalProvincial')
       span#political__unit.input-with-unit__unit(for='politicalAmountProvincial') $
       input.w-1-2.input-with-unit#political(name='politicalAmountProvincial', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.politicalProvincial ? 'politicalProvincial-error' : false) aria-labelledby="politicalProvincial__label political__unit")
-    div
-      details.
-        <summary><span>#{__('Help with charitable political')}</span></summary>
-        <p>#{__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')}</p>
 
-    input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
+    input#redirect(name='redirect', type='hidden', value='/deductions/donations')
 
     .buttons
       .buttons--left

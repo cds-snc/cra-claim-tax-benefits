@@ -22,6 +22,7 @@ describe('Test server responses', () => {
 
       const $ = cheerio.load(response.text)
       expect($('h1').text()).toEqual('Claim Tax Benefits')
+      expect($('html').attr('lang')).toEqual('en')
     })
 
     test('in French', async () => {
@@ -31,6 +32,7 @@ describe('Test server responses', () => {
 
       const $ = cheerio.load(response.text)
       expect($('h1').text()).toEqual('Réclamer des avantages fiscaux')
+      expect($('html').attr('lang')).toEqual('fr')
     })
   })
 

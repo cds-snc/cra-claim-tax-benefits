@@ -10,20 +10,20 @@ block content
   h1 #{title}
 
   div
-    p Did you make any charitable donations during the current tax year (filing for 2018)?
+    p #{__('Did you make any charitable donations during the current tax year (filing for 2018)?')}
 
   form.cra-form(method='post')
     +yesNoRadios('donationsClaim', donationsClaim, 'Did you make charitable donations?', errors)
 
     div
       details.
-        <summary><span>Help with charitable donations</span></summary>
-        <p>lorem ipsum</p>
+        <summary><span>#{__('Help with charitable donations')}</span></summary>
+        <p>#{__('lorem ipsum')}</p>
 
     input#redirect(name='redirect', type='hidden', value='/personal/donations-amount')
 
     .buttons
       .buttons--left
-        button(type='submit') Continue
+        button(type='submit') #{__('Continue')}
       .buttons--right
-        a.button-link.transparent(href='/') Cancel
+        a.button-link.transparent(href='/') #{__('Cancel')}

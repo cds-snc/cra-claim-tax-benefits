@@ -5,16 +5,16 @@ block variables
 
 block content
 
-  h1 #{title}
+  h1 #{__(title)}
 
   div
-    p Please review the address details closely to make sure they’re correct. You can change your address to update our records—this is important for making sure you receive your benefits and tax refund (if any).
+    p #{__('Please review the address details closely to make sure they’re correct. You can change your address to update our records—this is important for making sure you receive your benefits and tax refund (if any).')}
 
   div
     table.pure-table
       thead
         tr
-          th Mailing address
+          th #{__('Mailing address')}
       tbody
         tr
           td
@@ -26,13 +26,6 @@ block content
               div #{data.personal.address.city}, #{data.personal.address.province}
               div #{data.personal.address.postalCode}
 
-  div
-    details.
-      <summary><span>Help with mailing address</span></summary>
-      <p>Your mailing address can be different than your current residence. What’s important is that you will receive letters sent to this address.</p>
-
-  .buttons-row
-    a.button-link(href='/financial/income') Confirm
-    a.button-link(href='/personal/address/edit') Change address
-    a.button-link.transparent(href='/clear') Cancel
+  +linkButtons('/financial/income')
+    a.button-link(href='/personal/address/edit') #{__('Change address')}
 

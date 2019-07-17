@@ -2,7 +2,7 @@ extends ../base
 include ../_includes/yesNoRadios
 
 block variables
-  -var title = __('Deduct your Charitable Donations')
+  -var title = __('Deduct your charitable donations')
   -var donationsClaim = hasData(data, 'deductions.donationsClaim') ? data.deductions.donationsClaim : ''
 
 block content
@@ -15,12 +15,7 @@ block content
   form.cra-form(method='post')
     +yesNoRadios('donationsClaim', donationsClaim, 'Did you make charitable donations?', errors)
 
-    div
-      details.
-        <summary><span>#{__('Help with charitable donations')}</span></summary>
-        <p>#{__('lorem ipsum')}</p>
-
-    input#redirect(name='redirect', type='hidden', value='/personal/donations-amount')
+    input#redirect(name='redirect', type='hidden', value='/review')
 
     .buttons
       .buttons--left

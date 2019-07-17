@@ -11,46 +11,46 @@ block variables
 
 block content
 
-  h1 #{title}
+  h1 #{__(title)}
 
   div
-    p Please enter the correct mailing address information below. If a letter is sent to this address, you must be able to receive it.
+    p #{__('Please enter the correct mailing address information below. If a letter is sent to this address, you must be able to receive it.')}
 
   div
     form.cra-form.cra-form--lg(method='post')
-      h2 Your mailing address
+      h2 #{__('Your mailing address')}
 
       div
         .w-1-4.d--ib
-          label(for='streetNumber') Street number
+          label(for='streetNumber') #{__('Street number')}
           input.w-3-4#streetNumber(name='streetNumber', type='text', value=streetNumber, autocomplete='off')
 
         .w-3-4.d--ib(class={['has-error']: errors && errors.streetName})
-          label(for='streetName') Street name
+          label(for='streetName') #{__('Street name')}
           if errors && errors.streetName
             +validationMessage(errors.streetName.msg, 'streetName')
           input.w-3-4#streetName(name='streetName', type='text', value=streetName, autocomplete='off' aria-describedby=(errors && errors.streetName ? 'streetName-error' : false))
 
       .w-1-2
-        label(for='aptNumber') Apartment number
-        span.cra-form-message Optional
+        label(for='aptNumber') #{__('Apartment number')}
+        span.cra-form-message #{__('Optional')}
         input.w-1-4#aptNumber(name='aptNumber', type='text', value=aptNumber, autocomplete='off')
 
       .w-1-2(class={['has-error']: errors && errors.city})
-        label(for='city') City
+        label(for='city') #{__('City')}
         if errors && errors.city
           +validationMessage(errors.city.msg, 'city')
         input.w-3-4#city(name='city', type='text', value=city autocomplete='off' aria-describedby=(errors && errors.city ? 'city-error' : false))
 
       .w-1-2(class={['has-error']: errors && errors.postalCode})
-        label(for='postalCode') Postal Code
-        span.cra-form-message For example: R2H 0J9
+        label(for='postalCode') #{__('Postal Code')}
+        span.cra-form-message #{__('For example:')} R2H 0J9
         if errors && errors.postalCode
           +validationMessage(errors.postalCode.msg, 'postalCode')
         input.w-3-4#postalCode( name='postalCode', type='text', value=postalCode, autocomplete='off' aria-describedby=(errors && errors.postalCode ? 'postalCode-error' : false))
 
       .w-1-2(class={['has-error']: errors && errors.province})
-        label(for='province') Province
+        label(for='province') #{__('Province')}
         if errors && errors.province
           +validationMessage(errors.province.msg, 'province')
         select.w-3-4#province(name='province' aria-describedby=(errors && errors.province ? 'province-error' : false))
@@ -70,15 +70,6 @@ block content
           option(value='Saskatchewan' selected=province =='Saskatchewan') Saskatchewan
           option(value='Yukon' selected=province =='Yukon') Yukon
 
-      div
-        details.
-          <summary><span>Help with mailing address</span></summary>
-          <p>It doesn’t matter if you lived here last year.</p>
-
       input#redirect(name='redirect', type='hidden', value='/personal/address')
 
-      .buttons
-        .buttons--left
-          button(type='submit') Change mailing address
-        .buttons--right
-          a.button-link.transparent.full-width(href='/personal/address') Cancel
+      +formButtons('Change mailing address', '/personal/address')

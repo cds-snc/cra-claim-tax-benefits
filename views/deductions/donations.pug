@@ -1,0 +1,24 @@
+extends ../base
+include ../_includes/yesNoRadios
+
+block variables
+  -var title = __('Deduct your charitable donations')
+  -var donationsClaim = hasData(data, 'deductions.donationsClaim') ? data.deductions.donationsClaim : ''
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('Did you make any charitable donations during the current tax year (filing for 2018)?')}
+
+  form.cra-form(method='post')
+    +yesNoRadios('donationsClaim', donationsClaim, 'Did you make charitable donations?', errors)
+
+    input#redirect(name='redirect', type='hidden', value='/review')
+
+    .buttons
+      .buttons--left
+        button(type='submit') #{__('Continue')}
+      .buttons--right
+        a.button-link.transparent(href='/') #{__('Cancel')}

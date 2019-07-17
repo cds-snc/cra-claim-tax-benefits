@@ -269,6 +269,24 @@ const rrspAmountSchema = {
   },
 }
 
+const donationsSchema = {
+  donationsClaim: {
+    isIn: {
+      errorMessage: 'errors.donationsClaim',
+      options: [['Yes', 'No']],
+    },
+  },
+}
+
+const donationsAmountSchema = {
+  donationsAmount: {
+    isCurrency: {
+      errorMessage: 'errors.donationsAmount',
+      options: { allow_negatives: false },
+    },
+  },
+}
+
 const residenceSchema = {
   residence: {
     isIn: {
@@ -296,5 +314,7 @@ module.exports = {
   birthSchema,
   rrspSchema,
   rrspAmountSchema,
+  donationsSchema,
+  donationsAmountSchema,
   authSchema,
 }

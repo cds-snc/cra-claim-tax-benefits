@@ -15,11 +15,6 @@ block content
   form.cra-form(method='post')
     +yesNoRadios('donationsClaim', donationsClaim, 'Did you make charitable donations?', errors)
 
-    div
-      details.
-        <summary><span>#{__('Help with charitable donations')}</span></summary>
-        <p>#{__('lorem ipsum')}</p>
-
     input#redirect(name='redirect', type='hidden', value='/personal/donations-amount')
 
     .buttons

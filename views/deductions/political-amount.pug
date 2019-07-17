@@ -1,0 +1,37 @@
+extends ../base
+
+block variables
+  -var title = __('Enter your Charitable political')
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('Please enter your charitable political into the fields below.')}
+
+  form.cra-form(method='post')
+    div(class={['has-error']: errors && errors.politicalAmountFederal})
+      label#politicalFederal__label(for='politicalAmountFederal') #{__('Total federal contributions')}
+      if errors
+        +validationMessage(errors.politicalAmountFederal.msg, 'politicalFederal')
+      span#political__unit.input-with-unit__unit(for='politicalAmountFederal') $
+      input.w-1-2.input-with-unit#political(name='politicalAmountFederal', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.politicalFederal ? 'politicalFederal-error' : false) aria-labelledby="politicalFederal__label political__unit")
+    div(class={['has-error']: errors && errors.politicalAmountProvincial})
+      label#politicalProvincial__label(for='politicalAmountProvincial') #{__('Total political made to registered charities')}
+      if errors
+        +validationMessage(errors.politicalAmountProvincial.msg, 'politicalProvincial')
+      span#political__unit.input-with-unit__unit(for='politicalAmountProvincial') $
+      input.w-1-2.input-with-unit#political(name='politicalAmountProvincial', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.politicalProvincial ? 'politicalProvincial-error' : false) aria-labelledby="politicalProvincial__label political__unit")
+    div
+      details.
+        <summary><span>#{__('Help with charitable political')}</span></summary>
+        <p>#{__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')}</p>
+
+    input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
+
+    .buttons
+      .buttons--left
+        button(type='submit') #{__('Continue')}
+      .buttons--right
+        a.button-link.transparent(href='/deductions/political') #{__('Cancel')}

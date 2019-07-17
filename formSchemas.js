@@ -287,6 +287,33 @@ const donationsAmountSchema = {
   },
 }
 
+const politicalSchema = {
+  politicalClaim: {
+    isIn: {
+      errorMessage: 'errors.politicalClaim',
+      options: [['Yes', 'No']],
+    },
+  },
+}
+
+const politicalAmountProvincialSchema = {
+  politicalAmount: {
+    isCurrency: {
+      errorMessage: 'errors.politicalAmount', //Both federal and provincial have the same error message
+      options: { allow_negatives: false },
+    },
+  },
+}
+
+const politicalAmountFederalSchema = {
+  politicalAmount: {
+    isCurrency: {
+      errorMessage: 'errors.politicalAmount', //Both federal and provincial have the same error message
+      options: { allow_negatives: false },
+    },
+  },
+}
+
 const residenceSchema = {
   residence: {
     isIn: {
@@ -316,5 +343,8 @@ module.exports = {
   rrspAmountSchema,
   donationsSchema,
   donationsAmountSchema,
+  politicalSchema,
+  politicalAmountFederalSchema,
+  politicalAmountProvincialSchema,
   authSchema,
 }

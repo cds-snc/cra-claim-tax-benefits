@@ -1,0 +1,29 @@
+extends ../base
+include ../_includes/yesNoRadios
+
+block variables
+  -var title = __('Political contributions')
+  -var politicalClaim = hasData(data, 'deductions.politicalClaim') ? data.deductions.politicalClaim : ''
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('Did you make any political contributions during the current tax year (filing for 2018)?')}
+
+  form.cra-form(method='post')
+    +yesNoRadios('politicalClaim', politicalClaim, 'Political Contributions?', errors)
+
+    div
+      details.
+        <summary><span>#{__('Help with politicalcontribution')}</span></summary>
+        <p>#{__('lorem ipsum')}</p>
+
+    input#redirect(name='redirect', type='hidden', value='/personal/political-amount')
+
+    .buttons
+      .buttons--left
+        button(type='submit') #{__('Continue')}
+      .buttons--right
+        a.button-link.transparent(href='/') #{__('Cancel')}

@@ -1,6 +1,6 @@
 const { checkSchema } = require('express-validator')
 const { validateRedirect, checkErrors } = require('./../../utils')
-const { rrspSchema, rrspAmountSchema, donationsSchema, donationsAmountSchema } = require('./../../formSchemas.js')
+const { rrspSchema, rrspAmountSchema, donationsSchema, donationsAmountSchema, politicalSchema, politicalAmountSchema } = require('./../../formSchemas.js')
 
 module.exports = function (app) {
 
@@ -32,7 +32,7 @@ module.exports = function (app) {
     validateRedirect,
     checkSchema(donationsSchema),
     checkErrors('deductions/donations'),
-    postdonations,
+    postDonations,
   )
   app.get('/deductions/donations/amount', (req, res) =>
     res.render('deductions/donations-amount', { data: req.session }),
@@ -43,6 +43,27 @@ module.exports = function (app) {
     checkSchema(donationsAmountSchema),
     checkErrors('deductions/donations-amount'),
     postDonationsAmount,
+  )
+  //End of Charitable Donations Section
+
+  //Start of Political Donations Section
+  app.get('/deductions/political', (req, res) => res.render('deductions/political', { data: req.session }))
+  app.post(
+    '/deductions/political',
+    validateRedirect,
+    checkSchema(donationsSchema),
+    checkErrors('deductions/political'),
+    postPolitical,
+  )
+  app.get('/deductions/political/amount', (req, res) =>
+    res.render('deductions/political-amount', { data: req.session }),
+  )
+  app.post(
+    '/deductions/political/amount',
+    validateRedirect,
+    checkSchema(politicalAmountSchema),
+    checkErrors('deductions/political-amount'),
+    postPoliticalAmount,
   )
   //End of Charitable Donations Section
 
@@ -76,7 +97,7 @@ const postRRSPAmount = (req, res) => {
 // End of RRSP controller functions
 
 //Start of Charitable Donations controller functions
-const postdonations = (req, res) => {
+const postDonations = (req, res) => {
   const donationsClaim = req.body.donationsClaim
 
   if (donationsClaim === 'Yes') {
@@ -100,3 +121,29 @@ const postDonationsAmount = (req, res) => {
   return res.redirect(req.body.redirect)
 }
 //End of Charitable Donations controller functions
+
+//Start of Political Political controller functions
+const postPolitical = (req, res) => {
+  const politicalClaim = req.body.politicalClaim
+
+  if (politicalClaim === 'Yes') {
+    req.session.deductions.politicalClaim = true
+
+    // It's fine not having this in the form itself (like the other redirect value)
+    // because these two pages are hardcoded together
+    return res.redirect('/deductions/political/amount')
+  }
+
+  req.session.deductions.politicalClaim = false
+
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+
+const postPoliticalAmount = (req, res) => {
+  req.session.deductions.politicalAmount = req.body.politicalAmount
+
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+//End of political Political controller functions

@@ -26,8 +26,4 @@ block content
 
       input#redirect(name='redirect', type='hidden', value='/login/sin')
 
-      .buttons
-        .buttons--left
-          button(type='submit') #{__('Continue')}
-        .buttons--right
-          a.button-link.transparent.full-width(href='/clear') #{__('Cancel')}
+      +formButtons()

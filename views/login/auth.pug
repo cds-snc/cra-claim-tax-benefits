@@ -20,8 +20,4 @@ block content
       span#auth__unit.input-with-unit__unit(for='auth') $
       input.w-1-2.input-with-unit#auth(name='auth', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.auth ? 'auth-error' : false) aria-labelledby="auth__label auth__unit")
 
-    .buttons
-      .buttons--left
-        button(type='submit') #{__('Continue')}
-      .buttons--right
-        a.button-link.transparent.full-width(href='/clear') #{__('Cancel')}
+    +formButtons()

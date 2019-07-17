@@ -8,15 +8,15 @@ block content
   h1 #{title}
 
   div
-    p #{__('Please check the corresponding boxes and enter your charitable donations into the fields below.')}
+    p #{__('Please enter your charitable donations into the fields below.')}
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.donationsAmount})
       label#donations__label(for='donationsAmount') #{__('Total donations made to registered charities')}
       if errors
-        +validationMessage(errors.donations.msg, 'donations')
-      span#donations__unit.input-with-unit__unit(for='donations') $
-      input.w-1-2.input-with-unit#donations(name='donations', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.donations ? 'donations-error' : false) aria-labelledby="donations__label donations__unit")
+        +validationMessage(errors.donationsAmount.msg, 'donations')
+      span#donations__unit.input-with-unit__unit(for='donationsAmount') $
+      input.w-1-2.input-with-unit#donations(name='donationsAmount', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.donations ? 'donations-error' : false) aria-labelledby="donations__label donations__unit")
     //-
         div(class={['has-error']: errors && errors.governementAmount})
             label#donationsAmount__label(for='governementAmount') Donations made to government bodies (government of Canada, a province, a territory, registered municipalities in Canada, or registered municipal or public bodies performing a function of government in Canada)

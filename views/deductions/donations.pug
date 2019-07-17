@@ -15,7 +15,7 @@ block content
   form.cra-form(method='post')
     +yesNoRadios('donationsClaim', donationsClaim, 'Did you make charitable donations?', errors)
 
-    input#redirect(name='redirect', type='hidden', value='/personal/donations-amount')
+    input#redirect(name='redirect', type='hidden', value='/review')
 
     .buttons
       .buttons--left

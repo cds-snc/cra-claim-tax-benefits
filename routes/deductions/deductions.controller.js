@@ -32,7 +32,7 @@ module.exports = function (app) {
     validateRedirect,
     checkSchema(donationsSchema),
     checkErrors('deductions/donations'),
-    postdonations,
+    postDonations,
   )
   app.get('/deductions/donations/amount', (req, res) =>
     res.render('deductions/donations-amount', { data: req.session }),
@@ -76,7 +76,7 @@ const postRRSPAmount = (req, res) => {
 // End of RRSP controller functions
 
 //Start of Charitable Donations controller functions
-const postdonations = (req, res) => {
+const postDonations = (req, res) => {
   const donationsClaim = req.body.donationsClaim
 
   if (donationsClaim === 'Yes') {

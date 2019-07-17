@@ -77,7 +77,7 @@ describe('Test /personal responses', () => {
     test('it returns a 302 when selecting NO', async () => {
       const response = await request(app)
         .post('/personal/residence')
-        .send({ redirect: '/', residence: 'No' })
+        .send({ redirect: '/offramp', residence: 'No' })
       expect(response.statusCode).toBe(302)
     })
 

@@ -5,29 +5,25 @@ block variables
 
 block content
 
-  h1 #{title}
+  h1 #{__(title)}
 
   div
-    p Your personal access code is the 8 character code found in your notification letter.
+    p #{__('Your personal access code is the 8 character code found in your notification letter.')}
 
   div
     form.cra-form(method='post')
       div(class={['has-error']: errors && errors.code})
-        label(for='code') Personal access code
-        span.cra-form-message For Example: QWER1234
+        label(for='code') #{__('Personal access code')}
+        span.cra-form-message #{__('For Example:')} QWER1234
         if errors
           +validationMessage(errors.code.msg, 'code')
         input.w-3-4#code(name='code', type='text', value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code-error' : false))
 
       div
         details.
-          <summary><span>Help with personal access code</span></summary>
-          <p>Your code is on the personally-addressed letter. It is case insensitive.</p>
+          <summary><span>#{__('Help with personal access code')}</span></summary>
+          <p>#{__('Your code is on the personally-addressed letter.')}</p>
 
       input#redirect(name='redirect', type='hidden', value='/login/sin')
 
-      .buttons
-        .buttons--left
-          button(type='submit') Continue
-        .buttons--right
-          a.button-link.transparent.full-width(href='/clear') Cancel
+      +formButtons()

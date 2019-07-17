@@ -61,8 +61,7 @@ const postMaritalStatus = (req, res) => {
 
 const postResidence = (req, res) => {
   if (req.body.residence !== 'Yes') {
-    /* TODO: Point this at the offboarding page */
-    return res.redirect('/start')
+    return res.redirect('/offramp')
   }
 
   return res.redirect(req.body.redirect)

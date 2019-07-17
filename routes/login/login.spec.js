@@ -315,12 +315,6 @@ describe('Test /login responses', () => {
     })
   })
 
-  // Success page
-  test('it returns a 200 response for /login/success', async () => {
-    const response = await request(app).get('/login/success')
-    expect(response.statusCode).toBe(200)
-  })
-
   /*
       These tests make sure that a date of birth which would ordinarily be is no longer accepted after
       a user logs in.

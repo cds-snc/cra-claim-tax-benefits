@@ -34,9 +34,6 @@ module.exports = function(app) {
   // Auth page
   app.get('/login/auth', getAuth)
   app.post('/login/auth', checkSchema(authSchema), checkErrors('login/auth'), postAuth)
-
-  // Success page
-  app.get('/login/success', (req, res) => res.render('login/success', { data: req.session }))
 }
 
 const postLoginCode = (req, res) => {

@@ -17,27 +17,6 @@ block content
         +validationMessage(errors.donationsAmount.msg, 'donations')
       span#donations__unit.input-with-unit__unit(for='donationsAmount') $
       input.w-1-2.input-with-unit#donations(name='donationsAmount', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.donations ? 'donations-error' : false) aria-labelledby="donations__label donations__unit")
-    //-
-        div(class={['has-error']: errors && errors.governementAmount})
-            label#donationsAmount__label(for='governementAmount') Donations made to government bodies (government of Canada, a province, a territory, registered municipalities in Canada, or registered municipal or public bodies performing a function of government in Canada)
-            if errors
-                +validationMessage(errors.governementAmount.msg, 'governementAmount')
-            span#governementAmount__unit.input-with-unit__unit(for='governementAmount') $
-            input.w-1-2.input-with-unit#governementAmount(name='governementAmount', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.governementAmount ? 'governementAmount-error' : false) aria-labelledby="governementAmount__label governementAmount__unit")
-
-        div(class={['has-error']: errors && errors.universityAmount})
-            label#universityAmount__label(for='universityAmount') Donations made to registered universities outside Canada
-            if errors
-                +validationMessage(errors.universityAmount.msg, 'universityAmount')
-            span#universityAmount__unit.input-with-unit__unit(for='universityAmount') $
-            input.w-1-2.input-with-unit#universityAmount(name='universityAmount', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.universityAmount ? 'universityAmount-error' : false) aria-labelledby="universityAmount__label universityAmount__unit")
-
-        div(class={['has-error']: errors && errors.foreignAmount})
-            label#foreignAmount__label(for='foreignAmount') Donations made to the United Nations, its agencies, and certain registered foreign charitable organizations
-            if errors
-                +validationMessage(errors.foreignAmount.msg, 'foreignAmount')
-            span#foreignAmount__unit.input-with-unit__unit(for='foreignAmount') $
-            input.w-1-2.input-with-unit#foreignAmount(name='foreignAmount', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.foreignAmount ? 'foreignAmount-error' : false) aria-labelledby="foreignAmount__label foreignAmount__unit")
     div
       details.
         <summary><span>#{__('Help with charitable donations')}</span></summary>

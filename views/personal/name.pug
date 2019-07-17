@@ -28,8 +28,5 @@ block content
       <p>#{__('If you have changed your name since the last time you filed your taxes,')} <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html" target="_blank">#{__('get in contact with the CRA to update your information')}</a>.</p>
       <p>#{__('Once updated, you can proceed to use this service.')}</p>
 
-  .buttons-row
-    a.button-link(href='/personal/residence') #{__('Confirm')}
+  +linkButtons('/personal/residence')
     a.button-link(href='/offramp') #{__('My name has changed')}
-    a.button-link.transparent(href='/clear') #{__('Cancel')}
-

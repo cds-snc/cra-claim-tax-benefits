@@ -4,3 +4,10 @@ mixin formButtons()
       button(type='submit') #{__('Continue')}
     .buttons--right
       a.button-link.transparent.full-width(href='/clear') #{__('Cancel')}
+
+mixin linkButtons(confirmURL)
+  .buttons-row
+    a.button-link(href=confirmURL) #{__('Confirm')}
+    if block
+        block
+    a.button-link.transparent(href='/clear') #{__('Cancel')}

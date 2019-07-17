@@ -6,15 +6,15 @@ block variables
 
 block content
 
-  h1 #{title}
+  h1 #{__(title)}
 
   div
-    p Please choose the correct status from the options listed below.
+    p #{__('Please choose the correct status from the options listed below.')}
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.maritalStatus})
         fieldset.fieldset
-            legend.fieldset__legend Marital Status
+            legend.fieldset__legend #{__('Marital Status')}
             .radios
                 if errors
                   +validationMessage(errors.maritalStatus.msg, 'maritalStatus')
@@ -34,15 +34,6 @@ block content
                     input.radios__input(id="maritalStatusWidowed" name="maritalStatus" type="radio" value="Widowed" checked=(maritalStatus.toLowerCase()=='widowed') aria-describedby=(errors ? 'maritalStatus-error' : false))
                     label.radios__label(for="maritalStatusWidowed") Widowed
 
-    div
-      details.
-        <summary><span>Help with editing marital status</span></summary>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
     input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
 
-    .buttons
-      .buttons--left
-        button(type='submit') Change Marital Status
-      .buttons--right
-        a.button-link.transparent(href='/personal/maritalStatus') Cancel
+    +formButtons('Change Marital Status', '/personal/maritalStatus')

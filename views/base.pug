@@ -1,7 +1,7 @@
 include _includes/validationMessage
 
 doctype html
-html(lang='en')
+html(lang=getLocale() === 'fr' ? 'fr' : 'en')
   block variables
   head
     // Required meta tags

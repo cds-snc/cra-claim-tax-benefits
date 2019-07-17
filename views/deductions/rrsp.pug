@@ -7,23 +7,19 @@ block variables
 
 block content
 
-  h1 #{title}
+  h1 #{__(title)}
 
   div
-    p If you made RRSP contributions before March 1, 2019, you can deduct them from your total income.
+    p #{__('If you made RRSP contributions before March 1, 2019, you can deduct them from your total income.')}
 
   form.cra-form(method='post')
     +yesNoRadios('rrspClaim', rrspClaim, 'Did you contribute to an RRSP?', errors)
 
     div
       details.
-        <summary><span>Help with RRSP contributions</span></summary>
-        <p>March 1, 2019, is the deadline for contributing to your RRSP for amounts you want to deduct on your 2018 income tax and benefit return.</p>
+        <summary><span>#{__('Help with RRSP contributions')}</span></summary>
+        <p>#{__('March 1, 2019, is the deadline for contributing to your RRSP for amounts you want to deduct on your 2018 income tax and benefit return.')}</p>
 
     input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
 
-    .buttons
-      .buttons--left
-        button(type='submit') Continue
-      .buttons--right
-        a.button-link.transparent(href='/') Cancel
+    +formButtons()

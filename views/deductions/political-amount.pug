@@ -11,18 +11,18 @@ block content
     p #{__('Please enter your political contributions into the fields below.')}
 
   form.cra-form(method='post')
-    div(class={['has-error']: errors && errors.politicalAmountFederal})
+    div(class={['has-error']: errors && errors.politicalFederalAmount})
       label#politicalFederal__label(for='politicalAmountFederal') #{__('Total federal contributions')}
-      if errors
-        +validationMessage(errors.politicalAmountFederal.msg, 'politicalFederal')
-      span#political__unit.input-with-unit__unit(for='politicalAmountFederal') $
-      input.w-1-2.input-with-unit#political(name='politicalAmountFederal', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.politicalFederal ? 'politicalFederal-error' : false) aria-labelledby="politicalFederal__label political__unit")
-    div(class={['has-error']: errors && errors.politicalAmountProvincial})
-      label#politicalProvincial__label(for='politicalAmountProvincial') #{__('Total political made to registered charities')}
-      if errors
-        +validationMessage(errors.politicalAmountProvincial.msg, 'politicalProvincial')
-      span#political__unit.input-with-unit__unit(for='politicalAmountProvincial') $
-      input.w-1-2.input-with-unit#political(name='politicalAmountProvincial', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.politicalProvincial ? 'politicalProvincial-error' : false) aria-labelledby="politicalProvincial__label political__unit")
+      if errors && errors.politicalFederalAmount
+        +validationMessage(errors.politicalFederalAmount.msg, 'politicalFederal')
+      span#political__unit.input-with-unit__unit(for='politicalFederalAmount') $
+      input.w-1-2.input-with-unit#political(name='politicalFederalAmount', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.politicalFederal ? 'politicalFederalAmount-error' : false) aria-labelledby="politicalFederalAmount__label political__unit")
+    div(class={['has-error']: errors && errors.politicalProvincialAmount})
+      label#politicalProvincial__label(for='politicalProvincialAmount') #{__('Total provincial contributions')}
+      if errors && errors.politicalProvincialAmount
+        +validationMessage(errors.politicalProvincialAmount.msg, 'politicalProvincial')
+      span#political__unit.input-with-unit__unit(for='politicalProvincialAmount') $
+      input.w-1-2.input-with-unit#political(name='politicalProvincialAmount', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.politicalProvincialAmount ? 'politicalProvincialAmount-error' : false) aria-labelledby="politicalProvincialAmount__label political__unit")
 
     input#redirect(name='redirect', type='hidden', value='/deductions/donations')
 

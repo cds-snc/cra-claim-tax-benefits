@@ -19,10 +19,9 @@
   "errors.address.postalCode.format": "Postal code is incorrect format",
   "errors.address.province": "Please select a valid province",
   "errors.rrspClaim": "You must select one of the options",
-  "errors.rrspAmount": "Enter a dollar amount higher than 0, like 120.00",
+  "errors.currency": "Enter a dollar amount higher than 0, like 120.00",
   "errors.address.province.province": "errors.address.province.province",
   "errors.residence": "You must select one of the options",
-  "errors.auth": "Enter a dollar amount higher than 0, like 120.00",
   "This service is to claim tax benefits online.": "This service is to claim tax benefits online.",
   "Claim Tax Benefits": "Claim Tax Benefits",
   "Please correct the errors on the page": "Please correct the errors on the page",
@@ -139,5 +138,15 @@
   "Contact": "Contact",
   "Terms and conditions": "Terms and conditions",
   "Privacy": "Privacy",
-  "Symbol of the Government of Canada": "Symbol of the Government of Canada"
+  "Symbol of the Government of Canada": "Symbol of the Government of Canada",
+  "Enter rent paid in 2018": "Enter rent paid in 2018",
+  "To get the most out of your": "To get the most out of your",
+  "Trillium Benefit": "Trillium Benefit",
+  "you can enter the amount you paid in rent in the current tax year.": "you can enter the amount you paid in rent in the current tax year.",
+  "Enter the": "Enter the",
+  "total annual rent": "total annual rent",
+  "you paid for your main residence.": "you paid for your main residence.",
+  "Leave the field as": "Leave the field as",
+  "if you paid no rent in 2018 or if you don’t have the receipts to verify this information later.": "if you paid no rent in 2018 or if you don’t have the receipts to verify this information later.",
+  "Total annual rent in 2018": "Total annual rent in 2018"
 }

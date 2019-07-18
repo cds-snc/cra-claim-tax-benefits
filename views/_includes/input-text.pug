@@ -1,0 +1,11 @@
+mixin textInput(divClasses, inputClasses, name, label, value, message)
+  div(
+    class={['has-error']: errors && errors[name]}
+    class=divClasses
+  )
+    label(for=name) #{__(label)}
+    if message
+      span.cra-form-message #{__(message)}
+    if errors && errors[name]
+      +validationMessage(errors[name].msg, name)
+    input(class=inputClasses id=name, name=name, type='text', value=value, autocomplete='off' aria-describedby=(errors && errors[name] ? name + '-error' : false))

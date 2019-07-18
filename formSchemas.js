@@ -1,5 +1,14 @@
 const API = require('./api')
 
+const currencySchema = (errorMessageString = 'errors.currency') => {
+  return {
+    isCurrency: {
+      errorMessage: errorMessageString,
+      options: { allow_negatives: false },
+    },
+  }
+}
+
 /**
  * Runs an array of validators over a value
  * this is a workaround I found to allow multiple custom validators
@@ -261,12 +270,7 @@ const rrspSchema = {
 }
 
 const rrspAmountSchema = {
-  rrspAmount: {
-    isCurrency: {
-      errorMessage: 'errors.rrspAmount',
-      options: { allow_negatives: false },
-    },
-  },
+  rrspAmount: currencySchema(),
 }
 
 const donationsSchema = {
@@ -279,12 +283,7 @@ const donationsSchema = {
 }
 
 const donationsAmountSchema = {
-  donationsAmount: {
-    isCurrency: {
-      errorMessage: 'errors.donationsAmount',
-      options: { allow_negatives: false },
-    },
-  },
+  donationsAmount: currencySchema(),
 }
 
 const residenceSchema = {
@@ -297,21 +296,11 @@ const residenceSchema = {
 }
 
 const authSchema = {
-  auth: {
-    isCurrency: {
-      errorMessage: 'errors.auth',
-      options: { allow_negatives: false },
-    },
-  },
+  auth: currencySchema(),
 }
 
 const trilliumRentAmountSchema = {
-  trilliumRentAmount: {
-    isCurrency: {
-      errorMessage: 'errors.trilliumRentAmount',
-      options: { allow_negatives: false },
-    },
-  },
+  trilliumRentAmount: currencySchema(),
 }
 
 module.exports = {

@@ -5,6 +5,7 @@ const {
   rrspAmountSchema,
   donationsSchema,
   donationsAmountSchema,
+  trilliumRentAmountSchema,
 } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
@@ -55,6 +56,13 @@ module.exports = function(app) {
   //Start of Trillum Section
   app.get('/trillium/rent/amount', (req, res) =>
     res.render('deductions/trillium-rent-amount', { data: req.session }),
+  )
+  app.post(
+    '/trillium/rent/amount',
+    validateRedirect,
+    checkSchema(trilliumRentAmountSchema),
+    checkErrors('deductions/trillium-rent-amount'),
+    postTrilliumRentAmount,
   )
 }
 
@@ -109,3 +117,11 @@ const postDonationsAmount = (req, res) => {
   return res.redirect(req.body.redirect)
 }
 //End of Charitable Donations controller functions
+
+//Start of Trillium controller functions
+const postTrilliumRentAmount = (req, res) => {
+  req.session.deductions.trilliumRentAmount = req.body.trilliumRentAmount
+
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}

@@ -305,6 +305,15 @@ const authSchema = {
   },
 }
 
+const trilliumRentAmountSchema = {
+  trilliumRentAmount: {
+    isCurrency: {
+      errorMessage: 'errors.trilliumRentAmount',
+      options: { allow_negatives: false },
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
   maritalStatusSchema,
@@ -316,5 +325,6 @@ module.exports = {
   rrspAmountSchema,
   donationsSchema,
   donationsAmountSchema,
+  trilliumRentAmountSchema,
   authSchema,
 }

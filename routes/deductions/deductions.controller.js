@@ -1,9 +1,13 @@
 const { checkSchema } = require('express-validator')
 const { validateRedirect, checkErrors } = require('./../../utils')
-const { rrspSchema, rrspAmountSchema, donationsSchema, donationsAmountSchema } = require('./../../formSchemas.js')
+const {
+  rrspSchema,
+  rrspAmountSchema,
+  donationsSchema,
+  donationsAmountSchema,
+} = require('./../../formSchemas.js')
 
-module.exports = function (app) {
-
+module.exports = function(app) {
   //Start of RRSP Section
   app.get('/deductions/rrsp', (req, res) => res.render('deductions/rrsp', { data: req.session }))
   app.post(
@@ -26,7 +30,9 @@ module.exports = function (app) {
   //End of RRSP Section
 
   //Start of Charitable Donations Section
-  app.get('/deductions/donations', (req, res) => res.render('deductions/donations', { data: req.session }))
+  app.get('/deductions/donations', (req, res) =>
+    res.render('deductions/donations', { data: req.session }),
+  )
   app.post(
     '/deductions/donations',
     validateRedirect,
@@ -46,7 +52,10 @@ module.exports = function (app) {
   )
   //End of Charitable Donations Section
 
-
+  //Start of Trillum Section
+  app.get('/trillium/rent/amount', (req, res) =>
+    res.render('deductions/trillium-rent-amount', { data: req.session }),
+  )
 }
 
 //Start of RRSP controller functions

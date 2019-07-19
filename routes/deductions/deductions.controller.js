@@ -8,6 +8,7 @@ const {
   trilliumRentAmountSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumEnergyAmountSchema,
+  trilliumlongTermCareAmountSchema,
 } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
@@ -92,6 +93,13 @@ module.exports = function(app) {
   app.get('/trillium/longTermCare/amount', (req, res) =>
     res.render('deductions/trillium-longTermCare-amount', { data: req.session }),
   )
+  app.post(
+    '/trillium/longTermCare/amount',
+    validateRedirect,
+    checkSchema(trilliumlongTermCareAmountSchema),
+    checkErrors('deductions/trillium-longTermCare-amount'),
+    postTrilliumLongTermCareAmount,
+  )
 }
 
 //Start of RRSP controller functions
@@ -163,6 +171,13 @@ const postTrilliumPropertyTaxAmount = (req, res) => {
 
 const postTrilliumEnergyAmount = (req, res) => {
   req.session.deductions.trilliumEnergyAmount = req.body.trilliumEnergyAmount
+
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+
+const postTrilliumLongTermCareAmount = (req, res) => {
+  req.session.deductions.trilliumLongTermCareAmount = req.body.trilliumLongTermCareAmount
 
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)

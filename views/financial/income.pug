@@ -67,8 +67,9 @@ block content
   //- TODO: yes no with deets
   +yesNoRadios('confirmIncome', null, 'Is this information correct?', errors)
     .no-info
-      p If this information doesn’t match your records, you can’t change it here.
-      p You should not use this service to file income information you believe to be incorrect.
+      .no-info__wrapper
+        p If this information doesn’t match your records, you can’t change it here.
+        p You should not use this service to file income information you believe to be incorrect.
 
   .buttons-row
     a.button-link(href='/deductions/rrsp') Confirm

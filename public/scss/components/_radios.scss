@@ -69,3 +69,13 @@
     }
   }
 }
+
+.radios {
+  &__input:not(:checked) + .radios__label + .no-info {
+    color: red;
+  }
+
+  &__input:checked + .radios__label + .no-info {
+    color: blue;
+  }
+}

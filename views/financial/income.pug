@@ -1,4 +1,5 @@
 extends ../base
+include ../_includes/yesNoRadios
 
 block variables
   -var title = 'Confirm your income information'
@@ -11,13 +12,14 @@ block content
     p Here's what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.
 
   div
-    table.pure-table
+    table.pure-table.breakdown-table
       thead
         tr
-          th Total income earned in 2018: $28,000
+          th.breakdown-table__heading Total income earned in 2018:
+          th.breakdown-table__heading $28,000
       tbody
         tr
-          td Detailed breakdown of income earned in 2018:
+          th(colspan="2").breakdown-table__subheading Detailed breakdown of income earned in 2018:
         tr
           td Employer 1 Total Income: 
           td $11,000.00
@@ -30,12 +32,43 @@ block content
         tr
           td Employer 2 Net Income: 
           td $12,772.00
-        tr
+        tr.breakdown-table__summary-row
           td Total Income for 2018: 
           td $28,000.00
-        tr
+        tr.breakdown-table__summary-row
           td Net Income for 2018: 
           td $23,218.00
+
+  div
+    table.pure-table.breakdown-table
+      thead
+        tr
+          th.breakdown-table__heading Total tax:
+          th.breakdown-table__heading $4,782
+      tbody
+        tr
+          th(colspan="2").breakdown-table__subheading Detailed breakdown of taxes paid in 2018:
+        tr
+          td Federal tax deduction: 
+          td $1,998.00
+        tr
+          td Provincial tax deduction: 
+          td $1,106.00
+        tr
+          td CPP deduction: 
+          td $1,213.00
+        tr
+          td EI deduction:
+          td $456.00
+        tr.breakdown-table__summary-row
+          td Total tax paid for 2018:
+          td $4,782.00
+
+  //- TODO: yes no with deets
+  +yesNoRadios('confirmIncome', null, 'Is this information correct?', errors)
+    .no-info
+      p If this information doesn’t match your records, you can’t change it here.
+      p You should not use this service to file income information you believe to be incorrect.
 
   .buttons-row
     a.button-link(href='/deductions/rrsp') Confirm

@@ -101,6 +101,10 @@ describe('Test /deductions responses', () => {
         url: '/trillium/propertyTax/amount',
         key: 'trilliumPropertyTaxAmount',
       },
+      {
+        url: '/trillium/energy/amount',
+        key: 'trilliumEnergyAmount',
+      },
     ]
 
     amountReponses.map(amountResponse => {

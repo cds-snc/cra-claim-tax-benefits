@@ -307,6 +307,10 @@ const trilliumPropertyTaxAmountSchema = {
   trilliumPropertyTaxAmount: currencySchema(),
 }
 
+const trilliumEnergyAmountSchema = {
+  trilliumEnergyAmount: currencySchema(),
+}
+
 module.exports = {
   loginSchema,
   maritalStatusSchema,
@@ -320,5 +324,6 @@ module.exports = {
   donationsAmountSchema,
   trilliumRentAmountSchema,
   trilliumPropertyTaxAmountSchema,
+  trilliumEnergyAmountSchema,
   authSchema,
 }

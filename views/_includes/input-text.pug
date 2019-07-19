@@ -20,12 +20,8 @@ mixin textInput(label, divClasses, hintText)
         for=name
       ) $
     input(
-      class!=attributes.class 
-      id!=attributes.name, 
-      name!=attributes.name, 
+      autocomplete='off',
       type='text', 
-      value!=attributes.value, placeholder!=attributes.placeholder, autocomplete='off',
-      aria-labelledby=(attributes.aria-labelledby ? attributes.aria-labelledby : false)
       aria-describedby=(errors && errors[attributes.name] ? attributes.name + '-error' : false)
-    )
+    )&attributes(attributes)
       

@@ -18,11 +18,11 @@ block content
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.consent})
-      .checkboxes
+      .multiple-choice
         if errors
           +validationMessage(errors.consent.msg, key)
-        .checkboxes__item
-          input.checkboxes__input(id='consent' name='consent' type="checkbox" value="consent" checked=(value =='consent') aria-describedby=(errors ? `consent-error` : false))
-          label.checkboxes__label(for='consent') #{__('I totally consent to this')}
+        .multiple-choice__item
+          input(id='consent' name='consent' type="checkbox" value="consent" checked=(value =='consent') aria-describedby=(errors ? `consent-error` : false))
+          label(for='consent') #{__('I totally consent to this')}
 
     +formButtons('Submit my return')

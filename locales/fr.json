@@ -22,7 +22,7 @@
   "errors.currency": "Enter a dollar amount higher than 0, like 120.00",
   "errors.address.province.province": "errors.address.province.province",
   "errors.residence": "You must select one of the options",
-  "errors.donationsClaim": "errors.donationsClaim",
+  "errors.donationsClaim": "You must select one of the options",
   "This service is to claim tax benefits online.": "Ce service consiste à demander des avantages fiscaux en ligne.",
   "Claim Tax Benefits": "Réclamer des avantages fiscaux",
   "Please correct the errors on the page": "Please correct the errors on the page",
@@ -145,5 +145,9 @@
   "you paid for your main residence.": "you paid for your main residence.",
   "Leave the field as": "Leave the field as",
   "if you paid no rent in 2018 or if you don’t have the receipts to verify this information later.": "if you paid no rent in 2018 or if you don’t have the receipts to verify this information later.",
-  "Total annual rent in 2018": "Total annual rent in 2018"
+  "Total annual rent in 2018": "Total annual rent in 2018",
+  "Enter property tax paid in 2018": "Enter property tax paid in 2018",
+  "Please enter the total property tax paid for your principal residence in 2018.": "Please enter the total property tax paid for your principal residence in 2018.",
+  "if you paid no property tax in 2018 or if you don’t have the receipts to verify this information later.": "if you paid no property tax in 2018 or if you don’t have the receipts to verify this information later.",
+  "Total property tax in 2018": "Total property tax in 2018"
 }

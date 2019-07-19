@@ -6,6 +6,7 @@ const {
   donationsSchema,
   donationsAmountSchema,
   trilliumRentAmountSchema,
+  trilliumPropertyTaxAmountSchema,
 } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
@@ -64,6 +65,17 @@ module.exports = function(app) {
     checkErrors('deductions/trillium-rent-amount'),
     postTrilliumRentAmount,
   )
+
+  app.get('/trillium/propertyTax/amount', (req, res) =>
+    res.render('deductions/trillium-propertyTax-amount', { data: req.session }),
+  )
+  app.post(
+    '/trillium/propertyTax/amount',
+    validateRedirect,
+    checkSchema(trilliumPropertyTaxAmountSchema),
+    checkErrors('deductions/trillium-propertyTax-amount'),
+    postTrilliumPropertyTaxAmount,
+  )
 }
 
 //Start of RRSP controller functions
@@ -121,6 +133,13 @@ const postDonationsAmount = (req, res) => {
 //Start of Trillium controller functions
 const postTrilliumRentAmount = (req, res) => {
   req.session.deductions.trilliumRentAmount = req.body.trilliumRentAmount
+
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+
+const postTrilliumPropertyTaxAmount = (req, res) => {
+  req.session.deductions.trilliumPropertyTaxAmount = req.body.trilliumPropertyTaxAmount
 
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)

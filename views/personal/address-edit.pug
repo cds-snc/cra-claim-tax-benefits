@@ -21,15 +21,15 @@ block content
       h2 #{__('Your mailing address')}
 
       div
-        +textInput(['w-1-4', 'd--ib'], ['w-3-4'], 'streetNumber', 'Street number', streetNumber)
+        +textInput('Street number', ['w-1-4','d--ib'])(class='w-3-4', value=streetNumber, name='streetNumber')
 
-        +textInput(['w-3-4','d--ib'], ['w-3-4'], 'streetName', 'Street name', streetName)
+        +textInput('Street name', ['w-3-4','d--ib'])(class='w-3-4', value=streetName, name='streetName')
 
-      +textInput(['w-1-2'], ['w-3-4'], 'aptNumber', 'Apartment number', aptNumber, 'Optional')
+      +textInput('Apartment number', 'w-1-2', 'Optional')(class='w-3-4', value=aptNumber name='aptNumber')
 
-      +textInput(['w-1-2'], ['w-3-4'], 'city', 'City', city)
+      +textInput('City', 'w-1-2')(class='w-3-4', value=city name='city')
 
-      +textInput(['w-1-2'],['w-3-4'], 'postalCode', 'Postal Code', postalCode, 'For example: R2H 0J9')
+      +textInput('Postal Code', ['w-1-2'], 'For example: R2H 0J9')(class='w-3-4' name='postalCode' value=postalCode)
 
       .w-1-2(class={['has-error']: errors && errors.province})
         label(for='province') #{__('Province')}

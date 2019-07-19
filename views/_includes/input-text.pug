@@ -20,8 +20,7 @@ mixin textInput(label, divClasses, hintText)
       )
     if attributes.class.includes('input-with-unit')
       span.input-with-unit__unit(
-        id!=attributes.name+'__unit', 
-        for!=attributes.name
+        id!=attributes.name+'__unit'
       ) $
     input(
       autocomplete='off',

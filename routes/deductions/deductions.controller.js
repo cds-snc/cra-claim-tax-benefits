@@ -88,6 +88,10 @@ module.exports = function(app) {
     checkErrors('deductions/trillium-energy-amount'),
     postTrilliumEnergyAmount,
   )
+
+  app.get('/trillium/longTermCare/amount', (req, res) =>
+    res.render('deductions/trillium-longTermCare-amount', { data: req.session }),
+  )
 }
 
 //Start of RRSP controller functions

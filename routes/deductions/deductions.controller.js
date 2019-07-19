@@ -76,6 +76,10 @@ module.exports = function(app) {
     checkErrors('deductions/trillium-propertyTax-amount'),
     postTrilliumPropertyTaxAmount,
   )
+
+  app.get('/trillium/energy/amount', (req, res) =>
+    res.render('deductions/trillium-energy-amount', { data: req.session }),
+  )
 }
 
 //Start of RRSP controller functions

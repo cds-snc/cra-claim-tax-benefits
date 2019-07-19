@@ -1,4 +1,77 @@
-.radios {
+.multiple-choice {
+  $parentClass: &;
+
+  &__item {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.25;
+    display: block;
+    position: relative;
+    min-height: 40px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+
+    > input[type='radio'] {
+      cursor: pointer;
+      position: absolute;
+      z-index: 1;
+      top: -2px;
+      left: -2px;
+      width: 44px;
+      height: 44px;
+      margin: 0;
+      opacity: 0;
+
+      &:checked + label::after {
+        opacity: 1;
+      }
+
+      &:focus + label::before {
+        -webkit-box-shadow: 0 0 0 3px $color-yellow;
+        box-shadow: 0 0 0 3px $color-yellow;
+      }
+    }
+
+    > input[type='radio'] + label {
+      display: inline-block;
+      margin-bottom: 0;
+      padding: 8px 15px 5px;
+      cursor: pointer;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      font-weight: normal;
+
+      &::before {
+        content: '';
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        background: transparent;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 0;
+        height: 0;
+        border: 10px solid currentColor;
+        border-radius: 50%;
+        opacity: 0;
+        background: currentColor;
+      }
+    }
+  }
+}
+
+.checkboxes {
   $radioClass: &;
 
   &__item {
@@ -16,10 +89,10 @@
     cursor: pointer;
     position: absolute;
     z-index: 1;
-    top: -2px;
-    left: -2px;
-    width: 44px;
-    height: 44px;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
     margin: 0;
     opacity: 0;
 
@@ -51,21 +124,24 @@
       width: 40px;
       height: 40px;
       border: 2px solid currentColor;
-      border-radius: 50%;
       background: transparent;
     }
 
     &::after {
       content: '';
       position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 0;
-      height: 0;
-      border: 10px solid currentColor;
-      border-radius: 50%;
+      top: 11px;
+      left: 9px;
+      width: 18px;
+      height: 7px;
+      -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      border: solid;
+      border-width: 0 0 5px 5px;
+      border-top-color: transparent;
       opacity: 0;
-      background: currentColor;
+      background: transparent;
     }
   }
 }

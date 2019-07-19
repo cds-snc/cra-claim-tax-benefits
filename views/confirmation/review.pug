@@ -1,4 +1,5 @@
 extends ../base
+include ../_includes/yesNoRadios
 
 block variables
   -var title = 'Review your estimated benefits'
@@ -12,6 +13,16 @@ block content
     p Make sure that everything looks up-to-date before continuing.
     p If anything is incorrect, please <a href="#">contact CRA</a>.
 
-  .buttons-row
-    a.button-link(href='/confirmation') Submit my return
-    a.button-link.transparent(href='/clear') Cancel
+  div
+    p Once you have provided your consent, please go ahead and submit.
+
+  form.cra-form(method='post')
+    div(class={['has-error']: errors && errors.consent})
+      .checkboxes
+        if errors
+          +validationMessage(errors.consent.msg, key)
+        .checkboxes__item
+          input.checkboxes__input(id='consent' name='consent' type="checkbox" value="consent" checked=(value =='consent') aria-describedby=(errors ? `consent-error` : false))
+          label.checkboxes__label(for='consent') #{__('I totally consent to this')}
+
+    +formButtons('Submit my return')

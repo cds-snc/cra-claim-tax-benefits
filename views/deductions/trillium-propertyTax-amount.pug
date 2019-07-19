@@ -16,6 +16,6 @@ block content
   form.cra-form(method='post')
     +textInput('Total property tax in 2018')(class='w-1-2 input-with-unit' name='trilliumPropertyTaxAmount' placeholder='0.00' aria-labelledby='trilliumPropertyTaxAmount__unit trilliumPropertyTaxAmount__label' value=trilliumPropertyTaxAmount)
 
-    input#redirect(name='redirect', type='hidden', value='/review')
+    input#redirect(name='redirect', type='hidden', value='/trillium/energy/amount')
 
     +formButtons('Continue')

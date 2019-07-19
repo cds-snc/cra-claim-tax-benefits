@@ -17,8 +17,4 @@ block content
 
     input#redirect(name='redirect', type='hidden', value='/review')
 
-    .buttons
-      .buttons--left
-        button(type='submit') #{__('Continue')}
-      .buttons--right
-        a.button-link.transparent(href='/') #{__('Cancel')}
+    +formButtons()

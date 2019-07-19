@@ -307,6 +307,15 @@ const trilliumPropertyTaxAmountSchema = {
   trilliumPropertyTaxAmount: currencySchema(),
 }
 
+const trilliumStudentResidenceSchema = {
+  trilliumStudentResidence: {
+    isIn: {
+      errorMessage: 'errors.yesNo',
+      options: [['Yes', 'No']],
+    },
+  },
+}
+
 const trilliumEnergyAmountSchema = {
   trilliumEnergyAmount: currencySchema(),
 }
@@ -339,6 +348,7 @@ module.exports = {
   trilliumPropertyTaxAmountSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareAmountSchema,
+  trilliumStudentResidenceSchema,
   reviewSchema,
   authSchema,
 }

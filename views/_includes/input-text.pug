@@ -1,0 +1,30 @@
+//- `label`: text for the label
+//- `divClasses`: any classes to be applied to the wrapper div (but not the input itself)
+//- `hintText`: any text that appears above the input in light grey (ex. Optional)
+
+mixin textInput(label, divClasses, hintText)
+  div(
+    class={['has-error']: errors && errors[attributes.name]}
+    class=divClasses
+  )
+    label(
+      for!=attributes.name 
+      id!=attributes.name + '__label'
+    ) #{__(label)}
+    if hintText
+      span.cra-form-message #{__(hintText)}
+    if errors && errors[attributes.name]
+      +validationMessage(
+        errors[attributes.name].msg, 
+        attributes.name
+      )
+    if attributes.class.includes('input-with-unit')
+      span.input-with-unit__unit(
+        id!=attributes.name+'__unit'
+      ) $
+    input(
+      autocomplete='off',
+      type='text', 
+      aria-describedby=(errors && errors[attributes.name] ? attributes.name + '-error' : false)
+    )&attributes(attributes)
+      

@@ -21,33 +21,15 @@ block content
       h2 #{__('Your mailing address')}
 
       div
-        .w-1-4.d--ib
-          label(for='streetNumber') #{__('Street number')}
-          input.w-3-4#streetNumber(name='streetNumber', type='text', value=streetNumber, autocomplete='off')
+        +textInput('Street number', ['w-1-4','d--ib'])(class='w-3-4', value=streetNumber, name='streetNumber')
 
-        .w-3-4.d--ib(class={['has-error']: errors && errors.streetName})
-          label(for='streetName') #{__('Street name')}
-          if errors && errors.streetName
-            +validationMessage(errors.streetName.msg, 'streetName')
-          input.w-3-4#streetName(name='streetName', type='text', value=streetName, autocomplete='off' aria-describedby=(errors && errors.streetName ? 'streetName-error' : false))
+        +textInput('Street name', ['w-3-4','d--ib'])(class='w-3-4', value=streetName, name='streetName')
 
-      .w-1-2
-        label(for='aptNumber') #{__('Apartment number')}
-        span.cra-form-message #{__('Optional')}
-        input.w-1-4#aptNumber(name='aptNumber', type='text', value=aptNumber, autocomplete='off')
+      +textInput('Apartment number', 'w-1-2', 'Optional')(class='w-3-4', value=aptNumber name='aptNumber')
 
-      .w-1-2(class={['has-error']: errors && errors.city})
-        label(for='city') #{__('City')}
-        if errors && errors.city
-          +validationMessage(errors.city.msg, 'city')
-        input.w-3-4#city(name='city', type='text', value=city autocomplete='off' aria-describedby=(errors && errors.city ? 'city-error' : false))
+      +textInput('City', 'w-1-2')(class='w-3-4', value=city name='city')
 
-      .w-1-2(class={['has-error']: errors && errors.postalCode})
-        label(for='postalCode') #{__('Postal Code')}
-        span.cra-form-message #{__('For example:')} R2H 0J9
-        if errors && errors.postalCode
-          +validationMessage(errors.postalCode.msg, 'postalCode')
-        input.w-3-4#postalCode( name='postalCode', type='text', value=postalCode, autocomplete='off' aria-describedby=(errors && errors.postalCode ? 'postalCode-error' : false))
+      +textInput('Postal Code', ['w-1-2'], 'For example: R2H 0J9')(class='w-3-4' name='postalCode' value=postalCode)
 
       .w-1-2(class={['has-error']: errors && errors.province})
         label(for='province') #{__('Province')}

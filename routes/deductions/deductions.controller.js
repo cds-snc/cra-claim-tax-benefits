@@ -1,9 +1,14 @@
 const { checkSchema } = require('express-validator')
 const { validateRedirect, checkErrors } = require('./../../utils')
-const { rrspSchema, rrspAmountSchema, donationsSchema, donationsAmountSchema } = require('./../../formSchemas.js')
+const {
+  rrspSchema,
+  rrspAmountSchema,
+  donationsSchema,
+  donationsAmountSchema,
+  trilliumRentAmountSchema,
+} = require('./../../formSchemas.js')
 
-module.exports = function (app) {
-
+module.exports = function(app) {
   //Start of RRSP Section
   app.get('/deductions/rrsp', (req, res) => res.render('deductions/rrsp', { data: req.session }))
   app.post(
@@ -26,7 +31,9 @@ module.exports = function (app) {
   //End of RRSP Section
 
   //Start of Charitable Donations Section
-  app.get('/deductions/donations', (req, res) => res.render('deductions/donations', { data: req.session }))
+  app.get('/deductions/donations', (req, res) =>
+    res.render('deductions/donations', { data: req.session }),
+  )
   app.post(
     '/deductions/donations',
     validateRedirect,
@@ -46,7 +53,17 @@ module.exports = function (app) {
   )
   //End of Charitable Donations Section
 
-
+  //Start of Trillum Section
+  app.get('/trillium/rent/amount', (req, res) =>
+    res.render('deductions/trillium-rent-amount', { data: req.session }),
+  )
+  app.post(
+    '/trillium/rent/amount',
+    validateRedirect,
+    checkSchema(trilliumRentAmountSchema),
+    checkErrors('deductions/trillium-rent-amount'),
+    postTrilliumRentAmount,
+  )
 }
 
 //Start of RRSP controller functions
@@ -100,3 +117,11 @@ const postDonationsAmount = (req, res) => {
   return res.redirect(req.body.redirect)
 }
 //End of Charitable Donations controller functions
+
+//Start of Trillium controller functions
+const postTrilliumRentAmount = (req, res) => {
+  req.session.deductions.trilliumRentAmount = req.body.trilliumRentAmount
+
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}

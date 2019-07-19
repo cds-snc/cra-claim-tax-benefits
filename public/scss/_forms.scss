@@ -32,7 +32,7 @@ form.cra-form.cra-form--lg {
   }
 
   fieldset legend,
-  label:not(.radios__label) {
+  div:not(.multiple-choice__item) > label {
     font-size: 1em;
   }
 }
@@ -71,7 +71,7 @@ form.cra-form {
   }
 
   fieldset legend,
-  label:not(.radios__label) {
+  div:not(.multiple-choice__item) > label {
     font-family: 'Lato', sans-serif;
     font-weight: 600;
     display: block;

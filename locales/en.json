@@ -23,6 +23,7 @@
   "errors.address.province.province": "errors.address.province.province",
   "errors.residence": "You must select one of the options",
   "errors.donationsClaim": "You must select one of the options",
+  "errors.review": "You must consent to submit your return",
   "This service is to claim tax benefits online.": "This service is to claim tax benefits online.",
   "Claim Tax Benefits": "Claim Tax Benefits",
   "Please correct the errors on the page": "Please correct the errors on the page",
@@ -161,5 +162,6 @@
   "Public long-term care home costs": "Public long-term care home costs",
   "Please enter the total amount paid for accommodation in a public long-term care home in 2018.": "Please enter the total amount paid for accommodation in a public long-term care home in 2018.",
   "Accommodation costs in 2018": "Accommodation costs in 2018",
-  "For example: R2H 0J9": "For example: R2H 0J9"
+  "For example: R2H 0J9": "For example: R2H 0J9",
+  "Submit my return": "Submit my return"
 }

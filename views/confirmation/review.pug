@@ -18,7 +18,7 @@ block content
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.review})
-      .multiple-choice
+      .multiple-choice.multiple-choice--checkboxes
         if errors
           +validationMessage(errors.review.msg, key)
         .multiple-choice__item

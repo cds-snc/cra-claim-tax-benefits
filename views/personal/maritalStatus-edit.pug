@@ -15,7 +15,7 @@ block content
     div(class={['has-error']: errors && errors.maritalStatus})
         fieldset.fieldset
             legend.fieldset__legend #{__('Marital Status')}
-            .multiple-choice
+            .multiple-choice.multiple-choice--radios
                 if errors
                   +validationMessage(errors.maritalStatus.msg, 'maritalStatus')
                 .multiple-choice__item

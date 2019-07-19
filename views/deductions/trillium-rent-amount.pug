@@ -22,6 +22,6 @@ block content
       span#trilliumRentAmount__unit.input-with-unit__unit(for='trilliumRentAmount') $
       input.w-1-2.input-with-unit#trilliumRentAmount(name='trilliumRentAmount', type='text', placeholder="0.00", value=(hasData(data, 'deductions.trilliumRentAmount') ? data.deductions.trilliumRentAmount : 0) autocomplete='off' aria-describedby=(errors && errors.trilliumRentAmount ? 'trilliumRentAmount-error' : false) aria-labelledby="trilliumRentAmount__label trilliumRentAmount__unit")
 
-    input#redirect(name='redirect', type='hidden', value='/review')
+    input#redirect(name='redirect', type='hidden', value='/trillium/propertyTax/amount')
 
     +formButtons('Continue')

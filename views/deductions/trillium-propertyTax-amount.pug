@@ -1,0 +1,25 @@
+extends ../base
+
+block variables
+  -var title = __('Enter property tax paid in 2018')
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('Please enter the total property tax paid for your principal residence in 2018.')}
+
+    p #{__('Leave the field as')} <strong>0</strong>, #{__('if you paid no property tax in 2018 or if you don’t have the receipts to verify this information later.')}
+
+  form.cra-form(method='post')
+    div(class={['has-error']: errors && errors.trilliumPropertyTaxAmount})
+      label#trilliumPropertyTaxAmount__label(for='trilliumPropertyTaxAmount') #{__('Total property tax in 2018')}
+      if errors
+        +validationMessage(errors.trilliumPropertyTaxAmount.msg, 'trilliumPropertyTaxAmount')
+      span#trilliumPropertyTaxAmount__unit.input-with-unit__unit(for='trilliumPropertyTaxAmount') $
+      input.w-1-2.input-with-unit#trilliumPropertyTaxAmount(name='trilliumPropertyTaxAmount', type='text', placeholder="0.00", value=(hasData(data, 'deductions.trilliumPropertyTaxAmount') ? data.deductions.trilliumPropertyTaxAmount : 0) autocomplete='off' aria-describedby=(errors && errors.trilliumPropertyTaxAmount ? 'trilliumPropertyTaxAmount-error' : false) aria-labelledby="trilliumPropertyTaxAmount__label trilliumPropertyTaxAmount__unit")
+
+    input#redirect(name='redirect', type='hidden', value='/review')
+
+    +formButtons('Continue')

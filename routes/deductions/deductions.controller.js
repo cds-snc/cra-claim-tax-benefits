@@ -64,6 +64,10 @@ module.exports = function(app) {
     checkErrors('deductions/trillium-rent-amount'),
     postTrilliumRentAmount,
   )
+
+  app.get('/trillium/propertyTax/amount', (req, res) =>
+    res.render('deductions/trillium-propertyTax-amount', { data: req.session }),
+  )
 }
 
 //Start of RRSP controller functions

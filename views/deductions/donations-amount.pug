@@ -18,6 +18,6 @@ block content
       span#donations__unit.input-with-unit__unit(for='donationsAmount') $
       input.w-1-2.input-with-unit#donations(name='donationsAmount', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.donations ? 'donations-error' : false) aria-labelledby="donations__label donations__unit")
 
-    input#redirect(name='redirect', type='hidden', value='/review')
+    input#redirect(name='redirect', type='hidden', value='/trillium/rent/amount')
 
     +formButtons('Continue', '/deductions/donations')

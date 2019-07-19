@@ -11,12 +11,7 @@ block content
     p #{__('Please enter your RRSP contributions for the current tax year (filing for 2018)')}
 
   form.cra-form(method='post')
-    div(class={['has-error']: errors && errors.rrspAmount})
-      label#rrspAmount__label(for='rrspAmount') #{__('Total RRSP contributions')}
-      if errors
-        +validationMessage(errors.rrspAmount.msg, 'rrspAmount')
-      span#rrspAmount__unit.input-with-unit__unit(for='rrspAmount') $
-      input.w-1-2.input-with-unit#rrspAmount(name='rrspAmount', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.rrspAmount ? 'rrspAmount-error' : false) aria-labelledby="rrspAmount__label rrspAmount__unit")
+    +textInputUnit(null, ['w-1-2'], 'rrspAmount', 'Total RRSP contributions', null, null, '$', '0.00')
 
     input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
 

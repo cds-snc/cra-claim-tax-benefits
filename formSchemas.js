@@ -315,6 +315,15 @@ const trilliumlongTermCareAmountSchema = {
   trilliumLongTermCareAmount: currencySchema(),
 }
 
+const reviewSchema = {
+  review: {
+    isIn: {
+      errorMessage: 'errors.review',
+      options: [['review']],
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
   maritalStatusSchema,
@@ -330,5 +339,6 @@ module.exports = {
   trilliumPropertyTaxAmountSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareAmountSchema,
+  reviewSchema,
   authSchema,
 }

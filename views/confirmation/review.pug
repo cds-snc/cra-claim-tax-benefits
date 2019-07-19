@@ -17,12 +17,14 @@ block content
     p Once you have provided your consent, please go ahead and submit.
 
   form.cra-form(method='post')
-    div(class={['has-error']: errors && errors.consent})
+    div(class={['has-error']: errors && errors.review})
       .multiple-choice
         if errors
-          +validationMessage(errors.consent.msg, key)
+          +validationMessage(errors.review.msg, key)
         .multiple-choice__item
-          input(id='consent' name='consent' type="checkbox" value="consent" checked=(value =='consent') aria-describedby=(errors ? `consent-error` : false))
-          label(for='consent') #{__('I totally consent to this')}
+          input(id='review' name='review' type="checkbox" value="review" checked=(value =='review') aria-describedby=(errors ? `review-error` : false))
+          label(for='review') I totally consent to this
+
+    input#redirect(name='redirect', type='hidden', value='/confirmation')
 
     +formButtons('Submit my return')

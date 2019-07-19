@@ -1,0 +1,21 @@
+extends ../base
+
+block variables
+  -var title = __('Public long-term care home costs')
+  -var trilliumLongTermCareAmount = hasData(data, 'deductions.trilliumLongTermCareAmount') ? data.deductions.trilliumLongTermCareAmount : '0'
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('Please enter the total amount paid for accommodation in a public long-term care home in 2018.')}
+
+    p #{__('Leave the field as')} <strong>0</strong>, #{__('if this doesn’t apply to you or if you don’t have the receipts to verify this information later.')}
+
+  form.cra-form(method='post')
+    +textInput('Accommodation costs in 2018')(class='w-1-2 input-with-unit' name='trilliumLongTermCareAmount' placeholder='0.00' aria-labelledby='trilliumLongTermCareAmount__unit trilliumLongTermCareAmount__label' value=trilliumLongTermCareAmount)
+
+    input#redirect(name='redirect', type='hidden', value='/review')
+
+    +formButtons('Continue')

@@ -15,24 +15,24 @@ block content
     div(class={['has-error']: errors && errors.maritalStatus})
         fieldset.fieldset
             legend.fieldset__legend #{__('Marital Status')}
-            .radios
+            .multiple-choice.multiple-choice--radios
                 if errors
                   +validationMessage(errors.maritalStatus.msg, 'maritalStatus')
-                .radios__item
-                    input.radios__input(id="maritalStatusSingle" name="maritalStatus" type="radio" value="Single" checked=(maritalStatus.toLowerCase()=='single') aria-describedby=(errors ? 'maritalStatus-error' : false))
-                    label.radios__label(for="maritalStatusSingle") Single
-                .radios__item
-                    input.radios__input(id="maritalStatusMarried" name="maritalStatus" type="radio" value="Married" checked=(maritalStatus.toLowerCase()=='married' || !data) aria-describedby=(errors ? 'maritalStatus-error' : false))
-                    label.radios__label(for="maritalStatusMarried") Married or common-law
-                .radios__item
-                    input.radios__input(id="maritalStatusSeparated" name="maritalStatus" type="radio" value="Separated" checked=(maritalStatus.toLowerCase()=='separated') aria-describedby=(errors ? 'maritalStatus-error' : false))
-                    label.radios__label(for="maritalStatusSeparated") Separated
-                .radios__item
-                    input.radios__input(id="maritalStatusDivorced" name="maritalStatus" type="radio" value="Divorced" checked=(maritalStatus.toLowerCase()=='divorced') aria-describedby=(errors ? 'maritalStatus-error' : false))
-                    label.radios__label(for="maritalStatusDivorced") Divorced
-                .radios__item
-                    input.radios__input(id="maritalStatusWidowed" name="maritalStatus" type="radio" value="Widowed" checked=(maritalStatus.toLowerCase()=='widowed') aria-describedby=(errors ? 'maritalStatus-error' : false))
-                    label.radios__label(for="maritalStatusWidowed") Widowed
+                .multiple-choice__item
+                    input(id="maritalStatusSingle" name="maritalStatus" type="radio" value="Single" checked=(maritalStatus.toLowerCase()=='single') aria-describedby=(errors ? 'maritalStatus-error' : false))
+                    label(for="maritalStatusSingle") Single
+                .multiple-choice__item
+                    input(id="maritalStatusMarried" name="maritalStatus" type="radio" value="Married" checked=(maritalStatus.toLowerCase()=='married' || !data) aria-describedby=(errors ? 'maritalStatus-error' : false))
+                    label(for="maritalStatusMarried") Married or common-law
+                .multiple-choice__item
+                    input(id="maritalStatusSeparated" name="maritalStatus" type="radio" value="Separated" checked=(maritalStatus.toLowerCase()=='separated') aria-describedby=(errors ? 'maritalStatus-error' : false))
+                    label(for="maritalStatusSeparated") Separated
+                .multiple-choice__item
+                    input(id="maritalStatusDivorced" name="maritalStatus" type="radio" value="Divorced" checked=(maritalStatus.toLowerCase()=='divorced') aria-describedby=(errors ? 'maritalStatus-error' : false))
+                    label(for="maritalStatusDivorced") Divorced
+                .multiple-choice__item
+                    input(id="maritalStatusWidowed" name="maritalStatus" type="radio" value="Widowed" checked=(maritalStatus.toLowerCase()=='widowed') aria-describedby=(errors ? 'maritalStatus-error' : false))
+                    label(for="maritalStatusWidowed") Widowed
 
     input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
 

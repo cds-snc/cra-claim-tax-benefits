@@ -303,6 +303,27 @@ const trilliumRentAmountSchema = {
   trilliumRentAmount: currencySchema(),
 }
 
+const trilliumPropertyTaxAmountSchema = {
+  trilliumPropertyTaxAmount: currencySchema(),
+}
+
+const trilliumEnergyAmountSchema = {
+  trilliumEnergyAmount: currencySchema(),
+}
+
+const trilliumlongTermCareAmountSchema = {
+  trilliumLongTermCareAmount: currencySchema(),
+}
+
+const reviewSchema = {
+  review: {
+    isIn: {
+      errorMessage: 'errors.review',
+      options: [['review']],
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
   maritalStatusSchema,
@@ -315,5 +336,9 @@ module.exports = {
   donationsSchema,
   donationsAmountSchema,
   trilliumRentAmountSchema,
+  trilliumPropertyTaxAmountSchema,
+  trilliumEnergyAmountSchema,
+  trilliumlongTermCareAmountSchema,
+  reviewSchema,
   authSchema,
 }

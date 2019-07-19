@@ -1,0 +1,21 @@
+extends ../base
+
+block variables
+  -var title = __('Enter property tax paid in 2018')
+  -var trilliumPropertyTaxAmount = hasData(data, 'deductions.trilliumPropertyTaxAmount') ? data.deductions.trilliumPropertyTaxAmount : '0'
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('Please enter the total property tax paid for your principal residence in 2018.')}
+
+    p #{__('Leave the field as')} <strong>0</strong>, #{__('if you paid no property tax in 2018 or if you don’t have the receipts to verify this information later.')}
+
+  form.cra-form(method='post')
+    +textInput('Total property tax in 2018')(class='w-1-2 input-with-unit' name='trilliumPropertyTaxAmount' placeholder='0.00' aria-labelledby='trilliumPropertyTaxAmount__unit trilliumPropertyTaxAmount__label' value=trilliumPropertyTaxAmount)
+
+    input#redirect(name='redirect', type='hidden', value='/trillium/energy/amount')
+
+    +formButtons('Continue')

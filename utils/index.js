@@ -166,6 +166,12 @@ const hasData = (obj, key) => {
   })
 }
 
+const currencyFilter = (number, fractionDigits = 2) => {
+  const amount = Number(number);
+
+  return amount.toLocaleString('en-US', {minimumFractionDigits:fractionDigits,maximumFractionDigits:fractionDigits})
+}
+
 module.exports = {
   errorArray2ErrorObject,
   validateRedirect,
@@ -174,4 +180,5 @@ module.exports = {
   SINFilter,
   hasData,
   checkPublic,
+  currencyFilter,
 }

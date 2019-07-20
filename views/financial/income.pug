@@ -3,6 +3,11 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = 'Confirm your income information'
+  -var income = hasData(data, 'financial.income') ? data.financial.income : {}
+  -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
+  -var totalIncome = hasData(data, 'financial.totalIncome') ? data.financial.totalIncome : 0
+  -var totalTax = hasData(data, 'financial.totalTax') ? data.financial.totalTax : 0
+  - var count = 1;
 
 block content
 
@@ -11,58 +16,45 @@ block content
   div
     p Here's what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.
 
-  div
-    table.breakdown-table
-      thead
-        tr
-          th.breakdown-table__heading Total income earned in 2018:
-          th.breakdown-table__heading $28,000
-      tbody
-        tr
-          th(colspan="2").breakdown-table__subheading Detailed breakdown of income earned in 2018:
-        tr
-          td Employer 1 Total Income: 
-          td $11,000.00
-        tr
-          td Employer 1 Net Income: 
-          td $10,446.00
-        tr
-          td Employer 2 Total Income: 
-          td $17,000.00
-        tr
-          td Employer 2 Net Income: 
-          td $12,772.00
-        tr.breakdown-table__summary-row
-          td Total Income for 2018: 
-          td $28,000.00
-        tr.breakdown-table__summary-row
-          td Net Income for 2018: 
-          td $23,218.00
+  if income
+    div
+      table.breakdown-table
+        thead
+          tr
+            th.breakdown-table__heading Total income earned in 2018:
+            th.breakdown-table__heading $#{currencyFilter(totalIncome, 0)}
+        tbody
+          tr
+            th(colspan="2").breakdown-table__subheading Detailed breakdown of income earned in 2018:
+          each employer in income
+            tr
+              td Employer #{count} Total Income:
+              td $#{currencyFilter(employer.total)}
+
+            - count++
+
+          tr.breakdown-table__summary-row
+            td Total Income for 2018: 
+            td $#{currencyFilter(totalIncome)}
 
   div
     table.breakdown-table
       thead
         tr
           th.breakdown-table__heading Total tax:
-          th.breakdown-table__heading $4,782
+          th.breakdown-table__heading $#{currencyFilter(totalTax, 0)}
       tbody
         tr
           th(colspan="2").breakdown-table__subheading Detailed breakdown of taxes paid in 2018:
-        tr
-          td Federal tax deduction: 
-          td $1,998.00
-        tr
-          td Provincial tax deduction: 
-          td $1,106.00
-        tr
-          td CPP deduction: 
-          td $1,213.00
-        tr
-          td EI deduction:
-          td $456.00
+
+        each tax in taxes
+          tr
+            td #{tax.name} deduction: 
+            td $#{currencyFilter(tax.amount)}
+            
         tr.breakdown-table__summary-row
           td Total tax paid for 2018:
-          td $4,782.00
+          td $#{currencyFilter(totalTax)}
 
   //- TODO: yes no with deets
   +yesNoRadios('confirmIncome', null, 'Is this information correct?', errors)

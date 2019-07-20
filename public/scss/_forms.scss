@@ -182,7 +182,8 @@ form.cra-form {
     padding: 10px 28px;
   }
 
-  tr td:last-child {
+  tr td:last-child,
+  tr th.breakdown-table__heading:last-child  {
     text-align: right;
   }
 

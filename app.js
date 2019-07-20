@@ -13,7 +13,7 @@ const express = require('express'),
   path = require('path'),
   cookieSession = require('cookie-session'),
   cookieSessionConfig = require('./config/cookieSession.config'),
-  { SINFilter, hasData, checkPublic } = require('./utils')
+  { SINFilter, hasData, checkPublic, currencyFilter } = require('./utils')
 
 // initialize application.
 var app = express()
@@ -67,6 +67,7 @@ app.use(checkPublic)
 app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
 app.locals.SINFilter = SINFilter
 app.locals.hasData = hasData
+app.locals.currencyFilter = currencyFilter
 
 // configure routes
 require('./routes/start/start.controller')(app)

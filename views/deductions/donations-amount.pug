@@ -2,6 +2,7 @@ extends ../base
 
 block variables
   -var title = __('Enter your charitable donations')
+  -var donationsAmount = hasData(data, 'deductions.donationsAmount') & data.deductions.donationsAmount !== 0 ? data.deductions.donationsAmount : ''
 
 block content
 
@@ -11,7 +12,7 @@ block content
     p #{__('Please enter your charitable donations into the fields below.')}
 
   form.cra-form(method='post')
-    +textInput('Total donations made to registered charities')(class='w-1-2 input-with-unit' name='donationsAmount' placeholder='0.00' aria-labelledby='donationsAmount__unit donationsAmount__label')
+    +textInput('Total donations made to registered charities')(class='w-1-2 input-with-unit' name='donationsAmount' placeholder='0.00' aria-labelledby='donationsAmount__unit donationsAmount__label' value=donationsAmount)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/rent/amount')
 

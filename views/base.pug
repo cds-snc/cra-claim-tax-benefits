@@ -29,8 +29,7 @@ html(lang=getLocale() === 'fr' ? 'fr' : 'en')
     .container
       header
         .page--container
-          .language-link
-            a(lang=getLocale() === 'fr' ? 'en' : 'fr' href="#") Français
+          include _includes/languageLink
           //- can also potentially put these as strings in our locales file
           .canada-flag
             if getLocale() == 'fr'

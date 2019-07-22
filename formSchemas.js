@@ -289,6 +289,35 @@ const donationsAmountSchema = {
   donationsAmount: currencySchema(),
 }
 
+const politicalSchema = {
+  politicalClaim: yesNoSchema(),
+}
+
+const politicalAmountSchema = {
+  politicalProvincialAmount: {
+    customSanitizer: {
+      options: value => {
+        return value ? value : 0 //if blank we want to assume they meant 0
+      },
+    },
+    isCurrency: {
+      errorMessage: 'errors.politicalAmount', //Both federal and provincial have the same error message
+      options: { allow_negatives: false },
+    },
+  },
+  politicalFederalAmount: {
+    customSanitizer: {
+      options: value => {
+        return value ? value : 0 //if blank we want to assume they meant 0
+      },
+    },
+    isCurrency: {
+      errorMessage: 'errors.politicalAmount', //Both federal and provincial have the same error message
+      options: { allow_negatives: false },
+    },
+  },
+}
+
 const residenceSchema = {
   residence: {
     isIn: {
@@ -365,6 +394,8 @@ module.exports = {
   trilliumlongTermCareAmountSchema,
   trilliumStudentResidenceSchema,
   reviewSchema,
+  politicalSchema,
+  politicalAmountSchema,
   authSchema,
   incomeSchema,
 }

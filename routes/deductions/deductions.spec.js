@@ -2,6 +2,7 @@ const request = require('supertest')
 const app = require('../../app.js')
 
 describe('Test /deductions responses', () => {
+  //Start of RRSP section
   describe('Test /deductions/rrsp responses', () => {
     test('it redirects to the edit page when posting "Yes"', async () => {
       const response = await request(app)
@@ -39,6 +40,82 @@ describe('Test /deductions responses', () => {
     })
   })
 
+  //Start of political donations
+  describe('Test /deductions/political responses', () => {
+    test('it returns a 200 response for /deductions/political', async () => {
+      const response = await request(app).get('/deductions/political')
+      expect(response.statusCode).toBe(200)
+    })
+
+    test('it returns a 422 response for no posted value', async () => {
+      const response = await request(app)
+        .post('/deductions/political')
+        .send({ redirect: '/' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    //Bad Federal amounts, good provincial amounts
+    const badFederalPoliticalAmounts = ['dinosaur', '10.0', '10.000', '-10', '.1']
+    badFederalPoliticalAmounts.map(politicalFederalAmount => {
+      test(`it returns a 422 for a bad federal and good provincial posted value: "${politicalFederalAmount}"`, async () => {
+        const politicalProvincialAmount = 10
+        const response = await request(app)
+          .post('/deductions/political/amount')
+          .send({
+            politicalFederalAmount,
+            politicalProvincialAmount,
+            redirect: '/',
+          })
+        expect(response.statusCode).toBe(422)
+      })
+    })
+
+    //Bad provincial amounts, good federal amounts
+    const badPoliticalProvincialAmount = ['dinosaur', '10.0', '10.000', '-10', '.1']
+    badPoliticalProvincialAmount.map(politicalProvincialAmount => {
+      test(`it returns a 422 for a bad provincial and good federal posted value: "${politicalProvincialAmount}"`, async () => {
+        const politicalFederalAmount = 10
+        const response = await request(app)
+          .post('/deductions/political/amount')
+          .send({
+            politicalFederalAmount,
+            politicalProvincialAmount,
+            redirect: '/',
+          })
+        expect(response.statusCode).toBe(422)
+      })
+    })
+
+    //Bad provincial amounts, bad federal amounts
+    const badPoliticalAmount = ['dinosaur', '10.0', '10.000', '-10', '.1']
+    badPoliticalAmount.map(politicalAmount => {
+      test(`it returns a 422 for a bad provincial and bad federal posted value: "${politicalAmount}"`, async () => {
+        const response = await request(app)
+          .post('/deductions/political/amount')
+          .send({
+            politicalFederalAmount: politicalAmount,
+            politicalProvincialAmount: politicalAmount,
+            redirect: '/',
+          })
+        expect(response.statusCode).toBe(422)
+      })
+    })
+
+    //Good provincial amounts, good federal amounts
+    const goodPoliticalAmounts = ['', null, '0', '10', '10.00', '.10'] //For this page empty is a valid value to pass
+    goodPoliticalAmounts.map(politicalAmount => {
+      test(`it returns a 302 for both good posted value: "${politicalAmount}"`, async () => {
+        const response = await request(app)
+          .post('/deductions/political/amount')
+          .send({
+            politicalFederalAmount: politicalAmount,
+            politicalProvincialAmount: politicalAmount,
+            redirect: '/',
+          })
+        expect(response.statusCode).toBe(302)
+      })
+    })
+  })
   // Start of the trillium student residence section
   describe('Test /trillium/studentResidence responses', () => {
     test('it redirects to the posted redirect url when posting "Yes"', async () => {
@@ -71,6 +148,10 @@ describe('Test /deductions responses', () => {
       {
         url: '/trillium/studentResidence',
         key: 'trilliumStudentResidence',
+      },
+      {
+        url: '/deductions/political',
+        key: 'politicalClaim',
       },
     ]
 

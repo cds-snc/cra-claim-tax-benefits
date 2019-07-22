@@ -5,6 +5,8 @@ const {
   rrspAmountSchema,
   donationsSchema,
   donationsAmountSchema,
+  politicalSchema,
+  politicalAmountSchema,
   trilliumRentAmountSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumStudentResidenceSchema,
@@ -12,7 +14,7 @@ const {
   trilliumlongTermCareAmountSchema,
 } = require('./../../formSchemas.js')
 
-module.exports = function(app) {
+module.exports = function (app) {
   //Start of RRSP Section
   app.get('/deductions/rrsp', (req, res) => res.render('deductions/rrsp', { data: req.session }))
   app.post(
@@ -57,6 +59,27 @@ module.exports = function(app) {
   )
   //End of Charitable Donations Section
 
+  //Start of Political Donations Section
+  app.get('/deductions/political', (req, res) => res.render('deductions/political', { data: req.session }))
+  app.post(
+    '/deductions/political',
+    validateRedirect,
+    checkSchema(politicalSchema),
+    checkErrors('deductions/political'),
+    postPolitical,
+  )
+  app.get('/deductions/political/amount', (req, res) =>
+    res.render('deductions/political-amount', { data: req.session }),
+  )
+  app.post(
+    '/deductions/political/amount',
+    validateRedirect,
+    checkSchema(politicalAmountSchema),
+    checkErrors('deductions/political-amount'),
+    postPoliticalAmount,
+  )
+  //End of Charitable Donations Section
+
   //Start of Trillum Section
   app.get('/trillium/rent/amount', (req, res) =>
     res.render('deductions/trillium-rent-amount', { data: req.session }),
@@ -68,6 +91,7 @@ module.exports = function(app) {
     checkErrors('deductions/trillium-rent-amount'),
     postTrilliumRentAmount,
   )
+
 
   app.get('/trillium/propertyTax/amount', (req, res) =>
     res.render('deductions/trillium-propertyTax-amount', { data: req.session }),
@@ -197,7 +221,32 @@ const postTrilliumEnergyAmount = (req, res) => {
 
 const postTrilliumLongTermCareAmount = (req, res) => {
   req.session.deductions.trilliumLongTermCareAmount = req.body.trilliumLongTermCareAmount
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+
+//Start of Political Political controller functions
+const postPolitical = (req, res) => {
+  const politicalClaim = req.body.politicalClaim
+
+  if (politicalClaim === 'Yes') {
+    req.session.deductions.politicalClaim = true
+
+    // It's fine not having this in the form itself (like the other redirect value)
+    // because these two pages are hardcoded together
+    return res.redirect('/deductions/political/amount')
+  }
+
+  req.session.deductions.politicalClaim = false
 
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)
 }
+
+const postPoliticalAmount = (req, res) => {
+  req.session.deductions.politicalAmount = req.body.politicalAmount
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+
+

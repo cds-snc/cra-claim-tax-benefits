@@ -286,12 +286,7 @@ const donationsAmountSchema = {
 }
 
 const politicalSchema = {
-  politicalClaim: {
-    isIn: {
-      errorMessage: 'errors.politicalClaim',
-      options: [['Yes', 'No']],
-    },
-  },
+  politicalClaim: yesNoSchema(),
 }
 
 const politicalAmountSchema = {

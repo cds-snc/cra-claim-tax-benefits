@@ -201,10 +201,9 @@ form.cra-form {
 
   &__subheading {
     text-align: left;
-    text-decoration: underline;
     font-weight: 400;
     padding: 10px 28px;
-    padding-bottom: 20px;
+    padding-bottom: $space-md;
   }
 
   &__summary-row {

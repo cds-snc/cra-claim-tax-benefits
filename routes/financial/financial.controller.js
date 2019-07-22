@@ -1,5 +1,3 @@
-//TODO: remove this once we have the user json updated
-const income = require('./testIncome.json')
 const { checkSchema } = require('express-validator')
 const { validateRedirect, checkErrors } = require('./../../utils')
 const { incomeSchema } = require('./../../formSchemas.js')
@@ -7,10 +5,7 @@ const { incomeSchema } = require('./../../formSchemas.js')
 module.exports = function(app) {
   app.get('/financial/income', (req, res) =>
   //TODO: update this with proper date later
-    res.render('financial/income', { data: {
-      ...req.session,
-      financial: income,
-    } || {} }),
+    res.render('financial/income', { data: req.session }),
   )
 
   app.post(

@@ -109,19 +109,19 @@
 
 .multiple-choice__item {
   .no-info {
-    max-width: 500px;
-    transition-property: all;
-    transition-duration: .5s;
+    max-width: 600px;
     margin-left: -40px;
 
     p {
-      margin: 0;
+      &:first-child {
+        margin: 0;
+      }
     }
 
     &__wrapper {
-      margin-top:40px;
-      padding: 20px;
-      padding-left: 30px;
+      margin-top: $space-md;
+      padding: $space-md;
+      padding-left: $space-lg;
       border-left: 2px solid $color-grey-dark;
     }
   }
@@ -132,6 +132,5 @@
   }
   > input:checked + label + .no-info {
     overflow-y: hidden;
-    max-height: 500px; /* approximate max height */
   }
 }

@@ -10,7 +10,7 @@ describe('Test /financial responses', () => {
   test('it returns a 422 with no option selected', async () => {
     const response = await request(app)
       .post('/financial/income')
-      .send({ redirect: '/financial/income' })
+      .send({ redirect: '/deductions/rrsp' })
     expect(response.statusCode).toBe(422)
   })
 
@@ -25,8 +25,8 @@ describe('Test /financial responses', () => {
   test('it returns a 302 and redirects to the same page when YES is selected', async () => {
     const response = await request(app)
       .post('/financial/income')
-      .send({ confirmIncome: 'Yes', redirect: '/financial/income' })
+      .send({ confirmIncome: 'Yes', redirect: '/deductions/rrsp' })
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toEqual('/financial/income')
+    expect(response.headers.location).toEqual('/deductions/rrsp')
   })
 })

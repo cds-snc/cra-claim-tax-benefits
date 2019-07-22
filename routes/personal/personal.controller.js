@@ -60,7 +60,7 @@ const postMaritalStatus = (req, res) => {
 }
 
 const postResidence = (req, res) => {
-  if (req.body.residence !== 'Yes') {
+  if (req.body.residence !== 'Ontario') {
     return res.redirect('/offramp')
   }
 

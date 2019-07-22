@@ -20,6 +20,7 @@
   "errors.address.province": "Please select a valid province",
   "errors.rrspClaim": "You must select one of the options",
   "errors.currency": "Enter a dollar amount higher than 0, like 120.00",
+  "errors.yesNo": "You must select one of the options",
   "errors.address.province.province": "errors.address.province.province",
   "errors.residence": "You must select one of the options",
   "errors.donationsClaim": "You must select one of the options",
@@ -156,5 +157,7 @@
   "if this doesn’t apply to you or if you don’t have the receipts to verify this information later.": "if this doesn’t apply to you or if you don’t have the receipts to verify this information later.",
   "Accommodation costs in 2018": "Accommodation costs in 2018",
   "Review your estimated benefits": "Review your estimated benefits",
-  "Submit my return": "Submit my return"
+  "Submit my return": "Submit my return",
+  "Designated student residence": "Designated student residence",
+  "Did you live in a designated student residence in 2018?": "Did you live in a designated student residence in 2018?"
 }

@@ -9,6 +9,15 @@ const currencySchema = (errorMessageString = 'errors.currency') => {
   }
 }
 
+const yesNoSchema = (errorMessageString = 'errors.yesNo') => {
+  return {
+    isIn: {
+      errorMessage: errorMessageString,
+      options: [['Yes', 'No']],
+    },
+  }
+}
+
 /**
  * Runs an array of validators over a value
  * this is a workaround I found to allow multiple custom validators
@@ -261,12 +270,7 @@ const addressSchema = {
 }
 
 const rrspSchema = {
-  rrspClaim: {
-    isIn: {
-      errorMessage: 'errors.rrspClaim',
-      options: [['Yes', 'No']],
-    },
-  },
+  rrspClaim: yesNoSchema(),
 }
 
 const incomeSchema = {
@@ -283,12 +287,7 @@ const rrspAmountSchema = {
 }
 
 const donationsSchema = {
-  donationsClaim: {
-    isIn: {
-      errorMessage: 'errors.donationsClaim',
-      options: [['Yes', 'No']],
-    },
-  },
+  donationsClaim: yesNoSchema(),
 }
 
 const donationsAmountSchema = {
@@ -296,12 +295,7 @@ const donationsAmountSchema = {
 }
 
 const residenceSchema = {
-  residence: {
-    isIn: {
-      errorMessage: 'errors.residence',
-      options: [['Yes', 'No']],
-    },
-  },
+  residence: yesNoSchema(),
 }
 
 const authSchema = {
@@ -314,6 +308,10 @@ const trilliumRentAmountSchema = {
 
 const trilliumPropertyTaxAmountSchema = {
   trilliumPropertyTaxAmount: currencySchema(),
+}
+
+const trilliumStudentResidenceSchema = {
+  trilliumStudentResidence: yesNoSchema(),
 }
 
 const trilliumEnergyAmountSchema = {
@@ -348,6 +346,7 @@ module.exports = {
   trilliumPropertyTaxAmountSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareAmountSchema,
+  trilliumStudentResidenceSchema,
   reviewSchema,
   authSchema,
   incomeSchema,

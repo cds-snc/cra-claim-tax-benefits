@@ -15,7 +15,7 @@ describe('Test server responses', () => {
   })
 
   describe('it renders the h1 text for the /start path', () => {
-    test('in English', async () => {
+    test('in English with a language header', async () => {
       const response = await request(app)
         .get('/start')
         .set('Accept-Language', 'en')
@@ -25,10 +25,34 @@ describe('Test server responses', () => {
       expect($('html').attr('lang')).toEqual('en')
     })
 
-    test('in French', async () => {
+    test('in English with the "en" query param', async () => {
+      const response = await request(app).get('/start?lang=en')
+
+      const $ = cheerio.load(response.text)
+      expect($('h1').text()).toEqual('Claim Tax Benefits')
+      expect($('html').attr('lang')).toEqual('en')
+    })
+
+    test('in English with a bad query param', async () => {
+      const response = await request(app).get('/start?lang=pt')
+
+      const $ = cheerio.load(response.text)
+      expect($('h1').text()).toEqual('Claim Tax Benefits')
+      expect($('html').attr('lang')).toEqual('en')
+    })
+
+    test('in French with a language header', async () => {
       const response = await request(app)
         .get('/start')
         .set('Accept-Language', 'fr-CA, fr;q=0.9, en;q=0.8')
+
+      const $ = cheerio.load(response.text)
+      expect($('h1').text()).toEqual('Réclamer des avantages fiscaux')
+      expect($('html').attr('lang')).toEqual('fr')
+    })
+
+    test('in French with an "fr" query param', async () => {
+      const response = await request(app).get('/start?lang=fr')
 
       const $ = cheerio.load(response.text)
       expect($('h1').text()).toEqual('Réclamer des avantages fiscaux')

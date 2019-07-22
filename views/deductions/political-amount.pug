@@ -1,0 +1,33 @@
+extends ../base
+
+block variables
+  -var title = __('Enter your Charitable political')
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('Please enter your political contributions into the fields below.')}
+
+  form.cra-form(method='post')
+    div(class={['has-error']: errors && errors.politicalFederalAmount})
+      label#politicalFederal__label(for='politicalAmountFederal') #{__('Total federal contributions')}
+      if errors && errors.politicalFederalAmount
+        +validationMessage(errors.politicalFederalAmount.msg, 'politicalFederal')
+      span#political__unit.input-with-unit__unit(for='politicalFederalAmount') $
+      input.w-1-2.input-with-unit#political(name='politicalFederalAmount', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.politicalFederal ? 'politicalFederalAmount-error' : false) aria-labelledby="politicalFederalAmount__label political__unit")
+    div(class={['has-error']: errors && errors.politicalProvincialAmount})
+      label#politicalProvincial__label(for='politicalProvincialAmount') #{__('Total provincial contributions')}
+      if errors && errors.politicalProvincialAmount
+        +validationMessage(errors.politicalProvincialAmount.msg, 'politicalProvincial')
+      span#political__unit.input-with-unit__unit(for='politicalProvincialAmount') $
+      input.w-1-2.input-with-unit#political(name='politicalProvincialAmount', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.politicalProvincialAmount ? 'politicalProvincialAmount-error' : false) aria-labelledby="politicalProvincialAmount__label political__unit")
+
+    input#redirect(name='redirect', type='hidden', value='/deductions/donations')
+
+    .buttons
+      .buttons--left
+        button(type='submit') #{__('Continue')}
+      .buttons--right
+        a.button-link.transparent(href='/deductions/political') #{__('Cancel')}

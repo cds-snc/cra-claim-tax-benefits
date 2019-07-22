@@ -377,6 +377,10 @@ const reviewSchema = {
   },
 }
 
+const climateActionIncentiveSchema = {
+  climateActionIncentiveSchema: yesNoSchema(),
+}
+
 module.exports = {
   loginSchema,
   maritalStatusSchema,
@@ -393,6 +397,7 @@ module.exports = {
   trilliumEnergyAmountSchema,
   trilliumlongTermCareAmountSchema,
   trilliumStudentResidenceSchema,
+  climateActionIncentiveSchema,
   reviewSchema,
   politicalSchema,
   politicalAmountSchema,

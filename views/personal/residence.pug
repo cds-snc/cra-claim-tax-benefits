@@ -13,12 +13,11 @@ block content
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.residence})
-      label.requiredField(for='residence')
-        | Province or Territory of Residence
-        if errors
+      label.resLabel(for='residence', name="residence-label") 
+        span #{__('Province or Territory of Residence')}
+      if errors
           +validationMessage(errors.residence.msg, 'residence')
-        select(name='residence', aria-describedby=(errors && errors.residence ? 'residence-error' : false))
-          option(disabled='', selected='selected', value='')  ---- Select your province of residence ----
+      select(name='residence', aria-describedby=(errors && errors.residence ? 'residence-error' : false))
           option(value='Alberta') #{__('Alberta')}
           option(value='British Columbia') #{__('British Columbia')}
           option(value='Manitoba') #{__('Manitoba')}
@@ -27,7 +26,7 @@ block content
           option(value='Northwest Territories') #{__('Northwest Territories')}
           option(value='Nova Scotia') #{__('Nova Scotia')} 
           option(value='Nunavut') #{__('Nunavut')} 
-          option(value='Ontario') #{__('Ontario')} 
+          option(value='Ontario', selected='selected') #{__('Ontario')} 
           option(value='Prince Edward Island') #{__('Prince Edward Island')} 
           option(value='Quebec') #{__('Quebec')} 
           option(value='Saskatchewan') #{__('Saskatchewan')} 

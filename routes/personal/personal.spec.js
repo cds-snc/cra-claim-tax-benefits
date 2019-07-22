@@ -74,17 +74,17 @@ describe('Test /personal responses', () => {
       expect(response.statusCode).toBe(422)
     })
 
-    test('it returns a 302 when selecting NO', async () => {
+    test('it returns a 302 when selecting unsupported province', async () => {
       const response = await request(app)
         .post('/personal/residence')
-        .send({ redirect: '/offramp', residence: 'No' })
+        .send({ redirect: '/offramp', residence: 'Alberta' })
       expect(response.statusCode).toBe(302)
     })
 
-    test('it returns a 302 when selecting YES', async () => {
+    test('it returns a 302 when selecting Ontario', async () => {
       const response = await request(app)
         .post('/personal/residence')
-        .send({ redirect: '/personal/address', residence: 'Yes' })
+        .send({ redirect: '/personal/address', residence: 'Ontario' })
       expect(response.statusCode).toBe(302)
     })
   })

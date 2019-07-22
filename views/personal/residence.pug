@@ -1,5 +1,4 @@
 extends ../base
-include ../_includes/yesNoRadios
 
 block variables
   -var title = 'Confirm you are an Ontario resident'
@@ -13,7 +12,26 @@ block content
 
 
   form.cra-form(method='post')
-    +yesNoRadios('residence', residence, 'Ontario resident on December 31, 2018?', errors)
+    div(class={['has-error']: errors && errors.residence})
+      label.provinceOfRes__label.requiredField(for='residence')
+        | Province or Territory of Residence
+        if errors
+          +validationMessage(errors.residence.msg, 'residence')
+        select.residence(name='residence', aria-describedby=(errors && errors.residence ? 'residence-error' : false))
+          option(disabled='', selected='selected', value='')  -- select a province --
+          option(value='Alberta') Alberta
+          option(value='British Columbia') British Columbia
+          option(value='Manitoba') Manitoba
+          option(value='New Brunswick') New Brunswick
+          option(value='Newfoundland And Labrador') Newfoundland and Labrador
+          option(value='Northwest Territories') Northwest Territories
+          option(value='Nova Scotia') Nova Scotia
+          option(value='Nunavut') Nunavut
+          option(value='Ontario') Ontario
+          option(value='Prince Edward Island') Prince Edward Island
+          option(value='Quebec') Quebec
+          option(value='Saskatchewan') Saskatchewan
+          option(value='Yukon') Yukon
 
     input#redirect(name='redirect', type='hidden', value='/personal/address')
 

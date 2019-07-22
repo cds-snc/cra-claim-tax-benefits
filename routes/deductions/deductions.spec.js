@@ -188,6 +188,7 @@ describe('Test /deductions responses', () => {
       })
     })
   })
+
   describe('Test /deductions/*/amount responses', () => {
     const amountReponses = [
       {

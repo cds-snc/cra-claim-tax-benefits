@@ -304,6 +304,7 @@ const residenceSchema = {
           'Quebec',
           'Saskatchewan',
           'Yukon',
+          'Non Resident',
         ],
       ],
     },

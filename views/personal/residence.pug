@@ -1,38 +1,38 @@
 extends ../base
 
 block variables
-  -var title = 'Confirm you are an Ontario resident'
+  -var title = 'Confirm your province or territory of residence'
 
 block content
 
   h1 #{__(title)}
 
   div
-    p #{__('In order to be eligible for this service, your primary residence on December 31, 2018, must have been in Ontario.')}
+    p #{__('In order to be eligible for this service, your primary residence on December 31, 2018, must have been in Ontario. If you live outside of Ontario, we will provide you with alternative options in which you can complete your tax return.')}
 
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.residence})
-      label.provinceOfRes__label.requiredField(for='residence')
+      label.requiredField(for='residence')
         | Province or Territory of Residence
         if errors
           +validationMessage(errors.residence.msg, 'residence')
-        select.residence(name='residence', aria-describedby=(errors && errors.residence ? 'residence-error' : false))
-          option(disabled='', selected='selected', value='')  -- select a province --
-          option(value='Alberta') Alberta
-          option(value='British Columbia') British Columbia
-          option(value='Manitoba') Manitoba
-          option(value='New Brunswick') New Brunswick
-          option(value='Newfoundland And Labrador') Newfoundland and Labrador
-          option(value='Northwest Territories') Northwest Territories
-          option(value='Nova Scotia') Nova Scotia
-          option(value='Nunavut') Nunavut
-          option(value='Ontario') Ontario
-          option(value='Prince Edward Island') Prince Edward Island
-          option(value='Quebec') Quebec
-          option(value='Saskatchewan') Saskatchewan
-          option(value='Yukon') Yukon
-
+        select(name='residence', aria-describedby=(errors && errors.residence ? 'residence-error' : false))
+          option(disabled='', selected='selected', value='')  ---- Select your province of residence ----
+          option(value='Alberta') #{__('Alberta')}
+          option(value='British Columbia') #{__('British Columbia')}
+          option(value='Manitoba') #{__('Manitoba')}
+          option(value='New Brunswick') #{__('New Brunswick')}
+          option(value='Newfoundland And Labrador') #{__('Newfoundland and Labrador')}
+          option(value='Northwest Territories') #{__('Northwest Territories')}
+          option(value='Nova Scotia') #{__('Nova Scotia')} 
+          option(value='Nunavut') #{__('Nunavut')} 
+          option(value='Ontario') #{__('Ontario')} 
+          option(value='Prince Edward Island') #{__('Prince Edward Island')} 
+          option(value='Quebec') #{__('Quebec')} 
+          option(value='Saskatchewan') #{__('Saskatchewan')} 
+          option(value='Yukon') #{__('Yukon')}
+          option(value='Non Resident') #{__('Non Resident')}
     input#redirect(name='redirect', type='hidden', value='/personal/address')
 
     +formButtons()

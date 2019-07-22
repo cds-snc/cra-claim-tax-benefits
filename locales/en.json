@@ -22,7 +22,7 @@
   "errors.currency": "Enter a dollar amount higher than 0, like 120.00",
   "errors.yesNo": "You must select one of the options",
   "errors.address.province.province": "errors.address.province.province",
-  "errors.residence": "You must select one of the options",
+  "errors.residence": "You must select a province or territory",
   "errors.donationsClaim": "You must select one of the options",
   "errors.review": "You must consent to submit your return",
   "This service is to claim tax benefits online.": "This service is to claim tax benefits online.",

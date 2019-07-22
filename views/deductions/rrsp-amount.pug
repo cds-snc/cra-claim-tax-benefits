@@ -2,6 +2,7 @@ extends ../base
 
 block variables
   -var title = __('Enter your RRSP contributions')
+  -var rrspAmount = hasData(data, 'deductions.rrspAmount') && data.deductions.rrspAmount !== 0 ? data.deductions.rrspAmount : ''
 
 block content
 
@@ -11,7 +12,7 @@ block content
     p #{__('Please enter your RRSP contributions for the current tax year (filing for 2018)')}
 
   form.cra-form(method='post')
-    +textInput('Total RRSP contributions')(class='w-1-2 input-with-unit' name='rrspAmount' placeholder='0.00' aria-labelledby='rrspAmount__unit rrspAmount__label')
+    +textInput('Total RRSP contributions')(class='w-1-2 input-with-unit' name='rrspAmount' placeholder='0.00' aria-labelledby='rrspAmount__unit rrspAmount__label' value=rrspAmount)
 
     input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
 

@@ -8,24 +8,25 @@ block variables
   -var totalIncome = hasData(data, 'financial.totalIncome') ? data.financial.totalIncome : 0
   -var totalTax = hasData(data, 'financial.totalTax') ? data.financial.totalTax : 0
   - var count = 1;
+  - var year = new Date().getFullYear()-1
 
 block content
 
   h1 #{title}
 
   div
-    p Here's what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.
+    p Here's what CRA knows about your income for the current tax year (filing for #{year}). Additional claims and deductions can be made afterwards.
 
   if income
     div
       table.breakdown-table
         thead
           tr
-            th.breakdown-table__heading Total income earned in 2018:
+            th.breakdown-table__heading Total income earned in #{year}:
             th.breakdown-table__heading $#{currencyFilter(totalIncome, 0)}
         tbody
           tr
-            th(colspan="2").breakdown-table__subheading Detailed breakdown of income earned in 2018:
+            th(colspan="2").breakdown-table__subheading Detailed breakdown of income earned in #{year}:
           each employer in income
             tr
               td Employer #{count} Total Income:
@@ -34,7 +35,7 @@ block content
             - count++
 
           tr.breakdown-table__summary-row
-            td Total Income for 2018: 
+            td Total Income for #{year}: 
             td $#{currencyFilter(totalIncome)}
 
   div
@@ -45,7 +46,7 @@ block content
           th.breakdown-table__heading $#{currencyFilter(totalTax, 0)}
       tbody
         tr
-          th(colspan="2").breakdown-table__subheading Detailed breakdown of taxes paid in 2018:
+          th(colspan="2").breakdown-table__subheading Detailed breakdown of taxes paid in #{year}:
 
         each tax in taxes
           tr
@@ -53,7 +54,7 @@ block content
             td $#{currencyFilter(tax.amount)}
             
         tr.breakdown-table__summary-row
-          td Total tax paid for 2018:
+          td Total tax paid for #{year}:
           td $#{currencyFilter(totalTax)}
 
   form.cra-form(method='post')

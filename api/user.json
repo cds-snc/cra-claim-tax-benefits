@@ -68,7 +68,7 @@
     "seniorHomeownerClaim": null,
     "trilliumRentAmount": 0,
     "trilliumPropertyTaxAmount": 0,
-    "trilliumStudentResidenceAmount": 0,
+    "trilliumStudentResidence": null,
     "trilliumEnergyAmount": 0,
     "trilliumLongTermCareAmount": 0
   }

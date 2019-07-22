@@ -9,6 +9,7 @@ const {
   politicalAmountSchema,
   trilliumRentAmountSchema,
   trilliumPropertyTaxAmountSchema,
+  trilliumStudentResidenceSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareAmountSchema,
 } = require('./../../formSchemas.js')
@@ -103,6 +104,17 @@ module.exports = function (app) {
     postTrilliumPropertyTaxAmount,
   )
 
+  app.get('/trillium/studentResidence', (req, res) =>
+    res.render('deductions/trillium-studentResidence', { data: req.session }),
+  )
+  app.post(
+    '/trillium/studentResidence',
+    validateRedirect,
+    checkSchema(trilliumStudentResidenceSchema),
+    checkErrors('deductions/trillium-studentResidence'),
+    postTrilliumStudentResidence,
+  )
+
   app.get('/trillium/energy/amount', (req, res) =>
     res.render('deductions/trillium-energy-amount', { data: req.session }),
   )
@@ -190,6 +202,13 @@ const postTrilliumPropertyTaxAmount = (req, res) => {
   req.session.deductions.trilliumPropertyTaxAmount = req.body.trilliumPropertyTaxAmount
 
   //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+
+const postTrilliumStudentResidence = (req, res) => {
+  req.session.deductions.trilliumStudentResidence =
+    req.body.trilliumStudentResidence === 'Yes' ? true : false
+
   return res.redirect(req.body.redirect)
 }
 

@@ -14,6 +14,12 @@ describe('Test server responses', () => {
     expect(response.statusCode).toBe(200)
   })
 
+  test('it redirects to /start?lang=fr for the /commencer path', async () => {
+    const response = await request(app).get('/commencer')
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toEqual('/start?lang=fr')
+  })
+
   describe('it renders the h1 text for the /start path', () => {
     test('in English with a language header', async () => {
       const response = await request(app)

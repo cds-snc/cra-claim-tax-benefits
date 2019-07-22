@@ -78,6 +78,7 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/residence')
         .send({ redirect: '/offramp', residence: 'Alberta' })
+      expect(response.headers.location).toEqual('/offramp')
       expect(response.statusCode).toBe(302)
     })
 
@@ -85,6 +86,7 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/residence')
         .send({ redirect: '/personal/address', residence: 'Ontario' })
+      expect(response.headers.location).toEqual('/personal/address')
       expect(response.statusCode).toBe(302)
     })
   })

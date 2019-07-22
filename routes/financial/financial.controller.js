@@ -6,7 +6,7 @@ module.exports = function(app) {
   //TODO: update this with proper date later
     res.render('financial/income', { data: {
       ...req.session,
-      financial: income
+      financial: income,
     } || {} }),
   )
 }

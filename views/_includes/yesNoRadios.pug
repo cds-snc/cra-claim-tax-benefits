@@ -11,3 +11,5 @@ mixin yesNoRadios(key, value, question, errors = false)
         .multiple-choice__item
           input(id=`${key}No` name=key type="radio" value="No" checked=(value =='No') aria-describedby=(errors ? `${key}-error` : false))
           label(for=`${key}No`) #{__('No')}
+          if block 
+            block

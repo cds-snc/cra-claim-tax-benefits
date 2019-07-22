@@ -273,6 +273,10 @@ const rrspSchema = {
   rrspClaim: yesNoSchema(),
 }
 
+const incomeSchema = {
+  confirmIncome: yesNoSchema(),
+}
+
 const rrspAmountSchema = {
   rrspAmount: currencySchema(),
 }
@@ -362,4 +366,5 @@ module.exports = {
   trilliumStudentResidenceSchema,
   reviewSchema,
   authSchema,
+  incomeSchema,
 }

@@ -1,5 +1,8 @@
 //TODO: remove this once we have the user json updated
 const income = require('./testIncome.json')
+const { checkSchema } = require('express-validator')
+const { validateRedirect, checkErrors } = require('./../../utils')
+const { incomeSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
   app.get('/financial/income', (req, res) =>
@@ -9,4 +12,25 @@ module.exports = function(app) {
       financial: income,
     } || {} }),
   )
+
+  app.post(
+    '/financial/income',
+    validateRedirect,
+    checkSchema(incomeSchema),
+    checkErrors('financial/income'),
+    postConfirmIncome,
+  )
+}
+
+const postConfirmIncome = (req, res) => {
+  const confirmIncome = req.body.confirmIncome
+
+  if (confirmIncome === 'No') {
+    //Income details are not correct
+    //Lead them to the offramp
+    return res.redirect('/offramp')
+  }
+
+  //Income confirmed, can continue normally
+  return res.redirect(req.body.redirect)
 }

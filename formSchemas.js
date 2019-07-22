@@ -269,6 +269,15 @@ const rrspSchema = {
   },
 }
 
+const incomeSchema = {
+  confirmIncome: {
+    isIn: {
+      errorMessage: 'errors.confirmIncome',
+      options: [['Yes', 'No']],
+    },
+  },
+}
+
 const rrspAmountSchema = {
   rrspAmount: currencySchema(),
 }
@@ -341,4 +350,5 @@ module.exports = {
   trilliumlongTermCareAmountSchema,
   reviewSchema,
   authSchema,
+  incomeSchema,
 }

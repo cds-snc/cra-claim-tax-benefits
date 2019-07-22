@@ -7,7 +7,7 @@
     position: relative;
     min-height: 40px;
     margin-bottom: 10px;
-    padding-left: 40px;
+    padding-left: $multiple-choice-padding-left;
 
     > input {
       cursor: pointer;
@@ -110,7 +110,7 @@
 .multiple-choice__item {
   .no-info {
     max-width: 600px;
-    margin-left: -40px;
+    margin-left: -$multiple-choice-padding-left;
 
     p {
       &:first-child {

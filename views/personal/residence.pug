@@ -13,7 +13,7 @@ block content
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.residence})
-      label.resLabel(for='residence', name="residence-label") #{__('Province or Territory of Residence')}
+      label(for='residence', name="residence-label") #{__('Province or Territory of Residence')}
       if errors
           +validationMessage(errors.residence.msg, 'residence')
       select(name='residence', aria-describedby=(errors && errors.residence ? 'residence-error' : false))

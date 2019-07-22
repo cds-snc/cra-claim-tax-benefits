@@ -39,7 +39,7 @@ form.cra-form.cra-form--lg {
 
 form.cra-form {
   > div:not(:last-of-type) {
-    margin-bottom: $space-xl;
+    margin-bottom: $space-md;
   }
 
   div *:last-child {

@@ -22,7 +22,7 @@
 	"errors.currency": "Enter a dollar amount higher than 0, like 120.00",
 	"errors.yesNo": "You must select one of the options",
 	"errors.address.province.province": "errors.address.province.province",
-	"errors.residence": "You must select one of the options",
+	"errors.residence": "You must select a province or territory",
 	"errors.donationsClaim": "You must select one of the options",
 	"errors.review": "You must consent to submit your return",
 	"This service is to claim tax benefits online.": "This service is to claim tax benefits online.",
@@ -167,7 +167,7 @@
 	"Submit my return": "Submit my return",
 	"Designated student residence": "Designated student residence",
 	"Did you live in a designated student residence in 2018?": "Did you live in a designated student residence in 2018?",
-	"Here's what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.": "Here's what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.",
+	"Here’s what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.": "Here’s what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.",
 	"Total income earned in 2018": "Total income earned in 2018",
 	"Detailed breakdown of income earned in 2018": "Detailed breakdown of income earned in 2018",
 	"Employer 1 Total Income": "Employer 1 Total Income",
@@ -181,14 +181,5 @@
 	"Total tax paid for 2018": "Total tax paid for 2018",
 	"Is this information correct?": "Is this information correct?",
 	"If this information doesn’t match your records, you can’t change it here.": "If this information doesn’t match your records, you can’t change it here.",
-	"You should not use this service to file income information you believe to be incorrect.": "You should not use this service to file income information you believe to be incorrect.",
-	"Employer 3 Total Income": "Employer 3 Total Income",
-	"Employer 4 Total Income": "Employer 4 Total Income",
-	"Employer 5 Total Income": "Employer 5 Total Income",
-	"Employer 6 Total Income": "Employer 6 Total Income",
-	"Employer 7 Total Income": "Employer 7 Total Income",
-	"Employer 8 Total Income": "Employer 8 Total Income",
-	"Employer 9 Total Income": "Employer 9 Total Income",
-	"Employer 10 Total Income": "Employer 10 Total Income",
-	"Here’s what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.": "Here’s what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards."
+	"You should not use this service to file income information you believe to be incorrect.": "You should not use this service to file income information you believe to be incorrect."
 }

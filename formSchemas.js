@@ -290,7 +290,29 @@ const donationsAmountSchema = {
 }
 
 const residenceSchema = {
-  residence: yesNoSchema(),
+  residence: {
+    isIn: {
+      errorMessage: 'errors.residence',
+      options: [
+        [
+          'Alberta',
+          'British Columbia',
+          'Manitoba',
+          'New Brunswick',
+          'Newfoundland And Labrador',
+          'Northwest Territories',
+          'Nova Scotia',
+          'Nunavut',
+          'Ontario',
+          'Prince Edward Island',
+          'Quebec',
+          'Saskatchewan',
+          'Yukon',
+          'Non Resident',
+        ],
+      ],
+    },
+  },
 }
 
 const authSchema = {

@@ -192,4 +192,19 @@
 	"Total federal contributions": "Total federal contributions",
 	"Total provincial contributions": "Total provincial contributions",
 	"errors.politicalAmount": "errors.politicalAmount"
+	"Here’s what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.": "Here’s what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.",
+	"Total income earned in 2018": "Total income earned in 2018",
+	"Detailed breakdown of income earned in 2018": "Detailed breakdown of income earned in 2018",
+	"Employer 1 Total Income": "Employer 1 Total Income",
+	"Employer 2 Total Income": "Employer 2 Total Income",
+	"Total Income for 2018": "Total Income for 2018",
+	"Total tax": "Total tax",
+	"Detailed breakdown of taxes paid in 2018": "Detailed breakdown of taxes paid in 2018",
+	"Federal tax deduction": "Federal tax deduction",
+	"Provincial tax deduction": "Provincial tax deduction",
+	"CPP deduction": "CPP deduction",
+	"Total tax paid for 2018": "Total tax paid for 2018",
+	"Is this information correct?": "Is this information correct?",
+	"If this information doesn’t match your records, you can’t change it here.": "If this information doesn’t match your records, you can’t change it here.",
+	"You should not use this service to file income information you believe to be incorrect.": "You should not use this service to file income information you believe to be incorrect."
 }

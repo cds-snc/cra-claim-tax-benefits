@@ -1,15 +1,69 @@
 extends ../base
+include ../_includes/yesNoRadios
 
 block variables
   -var title = 'Confirm your income information'
+  -var income = hasData(data, 'financial.income') ? data.financial.income : {}
+  -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
+  -var totalIncome = hasData(data, 'financial.totalIncome') ? data.financial.totalIncome : 0
+  -var totalTax = hasData(data, 'financial.totalTax') ? data.financial.totalTax : 0
+  -var count = 1;
+  -var year = new Date().getFullYear()-1
 
 block content
 
   h1 #{title}
 
   div
-    p Here's what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.
+    p #{__(`Here’s what CRA knows about your income for the current tax year (filing for ${year}). Additional claims and deductions can be made afterwards.`)}
 
-  .buttons-row
-    a.button-link(href='/deductions/rrsp') Confirm
-    a.button-link.transparent(href='/clear') Cancel
+  if income
+    div
+      table.breakdown-table
+        thead
+          tr
+            th.breakdown-table__heading #{__(`Total income earned in ${year}`)}
+            th.breakdown-table__heading $#{currencyFilter(totalIncome, 0)}
+        tbody
+          tr
+            th(colspan="2").breakdown-table__subheading #{__(`Detailed breakdown of income earned in ${year}`)}
+          each employer in income
+            tr
+              td #{__(`Employer ${count} Total Income`)}
+              td $#{currencyFilter(employer.total)}
+
+            - count++
+
+          tr.breakdown-table__summary-row
+            td #{__(`Total Income for ${year}`)} 
+            td $#{currencyFilter(totalIncome)}
+
+  div
+    table.breakdown-table
+      thead
+        tr
+          th.breakdown-table__heading #{__('Total tax')}
+          th.breakdown-table__heading $#{currencyFilter(totalTax, 0)}
+      tbody
+        tr
+          th(colspan="2").breakdown-table__subheading #{__(`Detailed breakdown of taxes paid in ${year}`)}
+
+        each tax in taxes
+          tr
+            td #{__(`${tax.name} deduction`)} 
+            td $#{currencyFilter(tax.amount)}
+            
+        tr.breakdown-table__summary-row
+          td #{__(`Total tax paid for ${year}`)}
+          td $#{currencyFilter(totalTax)}
+
+  form.cra-form(method='post')
+    +yesNoRadios('confirmIncome', null, 'Is this information correct?', errors)
+      .no-info
+        .no-info__wrapper
+          p #{__('If this information doesn’t match your records, you can’t change it here.')}
+          p #{__('You should not use this service to file income information you believe to be incorrect.')}
+    
+    input#redirect(name='redirect', type='hidden', value='/deductions/rrsp')
+
+    +formButtons()

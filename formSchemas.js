@@ -273,6 +273,10 @@ const rrspSchema = {
   rrspClaim: yesNoSchema(),
 }
 
+const incomeSchema = {
+  confirmIncome: yesNoSchema(),
+}
+
 const rrspAmountSchema = {
   rrspAmount: currencySchema(),
 }
@@ -393,4 +397,5 @@ module.exports = {
   politicalSchema,
   politicalAmountSchema,
   authSchema,
+  incomeSchema,
 }

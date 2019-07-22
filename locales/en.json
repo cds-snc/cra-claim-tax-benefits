@@ -1,4 +1,8 @@
 {
+	"0": "0",
+	"300": "300",
+	"6639": "6639",
+	"6939": "6939",
 	"errors.login.length": "Access code must be 8 characters",
 	"errors.login.alphanumeric": "Access code should only contain letters and numbers",
 	"errors.login.code": "Access code not recognized",
@@ -207,5 +211,15 @@
 	"Total tax paid for 2018": "Total tax paid for 2018",
 	"Is this information correct?": "Is this information correct?",
 	"If this information doesn’t match your records, you can’t change it here.": "If this information doesn’t match your records, you can’t change it here.",
-	"You should not use this service to file income information you believe to be incorrect.": "You should not use this service to file income information you believe to be incorrect."
+	"You should not use this service to file income information you believe to be incorrect.": "You should not use this service to file income information you believe to be incorrect.",
+	"Review and file tax return": "Review and file tax return",
+	"Your annual benefits": "Your annual benefits",
+	"Detailed breakdown of benefits": "Detailed breakdown of benefits",
+	"undefined undefined": "undefined undefined",
+	"Total Benefits": "Total Benefits",
+	"Canada child benefit": "Canada child benefit",
+	"Climate action incentive": "Climate action incentive",
+	"GST/HSTC": "GST/HSTC",
+	"Trillium": "Trillium",
+	"totalBenefits": "totalBenefits"
 }

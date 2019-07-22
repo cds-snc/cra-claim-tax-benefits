@@ -12,6 +12,7 @@ const {
   trilliumStudentResidenceSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareAmountSchema,
+  climateActionIncentiveSchema,
 } = require('./../../formSchemas.js')
 
 module.exports = function (app) {
@@ -136,6 +137,18 @@ module.exports = function (app) {
     checkErrors('deductions/trillium-longTermCare-amount'),
     postTrilliumLongTermCareAmount,
   )
+
+  //Climate Action Incentive
+  app.get('/deductions/climate-action-incentive', (req, res) =>
+    res.render('deductions/climate-action-incentive', { data: req.session }),
+  )
+  app.post(
+    '/deductions/climate-action-incentive',
+    validateRedirect,
+    checkSchema(climateActionIncentiveSchema),
+    checkErrors('deductions/climate-action-incentive'),
+    postClimateActionIncentiveSchema,
+  )
 }
 
 //Start of RRSP controller functions
@@ -245,6 +258,12 @@ const postPolitical = (req, res) => {
 
 const postPoliticalAmount = (req, res) => {
   req.session.deductions.politicalAmount = req.body.politicalAmount
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+
+const postClimateActionIncentiveSchema = (req, res) => {
+  req.session.deductions.climateActionIncentiveIsRural = req.body.climateActionIncentiveIsRural
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)
 }

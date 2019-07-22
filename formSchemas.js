@@ -274,12 +274,7 @@ const rrspSchema = {
 }
 
 const incomeSchema = {
-  confirmIncome: {
-    isIn: {
-      errorMessage: 'errors.confirmIncome',
-      options: [['Yes', 'No']],
-    },
-  },
+  confirmIncome: yesNoSchema(),
 }
 
 const rrspAmountSchema = {

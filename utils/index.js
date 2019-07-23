@@ -59,7 +59,7 @@ const checkPublic = function(req, res, next) {
   // check if user exists in session (ie, by checking for firstName)
   const { personal: { firstName = null } = {} } = req.session
   if (!firstName) {
-    req.session = API.getUser('QWER1234')
+    req.session = API.getUser('A5G98S4K1')
   }
 
   return next()
@@ -194,7 +194,7 @@ const currencyFilter = (number, fractionDigits = 2) => {
 
 const sortByLineNumber = (...objToSort) => {
   //take all the objects, make them into one big object
-  const superObj = Object.assign({}, ...objToSort);
+  const superObj = Object.assign({}, ...objToSort)
 
   //filter down the object into an array of objects, 
   //but only the objects with the line property

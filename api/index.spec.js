@@ -1,7 +1,7 @@
 const API = require('./index')
 
 test('returns expected user with correct login.code', () => {
-  const user = API.getUser('QWER1234')
+  const user = API.getUser('A5G98S4K1')
   expect(user).not.toBe(null)
   expect(user.personal.firstName).toBe('Gabrielle')
   expect(user.personal.lastName).toBe('Roy')

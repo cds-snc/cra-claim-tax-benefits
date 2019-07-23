@@ -1,6 +1,6 @@
 {
   "login": {
-    "code": "QWER1234",
+    "code": "A5G98S4K1",
     "auth": false
   },
   "personal": {
@@ -157,7 +157,7 @@
     "trilliumEnergyAmount": 0,
     "trilliumLongTermCareAmount": 0,
     "climateActionIncentiveIsRural": null
-    },
+  },
   "refund": {
     "Total Payable": {
       "name": "Total Payable",
@@ -169,7 +169,7 @@
       "line": 437,
       "amount": 0.00
     },
-    "Total Credits":  {
+    "Total Credits": {
       "name": "Total Credits",
       "line": 482,
       "amount": 2500.00

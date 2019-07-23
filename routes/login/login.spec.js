@@ -59,10 +59,10 @@ describe('Test /login responses', () => {
     })
   })
 
-  test('it does not allow a code more than 8 characters', async () => {
+  test('it does not allow a code more than 9 characters', async () => {
     const response = await request(app)
       .post('/login/code')
-      .send({ code: 'A23XGY12111', redirect: '/' })
+      .send({ code: '23XGY12111', redirect: '/' })
     expect(response.statusCode).toBe(422)
   })
 
@@ -80,7 +80,7 @@ describe('Test /login responses', () => {
     expect(response.statusCode).toBe(422)
   })
 
-  const codes = ['QWER1234', 'qwer1234']
+  const codes = ['A5G98S4K1', 'a5g98S4K1', 'a5g98s4k1'] //check uppercase, lowercase and mixedcase
   codes.map(code => {
     test(`it redirects if a valid code is provided: "${code}"`, async () => {
       const response = await request(app)
@@ -173,7 +173,7 @@ describe('Test /login responses', () => {
         authSession = session(app)
         const response = await authSession
           .post('/login/code')
-          .send({ code: 'QWER1234', redirect: '/login/sin' })
+          .send({ code: 'A5G98S4K1', redirect: '/login/sin' })
         expect(response.statusCode).toBe(302)
       })
 
@@ -329,11 +329,11 @@ describe('Test /login responses', () => {
       authSession = session(app)
       const response = await authSession
         .post('/login/code')
-        .send({ code: 'QWER1234', redirect: '/login/sin' })
+        .send({ code: 'A5G98S4K1', redirect: '/login/sin' })
         .then(() => {
           return authSession
             .post('/login/sin')
-            .send({ code: 'QWER1234', sin: '111222333', redirect: '/login/dateOfBirth' })
+            .send({ code: 'A5G98S4K1', sin: '111222333', redirect: '/login/dateOfBirth' })
         })
       expect(response.statusCode).toBe(302)
     })

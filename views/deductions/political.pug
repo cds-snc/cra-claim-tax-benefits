@@ -10,7 +10,7 @@ block content
   h1 #{title}
 
   div
-    p #{__('Did you make any political contributions during the current tax year (filing for 2018)?')}
+    p #{__('Did you make any political contributions in 2018?')}
 
   form.cra-form(method='post')
     +yesNoRadios('politicalClaim', politicalClaim, 'Deduct political contributions?', errors)

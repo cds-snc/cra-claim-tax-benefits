@@ -20,19 +20,19 @@ block content
                   +validationMessage(errors.maritalStatus.msg, 'maritalStatus')
                 .multiple-choice__item
                     input(id="maritalStatusSingle" name="maritalStatus" type="radio" value="Single" checked=(maritalStatus.toLowerCase()=='single') aria-describedby=(errors ? 'maritalStatus-error' : false))
-                    label(for="maritalStatusSingle") Single
+                    label(for="maritalStatusSingle") #{__('Single')}
                 .multiple-choice__item
                     input(id="maritalStatusMarried" name="maritalStatus" type="radio" value="Married" checked=(maritalStatus.toLowerCase()=='married' || !data) aria-describedby=(errors ? 'maritalStatus-error' : false))
-                    label(for="maritalStatusMarried") Married or common-law
+                    label(for="maritalStatusMarried") #{__('Married or common-law')}
                 .multiple-choice__item
                     input(id="maritalStatusSeparated" name="maritalStatus" type="radio" value="Separated" checked=(maritalStatus.toLowerCase()=='separated') aria-describedby=(errors ? 'maritalStatus-error' : false))
-                    label(for="maritalStatusSeparated") Separated
+                    label(for="maritalStatusSeparated") #{__('Separated')}
                 .multiple-choice__item
                     input(id="maritalStatusDivorced" name="maritalStatus" type="radio" value="Divorced" checked=(maritalStatus.toLowerCase()=='divorced') aria-describedby=(errors ? 'maritalStatus-error' : false))
-                    label(for="maritalStatusDivorced") Divorced
+                    label(for="maritalStatusDivorced") #{__('Divorced')}
                 .multiple-choice__item
                     input(id="maritalStatusWidowed" name="maritalStatus" type="radio" value="Widowed" checked=(maritalStatus.toLowerCase()=='widowed') aria-describedby=(errors ? 'maritalStatus-error' : false))
-                    label(for="maritalStatusWidowed") Widowed
+                    label(for="maritalStatusWidowed") #{__('Widowed')}
 
     input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
 

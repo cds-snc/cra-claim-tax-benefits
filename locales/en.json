@@ -211,5 +211,10 @@
   "You live in a small or rural community if you do not live in these census metropolitan areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph,London, Windsor, Barrie, Sudbury, or Thunder Bay.": "You live in a small or rural community if you do not live in these census metropolitan areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph,London, Windsor, Barrie, Sudbury, or Thunder Bay.",
   "Net Federal tax deduction": "Net Federal tax deduction",
   "Net Provincial tax deduction": "Net Provincial tax deduction",
-  "EI deduction": "EI deduction"
+  "EI deduction": "EI deduction",
+  "Single": "Single",
+  "Married or common-law": "Married or common-law",
+  "Separated": "Separated",
+  "Divorced": "Divorced",
+  "Widowed": "Widowed"
 }

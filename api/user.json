@@ -39,23 +39,23 @@
       "netIncome": {
         "name": "Net Income",
         "line": 236,
-        "amount": 20000.00
+        "amount": 19305.10
       },
       "taxableIncome": {
         "name": "Taxable Income",
         "line": 260,
-        "amount": 5000.00
+        "amount": 19305.10
       }
     },
     "taxes": {
       "federal": {
         "name": "Net Federal tax",
-        "amount": 1998.00,
+        "amount": 1060.00,
         "line": 420
       },
       "provincial": {
-        "name": "Net Provincial tax",
-        "amount": 1106.00,
+        "name": "Net Ontario tax",
+        "amount": 533.00,
         "line": 428
       },
       "CPP": {
@@ -93,7 +93,6 @@
     "disabilityClaim": null,
     "disabilityAmount": {
       "name": "Disability",
-      "line": 316,
       "amount": 0.00
     },
     "rrspClaim": null,
@@ -104,7 +103,6 @@
     },
     "ageAmount": {
       "name": "Age Amount",
-      "line": 301,
       "amount": 7500.00
     },
     "rrspAmount": 0,
@@ -115,27 +113,23 @@
     "pensionIncomeClaim": null,
     "pensionIncomeClaimAmount": {
       "name": "Pension",
-      "line": 314,
       "amount": 700.00
     },
     "childcareClaim": null,
     "childcareAmount": {
       "name": "Childcare Expenses",
-      "line": 214,
-      "amount": 1517.94
+      "amount": 0.00
     },
     "singleParentClaim": null,
     "dependentDisabilityClaim": null,
     "medicalExpenseClaim": null,
     "medicalExpenseClaimAmount": {
       "name": "Medical Expenses",
-      "line": 331,
-      "multiLine": "330/331",
-      "amount": 1227.34
+      "line": 330,
+      "amount": 0.00
     },
     "amountsFromSpouse": {
       "name": "Amounts transfered from spouse",
-      "line": 326,
       "amount": 0.00
     },
     "politicalContributionClaim": null,
@@ -154,32 +148,30 @@
     "climateActionIncentiveIsRural": null
   },
   "refund": {
-    "Total Payable": {
+    "totalPayable": {
       "name": "Total Payable",
       "line": 435,
-      "amount": 0.00
+      "amount": 1593.00
     },
-    "Total Deducted": {
+    "totalDeducted": {
       "name": "Total Deducted",
       "line": 437,
-      "amount": 0.00
+      "amount": 2312.88
     },
-    "Total Credits": {
+    "totalCredits": {
       "name": "Total Credits",
-      "line": 482,
       "amount": 2500.00
     },
-    "Total Refund": {
+    "totalRefund": {
       "name": "Total Refund",
       "line": 484,
-      "amount": 3200.00
+      "amount": 719.88
     }
   },
   "benefits": {
-    "Canada child benefit": 6639.00,
-    "Climate action incentive": 0.00,
-    "GST/HSTC": 0.00,
-    "Trillium": 300.00,
-    "totalBenefits": 6939.00
+    "Climate action incentive": 154.00,
+    "GST/HSTC": 440.00,
+    "Ontario trillium benefits": 307.92,
+    "totalBenefits": 901.92
   }
 }

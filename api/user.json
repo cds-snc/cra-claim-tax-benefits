@@ -16,7 +16,7 @@
       "city": "Winnipeg",
       "province": "Manitoba"
     },
-    "maritalStatus": "Married",
+    "maritalStatus": "Single",
     "disability": false
   },
   "financial": {
@@ -68,14 +68,7 @@
     "totalTax": 4782.00,
     "taxableAmount": "$1,000.00"
   },
-  "partner": {
-    "firstName": "Marcel",
-    "lastName": "Carbotte",
-    "sin": "222333444",
-    "dateOfBirth": "1914/02/09",
-    "disability": false,
-    "netIncome": "$1,000.00"
-  },
+  "partner": null,
   "dependents": [
     {
       "firstName": "Bernadette",

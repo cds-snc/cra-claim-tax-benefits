@@ -145,6 +145,7 @@
     },
     "politicalContributionClaim": null,
     "charitableDonationClaim": null,
+    "charitableDonationAmount": null,
     "energyPropertyClaim": null,
     "northernEnergyClaim": null,
     "seniorHomeownerClaim": null,

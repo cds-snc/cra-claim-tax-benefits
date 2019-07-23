@@ -207,21 +207,21 @@ const postDonations = (req, res) => {
   const donationsClaim = req.body.donationsClaim
 
   if (donationsClaim === 'Yes') {
-    req.session.deductions.donationsClaim = true
+    req.session.deductions.charitableDonationClaim = true
 
     // It's fine not having this in the form itself (like the other redirect value)
     // because these two pages are hardcoded together
     return res.redirect('/deductions/donations/amount')
   }
 
-  req.session.deductions.donationsClaim = false
+  req.session.deductions.charitableDonationClaim = false
 
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)
 }
 
 const postDonationsAmount = (req, res) => {
-  req.session.deductions.donationsAmount = req.body.donationsAmount
+  req.session.deductions.charitableDonationAmount = req.body.donationsAmount
 
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)

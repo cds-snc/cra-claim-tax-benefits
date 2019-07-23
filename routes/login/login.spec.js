@@ -80,7 +80,7 @@ describe('Test /login responses', () => {
     expect(response.statusCode).toBe(422)
   })
 
-  const codes = ['A5G98S4K1', 'qwer1234']
+  const codes = ['A5G98S4K1']
   codes.map(code => {
     test(`it redirects if a valid code is provided: "${code}"`, async () => {
       const response = await request(app)

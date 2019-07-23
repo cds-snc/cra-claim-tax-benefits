@@ -6,6 +6,8 @@ i18n.configure({
   directory: path.join(__dirname, '../locales'),
   defaultLocale: 'en',
   queryParameter: 'lang',
+  cookie: 'lang',
+  indent: '  ',
 })
 
 module.exports = i18n

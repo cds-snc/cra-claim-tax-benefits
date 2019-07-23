@@ -1,0 +1,6 @@
+.language-link
+  form
+    h2 #{__('Language Selection')}
+    input#language-id(type='hidden' name='lang' value=getLocale() === 'fr' ? 'en' : 'fr')
+    button#language-toggle
+      span(aria-label=__('Language selection: French')) #{getLocale() === 'fr' ? 'English' : 'Français'}

@@ -23,6 +23,23 @@ const errorArray2ErrorObject = (errors = []) => {
 }
 
 /* Middleware */
+const oneHour = 1000 * 60 * 60 * 1
+
+/**
+ * This request middleware checks for the "lang" query.
+ * If it finds a query parameter "lang=fr" or "lang=en", it will set a "lang" cookie to whichever value.
+ *
+ * From this point onwards, all of the site's content will be in the user's preferred language.
+ */
+const checkLangQuery = function(req, res, next) {
+  let lang = req.query.lang
+
+  if (lang === 'en' || lang === 'fr') {
+    res.cookie('lang', lang, { httpOnly: true, maxAge: oneHour, sameSite: 'strict' })
+  }
+
+  return next()
+}
 
 /**
  * This request middleware checks if we are visiting a public path
@@ -167,9 +184,12 @@ const hasData = (obj, key) => {
 }
 
 const currencyFilter = (number, fractionDigits = 2) => {
-  const amount = Number(number);
+  const amount = Number(number)
 
-  return amount.toLocaleString('en-US', {minimumFractionDigits:fractionDigits,maximumFractionDigits:fractionDigits})
+  return amount.toLocaleString('en-US', {
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
+  })
 }
 
 const sortByLineNumber = (...objToSort) => {
@@ -192,4 +212,5 @@ module.exports = {
   checkPublic,
   currencyFilter,
   sortByLineNumber,
+  checkLangQuery,
 }

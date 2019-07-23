@@ -13,7 +13,7 @@ const express = require('express'),
   path = require('path'),
   cookieSession = require('cookie-session'),
   cookieSessionConfig = require('./config/cookieSession.config'),
-  { SINFilter, hasData, checkPublic, currencyFilter, sortByLineNumber } = require('./utils')
+  { SINFilter, hasData, checkPublic, sortByLineNumber, checkLangQuery, currencyFilter } = require('./utils')
 
 // initialize application.
 var app = express()
@@ -62,6 +62,7 @@ app.use(helmet())
 app.use(compression())
 
 app.use(checkPublic)
+app.use(checkLangQuery)
 
 // Adding values/functions to app.locals means we can access them in our templates
 app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null

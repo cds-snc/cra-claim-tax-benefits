@@ -8,14 +8,14 @@ mixin textInput(label, divClasses, hintText)
     class=divClasses
   )
     label(
-      for!=attributes.name 
+      for!=attributes.name
       id!=attributes.name + '__label'
     ) #{__(label)}
     if hintText
       span.cra-form-message #{__(hintText)}
     if errors && errors[attributes.name]
       +validationMessage(
-        errors[attributes.name].msg, 
+        errors[attributes.name].msg,
         attributes.name
       )
     if attributes.class.includes('input-with-unit')
@@ -24,7 +24,7 @@ mixin textInput(label, divClasses, hintText)
       ) $
     input(
       autocomplete='off',
-      type='text', 
+      type='text',
+      id=(attributes.id || attributes.name)
       aria-describedby=(errors && errors[attributes.name] ? attributes.name + '-error' : false)
     )&attributes(attributes)
-      

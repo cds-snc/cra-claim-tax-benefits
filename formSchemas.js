@@ -247,7 +247,7 @@ const addressSchema = {
   },
   province: {
     isIn: {
-      errorMessage: 'errors.address.province.province',
+      errorMessage: 'errors.address.province',
       options: [
         [
           'Alberta',
@@ -323,7 +323,7 @@ const politicalAmountSchema = {
 const residenceSchema = {
   residence: {
     isIn: {
-      errorMessage: 'errors.residence',
+      errorMessage: 'errors.address.province',
       options: [
         [
           'Alberta',

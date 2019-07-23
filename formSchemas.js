@@ -52,7 +52,7 @@ const loginSchema = {
   code: {
     isLength: {
       errorMessage: 'errors.login.length',
-      options: { min: 8, max: 8 },
+      options: { min: 8, max: 9 },
     },
     isAlphanumeric: {
       errorMessage: 'errors.login.alphanumeric',

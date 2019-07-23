@@ -1,12 +1,12 @@
 extends ../base
 
 block variables
-  -var title = 'Enter your Social Insurance Number (SIN)'
+  -var title = __('Enter your Social Insurance Number (SIN)')
   -var sin = hasData(body, 'sin') ? body.sin : ''
 
 block content
 
-  h1 #{__(title)}
+  h1 #{title}
 
   if data.personal
     h2 #{__('Thanks,')} #{data.personal.firstName} #{data.personal.lastName}!

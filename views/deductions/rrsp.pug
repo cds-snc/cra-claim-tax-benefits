@@ -2,12 +2,12 @@ extends ../base
 include ../_includes/yesNoRadios
 
 block variables
-  -var title = 'Deduct your RRSP contributions'
+  -var title = __('Deduct your RRSP contributions')
   -var rrspClaim = hasData(data, 'deductions.rrspClaim') ? data.deductions.rrspClaim : ''
 
 block content
 
-  h1 #{__(title)}
+  h1 #{title}
 
   div
     p #{__('If you made RRSP contributions before March 1, 2019, you can deduct them from your total income.')}

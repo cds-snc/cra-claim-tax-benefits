@@ -1,12 +1,12 @@
 extends ../base
 
 block variables
-  -var title = 'Enter your date of birth'
+  -var title = __('Enter your date of birth')
   -var dateOfBirth = hasData(body, 'dateOfBirth') ? body.dateOfBirth : ''
 
 block content
 
-  h1 #{__(title)}
+  h1 #{title}
 
   div
     p #{__('Thanks!')} #{__('We just need one more piece of information to authenticate you.')}

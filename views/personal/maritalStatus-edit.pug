@@ -1,12 +1,12 @@
 extends ../base
 
 block variables
-  -var title = 'Change your marital status'
+  -var title = __('Change your marital status')
   -var maritalStatus = data.personal.maritalStatus
 
 block content
 
-  h1 #{__(title)}
+  h1 #{title}
 
   div
     p #{__('Please choose the correct status from the options listed below.')}

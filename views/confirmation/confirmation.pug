@@ -1,11 +1,11 @@
 extends ../base
 
 block variables
-  -var title = 'Congratulations'
+  -var title = __('Congratulations')
 
 block content
 
-  h1 #{__(title)}
+  h1 #{title}
 
   div
     h2 #{__('Your taxes have been filed with the Canada Revenue Agency.')}

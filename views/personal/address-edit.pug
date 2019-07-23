@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = 'Change your mailing address'
+  -var title = __('Change your mailing address')
   -var aptNumber = hasData(body, 'aptNumber') ? body.aptNumber : hasData(data, 'personal.address.aptNumber') ? data.personal.address.aptNumber : ''
   -var streetNumber = hasData(body, 'streetNumber') ? body.streetNumber : hasData(data, 'personal.address.streetNumber') ? data.personal.address.streetNumber : ''
   -var streetName = hasData(body, 'streetName') ? body.streetName : hasData(data, 'personal.address.streetName') ? data.personal.address.streetName : ''
@@ -11,7 +11,7 @@ block variables
 
 block content
 
-  h1 #{__(title)}
+  h1 #{title}
 
   div
     p #{__('Please enter the correct mailing address information below. If a letter is sent to this address, you must be able to receive it.')}

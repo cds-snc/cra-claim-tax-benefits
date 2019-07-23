@@ -2,11 +2,11 @@ extends ../base
 include ../_includes/banner
 
 block variables
-  -var title = 'Your taxes can’t be completed using this service'
+  -var title = __('Your taxes can’t be completed using this service')
 
 block content
 
-  h1 #{__(title)}
+  h1 #{title}
 
   +banner('blue')
     p #{__('Your tax return is too complex to be filed using this service. Nothing about your taxes is incorrect — see below for further instructions on how to complete your tax return.')}

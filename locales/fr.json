@@ -1,7 +1,7 @@
 {
   "errors.login.length": "Le code d’accès doit contenir 8 caractères",
   "errors.login.alphanumeric": "Access code should only contain letters and numbers",
-  "errors.login.code": "Access code not recognized",
+  "errors.login.code": "Le code d’accès n'est pas bien",
   "errors.login.numericSIN": "Votre numéro d'assurance sociale devrait être composer de 9 chiffres",
   "errors.login.lengthSIN": "Votre numéro d'assurance sociale doit contenir 9 chiffre",
   "errors.maritalStatus.maritalStatus": "Vous devez choisir l’une des options",

@@ -203,7 +203,7 @@ describe('Test /login responses', () => {
     })
 
     let goodDoBRequest = {
-      dateOfBirth: '1909/03/22',
+      dateOfBirth: '1977/09/09',
       sin: '847339283',
       redirect: '/login/success',
     }
@@ -237,7 +237,7 @@ describe('Test /login responses', () => {
         label: 'date of birth over 10 characters',
         send: {
           ...goodDoBRequest,
-          ...{ dateOfBirth: '1909/03/222' },
+          ...{ dateOfBirth: '1977/09/222' },
         },
       },
       {
@@ -348,7 +348,7 @@ describe('Test /login responses', () => {
     it('it should return 302 for the right DoB', async () => {
       const response = await authSession
         .post('/login/dateOfBirth')
-        .send({ dateOfBirth: '1909/03/22', redirect: '/login/success' })
+        .send({ dateOfBirth: '1977/09/09', redirect: '/login/success' })
       expect(response.statusCode).toBe(302)
     })
   })

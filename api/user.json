@@ -30,31 +30,31 @@
     },
     "incomes": {
       "totalIncome": {
-        "text": "Total Income",
-        "line": "(150)",
+        "name": "Total Income",
+        "line": 150,
         "amount": 28000.00
       },
       "netIncome": {
-        "text": "Net Income",
-        "line": "(236)",
+        "name": "Net Income",
+        "line": 236,
         "amount": 24000.00
       },
       "taxableIncome": {
-        "text": "Taxable Income",
-        "line": "(260)",
+        "name": "Taxable Income",
+        "line": 260,
         "amount": 5000.00
       }
     },
     "taxes": {
       "federal": {
-        "name": "Federal tax",
+        "name": "Net Federal tax",
         "amount": 1998.00,
-        "line": "(420)"
+        "line": 420
       },
       "provincial": {
-        "name": "Provincial tax",
+        "name": "Net Provincial tax",
         "amount": 1106.00,
-        "line": "(428)"
+        "line": 428
       },
       "CPP": {
         "name": "CPP",
@@ -97,19 +97,19 @@
   "deductions": {
     "disabilityClaim": null,
     "disabilityAmount": {
-      "text": "Disability",
-      "line": "(316)",
+      "name": "Disability",
+      "line": 316,
       "amount": 0.00
     },
     "rrspClaim": null,
     "basicPersonalAmount": {
-      "text": "Basic Personal Amount",
-      "line": "(300)",
+      "name": "Basic Personal Amount",
+      "line": 300,
       "amount": 11809.00
     },
     "ageAmount": {
-      "text": "Age Amount",
-      "line": "(301)",
+      "name": "Age Amount",
+      "line": 301,
       "amount": 7500.00
     },
     "rrspAmount": 0,
@@ -119,27 +119,28 @@
     "partnerPensionIncomeClaim": null,
     "pensionIncomeClaim": null,
     "pensionIncomeClaimAmount": {
-      "text": "Pension",
-      "line": "(314)",
+      "name": "Pension",
+      "line": 314,
       "amount": 700.00
     },
     "childcareClaim": null,
     "childcareAmount": {
-      "text": "Childcare Expenses",
-      "line": "(214)",
+      "name": "Childcare Expenses",
+      "line": 214,
       "amount": 1517.94
     },
     "singleParentClaim": null,
     "dependentDisabilityClaim": null,
     "medicalExpenseClaim": null,
     "medicalExpenseClaimAmount": {
-      "text": "Medical Expenses",
-      "line": "(330/331)",
+      "name": "Medical Expenses",
+      "line": 331,
+      "multiLine": "330/331",
       "amount": 1227.34
     },
     "amountsFromSpouse": {
-      "text": "Amounts transfered from spouse",
-      "line": "(326)",
+      "name": "Amounts transfered from spouse",
+      "line": 326,
       "amount": 0.00
     },
     "politicalContributionClaim": null,
@@ -155,23 +156,23 @@
     },
   "refund": {
     "Total Payable": {
-      "text": "Total Payable",
-      "line": "(435)",
+      "name": "Total Payable",
+      "line": 435,
       "amount": 0.00
     },
     "Total Deducted": {
-      "text": "Total Deducted",
-      "line": "(437)",
+      "name": "Total Deducted",
+      "line": 437,
       "amount": 0.00
     },
     "Total Credits":  {
-      "text": "Total Credits",
-      "line": "(482)",
+      "name": "Total Credits",
+      "line": 482,
       "amount": 2500.00
     },
     "Total Refund": {
-      "text": "Total Refund",
-      "line": "(484)",
+      "name": "Total Refund",
+      "line": 484,
       "amount": 3200.00
     }
   },

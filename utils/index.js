@@ -172,6 +172,16 @@ const currencyFilter = (number, fractionDigits = 2) => {
   return amount.toLocaleString('en-US', {minimumFractionDigits:fractionDigits,maximumFractionDigits:fractionDigits})
 }
 
+const sortByLineNumber = (...objToSort) => {
+  const superObj = Object.assign({}, ...objToSort);
+  const filteredObj = Object.entries(superObj).filter(obj => {
+    return typeof obj[1] === 'object' && obj[1] !== null && obj[1] !== undefined && obj[1].hasOwnProperty('line')
+  })
+  const sortedArrayObj = filteredObj.map(obj => obj[1]).sort((a,b) => a.line - b.line)
+
+  return sortedArrayObj
+}
+
 module.exports = {
   errorArray2ErrorObject,
   validateRedirect,
@@ -181,4 +191,5 @@ module.exports = {
   hasData,
   checkPublic,
   currencyFilter,
+  sortByLineNumber,
 }

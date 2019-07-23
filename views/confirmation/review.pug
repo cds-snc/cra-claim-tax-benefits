@@ -5,6 +5,13 @@ block variables
   -var title = 'Review and file tax return'
   -var benefits = hasData(data, 'benefits') ? data.benefits : {}
   -var totalBenefits = hasData(data, 'benefits.totalBenefits') ? data.benefits.totalBenefits : 0
+  -var totalIncome = hasData(data, 'financial.incomes.totalIncome') ? data.financial.incomes.totalIncome : 0
+
+  -var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
+  -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
+  -var refund = hasData(data, 'refund') ? data.refund : {}
+  -var deductions = sortByLineNumber(data.deductions, taxes, incomes, refund)
+
 
 block content
 
@@ -32,6 +39,24 @@ block content
         tr.breakdown-table__summary-row
           td #{__('Total Benefits')} 
           td $#{currencyFilter(totalBenefits)}
+  
+  div
+    table.breakdown-table
+      thead
+        tr
+          th.breakdown-table__heading #{__('Your projected refund')}
+          th.breakdown-table__heading $#{currencyFilter(totalBenefits, 0)}
+      tbody
+        tr
+          th(colspan="2").breakdown-table__subheading #{__('Detailed breakdown of benefits')}
+        each deduction in deductions
+          -var lineNumber = deduction.multiLine ? deduction.multiLine : deduction.line
+          
+          tr(
+            class={['breakdown-table__summary-row']: deduction.name === "Total Refund"}
+          )
+            td #{__(`${deduction.name} (${lineNumber})`)}
+            td $#{currencyFilter(deduction.amount)}
 
 
 

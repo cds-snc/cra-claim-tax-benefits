@@ -309,7 +309,8 @@ const postPolitical = (req, res) => {
 }
 
 const postPoliticalAmount = (req, res) => {
-  req.session.deductions.politicalAmount = req.body.politicalAmount
+  req.session.deductions.politicalFederalAmount = req.body.politicalFederalAmount
+  req.session.deductions.politicalProvincialAmount = req.body.politicalProvincialAmount
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)
 }

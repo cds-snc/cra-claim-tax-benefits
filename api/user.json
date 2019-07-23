@@ -144,6 +144,8 @@
       "amount": 0.00
     },
     "politicalContributionClaim": null,
+    "politicalFederalAmount": 0,
+    "politicalProvincialAmount": 0,
     "charitableDonationClaim": null,
     "charitableDonationAmount": null,
     "energyPropertyClaim": null,

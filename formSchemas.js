@@ -289,6 +289,14 @@ const donationsAmountSchema = {
   donationsAmount: currencySchema(),
 }
 
+const medicalSchema = {
+  medicalClaim: yesNoSchema(),
+}
+
+const medicalAmountSchema = {
+  medicalAmount: currencySchema(),
+}
+
 const politicalSchema = {
   politicalClaim: yesNoSchema(),
 }
@@ -390,6 +398,8 @@ module.exports = {
   reviewSchema,
   politicalSchema,
   politicalAmountSchema,
+  medicalSchema,
+  medicalAmountSchema,
   authSchema,
   incomeSchema,
 }

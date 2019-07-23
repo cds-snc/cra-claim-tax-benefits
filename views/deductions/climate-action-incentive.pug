@@ -1,0 +1,26 @@
+extends ../base
+include ../_includes/yesNoRadios
+
+block variables
+  -var title = __('Climate Action Incentive')
+  -var climateActionIncentiveIsRural = hasData(data, 'deductions.climateActionIncentiveIsRural') ? data.deductions.climateActionIncentiveIsRural : ''
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('You’re eligible for the Climate Action Incentive, which you will receive automatically.')}
+    p #{__('There is an additional 10% credit for residents of small and rural communities')}
+
+  form.cra-form(method='post')
+    +yesNoRadios('climateActionIncentiveIsRural', climateActionIncentiveIsRural, 'Did you live in a small and rural community in December 2018?', errors)
+
+    div
+      details.
+        <summary><span>#{__('How do I know if I live in a small and rural community')}</span></summary>
+        <p>#{__('You live in a small or rural community if you do not live in these census metropolitan areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph,London, Windsor, Barrie, Sudbury, or Thunder Bay.')}</p>
+
+    input#redirect(name='redirect', type='hidden', value='/review')
+
+    +formButtons()

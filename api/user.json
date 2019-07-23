@@ -97,6 +97,7 @@
     "trilliumPropertyTaxAmount": 0,
     "trilliumStudentResidence": null,
     "trilliumEnergyAmount": 0,
-    "trilliumLongTermCareAmount": 0
+    "trilliumLongTermCareAmount": 0,
+    "climateActionIncentiveIsRural": null
   }
 }

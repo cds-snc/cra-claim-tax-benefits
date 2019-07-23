@@ -59,10 +59,10 @@ describe('Test /login responses', () => {
     })
   })
 
-  test('it does not allow a code more than 8 characters', async () => {
+  test('it does not allow a code more than 9 characters', async () => {
     const response = await request(app)
       .post('/login/code')
-      .send({ code: 'A23XGY12111', redirect: '/' })
+      .send({ code: '23XGY12111', redirect: '/' })
     expect(response.statusCode).toBe(422)
   })
 

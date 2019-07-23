@@ -220,21 +220,21 @@ const postMedical = (req, res) => {
   const medicalClaim = req.body.medicalClaim
 
   if (medicalClaim === 'Yes') {
-    req.session.deductions.medicalClaim = true
+    req.session.deductions.medicalExpenseClaim = true
 
     // It's fine not having this in the form itself (like the other redirect value)
     // because these two pages are hardcoded together
     return res.redirect('/deductions/medical/amount')
   }
 
-  req.session.deductions.medicalClaim = false
+  req.session.deductions.medicalExpenseClaim = false
 
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)
 }
 
 const postMedicalAmount = (req, res) => {
-  req.session.deductions.medicalAmount = req.body.medicalAmount
+  req.session.deductions.medicalExpenseClaimAmount.amount = req.body.medicalAmount
 
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)

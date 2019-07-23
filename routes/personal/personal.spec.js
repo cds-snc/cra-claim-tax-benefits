@@ -26,13 +26,7 @@ describe('Test /personal responses', () => {
     test('it has Married selected by default', async () => {
       const response = await request(app).get('/personal/maritalStatus')
       const $ = cheerio.load(response.text)
-      expect($('td div').text()).toEqual('Married')
-    })
-
-    test('it defaults to Married being checked for /personal/maritalStatus/edit path', async () => {
-      const response = await request(app).get('/personal/maritalStatus/edit')
-      const $ = cheerio.load(response.text)
-      expect($('#maritalStatusMarried').attr('checked')).toEqual('checked')
+      expect($('td div').text()).toEqual('Single')
     })
 
     test('it checks the stored marital status by default for /personal/maritalStatus/edit path', async () => {

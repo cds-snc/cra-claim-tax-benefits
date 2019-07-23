@@ -3,7 +3,7 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Confirm your income information')
-  -var incomeSources = hasData(data, 'financial.incomeSources') ? data.financial.income : {}
+  -var incomeSources = hasData(data, 'financial.incomeSources') ? data.financial.incomeSources : {}
   -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
   -var totalIncome = hasData(data, 'financial.incomes.totalIncome') ? data.financial.incomes.totalIncome : 0
   -var totalTax = hasData(data, 'financial.totalTax') ? data.financial.totalTax : 0
@@ -17,7 +17,7 @@ block content
   div
     p #{__(`Here’s what CRA knows about your income for the current tax year (filing for ${year}). Additional claims and deductions can be made afterwards.`)}
 
-  if income
+  if incomeSources
     div
       table.breakdown-table
         thead

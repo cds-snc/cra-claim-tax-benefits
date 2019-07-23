@@ -1,5 +1,5 @@
 {
-  "errors.login.length": "Le code d’accès doit contenir 8 caractères",
+  "errors.login.length": "Le code d’accès doit contenir 9 caractères",
   "errors.login.alphanumeric": "Le code d’accès ne doit contenir que des lettres et des chiffres",
   "errors.login.code": "Le code d’accès n’est pas reconnu",
   "errors.login.numericSIN": "Votre numéro d’assurance sociale devrait être composé de 9 chiffres",

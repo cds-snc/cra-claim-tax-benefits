@@ -45,7 +45,7 @@ describe('Test /login responses', () => {
       expect($('title').text()).toMatch(/^Error:/)
       expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
       expect($('.error-list__list').children()).toHaveLength(1)
-      expect($('.validation-message').text()).toEqual('Error: Access code must be 8 characters')
+      expect($('.validation-message').text()).toEqual('Error: Access code must be 9 characters')
       expect($('#code').attr('aria-describedby')).toEqual('code-error')
     })
 
@@ -54,7 +54,7 @@ describe('Test /login responses', () => {
         .post('/login/code')
         .send({ redirect: '/' })
       const $ = cheerio.load(response.text)
-      expect($('.validation-message').text()).toEqual('Error: Access code must be 8 characters')
+      expect($('.validation-message').text()).toEqual('Error: Access code must be 9 characters')
       expect($('#code').attr('aria-describedby')).toEqual('code-error')
     })
   })

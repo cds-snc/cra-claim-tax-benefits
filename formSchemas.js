@@ -378,7 +378,7 @@ const reviewSchema = {
 }
 
 const climateActionIncentiveSchema = {
-  climateActionIncentiveSchema: yesNoSchema(),
+  climateActionIncentiveIsRural: yesNoSchema(),
 }
 
 module.exports = {

@@ -19,7 +19,6 @@ block content
     div
       details.
         <summary><span>#{__('Learn more about eligible medical expenses')}</span></summary>
-        <p>#{__('Eligible medical expenses can include specialized equipment, accessibility devices, etc. For more information, please refer to https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-330-331-eligible-medical-expenses-you-claim-on-your-tax-return.html#mdcl_xpns')}</p>
-
+        <p>#{__('Eligible medical expenses can include specialized equipment, accessibility devices, etc. For more information, please refer to ')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-330-331-eligible-medical-expenses-you-claim-on-your-tax-return.html#mdcl_xpns')} target="_blank">#{__(`the CRA's guide to eligible medical expenses`)}</a>.</p>
 
     +formButtons('Continue', '/deductions/medical')

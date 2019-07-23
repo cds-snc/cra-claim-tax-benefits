@@ -1,11 +1,11 @@
 extends ../base
 
 block variables
-  -var title = 'Enter your personal access code'
+  -var title = __('Enter your personal access code')
 
 block content
 
-  h1 #{__(title)}
+  h1 #{title}
 
   div
     p #{__('Your personal access code is the 8 character code found in your notification letter.')}

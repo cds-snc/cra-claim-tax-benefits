@@ -2,12 +2,12 @@ extends ../base
 include ../_includes/yesNoRadios
 
 block variables
-  -var title = 'Designated student residence'
+  -var title = __('Designated student residence')
   -var trilliumStudentResidence = !hasData(data, 'deductions.trilliumStudentResidence') ? null : data.deductions.trilliumStudentResidence === true ? 'Yes' : 'No'
 
 block content
 
-  h1 #{__(title)}
+  h1 #{title}
 
   form.cra-form(method='post')
     +yesNoRadios('trilliumStudentResidence', trilliumStudentResidence, 'Did you live in a designated student residence in 2018?', errors)

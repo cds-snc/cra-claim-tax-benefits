@@ -1,11 +1,11 @@
 extends ../base
 
 block variables
-  -var title = 'Confirm your most recent benefit payment'
+  -var title = __('Confirm your most recent benefit payment')
 
 block content
 
-  h1 #{__(title)}
+  h1 #{title}
 
   div
     p #{__('Before we can update your information, we need to ask a further question to verify your identity.')}

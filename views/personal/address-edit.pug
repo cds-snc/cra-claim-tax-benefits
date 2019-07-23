@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = 'Change your mailing address'
+  -var title = __('Change your mailing address')
   -var aptNumber = hasData(body, 'aptNumber') ? body.aptNumber : hasData(data, 'personal.address.aptNumber') ? data.personal.address.aptNumber : ''
   -var streetNumber = hasData(body, 'streetNumber') ? body.streetNumber : hasData(data, 'personal.address.streetNumber') ? data.personal.address.streetNumber : ''
   -var streetName = hasData(body, 'streetName') ? body.streetName : hasData(data, 'personal.address.streetName') ? data.personal.address.streetName : ''
@@ -11,7 +11,7 @@ block variables
 
 block content
 
-  h1 #{__(title)}
+  h1 #{title}
 
   div
     p #{__('Please enter the correct mailing address information below. If a letter is sent to this address, you must be able to receive it.')}
@@ -29,7 +29,7 @@ block content
 
       +textInput('City', 'w-1-2')(class='w-3-4', value=city name='city')
 
-      +textInput('Postal Code', ['w-1-2'], 'For example: R2H 0J9')(class='w-3-4' name='postalCode' value=postalCode)
+      +textInput('Postal Code', ['w-1-2'], 'For Example: R2H 0J9')(class='w-3-4' name='postalCode' value=postalCode)
 
       .w-1-2(class={['has-error']: errors && errors.province})
         label(for='province') #{__('Province')}
@@ -38,19 +38,19 @@ block content
         select.w-3-4#province(name='province' aria-describedby=(errors && errors.province ? 'province-error' : false))
           if !province
             option(disabled='', selected='selected', value='')  -- select a province --
-          option(value='Alberta' selected=province == 'Alberta') Alberta
-          option(value='British Columbia' selected=province == 'British Columbia') British Columbia
-          option(value='Manitoba' selected=province == 'Manitoba') Manitoba
-          option(value='New Brunswick' selected=province == 'New Brunswick') New Brunswick
-          option(value='Newfoundland And Labrador' selected=province =='Newfoundland And Labrador') Newfoundland and Labrador
-          option(value='Northwest Territories' selected=province =='Northwest Territories') Northwest Territories
-          option(value='Nova Scotia' selected=province =='Nova Scotia') Nova Scotia
-          option(value='Nunavut' selected=province =='Nunavut') Nunavut
-          option(value='Ontario' selected=province == 'Ontario') Ontario
-          option(value='Prince Edward Island' selected=province =='Prince Edward Island') Prince Edward Island
-          option(value='Quebec'  selected=province =='Quebec') Quebec
-          option(value='Saskatchewan' selected=province =='Saskatchewan') Saskatchewan
-          option(value='Yukon' selected=province =='Yukon') Yukon
+          option(value='Alberta' selected=province == 'Alberta') #{__('Alberta')}
+          option(value='British Columbia' selected=province == 'British Columbia') #{__('British Columbia')}
+          option(value='Manitoba' selected=province == 'Manitoba') #{__('Manitoba')}
+          option(value='New Brunswick' selected=province == 'New Brunswick') #{__('New Brunswick')}
+          option(value='Newfoundland And Labrador' selected=province =='Newfoundland And Labrador') #{__('Newfoundland and Labrador')}
+          option(value='Northwest Territories' selected=province =='Northwest Territories') #{__('Northwest Territories')}
+          option(value='Nova Scotia' selected=province =='Nova Scotia') #{__('Nova Scotia')}
+          option(value='Nunavut' selected=province =='Nunavut') #{__('Nunavut')}Nunavut
+          option(value='Ontario' selected=province == 'Ontario') #{__('Ontario')}
+          option(value='Prince Edward Island' selected=province =='Prince Edward Island') #{__('Prince Edward Island')}
+          option(value='Quebec'  selected=province =='Quebec') #{__('Quebec')}
+          option(value='Saskatchewan' selected=province =='Saskatchewan') #{__('Saskatchewan')}
+          option(value='Yukon' selected=province =='Yukon') #{__('Yukon')}
 
       input#redirect(name='redirect', type='hidden', value='/personal/address')
 

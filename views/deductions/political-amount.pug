@@ -14,7 +14,7 @@ block content
 
   form.cra-form(method='post')
     +textInput('Total federal contributions')(class='w-1-2 input-with-unit' name='politicalFederalAmount' placeholder='0.00' aria-labelledby='politicalFederalAmount__unit politicalFederalAmount__label' value=politicalFederalAmount)
- 
+
     +textInput('Total provincial contributions')(class='w-1-2 input-with-unit' name='politicalProvincialAmount' placeholder='0.00' aria-labelledby='politicalProvincialAmount__unit politicalProvincialAmount__label' value=politicalProvincialAmount)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/donations')

@@ -9,7 +9,7 @@ block content
   h1 #{title}
 
   div
-    p #{__('Please enter your RRSP contributions for the current tax year (filing for 2018)')}
+    p #{__('Please enter your RRSP contributions before March 1, 2019.')}
 
   form.cra-form(method='post')
     +textInput('Total RRSP contributions')(class='w-1-2 input-with-unit' name='rrspAmount' placeholder='0.00' aria-labelledby='rrspAmount__unit rrspAmount__label' value=rrspAmount)

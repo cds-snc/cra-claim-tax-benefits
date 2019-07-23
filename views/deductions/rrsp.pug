@@ -15,11 +15,6 @@ block content
   form.cra-form(method='post')
     +yesNoRadios('rrspClaim', rrspClaim, 'Did you contribute to an RRSP?', errors)
 
-    div
-      details.
-        <summary><span>#{__('Help with RRSP contributions')}</span></summary>
-        <p>#{__('March 1, 2019, is the deadline for contributing to your RRSP for amounts you want to deduct on your 2018 income tax and benefit return.')}</p>
-
     input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
 
     +formButtons()

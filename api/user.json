@@ -9,12 +9,12 @@
     "sin": "847339283",
     "dateOfBirth": "1909/03/22",
     "address": {
-      "aptNumber": "",
-      "streetNumber": "375",
-      "streetName": "Rue Deschambault",
-      "postalCode": "R2H 0J9",
-      "city": "Winnipeg",
-      "province": "Manitoba"
+      "aptNumber": "Unit 202",
+      "streetNumber": "303",
+      "streetName": "Blake Blvd.",
+      "postalCode": "K2R 3Z9",
+      "city": "Ottawa",
+      "province": "Ontario"
     },
     "maritalStatus": "Single",
     "disability": false

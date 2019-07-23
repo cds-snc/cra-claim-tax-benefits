@@ -44,7 +44,7 @@ block content
       thead
         tr
           th.breakdown-table__heading #{__('Your projected refund')}
-          th.breakdown-table__heading $#{currencyFilter(totalBenefits, 0)}
+          th.breakdown-table__heading +$#{currencyFilter(totalBenefits, 0)}
       tbody
         tr
           th(colspan="2").breakdown-table__subheading #{__('Detailed breakdown of benefits')}

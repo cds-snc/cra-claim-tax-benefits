@@ -155,6 +155,25 @@ describe('Test /deductions responses', () => {
     })
   })
 
+  // Start of the Climate Action Incentive section
+  describe('Test /deductions/climate-action-incentive responses', () => {
+    test('it redirects to the posted redirect url when posting "Yes"', async () => {
+      const response = await request(app)
+        .post('/deductions/climate-action-incentive')
+        .send({ climateActionIncentiveIsRural: 'Yes', redirect: '/' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/')
+    })
+
+    test('it redirects to the posted redirect url when posting "No"', async () => {
+      const response = await request(app)
+        .post('/deductions/climate-action-incentive')
+        .send({ climateActionIncentiveIsRural: 'No', redirect: '/' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/')
+    })
+  })
+
   describe('Test /deductions/* yesNo responses', () => {
     const yesNoResponses = [
       {

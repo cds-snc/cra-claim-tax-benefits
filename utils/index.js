@@ -192,6 +192,22 @@ const currencyFilter = (number, fractionDigits = 2) => {
   })
 }
 
+const sortByLineNumber = (...objToSort) => {
+  //take all the objects, make them into one big object
+  const superObj = Object.assign({}, ...objToSort);
+
+  //filter down the object into an array of objects, 
+  //but only the objects with the line property
+  const filteredObj = Object.entries(superObj).filter(obj => {
+    return typeof obj[1] === 'object' && obj[1] !== null && obj[1] !== undefined && obj[1].hasOwnProperty('line')
+  })
+
+  //sort the array of objects according to the line value 
+  const sortedArrayObj = filteredObj.map(obj => obj[1]).sort((a,b) => a.line - b.line)
+
+  return sortedArrayObj
+}
+
 module.exports = {
   errorArray2ErrorObject,
   validateRedirect,
@@ -201,5 +217,6 @@ module.exports = {
   hasData,
   checkPublic,
   currencyFilter,
+  sortByLineNumber,
   checkLangQuery,
 }

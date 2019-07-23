@@ -84,15 +84,19 @@
 
 .multiple-choice--checkboxes .multiple-choice__item {
   > input[type='checkbox'] {
-    top: 0;
+    top: calc(50% - 20px);
     left: 0;
     width: 40px;
     height: 40px;
   }
 
   > input[type='checkbox'] + label {
+    &::before {
+      top: calc(50% - 20px);
+    }
+
     &::after {
-      top: 11px;
+      top: calc(50% - 20px + 11px);
       left: 9px;
       width: 18px;
       height: 7px;

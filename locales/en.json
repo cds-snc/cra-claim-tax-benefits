@@ -207,11 +207,14 @@
   "If this information doesn’t match your records, you can’t change it here.": "If this information doesn’t match your records, you can’t change it here.",
   "You should not use this service to file income information you believe to be incorrect.": "You should not use this service to file income information you believe to be incorrect.",
   "Language Selection": "Language Selection",
-  "Language selection: French": "Language selection: French"
-	"Climate Action Incentive": "Climate Action Incentive",
-	"You’re eligible for the Climate Action Incentive, which you will receive automatically.": "You’re eligible for the Climate Action Incentive, which you will receive automatically.",
-	"There is an additional 10% credit for residents of small and rural communities": "There is an additional 10% credit for residents of small and rural communities",
-	"Did you live in a small and rural community in December 2018?": "Did you live in a small and rural community in December 2018?",
-	"How do I know if I live in a small and rural community": "How do I know if I live in a small and rural community",
-	"You live in a small or rural community if you do not live in these census metropolitan areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph,London, Windsor, Barrie, Sudbury, or Thunder Bay.": "You live in a small or rural community if you do not live in these census metropolitan areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph,London, Windsor, Barrie, Sudbury, or Thunder Bay."
+  "Language selection: French": "Language selection: French",
+  "Climate Action Incentive": "Climate Action Incentive",
+  "You’re eligible for the Climate Action Incentive, which you will receive automatically.": "You’re eligible for the Climate Action Incentive, which you will receive automatically.",
+  "There is an additional 10% credit for residents of small and rural communities": "There is an additional 10% credit for residents of small and rural communities",
+  "Did you live in a small and rural community in December 2018?": "Did you live in a small and rural community in December 2018?",
+  "How do I know if I live in a small and rural community": "How do I know if I live in a small and rural community",
+  "You live in a small or rural community if you do not live in these census metropolitan areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph,London, Windsor, Barrie, Sudbury, or Thunder Bay.": "You live in a small or rural community if you do not live in these census metropolitan areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph,London, Windsor, Barrie, Sudbury, or Thunder Bay.",
+  "Net Federal tax deduction": "Net Federal tax deduction",
+  "Net Provincial tax deduction": "Net Provincial tax deduction",
+  "EI deduction": "EI deduction"
 }

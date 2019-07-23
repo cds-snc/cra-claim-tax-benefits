@@ -3,9 +3,9 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = 'Confirm your income information'
-  -var income = hasData(data, 'financial.income') ? data.financial.income : {}
+  -var incomeSources = hasData(data, 'financial.incomeSources') ? data.financial.income : {}
   -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
-  -var totalIncome = hasData(data, 'financial.totalIncome') ? data.financial.totalIncome : 0
+  -var totalIncome = hasData(data, 'financial.incomes.totalIncome') ? data.financial.incomes.totalIncome : 0
   -var totalTax = hasData(data, 'financial.totalTax') ? data.financial.totalTax : 0
   -var count = 1;
   -var year = new Date().getFullYear()-1
@@ -23,20 +23,20 @@ block content
         thead
           tr
             th.breakdown-table__heading #{__(`Total income earned in ${year}`)}
-            th.breakdown-table__heading $#{currencyFilter(totalIncome, 0)}
+            th.breakdown-table__heading $#{currencyFilter(totalIncome.amount, 0)}
         tbody
           tr
             th(colspan="2").breakdown-table__subheading #{__(`Detailed breakdown of income earned in ${year}`)}
-          each employer in income
+          each income in incomeSources
             tr
               td #{__(`Employer ${count} Total Income`)}
-              td $#{currencyFilter(employer.total)}
+              td $#{currencyFilter(income.total)}
 
             - count++
 
           tr.breakdown-table__summary-row
             td #{__(`Total Income for ${year}`)} 
-            td $#{currencyFilter(totalIncome)}
+            td $#{currencyFilter(totalIncome.amount)}
 
   div
     table.breakdown-table

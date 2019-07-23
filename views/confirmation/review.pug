@@ -2,19 +2,69 @@ extends ../base
 include ../_includes/yesNoRadios
 
 block variables
-  -var title = 'Review your estimated benefits'
+  -var title = 'Review and file tax return'
+  -var benefits = hasData(data, 'benefits') ? data.benefits : {}
+  -var totalBenefits = hasData(data, 'benefits.totalBenefits') ? data.benefits.totalBenefits : 0
+  -var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
+  -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
+  -var refund = hasData(data, 'refund') ? data.refund : {}
+  -var refundLines = sortByLineNumber(data.deductions, taxes, incomes, refund)
+  -var count = 1;
+
 
 block content
 
-  h1 #{title}
+  h1 #{__(title)}
 
   div
-    p This is an overview of what you will be submitting to the Canada Revenue Agency (CRA) and all of the benefits you will receive once you have filed.
-    p Make sure that everything looks up-to-date before continuing.
-    p If anything is incorrect, please <a href="#">contact CRA</a>.
+    p #{__('This is an overview of your projected tax return, and all the benefits you will receive when you file for the current tax year.')}
+    p #{__('Take one final look before continuing. If something looks incorrect, please')} #[a(href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/telephone-numbers.html") #{__('contact CRA')}] #{__('before filing.')}
 
   div
-    p Once you have provided your consent, please go ahead and submit.
+    table.breakdown-table
+      thead
+        tr
+          th.breakdown-table__heading #{__('Your annual benefits')}
+          th.breakdown-table__heading $#{currencyFilter(totalBenefits, 0)}
+      tbody
+        tr
+          th(colspan="2").breakdown-table__subheading #{__('Detailed breakdown of benefits')}
+        each val, index in benefits
+          if index !== "totalBenefits"
+            tr
+              td #{__(`${index}`)}
+              td $#{currencyFilter(val)}
+
+        tr.breakdown-table__summary-row
+          td #{__('Total Benefits')} 
+          td $#{currencyFilter(totalBenefits)}
+  
+  div
+    table.breakdown-table
+      thead
+        tr
+          th.breakdown-table__heading #{__('Your projected refund')}
+          th.breakdown-table__heading +$#{currencyFilter(totalBenefits, 0)}
+      tbody
+        tr
+          th(colspan="2").breakdown-table__subheading #{__('Detailed breakdown of benefits')}
+        each refundLine in refundLines
+          -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
+
+          //- do I like this space-row thing right now? no
+          //- but until our date and how we sort these lines is more solid, it lives
+          tr(
+            class={
+              ['breakdown-table__summary-row space-row']: refundLine.name === "Total Refund",
+              ['space-row']: count === 5 || count === 8 || count === 11 || count === 13
+            }
+          )
+            td #{__(`${refundLine.name} (${lineNumber})`)}
+            td $#{currencyFilter(refundLine.amount)}
+          
+          - count++
+
+
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.review})
@@ -23,7 +73,7 @@ block content
           +validationMessage(errors.review.msg, key)
         .multiple-choice__item
           input(id='review' name='review' type="checkbox" value="review" checked=(value =='review') aria-describedby=(errors ? `review-error` : false))
-          label(for='review') I totally consent to this
+          label(for='review') #{__('I confirm that, as far as I know, all the information in this tax return is accurate')}
 
     input#redirect(name='redirect', type='hidden', value='/confirmation')
 

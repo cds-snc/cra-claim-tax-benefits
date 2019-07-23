@@ -13,7 +13,7 @@ const express = require('express'),
   path = require('path'),
   cookieSession = require('cookie-session'),
   cookieSessionConfig = require('./config/cookieSession.config'),
-  { SINFilter, hasData, checkPublic, checkLangQuery, currencyFilter } = require('./utils')
+  { SINFilter, hasData, checkPublic, sortByLineNumber, checkLangQuery, currencyFilter } = require('./utils')
 
 // initialize application.
 var app = express()
@@ -69,6 +69,7 @@ app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
 app.locals.SINFilter = SINFilter
 app.locals.hasData = hasData
 app.locals.currencyFilter = currencyFilter
+app.locals.sortByLineNumber = sortByLineNumber
 
 // configure routes
 require('./routes/start/start.controller')(app)

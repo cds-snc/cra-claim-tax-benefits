@@ -38,19 +38,19 @@ block content
         select.w-3-4#province(name='province' aria-describedby=(errors && errors.province ? 'province-error' : false))
           if !province
             option(disabled='', selected='selected', value='')  -- select a province --
-          option(value='Alberta' selected=province == 'Alberta') Alberta
-          option(value='British Columbia' selected=province == 'British Columbia') British Columbia
-          option(value='Manitoba' selected=province == 'Manitoba') Manitoba
-          option(value='New Brunswick' selected=province == 'New Brunswick') New Brunswick
-          option(value='Newfoundland And Labrador' selected=province =='Newfoundland And Labrador') Newfoundland and Labrador
-          option(value='Northwest Territories' selected=province =='Northwest Territories') Northwest Territories
-          option(value='Nova Scotia' selected=province =='Nova Scotia') Nova Scotia
-          option(value='Nunavut' selected=province =='Nunavut') Nunavut
-          option(value='Ontario' selected=province == 'Ontario') Ontario
-          option(value='Prince Edward Island' selected=province =='Prince Edward Island') Prince Edward Island
-          option(value='Quebec'  selected=province =='Quebec') Quebec
-          option(value='Saskatchewan' selected=province =='Saskatchewan') Saskatchewan
-          option(value='Yukon' selected=province =='Yukon') Yukon
+          option(value='Alberta' selected=province == 'Alberta') #{__('Alberta')}
+          option(value='British Columbia' selected=province == 'British Columbia') #{__('British Columbia')}
+          option(value='Manitoba' selected=province == 'Manitoba') #{__('Manitoba')}
+          option(value='New Brunswick' selected=province == 'New Brunswick') #{__('New Brunswick')}
+          option(value='Newfoundland And Labrador' selected=province =='Newfoundland And Labrador') #{__('Newfoundland and Labrador')}
+          option(value='Northwest Territories' selected=province =='Northwest Territories') #{__('Northwest Territories')}
+          option(value='Nova Scotia' selected=province =='Nova Scotia') #{__('Nova Scotia')}
+          option(value='Nunavut' selected=province =='Nunavut') #{__('Nunavut')}Nunavut
+          option(value='Ontario' selected=province == 'Ontario') #{__('Ontario')}
+          option(value='Prince Edward Island' selected=province =='Prince Edward Island') #{__('Prince Edward Island')}
+          option(value='Quebec'  selected=province =='Quebec') #{__('Quebec')}
+          option(value='Saskatchewan' selected=province =='Saskatchewan') #{__('Saskatchewan')}
+          option(value='Yukon' selected=province =='Yukon') #{__('Yukon')}
 
       input#redirect(name='redirect', type='hidden', value='/personal/address')
 

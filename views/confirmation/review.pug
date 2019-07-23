@@ -5,12 +5,11 @@ block variables
   -var title = 'Review and file tax return'
   -var benefits = hasData(data, 'benefits') ? data.benefits : {}
   -var totalBenefits = hasData(data, 'benefits.totalBenefits') ? data.benefits.totalBenefits : 0
-  -var totalIncome = hasData(data, 'financial.incomes.totalIncome') ? data.financial.incomes.totalIncome : 0
-
   -var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
   -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
   -var refund = hasData(data, 'refund') ? data.refund : {}
   -var refundLines = sortByLineNumber(data.deductions, taxes, incomes, refund)
+  -var count = 1;
 
 
 block content
@@ -52,11 +51,18 @@ block content
         each refundLine in refundLines
           -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
 
+          //- do I like this space-row thing right now? no
+          //- but until our date and how we sort these lines is more solid, it lives
           tr(
-            class={['breakdown-table__summary-row']: refundLine.name === "Total Refund"}
+            class={
+              ['breakdown-table__summary-row space-row']: refundLine.name === "Total Refund",
+              ['space-row']: count === 5 || count === 8 || count === 11 || count === 13
+            }
           )
             td #{__(`${refundLine.name} (${lineNumber})`)}
             td $#{currencyFilter(refundLine.amount)}
+          
+          - count++
 
 
 

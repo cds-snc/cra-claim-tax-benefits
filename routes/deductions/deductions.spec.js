@@ -21,6 +21,26 @@ describe('Test /deductions responses', () => {
     })
   })
 
+  //Start of Medical Claim section
+  describe('Test /deductions/medical responses', () => {
+    test('it redirects to the edit page when posting "Yes"', async () => {
+      const response = await request(app)
+        .post('/deductions/medical')
+        .send({ medicalClaim: 'Yes', redirect: '/' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/deductions/medical/amount')
+    })
+
+    test('it redirects to the posted redirect url when posting "No"', async () => {
+      const response = await request(app)
+        .post('/deductions/medical')
+        .send({ medicalClaim: 'No', redirect: '/' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/')
+    })
+  })
+  //End of Medical Claim section  
+
   //Start of Charitable donation section
   describe('Test /deductions/donations responses', () => {
     test('it redirects to the edit page when posting "Yes"', async () => {
@@ -142,6 +162,10 @@ describe('Test /deductions responses', () => {
         key: 'rrspClaim',
       },
       {
+        url: '/deductions/medical',
+        key: 'medicalClaim',
+      },
+      {
         url: '/deductions/donations',
         key: 'donationsClaim',
       },
@@ -187,6 +211,10 @@ describe('Test /deductions responses', () => {
       {
         url: '/deductions/rrsp/amount',
         key: 'rrspAmount',
+      },
+      {
+        url: '/deductions/medical/amount',
+        key: 'medicalAmount',
       },
       {
         url: '/deductions/donations/amount',

@@ -7,6 +7,8 @@ const {
   donationsAmountSchema,
   politicalSchema,
   politicalAmountSchema,
+  medicalSchema,
+  medicalAmountSchema,
   trilliumRentAmountSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumStudentResidenceSchema,
@@ -58,6 +60,29 @@ module.exports = function (app) {
     postDonationsAmount,
   )
   //End of Charitable Donations Section
+
+  //Start of Medical claim Section
+  app.get('/deductions/medical', (req, res) =>
+    res.render('deductions/medical', { data: req.session }),
+  )
+  app.post(
+    '/deductions/medical',
+    validateRedirect,
+    checkSchema(medicalSchema),
+    checkErrors('deductions/medical'),
+    postMedical,
+  )
+  app.get('/deductions/medical/amount', (req, res) =>
+    res.render('deductions/medical-amount', { data: req.session }),
+  )
+  app.post(
+    '/deductions/medical/amount',
+    validateRedirect,
+    checkSchema(medicalAmountSchema),
+    checkErrors('deductions/medical-amount'),
+    postMedicalAmount,
+  )
+  //End of Medical Claim Section
 
   //Start of Political Donations Section
   app.get('/deductions/political', (req, res) => res.render('deductions/political', { data: req.session }))
@@ -189,6 +214,33 @@ const postDonationsAmount = (req, res) => {
   return res.redirect(req.body.redirect)
 }
 //End of Charitable Donations controller functions
+
+//Start of Medical claim controller functions
+const postMedical = (req, res) => {
+  const medicalClaim = req.body.medicalClaim
+
+  if (medicalClaim === 'Yes') {
+    req.session.deductions.medicalClaim = true
+
+    // It's fine not having this in the form itself (like the other redirect value)
+    // because these two pages are hardcoded together
+    return res.redirect('/deductions/medical/amount')
+  }
+
+  req.session.deductions.medicalClaim = false
+
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+
+const postMedicalAmount = (req, res) => {
+  req.session.deductions.medicalAmount = req.body.medicalAmount
+
+  //Success, we can redirect to the next page
+  return res.redirect(req.body.redirect)
+}
+//End of Medical claim controller functions
+
 
 //Start of Trillium controller functions
 const postTrilliumRentAmount = (req, res) => {

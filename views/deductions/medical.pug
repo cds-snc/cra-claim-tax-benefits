@@ -1,0 +1,20 @@
+extends ../base
+include ../_includes/yesNoRadios
+
+block variables
+  -var title = __('Medical expenses')
+  -var medicalClaim = hasData(data, 'deductions.medicalClaim') ? data.deductions.medicalClaim : ''
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('You can claim medical expenses for your self, spouse or common-law partner, and dependent children born after 2001.')}
+
+  form.cra-form(method='post')
+    +yesNoRadios('medicalClaim', medicalClaim, 'Would you like to claim medical expenses?', errors)
+
+    input#redirect(name='redirect', type='hidden', value='/deductions/political')
+
+    +formButtons()

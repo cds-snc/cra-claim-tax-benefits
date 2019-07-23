@@ -8,6 +8,7 @@ block variables
   -var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
   -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
   -var refund = hasData(data, 'refund') ? data.refund : {}
+  -var totalRefund = hasData(data, 'refund.totalRefund') ? data.refund.totalRefund : 0
   -var refundLines = sortByLineNumber(data.deductions, taxes, incomes, refund)
   -var count = 1;
 
@@ -25,7 +26,7 @@ block content
       thead
         tr
           th.breakdown-table__heading #{__('Your annual benefits')}
-          th.breakdown-table__heading $#{currencyFilter(totalBenefits, 0)}
+          th.breakdown-table__heading $#{currencyFilter(totalBenefits)}
       tbody
         tr
           th(colspan="2").breakdown-table__subheading #{__('Detailed breakdown of benefits')}
@@ -44,19 +45,16 @@ block content
       thead
         tr
           th.breakdown-table__heading #{__('Your projected refund')}
-          th.breakdown-table__heading +$#{currencyFilter(totalBenefits, 0)}
+          th.breakdown-table__heading +$#{currencyFilter(totalRefund.amount)}
       tbody
         tr
-          th(colspan="2").breakdown-table__subheading #{__('Detailed breakdown of benefits')}
+          th(colspan="2").breakdown-table__subheading #{__('Detailed breakdown of tax refund')}
         each refundLine in refundLines
           -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
-
-          //- do I like this space-row thing right now? no
-          //- but until our date and how we sort these lines is more solid, it lives
           tr(
             class={
               ['breakdown-table__summary-row space-row']: refundLine.name === "Total Refund",
-              ['space-row']: count === 5 || count === 8 || count === 11 || count === 13
+              ['space-row']: count === 4 || count === 5 || count === 6 || count === 8
             }
           )
             td #{__(`${refundLine.name} (${lineNumber})`)}

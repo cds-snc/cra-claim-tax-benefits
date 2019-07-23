@@ -50,7 +50,7 @@ block content
 
         each tax in taxes
           tr
-            td #{__(`${tax.name} deduction`)}
+            td #{__(`${tax.name.replace('Net ', '')} deduction`)}
             td $#{currencyFilter(tax.amount)}
 
         tr.breakdown-table__summary-row

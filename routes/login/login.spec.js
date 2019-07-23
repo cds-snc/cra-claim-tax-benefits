@@ -187,7 +187,7 @@ describe('Test /login responses', () => {
       it('it should return 302 for the right SIN', async () => {
         const response = await authSession
           .post('/login/sin')
-          .send({ sin: '111 222 333', redirect: '/login/sin' })
+          .send({ sin: '847 339 283', redirect: '/login/sin' })
         expect(response.statusCode).toBe(302)
       })
     })
@@ -204,7 +204,7 @@ describe('Test /login responses', () => {
 
     let goodDoBRequest = {
       dateOfBirth: '1909/03/22',
-      sin: '111222333',
+      sin: '847339283',
       redirect: '/login/success',
     }
 
@@ -333,7 +333,7 @@ describe('Test /login responses', () => {
         .then(() => {
           return authSession
             .post('/login/sin')
-            .send({ code: 'A5G98S4K1', sin: '111222333', redirect: '/login/dateOfBirth' })
+            .send({ code: 'A5G98S4K1', sin: '847339283', redirect: '/login/dateOfBirth' })
         })
       expect(response.statusCode).toBe(302)
     })

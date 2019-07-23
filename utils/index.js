@@ -150,7 +150,7 @@ const validateRedirect = (req, res, next) => {
  * If it is 9 characters long 9, this function returns a string with
  * a space inserted after the 3rd character and the 6th character
  *
- * ie, "111222333" => "111 222 333"
+ * ie, "847339283" => "847 339 283"
  *
  * @param string text a 9-character string assumed to be a social insurance number
  */

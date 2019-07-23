@@ -36,7 +36,7 @@ describe('Test /personal responses', () => {
     })
 
     test('it checks the stored marital status by default for /personal/maritalStatus/edit path', async () => {
-      const user = API.getUser('QWER1234')
+      const user = API.getUser('A5G98S4K1')
       const response = await request(app).get('/personal/maritalStatus/edit', { data: user })
       const $ = cheerio.load(response.text)
       expect($('input[name=maritalStatus]:checked').val().toLowerCase).toEqual(

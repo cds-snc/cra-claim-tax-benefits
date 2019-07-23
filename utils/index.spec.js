@@ -18,7 +18,7 @@ describe('Test SINFilter', () => {
 })
 
 describe('Test hasData function', () => {
-  const user = API.getUser('QWER1234')
+  const user = API.getUser('A5G98S4K1')
 
   test('returns true for maritalStatus', () => {
     expect(hasData(user, 'personal.maritalStatus')).toBe(true)

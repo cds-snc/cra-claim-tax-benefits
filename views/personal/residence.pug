@@ -8,7 +8,8 @@ block content
   h1 #{__(title)}
 
   div
-    p #{__('In order to be eligible for this service, your primary residence on December 31, 2018, must have been in Ontario. If you live outside of Ontario, we will provide you with alternative options in which you can complete your tax return.')}
+    p #{__('In order to be eligible for this service, your primary residence on December 31, 2018, must have been in Ontario.')}
+    p #{__('If you live outside of Ontario, we will provide you with alternative options in which you can complete your tax return.')}
 
 
   form.cra-form(method='post')
@@ -23,12 +24,12 @@ block content
           option(value='New Brunswick') #{__('New Brunswick')}
           option(value='Newfoundland And Labrador') #{__('Newfoundland and Labrador')}
           option(value='Northwest Territories') #{__('Northwest Territories')}
-          option(value='Nova Scotia') #{__('Nova Scotia')} 
-          option(value='Nunavut') #{__('Nunavut')} 
-          option(value='Ontario', selected='selected') #{__('Ontario')} 
-          option(value='Prince Edward Island') #{__('Prince Edward Island')} 
-          option(value='Quebec') #{__('Quebec')} 
-          option(value='Saskatchewan') #{__('Saskatchewan')} 
+          option(value='Nova Scotia') #{__('Nova Scotia')}
+          option(value='Nunavut') #{__('Nunavut')}
+          option(value='Ontario', selected='selected') #{__('Ontario')}
+          option(value='Prince Edward Island') #{__('Prince Edward Island')}
+          option(value='Quebec') #{__('Quebec')}
+          option(value='Saskatchewan') #{__('Saskatchewan')}
           option(value='Yukon') #{__('Yukon')}
           option(value='Non Resident') #{__('Non Resident')}
     input#redirect(name='redirect', type='hidden', value='/personal/address')

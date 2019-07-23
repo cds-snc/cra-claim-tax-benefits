@@ -2,7 +2,7 @@ extends ../base
 
 block variables
   -var title = __('Enter your RRSP contributions')
-  -var rrspAmount = hasData(data, 'deductions.rrspAmount') && data.deductions.rrspAmount !== 0 ? data.deductions.rrspAmount : ''
+  -var rrspAmount = hasData(data, 'deductions.rrspAmount.amount') && data.deductions.rrspAmount.amount !== 0 ? data.deductions.rrspAmount.amount : ''
 
 block content
 

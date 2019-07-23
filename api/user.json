@@ -96,6 +96,11 @@
       "amount": 0.00
     },
     "rrspClaim": null,
+    "rrspAmount": {
+      "name": "RRSP",
+      "line": 208,
+      "amount": 0.00
+    },
     "basicPersonalAmount": {
       "name": "Basic Personal Amount",
       "line": 300,
@@ -105,7 +110,6 @@
       "name": "Age Amount",
       "amount": 7500.00
     },
-    "rrspAmount": 0,
     "partnerAgeClaim": null,
     "canadaCaregiverClaim": null,
     "partnerDisabilityClaim": null,

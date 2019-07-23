@@ -195,7 +195,7 @@ const postRRSP = (req, res) => {
 }
 
 const postRRSPAmount = (req, res) => {
-  req.session.deductions.rrspAmount = req.body.rrspAmount
+  req.session.deductions.rrspAmount.amount = req.body.rrspAmount
 
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)

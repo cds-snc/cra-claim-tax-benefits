@@ -14,11 +14,11 @@ block variables
 
 block content
 
-  h1 #{title}
+  h1 #{__(title)}
 
   div
-    p This is an overview of your projected tax return, and all the benefits you will receive when you file for the current tax year.
-    p Take one final look before continuing. If something looks incorrect, please #[a(href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/telephone-numbers.html") contact CRA] before filing.
+    p #{__('This is an overview of your projected tax return, and all the benefits you will receive when you file for the current tax year.')}
+    p #{__('Take one final look before continuing. If something looks incorrect, please')} #[a(href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/telephone-numbers.html") #{__('contact CRA')}] #{__('before filing.')}
 
   div
     table.breakdown-table
@@ -73,7 +73,7 @@ block content
           +validationMessage(errors.review.msg, key)
         .multiple-choice__item
           input(id='review' name='review' type="checkbox" value="review" checked=(value =='review') aria-describedby=(errors ? `review-error` : false))
-          label(for='review') I confirm that, as far as I know, all the information in this tax return is accurate
+          label(for='review') #{__('I confirm that, as far as I know, all the information in this tax return is accurate')}
 
     input#redirect(name='redirect', type='hidden', value='/confirmation')
 

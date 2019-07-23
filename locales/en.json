@@ -232,5 +232,14 @@
   "Total Payable (435)": "Total Payable (435)",
   "Total Deducted (437)": "Total Deducted (437)",
   "Total Credits (482)": "Total Credits (482)",
-  "Total Refund (484)": "Total Refund (484)"
+  "Total Refund (484)": "Total Refund (484)",
+  "Net Federal tax deduction": "Net Federal tax deduction",
+  "Net Provincial tax deduction": "Net Provincial tax deduction",
+  "EI deduction": "EI deduction",
+  "This is an overview of your projected tax return, and all the benefits you will receive when you file for the current tax year.": "This is an overview of your projected tax return, and all the benefits you will receive when you file for the current tax year.",
+  "Take one final look before continuing. If something looks incorrect, please #[a(href=\"https://www.canada.ca/en/revenue-agency/corporate/contact-information/telephone-numbers.html\") contact CRA] before filing.": "Take one final look before continuing. If something looks incorrect, please #[a(href=\"https://www.canada.ca/en/revenue-agency/corporate/contact-information/telephone-numbers.html\") contact CRA] before filing.",
+  "I confirm that, as far as I know, all the information in this tax return is accurate": "I confirm that, as far as I know, all the information in this tax return is accurate",
+  "Take one final look before continuing. If something looks incorrect, please": "Take one final look before continuing. If something looks incorrect, please",
+  "contact CRA": "contact CRA",
+  "before filing.": "before filing."
 }

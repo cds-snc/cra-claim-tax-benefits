@@ -29,7 +29,7 @@ block content
             th(colspan="2").breakdown-table__subheading #{__(`Detailed breakdown of income earned in ${year}`)}
           each income in incomeSources
             tr
-              td #{__(`Employer ${count} Total Income`)}
+              td #{income.name} #{__('Total Income')}
               td $#{currencyFilter(income.total)}
 
             - count++

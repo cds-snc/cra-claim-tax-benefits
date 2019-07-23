@@ -20,24 +20,26 @@
     "disability": false
   },
   "financial": {
-    "incomeSources": {
-      "employer 1": {
-        "total": 11000.00
+    "incomeSources": [
+      {
+        "name": "RT Holdings Inc.",
+        "total": 7613.16
       },
-      "employer 2": {
-        "total": 17000.00
+      {
+        "name": "Morden Structural Ltd.",
+        "total": 13691.94
       }
-    },
+    ],
     "incomes": {
       "totalIncome": {
         "name": "Total Income",
         "line": 150,
-        "amount": 28000.00
+        "amount": 21305.10
       },
       "netIncome": {
         "name": "Net Income",
         "line": 236,
-        "amount": 24000.00
+        "amount": 20000.00
       },
       "taxableIncome": {
         "name": "Taxable Income",

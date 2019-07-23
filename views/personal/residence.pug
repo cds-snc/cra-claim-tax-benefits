@@ -17,7 +17,7 @@ block content
       label(for='residence', name="residence-label") #{__('Province or Territory of Residence')}
       if errors
           +validationMessage(errors.residence.msg, 'residence')
-      select(name='residence', aria-describedby=(errors && errors.residence ? 'residence-error' : false))
+      select#residence(name='residence', aria-describedby=(errors && errors.residence ? 'residence-error' : false))
           option(value='Alberta') #{__('Alberta')}
           option(value='British Columbia') #{__('British Columbia')}
           option(value='Manitoba') #{__('Manitoba')}

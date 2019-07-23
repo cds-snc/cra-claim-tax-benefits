@@ -10,7 +10,7 @@ block variables
   -var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
   -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
   -var refund = hasData(data, 'refund') ? data.refund : {}
-  -var deductions = sortByLineNumber(data.deductions, taxes, incomes, refund)
+  -var refundLines = sortByLineNumber(data.deductions, taxes, incomes, refund)
 
 
 block content
@@ -49,14 +49,14 @@ block content
       tbody
         tr
           th(colspan="2").breakdown-table__subheading #{__('Detailed breakdown of benefits')}
-        each deduction in deductions
-          -var lineNumber = deduction.multiLine ? deduction.multiLine : deduction.line
-          
+        each refundLine in refundLines
+          -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
+
           tr(
-            class={['breakdown-table__summary-row']: deduction.name === "Total Refund"}
+            class={['breakdown-table__summary-row']: refundLine.name === "Total Refund"}
           )
-            td #{__(`${deduction.name} (${lineNumber})`)}
-            td $#{currencyFilter(deduction.amount)}
+            td #{__(`${refundLine.name} (${lineNumber})`)}
+            td $#{currencyFilter(refundLine.amount)}
 
 
 

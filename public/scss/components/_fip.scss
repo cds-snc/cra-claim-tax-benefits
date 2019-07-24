@@ -1,0 +1,9 @@
+.fip-container {
+  flex-direction: column;
+  display: flex;
+
+  @include sm {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}

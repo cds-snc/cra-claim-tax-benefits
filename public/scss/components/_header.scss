@@ -1,14 +1,19 @@
 header {
-  padding: $space-xs 0 0 0;
+  padding: 0 0 0 0;
+
+  button {
+    padding: 0;
+  }
 
   @include sm {
-    padding: $space-lg 0 $space-xl 0;
+    padding-bottom: $space-xl;
+    text-align: right;
   }
 
   .language-link {
-    text-align: right;
-    font-size: 0.85em;
+    text-align: left;
     margin-bottom: $space-sm;
+    font-size: 0.85em;
 
     h2 {
       @include visuallyHidden();
@@ -28,11 +33,11 @@ header {
 
   .canada-flag {
     width: 272px;
-    @include xs {
-      width: 282px;
-    }
+    margin-bottom: $space-sm;
+
     @include sm {
       width: 360px;
+      margin-bottom: 0;
     }
   }
 }

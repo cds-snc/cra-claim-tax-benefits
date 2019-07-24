@@ -28,15 +28,8 @@ html(lang=getLocale() === 'fr' ? 'fr' : 'en')
   body
     .container
       header
-        .page--container
-          include _includes/languageLink
-          //- can also potentially put these as strings in our locales file
-          .canada-flag
-            if getLocale() == 'fr'
-              img(src='/img/sig-blk-fr.svg', alt='Gouvernement du Canada')
-            else
-              img(src='/img/sig-blk-en.svg', alt='Government of Canada')
-
+        include _includes/phaseBanner
+        include _includes/fip
       main
         if errors
           include _includes/errorList.pug

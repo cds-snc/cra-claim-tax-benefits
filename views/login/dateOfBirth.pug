@@ -17,7 +17,7 @@ block content
     form.cra-form(method='post')
       div(class={['has-error']: errors && errors.dateOfBirth})
         label(for='dateOfBirth') #{__('Date of Birth')}
-        span.cra-form-message #{__('For Example:')} #{data.personal.dateOfBirth}
+        span.cra-form-message #{__('For Example:')} 1961/04/12
         if errors
           +validationMessage(errors.dateOfBirth.msg, 'dateOfBirth')
         input.w-3-4#dateOfBirth(name='dateOfBirth', type='text', value=dateOfBirth, autocomplete='off' aria-describedby=(errors && errors.dateOfBirth ? 'dateOfBirth-error' : false))

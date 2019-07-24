@@ -6,7 +6,11 @@ block content
 
   div
     p #{__('Welcome to the Canada Revenue Agency’s new')} <strong>#{__('Claim Tax Benefits')}</strong> #{__('service')}.
-    p #{__('This service is to claim tax benefits online.')} #{__('You need to be eligible to use this service.')}
+    p #{__('This service is to claim tax benefits online.')} #{__('You are eligible for this service if:')}
+    ul
+      li #{__('You earned under $35,000 in 2018 (from employment, pension, RRSP withdrawals, or from benefits and credits you received)')}
+      li #{__('You do not have self-employment income to report')}
+      li #{__('You do not earn investment income (except for nominal interest income from Canadian sources)')}
     p #{__('In order to claim tax benefits online, you must have the following:')}
     ul
       li #{__('Your personal access code')}

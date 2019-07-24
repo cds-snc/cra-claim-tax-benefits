@@ -10,7 +10,7 @@ block content
   h1 #{title}
 
   div
-    p #{__('If you made RRSP contributions before March 1, 2019, you can deduct them from your total income.')}
+    p #{__('If you made RRSP contributions before March 1, 2019, you can deduct them from your total income on your taxes this year.')}
 
   form.cra-form(method='post')
     +yesNoRadios('rrspClaim', rrspClaim, 'Did you contribute to an RRSP?', errors)

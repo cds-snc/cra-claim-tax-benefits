@@ -76,62 +76,6 @@ li:not(:last-of-type) {
   @extend %page-container;
 }
 
-.fip-container {
-  flex-direction: column;
-  display: flex;
-
-  @include sm {
-    justify-content: space-between;
-    flex-direction: row;
-  }
-}
-
-.phase-banner {
-  background: #F4F4F4;
-}
-
-.phase-banner {
-  div {
-  @extend %page-container;
-  display: flex;
-  align-items: flex-start;
-  padding-top: $space-sm;
-  padding-bottom: $space-sm;
-  margin-bottom: $space-md;
-
-  @include sm {
-    align-items: center;
-  }
-  }
-
-  span {
-    font-size: 0.5em;
-
-    @include sm {
-      font-size: 0.7em;
-    }
-  }
-
-  span:first-of-type {
-    border: 2px $color-black solid;
-    padding: 1px 5px;
-    letter-spacing: 1px;
-    margin-right: 1.7em;
-
-    @include sm {
-      padding: 1px 7px;
-    }
-  }
-
-  span:last-of-type {
-    margin-top: 3px;    
-    
-    @include sm {
-      margin-top: 0px;
-    }
-  }
-}
-
 .pure-table {
   width: 100%;
 

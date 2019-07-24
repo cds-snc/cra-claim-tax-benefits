@@ -6,14 +6,14 @@ header {
   }
 
   @include sm {
-    padding: 0 0 $space-xl 0;
+    padding-bottom: $space-xl;
     text-align: right;
   }
 
   .language-link {
     text-align: left;
     margin-bottom: $space-sm;
-    font-size: 0.6em;
+    font-size: 0.85em;
 
     h2 {
       @include visuallyHidden();
@@ -28,7 +28,6 @@ header {
 
     @include sm {
       margin-bottom: 0;
-      font-size: 0.85em;
     }
   }
 

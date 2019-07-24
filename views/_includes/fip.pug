@@ -1,0 +1,9 @@
+.page--container
+  //- can also potentially put these as strings in our locales file
+  .fip-container
+    .canada-flag
+      if getLocale() == 'fr'
+        img(src='/img/sig-blk-fr.svg', alt='Gouvernement du Canada')
+      else
+        img(src='/img/sig-blk-en.svg', alt='Government of Canada')
+    include languageLink

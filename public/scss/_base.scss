@@ -94,10 +94,14 @@ li:not(:last-of-type) {
   div {
   @extend %page-container;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding-top: $space-sm;
   padding-bottom: $space-sm;
   margin-bottom: $space-md;
+
+  @include sm {
+    align-items: center;
+  }
   }
 
   span {
@@ -112,15 +116,19 @@ li:not(:last-of-type) {
     border: 2px $color-black solid;
     padding: 1px 5px;
     letter-spacing: 1px;
-    margin-right: $space-md;
+    margin-right: 1.7em;
 
     @include sm {
       padding: 1px 7px;
     }
   }
 
-  span a {
-    color: $color-black;
+  span:last-of-type {
+    margin-top: 3px;    
+    
+    @include sm {
+      margin-top: 0px;
+    }
   }
 }
 

@@ -36,9 +36,6 @@ header {
     width: 272px;
     margin-bottom: $space-sm;
 
-    @include xs {
-      width: 220px;
-    }
     @include sm {
       width: 360px;
       margin-bottom: 0;

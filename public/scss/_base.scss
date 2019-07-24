@@ -80,7 +80,7 @@ li:not(:last-of-type) {
   flex-direction: column;
   display: flex;
 
-  @include xs {
+  @include sm {
     justify-content: space-between;
     flex-direction: row;
   }
@@ -110,9 +110,13 @@ li:not(:last-of-type) {
 
   span:first-of-type {
     border: 2px $color-black solid;
-    padding: 1px 8px;
+    padding: 1px 5px;
     letter-spacing: 1px;
     margin-right: $space-md;
+
+    @include sm {
+      padding: 1px 7px;
+    }
   }
 
   span a {

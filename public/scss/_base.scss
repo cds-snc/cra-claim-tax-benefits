@@ -77,12 +77,12 @@ li:not(:last-of-type) {
 }
 
 .fip-container {
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   display: flex;
 
-  @include sm {
+  @include xs {
     justify-content: space-between;
+    flex-direction: row;
   }
 }
 

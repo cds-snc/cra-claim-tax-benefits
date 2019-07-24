@@ -28,15 +28,21 @@ html(lang=getLocale() === 'fr' ? 'fr' : 'en')
   body
     .container
       header
+        .phase-banner
+          div
+            span ALPHA
+            span This is a new service – your 
+              a(href='#') #{__('feedback')} 
+              | will help us to improve it.
         .page--container
-          include _includes/languageLink
           //- can also potentially put these as strings in our locales file
-          .canada-flag
-            if getLocale() == 'fr'
-              img(src='/img/sig-blk-fr.svg', alt='Gouvernement du Canada')
-            else
-              img(src='/img/sig-blk-en.svg', alt='Government of Canada')
-
+          .fip-container
+            .canada-flag
+              if getLocale() == 'fr'
+                img(src='/img/sig-blk-fr.svg', alt='Gouvernement du Canada')
+              else
+                img(src='/img/sig-blk-en.svg', alt='Government of Canada')
+            include _includes/languageLink
       main
         if errors
           include _includes/errorList.pug

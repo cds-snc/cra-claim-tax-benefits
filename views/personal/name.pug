@@ -1,4 +1,5 @@
 extends ../base
+include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Confirm your name')
@@ -22,11 +23,16 @@ block content
           td
             div #{data.personal.firstName} #{data.personal.lastName}
 
+
   div
     details.
       <summary><span>#{__('Help with name confirmation')}</span></summary>
       <p>#{__('If you have changed your name since the last time you filed your taxes,')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html')} target="_blank">#{__('get in contact with the CRA to update your information')}</a>.</p>
       <p>#{__('Once updated, you can proceed to use this service.')}</p>
+  
+  form.cra-form(method='post')
+    +yesNoRadios('name', null, 'Is this your name?', errors)
 
-  +linkButtons('/personal/residence')
-    a.button-link(href='/offramp') #{__('My name has changed')}
+    input#redirect(name='redirect', type='hidden', value='/personal/residence')
+
+    +formButtons()

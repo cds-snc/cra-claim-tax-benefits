@@ -293,6 +293,10 @@ const medicalSchema = {
   medicalClaim: yesNoSchema(),
 }
 
+const nameSchema = {
+  name: yesNoSchema(),
+}
+
 const medicalAmountSchema = {
   medicalAmount: currencySchema(),
 }
@@ -407,4 +411,5 @@ module.exports = {
   medicalAmountSchema,
   authSchema,
   incomeSchema,
+  nameSchema,
 }

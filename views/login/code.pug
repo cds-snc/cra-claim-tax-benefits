@@ -17,7 +17,7 @@ block content
         span.cra-form-message #{__('For Example:')} A5G98S4K1
         if errors
           +validationMessage(errors.code.msg, 'code')
-        input.w-3-4#code(name='code', type='text', value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code-error' : false))
+        input.w-3-4#code(name='code', type='text', autofocus, value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code-error' : false))
 
       div
         details.

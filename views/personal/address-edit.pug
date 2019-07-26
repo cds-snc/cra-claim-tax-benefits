@@ -21,7 +21,7 @@ block content
       h2 #{__('Your mailing address')}
 
       div
-        +textInput('Street number', ['w-1-4','d--ib'])(class='w-3-4', value=streetNumber, name='streetNumber')
+        +textInput('Street number', ['w-1-4','d--ib'])(class='w-3-4', value=streetNumber, name='streetNumber' autofocus=(!errors || errors && firstError.param === 'streetNumber' ? true : false))
 
         +textInput('Street name', ['w-3-4','d--ib'])(class='w-3-4', value=streetName, name='streetName')
 

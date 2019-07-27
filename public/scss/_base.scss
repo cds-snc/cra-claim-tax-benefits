@@ -8,15 +8,27 @@
 
 body {
   margin: 0;
-  font-size: 1.3em;
+  font-size: 1.05em;
   font-family: 'Noto Sans', sans-serif;
   line-height: 1.65;
+
+  @include xs {
+    font-size: 1.2em;
+  }
+
+  @include sm {
+    font-size: 1.3em;
+  }
 }
 
 p,
 ul {
   margin-top: 0;
-  margin-bottom: $space-sm;
+  margin-bottom: $space-xs;
+
+  @include xs {
+    margin-bottom: $space-sm;
+  }
 }
 
 a {

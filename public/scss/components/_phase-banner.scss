@@ -1,27 +1,23 @@
 .phase-banner {
-  background: #F4F4F4;
+  background: #f4f4f4;
 }
 
 .phase-banner {
   div {
-  @extend %page-container;
-  display: flex;
-  align-items: flex-start;
-  padding-top: $space-sm;
-  padding-bottom: $space-sm;
-  margin-bottom: $space-md;
+    @extend %page-container;
+    display: flex;
+    align-items: flex-start;
+    padding-top: $space-sm;
+    padding-bottom: $space-sm;
+    margin-bottom: $space-md;
 
-  @include sm {
-    align-items: center;
+    @include sm {
+      align-items: center;
     }
   }
 
   span {
-    font-size: 0.5em;
-
-    @include sm {
-      font-size: 0.7em;
-    }
+    font-size: 0.7em;
   }
 
   span:first-of-type {
@@ -36,8 +32,8 @@
   }
 
   span:last-of-type {
-    margin-top: 3px;    
-    
+    margin-top: 3px;
+
     @include sm {
       margin-top: 0px;
     }

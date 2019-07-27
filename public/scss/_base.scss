@@ -10,7 +10,13 @@ body {
   margin: 0;
   font-size: 1.3em;
   font-family: 'Noto Sans', sans-serif;
-  line-height: 1.33;
+  line-height: 1.65;
+}
+
+p,
+ul {
+  margin-top: 0;
+  margin-bottom: $space-sm;
 }
 
 a {

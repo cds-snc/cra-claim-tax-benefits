@@ -19,7 +19,6 @@ html(lang=getLocale() === 'fr' ? 'fr' : 'en')
 
     if title
       if errors
-        -var firstError = errors[Object.keys(errors)[0]]
         title #{__('Error:')} #{title} — #{__('Claim Tax Benefits')}
       else
         title #{title} — #{__('Claim Tax Benefits')}

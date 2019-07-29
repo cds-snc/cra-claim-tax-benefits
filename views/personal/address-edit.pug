@@ -9,6 +9,7 @@ block variables
   -var postalCode = hasData(body, 'postalCode') ? body.postalCode : hasData(data, 'personal.address.postalCode') ? data.personal.address.postalCode : ''
   -var province = hasData(body, 'province') ? body.province : hasData(data, 'personal.address.province') ? data.personal.address.province : ''
 
+
 block content
 
   h1 #{title}

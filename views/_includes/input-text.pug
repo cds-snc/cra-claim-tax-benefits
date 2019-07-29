@@ -22,10 +22,10 @@ mixin textInput(label, divClasses, hintText)
       span.input-with-unit__unit(
         id!=attributes.name+'__unit'
       ) $
+    //- errors[Object.keys(errors)[0]].param is checking what is the first error in our list of errors
     input(
       autocomplete='off',
       type='text',
       id=(attributes.id || attributes.name)
-      aria-describedby=(errors && errors[attributes.name] ? attributes.name + '-error' : false)
-      autofocus=(errors && firstError.param === attributes.name ? true : false)
+      aria-describedby=(errors && errors[Object.keys(errors)[0]].param ? attributes.name + '-error' : false)
     )&attributes(attributes)

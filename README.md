@@ -10,11 +10,11 @@ It’s a server-side [express](https://expressjs.com/) application using [Pug](h
 
 `npm` is a javascript package manager. It downloads project dependencies and runs node applications.
 
-`npm` will complain if you're not on node version `v10.15.0` or higher when you boot up the app.
+`npm` will complain if you’re not on node version `v10.15.0` or higher when you boot up the app.
 
 ### .env file (optional)
 
-It's possible to bootstrap this application with no `/.env` file — but if you want one, go nuts.
+It’s possible to bootstrap this application with no `/.env` file — but if you want one, go nuts.
 
 <details>
   <summary>Example `.env` file</summary>
@@ -88,3 +88,9 @@ docker run -it -p 3005:3005 cdssnc/cra-claim-tax-benefits
 The container should be running at [http://localhost:3005/](http://localhost:3005/).
 
 On a Mac, press `Control` + `C` to quit the running docker container.
+
+## Deploying the app
+
+This application is deployed continuously using [Github Actions](https://github.com/features/actions).
+
+However, it’s still a beta service so it might not be 100% reliable. If anything goes wrong, [follow the manual deployment instructions](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md).

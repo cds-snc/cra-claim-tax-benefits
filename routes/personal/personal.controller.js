@@ -67,7 +67,7 @@ const postMaritalStatus = (req, res) => {
 
 const postResidence = (req, res) => {
   if (req.body.residence !== 'Ontario') {
-    return res.redirect('/offramp-residence')
+    return res.redirect('/offramp/residence')
   }
 
   return res.redirect(req.body.redirect)
@@ -77,7 +77,7 @@ const postName = (req, res) => {
   const name = req.body.name
 
   if (name !== 'Yes') {
-    return res.redirect('/offramp-name')
+    return res.redirect('/offramp/name')
   }
 
   return res.redirect(req.body.redirect)

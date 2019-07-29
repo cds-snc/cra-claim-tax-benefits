@@ -17,9 +17,9 @@ describe('Test /financial responses', () => {
   test('it returns a 302 and redirects to offramp when NO is selected', async () => {
     const response = await request(app)
       .post('/financial/income')
-      .send({ confirmIncome: 'No', redirect: '/offramp-financial' })
+      .send({ confirmIncome: 'No', redirect: '/offramp/financial' })
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toEqual('/offramp-financial')
+    expect(response.headers.location).toEqual('/offramp/financial')
   })
 
   test('it returns a 302 and redirects to the same page when YES is selected', async () => {

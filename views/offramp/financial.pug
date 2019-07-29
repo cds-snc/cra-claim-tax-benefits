@@ -1,0 +1,17 @@
+extends ../base
+include ../_includes/banner
+
+block variables
+  -var title = __('The income we have on file does not match your records')
+
+block content
+
+  h1 #{title}
+  
+  .offramp
+    p #{__('If your records don’t match the income information displayed earlier, or you believe it to be incorrect, you shouldn’t use this service to file your taxes.')}
+
+    div
+      p #{__('There are also other free and secure ways to file your taxes:')}
+      include ../_includes/offramp-bullets    
+    a.button-link(href='/financial/income') #{__('Go back')}

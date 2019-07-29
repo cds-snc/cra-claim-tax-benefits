@@ -23,7 +23,7 @@ const postConfirmIncome = (req, res) => {
   if (confirmIncome === 'No') {
     //Income details are not correct
     //Lead them to the offramp
-    return res.redirect('/offramp')
+    return res.redirect('/offramp/financial')
   }
 
   //Income confirmed, can continue normally

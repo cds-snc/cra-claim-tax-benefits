@@ -1,0 +1,16 @@
+extends ../base
+include ../_includes/banner
+
+block variables
+  -var title = __('Continue with an incorrect name on file')
+
+block content
+
+  h1 #{title}
+
+  .offramp
+    p #{__('Without your correct name on file, you can’t file your taxes using this online service. You can still file using the Claim Tax Benefits service – follow the instructions on page X of the paper package we mailed to you.')}
+
+    div
+      p #{__('There are also other free and secure ways to file your taxes:')}
+      include ../_includes/offramp-bullets

@@ -1,0 +1,16 @@
+extends ../base
+include ../_includes/banner
+
+block variables
+  -var title = __('This service is only available to residents of Ontario')
+
+block content
+
+  h1 #{title}
+  
+  div
+    p #{__('Since you weren’t a resident of Ontario on December 31, 2018, you can’t use this service to file your taxes.')}
+
+    div
+      p #{__('There are also other free and secure ways to file your taxes:')}
+      include ../_includes/offramp-bullets

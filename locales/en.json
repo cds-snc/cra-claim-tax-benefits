@@ -271,5 +271,14 @@
   "Net Ontario tax (428)": "Net Ontario tax (428)",
   "RRSP (208)": "RRSP (208)",
   "A benefit signup prototype by the Canadian Digital Service": "A benefit signup prototype by the Canadian Digital Service",
-  "This site will change as we test ideas.": "This site will change as we test ideas."
+  "This site will change as we test ideas.": "This site will change as we test ideas.",
+  "Continue with an incorrect name on file": "Continue with an incorrect name on file",
+  "Without your correct name on file, you can’t file your taxes using this online service. You can still file using the Claim Tax Benefits service – follow the instructions on page X of the paper package we mailed to you.": "Without your correct name on file, you can’t file your taxes using this online service. You can still file using the Claim Tax Benefits service – follow the instructions on page X of the paper package we mailed to you.",
+  "There are also other free and secure ways to file your taxes:": "There are also other free and secure ways to file your taxes:",
+  "This service is only available to residents of Ontario": "This service is only available to residents of Ontario",
+  "Since you weren’t a resident of Ontario on December 31, 2018, you can’t use this service to file your taxes.": "Since you weren’t a resident of Ontario on December 31, 2018, you can’t use this service to file your taxes.",
+  "The income we have on file does not match your records": "The income we have on file does not match your records",
+  "If your records don’t match the income information displayed earlier, or you believe it to be incorrect, you shouldn’t use this service to file your taxes.": "If your records don’t match the income information displayed earlier, or you believe it to be incorrect, you shouldn’t use this service to file your taxes.",
+  "Go back": "Go back",
+  "Is this your name?": "Is this your name?"
 }

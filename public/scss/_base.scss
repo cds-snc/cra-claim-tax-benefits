@@ -22,12 +22,22 @@ body {
 }
 
 p,
+ol,
 ul {
   margin-top: 0;
   margin-bottom: $space-xs;
 
   @include xs {
     margin-bottom: $space-sm;
+  }
+}
+
+ol,
+ul {
+  padding-left: $space-md;
+
+  @include sm {
+    padding-left: $space-xl;
   }
 }
 

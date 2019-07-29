@@ -3,11 +3,16 @@ form.cra-form {
   max-width: 300px;
   width: 100%;
 
+  .d--ib {
+    margin-bottom: $space-xs;
+  }
+
   @include sm {
     max-width: 450px;
 
     .d--ib {
       display: inline-block;
+      margin-bottom: 0;
     }
 
     .w-3-4 {
@@ -48,7 +53,7 @@ form.cra-form {
 
   %form-element {
     display: block;
-    margin: 0 0 $space-xs 0;
+    margin: 0;
     font-size: inherit;
   }
 
@@ -92,7 +97,7 @@ form.cra-form {
     font-size: 1em;
     font-weight: 400;
     width: 100%;
-    margin-top: 0;
+    margin-top: 8px;
     border-radius: 0;
     display: block;
     height: 40px;

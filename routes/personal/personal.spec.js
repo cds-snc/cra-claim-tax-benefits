@@ -97,6 +97,7 @@ describe('Test /personal responses', () => {
     const badRequests = [
       {
         label: 'no streetName or city or postalCode or province',
+        firstErrorId: '#streetName',
         send: {
           ...goodRequest,
           ...{ streetName: '', city: '', postalCode: '', province: '' },
@@ -104,6 +105,7 @@ describe('Test /personal responses', () => {
       },
       {
         label: 'no streetName',
+        firstErrorId: '#streetName',
         send: {
           ...goodRequest,
           ...{ streetName: '' },
@@ -111,6 +113,7 @@ describe('Test /personal responses', () => {
       },
       {
         label: 'no city',
+        firstErrorId: '#city',
         send: {
           ...goodRequest,
           ...{ city: '' },
@@ -118,6 +121,7 @@ describe('Test /personal responses', () => {
       },
       {
         label: 'no postalCode',
+        firstErrorId: '#postalCode',
         send: {
           ...goodRequest,
           ...{ postalCode: '' },
@@ -125,6 +129,7 @@ describe('Test /personal responses', () => {
       },
       {
         label: 'bad postalCode',
+        firstErrorId: '#postalCode',
         send: {
           ...goodRequest,
           ...{ postalCode: '0h3 N03' },
@@ -132,6 +137,7 @@ describe('Test /personal responses', () => {
       },
       {
         label: 'no province',
+        firstErrorId: '#province',
         send: {
           ...goodRequest,
           ...{ province: '' },
@@ -139,6 +145,7 @@ describe('Test /personal responses', () => {
       },
       {
         label: 'bad province',
+        firstErrorId: '#province',
         send: {
           ...goodRequest,
           ...{ province: 'Aurora' },
@@ -146,11 +153,14 @@ describe('Test /personal responses', () => {
       },
     ]
 
+
     badRequests.map(badRequest => {
       test(`it returns a 422 with: "${badRequest.label}"`, async () => {
         const response = await request(app)
           .post('/personal/address/edit')
           .send(badRequest.send)
+        const $ = cheerio.load(response.text)
+        expect($(badRequest.firstErrorId).attr('autofocus')).toEqual('autofocus')
         expect(response.statusCode).toBe(422)
       })
     })

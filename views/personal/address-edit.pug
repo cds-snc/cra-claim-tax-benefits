@@ -36,7 +36,7 @@ block content
         label(for='province') #{__('Province')}
         if errors && errors.province
           +validationMessage(errors.province.msg, 'province')
-        select.w-3-4#province(name='province' aria-describedby=(errors && errors.province ? 'province-error' : false))
+        select.w-3-4#province(name='province' aria-describedby=(errors && errors.province ? 'province-error' : false) autofocus=(errors && errors[Object.keys(errors)[0]].param === 'province'? true : false))
           if !province
             option(disabled='', selected='selected', value='')  -- select a province --
           option(value='Alberta' selected=province == 'Alberta') #{__('Alberta')}

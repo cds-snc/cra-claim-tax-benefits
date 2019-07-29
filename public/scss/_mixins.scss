@@ -51,9 +51,9 @@
     @content;
   }
 }
-/* ≥ 1280px */
+/* ≥ 1200px */
 @mixin xl {
-  @media screen and (min-width: 80em) {
+  @media screen and (min-width: 75em) {
     @content;
   }
 }

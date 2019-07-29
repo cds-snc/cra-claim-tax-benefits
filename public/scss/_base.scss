@@ -8,9 +8,38 @@
 
 body {
   margin: 0;
-  font-size: 1.3em;
+  font-size: 1.05em;
   font-family: 'Noto Sans', sans-serif;
-  line-height: 1.33;
+  line-height: 1.65;
+
+  @include xs {
+    font-size: 1.2em;
+  }
+
+  @include sm {
+    font-size: 1.3em;
+  }
+}
+
+p,
+.multiple-choice__item p,
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: $space-xs;
+
+  @include xs {
+    margin-bottom: $space-sm;
+  }
+}
+
+ol,
+ul {
+  padding-left: $space-md;
+
+  @include sm {
+    padding-left: $space-xl;
+  }
 }
 
 a {
@@ -28,6 +57,7 @@ h4,
 h5,
 h6 {
   font-family: 'Lato', sans-serif;
+  line-height: 1.33;
 }
 
 %page-container {
@@ -65,6 +95,10 @@ main {
 
 li:not(:last-of-type) {
   padding-bottom: $space-xxs;
+
+  @include sm {
+    padding-bottom: 0;
+  }
 }
 
 .container {
@@ -78,6 +112,7 @@ li:not(:last-of-type) {
 
 .pure-table {
   width: 100%;
+  margin-bottom: $space-sm;
 
   @include sm {
     width: 80%;

@@ -108,6 +108,7 @@ li:not(:last-of-type) {
 
 .pure-table {
   width: 100%;
+  margin-bottom: $space-sm;
 
   @include sm {
     width: 80%;

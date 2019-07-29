@@ -2,7 +2,7 @@
 
 This is a small frontend to trial user flows for a future CRA service that will help Canadians receive the benefits to which they are entitled.
 
-It's a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and a dash of [Pure CSS](https://purecss.io/).
+It’s a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and a dash of [Pure CSS](https://purecss.io/).
 
 ## Getting started (npm)
 

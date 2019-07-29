@@ -26,12 +26,12 @@ These are the steps from the point that you have a local version of the app on y
 
 The steps are:
 
-1. build a container
-2. tag your container
-3. upload your container
-4. update Azure App Service
+1. [build a container](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#build-a-container)
+2. [tag your container](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#tag-your-container)
+3. [upload your container](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#upload-your-container)
+4. [update Azure App Service](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#update-azure-app-service)
 
-Our `main.workflow` file goes through the deployment steps, so you can reverse engineer our deployment from that file, but I’ll go through each one in more detail.
+Our [`main.workflow`](https://raw.githubusercontent.com/cds-snc/cra-claim-tax-benefits/master/.github/main.workflow) file goes through the deployment steps, so you can reverse engineer our deployment from that file, but let’s go through each one in more detail.
 
 ### Build a container
 
@@ -53,7 +53,7 @@ I would highly recommend passing a variable in – it makes it dead easy to know
 
 ### Tag your container
 
-Once built, tag your container before uploading it. The Docker Hub repo we’re uploading to is `cdssnc/cra-claim-tax-benefits`, so you have to start the tag with that. Tag it whatever you want — preferrably pick a unique tag, but it doesn’t really matter. Our automated deploys tag the containers with the current git SHA, but you’ll have to type it in a few times, so it’s better to pick something more memorable.
+Once built, tag your container before uploading it. The Docker Hub repo we’re uploading to is `cdssnc/cra-claim-tax-benefits`, so you have to start the tag with that string. Tag it whatever you want — preferrably pick a unique tag, but it doesn’t really matter. Our automated deploys tag the containers with the current git SHA, but you’ll have to type it in a few times, so it’s better to pick something more memorable.
 
 If you passed in a `GITHUB_SHA_ARG`, you should probably tag the container with the same string just to make it easy.
 
@@ -89,7 +89,7 @@ You can update the app on Azure either from your terminal using the [Azure CLI](
 
 ### Update Azure App Service through the CLI
 
-Again, the command to update our app is the last step in the `main.workflow` file, so if you are logged-in with Azure CLI, you should be able to update it with one line.
+Again, the command to update our app is the last step in the [`main.workflow`](https://raw.githubusercontent.com/cds-snc/cra-claim-tax-benefits/master/.github/main.workflow) file, so if you are logged-in with Azure CLI, you should be able to update it with one line.
 
 ```
 az webapp config container set --resource-group cdscracollab-innovation-rg --name claim-tax-benefits --docker-custom-image-name cdssnc/cra-claim-tax-benefits:codename_cobra

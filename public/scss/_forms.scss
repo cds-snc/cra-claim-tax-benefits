@@ -91,6 +91,10 @@ form.cra-form {
     color: $color-red;
   }
 
+  .multiple-choice .validation-message {
+    margin-bottom: $space-sm;
+  }
+
   input,
   select {
     font-family: sans-serif;
@@ -172,5 +176,9 @@ form.cra-form {
     * {
       margin: 0;
     }
+  }
+
+  .has-error &__legend {
+    margin-bottom: $space-xxs;
   }
 }

@@ -95,6 +95,10 @@ main {
 
 li:not(:last-of-type) {
   padding-bottom: $space-xxs;
+
+  @include sm {
+    padding-bottom: 0;
+  }
 }
 
 .container {

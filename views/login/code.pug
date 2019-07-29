@@ -12,12 +12,7 @@ block content
 
   div
     form.cra-form(method='post')
-      div(class={['has-error']: errors && errors.code})
-        label(for='code') #{__('Personal access code')}
-        span.cra-form-message #{__('For Example:')} A5G98S4K1
-        if errors
-          +validationMessage(errors.code.msg, 'code')
-        input.w-3-4#code(name='code', type='text', value=data.code, autocomplete='off' aria-describedby=(errors && errors.code ? 'code-error' : false))
+      +textInput('Personal access code', null, 'For Example: A5G98S4K1')(class='w-3-4', id='code' name='code', autofocus, value=data.code)
 
       div
         details.

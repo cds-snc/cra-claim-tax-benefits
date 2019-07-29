@@ -9,6 +9,7 @@ block variables
   -var postalCode = hasData(body, 'postalCode') ? body.postalCode : hasData(data, 'personal.address.postalCode') ? data.personal.address.postalCode : ''
   -var province = hasData(body, 'province') ? body.province : hasData(data, 'personal.address.province') ? data.personal.address.province : ''
 
+
 block content
 
   h1 #{title}
@@ -21,7 +22,7 @@ block content
       h2 #{__('Your mailing address')}
 
       div
-        +textInput('Street number', ['w-1-4','d--ib'])(class='w-3-4', value=streetNumber, name='streetNumber')
+        +textInput('Street number', ['w-1-4','d--ib'])(class='w-3-4', value=streetNumber, name='streetNumber' autofocus=(!errors || errors && firstError.param === 'streetNumber' ? true : false))
 
         +textInput('Street name', ['w-3-4','d--ib'])(class='w-3-4', value=streetName, name='streetName')
 
@@ -35,7 +36,7 @@ block content
         label(for='province') #{__('Province')}
         if errors && errors.province
           +validationMessage(errors.province.msg, 'province')
-        select.w-3-4#province(name='province' aria-describedby=(errors && errors.province ? 'province-error' : false))
+        select.w-3-4#province(name='province' aria-describedby=(errors && errors.province ? 'province-error' : false) autofocus=(errors && errors[Object.keys(errors)[0]].param === 'province'? true : false))
           if !province
             option(disabled='', selected='selected', value='')  -- select a province --
           option(value='Alberta' selected=province == 'Alberta') #{__('Alberta')}

@@ -20,7 +20,7 @@ block content
         span.cra-form-message #{__('For Example:')} #{data.personal.dateOfBirth}
         if errors
           +validationMessage(errors.dateOfBirth.msg, 'dateOfBirth')
-        input.w-3-4#dateOfBirth(name='dateOfBirth', type='text', value=dateOfBirth, autocomplete='off' aria-describedby=(errors && errors.dateOfBirth ? 'dateOfBirth-error' : false))
+        input.w-3-4#dateOfBirth(name='dateOfBirth', autofocus, type='text', value=dateOfBirth, autocomplete='off' aria-describedby=(errors && errors.dateOfBirth ? 'dateOfBirth-error' : false))
 
       input#redirect(name='redirect', type='hidden', value='/personal/name')
 

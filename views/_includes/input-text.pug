@@ -1,6 +1,8 @@
 //- `label`: text for the label
 //- `divClasses`: any classes to be applied to the wrapper div (but not the input itself)
 //- `hintText`: any text that appears above the input in light grey (ex. Optional)
+if errors
+  -var firstError = errors[Object.keys(errors)[0]]
 
 mixin textInput(label, divClasses, hintText)
   div(
@@ -22,9 +24,11 @@ mixin textInput(label, divClasses, hintText)
       span.input-with-unit__unit(
         id!=attributes.name+'__unit'
       ) $
+
     input(
       autocomplete='off',
       type='text',
       id=(attributes.id || attributes.name)
       aria-describedby=(errors && errors[attributes.name] ? attributes.name + '-error' : false)
+      autofocus=(errors && firstError.param === attributes.name ? true : false)
     )&attributes(attributes)

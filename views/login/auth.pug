@@ -18,6 +18,6 @@ block content
       if errors
         +validationMessage(errors.auth.msg, 'auth')
       span#auth__unit.input-with-unit__unit(for='auth') $
-      input.w-1-2.input-with-unit#auth(name='auth', type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.auth ? 'auth-error' : false) aria-labelledby="auth__label auth__unit")
+      input.w-1-2.input-with-unit#auth(name='auth', autofocus, type='text', placeholder="0.00", autocomplete='off' aria-describedby=(errors && errors.auth ? 'auth-error' : false) aria-labelledby="auth__label auth__unit")
 
     +formButtons()

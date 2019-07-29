@@ -1,4 +1,5 @@
 extends ../base
+include ../_includes/banner
 
 block variables
   -var title = __('Enter your Social Insurance Number (SIN)')
@@ -7,6 +8,9 @@ block variables
 block content
 
   h1 #{title}
+
+  +banner('check', '')
+    p #{__('Your access code was validated!')}
 
   if data.personal
     h2 #{__('Thanks,')} #{data.personal.firstName} #{data.personal.lastName}!

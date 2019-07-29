@@ -1,8 +1,12 @@
 extends ../base
+include ../_includes/banner
 
 block content
 
   h1 #{__('Claim Tax Benefits')}
+
+  +banner('blue')
+    p #{__('Keep your notification letter with you. You need information on that letter to use this service.')}
 
   div
     p #{__('Welcome to the Canada Revenue Agency’s new')} <strong>#{__('Claim Tax Benefits')}</strong> #{__('service')}.

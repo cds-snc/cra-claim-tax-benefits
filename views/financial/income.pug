@@ -24,7 +24,7 @@ block content
   
       p.breakdown-table__subheading #{__(`Detailed breakdown of income earned in ${year}`)}
 
-      .breakdown-table-data
+      dl.breakdown-table-data
         each income in incomeSources
           .breakdown-table__row
             dt.breakdown-table__row-key #{income.name} #{__('Total Income')}

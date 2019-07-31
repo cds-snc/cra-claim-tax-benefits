@@ -48,7 +48,7 @@ block content
       
       p.breakdown-table__subheading #{__('Detailed breakdown of tax refund')}
 
-      .breakdown-table-data
+      dl.breakdown-table-data
         each refundLine in refundLines
           -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
           .breakdown-table__row(

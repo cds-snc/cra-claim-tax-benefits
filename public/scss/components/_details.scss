@@ -9,7 +9,7 @@ details {
     display: list-item;
 
     &:focus {
-      outline: 0;
+      outline: 0 !important;
 
       > span {
         @include focus($outlineOffset: 2px);

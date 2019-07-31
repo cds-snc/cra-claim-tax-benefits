@@ -22,14 +22,14 @@ block content
     p #{__('Take one final look before continuing. If something looks incorrect, please')} #[a(href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/telephone-numbers.html") #{__('contact CRA')}] #{__('before filing.')}
 
   div
-    dl.breakdown-table
+    .breakdown-table
       h2.breakdown-table__heading 
         span #{__('Your annual benefits')}
         span $#{currencyFilter(totalBenefits)}
       
       p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
 
-      .breakdown-table-data
+      dl.breakdown-table-data
         each val, index in benefits
           if index !== "totalBenefits"
             .breakdown-table__row
@@ -41,7 +41,7 @@ block content
           dd.breakdown-table__row-value $#{currencyFilter(totalBenefits)}
 
   div
-    dl.breakdown-table
+    .breakdown-table
       h2.breakdown-table__heading 
         span #{__('Your projected refund')}
         span +$#{currencyFilter(totalRefund.amount)}

@@ -27,12 +27,12 @@ block content
       .breakdown-table-data
         each income in incomeSources
           .breakdown-table__row
-            dt.key #{income.name} #{__('Total Income')}
-            dd.value $#{currencyFilter(income.total)}
+            dt.breakdown-table__row-key #{income.name} #{__('Total Income')}
+            dd.breakdown-table__row-value $#{currencyFilter(income.total)}
 
         .breakdown-table__row.breakdown-table__row--summary
-          dt.key #{__(`Total Income for ${year}`)}
-          dd.value $#{currencyFilter(totalIncome.amount)}
+          dt.breakdown-table__row-key #{__(`Total Income for ${year}`)}
+          dd.breakdown-table__row-value $#{currencyFilter(totalIncome.amount)}
 
   .breakdown-table
       h2.breakdown-table__heading 
@@ -44,12 +44,12 @@ block content
       .breakdown-table-data
         each tax in taxes
           .breakdown-table__row
-            dt.key #{__(`${tax.name.replace('Net ', '')} deduction`)}
-            dd.value $#{currencyFilter(tax.amount)}
+            dt.breakdown-table__row-key #{__(`${tax.name.replace('Net ', '')} deduction`)}
+            dd.breakdown-table__row-value $#{currencyFilter(tax.amount)}
 
         .breakdown-table__row.breakdown-table__row--summary
-          dt.key #{__(`Total tax paid for ${year}`)}
-          dd.value $#{currencyFilter(totalTax)}
+          dt.breakdown-table__row-key #{__(`Total tax paid for ${year}`)}
+          dd.breakdown-table__row-value $#{currencyFilter(totalTax)}
 
   form.cra-form(method='post')
     +yesNoRadios('confirmIncome', null, 'Is this information correct?', errors)

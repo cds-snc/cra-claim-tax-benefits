@@ -2,8 +2,17 @@
   box-sizing: border-box;
 }
 
-*:focus {
-  @include focus();
+a[href],
+area[href],
+input,
+select
+textarea,
+button,
+iframe,
+[tabindex],
+[contentEditable=true]
+{
+  &:not([disabled]):focus { @include focus(); }
 }
 
 body {

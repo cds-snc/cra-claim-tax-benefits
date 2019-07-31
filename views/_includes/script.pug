@@ -5,3 +5,7 @@ script.
       if (e.keyCode == 32) { e.target.click() }
     })
   }
+
+script.
+  if (typeof Promise !== "function" && document.querySelector('details') !== null)
+  document.write('<script src="/js/details-element-polyfill.js"><\/script>');

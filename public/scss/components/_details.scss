@@ -1,5 +1,6 @@
 details {
   margin-bottom: $space-lg;
+  list-style-type: none;
 
   summary {
     color: $color-blue-dark;
@@ -8,7 +9,7 @@ details {
     display: list-item;
 
     &:focus {
-      outline: 0;
+      outline: 0 !important;
 
       > span {
         @include focus($outlineOffset: 2px);

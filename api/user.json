@@ -173,9 +173,21 @@
     }
   },
   "benefits": {
-    "Climate action incentive": 154.00,
-    "GST/HSTC": 440.00,
-    "Ontario Trillium Benefit": 307.92,
-    "totalBenefits": 901.92
-  }
+    "climateActionIncentive": {
+      "name": "Climate action incentive",
+       "amount": "154.00"
+    },
+    "gsthstc": {
+       "name": "GST/HSTC",
+       "amount": "440.00"
+    },
+    "ontarioTrilliumBenefit": {
+       "name": "Ontario Trillium Benefit",
+       "amount": "307.92"
+    },
+    "totalBenefits": {
+       "name": "totalBenefits",
+       "amount": "901.92"
+    }
+ }
 }

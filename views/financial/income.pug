@@ -17,7 +17,7 @@ block content
     p #{__(`Here’s what CRA knows about your income for the current tax year (filing for ${year}). Additional claims and deductions can be made afterwards.`)}
 
   if incomeSources
-    .breakdown-table
+    dl.breakdown-table
       h2.breakdown-table__heading
         span #{__(`Total income earned in ${year}`)} 
         span $#{currencyFilter(totalIncome.amount, 0)}
@@ -34,7 +34,7 @@ block content
           dt.breakdown-table__row-key #{__(`Total Income for ${year}`)}
           dd.breakdown-table__row-value $#{currencyFilter(totalIncome.amount)}
 
-  .breakdown-table
+  dl.breakdown-table
       h2.breakdown-table__heading 
         span #{__('Total tax')}
         span.breakdown-table__heading $#{currencyFilter(totalTax, 0)}

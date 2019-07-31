@@ -1,54 +1,3 @@
-// .breakdown-table {
-//   width: 80%;
-//   border-collapse: collapse;
-//   border-spacing: 0;
-//   empty-cells: show;
-//   border: none;
-//   margin-bottom: $space-xxl;
-
-//   td, th:not([class]) {
-//     padding: 10px 28px;
-//   }
-
-//   tr td:last-child,
-//   tr th.breakdown-table__heading:last-child  {
-//     text-align: right;
-//   }
-
-//   tr:not(:first-child) {
-//     border-left: 2px solid $color-grey-light;
-//   }
-
-//   .space-row {
-//     &:last-of-type td {
-//       padding-top: $space-xxl;
-//     }
-
-//     td {
-//       padding-top: $space-xl;
-//     }
-//   }
-
-//   &__heading {
-//     text-align: left;
-//     background: $color-grey-light;
-//     padding: 28px;
-//     font-size: 1.75rem;
-//     font-weight: 700;
-//   }
-
-//   &__subheading {
-//     text-align: left;
-//     font-weight: 400;
-//     padding: 10px 28px;
-//     padding-bottom: $space-md;
-//   }
-
-//   &__summary-row {
-//     font-weight: 700;
-//   }
-// }
-
 .breakdown-table {
   $table: &;
 
@@ -69,8 +18,12 @@
     text-align: left;
     background: $color-grey-light;
     padding: 28px;
-    font-size: 1.75rem;
+    font-size: 1em;
     font-weight: 700;
+
+    @include md {
+      font-size: 1.3em;
+    }
 
     span {
       width: 60%;
@@ -88,13 +41,22 @@
     font-weight: 400;
     padding: 10px 28px;
     padding-bottom: $space-md;
+    font-size: 0.9em;
+
+    @include md {
+      font-size: 1em;
+    }
   }
   
   &__row {
-    border-left: 2px solid $color-grey-light;
+    border-top: 1px solid $color-grey-light;
+    padding: 10px 28px;
 
     @include md {
+      padding: 0;
       display: table-row;
+      border-top: 0;
+      border-left: 2px solid $color-grey-light;
     }
 
     &--summary {
@@ -107,23 +69,28 @@
     margin: 0;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    padding: 10px 28px;
+    font-size: 0.9em;
 
     @include md {
+      font-size: 1em;
       display: table-cell;
+      padding: 10px 28px;
     }
   }
 
   .key {
     margin-bottom: 5px;
+    font-weight: 700;
     @include md {
+      font-weight: 400;
       width: 60%;
     }
   }
+
   .value {
     white-space: pre-wrap;
-    text-align: right;
     @include md {
+      text-align: right;
       width: 40%;
     }
   }

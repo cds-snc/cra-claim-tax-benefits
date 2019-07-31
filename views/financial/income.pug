@@ -18,7 +18,9 @@ block content
 
   if incomeSources
     .breakdown-table
-      h2.breakdown-table__heading <span>#{__(`Total income earned in ${year}`)}</span> <span>$#{currencyFilter(totalIncome.amount, 0)}</span>
+      h2.breakdown-table__heading
+        span #{__(`Total income earned in ${year}`)} 
+        span $#{currencyFilter(totalIncome.amount, 0)}
   
       p.breakdown-table__subheading #{__(`Detailed breakdown of income earned in ${year}`)}
 

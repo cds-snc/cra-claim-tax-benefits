@@ -22,43 +22,43 @@ block content
     p #{__('Take one final look before continuing. If something looks incorrect, please')} #[a(href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/telephone-numbers.html") #{__('contact CRA')}] #{__('before filing.')}
 
   div
-    table.breakdown-table
-      thead
-        tr
-          th.breakdown-table__heading #{__('Your annual benefits')}
-          th.breakdown-table__heading $#{currencyFilter(totalBenefits)}
-      tbody
-        tr
-          th(colspan="2").breakdown-table__subheading #{__('Detailed breakdown of benefits')}
+    .breakdown-table
+      h2.breakdown-table__heading 
+        span #{__('Your annual benefits')}
+        span $#{currencyFilter(totalBenefits)}
+      
+      p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
+
+      .breakdown-table-data
         each val, index in benefits
           if index !== "totalBenefits"
-            tr
-              td #{__(`${index}`)}
-              td $#{currencyFilter(val)}
+            .breakdown-table__row
+              dt.breakdown-table__row-key #{__(`${index}`)}
+              dd.breakdown-table__row-value $#{currencyFilter(val)}
 
-        tr.breakdown-table__summary-row
-          td #{__('Total Benefits')}
-          td $#{currencyFilter(totalBenefits)}
+        .breakdown-table__row.breakdown-table__row--summary
+          dt.breakdown-table__row-key #{__('Total Benefits')}
+          dd.breakdown-table__row-value $#{currencyFilter(totalBenefits)}
 
   div
-    table.breakdown-table
-      thead
-        tr
-          th.breakdown-table__heading #{__('Your projected refund')}
-          th.breakdown-table__heading +$#{currencyFilter(totalRefund.amount)}
-      tbody
-        tr
-          th(colspan="2").breakdown-table__subheading #{__('Detailed breakdown of tax refund')}
+    .breakdown-table
+      h2.breakdown-table__heading 
+        span #{__('Your projected refund')}
+        span +$#{currencyFilter(totalRefund.amount)}
+      
+      p.breakdown-table__subheading #{__('Detailed breakdown of tax refund')}
+
+      .breakdown-table-data
         each refundLine in refundLines
           -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
-          tr(
+          .breakdown-table__row(
             class={
-              ['breakdown-table__summary-row space-row']: refundLine.name === "Total Refund",
+              ['breakdown-table__row--summary space-row']: refundLine.name === "Total Refund",
               ['space-row']: count === 5 || count === 6 || count === 7 || count === 9
             }
           )
-            td #{__(`${refundLine.name} (${lineNumber})`)}
-            td $#{currencyFilter(refundLine.amount)}
+            dt.breakdown-table__row-key #{__(`${refundLine.name} (${lineNumber})`)}
+            dd.breakdown-table__row-value $#{currencyFilter(refundLine.amount)}
 
           - count++
 

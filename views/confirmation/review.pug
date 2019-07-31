@@ -4,7 +4,7 @@ include ../_includes/yesNoRadios
 block variables
   -var title = __('Review and file tax return')
   -var benefits = hasData(data, 'benefits') ? data.benefits : {}
-  -var totalBenefits = hasData(data, 'benefits.totalBenefits') ? data.benefits.totalBenefits : 0
+  -var totalBenefits = hasData(data, 'benefits.totalBenefits.amount') ? data.benefits.totalBenefits.amount : 0
   -var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
   -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
   -var refund = hasData(data, 'refund') ? data.refund : {}
@@ -30,11 +30,11 @@ block content
       p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
 
       dl.breakdown-table-data
-        each val, index in benefits
-          if index !== "totalBenefits"
+        each benefit in benefits
+          if benefit.name !== "totalBenefits"
             .breakdown-table__row
-              dt.breakdown-table__row-key #{__(`${index}`)}
-              dd.breakdown-table__row-value $#{currencyFilter(val)}
+              dt.breakdown-table__row-key #{__(`${benefit.name}`)}
+              dd.breakdown-table__row-value $#{currencyFilter(benefit.amount)}
 
         .breakdown-table__row.breakdown-table__row--summary
           dt.breakdown-table__row-key #{__('Total Benefits')}

@@ -5,3 +5,7 @@ script.
       if (e.keyCode == 32) { e.target.click() }
     })
   }
+
+script.
+  if (typeof Promise !== "function")
+  document.write('<script src="//unpkg.com/details-element-polyfill@2.3.1/dist/details-element-polyfill.js"><\/script>');

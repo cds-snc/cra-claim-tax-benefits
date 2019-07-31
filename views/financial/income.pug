@@ -7,7 +7,6 @@ block variables
   -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
   -var totalIncome = hasData(data, 'financial.incomes.totalIncome') ? data.financial.incomes.totalIncome : 0
   -var totalTax = hasData(data, 'financial.totalTax') ? data.financial.totalTax : 0
-  -var count = 1;
   -var year = new Date().getFullYear()-1
 
 block content
@@ -18,44 +17,37 @@ block content
     p #{__(`Here’s what CRA knows about your income for the current tax year (filing for ${year}). Additional claims and deductions can be made afterwards.`)}
 
   if incomeSources
-    div
-      table.breakdown-table
-        thead
-          tr
-            th.breakdown-table__heading #{__(`Total income earned in ${year}`)}
-            th.breakdown-table__heading $#{currencyFilter(totalIncome.amount, 0)}
-        tbody
-          tr
-            th(colspan="2").breakdown-table__subheading #{__(`Detailed breakdown of income earned in ${year}`)}
-          each income in incomeSources
-            tr
-              td #{income.name} #{__('Total Income')}
-              td $#{currencyFilter(income.total)}
+    .breakdown-table
+      h2.breakdown-table__heading <span>#{__(`Total income earned in ${year}`)}</span> <span>$#{currencyFilter(totalIncome.amount, 0)}</span>
+  
+      p.breakdown-table__subheading #{__(`Detailed breakdown of income earned in ${year}`)}
 
-            - count++
+      .breakdown-table-data
+        each income in incomeSources
+          .breakdown-table__row
+            dt.key #{income.name} #{__('Total Income')}
+            dd.value $#{currencyFilter(income.total)}
 
-          tr.breakdown-table__summary-row
-            td #{__(`Total Income for ${year}`)}
-            td $#{currencyFilter(totalIncome.amount)}
+        .breakdown-table__row.breakdown-table__row--summary
+          dt.key #{__(`Total Income for ${year}`)}
+          dd.value $#{currencyFilter(totalIncome.amount)}
 
-  div
-    table.breakdown-table
-      thead
-        tr
-          th.breakdown-table__heading #{__('Total tax')}
-          th.breakdown-table__heading $#{currencyFilter(totalTax, 0)}
-      tbody
-        tr
-          th(colspan="2").breakdown-table__subheading #{__(`Detailed breakdown of taxes paid in ${year}`)}
+  .breakdown-table
+      h2.breakdown-table__heading 
+        span #{__('Total tax')}
+        span.breakdown-table__heading $#{currencyFilter(totalTax, 0)}
 
+      p.breakdown-table__subheading #{__(`Detailed breakdown of taxes paid in ${year}`)}
+
+      .breakdown-table-data
         each tax in taxes
-          tr
-            td #{__(`${tax.name.replace('Net ', '')} deduction`)}
-            td $#{currencyFilter(tax.amount)}
+          .breakdown-table__row
+            dt.key #{__(`${tax.name.replace('Net ', '')} deduction`)}
+            dd.value $#{currencyFilter(tax.amount)}
 
-        tr.breakdown-table__summary-row
-          td #{__(`Total tax paid for ${year}`)}
-          td $#{currencyFilter(totalTax)}
+        .breakdown-table__row.breakdown-table__row--summary
+          dt.key #{__(`Total tax paid for ${year}`)}
+          dd.value $#{currencyFilter(totalTax)}
 
   form.cra-form(method='post')
     +yesNoRadios('confirmIncome', null, 'Is this information correct?', errors)

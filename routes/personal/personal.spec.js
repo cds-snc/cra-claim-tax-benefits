@@ -87,7 +87,7 @@ describe('Test /personal responses', () => {
 
   describe('Test /personal/address responses', () => {
     let goodRequest = {
-      streetName: 'Awesome Avenue',
+      line1: 'Awesome Avenue',
       city: 'Awesawa',
       postalCode: 'H3L1Y4',
       province: 'Ontario',
@@ -96,19 +96,19 @@ describe('Test /personal responses', () => {
 
     const badRequests = [
       {
-        label: 'no streetName or city or postalCode or province',
-        firstErrorId: '#streetName',
+        label: 'no streetAddress or city or postalCode or province',
+        firstErrorId: '#line1',
         send: {
           ...goodRequest,
-          ...{ streetName: '', city: '', postalCode: '', province: '' },
+          ...{ line1: '', city: '', postalCode: '', province: '' },
         },
       },
       {
-        label: 'no streetName',
-        firstErrorId: '#streetName',
+        label: 'no streetAddress',
+        firstErrorId: '#line1',
         send: {
           ...goodRequest,
-          ...{ streetName: '' },
+          ...{ line1: '' },
         },
       },
       {

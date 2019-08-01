@@ -216,9 +216,9 @@ const maritalStatusSchema = {
 }
 
 const addressSchema = {
-  streetName: {
+  line1: {
     isEmpty: {
-      errorMessage: 'errors.address.streetName.empty',
+      errorMessage: 'errors.address.line1.empty',
       negated: true,
     },
   },

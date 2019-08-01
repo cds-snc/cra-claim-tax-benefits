@@ -19,10 +19,10 @@ block content
         tr
           td
             .address
-              if hasData(data, 'personal.address.aptNumber')
-                div #{data.personal.address.aptNumber}-#{data.personal.address.streetNumber} #{data.personal.address.streetName}
+              if hasData(data, 'personal.address.line2')
+                div #{data.personal.address.line2}-#{data.personal.address.line1}
               else
-                div #{data.personal.address.streetNumber} #{data.personal.address.streetName}
+                div #{data.personal.address.line1} 
               div #{data.personal.address.city}, #{data.personal.address.province}
               div #{data.personal.address.postalCode}
 

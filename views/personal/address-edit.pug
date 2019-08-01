@@ -2,9 +2,8 @@ extends ../base
 
 block variables
   -var title = __('Change your mailing address')
-  -var aptNumber = hasData(body, 'aptNumber') ? body.aptNumber : hasData(data, 'personal.address.aptNumber') ? data.personal.address.aptNumber : ''
-  -var streetNumber = hasData(body, 'streetNumber') ? body.streetNumber : hasData(data, 'personal.address.streetNumber') ? data.personal.address.streetNumber : ''
-  -var streetName = hasData(body, 'streetName') ? body.streetName : hasData(data, 'personal.address.streetName') ? data.personal.address.streetName : ''
+  -var aptNumber = hasData(body, 'line2') ? body.line2 : hasData(data, 'personal.address.line2') ? data.personal.address.line2 : ''
+  -var streetAddress = hasData(body, 'line1') ? body.line1 : hasData(data, 'personal.address.line1') ? data.personal.address.line1 : ''
   -var city = hasData(body, 'city') ? body.city : hasData(data, 'personal.address.city') ? data.personal.address.city : ''
   -var postalCode = hasData(body, 'postalCode') ? body.postalCode : hasData(data, 'personal.address.postalCode') ? data.personal.address.postalCode : ''
   -var province = hasData(body, 'province') ? body.province : hasData(data, 'personal.address.province') ? data.personal.address.province : ''
@@ -21,10 +20,7 @@ block content
     form.cra-form.cra-form--lg(method='post')
       h2 #{__('Your mailing address')}
 
-      div
-        +textInput('Street number', ['w-1-4','d--ib'])(class='w-3-4', value=streetNumber, name='streetNumber' autofocus=(!errors || errors && firstError.param === 'streetNumber' ? true : false))
-
-        +textInput('Street name', ['w-3-4','d--ib'])(class='w-3-4', value=streetName, name='streetName')
+      +textInput('Street address', ['w-3-4','d--ib'])(class='w-3-4', value=streetAddress, name='line1' autofocus=(!errors || errors && firstError.param === 'line1' ? true : false))
 
       +textInput('Apartment number', 'w-1-2', 'Optional')(class='w-3-4', value=aptNumber name='aptNumber')
 

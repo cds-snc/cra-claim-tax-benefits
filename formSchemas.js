@@ -4,7 +4,7 @@ const currencySchema = (errorMessageString = 'errors.currency') => {
   return {
     isCurrency: {
       errorMessage: errorMessageString,
-      options: { allow_negatives: false },
+      options: { allow_negatives: false, decimal_separator: ',|[\\.,]' },
     },
   }
 }

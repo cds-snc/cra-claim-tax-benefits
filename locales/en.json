@@ -13,7 +13,7 @@
   "errors.login.dateOfBirth.validMonth": "Please enter a valid month between 01 and 12",
   "errors.login.dateOfBirth.validDay": "Please enter a valid day",
   "errors.login.dateOfBirth.validYear": "Please enter a valid year",
-  "errors.address.streetName.empty": "Street address can’t be empty",
+  "errors.address.line1.empty": "Street address can’t be empty",
   "errors.address.city.empty": "City can’t be empty",
   "errors.address.postalCode.empty": "Postal code can’t be empty",
   "errors.address.postalCode.format": "Postal code is incorrect format",

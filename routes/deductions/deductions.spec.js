@@ -39,7 +39,7 @@ describe('Test /deductions responses', () => {
       expect(response.headers.location).toEqual('/')
     })
   })
-  //End of Medical Claim section  
+  //End of Medical Claim section
 
   //Start of Charitable donation section
   describe('Test /deductions/donations responses', () => {
@@ -276,7 +276,18 @@ describe('Test /deductions responses', () => {
           expect(response.statusCode).toBe(422)
         })
 
-        const badAmounts = ['', null, 'dinosaur', '10.0', '10.000', '-10', '.1']
+        const badAmounts = [
+          '',
+          null,
+          'dinosaur',
+          '10.0',
+          '10.000',
+          '10a00',
+          '10;00',
+          '10.,00',
+          '-10',
+          '.1',
+        ]
         badAmounts.map(badAmount => {
           test(`it returns a 422 for a bad posted value: "${badAmount}"`, async () => {
             const response = await request(app)
@@ -286,7 +297,7 @@ describe('Test /deductions responses', () => {
           })
         })
 
-        const goodAmounts = ['0', '10', '10.00', '.10']
+        const goodAmounts = ['0', '10', '10.00', '10,00', '$10.00', '$10,00', ',10', '.10']
         goodAmounts.map(goodAmount => {
           test(`it returns a 302 for a good posted value: "${goodAmount}"`, async () => {
             const response = await request(app)

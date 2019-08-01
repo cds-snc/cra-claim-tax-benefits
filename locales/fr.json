@@ -13,7 +13,7 @@
   "errors.login.dateOfBirth.validMonth": "Veuillez inscrire un mois valide entre 01 et 12",
   "errors.login.dateOfBirth.validDay": "Veuillez inscrire un jour valide",
   "errors.login.dateOfBirth.validYear": "Veuillez inscrire une année valide",
-  "errors.address.streetName.empty": "Le nom de la rue doit être inscrit",
+  "errors.address.line1.empty": "Le nom de la rue doit être inscrit",
   "errors.address.city.empty": "La ville doit être inscrite",
   "errors.address.postalCode.empty": "Le code postal doit être inscrit",
   "errors.address.postalCode.format": "Le format du code postal est incorrect",

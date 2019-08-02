@@ -1,13 +1,9 @@
 const { checkSchema } = require('express-validator')
-const { validateRedirect, checkErrors } = require('./../../utils')
+const { validateRedirect, renderWithData, checkErrors } = require('./../../utils')
 const { incomeSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
-  app.get('/financial/income', (req, res) =>
-  //TODO: update this with proper date later
-    res.render('financial/income', { data: req.session }),
-  )
-
+  app.get('/financial/income', renderWithData('financial/income'))
   app.post(
     '/financial/income',
     validateRedirect,

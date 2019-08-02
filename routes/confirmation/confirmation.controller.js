@@ -1,15 +1,11 @@
 const { checkSchema } = require('express-validator')
-const { validateRedirect, checkErrors } = require('./../../utils')
+const { validateRedirect, renderWithData, checkErrors } = require('./../../utils')
 const { reviewSchema } = require('./../../formSchemas.js')
 
 module.exports = function(app) {
-  app.get('/confirmation', (req, res) =>
-    res.render('confirmation/confirmation', { data: req.session }),
-  )
+  app.get('/confirmation', renderWithData('confirmation/confirmation'))
 
-  // Might make more sense to put this somewhere else?
-  app.get('/review', (req, res) => res.render('confirmation/review', { data: req.session }))
-
+  app.get('/review', renderWithData('confirmation/review'))
   app.post(
     '/review',
     validateRedirect,

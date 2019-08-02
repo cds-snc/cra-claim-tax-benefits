@@ -1,9 +1,14 @@
 const { checkSchema } = require('express-validator')
-const { validateRedirect, checkErrors, doAuth } = require('./../../utils')
-const { maritalStatusSchema, addressSchema, residenceSchema, nameSchema } = require('./../../formSchemas.js')
+const { validateRedirect, renderWithData, checkErrors, doAuth } = require('./../../utils')
+const {
+  maritalStatusSchema,
+  addressSchema,
+  residenceSchema,
+  nameSchema,
+} = require('./../../formSchemas.js')
 
 module.exports = function(app) {
-  app.get('/personal/name', (req, res) => res.render('personal/name', { data: req.session }))
+  app.get('/personal/name', renderWithData('personal/name'))
   app.post(
     '/personal/name',
     validateRedirect,
@@ -11,10 +16,8 @@ module.exports = function(app) {
     checkErrors('personal/name'),
     postName,
   )
-  app.get('/personal/address', (req, res) => res.render('personal/address', { data: req.session }))
-  app.get('/personal/address/edit', doAuth, (req, res) =>
-    res.render('personal/address-edit', { data: req.session }),
-  )
+  app.get('/personal/address', renderWithData('personal/address'))
+  app.get('/personal/address/edit', doAuth, renderWithData('personal/address-edit'))
   app.post(
     '/personal/address/edit',
     doAuth,
@@ -24,7 +27,7 @@ module.exports = function(app) {
     postAddress,
   )
 
-  app.get('/personal/residence', (req, res) => res.render('personal/residence'))
+  app.get('/personal/residence', renderWithData('personal/residence'))
   app.post(
     '/personal/residence',
     validateRedirect,
@@ -33,12 +36,8 @@ module.exports = function(app) {
     postResidence,
   )
 
-  app.get('/personal/maritalStatus', (req, res) =>
-    res.render('personal/maritalStatus', { data: req.session }),
-  )
-  app.get('/personal/maritalStatus/edit', doAuth, (req, res) =>
-    res.render('personal/maritalStatus-edit', { data: req.session }),
-  )
+  app.get('/personal/maritalStatus', renderWithData('personal/maritalStatus'))
+  app.get('/personal/maritalStatus/edit', doAuth, renderWithData('personal/maritalStatus-edit'))
   app.post(
     '/personal/maritalStatus/edit',
     doAuth,

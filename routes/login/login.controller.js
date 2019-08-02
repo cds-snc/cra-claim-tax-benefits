@@ -50,18 +50,23 @@ const postLoginCode = async (req, res) => {
     })
   }
 
-  let user 
+  let user
 
-  if (process.env.CTBS_SERVICE_URL && req.body.code) 
-    user = await request({ method: 'GET', uri: `${process.env.CTBS_SERVICE_URL}/${req.body.code}`, json: true})
-  else
+  if (process.env.CTBS_SERVICE_URL && req.body.code) {
+    user = await request({
+      method: 'GET',
+      uri: `${process.env.CTBS_SERVICE_URL}/${req.body.code}`,
+      json: true,
+    })
+  } else {
     user = API.getUser(req.body.code || null)
+  }
 
   if (!user) {
     throw new Error(`[POST ${req.path}] user not found for access code "${req.body.code}"`)
   }
 
-  req.session = user
+  req.session = user // eslint-disable-line require-atomic-updates
   return res.redirect(req.body.redirect)
 }
 

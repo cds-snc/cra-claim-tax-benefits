@@ -13,7 +13,14 @@ const express = require('express'),
   path = require('path'),
   cookieSession = require('cookie-session'),
   cookieSessionConfig = require('./config/cookieSession.config'),
-  { SINFilter, hasData, checkPublic, sortByLineNumber, checkLangQuery, currencyFilter } = require('./utils')
+  {
+    SINFilter,
+    hasData,
+    checkPublic,
+    sortByLineNumber,
+    checkLangQuery,
+    currencyFilter,
+  } = require('./utils')
 
 // initialize application.
 var app = express()
@@ -76,8 +83,6 @@ require('./routes/start/start.controller')(app)
 require('./routes/login/login.controller')(app)
 require('./routes/personal/personal.controller')(app)
 require('./routes/deductions/deductions.controller')(app)
-require('./routes/dependants/dependants.controller')(app)
-require('./routes/partner/partner.controller')(app)
 require('./routes/financial/financial.controller')(app)
 require('./routes/confirmation/confirmation.controller')(app)
 require('./routes/offramp/offramp.controller')(app)

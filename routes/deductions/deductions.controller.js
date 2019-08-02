@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { validateRedirect, checkErrors } = require('./../../utils')
+const { validateRedirect, renderWithData, checkErrors } = require('./../../utils')
 const {
   rrspSchema,
   rrspAmountSchema,
@@ -17,9 +17,9 @@ const {
   climateActionIncentiveSchema,
 } = require('./../../formSchemas.js')
 
-module.exports = function (app) {
+module.exports = function(app) {
   //Start of RRSP Section
-  app.get('/deductions/rrsp', (req, res) => res.render('deductions/rrsp', { data: req.session }))
+  app.get('/deductions/rrsp', renderWithData('deductions/rrsp'))
   app.post(
     '/deductions/rrsp',
     validateRedirect,
@@ -27,9 +27,7 @@ module.exports = function (app) {
     checkErrors('deductions/rrsp'),
     postRRSP,
   )
-  app.get('/deductions/rrsp/amount', (req, res) =>
-    res.render('deductions/rrsp-amount', { data: req.session }),
-  )
+  app.get('/deductions/rrsp/amount', renderWithData('deductions/rrsp-amount'))
   app.post(
     '/deductions/rrsp/amount',
     validateRedirect,
@@ -40,9 +38,7 @@ module.exports = function (app) {
   //End of RRSP Section
 
   //Start of Charitable Donations Section
-  app.get('/deductions/donations', (req, res) =>
-    res.render('deductions/donations', { data: req.session }),
-  )
+  app.get('/deductions/donations', renderWithData('deductions/donations'))
   app.post(
     '/deductions/donations',
     validateRedirect,
@@ -50,9 +46,7 @@ module.exports = function (app) {
     checkErrors('deductions/donations'),
     postDonations,
   )
-  app.get('/deductions/donations/amount', (req, res) =>
-    res.render('deductions/donations-amount', { data: req.session }),
-  )
+  app.get('/deductions/donations/amount', renderWithData('deductions/donations-amount'))
   app.post(
     '/deductions/donations/amount',
     validateRedirect,
@@ -63,9 +57,7 @@ module.exports = function (app) {
   //End of Charitable Donations Section
 
   //Start of Medical claim Section
-  app.get('/deductions/medical', (req, res) =>
-    res.render('deductions/medical', { data: req.session }),
-  )
+  app.get('/deductions/medical', renderWithData('deductions/medical'))
   app.post(
     '/deductions/medical',
     validateRedirect,
@@ -73,9 +65,7 @@ module.exports = function (app) {
     checkErrors('deductions/medical'),
     postMedical,
   )
-  app.get('/deductions/medical/amount', (req, res) =>
-    res.render('deductions/medical-amount', { data: req.session }),
-  )
+  app.get('/deductions/medical/amount', renderWithData('deductions/medical-amount'))
   app.post(
     '/deductions/medical/amount',
     validateRedirect,
@@ -86,7 +76,7 @@ module.exports = function (app) {
   //End of Medical Claim Section
 
   //Start of Political Donations Section
-  app.get('/deductions/political', (req, res) => res.render('deductions/political', { data: req.session }))
+  app.get('/deductions/political', renderWithData('deductions/political'))
   app.post(
     '/deductions/political',
     validateRedirect,
@@ -94,9 +84,7 @@ module.exports = function (app) {
     checkErrors('deductions/political'),
     postPolitical,
   )
-  app.get('/deductions/political/amount', (req, res) =>
-    res.render('deductions/political-amount', { data: req.session }),
-  )
+  app.get('/deductions/political/amount', renderWithData('deductions/political-amount'))
   app.post(
     '/deductions/political/amount',
     validateRedirect,
@@ -107,9 +95,7 @@ module.exports = function (app) {
   //End of Charitable Donations Section
 
   //Start of Trillum Section
-  app.get('/trillium/rent/amount', (req, res) =>
-    res.render('deductions/trillium-rent-amount', { data: req.session }),
-  )
+  app.get('/trillium/rent/amount', renderWithData('deductions/trillium-rent-amount'))
   app.post(
     '/trillium/rent/amount',
     validateRedirect,
@@ -118,10 +104,7 @@ module.exports = function (app) {
     postTrilliumRentAmount,
   )
 
-
-  app.get('/trillium/propertyTax/amount', (req, res) =>
-    res.render('deductions/trillium-propertyTax-amount', { data: req.session }),
-  )
+  app.get('/trillium/propertyTax/amount', renderWithData('deductions/trillium-propertyTax-amount'))
   app.post(
     '/trillium/propertyTax/amount',
     validateRedirect,
@@ -130,9 +113,7 @@ module.exports = function (app) {
     postTrilliumPropertyTaxAmount,
   )
 
-  app.get('/trillium/studentResidence', (req, res) =>
-    res.render('deductions/trillium-studentResidence', { data: req.session }),
-  )
+  app.get('/trillium/studentResidence', renderWithData('deductions/trillium-studentResidence'))
   app.post(
     '/trillium/studentResidence',
     validateRedirect,
@@ -141,9 +122,7 @@ module.exports = function (app) {
     postTrilliumStudentResidence,
   )
 
-  app.get('/trillium/energy/amount', (req, res) =>
-    res.render('deductions/trillium-energy-amount', { data: req.session }),
-  )
+  app.get('/trillium/energy/amount', renderWithData('deductions/trillium-energy-amount'))
   app.post(
     '/trillium/energy/amount',
     validateRedirect,
@@ -152,8 +131,9 @@ module.exports = function (app) {
     postTrilliumEnergyAmount,
   )
 
-  app.get('/trillium/longTermCare/amount', (req, res) =>
-    res.render('deductions/trillium-longTermCare-amount', { data: req.session }),
+  app.get(
+    '/trillium/longTermCare/amount',
+    renderWithData('deductions/trillium-longTermCare-amount'),
   )
   app.post(
     '/trillium/longTermCare/amount',
@@ -164,8 +144,9 @@ module.exports = function (app) {
   )
 
   //Climate Action Incentive
-  app.get('/deductions/climate-action-incentive', (req, res) =>
-    res.render('deductions/climate-action-incentive', { data: req.session }),
+  app.get(
+    '/deductions/climate-action-incentive',
+    renderWithData('deductions/climate-action-incentive'),
   )
   app.post(
     '/deductions/climate-action-incentive',
@@ -254,7 +235,6 @@ const postMedicalAmount = (req, res) => {
 }
 //End of Medical claim controller functions
 
-
 //Start of Trillium controller functions
 const postTrilliumRentAmount = (req, res) => {
   req.session.deductions.trilliumRentAmount = req.body.trilliumRentAmount
@@ -320,5 +300,3 @@ const postClimateActionIncentiveSchema = (req, res) => {
   //Success, we can redirect to the next page
   return res.redirect(req.body.redirect)
 }
-
-

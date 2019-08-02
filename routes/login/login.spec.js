@@ -372,12 +372,12 @@ describe('Test /login responses', () => {
       expect(response.statusCode).toBe(200)
     })
 
-    test('it returns a 422 response for no posted value', async () => {
+    test('it returns a 302 response for no posted value', async () => { // since 0 is what is displayed by default, a user could leave it blank and press enter. This might not be great in user testing scenario but should be a valid answer
       const response = await request(app).post('/login/auth')
-      expect(response.statusCode).toBe(422)
+      expect(response.statusCode).toBe(302)
     })
 
-    const badAuths = ['', null, 'dinosaur', '10.0', '10.000', '-10', '.1']
+    const badAuths = ['dinosaur', '10.0', '10.000', '-10', '.1']
     badAuths.map(auth => {
       test(`it returns a 422 for a bad posted value: "${auth}"`, async () => {
         const response = await request(app)
@@ -387,7 +387,7 @@ describe('Test /login responses', () => {
       })
     })
 
-    const goodAuths = ['0', '10', '10.00', '.10']
+    const goodAuths = ['0', '10', '10.00', '.10', '', null] // since 0 is what is displayed by default, a user could leave it blank and press enter. This might not be great in user testing scenario but should be a valid answer
     goodAuths.map(auth => {
       test(`it returns a 302 for a good posted value: "${auth}"`, async () => {
         const response = await request(app)

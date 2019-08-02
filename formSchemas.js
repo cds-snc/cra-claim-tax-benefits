@@ -2,6 +2,11 @@ const API = require('./api')
 
 const currencySchema = (errorMessageString = 'errors.currency') => {
   return {
+    customSanitizer: {
+      options: value => {
+        return value ? value : 0 //if blank we want to assume they meant 0
+      },
+    },
     isCurrency: {
       errorMessage: errorMessageString,
       options: { allow_negatives: false },
@@ -306,22 +311,8 @@ const politicalSchema = {
 }
 
 const politicalAmountSchema = {
-  politicalProvincialAmount: {
-    customSanitizer: {
-      options: value => {
-        return value ? value : 0 //if blank we want to assume they meant 0
-      },
-    },
-    ...currencySchema(),
-  },
-  politicalFederalAmount: {
-    customSanitizer: {
-      options: value => {
-        return value ? value : 0 //if blank we want to assume they meant 0
-      },
-    },
-    ...currencySchema(),
-  },
+  politicalProvincialAmount: currencySchema(),
+  politicalFederalAmount: currencySchema(),
 }
 
 const residenceSchema = {

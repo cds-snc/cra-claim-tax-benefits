@@ -269,14 +269,14 @@ describe('Test /deductions responses', () => {
           expect(response.statusCode).toBe(500)
         })
 
-        test('it returns a 422 response for no posted value', async () => {
+        test('it returns a 302 response for no posted value', async () => {
           const response = await request(app)
             .post(amountResponse.url)
             .send({ redirect: '/' })
-          expect(response.statusCode).toBe(422)
+          expect(response.statusCode).toBe(302)
         })
 
-        const badAmounts = ['', null, 'dinosaur', '10.0', '10.000', '-10', '.1']
+        const badAmounts = ['dinosaur', '10.0', '10.000', '-10', '.1']
         badAmounts.map(badAmount => {
           test(`it returns a 422 for a bad posted value: "${badAmount}"`, async () => {
             const response = await request(app)
@@ -286,7 +286,7 @@ describe('Test /deductions responses', () => {
           })
         })
 
-        const goodAmounts = ['0', '10', '10.00', '.10']
+        const goodAmounts = ['0', '10', '10.00', '.10', '', null]
         goodAmounts.map(goodAmount => {
           test(`it returns a 302 for a good posted value: "${goodAmount}"`, async () => {
             const response = await request(app)

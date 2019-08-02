@@ -1,16 +1,21 @@
 const { validationResult, checkSchema } = require('express-validator')
-const { errorArray2ErrorObject, validateRedirect, checkErrors } = require('./../../utils')
+const {
+  errorArray2ErrorObject,
+  validateRedirect,
+  renderWithData,
+  checkErrors,
+} = require('./../../utils')
 const { loginSchema, sinSchema, birthSchema, authSchema } = require('./../../formSchemas.js')
 const API = require('../../api')
 
 module.exports = function(app) {
   // redirect from "/login" → "/login/code"
   app.get('/login', (req, res) => res.redirect('/login/code'))
-  app.get('/login/code', (req, res) => res.render('login/code', { data: req.session || {} }))
+  app.get('/login/code', renderWithData('login/code'))
   app.post('/login/code', validateRedirect, checkSchema(loginSchema), postLoginCode)
 
   // SIN
-  app.get('/login/sin', (req, res) => res.render('login/sin', { data: req.session }))
+  app.get('/login/sin', renderWithData('login/sin'))
   app.post(
     '/login/sin',
     validateRedirect,
@@ -20,9 +25,7 @@ module.exports = function(app) {
   )
 
   // Date of Birth
-  app.get('/login/dateOfBirth', (req, res) =>
-    res.render('login/dateOfBirth', { data: req.session }),
-  )
+  app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
   app.post(
     '/login/dateOfBirth',
     validateRedirect,

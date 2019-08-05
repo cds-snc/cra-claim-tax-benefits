@@ -1,6 +1,6 @@
 const { checkSchema } = require('express-validator')
 const { validateRedirect, renderWithData, checkErrors } = require('./../../utils')
-const { reviewSchema } = require('./../../formSchemas.js')
+const { reviewSchema } = require('./../../schemas')
 
 module.exports = function(app) {
   app.get('/confirmation', renderWithData('confirmation/confirmation'))

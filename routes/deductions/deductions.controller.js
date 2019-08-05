@@ -15,7 +15,7 @@ const {
   trilliumEnergyAmountSchema,
   trilliumlongTermCareAmountSchema,
   climateActionIncentiveSchema,
-} = require('./../../formSchemas.js')
+} = require('./../../schemas')
 
 module.exports = function(app) {
   //Start of RRSP Section

@@ -1,6 +1,6 @@
 const { checkSchema } = require('express-validator')
 const { validateRedirect, renderWithData, checkErrors } = require('./../../utils')
-const { incomeSchema } = require('./../../formSchemas.js')
+const { incomeSchema } = require('./../../schemas')
 
 module.exports = function(app) {
   app.get('/financial/income', renderWithData('financial/income'))

@@ -135,8 +135,10 @@
   > input:not(:checked) + label + .no-info {
     max-height: 0;
     overflow: hidden;
+    visibility: hidden;
   }
   > input:checked + label + .no-info {
     overflow-y: hidden;
+    visibility: visible;
   }
 }

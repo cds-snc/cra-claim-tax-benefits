@@ -9,7 +9,7 @@ mixin yesNoRadios(key, value, question, errors = false)
           input(id=`${key}Yes` name=key type="radio" value="Yes" checked=(value =='Yes') aria-describedby=(errors ? `${key}-error` : false))
           label(for=`${key}Yes`) #{__('Yes')}
         .multiple-choice__item
-          input(id=`${key}No` name=key type="radio" value="No" checked=(value =='No') aria-describedby=(errors ? `${key}-error` : false))
+          input(id=`${key}No` name=key type="radio" value="No" checked=(value =='No') aria-describedby=(errors ? `${key}-error` : false) aria-expanded=(block ? 'false': false))
           label(for=`${key}No`) #{__('No')}
           if block
             block

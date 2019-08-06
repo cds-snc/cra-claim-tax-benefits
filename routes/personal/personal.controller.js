@@ -1,11 +1,11 @@
 const { checkSchema } = require('express-validator')
 const { validateRedirect, renderWithData, checkErrors, doAuth } = require('./../../utils')
 const {
-  maritalStatusSchema,
   addressSchema,
-  residenceSchema,
+  maritalStatusSchema,
   nameSchema,
-} = require('./../../formSchemas.js')
+  residenceSchema,
+} = require('./../../schemas')
 
 module.exports = function(app) {
   app.get('/personal/name', renderWithData('personal/name'))

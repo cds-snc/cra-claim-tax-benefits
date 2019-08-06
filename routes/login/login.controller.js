@@ -5,7 +5,7 @@ const {
   renderWithData,
   checkErrors,
 } = require('./../../utils')
-const { loginSchema, sinSchema, birthSchema, authSchema } = require('./../../formSchemas.js')
+const { loginSchema, sinSchema, birthSchema, authSchema } = require('./../../schemas')
 const API = require('../../api')
 const request = require('request-promise')
 

@@ -17,9 +17,9 @@ describe('Test /review', () => {
   })
 
   describe('POST responses', () => {
-    test('it returns a 500 response if no redirect is provided', async () => {
+    test('it returns a 422 response if no values are posted', async () => {
       const response = await request(app).post('/review')
-      expect(response.statusCode).toBe(500)
+      expect(response.statusCode).toBe(422)
     })
 
     test('it returns a 422 response for no posted value', async () => {
@@ -27,6 +27,13 @@ describe('Test /review', () => {
         .post('/review')
         .send({ redirect: '/' })
       expect(response.statusCode).toBe(422)
+    })
+
+    test('it returns a 500 response if no redirect is provided', async () => {
+      const response = await request(app)
+        .post('/review')
+        .send({ review: 'review' })
+      expect(response.statusCode).toBe(500)
     })
 
     test('it returns a 422 response for the wrong value', async () => {

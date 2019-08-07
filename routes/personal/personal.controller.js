@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { validateRedirect, renderWithData, checkErrors, doAuth } = require('./../../utils')
+const { doRedirect, renderWithData, checkErrors, doAuth } = require('./../../utils')
 const {
   addressSchema,
   maritalStatusSchema,
@@ -11,29 +11,29 @@ module.exports = function(app) {
   app.get('/personal/name', renderWithData('personal/name'))
   app.post(
     '/personal/name',
-    validateRedirect,
     checkSchema(nameSchema),
     checkErrors('personal/name'),
     postName,
+    doRedirect,
   )
   app.get('/personal/address', renderWithData('personal/address'))
   app.get('/personal/address/edit', doAuth, renderWithData('personal/address-edit'))
   app.post(
     '/personal/address/edit',
     doAuth,
-    validateRedirect,
     checkSchema(addressSchema),
     checkErrors('personal/address-edit'),
     postAddress,
+    doRedirect,
   )
 
   app.get('/personal/residence', renderWithData('personal/residence'))
   app.post(
     '/personal/residence',
-    validateRedirect,
     checkSchema(residenceSchema),
     checkErrors('personal/residence'),
     postResidence,
+    doRedirect,
   )
 
   app.get('/personal/maritalStatus', renderWithData('personal/maritalStatus'))
@@ -41,43 +41,40 @@ module.exports = function(app) {
   app.post(
     '/personal/maritalStatus/edit',
     doAuth,
-    validateRedirect,
     checkSchema(maritalStatusSchema),
     checkErrors('personal/maritalStatus-edit'),
-    postMaritalStatus,
+    (req, res, next) => {
+      req.session.personal.maritalStatus = req.body.maritalStatus
+      next()
+    },
+    doRedirect,
   )
 }
 
-const postAddress = (req, res) => {
+const postAddress = (req, res, next) => {
   // copy all posted parameters, but remove the redirect
   let addressData = Object.assign({}, req.body)
   delete addressData.redirect
 
   req.session.personal.address = addressData
 
-  return res.redirect(req.body.redirect)
+  next()
 }
 
-const postMaritalStatus = (req, res) => {
-  req.session.personal.maritalStatus = req.body.maritalStatus
-
-  return res.redirect(req.body.redirect)
-}
-
-const postResidence = (req, res) => {
+const postResidence = (req, res, next) => {
   if (req.body.residence !== 'Ontario') {
     return res.redirect('/offramp/residence')
   }
 
-  return res.redirect(req.body.redirect)
+  next()
 }
 
-const postName = (req, res) => {
+const postName = (req, res, next) => {
   const name = req.body.name
 
   if (name !== 'Yes') {
     return res.redirect('/offramp/name')
   }
 
-  return res.redirect(req.body.redirect)
+  next()
 }

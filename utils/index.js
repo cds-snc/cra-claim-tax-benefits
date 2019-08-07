@@ -133,15 +133,16 @@ const checkErrors = template => {
   }
 }
 
-//POST functions that handle setting the login data in the session and handle redirecting to the next page or sending an error to the client.
-//Note that this is not the only error validation, see routes defined above.
-const validateRedirect = (req, res, next) => {
+// POST functions that handle setting the login data in the session and will redirecting to the next page or send back an error to the client.
+// Note that this is not the only error validation, see routes defined above.
+const doRedirect = (req, res) => {
   let redirect = req.body.redirect || null
 
   if (!redirect) {
     throw new Error(`[POST ${req.path}] 'redirect' parameter missing`)
   }
-  return next()
+
+  return res.redirect(redirect)
 }
 
 // Render a passed-in template and pass in session data under the "data" key
@@ -222,7 +223,6 @@ const sortByLineNumber = (...objToSort) => {
 
 module.exports = {
   errorArray2ErrorObject,
-  validateRedirect,
   checkErrors,
   doAuth,
   renderWithData,
@@ -232,4 +232,5 @@ module.exports = {
   currencyFilter,
   sortByLineNumber,
   checkLangQuery,
+  doRedirect,
 }

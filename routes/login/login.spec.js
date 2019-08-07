@@ -4,17 +4,31 @@ const cheerio = require('cheerio')
 const app = require('../../app.js')
 
 describe('Test /login responses', () => {
+  const urls = ['/login/code', '/login/sin', '/login/dateOfBirth']
+  urls.map(url => {
+    test(`it returns a 200 response for ${url}`, async () => {
+      const response = await request(app).get(url)
+      expect(response.statusCode).toBe(200)
+    })
+
+    test(`it returns a 422 response for ${url} if nothing is posted`, async () => {
+      const response = await request(app).post(url)
+      expect(response.statusCode).toBe(422)
+    })
+
+    test(`it returns a 422 response for ${url} if only a redirect is posted`, async () => {
+      const response = await request(app)
+        .post(url)
+        .send({ redirect: '/' })
+      expect(response.statusCode).toBe(422)
+    })
+  })
+
   //login page
   test('it redirects to /login/code from /login', async () => {
     const response = await request(app).get('/login')
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/login/code')
-  })
-
-  //login/code
-  test('it returns a 200 response for /login/code', async () => {
-    const response = await request(app).get('/login/code')
-    expect(response.statusCode).toBe(200)
   })
 
   test('it renders the h1 text for /login/code', async () => {
@@ -25,7 +39,9 @@ describe('Test /login responses', () => {
   })
 
   test('it returns a 500 response if no redirect is provided', async () => {
-    const response = await request(app).post('/login/code')
+    const response = await request(app)
+      .post('/login/code')
+      .send({ code: 'A5G98S4K1' })
     expect(response.statusCode).toBe(500)
   })
 
@@ -33,13 +49,6 @@ describe('Test /login responses', () => {
     const response = await request(app).get('/login/code')
     const $ = cheerio.load(response.text)
     expect($('#code').attr('autofocus')).toEqual('autofocus')
-  })
-
-  test('it reloads /login/code with a 422 status if no code is provided', async () => {
-    const response = await request(app)
-      .post('/login/code')
-      .send({ redirect: '/' })
-    expect(response.statusCode).toBe(422)
   })
 
   describe('Error list tests', () => {
@@ -107,11 +116,6 @@ describe('Test /login responses', () => {
 
   describe('Test /login/sin responses', () => {
     // Social Insurance Number Page /login/sin
-    test('it returns a 200 response for /login/sin', async () => {
-      const response = await request(app).get('/login/sin')
-      expect(response.statusCode).toBe(200)
-    })
-
     test('it renders the h1 text for /login/sin', async () => {
       const response = await request(app).get('/login/sin')
 
@@ -120,7 +124,9 @@ describe('Test /login responses', () => {
     })
 
     test('it returns a 500 response if no redirect is provided', async () => {
-      const response = await request(app).post('/login/sin')
+      const response = await request(app)
+        .post('/login/sin')
+        .send({ sin: '847 339 283' })
       expect(response.statusCode).toBe(500)
     })
 
@@ -200,15 +206,7 @@ describe('Test /login responses', () => {
     })
   })
 
-  //it returns a 200 response for /login/dateOfBirth
-  //access code test (look above for sin)
-
   describe('Test login/dateOfBirth responses', () => {
-    test('it returns a 200 response for /login/dateOfBirth', async () => {
-      const response = await request(app).get('/login/dateOfBirth')
-      expect(response.statusCode).toBe(200)
-    })
-
     let goodDoBRequest = {
       dateOfBirth: '1977/09/09',
       sin: '847339283',
@@ -372,7 +370,8 @@ describe('Test /login responses', () => {
       expect(response.statusCode).toBe(200)
     })
 
-    test('it returns a 302 response for no posted value', async () => { // since 0 is what is displayed by default, a user could leave it blank and press enter. This might not be great in user testing scenario but should be a valid answer
+    test('it returns a 302 response for no posted value', async () => {
+      // since 0 is what is displayed by default, a user could leave it blank and press enter. This might not be great in user testing scenario but should be a valid answer
       const response = await request(app).post('/login/auth')
       expect(response.statusCode).toBe(302)
     })

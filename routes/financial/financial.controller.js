@@ -1,19 +1,19 @@
 const { checkSchema } = require('express-validator')
-const { validateRedirect, renderWithData, checkErrors } = require('./../../utils')
+const { doRedirect, renderWithData, checkErrors } = require('./../../utils')
 const { incomeSchema } = require('./../../schemas')
 
 module.exports = function(app) {
   app.get('/financial/income', renderWithData('financial/income'))
   app.post(
     '/financial/income',
-    validateRedirect,
     checkSchema(incomeSchema),
     checkErrors('financial/income'),
     postConfirmIncome,
+    doRedirect,
   )
 }
 
-const postConfirmIncome = (req, res) => {
+const postConfirmIncome = (req, res, next) => {
   const confirmIncome = req.body.confirmIncome
 
   if (confirmIncome === 'No') {
@@ -22,6 +22,5 @@ const postConfirmIncome = (req, res) => {
     return res.redirect('/offramp/financial')
   }
 
-  //Income confirmed, can continue normally
-  return res.redirect(req.body.redirect)
+  next()
 }

@@ -58,6 +58,10 @@ const lastDayInMonth = (year, month) => {
 const validBirthDateLengths = {
   errorMessage: 'errors.login.dateOfBirth.format',
   validate: value => {
+    if (!value) {
+      return false
+    }
+
     const birthDateSplit = value.split('/')
 
     if (birthDateSplit.length !== 3) {
@@ -83,6 +87,10 @@ const validBirthDateChars = {
 const validMonth = {
   errorMessage: 'errors.login.dateOfBirth.validMonth',
   validate: value => {
+    if (!value) {
+      return false
+    }
+
     //month is not less than 1 or greater than 12
     const month = parseInt(value.split('/')[1], 10)
     return month >= 1 && month <= 12
@@ -92,6 +100,10 @@ const validMonth = {
 const validDay = {
   errorMessage: 'errors.login.dateOfBirth.validDay',
   validate: value => {
+    if (!value) {
+      return false
+    }
+
     //day is within the acceptable range
     const dateSplit = value.split('/')
     //subtract one because Date for months starts at a 0 index for Jan

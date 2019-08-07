@@ -153,7 +153,6 @@ describe('Test /personal responses', () => {
       },
     ]
 
-
     badRequests.map(badRequest => {
       test(`it returns a 422 with: "${badRequest.label}"`, async () => {
         const response = await request(app)

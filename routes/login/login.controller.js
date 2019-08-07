@@ -1,10 +1,5 @@
 const { validationResult, checkSchema } = require('express-validator')
-const {
-  errorArray2ErrorObject,
-  validateRedirect,
-  renderWithData,
-  checkErrors,
-} = require('./../../utils')
+const { errorArray2ErrorObject, doRedirect, renderWithData, checkErrors } = require('./../../utils')
 const { loginSchema, sinSchema, birthSchema, authSchema } = require('./../../schemas')
 const API = require('../../api')
 const request = require('request-promise')
@@ -13,26 +8,19 @@ module.exports = function(app) {
   // redirect from "/login" → "/login/code"
   app.get('/login', (req, res) => res.redirect('/login/code'))
   app.get('/login/code', renderWithData('login/code'))
-  app.post('/login/code', validateRedirect, checkSchema(loginSchema), postLoginCode)
+  app.post('/login/code', checkSchema(loginSchema), postLoginCode, doRedirect)
 
   // SIN
   app.get('/login/sin', renderWithData('login/sin'))
-  app.post(
-    '/login/sin',
-    validateRedirect,
-    checkSchema(sinSchema),
-    checkErrors('login/sin'),
-    postSIN,
-  )
+  app.post('/login/sin', checkSchema(sinSchema), checkErrors('login/sin'), doRedirect)
 
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
   app.post(
     '/login/dateOfBirth',
-    validateRedirect,
     checkSchema(birthSchema),
     checkErrors('login/dateOfBirth'),
-    postDoB,
+    doRedirect,
   )
 
   // Auth page
@@ -40,7 +28,7 @@ module.exports = function(app) {
   app.post('/login/auth', checkSchema(authSchema), checkErrors('login/auth'), postAuth)
 }
 
-const postLoginCode = async (req, res) => {
+const postLoginCode = async (req, res, next) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
@@ -70,17 +58,8 @@ const postLoginCode = async (req, res) => {
   }
 
   req.session = user // eslint-disable-line require-atomic-updates
-  return res.redirect(req.body.redirect)
-}
 
-const postSIN = (req, res) => {
-  //Success, we can redirect to the next page
-  return res.redirect(req.body.redirect)
-}
-
-const postDoB = (req, res) => {
-  //Success, we can redirect to the next page
-  return res.redirect(req.body.redirect)
+  next()
 }
 
 const getAuth = (req, res) => {

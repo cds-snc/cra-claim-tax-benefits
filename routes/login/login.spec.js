@@ -24,8 +24,15 @@ describe('Test /login responses', () => {
     expect($('h1').text()).toEqual('Enter your personal access code')
   })
 
-  test('it returns a 500 response if no redirect is provided', async () => {
+  test('it returns a 422 response if nothing is posted', async () => {
     const response = await request(app).post('/login/code')
+    expect(response.statusCode).toBe(422)
+  })
+
+  test('it returns a 500 response if no redirect is provided', async () => {
+    const response = await request(app)
+      .post('/login/code')
+      .send({ code: 'A5G98S4K1' })
     expect(response.statusCode).toBe(500)
   })
 
@@ -119,8 +126,15 @@ describe('Test /login responses', () => {
       expect($('h1').text()).toEqual('Enter your Social Insurance Number (SIN)')
     })
 
-    test('it returns a 500 response if no redirect is provided', async () => {
+    test('it returns a 422 response if nothing is posted', async () => {
       const response = await request(app).post('/login/sin')
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it returns a 500 response if no redirect is provided', async () => {
+      const response = await request(app)
+        .post('/login/sin')
+        .send({ sin: '847 339 283' })
       expect(response.statusCode).toBe(500)
     })
 
@@ -372,7 +386,8 @@ describe('Test /login responses', () => {
       expect(response.statusCode).toBe(200)
     })
 
-    test('it returns a 302 response for no posted value', async () => { // since 0 is what is displayed by default, a user could leave it blank and press enter. This might not be great in user testing scenario but should be a valid answer
+    test('it returns a 302 response for no posted value', async () => {
+      // since 0 is what is displayed by default, a user could leave it blank and press enter. This might not be great in user testing scenario but should be a valid answer
       const response = await request(app).post('/login/auth')
       expect(response.statusCode).toBe(302)
     })

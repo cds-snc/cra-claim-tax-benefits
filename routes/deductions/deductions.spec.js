@@ -39,7 +39,7 @@ describe('Test /deductions responses', () => {
       expect(response.headers.location).toEqual('/')
     })
   })
-  //End of Medical Claim section  
+  //End of Medical Claim section
 
   //Start of Charitable donation section
   describe('Test /deductions/donations responses', () => {

@@ -9,7 +9,7 @@ module.exports = {
   connectSrc,
   defaultSrc: ["'self'"],
   fontSrc: ["'self'", 'https://fonts.gstatic.com'],
-  imgSrc: ["'self'", 'data:', 'https://www.google-analytics.com'],
-  scriptSrc: ["'self'", 'https://www.google-analytics.com', "'unsafe-inline'"],
+  imgSrc: ["'self'", 'data:'],
+  scriptSrc: ["'self'", "'unsafe-inline'"],
   styleSrc: ["'self'", 'https://fonts.googleapis.com'],
 }

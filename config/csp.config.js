@@ -10,6 +10,6 @@ module.exports = {
   defaultSrc: ["'self'"],
   fontSrc: ["'self'", 'https://fonts.gstatic.com'],
   imgSrc: ["'self'", 'data:'],
-  scriptSrc: ["'self'", "'unsafe-inline'"],
+  scriptSrc: ["'self'"],
   styleSrc: ["'self'", 'https://fonts.googleapis.com'],
 }

@@ -22,10 +22,10 @@ block content
               if hasData(data, 'personal.address.line2')
                 div #{data.personal.address.line2}-#{data.personal.address.line1}
               else
-                div #{data.personal.address.line1} 
+                div #{data.personal.address.line1}
               div #{data.personal.address.city}, #{data.personal.address.province}
               div #{data.personal.address.postalCode}
 
   +linkButtons('/financial/income')
-    a.button-link(href='/personal/address/edit') #{__('Change your mailing address')}
+    a.button-link(href='/personal/address/edit' role='button' draggable='false') #{__('Change your mailing address')}
 

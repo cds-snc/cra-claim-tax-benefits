@@ -3,11 +3,11 @@ mixin formButtons(submitButtonText = 'Continue', cancelUrl='/clear')
     .buttons--left
       button(type='submit') #{__(submitButtonText)}
     .buttons--right
-      a.button-link.transparent.full-width(href=cancelUrl) #{__('Cancel')}
+      a.button-link.transparent.full-width(href=cancelUrl role='button' draggable='false') #{__('Cancel')}
 
 mixin linkButtons(confirmURL)
   .buttons-row
-    a.button-link(href=confirmURL) #{__('Confirm')}
+    a.button-link(href=confirmURL role='button' draggable='false') #{__('Confirm')}
     if block
         block
-    a.button-link.transparent(href='/clear') #{__('Cancel')}
+    a.button-link.transparent(href='/clear' role='button' draggable='false') #{__('Cancel')}

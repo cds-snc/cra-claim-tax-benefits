@@ -5,8 +5,8 @@ if (typeof Promise !== 'function' && document.querySelector('details') !== null)
   document.write('<script src="/js/details-element-polyfill.js"></script>')
 }
 
-// Find all of the links with the 'button-link' class and add a click event to them
-var elements = document.querySelectorAll('a.button-link')
+// Find all of the links with the 'button' role and add a click event to them
+var elements = document.querySelectorAll('a[role="button"]')
 for (var i = 0, len = elements.length; i < len; i++) {
   elements[i].addEventListener('keydown', function(e) {
     if (e.keyCode == 32) {

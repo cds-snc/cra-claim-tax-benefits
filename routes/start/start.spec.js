@@ -84,4 +84,17 @@ describe('Test server responses', () => {
 
     expect(response.headers['x-powered-by']).toBeUndefined()
   })
+
+  test('it returns content-security-policy header', async () => {
+    const response = await request(app).get('/start')
+
+    /*
+      More documentaion on this can be found here:
+      - https://helmetjs.github.io/docs/csp/
+    */
+    expect(response.headers['content-security-policy']).toEqual(
+      // eslint-disable-next-line quotes
+      "connect-src 'self'; default-src 'self'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; style-src 'self' https://fonts.googleapis.com",
+    )
+  })
 })

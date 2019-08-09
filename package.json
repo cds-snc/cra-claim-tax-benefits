@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "nodemon --max-http-header-size=40000 ./bin/www",
     "lint": "node_modules/eslint/bin/eslint.js config routes bin/www app.js",
-    "start": "node --max-http-header-size=40000 ./bin/www",
+    "start": "NODE_ENV=production node --max-http-header-size=40000 ./bin/www",
     "test": "node node_modules/jest/bin/jest.js"
   },
   "dependencies": {

@@ -19,4 +19,9 @@ const cookieSessionConfig = {
   },
 }
 
+// If we're running in "production" and the github sha is there, then it's probable that we're on live on prod
+if (process.env.NODE_ENV === 'production' && process.env.GITHUB_SHA) {
+  cookieSessionConfig.cookie.secure = true
+}
+
 module.exports = cookieSessionConfig

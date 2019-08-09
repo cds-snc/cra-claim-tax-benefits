@@ -67,7 +67,7 @@ else
 let logger = new createLogger({
   transports: transportsArray,
   exitOnError: false,
-  format: combine(label({ label: 'expressbase' }), timestamp(), loggingFormat),
+  format: combine(label({ label: 'cra-ctb' }), timestamp(), loggingFormat),
 })
 
 // create a stream object that will be used by morgan.

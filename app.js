@@ -13,6 +13,7 @@ const express = require('express'),
   path = require('path'),
   cookieSession = require('cookie-session'),
   cookieSessionConfig = require('./config/cookieSession.config'),
+  csp = require('./config/csp.config'),
   {
     SINFilter,
     hasData,
@@ -65,6 +66,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 // noSniff to keep clients from sniffing the MIME type
 // xssFilter adds some small XSS protections
 app.use(helmet())
+app.use(helmet.contentSecurityPolicy({ directives: csp }))
+
 // gzip response body compression.
 app.use(compression())
 

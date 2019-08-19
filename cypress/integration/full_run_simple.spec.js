@@ -89,7 +89,7 @@ describe('Full run through', function() {
 
       //TODO: check mail address
 
-      cy.get('a[href="/financial/income/"]')
+      cy.get('a[href="/financial/income"]')
         .should('contain', 'Confirm')
         .click() 
 
@@ -125,7 +125,7 @@ describe('Full run through', function() {
       cy.url().should('contain', '/personal/maritalStatus')
       cy.get('h1').should('contain', 'Confirm your marital status')
 
-      cy.get('a[href="/deductions/medical/"]')
+      cy.get('a[href="/deductions/medical"]')
         .should('contain', 'Confirm')
         .click() 
 
@@ -172,8 +172,9 @@ describe('Full run through', function() {
       cy.url().should('contain', '/trillium/rent/amount')
       cy.get('h1').should('contain', 'Enter rent paid in 2018')
       cy.get('form input#trilliumRentAmount')
+        .clear()
         .type(user.deductions.trilliumRentAmount)
-        .should('have.value', user.deductions.trilliumRentAmount)
+        .should('have.value', `${user.deductions.trilliumRentAmount}`)
       cy.get('form button[type="submit"]')
         .should('contain', 'Continue')
         .click() 
@@ -182,8 +183,9 @@ describe('Full run through', function() {
       cy.url().should('contain', '/trillium/propertyTax/amount')
       cy.get('h1').should('contain', 'Enter property tax paid in 2018')
       cy.get('form input#trilliumPropertyTaxAmount')
+        .clear()
         .type(user.deductions.trilliumPropertyTaxAmount)
-        .should('have.value', user.deductions.trilliumPropertyTaxAmount)
+        .should('have.value', `${user.deductions.trilliumPropertyTaxAmount}`)
       cy.get('form button[type="submit"]')
         .should('contain', 'Continue')
         .click() 
@@ -204,8 +206,9 @@ describe('Full run through', function() {
       cy.url().should('contain', '/trillium/energy/amount')
       cy.get('h1').should('contain', 'Home energy costs on a reserve')
       cy.get('form input#trilliumEnergyAmount')
+        .clear()
         .type(user.deductions.trilliumEnergyAmount)
-        .should('have.value', user.deductions.trilliumEnergyAmount)
+        .should('have.value', `${user.deductions.trilliumEnergyAmount}`)
       cy.get('form button[type="submit"]')
         .should('contain', 'Continue')
         .click() 
@@ -214,8 +217,9 @@ describe('Full run through', function() {
       cy.url().should('contain', '/trillium/longTermCare/amount')
       cy.get('h1').should('contain', 'Public long-term care home costs')
       cy.get('form input#trilliumLongTermCareAmount')
+        .clear()
         .type(user.deductions.trilliumLongTermCareAmount)
-        .should('have.value', user.deductions.trilliumLongTermCareAmount)
+        .should('have.value', `${user.deductions.trilliumLongTermCareAmount}`)
       cy.get('form button[type="submit"]')
         .should('contain', 'Continue')
         .click() 
@@ -245,7 +249,7 @@ describe('Full run through', function() {
         .click()
 
       cy.get('form button[type="submit"]')
-        .should('contain', 'Continue')
+        .should('contain', 'Submit my return')
         .click() 
 
       // CONFIRMATION PAGE

@@ -1,0 +1,192 @@
+{
+  "login": {
+    "code": "A5G98S4K1",
+    "auth": false
+  },
+  "personal": {
+    "firstName": "Gabrielle",
+    "lastName": "Roy",
+    "sin": "847339283",
+    "dateOfBirth": "1977/09/09",
+    "address": {
+      "line1": "303 Blake Blvd.",
+      "line2": "Unit 202",
+      "postalCode": "K2R 3Z9",
+      "city": "Ottawa",
+      "province": "Ontario"
+    },
+    "maritalStatus": "Single",
+    "disability": false
+  },
+  "financial": {
+    "incomeSources": [
+      {
+        "name": "RT Holdings Inc.",
+        "total": 7613.16
+      },
+      {
+        "name": "Morden Structural Ltd.",
+        "total": 13691.94
+      }
+    ],
+    "incomes": {
+      "totalIncome": {
+        "name": "Total Income",
+        "line": 150,
+        "amount": 21305.10
+      },
+      "netIncome": {
+        "name": "Net Income",
+        "line": 236,
+        "amount": 19305.10
+      },
+      "taxableIncome": {
+        "name": "Taxable Income",
+        "line": 260,
+        "amount": 19305.10
+      }
+    },
+    "taxes": {
+      "federal": {
+        "name": "Net Federal tax",
+        "amount": 1060.00,
+        "line": 420
+      },
+      "provincial": {
+        "name": "Net Ontario tax",
+        "amount": 533.00,
+        "line": 428
+      },
+      "CPP": {
+        "name": "CPP",
+        "amount": 1213.00
+      },
+      "EI": {
+        "name": "EI",
+        "amount": 456.00
+      }
+    },
+    "totalTax": 3263.00,
+    "taxableAmount": "$1,000.00"
+  },
+  "partner": null,
+  "dependents": [
+    {
+      "firstName": "Bernadette",
+      "lastName": "Roy",
+      "dateOfBirth": "1948/09/25",
+      "disability": false,
+      "netIncome": "0",
+      "relationship": "child"
+    },
+    {
+      "firstName": "Clémence",
+      "lastName": "Roy",
+      "dateOfBirth": "1949/10/16",
+      "disability": false,
+      "netIncome": "0",
+      "relationship": "child"
+    }
+  ],
+  "deductions": {
+    "disabilityClaim": null,
+    "disabilityAmount": {
+      "name": "Disability",
+      "amount": 0.00
+    },
+    "rrspClaim": null,
+    "rrspAmount": {
+      "name": "RRSP",
+      "line": 208,
+      "amount": 0.00
+    },
+    "basicPersonalAmount": {
+      "name": "Basic Personal Amount",
+      "line": 300,
+      "amount": 11809.00
+    },
+    "ageAmount": {
+      "name": "Age Amount",
+      "amount": 7500.00
+    },
+    "partnerAgeClaim": null,
+    "canadaCaregiverClaim": null,
+    "partnerDisabilityClaim": null,
+    "partnerPensionIncomeClaim": null,
+    "pensionIncomeClaim": null,
+    "pensionIncomeClaimAmount": {
+      "name": "Pension",
+      "amount": 700.00
+    },
+    "childcareClaim": null,
+    "childcareAmount": {
+      "name": "Childcare Expenses",
+      "amount": 0.00
+    },
+    "singleParentClaim": null,
+    "dependentDisabilityClaim": null,
+    "medicalExpenseClaim": null,
+    "medicalExpenseClaimAmount": {
+      "name": "Medical Expenses",
+      "line": 330,
+      "amount": 0.00
+    },
+    "amountsFromSpouse": {
+      "name": "Amounts transfered from spouse",
+      "amount": 0.00
+    },
+    "politicalContributionClaim": null,
+    "politicalFederalAmount": 0,
+    "politicalProvincialAmount": 0,
+    "charitableDonationClaim": null,
+    "charitableDonationAmount": null,
+    "energyPropertyClaim": null,
+    "northernEnergyClaim": null,
+    "seniorHomeownerClaim": null,
+    "trilliumRentAmount": 0,
+    "trilliumPropertyTaxAmount": 0,
+    "trilliumStudentResidence": null,
+    "trilliumEnergyAmount": 0,
+    "trilliumLongTermCareAmount": 0,
+    "climateActionIncentiveIsRural": null
+  },
+  "refund": {
+    "totalPayable": {
+      "name": "Total Payable",
+      "line": 435,
+      "amount": 1593.00
+    },
+    "totalDeducted": {
+      "name": "Total Deducted",
+      "line": 437,
+      "amount": 2312.88
+    },
+    "totalCredits": {
+      "name": "Total Credits",
+      "amount": 2500.00
+    },
+    "totalRefund": {
+      "name": "Total Refund",
+      "line": 484,
+      "amount": 719.88
+    }
+  },
+  "benefits": {
+    "climateActionIncentive": {
+      "name": "Climate action incentive",
+       "amount": "154.00"
+    },
+    "gsthstc": {
+       "name": "GST/HSTC",
+       "amount": "440.00"
+    },
+    "ontarioTrilliumBenefit": {
+       "name": "Ontario Trillium Benefit",
+       "amount": "307.92"
+    },
+    "totalBenefits": {
+       "name": "totalBenefits",
+       "amount": "901.92"
+    }
+ }
+}

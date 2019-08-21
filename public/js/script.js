@@ -20,7 +20,7 @@ var noInfoBox = document.getElementsByClassName('no-info')[0]
 if (noInfoBox) {
   var yesNoRadios = document.querySelectorAll('div.multiple-choice__item')
 
-  var noInput = yesNoRadios[1].childNodes[0]
+  var noInput = yesNoRadios[1]
 
   for (var i = 0, len = yesNoRadios.length; i < len; i++) {
     yesNoRadios[i].addEventListener('click', function(e) {

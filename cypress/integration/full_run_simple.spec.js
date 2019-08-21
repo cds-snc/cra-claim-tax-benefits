@@ -11,14 +11,19 @@
 describe('Full run through', function() {
   it('successfully loads the home page', function() {
     cy.visit('/')
+    // make sure axe is available on the page
+    cy.injectAxe() 
 
     // START PAGE
+    cy.checkA11y()
     cy.get('h1').should('contain', 'Claim Tax Benefits')
     cy.get('main a')
       .should('contain', 'Start now')
       .click()
 
     // LOGIN CODE PAGE
+    cy.injectAxe() 
+    cy.checkA11y()
     cy.url().should('contain', '/login/code')
     cy.get('h1').should('contain', 'Enter your personal access code')
 
@@ -32,6 +37,8 @@ describe('Full run through', function() {
         .click()
 
       // LOGIN SIN
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/login/sin')
       cy.get('h1').should('contain', 'Enter your Social Insurance Number (SIN)')
 
@@ -49,6 +56,8 @@ describe('Full run through', function() {
         .click()
 
       // LOGIN DOB
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/login/dateOfBirth')
       cy.get('h1').should('contain', 'Enter your date of birth')
 
@@ -61,6 +70,8 @@ describe('Full run through', function() {
         .click()
 
       //CONFIRM NAME
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/personal/name')
       cy.get('h1').should('contain', 'Confirm your name')
 
@@ -74,6 +85,8 @@ describe('Full run through', function() {
         .click() 
 
       //CONFIRM RESIDENCE
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/personal/residence')
       cy.get('h1').should('contain', 'Confirm your province or territory of residence')
 
@@ -84,6 +97,8 @@ describe('Full run through', function() {
         .click() 
 
       //CONFIRM MAILING
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/personal/address')
       cy.get('h1').should('contain', 'Confirm your mailing address')
 
@@ -94,6 +109,8 @@ describe('Full run through', function() {
         .click() 
 
       //CONFIRM INCOME
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/financial/income')
       cy.get('h1').should('contain', 'Confirm your income information')
 
@@ -109,6 +126,8 @@ describe('Full run through', function() {
         .click() 
 
       //DEDUCTIONS RRSP
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/deductions/rrsp')
       cy.get('h1').should('contain', 'Deduct your RRSP contributions')
 
@@ -122,6 +141,8 @@ describe('Full run through', function() {
         .click() 
 
       //CONFIRM MARITAL STATUS
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/personal/maritalStatus')
       cy.get('h1').should('contain', 'Confirm your marital status')
 
@@ -130,6 +151,8 @@ describe('Full run through', function() {
         .click() 
 
        //DEDUCTIONS MEDICAL
+       cy.injectAxe()
+       cy.checkA11y()
        cy.url().should('contain', '/deductions/medical')
        cy.get('h1').should('contain', 'Medical expenses')
  
@@ -143,32 +166,38 @@ describe('Full run through', function() {
          .click() 
 
       //DEDUCTIONS POLITICAL
-       cy.url().should('contain', '/deductions/political')
-       cy.get('h1').should('contain', 'Political contributions')
- 
-       cy.get('input#politicalClaimNo + label').should('have.attr', 'for', 'politicalClaimNo')
- 
-       cy.get('input#politicalClaimNo')
-         .click()
- 
-       cy.get('form button[type="submit"]')
-         .should('contain', 'Continue')
-         .click() 
+      cy.injectAxe() 
+      cy.checkA11y()
+      cy.url().should('contain', '/deductions/political')
+      cy.get('h1').should('contain', 'Political contributions')
+
+      cy.get('input#politicalClaimNo + label').should('have.attr', 'for', 'politicalClaimNo')
+
+      cy.get('input#politicalClaimNo')
+        .click()
+
+      cy.get('form button[type="submit"]')
+        .should('contain', 'Continue')
+        .click() 
 
       //DEDUCTIONS DONATIONS
-       cy.url().should('contain', '/deductions/donations')
-       cy.get('h1').should('contain', 'Deduct your charitable donations')
- 
-       cy.get('input#donationsClaimNo + label').should('have.attr', 'for', 'donationsClaimNo')
- 
-       cy.get('input#donationsClaimNo')
-         .click()
- 
-       cy.get('form button[type="submit"]')
-         .should('contain', 'Continue')
-         .click() 
+      cy.injectAxe() 
+      cy.checkA11y()
+      cy.url().should('contain', '/deductions/donations')
+      cy.get('h1').should('contain', 'Deduct your charitable donations')
+
+      cy.get('input#donationsClaimNo + label').should('have.attr', 'for', 'donationsClaimNo')
+
+      cy.get('input#donationsClaimNo')
+        .click()
+
+      cy.get('form button[type="submit"]')
+        .should('contain', 'Continue')
+        .click() 
       
       //TRILLIUM RENT
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/trillium/rent/amount')
       cy.get('h1').should('contain', 'Enter rent paid in 2018')
       cy.get('form input#trilliumRentAmount')
@@ -180,6 +209,8 @@ describe('Full run through', function() {
         .click() 
 
       //TRILLIUM PROPERTY TAX
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/trillium/propertyTax/amount')
       cy.get('h1').should('contain', 'Enter property tax paid in 2018')
       cy.get('form input#trilliumPropertyTaxAmount')
@@ -191,6 +222,8 @@ describe('Full run through', function() {
         .click() 
 
       //TRILLIUM STUDENT RESIDENCE
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/trillium/studentResidence')
       cy.get('h1').should('contain', 'Designated student residence')
       cy.get('input#trilliumStudentResidenceNo + label').should('have.attr', 'for', 'trilliumStudentResidenceNo')
@@ -203,6 +236,8 @@ describe('Full run through', function() {
         .click() 
       
       //TRILLIUM HOME ENERGY
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/trillium/energy/amount')
       cy.get('h1').should('contain', 'Home energy costs on a reserve')
       cy.get('form input#trilliumEnergyAmount')
@@ -214,6 +249,8 @@ describe('Full run through', function() {
         .click() 
 
       //TRILLIUM LONG TERM CARE
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/trillium/longTermCare/amount')
       cy.get('h1').should('contain', 'Public long-term care home costs')
       cy.get('form input#trilliumLongTermCareAmount')
@@ -225,6 +262,8 @@ describe('Full run through', function() {
         .click() 
 
       //DEDUCTIONS DONATIONS
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/deductions/climate-action-incentive')
       cy.get('h1').should('contain', 'Climate Action Incentive')
 
@@ -238,6 +277,8 @@ describe('Full run through', function() {
         .click() 
 
       //REVIEW
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/review')
       cy.get('h1').should('contain', 'Review and file tax return')
 
@@ -253,6 +294,8 @@ describe('Full run through', function() {
         .click() 
 
       // CONFIRMATION PAGE
+      cy.injectAxe() 
+      cy.checkA11y()
       cy.url().should('contain', '/confirmation')
       cy.get('h1').should('contain', 'Congratulations')
       cy.get('h2').should('contain', 'Your taxes have been filed with the Canada Revenue Agency.')

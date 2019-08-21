@@ -9,9 +9,9 @@
     "node": ">=10.15"
   },
   "scripts": {
-    "dev": "nodemon --max-http-header-size=40000 ./bin/www",
+    "dev": "nodemon --max-http-header-size=80000 ./bin/www",
     "lint": "node_modules/eslint/bin/eslint.js config routes bin/www app.js",
-    "start": "NODE_ENV=production node --max-http-header-size=40000 ./bin/www",
+    "start": "NODE_ENV=production node --max-http-header-size=80000 ./bin/www",
     "test": "node node_modules/jest/bin/jest.js",
     "cypress:open": "./node_modules/.bin/cypress open",
     "cypress": "start-server-and-test start http://localhost:3005 cypress:open",
@@ -39,8 +39,10 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "axe-core": "^3.3.1",
     "cheerio": "^1.0.0-rc.3",
     "cypress": "^3.4.1",
+    "cypress-axe": "^0.5.1",
     "eslint": "^6.1.0",
     "eslint-plugin-cypress": "^2.6.1",
     "eslint-plugin-jest": "^22.14.0",

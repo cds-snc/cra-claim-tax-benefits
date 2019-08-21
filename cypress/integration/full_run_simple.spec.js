@@ -1,12 +1,72 @@
-// const checkTableRows = (cy, rows) => {
-//   rows.map((row, index) => {
-//     cy.get('dt.key')
-//       .eq(index)
-//       .should('contain', row.key)
-//       .next('dd')
-//       .should('contain', row.value)
-//   })
-// }
+const { currencyFilter } = require('./../../utils')
+
+const checkTableRows = (cy, rows) => {
+  rows.map((row, index) => {
+    cy.get('dt.breakdown-table__row-key')
+      .eq(index)
+      .should('contain', row.key)
+      .next('dd')
+      .should('contain', row.value)
+  })
+}
+
+const getIncomeBreakdownRows = (user) => {
+  const incomeRows = [];
+  
+  user.financial.incomeSources.map((source) => {
+    const incomeRow = {
+      key: source.name,
+      value: currencyFilter(source.total)
+    }
+    incomeRows.push(incomeRow)
+  })
+
+  incomeRows.push(
+    {
+      key: user.financial.incomes.totalIncome.name,
+      value: currencyFilter(user.financial.incomes.totalIncome.amount)
+    }
+  )
+
+  return incomeRows
+}
+
+const getTaxBreakdownRows = (user) => {
+  const taxRows = [];
+  
+  Object.values(user.financial.taxes).map((source) => {
+    const taxRow = {
+      key: `${source.name.replace('Net ', '')} deduction`,
+      value: currencyFilter(source.amount)
+    }
+    taxRows.push(taxRow)
+  })
+  
+  taxRows.push(
+    {
+      key: 'Total tax paid for 2018',
+      value: currencyFilter(user.financial.totalTax)
+    }
+  )
+
+  return taxRows
+}
+
+const getBenefitsBreakdownRows = (user) => {
+  const benefitsRows = [];
+  
+  Object.values(user.benefits).map((source) => {
+    const benefitsRow = {
+      key: source.name,
+      value: currencyFilter(source.amount)
+    }
+    benefitsRows.push(benefitsRow)
+  })
+
+  return benefitsRows
+}
+
+const allIncomeRows = (user) => getIncomeBreakdownRows(user).concat(getTaxBreakdownRows(user))
 
 describe('Full run through', function() {
   it('successfully loads the home page', function() {
@@ -102,7 +162,12 @@ describe('Full run through', function() {
       cy.url().should('contain', '/personal/address')
       cy.get('h1').should('contain', 'Confirm your mailing address')
 
-      //TODO: check mail address
+      //TODO: add a check for apartment/no apartment
+      const addressText = [`${user.personal.address.line2}-${user.personal.address.line1}`, `${user.personal.address.city}, ${user.personal.address.province}`, `${user.personal.address.postalCode}`]
+
+      addressText.map( (text, index) => {
+        cy.get('div.address div').eq(index).should('contain', text)
+      })
 
       cy.get('a[href="/financial/income"]')
         .should('contain', 'Confirm')
@@ -114,7 +179,8 @@ describe('Full run through', function() {
       cy.url().should('contain', '/financial/income')
       cy.get('h1').should('contain', 'Confirm your income information')
 
-      //TODO: check table data
+      //check table data
+      checkTableRows(cy, allIncomeRows(user))
 
       cy.get('input#confirmIncomeYes + label').should('have.attr', 'for', 'confirmIncomeYes')
 
@@ -282,7 +348,9 @@ describe('Full run through', function() {
       cy.url().should('contain', '/review')
       cy.get('h1').should('contain', 'Review and file tax return')
 
-      //TODO: check table data
+      //check some table data
+      //until we have a more firm grasp on how we're shaping the total refund, i'm just checking benefits
+      checkTableRows(cy, getBenefitsBreakdownRows(user))
 
       cy.get('input#review + label').should('have.attr', 'for', 'review')
 

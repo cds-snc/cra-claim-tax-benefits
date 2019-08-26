@@ -8,6 +8,9 @@
   "engines": {
     "node": ">=10.15"
   },
+  "jest": {
+    "testPathIgnorePatterns": ["/cypress/"]
+  },
   "scripts": {
     "dev": "nodemon --max-http-header-size=40000 ./bin/www",
     "lint": "node_modules/eslint/bin/eslint.js config routes bin/www app.js",

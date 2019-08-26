@@ -19,7 +19,7 @@ describe('Full run through', function() {
       .click()
   })
   it('logins and runs through the flow', function() {
-    cy.fixture('user').then(user => {
+    cy.fixture('user_edits').then(user => {
       logIn(cy, user)
 
       //CONFIRM NAME
@@ -60,8 +60,51 @@ describe('Full run through', function() {
       })
 
       cy.get('a')
-        .contains('Confirm')
+        .contains('Change your mailing address')
+        .click()
+
+      //AUTH PAGE
+      cy.injectAxe().checkA11y()
+      cy.get('input#auth')
+        .clear()
+        .type(10)
+
+      cy.get('form button[type="submit"]')
+        .should('contain', 'Continue')
         .click() 
+      
+      //EDIT MAILING
+      cy.injectAxe().checkA11y()
+      cy.url().should('contain', '/personal/address/edit')
+      cy.get('input#line1')
+        .clear()
+        .type(user.addressNew.line1)
+      
+      cy.get('input#line2')
+        .clear()
+
+      cy.get('input#postalCode')
+        .clear()
+        .type(user.addressNew.postalCode)
+
+      cy.get('form button[type="submit"]')
+        .should('contain', 'Change mailing address')
+        .click() 
+
+      //CONFIRM MAILING AGAIN
+      cy.injectAxe().checkA11y()
+      cy.url().should('contain', '/personal/address')
+
+      //format address based on apartment/no apartment
+      const newAddressText = getAddress(user.addressNew)
+
+      newAddressText.map( (text, index) => {
+        cy.get('div.address div').eq(index).should('contain', text)
+      })
+
+      cy.get('a')
+        .contains('Confirm')
+        .click()
 
       //CONFIRM INCOME
       cy.injectAxe().checkA11y()
@@ -97,7 +140,31 @@ describe('Full run through', function() {
       //CONFIRM MARITAL STATUS
       cy.injectAxe().checkA11y()
       cy.url().should('contain', '/personal/maritalStatus')
-      cy.get('h1').should('contain', 'Confirm your marital status')
+      cy.get('h1').should('contain', 'Confirm your marital status') 
+
+      cy.get('.pure-table div')
+        .should('contain', 'Single')
+
+      cy.get('a')
+        .contains('Change your marital status')
+        .click()
+
+      //EDIT MARITAL STATUS
+      cy.injectAxe().checkA11y()
+      cy.get('input#maritalStatusMarried + label')
+        .should('have.attr', 'for', 'maritalStatusMarried')
+        .click()
+      
+      cy.get('form button[type="submit"]')
+        .should('contain', 'Change Marital Status')
+        .click() 
+
+      //CONFIRM MARITAL STATUS AGAIN
+      cy.injectAxe().checkA11y()
+      cy.url().should('contain', '/personal/maritalStatus')
+
+      cy.get('.pure-table div')
+        .should('contain', 'Married')
 
       cy.get('a[href="/deductions/medical"]')
         .should('contain', 'Confirm')

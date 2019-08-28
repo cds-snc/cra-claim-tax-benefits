@@ -12,7 +12,7 @@ mixin yesNoRadios(key, value, question, errors = false)
           aria-expanded=(block ? 'false': false) 
           aria-controls=(block ? 'noInfo': false)
         )
-          input(id=`${key}No` name=key type="radio" value="No" checked=(value =='No') aria-describedby=(errors ? `${key}-error` : false)) 
+          input(id=`${key}No` name=key type="radio" value="No" checked=(value =='No') aria-describedby=(errors ? `${key}-error` : false))
           label(for=`${key}No`) #{__('No')}
           if block
             block

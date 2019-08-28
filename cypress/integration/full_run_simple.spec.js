@@ -7,15 +7,17 @@ const {
 } = require('../utils.js')
 
 describe('Full run through', function() {
+  before(function() {
+    cy.visit('/clear')
+    cy.visit('/')
+  })
 
   beforeEach(() => {
     cy.fixture('user.json').as('user')
+    cy.injectAxe().checkA11y()
   })
 
   it('successfully loads the home page', function() {
-    cy.visit('/')
-    cy.injectAxe() 
-
     // START PAGE
     cy.checkA11y()
     cy.get('h1').should('contain', 'Claim Tax Benefits')
@@ -30,7 +32,6 @@ describe('Full run through', function() {
 
   it('navigates the Confirm Name page', function() {
     //CONFIRM NAME
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/personal/name')
     cy.get('h1').should('contain', 'Confirm your name')
 
@@ -46,7 +47,6 @@ describe('Full run through', function() {
 
   it('navigates the Confirm Residence page', function() {
     //CONFIRM RESIDENCE
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/personal/residence')
     cy.get('h1').should('contain', 'Confirm your province or territory of residence')
 
@@ -59,7 +59,6 @@ describe('Full run through', function() {
 
   it('navigates the Confirm Mailing page', function() {
     //CONFIRM MAILING
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/personal/address')
     cy.get('h1').should('contain', 'Confirm your mailing address')
 
@@ -77,7 +76,6 @@ describe('Full run through', function() {
 
   it('navigates the Confirm Income page', function() {
     //CONFIRM INCOME
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/financial/income')
     cy.get('h1').should('contain', 'Confirm your income information')
 
@@ -96,7 +94,6 @@ describe('Full run through', function() {
 
   it('navigates the RRSP Deductions page', function() {
     //DEDUCTIONS RRSP
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/deductions/rrsp')
     cy.get('h1').should('contain', 'Deduct your RRSP contributions')
 
@@ -112,7 +109,6 @@ describe('Full run through', function() {
 
   it('navigates the Confirm Marital Status page', function() {
     //CONFIRM MARITAL STATUS
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/personal/maritalStatus')
     cy.get('h1').should('contain', 'Confirm your marital status')
 
@@ -140,7 +136,6 @@ describe('Full run through', function() {
 
   it('navigates the Political Deductions page', function() {
     //DEDUCTIONS POLITICAL
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/deductions/political')
     cy.get('h1').should('contain', 'Political contributions')
 
@@ -156,7 +151,6 @@ describe('Full run through', function() {
 
   it('navigates the Donations Deductions page', function() {
     //DEDUCTIONS DONATIONS
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/deductions/donations')
     cy.get('h1').should('contain', 'Deduct your charitable donations')
 
@@ -172,7 +166,6 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Rent page', function() {
     //TRILLIUM RENT
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/trillium/rent/amount')
     cy.get('h1').should('contain', 'Enter rent paid in 2018')
     cy.get('form input#trilliumRentAmount')
@@ -186,7 +179,6 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Property Tax page', function() {
     //TRILLIUM PROPERTY TAX
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/trillium/propertyTax/amount')
     cy.get('h1').should('contain', 'Enter property tax paid in 2018')
     cy.get('form input#trilliumPropertyTaxAmount')
@@ -200,7 +192,6 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Student Residence page', function() {
     //TRILLIUM STUDENT RESIDENCE
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/trillium/studentResidence')
     cy.get('h1').should('contain', 'Designated student residence')
     cy.get('input#trilliumStudentResidenceNo + label').should('have.attr', 'for', 'trilliumStudentResidenceNo')
@@ -215,7 +206,6 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Home Energy page', function() {
     //TRILLIUM HOME ENERGY
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/trillium/energy/amount')
     cy.get('h1').should('contain', 'Home energy costs on a reserve')
     cy.get('form input#trilliumEnergyAmount')
@@ -229,7 +219,6 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Long Term Care page', function() {
     //TRILLIUM LONG TERM CARE
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/trillium/longTermCare/amount')
     cy.get('h1').should('contain', 'Public long-term care home costs')
     cy.get('form input#trilliumLongTermCareAmount')
@@ -243,7 +232,6 @@ describe('Full run through', function() {
 
   it('navigates the Climate Action Incentive page', function() {
     //CLIMATE ACTION INCENTIVE
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/deductions/climate-action-incentive')
     cy.get('h1').should('contain', 'Climate Action Incentive')
 
@@ -259,7 +247,6 @@ describe('Full run through', function() {
 
   it('navigates the Review page', function() {
     //REVIEW
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/review')
     cy.get('h1').should('contain', 'Review and file tax return')
 
@@ -279,7 +266,6 @@ describe('Full run through', function() {
 
   it('checks the Confirmation page', function() {
     // CONFIRMATION PAGE
-    cy.injectAxe().checkA11y()
     cy.url().should('contain', '/confirmation')
     cy.get('h1').should('contain', 'Congratulations')
     cy.get('h2').should('contain', 'Your taxes have been filed with the Canada Revenue Agency.')

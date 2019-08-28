@@ -4,5 +4,74 @@
     "postalCode": "K1A 0A9",
     "city": "Ottawa",
     "province": "Ontario"
+  },
+  "code": "A5G98S4K1",
+  "firstName": "Gabrielle",
+  "lastName": "Roy",
+  "sin": "847339283",
+  "dateOfBirth": "1977/09/09",
+  "address": {
+    "line1": "303 Blake Blvd.",
+    "line2": "Unit 202",
+    "postalCode": "K2R 3Z9",
+    "city": "Ottawa",
+    "province": "Ontario"
+  },
+  "incomeSources": [
+    {
+      "name": "RT Holdings Inc.",
+      "total": 7613.16
+    },
+    {
+      "name": "Morden Structural Ltd.",
+      "total": 13691.94
+    },
+    {
+      "name": "Total Income",
+      "total": 21305.10
+    }
+  ],
+  "taxes": {
+    "federal": {
+      "name": "Net Federal tax",
+      "amount": 1060.00,
+      "line": 420
+    },
+    "provincial": {
+      "name": "Net Ontario tax",
+      "amount": 533.00,
+      "line": 428
+    },
+    "CPP": {
+      "name": "CPP",
+      "amount": 1213.00
+    },
+    "EI": {
+      "name": "EI",
+      "amount": 456.00
+    }
+  },
+  "totalTax": 3263.00,
+  "trilliumRentAmount": 0,
+  "trilliumPropertyTaxAmount": 0,
+  "trilliumEnergyAmount": 0,
+  "trilliumLongTermCareAmount": 0,
+  "benefits": {
+    "climateActionIncentive": {
+      "name": "Climate action incentive",
+       "amount": "154.00"
+    },
+    "gsthstc": {
+       "name": "GST/HSTC",
+       "amount": "440.00"
+    },
+    "ontarioTrilliumBenefit": {
+       "name": "Ontario Trillium Benefit",
+       "amount": "307.92"
+    },
+    "totalBenefits": {
+       "name": "Total Benefits",
+       "amount": "901.92"
+    }
   }
 }

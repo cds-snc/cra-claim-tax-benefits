@@ -13,7 +13,7 @@ describe('Full run through', function() {
   })
 
   beforeEach(() => {
-    cy.fixture('user.json').as('user')
+    cy.fixture('user').as('user')
     cy.injectAxe().checkA11y()
   })
 

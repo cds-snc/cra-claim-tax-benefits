@@ -18,8 +18,10 @@ describe('Full run through', function() {
       .should('contain', 'Start now')
       .click()
   })
-  it('logins and runs through the flow', function() {
-    cy.fixture('user_edits').then(user => {
+  it('edits the mailing address and marital status on run through', function() {
+    cy.fixture('user_edits').as('userEdits')
+    
+    cy.fixture('user').then(user => {
       logIn(cy, user)
 
       //CONFIRM NAME
@@ -78,14 +80,14 @@ describe('Full run through', function() {
       cy.url().should('contain', '/personal/address/edit')
       cy.get('input#line1')
         .clear()
-        .type(user.addressNew.line1)
+        .type(this.userEdits.address.line1)
 
       cy.get('input#line2')
         .clear()
 
       cy.get('input#postalCode')
         .clear()
-        .type(user.addressNew.postalCode)
+        .type(this.userEdits.address.postalCode)
 
       cy.get('form button[type="submit"]')
         .should('contain', 'Change mailing address')
@@ -96,7 +98,7 @@ describe('Full run through', function() {
       cy.url().should('contain', '/personal/address')
 
       //format address based on apartment/no apartment
-      const newAddressText = getAddress(user.addressNew)
+      const newAddressText = getAddress(this.userEdits.address)
 
       newAddressText.map( (text, index) => {
         cy.get('div.address div').eq(index).should('contain', text)
@@ -316,4 +318,4 @@ describe('Full run through', function() {
 
     })
   })
-}) 
+})

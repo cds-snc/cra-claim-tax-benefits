@@ -16,12 +16,7 @@ const cookieSessionConfig = {
   // Cookie options: https://github.com/expressjs/cookie-session#options
   httpOnly: true,
   maxAge: oneHour,
-  sameSite: true,
-}
-
-// If we're running in "production" and the github sha is there, then it's probable that we're on live on prod
-if (process.env.NODE_ENV === 'production' && process.env.GITHUB_SHA) {
-  cookieSessionConfig.secure = true
+  sameSite: 'strict',
 }
 
 module.exports = cookieSessionConfig

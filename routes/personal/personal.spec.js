@@ -22,6 +22,29 @@ describe('Test /personal responses', () => {
     })
   })
 
+  describe('Test /personal/name responses', () => {
+    test('it returns a 422 with no option selected', async () => {
+      const response = await request(app).post('/personal/name')
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it redirects to the offramp page when selecting No', async () => {
+      const response = await request(app)
+        .post('/personal/name')
+        .send({ name: 'No' })
+      expect(response.headers.location).toEqual('/offramp/name')
+      expect(response.statusCode).toBe(302)
+    })
+
+    test('it redirects to the provided redirect value when selecting Yes', async () => {
+      const response = await request(app)
+        .post('/personal/name')
+        .send({ redirect: '/success', name: 'Yes' })
+      expect(response.headers.location).toEqual('/success')
+      expect(response.statusCode).toBe(302)
+    })
+  })
+
   describe('Test /personal/maritalStatus responses', () => {
     test('it has Married selected by default', async () => {
       const response = await request(app).get('/personal/maritalStatus')

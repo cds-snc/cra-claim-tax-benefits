@@ -69,3 +69,9 @@ public/styles.css
 public/styles.css*
 
 .DS_Store
+
+# Cypress files we're not using
+cypress/examples
+cypress/support
+cypress/plugins
+cypress/screenshots

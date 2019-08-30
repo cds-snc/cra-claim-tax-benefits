@@ -8,11 +8,20 @@
   "engines": {
     "node": ">=10.15"
   },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/cypress/"
+    ]
+  },
   "scripts": {
     "dev": "nodemon --max-http-header-size=40000 ./bin/www",
     "lint": "node_modules/eslint/bin/eslint.js config routes bin/www app.js",
     "start": "NODE_ENV=production node --max-http-header-size=40000 ./bin/www",
-    "test": "node node_modules/jest/bin/jest.js"
+    "test": "node node_modules/jest/bin/jest.js",
+    "cypress:open": "./node_modules/.bin/cypress open",
+    "cypress": "start-server-and-test start http://localhost:3005 cypress:open",
+    "cypress:run": "./node_modules/.bin/cypress run",
+    "cypress:cli": "start-server-and-test start http://localhost:3005 cypress:run"
   },
   "dependencies": {
     "app-root-path": "^2.2.1",
@@ -35,11 +44,15 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "axe-core": "^3.3.1",
     "cheerio": "^1.0.0-rc.3",
+    "cypress": "^3.4.1",
+    "cypress-axe": "^0.5.1",
     "eslint": "^6.2.2",
     "eslint-plugin-jest": "^22.15.2",
     "jest": "^24.9.0",
     "nodemon": "^1.19.1",
+    "start-server-and-test": "^1.10.0",
     "supertest": "^4.0.2",
     "supertest-session": "^4.0.0"
   }

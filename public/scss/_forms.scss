@@ -165,6 +165,32 @@ form.cra-form {
   }
 }
 
+form.cra-form.cra-form--dob {
+  @include sm {
+    width: 60%;
+  }
+
+  @include md {
+    width: 50%;
+  }
+
+  > div {
+    &.d--ib {
+      display: inline-block;
+
+      &:not(:nth-child(4)) {
+        padding-right: $space-sm;
+      }
+    }
+    &.w-1-2 {
+      width: 50%;
+    }
+    &.w-1-4 {
+      width: 25%;
+    }
+  }
+}
+
 .fieldset {
   border: 0;
   padding: 0;

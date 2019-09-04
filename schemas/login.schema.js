@@ -170,6 +170,40 @@ const birthSchema = {
   },
 }
 
+const currentDate = new Date()
+
+const dobSchema = {
+  dobYear: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validYear',
+      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
+    },
+  },
+  dobMonth: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validMonth',
+      options: { min: 1, max: 12 },
+    },
+  },
+  dobDay: {
+    errorMessage: 'errors.login.dateOfBirth.validDay',
+    custom: {
+      options: (value, { req }) => {
+        const year = parseInt(req.body.dobYear, 10)
+        //subtract one because Date for months starts at a 0 index for Jan 🤓
+        const month = parseInt(req.body.dobMonth, 10) - 1
+        const day = parseInt(value, 10)
+
+        if (!day || !month || !year) {
+          return false
+        }
+
+        return day >= 1 && day <= lastDayInMonth(year, month)
+      },
+    },
+  },
+}
+
 const authSchema = {
   auth: currencySchema(),
 }
@@ -178,5 +212,6 @@ module.exports = {
   authSchema,
   birthSchema,
   loginSchema,
+  dobSchema,
   sinSchema,
 }

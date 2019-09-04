@@ -80,6 +80,24 @@ app.locals.SINFilter = SINFilter
 app.locals.hasData = hasData
 app.locals.currencyFilter = currencyFilter
 app.locals.sortByLineNumber = sortByLineNumber
+app.locals.splitISODate = (date, param) => {
+  const dateParts = date.split('-')
+
+  if (dateParts.length !== 3) {
+    throw new Error(`[GET /login/dateOfBirth] Bad date ${date}: must be formatted yyyy-mm-dd`)
+  }
+
+  switch (param) {
+    case 'y':
+      return dateParts[0]
+    case 'm':
+      return dateParts[1]
+    case 'd':
+      return dateParts[2]
+    default:
+      throw new Error(`[GET /login/dateOfBirth] Bad parameter '${param}'`)
+  }
+}
 
 // configure routes
 require('./routes/start/start.controller')(app)

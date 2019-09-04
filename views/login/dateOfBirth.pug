@@ -16,6 +16,8 @@ block content
 
     p #{__('Please enter your date of birth in the field below.')}
 
+    p For example, #{splitISODate(data.personal.dateOfBirth, 'd')} #{splitISODate(data.personal.dateOfBirth, 'm')} #{splitISODate(data.personal.dateOfBirth, 'y')}
+
   div
     form.cra-form.cra-form--lg.cra-form--dob(method='post')
       h2 #{__('Your date of birth')}

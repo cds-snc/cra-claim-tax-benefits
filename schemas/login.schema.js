@@ -133,7 +133,7 @@ const validYear = {
   },
 }
 
-const isMatchingDoB = {
+const matchingDoB = {
   errorMessage: 'errors.login.dateOfBirth.match',
   validate: (value, req) => {
     /* If there is no session, always return true */
@@ -160,7 +160,7 @@ const birthSchema = {
       validMonth,
       validDay,
       validYear,
-      isMatchingDoB,
+      matchingDoB,
     ]),
     isLength: {
       errorMessage: 'errors.login.dateOfBirth',
@@ -171,6 +171,35 @@ const birthSchema = {
 }
 
 const currentDate = new Date()
+
+const isValidDay = {
+  errorMessage: 'errors.login.dateOfBirth.validDay',
+  validate: (value, req) => {
+    const year = parseInt(req.body.dobYear, 10)
+    //subtract one because Date for months starts at a 0 index for Jan 🤓
+    const month = parseInt(req.body.dobMonth, 10) - 1
+    const day = parseInt(value, 10)
+
+    if (!day || !month || !year) {
+      return false
+    }
+
+    return day >= 1 && day <= lastDayInMonth(year, month)
+  },
+}
+
+const isMatchingDoB = {
+  errorMessage: 'errors.login.dateOfBirth.match',
+  validate: (value, req) => {
+    /* If there is no session, always return true */
+    if (!req.session || !req.session.personal) {
+      return true
+    }
+
+    const { dobYear: y, dobMonth: m, dobDay: d } = req.body
+    return `${y}-${m}-${d}` === req.session.personal.dateOfBirth
+  },
+}
 
 const dobSchema = {
   dobYear: {
@@ -186,21 +215,7 @@ const dobSchema = {
     },
   },
   dobDay: {
-    errorMessage: 'errors.login.dateOfBirth.validDay',
-    custom: {
-      options: (value, { req }) => {
-        const year = parseInt(req.body.dobYear, 10)
-        //subtract one because Date for months starts at a 0 index for Jan 🤓
-        const month = parseInt(req.body.dobMonth, 10) - 1
-        const day = parseInt(value, 10)
-
-        if (!day || !month || !year) {
-          return false
-        }
-
-        return day >= 1 && day <= lastDayInMonth(year, month)
-      },
-    },
+    ...validationArray([isValidDay, isMatchingDoB]),
   },
 }
 

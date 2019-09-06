@@ -202,11 +202,8 @@ const isMatchingDoB = {
 }
 
 const dobSchema = {
-  dobYear: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
-    },
+  dobDay: {
+    ...validationArray([isValidDay, isMatchingDoB]),
   },
   dobMonth: {
     isInt: {
@@ -214,8 +211,11 @@ const dobSchema = {
       options: { min: 1, max: 12 },
     },
   },
-  dobDay: {
-    ...validationArray([isValidDay, isMatchingDoB]),
+  dobYear: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validYear',
+      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
+    },
   },
 }
 

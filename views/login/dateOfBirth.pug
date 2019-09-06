@@ -16,18 +16,34 @@ block content
 
     p #{__('Please enter your date of birth in the field below.')}
 
-    p For example, #{isoDateHintText(data.personal.dateOfBirth)}
 
   div
     form.cra-form.cra-form--lg.cra-form--dob(method='post')
-      h2 #{__('Your date of birth')}
 
-      +textInput('Day', ['w-1-4','d--ib'])(class='', value=dobDay, name='dobDay' autofocus=(!errors || errors && firstError.param === 'dobDay' ? true : false))
+      div.dob-container(class={['has-error']: errors && errors.dobDay})
 
-      +textInput('Month', ['w-1-4','d--ib'])(class='', value=dobMonth name='dobMonth')
+        h3 #{__('Your date of birth')}
 
-      +textInput('Year', ['w-1-2','d--ib'])(class='', value=dobYear name='dobYear')
+        span.cra-form-message #{__('For Example:')} #{isoDateHintText(data.personal.dateOfBirth)}
 
-      input#redirect(name='redirect', type='hidden', value='/personal/name')
+        if errors
+          ul
+            each err in errors
+              li
+                +validationMessage(err.msg, err.param)
+
+        div.w-1-4.d--ib
+          label(for='dobDay') #{__('Day')}
+          input#dobDay(name='dobDay', autofocus, type='text', value=dobDay, autocomplete='off' aria-describedby=(errors && errors.dobDay ? 'dobDay-error' : false))
+
+        div.w-1-4.d--ib
+          label(for='dobMonth') #{__('Month')}
+          input#dobMonth(name='dobMonth', autofocus, type='text', value=dobMonth, autocomplete='off' aria-describedby=(errors && errors.dobMonth ? 'dobMonth-error' : false))
+
+        div.w-1-2.d--ib
+          label(for='dobYear') #{__('Year')}
+          input#dobYear(name='dobYear', autofocus, type='text', value=dobYear, autocomplete='off' aria-describedby=(errors && errors.dobYear ? 'dobYear-error' : false))
+
+        input#redirect(name='redirect', type='hidden', value='/personal/name')
 
       +formButtons()

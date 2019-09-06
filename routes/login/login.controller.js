@@ -65,10 +65,27 @@ const postDateOfBirth = async (req, res, next) => {
   delete body.redirect
 
   if (!errors.isEmpty()) {
+    let errObj = errorArray2ErrorObject(errors)
+
+    /*
+    We don't want to show the "birthdate doesn't match" error if there
+    are other errors, because it is obvious the birthdate doesn't match if
+    you enter a month of 99.
+
+    If exists more than 1 error, and the match error exists, delete the match error
+    */
+    if (
+      Object.keys(errObj).length > 1 &&
+      errObj.dobDay &&
+      errObj.dobDay.msg === 'errors.login.dateOfBirth.match'
+    ) {
+      delete errObj.dobDay
+    }
+
     return res.status(422).render('login/dateOfBirth', {
       data: req.session,
       body,
-      errors: errorArray2ErrorObject(errors),
+      errors: errObj,
     })
   }
 

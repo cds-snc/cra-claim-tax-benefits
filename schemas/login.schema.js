@@ -229,4 +229,5 @@ module.exports = {
   loginSchema,
   dobSchema,
   sinSchema,
+  lastDayInMonth,
 }

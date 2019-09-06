@@ -107,13 +107,6 @@ describe('Test /login responses', () => {
     })
   })
 
-  test('it does not allow non-numeric characters', async () => {
-    const response = await request(app)
-      .post('/login/code')
-      .send({ code: 'A23X456@1', redirect: '/' })
-    expect(response.statusCode).toBe(422)
-  })
-
   describe('Test /login/sin responses', () => {
     // Social Insurance Number Page /login/sin
     test('it renders the h1 text for /login/sin', async () => {
@@ -208,8 +201,9 @@ describe('Test /login responses', () => {
 
   describe('Test login/dateOfBirth responses', () => {
     let goodDoBRequest = {
-      dateOfBirth: '1977/09/09',
-      sin: '847339283',
+      dobDay: '09',
+      dobMonth: '09',
+      dobYear: '1977',
       redirect: '/login/success',
     }
 
@@ -223,7 +217,7 @@ describe('Test /login responses', () => {
         return s < 10 ? '0' + s : s
       }
       const d = new Date(dateInput)
-      return [d.getFullYear(), add0(d.getMonth() + 1), add0(d.getDate())].join('/')
+      return [add0(d.getDate()), add0(d.getMonth() + 1), d.getFullYear()].join('-')
     }
 
     const fewMonthsAgo = dateToString(new Date(year, month - 3, day))
@@ -235,70 +229,98 @@ describe('Test /login responses', () => {
         label: 'no date of birth',
         send: {
           ...goodDoBRequest,
-          ...{ dateOfBirth: '' },
+          ...{ dobDay: '', dobMonth: '', dobYear: '' },
         },
       },
       {
-        label: 'date of birth over 10 characters',
+        label: 'no day',
         send: {
           ...goodDoBRequest,
-          ...{ dateOfBirth: '1977/09/222' },
+          ...{ dobDay: '' },
         },
       },
       {
-        label: 'date of birth less than 10 characters',
+        label: 'no month',
         send: {
           ...goodDoBRequest,
-          ...{ dateOfBirth: '1909/03/2' },
+          ...{ dobMonth: '' },
+        },
+      },
+      {
+        label: 'no year',
+        send: {
+          ...goodDoBRequest,
+          ...{ dobYear: '' },
         },
       },
       {
         label: 'date of birth includes not allowed characters',
         send: {
           ...goodDoBRequest,
-          ...{ dateOfBirth: '1909/03/ee' },
+          ...{ dobDay: 'ee' },
         },
       },
       {
         label: 'date of birth month is less than 1',
         send: {
           ...goodDoBRequest,
-          ...{ dateOfBirth: '1909/00/22' },
+          ...{ dobMonth: '0' },
         },
       },
       {
         label: 'date of birth month is greater than 12',
         send: {
           ...goodDoBRequest,
-          ...{ dateOfBirth: '1909/13/22' },
+          ...{ dobMonth: '13' },
         },
       },
       {
         label: 'date of birth day is less than 1',
         send: {
           ...goodDoBRequest,
-          ...{ dateOfBirth: '1909/01/00' },
+          ...{ dobDay: '0' },
         },
       },
       {
         label: 'date of birth day is greater than in that month',
         send: {
           ...goodDoBRequest,
-          ...{ dateOfBirth: '2017/02/29' },
+          ...{ dobDay: '29', dobMonth: '02', dobYear: '2019' },
         },
       },
+
+      /*
+
+      const currentDate = new Date()
+      const year = currentDate.getFullYear()
+      const month = currentDate.getMonth()
+      const day = currentDate.getDate()
+
+    const fewMonthsAgo = dateToString(new Date(year, month - 3, day))
+
+    const tooLongAgo = dateToString(new Date(year - 201, month, day))
+    */
+
       {
         label: 'date of birth is less than a year ago',
         send: {
           ...goodDoBRequest,
-          ...{ dateOfBirth: fewMonthsAgo },
+          ...{
+            dobDay: currentDate.getDate(),
+            dobMonth: currentDate.getMonth() - 3,
+            dobYear: currentDate.getFullYear(),
+          },
         },
       },
       {
         label: 'date of birth is more than 200 years ago',
         send: {
           ...goodDoBRequest,
-          ...{ dateOfBirth: tooLongAgo },
+          ...{
+            dobDay: currentDate.getDate(),
+            dobMonth: currentDate.getMonth(),
+            dobYear: currentDate.getFullYear() - 200,
+          },
         },
       },
     ]
@@ -338,7 +360,7 @@ describe('Test /login responses', () => {
         .then(() => {
           return authSession
             .post('/login/sin')
-            .send({ code: 'A5G98S4K1', sin: '847339283', redirect: '/login/dateOfBirth' })
+            .send({ sin: '847339283', redirect: '/login/dateOfBirth' })
         })
       expect(response.statusCode).toBe(302)
     })
@@ -346,14 +368,14 @@ describe('Test /login responses', () => {
     it('it should return 422 for the wrong DoB', async () => {
       const response = await authSession
         .post('/login/dateOfBirth')
-        .send({ dateOfBirth: '1909/03/23', redirect: '/login/success' })
+        .send({ dobDay: '23', dobMonth: '03', dobYear: '1909', redirect: '/login/success' })
       expect(response.statusCode).toBe(422)
     })
 
     it('it should return 302 for the right DoB', async () => {
       const response = await authSession
         .post('/login/dateOfBirth')
-        .send({ dateOfBirth: '1977/09/09', redirect: '/login/success' })
+        .send({ dobDay: '09', dobMonth: '09', dobYear: '1977', redirect: '/login/success' })
       expect(response.statusCode).toBe(302)
     })
   })

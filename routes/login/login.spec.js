@@ -208,21 +208,6 @@ describe('Test /login responses', () => {
     }
 
     const currentDate = new Date()
-    const year = currentDate.getFullYear()
-    const month = currentDate.getMonth()
-    const day = currentDate.getDate()
-
-    const dateToString = dateInput => {
-      const add0 = s => {
-        return s < 10 ? '0' + s : s
-      }
-      const d = new Date(dateInput)
-      return [add0(d.getDate()), add0(d.getMonth() + 1), d.getFullYear()].join('-')
-    }
-
-    const fewMonthsAgo = dateToString(new Date(year, month - 3, day))
-
-    const tooLongAgo = dateToString(new Date(year - 201, month, day))
 
     const badDoBRequests = [
       {
@@ -288,19 +273,6 @@ describe('Test /login responses', () => {
           ...{ dobDay: '29', dobMonth: '02', dobYear: '2019' },
         },
       },
-
-      /*
-
-      const currentDate = new Date()
-      const year = currentDate.getFullYear()
-      const month = currentDate.getMonth()
-      const day = currentDate.getDate()
-
-    const fewMonthsAgo = dateToString(new Date(year, month - 3, day))
-
-    const tooLongAgo = dateToString(new Date(year - 201, month, day))
-    */
-
       {
         label: 'date of birth is less than a year ago',
         send: {

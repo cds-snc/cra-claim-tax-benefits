@@ -19,7 +19,7 @@ const {
 
 module.exports = function(app) {
   //Start of RRSP Section
-  app.get('/deductions/rrsp', renderWithData('deductions/rrsp'))
+  app.get('/deductions/rrsp', renderWithData('deductions/rrsp', 'rrsp'))
   app.post(
     '/deductions/rrsp',
     checkSchema(rrspSchema),
@@ -27,7 +27,7 @@ module.exports = function(app) {
     postRRSP,
     doRedirect,
   )
-  app.get('/deductions/rrsp/amount', renderWithData('deductions/rrsp-amount'))
+  app.get('/deductions/rrsp/amount', renderWithData('deductions/rrsp-amount', 'rrsp amount'))
   app.post(
     '/deductions/rrsp/amount',
     checkSchema(rrspAmountSchema),
@@ -41,7 +41,7 @@ module.exports = function(app) {
   //End of RRSP Section
 
   //Start of Charitable Donations Section
-  app.get('/deductions/donations', renderWithData('deductions/donations'))
+  app.get('/deductions/donations', renderWithData('deductions/donations', 'donations'))
   app.post(
     '/deductions/donations',
     checkSchema(donationsSchema),
@@ -49,7 +49,7 @@ module.exports = function(app) {
     postDonations,
     doRedirect,
   )
-  app.get('/deductions/donations/amount', renderWithData('deductions/donations-amount'))
+  app.get('/deductions/donations/amount', renderWithData('deductions/donations-amount', 'donations amount'))
   app.post(
     '/deductions/donations/amount',
     checkSchema(donationsAmountSchema),
@@ -63,7 +63,7 @@ module.exports = function(app) {
   //End of Charitable Donations Section
 
   //Start of Medical claim Section
-  app.get('/deductions/medical', renderWithData('deductions/medical'))
+  app.get('/deductions/medical', renderWithData('deductions/medical', 'medical'))
   app.post(
     '/deductions/medical',
     checkSchema(medicalSchema),
@@ -71,7 +71,7 @@ module.exports = function(app) {
     postMedical,
     doRedirect,
   )
-  app.get('/deductions/medical/amount', renderWithData('deductions/medical-amount'))
+  app.get('/deductions/medical/amount', renderWithData('deductions/medical-amount', 'medical amount'))
   app.post(
     '/deductions/medical/amount',
     checkSchema(medicalAmountSchema),
@@ -85,7 +85,7 @@ module.exports = function(app) {
   //End of Medical Claim Section
 
   //Start of Political Donations Section
-  app.get('/deductions/political', renderWithData('deductions/political'))
+  app.get('/deductions/political', renderWithData('deductions/political', 'political'))
   app.post(
     '/deductions/political',
     checkSchema(politicalSchema),
@@ -93,7 +93,7 @@ module.exports = function(app) {
     postPolitical,
     doRedirect,
   )
-  app.get('/deductions/political/amount', renderWithData('deductions/political-amount'))
+  app.get('/deductions/political/amount', renderWithData('deductions/political-amount', 'political amount'))
   app.post(
     '/deductions/political/amount',
     checkSchema(politicalAmountSchema),
@@ -108,7 +108,7 @@ module.exports = function(app) {
   //End of Charitable Donations Section
 
   //Start of Trillum Section
-  app.get('/trillium/rent/amount', renderWithData('deductions/trillium-rent-amount'))
+  app.get('/trillium/rent/amount', renderWithData('deductions/trillium-rent-amount', 'trillium rent'))
   app.post(
     '/trillium/rent/amount',
     checkSchema(trilliumRentAmountSchema),
@@ -120,7 +120,7 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/trillium/propertyTax/amount', renderWithData('deductions/trillium-propertyTax-amount'))
+  app.get('/trillium/propertyTax/amount', renderWithData('deductions/trillium-propertyTax-amount', 'trillium property tax'))
   app.post(
     '/trillium/propertyTax/amount',
     checkSchema(trilliumPropertyTaxAmountSchema),
@@ -132,7 +132,7 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/trillium/studentResidence', renderWithData('deductions/trillium-studentResidence'))
+  app.get('/trillium/studentResidence', renderWithData('deductions/trillium-studentResidence', 'trillium student residence'))
   app.post(
     '/trillium/studentResidence',
     checkSchema(trilliumStudentResidenceSchema),
@@ -145,7 +145,7 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/trillium/energy/amount', renderWithData('deductions/trillium-energy-amount'))
+  app.get('/trillium/energy/amount', renderWithData('deductions/trillium-energy-amount', 'trillium energy amount'))
   app.post(
     '/trillium/energy/amount',
     checkSchema(trilliumEnergyAmountSchema),
@@ -159,7 +159,7 @@ module.exports = function(app) {
 
   app.get(
     '/trillium/longTermCare/amount',
-    renderWithData('deductions/trillium-longTermCare-amount'),
+    renderWithData('deductions/trillium-longTermCare-amount', 'trillium long term care amount'),
   )
   app.post(
     '/trillium/longTermCare/amount',
@@ -175,7 +175,7 @@ module.exports = function(app) {
   //Climate Action Incentive
   app.get(
     '/deductions/climate-action-incentive',
-    renderWithData('deductions/climate-action-incentive'),
+    renderWithData('deductions/climate-action-incentive', 'climate action incentive'),
   )
   app.post(
     '/deductions/climate-action-incentive',

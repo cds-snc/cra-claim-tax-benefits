@@ -1,5 +1,6 @@
 const API = require('./../api')
 const { validationResult } = require('express-validator')
+const { routes: defaultRoutes } = require("../config/routes.config")
 
 /*
   original format is an array of error objects: https://express-validator.github.io/docs/validation-result-api.html
@@ -146,9 +147,12 @@ const doRedirect = (req, res) => {
 }
 
 // Render a passed-in template and pass in session data under the "data" key
-const renderWithData = template => {
+const renderWithData = (template, routeName) => {
   return (req, res) => {
-    res.render(template, { data: req.session })
+    res.render(template, { 
+      data: req.session,
+      prevRoute: getPreviousRoute(routeName)
+    })
   }
 }
 
@@ -221,6 +225,63 @@ const sortByLineNumber = (...objToSort) => {
   return sortedArrayObj
 }
 
+const DefaultRouteObj = { name: false, path: false };
+
+/**
+ * @param {String} name route name
+ * @param {Array} routes array of route objects { name: "start", path: "/start" },
+ * @returns { name: "", path: "" }
+ */
+const getPreviousRoute = (name, routes = defaultRoutes) => {
+  const route = getRouteWithIndexByName(name, routes);
+
+  if (!route || (!"index" in route && process.env.NODE_ENV !== "production")) {
+    throw new Error(
+      "Previous route error.  \n Did you forget to pass it along to renderWithData? \n i.e. renderWithData('login/sin', 'login sin')"
+    );
+  }
+
+  const prevRoute = routes[Number(route.index) - 1]
+    ? routes[Number(route.index) - 1]
+    : false;
+
+  if (!prevRoute) {
+    return DefaultRouteObj;
+  }
+
+  return prevRoute;
+};
+
+/**
+ * @param {String} name route name
+ * @param {Array} routes array of route objects { name: "start", path: "/start" }
+ * @returns { name: "", path: "" }
+ */
+const getRouteByName = (name, routes = defaultRoutes) => {
+  return getRouteWithIndexByName(name, routes).route;
+};
+
+/**
+ * @param {String} name route name
+ * @param {Array} routes array of route objects { name: "start", path: "/start" }
+ * @returns { index: "1", route: { name: "start", path: "/start" } }
+ */
+const getRouteWithIndexByName = (name, routes = defaultRoutes) => {
+  const route = routes
+    .map((route, index) => {
+      if (route.name === name) {
+        return { index, route };
+      }
+    })
+    .filter(function(route) {
+      return route != null;
+    });
+
+  if (route.length >= 1) {
+    return route[0];
+  }
+};
+
 module.exports = {
   errorArray2ErrorObject,
   checkErrors,
@@ -233,4 +294,5 @@ module.exports = {
   sortByLineNumber,
   checkLangQuery,
   doRedirect,
+  getPreviousRoute,
 }

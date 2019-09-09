@@ -58,7 +58,7 @@ const postAddress = (req, res, next) => {
   delete addressData.redirect
 
   req.session.personal.address = addressData
-  res.session.personal.addressEdit = true
+  req.session.personal.addressEdit = true
 
   next()
 }

@@ -1,6 +1,6 @@
 const API = require('./../api')
 const { validationResult } = require('express-validator')
-const { routes: defaultRoutes } = require("../config/routes.config")
+const { routes: defaultRoutes } = require('../config/routes.config')
 
 /*
   original format is an array of error objects: https://express-validator.github.io/docs/validation-result-api.html
@@ -248,16 +248,17 @@ const getPreviousRoute = (name, session, routes = defaultRoutes) => {
   }
 
   const prevRoute = () => {
-    const isEditPage = routes[Number(route.index) - 1].hasOwnProperty('editInfo') ? true : false;
+    const oneRouteBack = routes[Number(route.index) - 1];
+    
+    const isEditPage = oneRouteBack && oneRouteBack.hasOwnProperty('editInfo') ? true : false;
 
-    const onePageBack = routes[Number(route.index) - 1];
 
     let routeIndexBack = 1;
 
     // essentially check if the page before is an edit page, and if ther person actually entered/edited any of that information
     if (
       isEditPage && 
-      !hasData(session, onePageBack.editInfo, true)
+      !hasData(session, oneRouteBack.editInfo, true)
     ) {
         // if they didn't do any editing, skip over the edit page
         routeIndexBack = 2

@@ -1,5 +1,20 @@
-const { SINFilter, hasData } = require('./index')
+const { SINFilter, hasData, getPreviousRoute } = require('./index')
 const API = require('./../api')
+
+const testRoutes = [
+  { name: 'start', path: '/start' },
+  { name: 'login code', path: '/login/code' },
+  { name: 'name', path: '/personal/name' },
+  { name: 'residence', path: '/personal/residence' },
+  { name: 'address', path: '/personal/address' },
+  { name: 'address edit', path: '/personal/address/edit', editInfo: 'personal.addressEdit' },
+  { name: 'income', path: '/financial/income' },
+  { name: 'rrsp', path: '/deductions/rrsp' },
+  { name: 'rrsp amount', path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
+  { name: 'marital status', path: '/personal/maritalStatus' },
+  { name: 'marital status edit', path: '/personal/maritalStatus/edit', editInfo: 'personal.maritalStatusEdit'},
+  { name: 'medical', path: '/deductions/medical' },
+]
 
 describe('Test SINFilter', () => {
   const sinFilterUnchanged = ['1', '', '1234567890', '12345678']
@@ -51,4 +66,18 @@ describe('Test hasData function', () => {
   test('returns true for disabilityClaim', () => {
     expect(hasData(user, 'deductions.disabilityClaim')).toBe(false)
   })
+})
+
+describe('Test getPreviousRoute function', () => {
+  const user = API.getUser('A5G98S4K1')
+
+  test('return false for a route that does not exist', () => {
+    const obj = getPreviousRoute('start', user, testRoutes);
+    expect(obj.path).toEqual(false);
+  });
+
+  test('finds previous route path by name', () => {
+    const obj = getPreviousRoute('login code', user, testRoutes);
+    expect(obj.path).toEqual('/start');
+  });
 })

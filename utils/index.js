@@ -151,7 +151,7 @@ const renderWithData = (template, routeName) => {
   return (req, res) => {
     res.render(template, { 
       data: req.session,
-      prevRoute: getPreviousRoute(routeName, req.session)
+      prevRoute: routeName ? getPreviousRoute(routeName, req.session) : null
     })
   }
 }
@@ -265,8 +265,6 @@ const getPreviousRoute = (name, session, routes = defaultRoutes) => {
     
     return routes[Number(route.index) - routeIndexBack] ? routes[Number(route.index) - routeIndexBack] : false;
   }
-
-  // console.log(prevRoute());
 
   if (!prevRoute()) {
     return DefaultRouteObj;

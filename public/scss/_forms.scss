@@ -167,11 +167,11 @@ form.cra-form {
 
 form.cra-form.cra-form--dob {
   @include sm {
-    width: 60%;
+    width: 50%;
   }
 
   @include md {
-    width: 50%;
+    width: 40%;
   }
 
   .dob-container {
@@ -189,8 +189,12 @@ form.cra-form.cra-form--dob {
       padding: 0;
       margin-bottom: $space-sm;
 
+      @include sm {
+        width: 150%;
+      }
+
       @include md {
-        width: 135%;
+        width: 200%;
       }
     }
 

@@ -4,8 +4,8 @@ const API = require('./../api')
 const testRoutes = [
   { name: 'start', path: '/start' },
   { name: 'login code', path: '/login/code' },
-  { name: 'marital status', path: '/personal/maritalStatus' },
-  { name: 'marital status edit', path: '/personal/maritalStatus/edit', editInfo: 'personal.maritalStatusEdit'},
+  { name: 'rrsp', path: '/deductions/rrsp' },
+  { name: 'rrsp amount', path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
   { name: 'medical', path: '/deductions/medical' },
 ]
 
@@ -75,14 +75,14 @@ describe('Test getPreviousRoute function', () => {
   });
 
   test('navigates to an edit page if it was edited', () => {
-    const user = { personal: { maritalStatusEdit: true } }
+    const user = { deductions: { rrspClaim: true } }
     const obj = getPreviousRoute('medical', user, testRoutes);
-    expect(obj.path).toEqual('/personal/maritalStatus/edit');
+    expect(obj.path).toEqual('/deductions/rrsp/amount');
   });
 
   test('skips an edit page if it was not edited', () => {
-    const user = { personal: { maritalStatusEdit: false } }
+    const user = { deductions: { rrspClaim: false } }
     const obj = getPreviousRoute('medical', user, testRoutes);
-    expect(obj.path).toEqual('/personal/maritalStatus');
+    expect(obj.path).toEqual('/deductions/rrsp');
   });
 })

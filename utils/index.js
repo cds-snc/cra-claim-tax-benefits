@@ -151,7 +151,7 @@ const renderWithData = (template, routeName) => {
   return (req, res) => {
     res.render(template, { 
       data: req.session,
-      prevRoute: getPreviousRoute(routeName)
+      prevRoute: getPreviousRoute(routeName, req.session)
     })
   }
 }
@@ -179,7 +179,7 @@ const SINFilter = text => {
  * ex. if we're trying to get to data.personal.maritalStatus
  * pass as hasData(data, 'personal.maritalStatus')
  */
-const hasData = (obj, key) => {
+const hasData = (obj, key, returnVal) => {
   return key.split('.').every(x => {
     if (
       typeof obj != 'object' ||
@@ -191,7 +191,13 @@ const hasData = (obj, key) => {
       return false
     }
     obj = obj[x]
-    return true
+
+    if(!returnVal) {
+      return true
+    } 
+
+    return obj
+
   })
 }
 
@@ -232,7 +238,7 @@ const DefaultRouteObj = { name: false, path: false };
  * @param {Array} routes array of route objects { name: "start", path: "/start" },
  * @returns { name: "", path: "" }
  */
-const getPreviousRoute = (name, routes = defaultRoutes) => {
+const getPreviousRoute = (name, session, routes = defaultRoutes) => {
   const route = getRouteWithIndexByName(name, routes);
 
   if (!route || (!"index" in route && process.env.NODE_ENV !== "production")) {
@@ -241,24 +247,32 @@ const getPreviousRoute = (name, routes = defaultRoutes) => {
     );
   }
 
-  const prevRoute = routes[Number(route.index) - 1]
-    ? routes[Number(route.index) - 1]
-    : false;
+  const prevRoute = () => {
+    const isEditPage = routes[Number(route.index) - 1].hasOwnProperty('editInfo') ? true : false;
 
-  if (!prevRoute) {
+    const onePageBack = routes[Number(route.index) - 1];
+
+    let routeIndexBack = 1;
+
+    // essentially check if the page before is an edit page, and if ther person actually entered/edited any of that information
+    if (
+      isEditPage && 
+      !hasData(session, onePageBack.editInfo, true)
+    ) {
+        // if they didn't do any editing, skip over the edit page
+        routeIndexBack = 2
+      }
+    
+    return routes[Number(route.index) - routeIndexBack] ? routes[Number(route.index) - routeIndexBack] : false;
+  }
+
+  // console.log(prevRoute());
+
+  if (!prevRoute()) {
     return DefaultRouteObj;
   }
 
-  return prevRoute;
-};
-
-/**
- * @param {String} name route name
- * @param {Array} routes array of route objects { name: "start", path: "/start" }
- * @returns { name: "", path: "" }
- */
-const getRouteByName = (name, routes = defaultRoutes) => {
-  return getRouteWithIndexByName(name, routes).route;
+  return prevRoute();
 };
 
 /**

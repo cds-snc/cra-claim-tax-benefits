@@ -15,7 +15,9 @@
       "city": "Ottawa",
       "province": "Ontario"
     },
+    "addressEdit": false,
     "maritalStatus": "Single",
+    "maritalStatusEdit": true,
     "disability": false
   },
   "financial": {

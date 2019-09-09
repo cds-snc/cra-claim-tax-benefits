@@ -1,4 +1,5 @@
 //list our routes in the flow order in the app
+//for address edit and marital status edit, I am specifically pointing to data that does not exist, to force skipping the route when navigating back
 const routes = [
   { name: 'start', path: '/start' },
   { name: 'login code', path: '/login/code' },
@@ -7,10 +8,12 @@ const routes = [
   { name: 'name', path: '/personal/name' },
   { name: 'residence', path: '/personal/residence' },
   { name: 'address', path: '/personal/address' },
+  { name: 'address edit', path: '/personal/address/edit', editInfo: 'skip' },
   { name: 'income', path: '/financial/income' },
   { name: 'rrsp', path: '/deductions/rrsp' },
   { name: 'rrsp amount', path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
   { name: 'marital status', path: '/personal/maritalStatus' },
+  { name: 'marital status edit', path: '/personal/maritalStatus/edit', editInfo: 'skip' },
   { name: 'medical', path: '/deductions/medical' },
   { name: 'medical amount', path: '/deductions/medical/amount', editInfo: 'deductions.medicalExpenseClaim' },
   { name: 'political', path: '/deductions/political' },

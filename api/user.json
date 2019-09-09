@@ -17,7 +17,7 @@
     },
     "addressEdit": false,
     "maritalStatus": "Single",
-    "maritalStatusEdit": true,
+    "maritalStatusEdit": false,
     "disability": false
   },
   "financial": {

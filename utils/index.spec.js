@@ -6,11 +6,7 @@ const testRoutes = [
   { name: 'login code', path: '/login/code' },
   { name: 'name', path: '/personal/name' },
   { name: 'residence', path: '/personal/residence' },
-  { name: 'address', path: '/personal/address' },
-  { name: 'address edit', path: '/personal/address/edit', editInfo: 'personal.addressEdit' },
   { name: 'income', path: '/financial/income' },
-  { name: 'rrsp', path: '/deductions/rrsp' },
-  { name: 'rrsp amount', path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
   { name: 'marital status', path: '/personal/maritalStatus' },
   { name: 'marital status edit', path: '/personal/maritalStatus/edit', editInfo: 'personal.maritalStatusEdit'},
   { name: 'medical', path: '/deductions/medical' },
@@ -79,5 +75,17 @@ describe('Test getPreviousRoute function', () => {
   test('finds previous route path by name', () => {
     const obj = getPreviousRoute('login code', user, testRoutes);
     expect(obj.path).toEqual('/start');
+  });
+
+  test('navigates to the maritalStatus edit page if it was edited', () => {
+    const user = { personal: { maritalStatusEdit: true } }
+    const obj = getPreviousRoute('medical', user, testRoutes);
+    expect(obj.path).toEqual('/personal/maritalStatus/edit');
+  });
+
+  test('skips the maritalStatus edit page if it was not edited', () => {
+    const user = { personal: { maritalStatusEdit: false } }
+    const obj = getPreviousRoute('medical', user, testRoutes);
+    expect(obj.path).toEqual('/personal/maritalStatus');
   });
 })

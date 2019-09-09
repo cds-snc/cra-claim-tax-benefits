@@ -31,8 +31,6 @@ html(lang=getLocale() === 'fr' ? 'fr' : 'en')
         include _includes/phaseBanner
         include _includes/fip
       main
-        if prevRoute
-          a(href=prevRoute.path) back
         if errors
           include _includes/errorList.pug
 

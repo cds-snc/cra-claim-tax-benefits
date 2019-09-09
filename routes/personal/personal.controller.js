@@ -45,6 +45,7 @@ module.exports = function(app) {
     checkErrors('personal/maritalStatus-edit'),
     (req, res, next) => {
       req.session.personal.maritalStatus = req.body.maritalStatus
+      req.session.personal.maritalStatusEdit = true
       next()
     },
     doRedirect,
@@ -57,6 +58,7 @@ const postAddress = (req, res, next) => {
   delete addressData.redirect
 
   req.session.personal.address = addressData
+  res.session.personal.addressEdit = true
 
   next()
 }

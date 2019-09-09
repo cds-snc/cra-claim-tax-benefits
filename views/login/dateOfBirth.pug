@@ -23,7 +23,7 @@ block content
       div.dob-container(class={['has-error']: errors && errors.dobDay})
         fieldset.fieldset(role="group", aria-describedby="dobHint",)
           legend
-            h3 #{__('Your date of birth')}
+            h2 #{__('Your date of birth')}
 
           span#dobHint.cra-form-message #{__('For Example:')} #{isoDateHintText(data.personal.dateOfBirth)}
 

@@ -175,9 +175,12 @@ form.cra-form.cra-form--dob {
   }
 
   .dob-container {
-    h3 {
-      margin-top: 0;
+    legend {
       margin-bottom: $space-xxs;
+    }
+
+    h3 {
+      margin: 0;
     }
 
     .cra-form-message {
@@ -198,7 +201,7 @@ form.cra-form.cra-form--dob {
       }
     }
 
-    > div {
+    fieldset > div {
       &.d--ib {
         display: inline-block;
         padding-right: $space-sm;
@@ -214,11 +217,12 @@ form.cra-form.cra-form--dob {
   }
 }
 
-.fieldset {
+fieldset {
+  margin: 0;
   border: 0;
   padding: 0;
 
-  &__legend {
+  legend {
     border-bottom: 0;
     margin-bottom: $space-md;
 
@@ -227,7 +231,7 @@ form.cra-form.cra-form--dob {
     }
   }
 
-  .has-error &__legend {
+  .has-error & legend {
     margin-bottom: $space-xxs;
   }
 }

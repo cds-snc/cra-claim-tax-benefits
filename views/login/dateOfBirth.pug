@@ -21,29 +21,30 @@ block content
     form.cra-form.cra-form--lg.cra-form--dob(method='post')
 
       div.dob-container(class={['has-error']: errors && errors.dobDay})
+        fieldset.fieldset(role="group", aria-describedby="dobHint",)
+          legend
+            h3 #{__('Your date of birth')}
 
-        h3 #{__('Your date of birth')}
+          span#dobHint.cra-form-message #{__('For Example:')} #{isoDateHintText(data.personal.dateOfBirth)}
 
-        span.cra-form-message #{__('For Example:')} #{isoDateHintText(data.personal.dateOfBirth)}
+          if errors
+            ul
+              each err in errors
+                li
+                  +validationMessage(err.msg, err.param)
 
-        if errors
-          ul
-            each err in errors
-              li
-                +validationMessage(err.msg, err.param)
+          div.w-1-4.d--ib
+            label(for='dobDay') #{__('Day')}
+            input#dobDay(name='dobDay', autofocus, type='text', value=dobDay, autocomplete='off' aria-describedby=(errors && errors.dobDay ? 'dobDay-error' : false))
 
-        div.w-1-4.d--ib
-          label(for='dobDay') #{__('Day')}
-          input#dobDay(name='dobDay', autofocus, type='text', value=dobDay, autocomplete='off' aria-describedby=(errors && errors.dobDay ? 'dobDay-error' : false))
+          div.w-1-4.d--ib
+            label(for='dobMonth') #{__('Month')}
+            input#dobMonth(name='dobMonth', autofocus, type='text', value=dobMonth, autocomplete='off' aria-describedby=(errors && errors.dobMonth ? 'dobMonth-error' : false))
 
-        div.w-1-4.d--ib
-          label(for='dobMonth') #{__('Month')}
-          input#dobMonth(name='dobMonth', autofocus, type='text', value=dobMonth, autocomplete='off' aria-describedby=(errors && errors.dobMonth ? 'dobMonth-error' : false))
+          div.w-1-2.d--ib
+            label(for='dobYear') #{__('Year')}
+            input#dobYear(name='dobYear', autofocus, type='text', value=dobYear, autocomplete='off' aria-describedby=(errors && errors.dobYear ? 'dobYear-error' : false))
 
-        div.w-1-2.d--ib
-          label(for='dobYear') #{__('Year')}
-          input#dobYear(name='dobYear', autofocus, type='text', value=dobYear, autocomplete='off' aria-describedby=(errors && errors.dobYear ? 'dobYear-error' : false))
-
-        input#redirect(name='redirect', type='hidden', value='/personal/name')
+          input#redirect(name='redirect', type='hidden', value='/personal/name')
 
       +formButtons()

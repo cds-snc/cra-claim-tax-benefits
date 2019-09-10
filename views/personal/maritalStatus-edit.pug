@@ -13,8 +13,8 @@ block content
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.maritalStatus})
-        fieldset.fieldset
-            legend.fieldset__legend #{__('Marital Status')}
+        fieldset
+            legend #{__('Marital Status')}
             .multiple-choice.multiple-choice--radios
                 if errors
                   +validationMessage(errors.maritalStatus.msg, 'maritalStatus')

@@ -21,6 +21,7 @@ const express = require('express'),
     sortByLineNumber,
     checkLangQuery,
     currencyFilter,
+    isoDateHintText,
   } = require('./utils')
 
 // initialize application.
@@ -80,6 +81,7 @@ app.locals.SINFilter = SINFilter
 app.locals.hasData = hasData
 app.locals.currencyFilter = currencyFilter
 app.locals.sortByLineNumber = sortByLineNumber
+app.locals.isoDateHintText = isoDateHintText
 
 // configure routes
 require('./routes/start/start.controller')(app)

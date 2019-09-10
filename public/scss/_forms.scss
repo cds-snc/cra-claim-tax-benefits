@@ -165,11 +165,64 @@ form.cra-form {
   }
 }
 
-.fieldset {
+form.cra-form.cra-form--dob {
+  @include sm {
+    width: 50%;
+  }
+
+  @include md {
+    width: 40%;
+  }
+
+  .dob-container {
+    legend {
+      margin-bottom: $space-xxs;
+    }
+
+    h2 {
+      margin: 0;
+    }
+
+    .cra-form-message {
+      margin-bottom: $space-sm;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: $space-sm;
+
+      @include sm {
+        width: 150%;
+      }
+
+      @include md {
+        width: 200%;
+      }
+    }
+
+    fieldset > div {
+      &.d--ib {
+        display: inline-block;
+        padding-right: $space-sm;
+        margin-bottom: 0;
+      }
+      &.w-1-2 {
+        width: 50%;
+      }
+      &.w-1-4 {
+        width: 25%;
+      }
+    }
+  }
+}
+
+fieldset {
+  margin: 0;
   border: 0;
   padding: 0;
 
-  &__legend {
+  legend {
     border-bottom: 0;
     margin-bottom: $space-md;
 
@@ -178,7 +231,7 @@ form.cra-form {
     }
   }
 
-  .has-error &__legend {
+  .has-error & legend {
     margin-bottom: $space-xxs;
   }
 }

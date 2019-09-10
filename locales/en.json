@@ -284,5 +284,9 @@
   "Keep your notification letter with you. You need information on that letter to use this service.": "Keep your notification letter with you. You need information on that letter to use this service.",
   "For Example: A5G98S4K1": "For Example: A5G98S4K1",
   "Your access code was validated!": "Your access code was validated!",
-  "Street address": "Street address"
+  "Street address": "Street address",
+  "Your date of birth": "Your date of birth",
+  "Day": "Day",
+  "Month": "Month",
+  "Year": "Year"
 }

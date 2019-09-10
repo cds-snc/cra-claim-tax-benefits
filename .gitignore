@@ -72,6 +72,6 @@ public/styles.css*
 
 # Cypress files we're not using
 cypress/examples
-cypress/support
+cypress/support/commands.js
 cypress/plugins
 cypress/screenshots

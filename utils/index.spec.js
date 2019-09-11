@@ -1,4 +1,4 @@
-const { SINFilter, hasData, getPreviousRoute } = require('./index')
+const { SINFilter, hasData, getPreviousRoute, isoDateHintText } = require('./index')
 const API = require('./../api')
 
 const testRoutes = [
@@ -86,4 +86,20 @@ describe('Test getPreviousRoute function', () => {
     const obj = getPreviousRoute('/deductions/medical', user, testRoutes);
     expect(obj.path).toEqual('/deductions/rrsp');
   });
+})
+
+describe('Test isoDateHintText function', () => {
+  test('an ISO date formatted "dd mm yyyy"', () => {
+    expect(isoDateHintText('1961-04-12')).toBe('12 04 1961')
+  })
+
+  test('an non-ISO date string to throw an error', () => {
+    expect(() => isoDateHintText('Cretaceous period')).toThrowError(/must be a valid ISO date/)
+  })
+
+  test('an ISO datetime string to throw an error', () => {
+    expect(() => isoDateHintText('1961-04-12T12:34:56.000Z')).toThrowError(
+      /must be formatted yyyy-mm-dd/,
+    )
+  })
 })

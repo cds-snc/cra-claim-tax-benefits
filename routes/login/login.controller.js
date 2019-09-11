@@ -1,6 +1,6 @@
 const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject, doRedirect, renderWithData, checkErrors } = require('./../../utils')
-const { loginSchema, sinSchema, birthSchema, authSchema } = require('./../../schemas')
+const { loginSchema, sinSchema, dobSchema, authSchema } = require('./../../schemas')
 const API = require('../../api')
 const request = require('request-promise')
 
@@ -16,12 +16,7 @@ module.exports = function(app) {
 
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
-  app.post(
-    '/login/dateOfBirth',
-    checkSchema(birthSchema),
-    checkErrors('login/dateOfBirth'),
-    doRedirect,
-  )
+  app.post('/login/dateOfBirth', checkSchema(dobSchema), postDateOfBirth, doRedirect)
 
   // Auth page
   app.get('/login/auth', getAuth)
@@ -58,6 +53,41 @@ const postLoginCode = async (req, res, next) => {
   }
 
   req.session = user // eslint-disable-line require-atomic-updates
+
+  next()
+}
+
+const postDateOfBirth = async (req, res, next) => {
+  const errors = validationResult(req)
+
+  // copy all posted parameters, but remove the redirect
+  let body = Object.assign({}, req.body)
+  delete body.redirect
+
+  if (!errors.isEmpty()) {
+    let errObj = errorArray2ErrorObject(errors)
+
+    /*
+    We don't want to show the "birthdate doesn't match" error if there
+    are other errors, because it is obvious the birthdate doesn't match if
+    you enter a month of 99.
+
+    If exists more than 1 error, and the match error exists, delete the match error
+    */
+    if (
+      Object.keys(errObj).length > 1 &&
+      errObj.dobDay &&
+      errObj.dobDay.msg === 'errors.login.dateOfBirth.match'
+    ) {
+      delete errObj.dobDay
+    }
+
+    return res.status(422).render('login/dateOfBirth', {
+      data: req.session,
+      body,
+      errors: errObj,
+    })
+  }
 
   next()
 }

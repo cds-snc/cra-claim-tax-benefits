@@ -1,6 +1,7 @@
 const API = require('./../api')
 const { validationResult } = require('express-validator')
 const { routes: defaultRoutes } = require('../config/routes.config')
+const validator = require('validator')
 
 /*
   original format is an array of error objects: https://express-validator.github.io/docs/validation-result-api.html
@@ -285,6 +286,26 @@ const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
   }
 };
 
+/*
+ * Accepts an ISO-format date (1999-09-30)
+ * and returns a string formatted "dd mm yyyy" (30 09 1999)
+ *
+ * @param {*} date a string ISO-format date
+ */
+const isoDateHintText = date => {
+  if (!validator.isISO8601(date)) {
+    throw new Error(`[GET /login/dateOfBirth] Bad date "${date}": must be a valid ISO date`)
+  }
+
+  const dateParts = date.split('-')
+
+  if (dateParts.length !== 3 || dateParts[2].length > 2) {
+    throw new Error(`[GET /login/dateOfBirth] Bad date "${date}": must be formatted yyyy-mm-dd`)
+  }
+
+  return `${dateParts[2]} ${dateParts[1]} ${dateParts[0]}`
+}
+
 module.exports = {
   errorArray2ErrorObject,
   checkErrors,
@@ -298,4 +319,5 @@ module.exports = {
   checkLangQuery,
   doRedirect,
   getPreviousRoute,
+  isoDateHintText,
 }

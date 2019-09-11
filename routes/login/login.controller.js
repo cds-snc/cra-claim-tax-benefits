@@ -7,15 +7,15 @@ const request = require('request-promise')
 module.exports = function(app) {
   // redirect from "/login" → "/login/code"
   app.get('/login', (req, res) => res.redirect('/login/code'))
-  app.get('/login/code', renderWithData('login/code', 'login code'))
+  app.get('/login/code', renderWithData('login/code'))
   app.post('/login/code', checkSchema(loginSchema), postLoginCode, doRedirect)
 
   // SIN
-  app.get('/login/sin', renderWithData('login/sin', 'login sin'))
+  app.get('/login/sin', renderWithData('login/sin'))
   app.post('/login/sin', checkSchema(sinSchema), checkErrors('login/sin'), doRedirect)
 
   // Date of Birth
-  app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth', 'login date of birth'))
+  app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
   app.post(
     '/login/dateOfBirth',
     checkSchema(birthSchema),

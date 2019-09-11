@@ -3,7 +3,7 @@ const { doRedirect, renderWithData, checkErrors } = require('./../../utils')
 const { incomeSchema } = require('./../../schemas')
 
 module.exports = function(app) {
-  app.get('/financial/income', renderWithData('financial/income', 'income'))
+  app.get('/financial/income', renderWithData('financial/income'))
   app.post(
     '/financial/income',
     checkSchema(incomeSchema),

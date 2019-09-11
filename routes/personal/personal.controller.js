@@ -8,7 +8,7 @@ const {
 } = require('./../../schemas')
 
 module.exports = function(app) {
-  app.get('/personal/name', renderWithData('personal/name', 'name'))
+  app.get('/personal/name', renderWithData('personal/name'))
   app.post(
     '/personal/name',
     checkSchema(nameSchema),
@@ -16,8 +16,8 @@ module.exports = function(app) {
     postName,
     doRedirect,
   )
-  app.get('/personal/address', renderWithData('personal/address', 'address'))
-  app.get('/personal/address/edit', doAuth, renderWithData('personal/address-edit', 'address edit'))
+  app.get('/personal/address', renderWithData('personal/address'))
+  app.get('/personal/address/edit', doAuth, renderWithData('personal/address-edit'))
   app.post(
     '/personal/address/edit',
     doAuth,
@@ -27,7 +27,7 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/personal/residence', renderWithData('personal/residence', 'residence'))
+  app.get('/personal/residence', renderWithData('personal/residence'))
   app.post(
     '/personal/residence',
     checkSchema(residenceSchema),
@@ -36,8 +36,8 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/personal/maritalStatus', renderWithData('personal/maritalStatus', 'marital status'))
-  app.get('/personal/maritalStatus/edit', doAuth, renderWithData('personal/maritalStatus-edit', 'marital status edit'))
+  app.get('/personal/maritalStatus', renderWithData('personal/maritalStatus'))
+  app.get('/personal/maritalStatus/edit', doAuth, renderWithData('personal/maritalStatus-edit'))
   app.post(
     '/personal/maritalStatus/edit',
     doAuth,

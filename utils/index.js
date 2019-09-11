@@ -147,11 +147,11 @@ const doRedirect = (req, res) => {
 }
 
 // Render a passed-in template and pass in session data under the "data" key
-const renderWithData = (template, routeName) => {
+const renderWithData = (template, path) => {
   return (req, res) => {
     res.render(template, { 
       data: req.session,
-      prevRoute: routeName ? getPreviousRoute(routeName, req.session) : null
+      prevRoute: getPreviousRoute(req.path, req.session)
     })
   }
 }
@@ -192,11 +192,7 @@ const hasData = (obj, key, returnVal) => {
     }
     obj = obj[x]
 
-    if(!returnVal) {
-      return true
-    } 
-
-    return obj
+    return true
 
   })
 }
@@ -231,19 +227,17 @@ const sortByLineNumber = (...objToSort) => {
   return sortedArrayObj
 }
 
-const DefaultRouteObj = { name: false, path: false };
-
 /**
  * @param {String} name route name
  * @param {Array} routes array of route objects { name: "start", path: "/start" },
  * @returns { name: "", path: "" }
  */
-const getPreviousRoute = (name, session, routes = defaultRoutes) => {
-  const route = getRouteWithIndexByName(name, routes);
+const getPreviousRoute = (path, session, routes = defaultRoutes) => {
+  const route = getRouteWithIndexByPath(path, routes);
 
   if (!route || (!"index" in route && process.env.NODE_ENV !== "production")) {
     throw new Error(
-      "Previous route error.  \n Did you forget to pass it along to renderWithData? \n i.e. renderWithData('login/sin', 'login sin')"
+      "Previous route error.  \n Are your route paths correct in route.config?')"
     );
   }
 
@@ -267,10 +261,6 @@ const getPreviousRoute = (name, session, routes = defaultRoutes) => {
     return routes[Number(route.index) - routeIndexBack] ? routes[Number(route.index) - routeIndexBack] : false;
   }
 
-  if (!prevRoute()) {
-    return DefaultRouteObj;
-  }
-
   return prevRoute();
 };
 
@@ -279,10 +269,10 @@ const getPreviousRoute = (name, session, routes = defaultRoutes) => {
  * @param {Array} routes array of route objects { name: "start", path: "/start" }
  * @returns { index: "1", route: { name: "start", path: "/start" } }
  */
-const getRouteWithIndexByName = (name, routes = defaultRoutes) => {
+const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
   const route = routes
     .map((route, index) => {
-      if (route.name === name) {
+      if (route.path === path) {
         return { index, route };
       }
     })

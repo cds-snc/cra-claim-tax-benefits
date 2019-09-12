@@ -19,7 +19,6 @@ module.exports = function(app) {
   app.get('/personal/address', renderWithData('personal/address'))
   app.post(
     '/personal/address',
-    doAuth,
     checkSchema(addressSchema),
     checkErrors('personal/address'),
     postConfirmAddress,
@@ -38,7 +37,6 @@ module.exports = function(app) {
   app.get('/personal/maritalStatus', renderWithData('personal/maritalStatus'))
   app.post(
     '/personal/maritalStatus',
-    doAuth,
     checkSchema(maritalStatusSchema),
     checkErrors('personal/maritalStatus'),
     postConfirmMaritalStatus,

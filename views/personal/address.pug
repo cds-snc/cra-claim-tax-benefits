@@ -1,4 +1,5 @@
 extends ../base
+include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Confirm your mailing address')
@@ -25,7 +26,15 @@ block content
                 div #{data.personal.address.line1}
               div #{data.personal.address.city}, #{data.personal.address.province}
               div #{data.personal.address.postalCode}
+  
+  form.cra-form(method='post')
+    +yesNoRadios('confirmAddress', null, 'Is this information correct?', errors)
+      .no-info#noInfo
+        .no-info__wrapper
+          p #{__('If this information doesn’t match your records, you can’t change it here.')}
+          p #{__('You should not use this service to file information you believe to be incorrect.')}
 
-  +linkButtons('/financial/income')
-    a(href='/personal/address/edit' role='button' draggable='false') #{__('Change your mailing address')}
+    input#redirect(name='redirect', type='hidden', value='/financial/income')
+
+    +formButtons()
 

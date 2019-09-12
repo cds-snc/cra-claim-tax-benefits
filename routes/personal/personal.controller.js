@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { doRedirect, renderWithData, checkErrors, doAuth, confirmOrRedirect } = require('./../../utils')
+const { doRedirect, renderWithData, checkErrors, doAuth } = require('./../../utils')
 const {
   addressSchema,
   maritalStatusSchema,

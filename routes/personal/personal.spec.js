@@ -1,7 +1,5 @@
 const request = require('supertest')
-const cheerio = require('cheerio')
 const app = require('../../app.js')
-const API = require('../../api/index')
 
 describe('Test /personal responses', () => {
   describe('Test /personal 200 responses', () => {

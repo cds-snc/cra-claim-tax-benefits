@@ -69,8 +69,13 @@ describe('Full run through', function() {
       cy.get('div.address div').eq(index).should('contain', text)
     })
 
-    cy.get('a')
-      .contains('Confirm')
+    cy.get('input#confirmAddressYes + label').should('have.attr', 'for', 'confirmAddressYes')
+
+    cy.get('input#confirmAddressYes')
+      .click()
+
+    cy.get('form button[type="submit"]')
+      .should('contain', 'Continue')
       .click() 
   })
 
@@ -112,8 +117,13 @@ describe('Full run through', function() {
     cy.url().should('contain', '/personal/maritalStatus')
     cy.get('h1').should('contain', 'Confirm your marital status')
 
-    cy.get('a[href="/deductions/medical"]')
-      .should('contain', 'Confirm')
+    cy.get('input#confirmMaritalStatusYes + label').should('have.attr', 'for', 'confirmMaritalStatusYes')
+
+    cy.get('input#confirmMaritalStatusYes')
+      .click()
+
+    cy.get('form button[type="submit"]')
+      .should('contain', 'Continue')
       .click() 
   })
 

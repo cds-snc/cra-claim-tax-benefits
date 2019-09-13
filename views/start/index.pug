@@ -3,23 +3,23 @@ include ../_includes/banner
 
 block content
 
-  h1 #{__('Claim Tax Benefits')}
+  h1 #{__('service.name')}
 
   +banner('blue')
-    p #{__('Keep your notification letter with you. You need information on that letter to use this service.')}
+    p #{__('start.banner')}
 
   div
-    p #{__('Welcome to the Canada Revenue Agency’s new')} <strong>#{__('Claim Tax Benefits')}</strong> #{__('service')}.
-    p #{__('This service is to claim tax benefits online.')} #{__('You are eligible for this service if:')}
+    p #{__('start.p1.1')} <strong>#{__('service.name')}</strong> #{__('start.p1.2')}.
+    p #{__('start.p2.1')} #{__('start.p2.2')}
     ul
-      li #{__('You earned under $35,000 in 2018 (from employment, pension, RRSP withdrawals, or from benefits and credits you received)')}
-      li #{__('You do not have self-employment income to report')}
-      li #{__('You do not earn investment income (except for nominal interest income from Canadian sources)')}
-    p #{__('In order to claim tax benefits online, you must have the following:')}
+      li #{__('start.li1')}
+      li #{__('start.li2')}
+      li #{__('start.li3')}
+    p #{__('start.p3')}
     ul
-      li #{__('Your personal access code')}
-      li #{__('Social Insurance Number (SIN)')}
-      li #{__('Income information')}
+      li #{__('start.li4')}
+      li #{__('start.li5')}
+      li #{__('start.li6')}
 
   div
-    a(href='/login/code' role='button' draggable='false') #{__('Start now')} <span aria-hidden="true">→</span>
+    a(href='/login/code' role='button' draggable='false') #{__('button.start')} <span aria-hidden="true">→</span>

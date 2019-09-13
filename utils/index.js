@@ -1,5 +1,6 @@
 const API = require('./../api')
 const { validationResult } = require('express-validator')
+const { routes: defaultRoutes } = require('../config/routes.config')
 const validator = require('validator')
 
 /*
@@ -149,7 +150,10 @@ const doRedirect = (req, res) => {
 // Render a passed-in template and pass in session data under the "data" key
 const renderWithData = template => {
   return (req, res) => {
-    res.render(template, { data: req.session })
+    res.render(template, {
+      data: req.session,
+      prevRoute: getPreviousRoute(req.path, req.session),
+    })
   }
 }
 
@@ -176,20 +180,41 @@ const SINFilter = text => {
  * ex. if we're trying to get to data.personal.maritalStatus
  * pass as hasData(data, 'personal.maritalStatus')
  */
-const hasData = (obj, key) => {
-  return key.split('.').every(x => {
+const hasData = (obj, key, returnVal = false) => {
+  let copyObj = Object.assign({}, obj)
+  /*
+    Get value from nested object using a stirng
+
+    Examples:
+    - resolvePath(window,'document.body') => <body>
+    - resolvePath(window,'document.body.xyz') => undefined
+    - resolvePath(window,'document.body.xyz', null) => null
+    - resolvePath(window,'document.body.xyz', 1) => 1
+    Source: https://stackoverflow.com/a/43849204
+  */
+  const _resolvePath = (object, path, defaultValue) =>
+    path.split('.').reduce((o, p) => (o ? o[p] : defaultValue), object)
+
+  const bool = key.split('.').every(x => {
     if (
-      typeof obj != 'object' ||
-      obj === null ||
-      !obj.hasOwnProperty(x) || // eslint-disable-line no-prototype-builtins
-      obj[x] === null ||
-      obj[x] === ''
+      typeof copyObj != 'object' ||
+      copyObj === null ||
+      !copyObj.hasOwnProperty(x) || // eslint-disable-line no-prototype-builtins
+      copyObj[x] === null ||
+      copyObj[x] === ''
     ) {
       return false
     }
-    obj = obj[x]
+    copyObj = copyObj[x]
+
     return true
   })
+
+  if (returnVal) {
+    return _resolvePath(obj, key, bool)
+  }
+
+  return bool
 }
 
 const currencyFilter = (number, fractionDigits = 2) => {
@@ -223,6 +248,60 @@ const sortByLineNumber = (...objToSort) => {
 }
 
 /**
+ * @param {String} name route name
+ * @param {Array} routes array of route objects { name: "start", path: "/start" },
+ * @returns { path: "" }
+ */
+const getPreviousRoute = (path, session, routes = defaultRoutes) => {
+  const route = getRouteWithIndexByPath(path, routes)
+
+  if (!route || (!('index' in route) && process.env.NODE_ENV !== 'production')) {
+    throw new Error('Previous route error.  \n Are your route paths correct in route.config?')
+  }
+
+  const prevRoute = () => {
+    const oneRouteBack = routes[Number(route.index) - 1] || false
+
+    // essentially check if the page before
+    // - exists
+    // - is an edit page
+    // - and if the person actually entered/edited any of that information
+    if (
+      oneRouteBack &&
+      'editInfo' in oneRouteBack &&
+      !hasData(session, oneRouteBack.editInfo, true)
+    ) {
+      return routes[Number(route.index) - 2] || false
+    }
+
+    return oneRouteBack
+  }
+
+  return prevRoute()
+}
+
+/**
+ * @param {String} name route name
+ * @param {Array} routes array of route objects { name: "start", path: "/start" }
+ * @returns { index: "1", route: { name: "start", path: "/start" } }
+ */
+const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
+  const route = routes
+    .map((route, index) => {
+      if (route.path === path) {
+        return { index, route }
+      }
+    })
+    .filter(function(route) {
+      return route != null
+    })
+
+  if (route.length >= 1) {
+    return route[0]
+  }
+}
+
+/*
  * Accepts an ISO-format date (1999-09-30)
  * and returns a string formatted "dd mm yyyy" (30 09 1999)
  *
@@ -254,5 +333,6 @@ module.exports = {
   sortByLineNumber,
   checkLangQuery,
   doRedirect,
+  getPreviousRoute,
   isoDateHintText,
 }

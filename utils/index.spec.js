@@ -1,5 +1,13 @@
-const { SINFilter, hasData, isoDateHintText } = require('./index')
+const { SINFilter, hasData, getPreviousRoute, isoDateHintText } = require('./index')
 const API = require('./../api')
+
+const testRoutes = [
+  { name: 'start', path: '/start' },
+  { name: 'login code', path: '/login/code' },
+  { name: 'rrsp', path: '/deductions/rrsp' },
+  { name: 'rrsp amount', path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
+  { name: 'medical', path: '/deductions/medical' },
+]
 
 describe('Test SINFilter', () => {
   const sinFilterUnchanged = ['1', '', '1234567890', '12345678']
@@ -48,8 +56,48 @@ describe('Test hasData function', () => {
     expect(hasData({ obj: { string: '' } }, 'obj.string')).toBe(false)
   })
 
-  test('returns true for disabilityClaim', () => {
+  test('returns false for disabilityClaim', () => {
     expect(hasData(user, 'deductions.disabilityClaim')).toBe(false)
+  })
+
+  test('returns true for a false value that exists', () => {
+    expect(hasData({ obj: { bool: false } }, 'obj.bool')).toBe(true)
+  })
+
+  test('returns the value (false) for a false value that exists with extra param', () => {
+    expect(hasData({ obj: { bool: false } }, 'obj.bool', true)).toBe(false)
+  })
+
+  test('returns value for regular string with extra param ophthalmosaurus', () => {
+    expect(hasData({ obj: { string: 'ophthalmosaurus' } }, 'obj.string', true)).toEqual(
+      'ophthalmosaurus',
+    )
+  })
+})
+
+describe('Test getPreviousRoute function', () => {
+  const user = API.getUser('A5G98S4K1')
+
+  test('return false for a route that does not exist', () => {
+    const obj = getPreviousRoute('/start', user, testRoutes)
+    expect(obj.path).toEqual(undefined)
+  })
+
+  test('finds previous route path by name', () => {
+    const obj = getPreviousRoute('/login/code', user, testRoutes)
+    expect(obj.path).toEqual('/start')
+  })
+
+  test('navigates to an edit page if it was edited', () => {
+    const user = { deductions: { rrspClaim: true } }
+    const obj = getPreviousRoute('/deductions/medical', user, testRoutes)
+    expect(obj.path).toEqual('/deductions/rrsp/amount')
+  })
+
+  test('skips an edit page if it was not edited', () => {
+    const user = { deductions: { rrspClaim: null } }
+    const obj = getPreviousRoute('/deductions/medical', user, testRoutes)
+    expect(obj.path).toEqual('/deductions/rrsp')
   })
 })
 

@@ -235,7 +235,7 @@ const sortByLineNumber = (...objToSort) => {
 const getPreviousRoute = (path, session, routes = defaultRoutes) => {
   const route = getRouteWithIndexByPath(path, routes)
 
-  if (!route || (!'index' in route && process.env.NODE_ENV !== 'production')) {
+  if (!route || (!('index' in route) && process.env.NODE_ENV !== 'production')) {
     throw new Error('Previous route error.  \n Are your route paths correct in route.config?')
   }
 

@@ -19,11 +19,11 @@ html(lang=getLocale() === 'fr' ? 'fr' : 'en')
 
     if title
       if errors
-        title #{__('Error:')} #{title} — #{__('Claim Tax Benefits')}
+        title #{__('Error:')} #{title} — #{__('service.name')}
       else
-        title #{title} — #{__('Claim Tax Benefits')}
+        title #{title} — #{__('service.name')}
     else
-      title #{__('Claim Tax Benefits')}
+      title #{__('service.name')}
 
   body
     .container

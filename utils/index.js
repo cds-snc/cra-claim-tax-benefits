@@ -180,7 +180,7 @@ const SINFilter = text => {
  * ex. if we're trying to get to data.personal.maritalStatus
  * pass as hasData(data, 'personal.maritalStatus')
  */
-const hasData = (obj, key) => {
+const hasData = (obj, key, returnVal = false) => {
   return key.split('.').every(x => {
     if (
       typeof obj != 'object' ||
@@ -192,6 +192,10 @@ const hasData = (obj, key) => {
       return false
     }
     obj = obj[x]
+
+    if (returnVal) {
+      return obj
+    }
 
     return true
   })
@@ -240,21 +244,21 @@ const getPreviousRoute = (path, session, routes = defaultRoutes) => {
   }
 
   const prevRoute = () => {
-    const oneRouteBack = routes[Number(route.index) - 1]
+    const oneRouteBack = routes[Number(route.index) - 1] || false
 
-    const isEditPage = oneRouteBack && 'editInfo' in oneRouteBack ? true : false
-
-    let routeIndexBack = 1
-
-    // essentially check if the page before is an edit page, and if ther person actually entered/edited any of that information
-    if (isEditPage && !hasData(session, oneRouteBack.editInfo, true)) {
-      // if they didn't do any editing, skip over the edit page
-      routeIndexBack = 2
+    // essentially check if the page before
+    // - exists
+    // - is an edit page
+    // - and if the person actually entered/edited any of that information
+    if (
+      oneRouteBack &&
+      'editInfo' in oneRouteBack &&
+      !hasData(session, oneRouteBack.editInfo, true)
+    ) {
+      return routes[Number(route.index) - 2] || false
     }
 
-    return routes[Number(route.index) - routeIndexBack]
-      ? routes[Number(route.index) - routeIndexBack]
-      : false
+    return oneRouteBack
   }
 
   return prevRoute()

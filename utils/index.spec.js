@@ -56,7 +56,7 @@ describe('Test hasData function', () => {
     expect(hasData({ obj: { string: '' } }, 'obj.string')).toBe(false)
   })
 
-  test('returns true for disabilityClaim', () => {
+  test('returns false for disabilityClaim', () => {
     expect(hasData(user, 'deductions.disabilityClaim')).toBe(false)
   })
 })

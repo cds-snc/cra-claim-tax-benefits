@@ -59,33 +59,32 @@ describe('Test hasData function', () => {
   test('returns true for disabilityClaim', () => {
     expect(hasData(user, 'deductions.disabilityClaim')).toBe(false)
   })
-
 })
 
 describe('Test getPreviousRoute function', () => {
   const user = API.getUser('A5G98S4K1')
 
   test('return false for a route that does not exist', () => {
-    const obj = getPreviousRoute('/start', user, testRoutes);
-    expect(obj.path).toEqual(undefined);
-  });
+    const obj = getPreviousRoute('/start', user, testRoutes)
+    expect(obj.path).toEqual(undefined)
+  })
 
   test('finds previous route path by name', () => {
-    const obj = getPreviousRoute('/login/code', user, testRoutes);
-    expect(obj.path).toEqual('/start');
-  });
+    const obj = getPreviousRoute('/login/code', user, testRoutes)
+    expect(obj.path).toEqual('/start')
+  })
 
   test('navigates to an edit page if it was edited', () => {
     const user = { deductions: { rrspClaim: true } }
-    const obj = getPreviousRoute('/deductions/medical', user, testRoutes);
-    expect(obj.path).toEqual('/deductions/rrsp/amount');
-  });
+    const obj = getPreviousRoute('/deductions/medical', user, testRoutes)
+    expect(obj.path).toEqual('/deductions/rrsp/amount')
+  })
 
   test('skips an edit page if it was not edited', () => {
     const user = { deductions: { rrspClaim: null } }
-    const obj = getPreviousRoute('/deductions/medical', user, testRoutes);
-    expect(obj.path).toEqual('/deductions/rrsp');
-  });
+    const obj = getPreviousRoute('/deductions/medical', user, testRoutes)
+    expect(obj.path).toEqual('/deductions/rrsp')
+  })
 })
 
 describe('Test isoDateHintText function', () => {

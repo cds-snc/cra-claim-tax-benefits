@@ -148,11 +148,11 @@ const doRedirect = (req, res) => {
 }
 
 // Render a passed-in template and pass in session data under the "data" key
-const renderWithData = (template, path) => {
+const renderWithData = template => {
   return (req, res) => {
-    res.render(template, { 
+    res.render(template, {
       data: req.session,
-      prevRoute: getPreviousRoute(req.path, req.session)
+      prevRoute: getPreviousRoute(req.path, req.session),
     })
   }
 }
@@ -180,7 +180,7 @@ const SINFilter = text => {
  * ex. if we're trying to get to data.personal.maritalStatus
  * pass as hasData(data, 'personal.maritalStatus')
  */
-const hasData = (obj, key, returnVal) => {
+const hasData = (obj, key) => {
   return key.split('.').every(x => {
     if (
       typeof obj != 'object' ||
@@ -194,7 +194,6 @@ const hasData = (obj, key, returnVal) => {
     obj = obj[x]
 
     return true
-
   })
 }
 
@@ -231,39 +230,35 @@ const sortByLineNumber = (...objToSort) => {
 /**
  * @param {String} name route name
  * @param {Array} routes array of route objects { name: "start", path: "/start" },
- * @returns { name: "", path: "" }
+ * @returns { path: "" }
  */
 const getPreviousRoute = (path, session, routes = defaultRoutes) => {
-  const route = getRouteWithIndexByPath(path, routes);
+  const route = getRouteWithIndexByPath(path, routes)
 
-  if (!route || (!"index" in route && process.env.NODE_ENV !== "production")) {
-    throw new Error(
-      "Previous route error.  \n Are your route paths correct in route.config?')"
-    );
+  if (!route || (!'index' in route && process.env.NODE_ENV !== 'production')) {
+    throw new Error('Previous route error.  \n Are your route paths correct in route.config?')
   }
 
   const prevRoute = () => {
-    const oneRouteBack = routes[Number(route.index) - 1];
-    
-    const isEditPage = oneRouteBack && oneRouteBack.hasOwnProperty('editInfo') ? true : false;
+    const oneRouteBack = routes[Number(route.index) - 1]
 
+    const isEditPage = oneRouteBack && oneRouteBack.hasOwnProperty('editInfo') ? true : false
 
-    let routeIndexBack = 1;
+    let routeIndexBack = 1
 
     // essentially check if the page before is an edit page, and if ther person actually entered/edited any of that information
-    if (
-      isEditPage && 
-      !hasData(session, oneRouteBack.editInfo, true)
-    ) {
-        // if they didn't do any editing, skip over the edit page
-        routeIndexBack = 2
-      }
-    
-    return routes[Number(route.index) - routeIndexBack] ? routes[Number(route.index) - routeIndexBack] : false;
+    if (isEditPage && !hasData(session, oneRouteBack.editInfo, true)) {
+      // if they didn't do any editing, skip over the edit page
+      routeIndexBack = 2
+    }
+
+    return routes[Number(route.index) - routeIndexBack]
+      ? routes[Number(route.index) - routeIndexBack]
+      : false
   }
 
-  return prevRoute();
-};
+  return prevRoute()
+}
 
 /**
  * @param {String} name route name
@@ -274,17 +269,17 @@ const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
   const route = routes
     .map((route, index) => {
       if (route.path === path) {
-        return { index, route };
+        return { index, route }
       }
     })
     .filter(function(route) {
-      return route != null;
-    });
+      return route != null
+    })
 
   if (route.length >= 1) {
-    return route[0];
+    return route[0]
   }
-};
+}
 
 /*
  * Accepts an ISO-format date (1999-09-30)

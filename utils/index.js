@@ -242,7 +242,7 @@ const getPreviousRoute = (path, session, routes = defaultRoutes) => {
   const prevRoute = () => {
     const oneRouteBack = routes[Number(route.index) - 1]
 
-    const isEditPage = oneRouteBack && oneRouteBack.hasOwnProperty('editInfo') ? true : false
+    const isEditPage = oneRouteBack && 'editInfo' in oneRouteBack ? true : false
 
     let routeIndexBack = 1
 

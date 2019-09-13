@@ -181,24 +181,40 @@ const SINFilter = text => {
  * pass as hasData(data, 'personal.maritalStatus')
  */
 const hasData = (obj, key, returnVal = false) => {
-  return key.split('.').every(x => {
+  let copyObj = Object.assign({}, obj)
+  /*
+    Get value from nested object using a stirng
+
+    Examples:
+    - resolvePath(window,'document.body') => <body>
+    - resolvePath(window,'document.body.xyz') => undefined
+    - resolvePath(window,'document.body.xyz', null) => null
+    - resolvePath(window,'document.body.xyz', 1) => 1
+    Source: https://stackoverflow.com/a/43849204
+  */
+  const _resolvePath = (object, path, defaultValue) =>
+    path.split('.').reduce((o, p) => (o ? o[p] : defaultValue), object)
+
+  const bool = key.split('.').every(x => {
     if (
-      typeof obj != 'object' ||
-      obj === null ||
-      !obj.hasOwnProperty(x) || // eslint-disable-line no-prototype-builtins
-      obj[x] === null ||
-      obj[x] === ''
+      typeof copyObj != 'object' ||
+      copyObj === null ||
+      !copyObj.hasOwnProperty(x) || // eslint-disable-line no-prototype-builtins
+      copyObj[x] === null ||
+      copyObj[x] === ''
     ) {
       return false
     }
-    obj = obj[x]
-
-    if (returnVal) {
-      return obj
-    }
+    copyObj = copyObj[x]
 
     return true
   })
+
+  if (returnVal) {
+    return _resolvePath(obj, key, bool)
+  }
+
+  return bool
 }
 
 const currencyFilter = (number, fractionDigits = 2) => {

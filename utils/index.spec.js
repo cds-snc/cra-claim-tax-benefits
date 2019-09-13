@@ -59,6 +59,20 @@ describe('Test hasData function', () => {
   test('returns false for disabilityClaim', () => {
     expect(hasData(user, 'deductions.disabilityClaim')).toBe(false)
   })
+
+  test('returns true for a false value that exists', () => {
+    expect(hasData({ obj: { bool: false } }, 'obj.bool')).toBe(true)
+  })
+
+  test('returns the value (false) for a false value that exists with extra param', () => {
+    expect(hasData({ obj: { bool: false } }, 'obj.bool', true)).toBe(false)
+  })
+
+  test('returns value for regular string with extra param ophthalmosaurus', () => {
+    expect(hasData({ obj: { string: 'ophthalmosaurus' } }, 'obj.string', true)).toEqual(
+      'ophthalmosaurus',
+    )
+  })
 })
 
 describe('Test getPreviousRoute function', () => {

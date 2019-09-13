@@ -1,4 +1,5 @@
 extends ../base
+include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Confirm your marital status')
@@ -22,6 +23,14 @@ block content
           td
             div #{__(data.personal.maritalStatus)}
 
-  +linkButtons('/deductions/medical')
-    a(href='/personal/maritalStatus/edit' role='button' draggable='false') #{__('Change your marital status')}
+  form.cra-form(method='post')
+    +yesNoRadios('confirmMaritalStatus', null, 'Is this information correct?', errors)
+      .no-info#noInfo
+        .no-info__wrapper
+          p #{__('If this information doesn’t match your records, you can’t change it here.')}
+          p #{__('You should not use this service to file information you believe to be incorrect.')}
+
+    input#redirect(name='redirect', type='hidden', value='/deductions/medical')
+
+    +formButtons()
 

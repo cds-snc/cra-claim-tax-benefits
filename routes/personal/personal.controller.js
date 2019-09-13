@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { doRedirect, renderWithData, checkErrors, doAuth } = require('./../../utils')
+const { doRedirect, renderWithData, checkErrors } = require('./../../utils')
 const {
   addressSchema,
   maritalStatusSchema,
@@ -17,13 +17,11 @@ module.exports = function(app) {
     doRedirect,
   )
   app.get('/personal/address', renderWithData('personal/address'))
-  app.get('/personal/address/edit', doAuth, renderWithData('personal/address-edit'))
   app.post(
-    '/personal/address/edit',
-    doAuth,
+    '/personal/address',
     checkSchema(addressSchema),
-    checkErrors('personal/address-edit'),
-    postAddress,
+    checkErrors('personal/address'),
+    postConfirmAddress,
     doRedirect,
   )
 
@@ -37,29 +35,15 @@ module.exports = function(app) {
   )
 
   app.get('/personal/maritalStatus', renderWithData('personal/maritalStatus'))
-  app.get('/personal/maritalStatus/edit', doAuth, renderWithData('personal/maritalStatus-edit'))
   app.post(
-    '/personal/maritalStatus/edit',
-    doAuth,
+    '/personal/maritalStatus',
     checkSchema(maritalStatusSchema),
-    checkErrors('personal/maritalStatus-edit'),
-    (req, res, next) => {
-      req.session.personal.maritalStatus = req.body.maritalStatus
-      next()
-    },
+    checkErrors('personal/maritalStatus'),
+    postConfirmMaritalStatus,
     doRedirect,
   )
 }
 
-const postAddress = (req, res, next) => {
-  // copy all posted parameters, but remove the redirect
-  let addressData = Object.assign({}, req.body)
-  delete addressData.redirect
-
-  req.session.personal.address = addressData
-
-  next()
-}
 
 const postResidence = (req, res, next) => {
   if (req.body.residence !== 'Ontario') {
@@ -74,6 +58,30 @@ const postName = (req, res, next) => {
 
   if (name !== 'Yes') {
     return res.redirect('/offramp/name')
+  }
+
+  next()
+}
+
+const postConfirmMaritalStatus = (req, res, next) => {
+  const confirmMaritalStatus = req.body.confirmMaritalStatus
+
+  if (confirmMaritalStatus === 'No') {
+    //Income details are not correct
+    //Lead them to the offramp
+    return res.redirect('/offramp')
+  }
+
+  next()
+}
+
+const postConfirmAddress = (req, res, next) => {
+  const confirmAddress = req.body.confirmAddress
+
+  if (confirmAddress === 'No') {
+    //Income details are not correct
+    //Lead them to the offramp
+    return res.redirect('/offramp')
   }
 
   next()

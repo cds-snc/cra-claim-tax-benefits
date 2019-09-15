@@ -155,6 +155,25 @@ describe('Test /deductions responses', () => {
     })
   })
 
+  //Start of the Trillium section
+  describe('Test /trillium/rent responses', () => {
+    test('it redirects to the edit page when posting "Yes"', async () => {
+      const response = await request(app)
+        .post('/trillium/rent')
+        .send({ trilliumRentClaim: 'Yes', redirect: '/' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/trillium/rent/amount')
+    })
+
+    test('it redirects to the posted redirect url when posting "No"', async () => {
+      const response = await request(app)
+        .post('/trillium/rent')
+        .send({ trilliumRentClaim: 'No', redirect: '/' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/')
+    })
+  })
+
   // Start of the Climate Action Incentive section
   describe('Test /deductions/climate-action-incentive responses', () => {
     test('it redirects to the posted redirect url when posting "Yes"', async () => {
@@ -191,6 +210,10 @@ describe('Test /deductions responses', () => {
       {
         url: '/trillium/studentResidence',
         key: 'trilliumStudentResidence',
+      },
+      {
+        url: '/trillium/rent',
+        key: 'trilliumRentClaim',
       },
       {
         url: '/deductions/political',

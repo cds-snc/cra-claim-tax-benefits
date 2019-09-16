@@ -188,12 +188,17 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Property Tax page', function() {
     //TRILLIUM PROPERTY TAX
-    cy.url().should('contain', '/trillium/propertyTax/amount')
-    cy.get('h1').should('contain', 'Enter property tax paid in 2018')
-    cy.get('form input#trilliumPropertyTaxAmount')
-      .clear()
-      .type(this.user.trilliumPropertyTaxAmount)
-      .should('have.value', `${this.user.trilliumPropertyTaxAmount}`)
+    cy.url().should('contain', '/trillium/propertyTax')
+    cy.get('h1').should('contain', 'Deduct your property tax')
+
+    cy.get('input#trilliumPropertyTaxClaimNo + label').should(
+      'have.attr',
+      'for',
+      'trilliumPropertyTaxClaimNo',
+    )
+
+    cy.get('input#trilliumPropertyTaxClaimNo').click()
+
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
       .click()

@@ -33,6 +33,10 @@ const medicalAmountSchema = {
   medicalAmount: currencySchema(),
 }
 
+const trilliumRentSchema = {
+  trilliumRentClaim: yesNoSchema(),
+}
+
 const trilliumRentAmountSchema = {
   trilliumRentAmount: currencySchema(),
 }
@@ -67,6 +71,7 @@ module.exports = {
   politicalAmountSchema,
   rrspSchema,
   rrspAmountSchema,
+  trilliumRentSchema,
   trilliumRentAmountSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumEnergyAmountSchema,

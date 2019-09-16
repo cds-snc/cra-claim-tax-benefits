@@ -9,6 +9,7 @@ const {
   politicalAmountSchema,
   medicalSchema,
   medicalAmountSchema,
+  trilliumRentSchema,
   trilliumRentAmountSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumStudentResidenceSchema,
@@ -108,6 +109,15 @@ module.exports = function(app) {
   //End of Charitable Donations Section
 
   //Start of Trillum Section
+  app.get('/trillium/rent', renderWithData('deductions/trillium-rent'))
+  app.post(
+    '/trillium/rent',
+    checkSchema(trilliumRentSchema),
+    checkErrors('deductions/trillium-rent'),
+    postTrilliumRent,
+    doRedirect,
+  )
+
   app.get('/trillium/rent/amount', renderWithData('deductions/trillium-rent-amount'))
   app.post(
     '/trillium/rent/amount',
@@ -256,3 +266,20 @@ const postPolitical = (req, res, next) => {
   next()
 }
 //End of Political controller functions
+
+// Start of Trillium controller functions
+const postTrilliumRent = (req, res, next) => {
+  const trilliumRentClaim = req.body.trilliumRentClaim
+
+  if (trilliumRentClaim === 'Yes') {
+    req.session.deductions.trilliumRentClaim = true
+
+    // These two pages are hardcoded together
+    return res.redirect('/trillium/rent/amount')
+  }
+
+  req.session.deductions.trilliumRentClaim = false
+
+  next()
+}
+// End of Trillium controller functions

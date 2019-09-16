@@ -1,9 +1,9 @@
-const { 
+const {
   checkTableRows,
   allIncomeRows,
   getBenefitsBreakdownRows,
   getAddress,
-  logIn
+  logIn,
 } = require('../utils.js')
 
 describe('Full run through', function() {
@@ -37,12 +37,11 @@ describe('Full run through', function() {
 
     cy.get('input#nameYes + label').should('have.attr', 'for', 'nameYes')
 
-    cy.get('input#nameYes')
-      .click()
+    cy.get('input#nameYes').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Confirm Residence page', function() {
@@ -54,7 +53,7 @@ describe('Full run through', function() {
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Confirm Mailing page', function() {
@@ -65,18 +64,19 @@ describe('Full run through', function() {
     //format address based on apartment/no apartment
     const addressText = getAddress(this.user.address)
 
-    addressText.map( (text, index) => {
-      cy.get('div.address div').eq(index).should('contain', text)
+    addressText.map((text, index) => {
+      cy.get('div.address div')
+        .eq(index)
+        .should('contain', text)
     })
 
     cy.get('input#confirmAddressYes + label').should('have.attr', 'for', 'confirmAddressYes')
 
-    cy.get('input#confirmAddressYes')
-      .click()
+    cy.get('input#confirmAddressYes').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Confirm Income page', function() {
@@ -89,12 +89,11 @@ describe('Full run through', function() {
 
     cy.get('input#confirmIncomeYes + label').should('have.attr', 'for', 'confirmIncomeYes')
 
-    cy.get('input#confirmIncomeYes')
-      .click()
+    cy.get('input#confirmIncomeYes').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the RRSP Deductions page', function() {
@@ -104,12 +103,11 @@ describe('Full run through', function() {
 
     cy.get('input#rrspClaimNo + label').should('have.attr', 'for', 'rrspClaimNo')
 
-    cy.get('input#rrspClaimNo')
-      .click()
+    cy.get('input#rrspClaimNo').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Confirm Marital Status page', function() {
@@ -117,14 +115,17 @@ describe('Full run through', function() {
     cy.url().should('contain', '/personal/maritalStatus')
     cy.get('h1').should('contain', 'Confirm your marital status')
 
-    cy.get('input#confirmMaritalStatusYes + label').should('have.attr', 'for', 'confirmMaritalStatusYes')
+    cy.get('input#confirmMaritalStatusYes + label').should(
+      'have.attr',
+      'for',
+      'confirmMaritalStatusYes',
+    )
 
-    cy.get('input#confirmMaritalStatusYes')
-      .click()
+    cy.get('input#confirmMaritalStatusYes').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Medical Deductions page', function() {
@@ -136,12 +137,11 @@ describe('Full run through', function() {
 
     cy.get('input#medicalClaimNo + label').should('have.attr', 'for', 'medicalClaimNo')
 
-    cy.get('input#medicalClaimNo')
-      .click()
+    cy.get('input#medicalClaimNo').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Political Deductions page', function() {
@@ -151,12 +151,11 @@ describe('Full run through', function() {
 
     cy.get('input#politicalClaimNo + label').should('have.attr', 'for', 'politicalClaimNo')
 
-    cy.get('input#politicalClaimNo')
-      .click()
+    cy.get('input#politicalClaimNo').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Donations Deductions page', function() {
@@ -166,25 +165,25 @@ describe('Full run through', function() {
 
     cy.get('input#donationsClaimNo + label').should('have.attr', 'for', 'donationsClaimNo')
 
-    cy.get('input#donationsClaimNo')
-      .click()
+    cy.get('input#donationsClaimNo').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Trillium Rent page', function() {
     //TRILLIUM RENT
-    cy.url().should('contain', '/trillium/rent/amount')
-    cy.get('h1').should('contain', 'Enter rent paid in 2018')
-    cy.get('form input#trilliumRentAmount')
-      .clear()
-      .type(this.user.trilliumRentAmount)
-      .should('have.value', `${this.user.trilliumRentAmount}`)
+    cy.url().should('contain', '/trillium/rent')
+    cy.get('h1').should('contain', 'Deduct your rent payments')
+
+    cy.get('input#trilliumRentClaimNo + label').should('have.attr', 'for', 'trilliumRentClaimNo')
+
+    cy.get('input#trilliumRentClaimNo').click()
+
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Trillium Property Tax page', function() {
@@ -197,21 +196,24 @@ describe('Full run through', function() {
       .should('have.value', `${this.user.trilliumPropertyTaxAmount}`)
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Trillium Student Residence page', function() {
     //TRILLIUM STUDENT RESIDENCE
     cy.url().should('contain', '/trillium/studentResidence')
     cy.get('h1').should('contain', 'Designated student residence')
-    cy.get('input#trilliumStudentResidenceNo + label').should('have.attr', 'for', 'trilliumStudentResidenceNo')
+    cy.get('input#trilliumStudentResidenceNo + label').should(
+      'have.attr',
+      'for',
+      'trilliumStudentResidenceNo',
+    )
 
-    cy.get('input#trilliumStudentResidenceNo')
-      .click()
+    cy.get('input#trilliumStudentResidenceNo').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Trillium Home Energy page', function() {
@@ -224,7 +226,7 @@ describe('Full run through', function() {
       .should('have.value', `${this.user.trilliumEnergyAmount}`)
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Trillium Long Term Care page', function() {
@@ -237,7 +239,7 @@ describe('Full run through', function() {
       .should('have.value', `${this.user.trilliumLongTermCareAmount}`)
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Climate Action Incentive page', function() {
@@ -245,14 +247,17 @@ describe('Full run through', function() {
     cy.url().should('contain', '/deductions/climate-action-incentive')
     cy.get('h1').should('contain', 'Climate Action Incentive')
 
-    cy.get('input#climateActionIncentiveIsRuralNo + label').should('have.attr', 'for', 'climateActionIncentiveIsRuralNo')
+    cy.get('input#climateActionIncentiveIsRuralNo + label').should(
+      'have.attr',
+      'for',
+      'climateActionIncentiveIsRuralNo',
+    )
 
-    cy.get('input#climateActionIncentiveIsRuralNo')
-      .click()
+    cy.get('input#climateActionIncentiveIsRuralNo').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
-      .click() 
+      .click()
   })
 
   it('navigates the Review page', function() {
@@ -266,12 +271,11 @@ describe('Full run through', function() {
 
     cy.get('input#review + label').should('have.attr', 'for', 'review')
 
-    cy.get('input#review')
-      .click()
+    cy.get('input#review').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Submit my return')
-      .click() 
+      .click()
   })
 
   it('checks the Confirmation page', function() {
@@ -279,7 +283,6 @@ describe('Full run through', function() {
     cy.url().should('contain', '/confirmation')
     cy.get('h1').should('contain', 'Congratulations')
     cy.get('h2').should('contain', 'Your taxes have been filed with the Canada Revenue Agency.')
-    cy.get('td')
-      .should('contain', '5H3P9IO5816')
+    cy.get('td').should('contain', '5H3P9IO5816')
   })
 })

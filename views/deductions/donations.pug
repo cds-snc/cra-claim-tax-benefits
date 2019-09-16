@@ -17,6 +17,6 @@ block content
   form.cra-form(method='post')
     +yesNoRadios('donationsClaim', donationsClaim, 'Did you make charitable donations?', errors)
 
-    input#redirect(name='redirect', type='hidden', value='/trillium/rent/amount')
+    input#redirect(name='redirect', type='hidden', value='/trillium/rent')
 
     +formButtons()

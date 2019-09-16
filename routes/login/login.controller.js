@@ -31,7 +31,7 @@ const postLoginCode = async (req, res, next) => {
     req.session = null
 
     return res.status(422).render('login/code', {
-      data: { code: req.body.code } || {},
+      data: { code: req.body.code },
       errors: errorArray2ErrorObject(errors),
     })
   }

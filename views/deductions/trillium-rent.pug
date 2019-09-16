@@ -3,7 +3,7 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Deduct your rent payments')
-  -var trilliumRentClaim = hasData(data, 'deductions.trilliumRentClaim') ? data.deductions.trilliumRentClaim : ''
+  -var trilliumRentClaim = !hasData(data, 'deductions.trilliumRentClaim') ? '' : data.deductions.trilliumRentClaim ? 'Yes' : 'No'
 
 block content
 

@@ -3,7 +3,7 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Deduct your property tax')
-  -var trilliumPropertyTaxClaim = hasData(data, 'deductions.trilliumPropertyTaxClaim') ? data.deductions.trilliumPropertyTaxClaim : ''
+  -var trilliumPropertyTaxClaim = !hasData(data, 'deductions.trilliumPropertyTaxClaim') ? '' : data.deductions.trilliumPropertyTaxClaim ? 'Yes' : 'No'
 
 block content
 

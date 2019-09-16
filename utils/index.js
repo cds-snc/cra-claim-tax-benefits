@@ -153,7 +153,14 @@ const doYesNo = (claim, amount) => {
     }
 
     req.session.deductions[claim] = false
-    req.session.deductions[amount] = 0
+
+    if (amount && req.session.deductions[amount]) {
+      if (Object.keys(req.session.deductions[amount]).includes('amount')) {
+        req.session.deductions[amount].amount = 0.0
+      } else {
+        req.session.deductions[amount] = 0
+      }
+    }
 
     next()
   }

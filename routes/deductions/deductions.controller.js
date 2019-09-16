@@ -26,7 +26,7 @@ module.exports = function(app) {
     '/deductions/rrsp',
     checkSchema(rrspSchema),
     checkErrors('deductions/rrsp'),
-    postRRSP,
+    doYesNo('rrspClaim', 'rrspAmount'),
     doRedirect,
   )
   app.get('/deductions/rrsp/amount', renderWithData('deductions/rrsp-amount'))
@@ -208,23 +208,6 @@ module.exports = function(app) {
     doRedirect,
   )
 }
-
-//Start of RRSP controller functions
-const postRRSP = (req, res, next) => {
-  const rrspClaim = req.body.rrspClaim
-
-  if (rrspClaim === 'Yes') {
-    req.session.deductions.rrspClaim = true
-
-    // These two pages are hardcoded together
-    return res.redirect('/deductions/rrsp/amount')
-  }
-
-  req.session.deductions.rrspClaim = false
-
-  next()
-}
-// End of RRSP controller functions
 
 //Start of Charitable Donations controller functions
 const postDonations = (req, res, next) => {

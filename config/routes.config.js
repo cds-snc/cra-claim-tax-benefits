@@ -24,6 +24,7 @@ const routes = [
   { path: '/deductions/donations/amount', editInfo: 'deductions.charitableDonationAmount' },
   { path: '/trillium/rent' },
   { path: '/trillium/rent/amount', editInfo: 'deductions.trilliumRentAmount' },
+  { path: '/trillium/propertyTax' },
   { path: '/trillium/propertyTax/amount', editInfo: 'deductions.trilliumPropertyTaxAmount' },
   { path: '/trillium/studentResidence' },
   { path: '/trillium/energy/amount', editInfo: 'deductions.trilliumEnergyAmount' },

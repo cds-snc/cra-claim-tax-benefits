@@ -41,6 +41,10 @@ const trilliumRentAmountSchema = {
   trilliumRentAmount: currencySchema(),
 }
 
+const trilliumPropertyTaxSchema = {
+  trilliumPropertyTaxClaim: yesNoSchema(),
+}
+
 const trilliumPropertyTaxAmountSchema = {
   trilliumPropertyTaxAmount: currencySchema(),
 }
@@ -73,6 +77,7 @@ module.exports = {
   rrspAmountSchema,
   trilliumRentSchema,
   trilliumRentAmountSchema,
+  trilliumPropertyTaxSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareAmountSchema,

@@ -11,6 +11,7 @@ const {
   medicalAmountSchema,
   trilliumRentSchema,
   trilliumRentAmountSchema,
+  trilliumPropertyTaxSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumStudentResidenceSchema,
   trilliumEnergyAmountSchema,
@@ -127,6 +128,15 @@ module.exports = function(app) {
       req.session.deductions.trilliumRentAmount = req.body.trilliumRentAmount
       next()
     },
+    doRedirect,
+  )
+
+  app.get('/trillium/propertyTax', renderWithData('deductions/trillium-propertyTax'))
+  app.post(
+    '/trillium/propertyTax',
+    checkSchema(trilliumPropertyTaxSchema),
+    checkErrors('deductions/trillium-propertyTax'),
+    postTrilliumPropertyTax,
     doRedirect,
   )
 
@@ -279,6 +289,21 @@ const postTrilliumRent = (req, res, next) => {
   }
 
   req.session.deductions.trilliumRentClaim = false
+
+  next()
+}
+
+const postTrilliumPropertyTax = (req, res, next) => {
+  const trilliumPropertyTaxClaim = req.body.trilliumPropertyTaxClaim
+
+  if (trilliumPropertyTaxClaim === 'Yes') {
+    req.session.deductions.trilliumPropertyTaxClaim = true
+
+    // These two pages are hardcoded together
+    return res.redirect('/trillium/propertyTax/amount')
+  }
+
+  req.session.deductions.trilliumPropertyTaxClaim = false
 
   next()
 }

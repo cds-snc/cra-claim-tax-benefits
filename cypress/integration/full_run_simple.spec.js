@@ -223,12 +223,17 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Home Energy page', function() {
     //TRILLIUM HOME ENERGY
-    cy.url().should('contain', '/trillium/energy/amount')
-    cy.get('h1').should('contain', 'Home energy costs on a reserve')
-    cy.get('form input#trilliumEnergyAmount')
-      .clear()
-      .type(this.user.trilliumEnergyAmount)
-      .should('have.value', `${this.user.trilliumEnergyAmount}`)
+    cy.url().should('contain', '/trillium/energy')
+    cy.get('h1').should('contain', 'Deduct your home energy costs on a reserve')
+
+    cy.get('input#trilliumEnergyClaimNo + label').should(
+      'have.attr',
+      'for',
+      'trilliumEnergyClaimNo',
+    )
+
+    cy.get('input#trilliumEnergyClaimNo').click()
+
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
       .click()

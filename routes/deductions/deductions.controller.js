@@ -14,6 +14,7 @@ const {
   trilliumPropertyTaxSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumStudentResidenceSchema,
+  trilliumEnergySchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareAmountSchema,
   climateActionIncentiveSchema,
@@ -118,7 +119,6 @@ module.exports = function(app) {
     doYesNo('trilliumRentClaim', 'trilliumRentAmount'),
     doRedirect,
   )
-
   app.get('/trillium/rent/amount', renderWithData('deductions/trillium-rent-amount'))
   app.post(
     '/trillium/rent/amount',
@@ -139,7 +139,6 @@ module.exports = function(app) {
     doYesNo('trilliumPropertyTaxClaim', 'trilliumPropertyTaxAmount'),
     doRedirect,
   )
-
   app.get('/trillium/propertyTax/amount', renderWithData('deductions/trillium-propertyTax-amount'))
   app.post(
     '/trillium/propertyTax/amount',
@@ -165,6 +164,14 @@ module.exports = function(app) {
     doRedirect,
   )
 
+  app.get('/trillium/energy', renderWithData('deductions/trillium-energy'))
+  app.post(
+    '/trillium/energy',
+    checkSchema(trilliumEnergySchema),
+    checkErrors('deductions/trillium-energy'),
+    doYesNo('trilliumEnergyClaim', 'trilliumEnergyAmount'),
+    doRedirect,
+  )
   app.get('/trillium/energy/amount', renderWithData('deductions/trillium-energy-amount'))
   app.post(
     '/trillium/energy/amount',

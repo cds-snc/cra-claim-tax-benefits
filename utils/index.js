@@ -127,6 +127,38 @@ const renderWithData = template => {
   }
 }
 
+/**
+ * Middleware to handle our yes/no question routing logic.
+ * If the yesNo page comes back "Yes"
+ * - set the session variable to "true"
+ * - redirect to the "/amount" url
+ *
+ * If the yesNo page comes back "No"
+ * - set the session variable to "false"
+ * - reset the "amount" var to 0
+ * - continue
+ *
+ * @param string claim the variable name with the claim
+ * @param string amount the variable name with the amount
+ */
+const doYesNo = (claim, amount) => {
+  return (req, res, next) => {
+    const claimVal = req.body[claim]
+
+    if (claimVal === 'Yes') {
+      req.session.deductions[claim] = true
+
+      // These two pages are hardcoded together
+      return res.redirect(`${req.path}/amount`)
+    }
+
+    req.session.deductions[claim] = false
+    req.session.deductions[amount] = 0
+
+    next()
+  }
+}
+
 /* Pug filters */
 /**
  * Accepts a string (assumed to be a SIN)
@@ -302,6 +334,7 @@ module.exports = {
   sortByLineNumber,
   checkLangQuery,
   doRedirect,
+  doYesNo,
   getPreviousRoute,
   isoDateHintText,
 }

@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { doRedirect, renderWithData, checkErrors } = require('./../../utils')
+const { doRedirect, doYesNo, renderWithData, checkErrors } = require('./../../utils')
 const {
   rrspSchema,
   rrspAmountSchema,
@@ -115,7 +115,7 @@ module.exports = function(app) {
     '/trillium/rent',
     checkSchema(trilliumRentSchema),
     checkErrors('deductions/trillium-rent'),
-    postTrilliumRent,
+    doYesNo('trilliumRentClaim', 'trilliumRentAmount'),
     doRedirect,
   )
 
@@ -136,7 +136,7 @@ module.exports = function(app) {
     '/trillium/propertyTax',
     checkSchema(trilliumPropertyTaxSchema),
     checkErrors('deductions/trillium-propertyTax'),
-    postTrilliumPropertyTax,
+    doYesNo('trilliumPropertyTaxClaim', 'trilliumPropertyTaxAmount'),
     doRedirect,
   )
 
@@ -276,35 +276,3 @@ const postPolitical = (req, res, next) => {
   next()
 }
 //End of Political controller functions
-
-// Start of Trillium controller functions
-const postTrilliumRent = (req, res, next) => {
-  const trilliumRentClaim = req.body.trilliumRentClaim
-
-  if (trilliumRentClaim === 'Yes') {
-    req.session.deductions.trilliumRentClaim = true
-
-    // These two pages are hardcoded together
-    return res.redirect('/trillium/rent/amount')
-  }
-
-  req.session.deductions.trilliumRentClaim = false
-
-  next()
-}
-
-const postTrilliumPropertyTax = (req, res, next) => {
-  const trilliumPropertyTaxClaim = req.body.trilliumPropertyTaxClaim
-
-  if (trilliumPropertyTaxClaim === 'Yes') {
-    req.session.deductions.trilliumPropertyTaxClaim = true
-
-    // These two pages are hardcoded together
-    return res.redirect('/trillium/propertyTax/amount')
-  }
-
-  req.session.deductions.trilliumPropertyTaxClaim = false
-
-  next()
-}
-// End of Trillium controller functions

@@ -75,6 +75,6 @@ block content
           input(id='review' name='review' type="checkbox" value="review" checked=(value =='review') aria-describedby=(errors ? `review-error` : false))
           label(for='review') #{__('I confirm that, as far as I know, all the information in this tax return is accurate')}
 
-    input#redirect(name='redirect', type='hidden', value='/confirmation')
+    input#redirect(name='redirect', type='hidden', value='/checkAnswers')
 
     +formButtons('Submit my return')

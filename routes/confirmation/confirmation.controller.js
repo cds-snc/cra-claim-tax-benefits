@@ -7,4 +7,6 @@ module.exports = function(app) {
 
   app.get('/review', renderWithData('confirmation/review'))
   app.post('/review', checkSchema(reviewSchema), checkErrors('confirmation/review'), doRedirect)
+
+  app.get('/checkAnswers', renderWithData('confirmation/check-answers'))
 }

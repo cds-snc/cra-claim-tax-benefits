@@ -1,0 +1,79 @@
+extends ../base
+include ../_includes/yesNoRadios
+
+block variables
+  -var title = __('Check Your Answers Before Filing Your Return')
+  -var benefits = hasData(data, 'benefits') ? data.benefits : {}
+  -var totalBenefits = hasData(data, 'benefits.totalBenefits.amount') ? data.benefits.totalBenefits.amount : 0
+  -var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
+  -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
+  -var refund = hasData(data, 'refund') ? data.refund : {}
+  -var totalRefund = hasData(data, 'refund.totalRefund') ? data.refund.totalRefund : 0
+  -var refundLines = sortByLineNumber(data.deductions, taxes, incomes, refund)
+  -var count = 1;
+
+
+block content
+
+  h1 #{title}
+
+  include ../_includes/backButton
+
+  div
+    p #{__('This is an overview of your projected tax return, and all the benefits you will receive when you file for the current tax year.')}
+    p #{__('Take one final look before continuing. If something looks incorrect, please')} #[a(href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/telephone-numbers.html") #{__('contact CRA')}] #{__('before filing.')}
+
+  div
+    .breakdown-table.breakdown-table--summary
+      h2.breakdown-table__heading #{__('Personal Information')}
+
+      dl.breakdown-table-data
+        .breakdown-table__row
+          dt.breakdown-table__row-key Name
+          dd.breakdown-table__row-value Gabrielle Roy
+          dd.breakdown-table__row-link <a href="#">Review<span class="visually-hidden"> name</span></a>
+        .breakdown-table__row
+          dt.breakdown-table__row-key Date of Birth
+          dd.breakdown-table__row-value 9 September 1979
+          dd.breakdown-table__row-link <a href="#">Review<span class="visually-hidden"> Date of Birth</span></a>
+
+  div
+    .breakdown-table
+      h2.breakdown-table__heading #{__('Tax Credits')}
+
+      dl.breakdown-table-data
+        .breakdown-table__row
+          dt.breakdown-table__row-key Name
+          dd.breakdown-table__row-value Gabrielle Roy
+          dd.breakdown-table__row-link <a href="#">Review<span class="visually-hidden"> name</span></a>
+        .breakdown-table__row
+          dt.breakdown-table__row-key Date of Birth
+          dd.breakdown-table__row-value 9 September 1979
+          dd.breakdown-table__row-link <a href="#">Review<span class="visually-hidden"> Date of Birth</span></a>
+
+  div
+    .breakdown-table
+      h2.breakdown-table__heading #{__('Tax Benefits')}
+
+      dl.breakdown-table-data
+        .breakdown-table__row
+          dt.breakdown-table__row-key Name
+          dd.breakdown-table__row-value Gabrielle Roy
+          dd.breakdown-table__row-link <a href="#">Review<span class="visually-hidden"> name</span></a>
+        .breakdown-table__row
+          dt.breakdown-table__row-key Date of Birth
+          dd.breakdown-table__row-value 9 September 1979
+          dd.breakdown-table__row-link <a href="#">Review<span class="visually-hidden"> Date of Birth</span></a>
+
+  form.cra-form(method='post')
+    div(class={['has-error']: errors && errors.review})
+      .multiple-choice.multiple-choice--checkboxes
+        if errors
+          +validationMessage(errors.review.msg, key)
+        .multiple-choice__item
+          input(id='review' name='review' type="checkbox" value="review" checked=(value =='review') aria-describedby=(errors ? `review-error` : false))
+          label(for='review') #{__('I confirm that, as far as I know, all the information in this tax return is accurate')}
+
+    input#redirect(name='redirect', type='hidden', value='/confirmation')
+
+    +formButtons('Submit my return')

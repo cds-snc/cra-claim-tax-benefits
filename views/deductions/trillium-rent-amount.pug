@@ -2,7 +2,7 @@ extends ../base
 
 block variables
   -var title = __('Enter rent paid in 2018')
-  -var trilliumRentAmount = hasData(data, 'deductions.trilliumRentAmount') ? data.deductions.trilliumRentAmount : '0'
+  -var trilliumRentAmount = hasData(data, 'deductions.trilliumRentAmount') && data.deductions.trilliumRentAmount !== 0 ? data.deductions.trilliumRentAmount : ''
 
 block content
 

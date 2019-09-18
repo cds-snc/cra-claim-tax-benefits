@@ -71,6 +71,15 @@ a[role='button'] {
 }
 
 .back-button {
-  margin-bottom: $space-md;
+  margin-bottom: $space-xxl;
+  padding: 0;
+  text-decoration: none;
   display: inline-block;
+  border-bottom: 2px solid;
+
+  span {
+    font-size: 0.7em;
+    position: relative;
+    bottom: 2px;
+  }
 }

@@ -30,9 +30,12 @@ html(lang=getLocale() === 'fr' ? 'fr' : 'en')
       header
         include _includes/phaseBanner
         include _includes/fip
+      
       main
         if errors
           include _includes/errorList.pug
+
+        include _includes/backButton
 
         block content
 

@@ -68,36 +68,6 @@ const checkPublic = function(req, res, next) {
 }
 
 /**
- * This request middleware is used to add an "auth" step to some of our pages
- *
- * If we are visiting one of our edit pages, we want to ask users
- * another question before we let them edit their info.
- *
- * This means that we want to show the /login/auth page the first time, but not afterwards
- *
- * We don't want to show the /login/auth page if
- *
- * - we're running tests
- * - we have already set "auth" to true
- *
- * Otherwise, we redirect to the /login/auth page and put the redirect query in the URL
- */
-const doAuth = function(req, res, next) {
-  // if running tests, do nothing
-  if (process.env.NODE_ENV === 'test') {
-    return next()
-  }
-
-  // go to original url if "auth" is truthy
-  const { login: { auth = null } = {} } = req.session
-  if (auth) {
-    return next()
-  }
-
-  return res.redirect(`/login/auth?redirect=${encodeURIComponent(req.path)}`)
-}
-
-/**
  * Middleware function that runs our error validation
  *
  * Since returning our errors is looking like a lot of boilerplate code, this function:
@@ -324,7 +294,6 @@ const isoDateHintText = date => {
 module.exports = {
   errorArray2ErrorObject,
   checkErrors,
-  doAuth,
   renderWithData,
   SINFilter,
   hasData,

@@ -1,6 +1,6 @@
 const { validationResult, checkSchema } = require('express-validator')
 const { errorArray2ErrorObject, doRedirect, renderWithData, checkErrors } = require('./../../utils')
-const { loginSchema, sinSchema, dobSchema, authSchema } = require('./../../schemas')
+const { loginSchema, sinSchema, dobSchema } = require('./../../schemas')
 const API = require('../../api')
 const request = require('request-promise')
 
@@ -17,10 +17,6 @@ module.exports = function(app) {
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
   app.post('/login/dateOfBirth', checkSchema(dobSchema), postDateOfBirth, doRedirect)
-
-  // Auth page
-  app.get('/login/auth', getAuth)
-  app.post('/login/auth', checkSchema(authSchema), checkErrors('login/auth'), postAuth)
 }
 
 const postLoginCode = async (req, res, next) => {
@@ -90,28 +86,4 @@ const postDateOfBirth = async (req, res, next) => {
   }
 
   next()
-}
-
-const getAuth = (req, res) => {
-  if (!req.query.redirect) {
-    return res.redirect('/start')
-  }
-
-  return res.render('login/auth', { data: req.session })
-}
-
-const postAuth = (req, res) => {
-  if (!req.query.redirect) {
-    return res.redirect('/start')
-  }
-
-  // set "auth" to true
-  req.session.login.auth = true
-
-  let redirect = decodeURIComponent(req.query.redirect)
-  if (!redirect.startsWith('/')) {
-    throw new Error(`[POST ${req.path}] can only redirect to relative URLs`)
-  }
-
-  return res.redirect(redirect)
 }

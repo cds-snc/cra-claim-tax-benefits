@@ -150,6 +150,7 @@
     "trilliumStudentResidence": null,
     "trilliumEnergyClaim": null,
     "trilliumEnergyAmount": 0,
+    "trilliumLongTermCareClaim": null,
     "trilliumLongTermCareAmount": 0,
     "climateActionIncentiveIsRural": null
   },

@@ -253,12 +253,16 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Long Term Care page', function() {
     //TRILLIUM LONG TERM CARE
-    cy.url().should('contain', '/trillium/longTermCare/amount')
-    cy.get('h1').should('contain', 'Public long-term care home costs')
-    cy.get('form input#trilliumLongTermCareAmount')
-      .clear()
-      .type(this.user.trilliumLongTermCareAmount)
-      .should('have.value', `${this.user.trilliumLongTermCareAmount}`)
+    cy.url().should('contain', '/trillium/longTermCare')
+    cy.get('h1').should('contain', 'Deduct your long-term care home costs')
+    cy.get('input#trilliumLongTermCareClaimNo + label').should(
+      'have.attr',
+      'for',
+      'trilliumLongTermCareClaimNo',
+    )
+
+    cy.get('input#trilliumLongTermCareClaimNo').click()
+
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
       .click()

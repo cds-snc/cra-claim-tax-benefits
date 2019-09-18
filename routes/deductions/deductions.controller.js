@@ -16,6 +16,7 @@ const {
   trilliumStudentResidenceSchema,
   trilliumEnergySchema,
   trilliumEnergyAmountSchema,
+  trilliumlongTermCareSchema,
   trilliumlongTermCareAmountSchema,
   climateActionIncentiveSchema,
 } = require('./../../schemas')
@@ -191,6 +192,14 @@ module.exports = function(app) {
     doRedirect,
   )
 
+  app.get('/trillium/longTermCare', renderWithData('deductions/trillium-longTermCare'))
+  app.post(
+    '/trillium/longTermCare',
+    checkSchema(trilliumlongTermCareSchema),
+    checkErrors('deductions/trillium-longTermCare'),
+    doYesNo('trilliumLongTermCareClaim', 'trilliumLongTermCareAmount'),
+    doRedirect,
+  )
   app.get(
     '/trillium/longTermCare/amount',
     renderWithData('deductions/trillium-longTermCare-amount'),

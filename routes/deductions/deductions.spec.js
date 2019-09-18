@@ -103,6 +103,10 @@ describe('Test /deductions responses', () => {
         key: 'trilliumEnergyClaim',
       },
       {
+        url: '/trillium/longTermCare',
+        key: 'trilliumLongTermCareClaim',
+      },
+      {
         url: '/deductions/climate-action-incentive',
         key: 'climateActionIncentiveIsRural',
         yesRedir: '/success',

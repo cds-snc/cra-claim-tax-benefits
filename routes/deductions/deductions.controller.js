@@ -7,7 +7,7 @@ const {
   donationsAmountSchema,
   politicalSchema,
   politicalAmountSchema,
-  medicalSchema,
+  medicalExpenseSchema,
   medicalAmountSchema,
   trilliumRentSchema,
   trilliumRentAmountSchema,
@@ -69,9 +69,9 @@ module.exports = function(app) {
   app.get('/deductions/medical', renderWithData('deductions/medical'))
   app.post(
     '/deductions/medical',
-    checkSchema(medicalSchema),
+    checkSchema(medicalExpenseSchema),
     checkErrors('deductions/medical'),
-    postMedical,
+    doYesNo('medicalExpenseClaim', 'medicalExpenseAmount'),
     doRedirect,
   )
   app.get('/deductions/medical/amount', renderWithData('deductions/medical-amount'))
@@ -215,23 +215,6 @@ module.exports = function(app) {
     doRedirect,
   )
 }
-
-//Start of Medical claim controller functions
-const postMedical = (req, res, next) => {
-  const medicalClaim = req.body.medicalClaim
-
-  if (medicalClaim === 'Yes') {
-    req.session.deductions.medicalExpenseClaim = true
-
-    // These two pages are hardcoded together
-    return res.redirect('/deductions/medical/amount')
-  }
-
-  req.session.deductions.medicalExpenseClaim = false
-
-  next()
-}
-//End of Medical claim controller functions
 
 //Start of Political controller functions
 const postPolitical = (req, res, next) => {

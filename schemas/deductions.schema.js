@@ -25,8 +25,8 @@ const politicalAmountSchema = {
   politicalFederalAmount: currencySchema(),
 }
 
-const medicalSchema = {
-  medicalClaim: yesNoSchema(),
+const medicalExpenseSchema = {
+  medicalExpenseClaim: yesNoSchema(),
 }
 
 const medicalAmountSchema = {
@@ -73,7 +73,7 @@ module.exports = {
   climateActionIncentiveSchema,
   charitableDonationSchema,
   donationsAmountSchema,
-  medicalSchema,
+  medicalExpenseSchema,
   medicalAmountSchema,
   politicalSchema,
   politicalAmountSchema,

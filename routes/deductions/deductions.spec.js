@@ -75,15 +75,15 @@ describe('Test /deductions responses', () => {
       },
       {
         url: '/deductions/medical',
-        key: 'medicalClaim',
+        key: 'medicalExpenseClaim',
       },
       {
         url: '/deductions/donations',
-        key: 'donationsClaim',
+        key: 'charitableDonationClaim',
       },
       {
         url: '/deductions/political',
-        key: 'politicalClaim',
+        key: 'politicalContributionClaim',
       },
       {
         url: '/trillium/rent',
@@ -101,6 +101,10 @@ describe('Test /deductions responses', () => {
       {
         url: '/trillium/energy',
         key: 'trilliumEnergyClaim',
+      },
+      {
+        url: '/trillium/longTermCare',
+        key: 'trilliumLongTermCareClaim',
       },
       {
         url: '/deductions/climate-action-incentive',

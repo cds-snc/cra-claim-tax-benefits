@@ -29,6 +29,7 @@ const routes = [
   { path: '/trillium/studentResidence' },
   { path: '/trillium/energy' },
   { path: '/trillium/energy/amount', editInfo: 'deductions.trilliumEnergyAmount' },
+  { path: '/trillium/longTermCare' },
   { path: '/trillium/longTermCare/amount', editInfo: 'deductions.trilliumLongTermCareAmount' },
   { path: '/deductions/climate-action-incentive' },
   { path: '/review' },

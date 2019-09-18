@@ -8,16 +8,16 @@ const rrspAmountSchema = {
   rrspAmount: currencySchema(),
 }
 
-const donationsSchema = {
-  donationsClaim: yesNoSchema(),
+const charitableDonationSchema = {
+  charitableDonationClaim: yesNoSchema(),
 }
 
 const donationsAmountSchema = {
   donationsAmount: currencySchema(),
 }
 
-const politicalSchema = {
-  politicalClaim: yesNoSchema(),
+const politicalContributionSchema = {
+  politicalContributionClaim: yesNoSchema(),
 }
 
 const politicalAmountSchema = {
@@ -25,8 +25,8 @@ const politicalAmountSchema = {
   politicalFederalAmount: currencySchema(),
 }
 
-const medicalSchema = {
-  medicalClaim: yesNoSchema(),
+const medicalExpenseSchema = {
+  medicalExpenseClaim: yesNoSchema(),
 }
 
 const medicalAmountSchema = {
@@ -61,6 +61,10 @@ const trilliumEnergyAmountSchema = {
   trilliumEnergyAmount: currencySchema(),
 }
 
+const trilliumlongTermCareSchema = {
+  trilliumLongTermCareClaim: yesNoSchema(),
+}
+
 const trilliumlongTermCareAmountSchema = {
   trilliumLongTermCareAmount: currencySchema(),
 }
@@ -71,11 +75,11 @@ const climateActionIncentiveSchema = {
 
 module.exports = {
   climateActionIncentiveSchema,
-  donationsSchema,
+  charitableDonationSchema,
   donationsAmountSchema,
-  medicalSchema,
+  medicalExpenseSchema,
   medicalAmountSchema,
-  politicalSchema,
+  politicalContributionSchema,
   politicalAmountSchema,
   rrspSchema,
   rrspAmountSchema,
@@ -85,6 +89,7 @@ module.exports = {
   trilliumPropertyTaxAmountSchema,
   trilliumEnergySchema,
   trilliumEnergyAmountSchema,
+  trilliumlongTermCareSchema,
   trilliumlongTermCareAmountSchema,
   trilliumStudentResidenceSchema,
 }

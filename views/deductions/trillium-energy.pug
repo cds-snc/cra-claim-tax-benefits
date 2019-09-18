@@ -17,6 +17,6 @@ block content
   form.cra-form(method='post')
     +yesNoRadios('trilliumEnergyClaim', trilliumEnergyClaim, 'Did you live on a reserve and have home energy costs 2018?', errors)
 
-    input#redirect(name='redirect', type='hidden', value='/trillium/longTermCare/amount')
+    input#redirect(name='redirect', type='hidden', value='/trillium/longTermCare')
 
     +formButtons()

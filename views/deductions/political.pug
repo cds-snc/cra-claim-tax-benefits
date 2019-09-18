@@ -3,7 +3,7 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Political contributions')
-  -var politicalClaim = hasData(data, 'deductions.politicalClaim') ? data.deductions.politicalClaim : ''
+  -var politicalContributionClaim = !hasData(data, 'deductions.politicalContributionClaim') ? '': data.deductions.politicalContributionClaim ? 'Yes' : 'No'
 
 block content
 
@@ -15,7 +15,7 @@ block content
     p #{__('Did you make any political contributions in 2018?')}
 
   form.cra-form(method='post')
-    +yesNoRadios('politicalClaim', politicalClaim, 'Deduct political contributions?', errors)
+    +yesNoRadios('politicalContributionClaim', politicalContributionClaim, 'Deduct political contributions?', errors)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/donations')
 

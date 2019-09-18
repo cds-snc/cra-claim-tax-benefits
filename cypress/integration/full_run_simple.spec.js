@@ -135,9 +135,13 @@ describe('Full run through', function() {
     cy.url().should('contain', '/deductions/medical')
     cy.get('h1').should('contain', 'Medical expenses')
 
-    cy.get('input#medicalClaimNo + label').should('have.attr', 'for', 'medicalClaimNo')
+    cy.get('input#medicalExpenseClaimNo + label').should(
+      'have.attr',
+      'for',
+      'medicalExpenseClaimNo',
+    )
 
-    cy.get('input#medicalClaimNo').click()
+    cy.get('input#medicalExpenseClaimNo').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
@@ -149,9 +153,13 @@ describe('Full run through', function() {
     cy.url().should('contain', '/deductions/political')
     cy.get('h1').should('contain', 'Political contributions')
 
-    cy.get('input#politicalClaimNo + label').should('have.attr', 'for', 'politicalClaimNo')
+    cy.get('input#politicalContributionClaimNo + label').should(
+      'have.attr',
+      'for',
+      'politicalContributionClaimNo',
+    )
 
-    cy.get('input#politicalClaimNo').click()
+    cy.get('input#politicalContributionClaimNo').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
@@ -163,9 +171,13 @@ describe('Full run through', function() {
     cy.url().should('contain', '/deductions/donations')
     cy.get('h1').should('contain', 'Deduct your charitable donations')
 
-    cy.get('input#donationsClaimNo + label').should('have.attr', 'for', 'donationsClaimNo')
+    cy.get('input#charitableDonationClaimNo + label').should(
+      'have.attr',
+      'for',
+      'charitableDonationClaimNo',
+    )
 
-    cy.get('input#donationsClaimNo').click()
+    cy.get('input#charitableDonationClaimNo').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
@@ -241,12 +253,16 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Long Term Care page', function() {
     //TRILLIUM LONG TERM CARE
-    cy.url().should('contain', '/trillium/longTermCare/amount')
-    cy.get('h1').should('contain', 'Public long-term care home costs')
-    cy.get('form input#trilliumLongTermCareAmount')
-      .clear()
-      .type(this.user.trilliumLongTermCareAmount)
-      .should('have.value', `${this.user.trilliumLongTermCareAmount}`)
+    cy.url().should('contain', '/trillium/longTermCare')
+    cy.get('h1').should('contain', 'Deduct your long-term care home costs')
+    cy.get('input#trilliumLongTermCareClaimNo + label').should(
+      'have.attr',
+      'for',
+      'trilliumLongTermCareClaimNo',
+    )
+
+    cy.get('input#trilliumLongTermCareClaimNo').click()
+
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
       .click()

@@ -3,7 +3,7 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Deduct your rent payments')
-  -var trilliumRentClaim = hasData(data, 'deductions.trilliumRentClaim') ? data.deductions.rrspClaim : ''
+  -var trilliumRentClaim = !hasData(data, 'deductions.trilliumRentClaim') ? '' : data.deductions.trilliumRentClaim ? 'Yes' : 'No'
 
 block content
 
@@ -17,6 +17,6 @@ block content
   form.cra-form(method='post')
     +yesNoRadios('trilliumRentClaim', trilliumRentClaim, 'Did you pay rent in 2018?', errors)
 
-    input#redirect(name='redirect', type='hidden', value='/trillium/propertyTax/amount')
+    input#redirect(name='redirect', type='hidden', value='/trillium/propertyTax')
 
     +formButtons()

@@ -82,17 +82,25 @@ describe('Test /deductions responses', () => {
         key: 'donationsClaim',
       },
       {
-        url: '/trillium/studentResidence',
-        key: 'trilliumStudentResidence',
-        yesRedir: '/success',
+        url: '/deductions/political',
+        key: 'politicalClaim',
       },
       {
         url: '/trillium/rent',
         key: 'trilliumRentClaim',
       },
       {
-        url: '/deductions/political',
-        key: 'politicalClaim',
+        url: '/trillium/propertyTax',
+        key: 'trilliumPropertyTaxClaim',
+      },
+      {
+        url: '/trillium/studentResidence',
+        key: 'trilliumStudentResidence',
+        yesRedir: '/success',
+      },
+      {
+        url: '/trillium/energy',
+        key: 'trilliumEnergyClaim',
       },
       {
         url: '/deductions/climate-action-incentive',

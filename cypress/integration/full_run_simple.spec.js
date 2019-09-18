@@ -188,12 +188,17 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Property Tax page', function() {
     //TRILLIUM PROPERTY TAX
-    cy.url().should('contain', '/trillium/propertyTax/amount')
-    cy.get('h1').should('contain', 'Enter property tax paid in 2018')
-    cy.get('form input#trilliumPropertyTaxAmount')
-      .clear()
-      .type(this.user.trilliumPropertyTaxAmount)
-      .should('have.value', `${this.user.trilliumPropertyTaxAmount}`)
+    cy.url().should('contain', '/trillium/propertyTax')
+    cy.get('h1').should('contain', 'Deduct your property tax')
+
+    cy.get('input#trilliumPropertyTaxClaimNo + label').should(
+      'have.attr',
+      'for',
+      'trilliumPropertyTaxClaimNo',
+    )
+
+    cy.get('input#trilliumPropertyTaxClaimNo').click()
+
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
       .click()
@@ -218,12 +223,17 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Home Energy page', function() {
     //TRILLIUM HOME ENERGY
-    cy.url().should('contain', '/trillium/energy/amount')
-    cy.get('h1').should('contain', 'Home energy costs on a reserve')
-    cy.get('form input#trilliumEnergyAmount')
-      .clear()
-      .type(this.user.trilliumEnergyAmount)
-      .should('have.value', `${this.user.trilliumEnergyAmount}`)
+    cy.url().should('contain', '/trillium/energy')
+    cy.get('h1').should('contain', 'Deduct your home energy costs on a reserve')
+
+    cy.get('input#trilliumEnergyClaimNo + label').should(
+      'have.attr',
+      'for',
+      'trilliumEnergyClaimNo',
+    )
+
+    cy.get('input#trilliumEnergyClaimNo').click()
+
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
       .click()

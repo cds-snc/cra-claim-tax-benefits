@@ -2,7 +2,7 @@ extends ../base
 
 block variables
   -var title = __('Enter rent paid in 2018')
-  -var trilliumRentAmount = hasData(data, 'deductions.trilliumRentAmount') ? data.deductions.trilliumRentAmount : '0'
+  -var trilliumRentAmount = hasData(data, 'deductions.trilliumRentAmount') && data.deductions.trilliumRentAmount !== 0 ? data.deductions.trilliumRentAmount : ''
 
 block content
 
@@ -18,6 +18,6 @@ block content
   form.cra-form(method='post')
     +textInput('Total annual rent in 2018')(class='w-1-2 input-with-unit' name='trilliumRentAmount' placeholder='0.00' aria-labelledby='trilliumRentAmount__unit trilliumRentAmount__label' value=trilliumRentAmount)
 
-    input#redirect(name='redirect', type='hidden', value='/trillium/propertyTax/amount')
+    input#redirect(name='redirect', type='hidden', value='/trillium/propertyTax')
 
     +formButtons('Continue')

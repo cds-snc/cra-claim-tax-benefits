@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { doRedirect, renderWithData, checkErrors } = require('./../../utils')
+const { doRedirect, doYesNo, renderWithData, checkErrors } = require('./../../utils')
 const {
   rrspSchema,
   rrspAmountSchema,
@@ -11,8 +11,10 @@ const {
   medicalAmountSchema,
   trilliumRentSchema,
   trilliumRentAmountSchema,
+  trilliumPropertyTaxSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumStudentResidenceSchema,
+  trilliumEnergySchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareAmountSchema,
   climateActionIncentiveSchema,
@@ -25,7 +27,7 @@ module.exports = function(app) {
     '/deductions/rrsp',
     checkSchema(rrspSchema),
     checkErrors('deductions/rrsp'),
-    postRRSP,
+    doYesNo('rrspClaim', 'rrspAmount'),
     doRedirect,
   )
   app.get('/deductions/rrsp/amount', renderWithData('deductions/rrsp-amount'))
@@ -114,10 +116,9 @@ module.exports = function(app) {
     '/trillium/rent',
     checkSchema(trilliumRentSchema),
     checkErrors('deductions/trillium-rent'),
-    postTrilliumRent,
+    doYesNo('trilliumRentClaim', 'trilliumRentAmount'),
     doRedirect,
   )
-
   app.get('/trillium/rent/amount', renderWithData('deductions/trillium-rent-amount'))
   app.post(
     '/trillium/rent/amount',
@@ -130,6 +131,14 @@ module.exports = function(app) {
     doRedirect,
   )
 
+  app.get('/trillium/propertyTax', renderWithData('deductions/trillium-propertyTax'))
+  app.post(
+    '/trillium/propertyTax',
+    checkSchema(trilliumPropertyTaxSchema),
+    checkErrors('deductions/trillium-propertyTax'),
+    doYesNo('trilliumPropertyTaxClaim', 'trilliumPropertyTaxAmount'),
+    doRedirect,
+  )
   app.get('/trillium/propertyTax/amount', renderWithData('deductions/trillium-propertyTax-amount'))
   app.post(
     '/trillium/propertyTax/amount',
@@ -155,6 +164,14 @@ module.exports = function(app) {
     doRedirect,
   )
 
+  app.get('/trillium/energy', renderWithData('deductions/trillium-energy'))
+  app.post(
+    '/trillium/energy',
+    checkSchema(trilliumEnergySchema),
+    checkErrors('deductions/trillium-energy'),
+    doYesNo('trilliumEnergyClaim', 'trilliumEnergyAmount'),
+    doRedirect,
+  )
   app.get('/trillium/energy/amount', renderWithData('deductions/trillium-energy-amount'))
   app.post(
     '/trillium/energy/amount',
@@ -198,23 +215,6 @@ module.exports = function(app) {
     doRedirect,
   )
 }
-
-//Start of RRSP controller functions
-const postRRSP = (req, res, next) => {
-  const rrspClaim = req.body.rrspClaim
-
-  if (rrspClaim === 'Yes') {
-    req.session.deductions.rrspClaim = true
-
-    // These two pages are hardcoded together
-    return res.redirect('/deductions/rrsp/amount')
-  }
-
-  req.session.deductions.rrspClaim = false
-
-  next()
-}
-// End of RRSP controller functions
 
 //Start of Charitable Donations controller functions
 const postDonations = (req, res, next) => {
@@ -266,20 +266,3 @@ const postPolitical = (req, res, next) => {
   next()
 }
 //End of Political controller functions
-
-// Start of Trillium controller functions
-const postTrilliumRent = (req, res, next) => {
-  const trilliumRentClaim = req.body.trilliumRentClaim
-
-  if (trilliumRentClaim === 'Yes') {
-    req.session.deductions.trilliumRentClaim = true
-
-    // These two pages are hardcoded together
-    return res.redirect('/trillium/rent/amount')
-  }
-
-  req.session.deductions.trilliumRentClaim = false
-
-  next()
-}
-// End of Trillium controller functions

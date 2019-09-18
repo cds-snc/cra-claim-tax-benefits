@@ -83,7 +83,7 @@ describe('Test /deductions responses', () => {
       },
       {
         url: '/deductions/political',
-        key: 'politicalClaim',
+        key: 'politicalContributionClaim',
       },
       {
         url: '/trillium/rent',

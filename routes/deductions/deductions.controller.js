@@ -5,7 +5,7 @@ const {
   rrspAmountSchema,
   charitableDonationSchema,
   donationsAmountSchema,
-  politicalSchema,
+  politicalContributionSchema,
   politicalAmountSchema,
   medicalExpenseSchema,
   medicalAmountSchema,
@@ -91,9 +91,16 @@ module.exports = function(app) {
   app.get('/deductions/political', renderWithData('deductions/political'))
   app.post(
     '/deductions/political',
-    checkSchema(politicalSchema),
+    checkSchema(politicalContributionSchema),
     checkErrors('deductions/political'),
-    postPolitical,
+    doYesNo('politicalContributionClaim'),
+    // These only apply if the user clicked "no"
+    // If they clicked "Yes", they will be redirected by `doYesNo()`
+    (req, res, next) => {
+      req.session.deductions.politicalFederalAmount = 0
+      req.session.deductions.politicalProvincialAmount = 0
+      next()
+    },
     doRedirect,
   )
   app.get('/deductions/political/amount', renderWithData('deductions/political-amount'))
@@ -215,20 +222,3 @@ module.exports = function(app) {
     doRedirect,
   )
 }
-
-//Start of Political controller functions
-const postPolitical = (req, res, next) => {
-  const politicalClaim = req.body.politicalClaim
-
-  if (politicalClaim === 'Yes') {
-    req.session.deductions.politicalClaim = true
-
-    // These two pages are hardcoded together
-    return res.redirect('/deductions/political/amount')
-  }
-
-  req.session.deductions.politicalClaim = false
-
-  next()
-}
-//End of Political controller functions

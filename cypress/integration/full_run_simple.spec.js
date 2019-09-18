@@ -153,9 +153,13 @@ describe('Full run through', function() {
     cy.url().should('contain', '/deductions/political')
     cy.get('h1').should('contain', 'Political contributions')
 
-    cy.get('input#politicalClaimNo + label').should('have.attr', 'for', 'politicalClaimNo')
+    cy.get('input#politicalContributionClaimNo + label').should(
+      'have.attr',
+      'for',
+      'politicalContributionClaimNo',
+    )
 
-    cy.get('input#politicalClaimNo').click()
+    cy.get('input#politicalContributionClaimNo').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')

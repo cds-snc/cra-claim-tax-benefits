@@ -16,8 +16,8 @@ const donationsAmountSchema = {
   donationsAmount: currencySchema(),
 }
 
-const politicalSchema = {
-  politicalClaim: yesNoSchema(),
+const politicalContributionSchema = {
+  politicalContributionClaim: yesNoSchema(),
 }
 
 const politicalAmountSchema = {
@@ -75,7 +75,7 @@ module.exports = {
   donationsAmountSchema,
   medicalExpenseSchema,
   medicalAmountSchema,
-  politicalSchema,
+  politicalContributionSchema,
   politicalAmountSchema,
   rrspSchema,
   rrspAmountSchema,

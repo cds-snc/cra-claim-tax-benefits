@@ -8,8 +8,8 @@ const rrspAmountSchema = {
   rrspAmount: currencySchema(),
 }
 
-const donationsSchema = {
-  donationsClaim: yesNoSchema(),
+const charitableDonationSchema = {
+  charitableDonationClaim: yesNoSchema(),
 }
 
 const donationsAmountSchema = {
@@ -71,7 +71,7 @@ const climateActionIncentiveSchema = {
 
 module.exports = {
   climateActionIncentiveSchema,
-  donationsSchema,
+  charitableDonationSchema,
   donationsAmountSchema,
   medicalSchema,
   medicalAmountSchema,

@@ -163,9 +163,13 @@ describe('Full run through', function() {
     cy.url().should('contain', '/deductions/donations')
     cy.get('h1').should('contain', 'Deduct your charitable donations')
 
-    cy.get('input#donationsClaimNo + label').should('have.attr', 'for', 'donationsClaimNo')
+    cy.get('input#charitableDonationClaimNo + label').should(
+      'have.attr',
+      'for',
+      'charitableDonationClaimNo',
+    )
 
-    cy.get('input#donationsClaimNo').click()
+    cy.get('input#charitableDonationClaimNo').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')

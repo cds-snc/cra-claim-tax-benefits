@@ -3,7 +3,7 @@ const { doRedirect, doYesNo, renderWithData, checkErrors } = require('./../../ut
 const {
   rrspSchema,
   rrspAmountSchema,
-  donationsSchema,
+  charitableDonationSchema,
   donationsAmountSchema,
   politicalSchema,
   politicalAmountSchema,
@@ -47,9 +47,9 @@ module.exports = function(app) {
   app.get('/deductions/donations', renderWithData('deductions/donations'))
   app.post(
     '/deductions/donations',
-    checkSchema(donationsSchema),
+    checkSchema(charitableDonationSchema),
     checkErrors('deductions/donations'),
-    postDonations,
+    doYesNo('charitableDonationClaim', 'charitableDonationAmount'),
     doRedirect,
   )
   app.get('/deductions/donations/amount', renderWithData('deductions/donations-amount'))
@@ -215,23 +215,6 @@ module.exports = function(app) {
     doRedirect,
   )
 }
-
-//Start of Charitable Donations controller functions
-const postDonations = (req, res, next) => {
-  const donationsClaim = req.body.donationsClaim
-
-  if (donationsClaim === 'Yes') {
-    req.session.deductions.charitableDonationClaim = true
-
-    // These two pages are hardcoded together
-    return res.redirect('/deductions/donations/amount')
-  }
-
-  req.session.deductions.charitableDonationClaim = false
-
-  next()
-}
-//End of Charitable Donations controller functions
 
 //Start of Medical claim controller functions
 const postMedical = (req, res, next) => {

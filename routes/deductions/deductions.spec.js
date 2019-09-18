@@ -79,7 +79,7 @@ describe('Test /deductions responses', () => {
       },
       {
         url: '/deductions/donations',
-        key: 'donationsClaim',
+        key: 'charitableDonationClaim',
       },
       {
         url: '/deductions/political',

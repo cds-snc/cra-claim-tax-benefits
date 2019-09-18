@@ -3,7 +3,7 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Deduct your charitable donations')
-  -var donationsClaim = hasData(data, 'deductions.donationsClaim') ? data.deductions.donationsClaim : ''
+  -var charitableDonationClaim = !hasData(data, 'deductions.charitableDonationClaim') ? '' : data.deductions.charitableDonationClaim ? 'Yes' : 'No'
 
 block content
 
@@ -15,7 +15,7 @@ block content
     p #{__('Did you make any charitable donations in 2018?')}
 
   form.cra-form(method='post')
-    +yesNoRadios('donationsClaim', donationsClaim, 'Did you make charitable donations?', errors)
+    +yesNoRadios('charitableDonationClaim', charitableDonationClaim, 'Did you make charitable donations?', errors)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/rent')
 

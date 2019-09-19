@@ -3,15 +3,6 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Check Your Answers Before Filing Your Return')
-  -var benefits = hasData(data, 'benefits') ? data.benefits : {}
-  -var totalBenefits = hasData(data, 'benefits.totalBenefits.amount') ? data.benefits.totalBenefits.amount : 0
-  -var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
-  -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
-  -var refund = hasData(data, 'refund') ? data.refund : {}
-  -var totalRefund = hasData(data, 'refund.totalRefund') ? data.refund.totalRefund : 0
-  -var refundLines = sortByLineNumber(data.deductions, taxes, incomes, refund)
-  -var count = 1;
-
 
 block content
 
@@ -29,37 +20,29 @@ block content
         h2.breakdown-table__heading #{index}
         dl.breakdown-table-data
           each row in section
-            .breakdown-table__row
-              dt.breakdown-table__row-key #{row.text}
-              dd.breakdown-table__row-value
-                if row.infoPath.length > 1
-                  - var totalVal = 0
-                  //- are we adding strings?
-                  if (typeof hasData(data,row.infoPath[0],true) === 'string') 
-                    each val in row.infoPath
-                      span=`${hasData(data, val, true)} `
-                  //- or numbers?
-                  else
-                    each val in row.infoPath
-                      - totalVal += parseInt(hasData(data, val, true))
-                    span=totalVal
-                else if row.infoPath.length <= 1
-                  each val in row.infoPath
-                    span #{hasData(data, val, true)}
-              if row.urlPath !== ""
-                dd.breakdown-table__row-link 
-                  a(href=row.urlPath)
-                    <span>Review<span class="visually-hidden"> #{row.text}</span>
-
-  form.cra-form(method='post')
-    div(class={['has-error']: errors && errors.review})
-      .multiple-choice.multiple-choice--checkboxes
-        if errors
-          +validationMessage(errors.review.msg, key)
-        .multiple-choice__item
-          input(id='review' name='review' type="checkbox" value="review" checked=(value =='review') aria-describedby=(errors ? `review-error` : false))
-          label(for='review') #{__('I confirm that, as far as I know, all the information in this tax return is accurate')}
-
-    input#redirect(name='redirect', type='hidden', value='/confirmation')
-
-    +formButtons('Submit my return')
+            if !row.displayIf || row.displayIf && hasData(data,row.displayIf,true) !== null
+              .breakdown-table__row
+                  dt.breakdown-table__row-key #{row.text}
+                  dd.breakdown-table__row-value
+                    if row.infoPath.length > 1
+                      - var totalVal = 0
+                      //- are we adding strings?
+                      if (typeof hasData(data,row.infoPath[0],true) === 'string') 
+                        each val in row.infoPath
+                          span=`${hasData(data, val, true)} `
+                      //- or numbers?
+                      else
+                        each val in row.infoPath
+                          - totalVal += parseInt(hasData(data, val, true))
+                        span=totalVal
+                    else if row.infoPath.length <= 1
+                      each val in row.infoPath
+                        if val.includes('Claim') && !val.includes('Amount') || val.includes('trillium') && !val.includes('Amount') || val.includes('climateActionIncentiveIsRural')
+                          span=hasData(data,val,true) === null ? 'No' : 'Yes'
+                        else 
+                          span #{hasData(data, val, true)}
+                        //- check address
+                  if row.urlPath !== ""
+                    dd.breakdown-table__row-link 
+                      a(href=row.urlPath)
+                        <span>Review<span class="visually-hidden"> #{row.text}</span>

@@ -40,7 +40,8 @@
     {
       "text": "RRSP Contribution",
       "infoPath": ["deductions.rrspAmount.amount"],
-      "urlPath": "/deductions/rrsp/amount"
+      "urlPath": "/deductions/rrsp/amount",
+      "displayIf": "deductions.rrspClaim"
     },
     {
       "text": "Do you have medical expenses?",
@@ -50,17 +51,19 @@
     {
       "text": "Total medical expense cost",
       "infoPath": ["deductions.medicalExpenseClaimAmount.amount"],
-      "urlPath": "/deductions/medical/amount"
+      "urlPath": "/deductions/medical/amount",
+      "displayIf": "deductions.medicalExpenseClaim"
     },
     {
       "text": "Did you contribute to a political party",
-      "infoPath": ["deductions.politcalContributionClaim"],
+      "infoPath": ["deductions.politicalContributionClaim"],
       "urlPath": "/deductions/political"
     },
     {
       "text": "Amount contributed",
       "infoPath": ["deductions.politicalFederalAmount", "deductions.politicalProvincialAmount"],
-      "urlPath": "/deductions/political/amount"
+      "urlPath": "/deductions/political/amount",
+      "displayIf": "deductions.politicalContributionClaim"
     },
     {
       "text": "Did you Donate to a Charity",
@@ -70,7 +73,8 @@
     {
       "text": "Amount donated",
       "infoPath": ["deductions.charitableDonationAmount"],
-      "urlPath": "/deductions/donations/amount"
+      "urlPath": "/deductions/donations/amount",
+      "displayIf": "deductions.charitableDonationClaim"
     }
   ],
   "Tax Benefits": [
@@ -82,7 +86,8 @@
     {
       "text": "Rent paid",
       "infoPath": ["deductions.trilliumRentAmount"],
-      "urlPath": "/trillium/rent/amount"
+      "urlPath": "/trillium/rent/amount",
+      "displayIf": "deductions.trilliumRentClaim"
     },
     {
       "text": "Student residence",
@@ -91,13 +96,14 @@
     },
     {
       "text": "Home energy costs on a reserve",
-      "infoPath": ["deductions.trilliumHomeEnergy"],
+      "infoPath": ["deductions.trilliumEnergyClaim"],
       "urlPath": "/trillium/energy"
     },
     {
       "text": "Yearly energy costs",
-      "infoPath": ["deductions.trilliumHomeEnergyAmount"],
-      "urlPath": "/trillium/energy/amount"
+      "infoPath": ["deductions.trilliumEnergyAmount"],
+      "urlPath": "/trillium/energy/amount",
+      "displayIf": "deductions.trilliumEnergyClaim"
     },
     {
       "text": "Public long-term care home",
@@ -107,7 +113,8 @@
     {
       "text": "Acommodation cost",
       "infoPath": ["deductions.trilliumLongTermCareAmount"],
-      "urlPath": "/trillium/longTermCare/amount"
+      "urlPath": "/trillium/longTermCare/amount",
+      "displayIf": "deductions.trilliumLongTermCareClaim"
     },
     {
       "text": "Small or rural community",

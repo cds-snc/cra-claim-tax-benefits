@@ -54,5 +54,5 @@ const validationArray = validators => {
 module.exports = {
   currencySchema,
   yesNoSchema,
-  validationArray
+  validationArray,
 }

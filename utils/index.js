@@ -68,36 +68,6 @@ const checkPublic = function(req, res, next) {
 }
 
 /**
- * This request middleware is used to add an "auth" step to some of our pages
- *
- * If we are visiting one of our edit pages, we want to ask users
- * another question before we let them edit their info.
- *
- * This means that we want to show the /login/auth page the first time, but not afterwards
- *
- * We don't want to show the /login/auth page if
- *
- * - we're running tests
- * - we have already set "auth" to true
- *
- * Otherwise, we redirect to the /login/auth page and put the redirect query in the URL
- */
-const doAuth = function(req, res, next) {
-  // if running tests, do nothing
-  if (process.env.NODE_ENV === 'test') {
-    return next()
-  }
-
-  // go to original url if "auth" is truthy
-  const { login: { auth = null } = {} } = req.session
-  if (auth) {
-    return next()
-  }
-
-  return res.redirect(`/login/auth?redirect=${encodeURIComponent(req.path)}`)
-}
-
-/**
  * Middleware function that runs our error validation
  *
  * Since returning our errors is looking like a lot of boilerplate code, this function:
@@ -154,6 +124,45 @@ const renderWithData = template => {
       data: req.session,
       prevRoute: getPreviousRoute(req.path, req.session),
     })
+  }
+}
+
+/**
+ * Middleware to handle our yes/no question routing logic.
+ * If the yesNo page comes back "Yes"
+ * - set the session variable to "true"
+ * - redirect to the "/amount" url
+ *
+ * If the yesNo page comes back "No"
+ * - set the session variable to "false"
+ * - reset the "amount" var to 0
+ * - continue
+ *
+ * @param string claim the variable name with the claim
+ * @param string amount the variable name with the amount
+ */
+const doYesNo = (claim, amount) => {
+  return (req, res, next) => {
+    const claimVal = req.body[claim]
+
+    if (claimVal === 'Yes') {
+      req.session.deductions[claim] = true
+
+      // These two pages are hardcoded together
+      return res.redirect(`${req.path}/amount`)
+    }
+
+    req.session.deductions[claim] = false
+
+    if (amount && req.session.deductions[amount]) {
+      if (Object.keys(req.session.deductions[amount]).includes('amount')) {
+        req.session.deductions[amount].amount = 0.0
+      } else {
+        req.session.deductions[amount] = 0
+      }
+    }
+
+    next()
   }
 }
 
@@ -324,7 +333,7 @@ const isoDateHintText = date => {
 module.exports = {
   errorArray2ErrorObject,
   checkErrors,
-  doAuth,
+  getPreviousRoute,
   renderWithData,
   SINFilter,
   hasData,
@@ -333,6 +342,7 @@ module.exports = {
   sortByLineNumber,
   checkLangQuery,
   doRedirect,
+  doYesNo,
   getPreviousRoute,
   isoDateHintText,
 }

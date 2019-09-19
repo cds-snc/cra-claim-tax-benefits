@@ -2,7 +2,7 @@ extends ../base
 
 block variables
   -var title = __('Claim medical expenses')
-  -var medicalClaim = hasData(data, 'deductions.medicalClaim') ? data.deductions.medicalClaim : ''
+  -var medicalAmount = hasData(data, 'deductions.medicalExpenseClaim') && data.deductions.medicalExpenseClaim !== 0 ? data.deductions.medicalExpenseClaim : ''
 
 block content
 

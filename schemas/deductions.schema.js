@@ -8,16 +8,16 @@ const rrspAmountSchema = {
   rrspAmount: currencySchema(),
 }
 
-const donationsSchema = {
-  donationsClaim: yesNoSchema(),
+const charitableDonationSchema = {
+  charitableDonationClaim: yesNoSchema(),
 }
 
 const donationsAmountSchema = {
   donationsAmount: currencySchema(),
 }
 
-const politicalSchema = {
-  politicalClaim: yesNoSchema(),
+const politicalContributionSchema = {
+  politicalContributionClaim: yesNoSchema(),
 }
 
 const politicalAmountSchema = {
@@ -25,16 +25,24 @@ const politicalAmountSchema = {
   politicalFederalAmount: currencySchema(),
 }
 
-const medicalSchema = {
-  medicalClaim: yesNoSchema(),
+const medicalExpenseSchema = {
+  medicalExpenseClaim: yesNoSchema(),
 }
 
 const medicalAmountSchema = {
   medicalAmount: currencySchema(),
 }
 
+const trilliumRentSchema = {
+  trilliumRentClaim: yesNoSchema(),
+}
+
 const trilliumRentAmountSchema = {
   trilliumRentAmount: currencySchema(),
+}
+
+const trilliumPropertyTaxSchema = {
+  trilliumPropertyTaxClaim: yesNoSchema(),
 }
 
 const trilliumPropertyTaxAmountSchema = {
@@ -45,8 +53,16 @@ const trilliumStudentResidenceSchema = {
   trilliumStudentResidence: yesNoSchema(),
 }
 
+const trilliumEnergySchema = {
+  trilliumEnergyClaim: yesNoSchema(),
+}
+
 const trilliumEnergyAmountSchema = {
   trilliumEnergyAmount: currencySchema(),
+}
+
+const trilliumlongTermCareSchema = {
+  trilliumLongTermCareClaim: yesNoSchema(),
 }
 
 const trilliumlongTermCareAmountSchema = {
@@ -59,17 +75,21 @@ const climateActionIncentiveSchema = {
 
 module.exports = {
   climateActionIncentiveSchema,
-  donationsSchema,
+  charitableDonationSchema,
   donationsAmountSchema,
-  medicalSchema,
+  medicalExpenseSchema,
   medicalAmountSchema,
-  politicalSchema,
+  politicalContributionSchema,
   politicalAmountSchema,
   rrspSchema,
   rrspAmountSchema,
+  trilliumRentSchema,
   trilliumRentAmountSchema,
+  trilliumPropertyTaxSchema,
   trilliumPropertyTaxAmountSchema,
+  trilliumEnergySchema,
   trilliumEnergyAmountSchema,
+  trilliumlongTermCareSchema,
   trilliumlongTermCareAmountSchema,
   trilliumStudentResidenceSchema,
 }

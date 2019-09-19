@@ -1,4 +1,4 @@
-const { currencySchema, validationArray } = require('./utils.schema')
+const { validationArray } = require('./utils.schema')
 const API = require('./../api')
 
 const loginSchema = {
@@ -104,12 +104,7 @@ const dobSchema = {
   },
 }
 
-const authSchema = {
-  auth: currencySchema(),
-}
-
 module.exports = {
-  authSchema,
   loginSchema,
   dobSchema,
   sinSchema,

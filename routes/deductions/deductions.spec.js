@@ -2,78 +2,8 @@ const request = require('supertest')
 const app = require('../../app.js')
 
 describe('Test /deductions responses', () => {
-  //Start of RRSP section
-  describe('Test /deductions/rrsp responses', () => {
-    test('it redirects to the edit page when posting "Yes"', async () => {
-      const response = await request(app)
-        .post('/deductions/rrsp')
-        .send({ rrspClaim: 'Yes', redirect: '/' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/deductions/rrsp/amount')
-    })
-
-    test('it redirects to the posted redirect url when posting "No"', async () => {
-      const response = await request(app)
-        .post('/deductions/rrsp')
-        .send({ rrspClaim: 'No', redirect: '/' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/')
-    })
-  })
-
-  //Start of Medical Claim section
-  describe('Test /deductions/medical responses', () => {
-    test('it redirects to the edit page when posting "Yes"', async () => {
-      const response = await request(app)
-        .post('/deductions/medical')
-        .send({ medicalClaim: 'Yes', redirect: '/' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/deductions/medical/amount')
-    })
-
-    test('it redirects to the posted redirect url when posting "No"', async () => {
-      const response = await request(app)
-        .post('/deductions/medical')
-        .send({ medicalClaim: 'No', redirect: '/' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/')
-    })
-  })
-  //End of Medical Claim section
-
-  //Start of Charitable donation section
-  describe('Test /deductions/donations responses', () => {
-    test('it redirects to the edit page when posting "Yes"', async () => {
-      const response = await request(app)
-        .post('/deductions/donations')
-        .send({ donationsClaim: 'Yes', redirect: '/' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/deductions/donations/amount')
-    })
-
-    test('it redirects to the posted redirect url when posting "No"', async () => {
-      const response = await request(app)
-        .post('/deductions/donations')
-        .send({ donationsClaim: 'No', redirect: '/' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/')
-    })
-  })
-
   //Start of political donations
   describe('Test /deductions/political responses', () => {
-    test('it returns a 200 response for /deductions/political', async () => {
-      const response = await request(app).get('/deductions/political')
-      expect(response.statusCode).toBe(200)
-    })
-
-    test('it returns a 422 response for no posted value', async () => {
-      const response = await request(app)
-        .post('/deductions/political')
-        .send({ redirect: '/' })
-      expect(response.statusCode).toBe(422)
-    })
-
     //Bad Federal amounts, good provincial amounts
     const badFederalPoliticalAmounts = ['dinosaur', '10.0', '10.000', '-10', '.1']
     badFederalPoliticalAmounts.map(politicalFederalAmount => {
@@ -136,43 +66,6 @@ describe('Test /deductions responses', () => {
       })
     })
   })
-  // Start of the trillium student residence section
-  describe('Test /trillium/studentResidence responses', () => {
-    test('it redirects to the posted redirect url when posting "Yes"', async () => {
-      const response = await request(app)
-        .post('/trillium/studentResidence')
-        .send({ trilliumStudentResidence: 'Yes', redirect: '/' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/')
-    })
-
-    test('it redirects to the posted redirect url when posting "No"', async () => {
-      const response = await request(app)
-        .post('/trillium/studentResidence')
-        .send({ trilliumStudentResidence: 'No', redirect: '/' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/')
-    })
-  })
-
-  // Start of the Climate Action Incentive section
-  describe('Test /deductions/climate-action-incentive responses', () => {
-    test('it redirects to the posted redirect url when posting "Yes"', async () => {
-      const response = await request(app)
-        .post('/deductions/climate-action-incentive')
-        .send({ climateActionIncentiveIsRural: 'Yes', redirect: '/' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/')
-    })
-
-    test('it redirects to the posted redirect url when posting "No"', async () => {
-      const response = await request(app)
-        .post('/deductions/climate-action-incentive')
-        .send({ climateActionIncentiveIsRural: 'No', redirect: '/' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/')
-    })
-  })
 
   describe('Test /deductions/* yesNo responses', () => {
     const yesNoResponses = [
@@ -182,19 +75,41 @@ describe('Test /deductions responses', () => {
       },
       {
         url: '/deductions/medical',
-        key: 'medicalClaim',
+        key: 'medicalExpenseClaim',
       },
       {
         url: '/deductions/donations',
-        key: 'donationsClaim',
+        key: 'charitableDonationClaim',
+      },
+      {
+        url: '/deductions/political',
+        key: 'politicalContributionClaim',
+      },
+      {
+        url: '/trillium/rent',
+        key: 'trilliumRentClaim',
+      },
+      {
+        url: '/trillium/propertyTax',
+        key: 'trilliumPropertyTaxClaim',
       },
       {
         url: '/trillium/studentResidence',
         key: 'trilliumStudentResidence',
+        yesRedir: '/success',
       },
       {
-        url: '/deductions/political',
-        key: 'politicalClaim',
+        url: '/trillium/energy',
+        key: 'trilliumEnergyClaim',
+      },
+      {
+        url: '/trillium/longTermCare',
+        key: 'trilliumLongTermCareClaim',
+      },
+      {
+        url: '/deductions/climate-action-incentive',
+        key: 'climateActionIncentiveIsRural',
+        yesRedir: '/success',
       },
     ]
 
@@ -220,6 +135,24 @@ describe('Test /deductions responses', () => {
               .send({ [yesNoResponse.key]: badValue, redirect: '/' })
             expect(response.statusCode).toBe(422)
           })
+        })
+
+        test('it redirects to the posted redirect url when posting "No"', async () => {
+          const response = await request(app)
+            .post(yesNoResponse.url)
+            .send({ [yesNoResponse.key]: 'No', redirect: '/' })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual('/')
+        })
+
+        test('it redirects to the edit page when posting "Yes"', async () => {
+          const response = await request(app)
+            .post(yesNoResponse.url)
+            .send({ [yesNoResponse.key]: 'Yes', redirect: yesNoResponse.yesRedir || '/' })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual(
+            yesNoResponse.yesRedir || `${yesNoResponse.url}/amount`,
+          )
         })
       })
     })

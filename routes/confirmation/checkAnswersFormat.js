@@ -1,8 +1,5 @@
-const API = require('../../api')
 const { answerInfo } = require('./checkAnswers')
 const { hasData } = require('./../../utils')
-
-const user = API.getUser('A5G98S4K1')
 
 const formatDataLine = (data, session) => {
   if (data.length > 1) {
@@ -26,21 +23,27 @@ const formatAnswerInfo = (session) => {
   const answerInfoFormatted = {};
 
   answerInfo.map((section) => {
-    //displayIf
-    answerInfoFormatted[section.sectionName] = section.sectionLines
-  
-    //map over the sectionlines
+
+    answerInfoFormatted[section.sectionName] = [];
+
     section.sectionLines.map((line, index) => {
-  
-      answerInfoFormatted[section.sectionName][index]['data'] = formatDataLine(line.infoPath, session)
+
+      if(
+        !line.hasOwnProperty('displayIf') ||
+        line.hasOwnProperty('displayIf') &&
+        hasData(session, line.displayIf)
+        ){
+        answerInfoFormatted[section.sectionName].push({
+          ...line,
+          data: formatDataLine(line.infoPath, session)
+        })
+      }
   
     })
   })
 
   return answerInfoFormatted
 }
-
-console.log(formatAnswerInfo(user))
 
 module.exports = {
   formatAnswerInfo

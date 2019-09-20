@@ -62,7 +62,7 @@ describe('Full run through', function() {
     cy.get('h1').should('contain', 'Confirm your mailing address')
 
     //format address based on apartment/no apartment
-    const addressText = getAddress(this.user.address)
+    const addressText = getAddress(this.user.personal.address)
 
     addressText.map((text, index) => {
       cy.get('div.address div')
@@ -302,6 +302,13 @@ describe('Full run through', function() {
     cy.get('form button[type="submit"]')
       .should('contain', 'Submit my return')
       .click()
+  })
+
+  it('navigates the Check Your Answers page', function() {
+    cy.url().should('contain', '/checkAnswers')
+    cy.get('h1').should('contain', 'Check Your Answers Before Filing Your Return')
+    //TODO: check the row values. I've had to change user and a couple other things to accommodate this eventuality
+    cy.get('.buttons-row a').contains('Confirm').click()
   })
 
   it('checks the Confirmation page', function() {

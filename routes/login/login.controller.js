@@ -27,7 +27,7 @@ const postLoginCode = async (req, res, next) => {
     req.session = null
 
     return res.status(422).render('login/code', {
-      prevRoute: getPreviousRoute(req.path, req.session),
+      prevRoute: getPreviousRoute(req),
       data: { code: req.body.code },
       errors: errorArray2ErrorObject(errors),
     })
@@ -80,7 +80,7 @@ const postDateOfBirth = async (req, res, next) => {
     }
 
     return res.status(422).render('login/dateOfBirth', {
-      prevRoute: getPreviousRoute(req.path, req.session),
+      prevRoute: getPreviousRoute(req),
       data: req.session,
       body,
       errors: errObj,

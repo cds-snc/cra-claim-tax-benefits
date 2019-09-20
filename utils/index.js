@@ -122,7 +122,7 @@ const renderWithData = template => {
   return (req, res) => {
     res.render(template, {
       data: req.session,
-      prevRoute: getPreviousRoute(req.path, req.session),
+      prevRoute: getPreviousRoute(req),
     })
   }
 }
@@ -290,7 +290,9 @@ const sortByLineNumber = (...objToSort) => {
  * @param {Array} routes array of route objects { name: "start", path: "/start" },
  * @returns { path: "" }
  */
-const getPreviousRoute = (path, session, routes = defaultRoutes) => {
+const getPreviousRoute = (req, routes = defaultRoutes) => {
+  const path = req.path
+  const session = req.session
   const route = getRouteWithIndexByPath(path, routes)
 
   if (!route || (!('index' in route) && process.env.NODE_ENV !== 'production')) {
@@ -372,7 +374,6 @@ module.exports = {
   checkLangQuery,
   doRedirect,
   doYesNo,
-  getPreviousRoute,
   isoDateHintText,
   dateFilter,
 }

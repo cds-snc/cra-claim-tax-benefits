@@ -11,17 +11,13 @@ block content
 
   include ../_includes/backButton
 
-  div
-    p #{__('This is an overview of your projected tax return, and all the benefits you will receive when you file for the current tax year.')}
-    p #{__('Take one final look before continuing. If something looks incorrect, please')} #[a(href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/telephone-numbers.html") #{__('contact CRA')}] #{__('before filing.')}
-
   each section, index in answerInfo
     div
-      .breakdown-table.breakdown-table--summary
+      .breakdown-table.breakdown-table--answers
         h2.breakdown-table__heading #{index}
         dl.breakdown-table-data
           each row in section
-            .breakdown-table__row
+            .breakdown-table__row.breakdown-table__row--answers
               dt.breakdown-table__row-key #{row.text}
 
               if (row.text.includes('Address'))
@@ -35,7 +31,8 @@ block content
               else
                 dd.breakdown-table__row-value #{row.data}
 
-              if row.urlPath !== ""
-                dd.breakdown-table__row-link 
+              
+              dd.breakdown-table__row-link 
+                if row.urlPath !== ""
                   a(href=row.urlPath)
                     <span>Review<span class="visually-hidden"> #{row.text}</span>

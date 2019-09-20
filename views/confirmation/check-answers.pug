@@ -14,11 +14,11 @@ block content
   each section, index in answerInfo
     div
       .breakdown-table.breakdown-table--answers
-        h2.breakdown-table__heading #{index}
+        h2.breakdown-table__heading #{__(index)}
         dl.breakdown-table-data
           each row in section
             .breakdown-table__row.breakdown-table__row--answers
-              dt.breakdown-table__row-key #{row.text}
+              dt.breakdown-table__row-key #{__(row.text)}
 
               if (row.text.includes('Address'))
                 dd.breakdown-table__row-value
@@ -35,6 +35,6 @@ block content
               dd.breakdown-table__row-link 
                 if row.urlPath !== ""
                   a(href=row.urlPath)
-                    <span>Review<span class="visually-hidden"> #{row.text}</span>
+                    <span>#{__('Review')}<span class="visually-hidden"> #{__(row.text)}</span>
   
   +linkButtons('/confirmation')

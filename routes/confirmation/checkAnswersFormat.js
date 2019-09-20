@@ -1,5 +1,5 @@
 const { answerInfo } = require('./checkAnswers')
-const { hasData } = require('./../../utils')
+const { hasData, dateFilter } = require('./../../utils')
 
 const formatDataLine = (data, session) => {
   if (data.length > 1) {
@@ -15,7 +15,13 @@ const formatDataLine = (data, session) => {
     }
 
   } else {
-    return hasData(session,data[0],true)
+    return (hasData(session,data[0],true) === null)
+    ? 'No'
+    : (hasData(session,data[0],true) === true)
+    ? 'Yes'
+    : (data[0].includes('Birth'))
+    ? dateFilter(hasData(session,data[0],true))
+    : hasData(session,data[0],true)
   }
 }
 

@@ -21,11 +21,21 @@ block content
         h2.breakdown-table__heading #{index}
         dl.breakdown-table-data
           each row in section
-            if !row.displayIf || row.displayIf && hasData(data,row.displayIf,true) !== null
-              .breakdown-table__row
-                  dt.breakdown-table__row-key #{row.text}
-                  dd.breakdown-table__row-value
-                  if row.urlPath !== ""
-                    dd.breakdown-table__row-link 
-                      a(href=row.urlPath)
-                        <span>Review<span class="visually-hidden"> #{row.text}</span>
+            .breakdown-table__row
+              dt.breakdown-table__row-key #{row.text}
+
+              if (row.text.includes('Address'))
+                dd.breakdown-table__row-value
+                  if hasData(data, 'personal.address.line2')
+                    div #{data.personal.address.line2}-#{data.personal.address.line1}
+                  else
+                    div #{data.personal.address.line1}
+                  div #{data.personal.address.city}, #{data.personal.address.province}
+                  div #{data.personal.address.postalCode}
+              else
+                dd.breakdown-table__row-value #{row.data}
+
+              if row.urlPath !== ""
+                dd.breakdown-table__row-link 
+                  a(href=row.urlPath)
+                    <span>Review<span class="visually-hidden"> #{row.text}</span>

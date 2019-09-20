@@ -24,7 +24,7 @@ const answerInfo = [
       },
       {
         "text": "Income Information",
-        "infoPath": [""],
+        "infoPath": ["financial.incomeConfirmed"],
         "urlPath": "/financial/income"
       },
       {

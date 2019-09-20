@@ -16,35 +16,34 @@ const formatDataLine = (data, session) => {
 
   } else {
     return (hasData(session,data[0],true) === null)
-    ? 'No'
-    : (hasData(session,data[0],true) === true)
-    ? 'Yes'
-    : (data[0].includes('Birth'))
-    ? dateFilter(hasData(session,data[0],true))
-    : hasData(session,data[0],true)
+      ? 'No'
+      : (hasData(session,data[0],true) === true)
+        ? 'Yes'
+        : (data[0].includes('Birth'))
+          ? dateFilter(hasData(session,data[0],true))
+          : hasData(session,data[0],true)
   }
 }
 
 const formatAnswerInfo = (session) => {
-  const answerInfoFormatted = {};
+  const answerInfoFormatted = {}
 
   answerInfo.map((section) => {
 
-    answerInfoFormatted[section.sectionName] = [];
+    answerInfoFormatted[section.sectionName] = []
 
-    section.sectionLines.map((line, index) => {
+    section.sectionLines.map((line) => {
 
       if(
-        !line.hasOwnProperty('displayIf') ||
-        line.hasOwnProperty('displayIf') &&
+        !Object.prototype.hasOwnProperty.call(line, 'displayIf') ||
+        Object.prototype.hasOwnProperty.call(line, 'displayIf') &&
         hasData(session, line.displayIf)
-        ){
+      ){
         answerInfoFormatted[section.sectionName].push({
           ...line,
-          data: formatDataLine(line.infoPath, session)
+          data: formatDataLine(line.infoPath, session),
         })
       }
-  
     })
   })
 
@@ -52,5 +51,5 @@ const formatAnswerInfo = (session) => {
 }
 
 module.exports = {
-  formatAnswerInfo
+  formatAnswerInfo,
 }

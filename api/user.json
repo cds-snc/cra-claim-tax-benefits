@@ -19,6 +19,7 @@
     "disability": false
   },
   "financial": {
+    "incomeConfirmed": true,
     "incomeSources": [
       {
         "name": "RT Holdings Inc.",

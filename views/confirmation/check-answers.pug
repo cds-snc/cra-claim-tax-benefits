@@ -3,6 +3,7 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Check Your Answers Before Filing Your Return')
+  -var birthDate = dateFilter(hasData(data, 'personal.dateOfBirth', true))
 
 block content
 
@@ -24,24 +25,6 @@ block content
               .breakdown-table__row
                   dt.breakdown-table__row-key #{row.text}
                   dd.breakdown-table__row-value
-                    if row.infoPath.length > 1
-                      - var totalVal = 0
-                      //- are we adding strings?
-                      if (typeof hasData(data,row.infoPath[0],true) === 'string') 
-                        each val in row.infoPath
-                          span=`${hasData(data, val, true)} `
-                      //- or numbers?
-                      else
-                        each val in row.infoPath
-                          - totalVal += parseInt(hasData(data, val, true))
-                        span=totalVal
-                    else if row.infoPath.length <= 1
-                      each val in row.infoPath
-                        if val.includes('Claim') && !val.includes('Amount') || val.includes('trillium') && !val.includes('Amount') || val.includes('climateActionIncentiveIsRural')
-                          span=hasData(data,val,true) === null ? 'No' : 'Yes'
-                        else 
-                          span #{hasData(data, val, true)}
-                        //- check address
                   if row.urlPath !== ""
                     dd.breakdown-table__row-link 
                       a(href=row.urlPath)

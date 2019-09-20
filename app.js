@@ -16,6 +16,7 @@ const express = require('express'),
   csp = require('./config/csp.config'),
   {
     SINFilter,
+    dateFilter,
     hasData,
     checkPublic,
     sortByLineNumber,
@@ -78,6 +79,7 @@ app.use(checkLangQuery)
 // Adding values/functions to app.locals means we can access them in our templates
 app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
 app.locals.SINFilter = SINFilter
+app.locals.dateFilter = dateFilter
 app.locals.hasData = hasData
 app.locals.currencyFilter = currencyFilter
 app.locals.sortByLineNumber = sortByLineNumber

@@ -1,3 +1,5 @@
+![](https://github.com/cds-snc/cra-claim-tax-benefits/workflows/Test,%20build,%20deploy/badge.svg)
+
 # Claim tax benefits
 
 This is a small frontend to trial user flows for a future CRA service that will help Canadians receive the benefits to which they are entitled.

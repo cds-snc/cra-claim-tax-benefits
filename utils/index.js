@@ -292,8 +292,7 @@ const sortByLineNumber = (...objToSort) => {
  * @returns { path: "" }
  */
 const getPreviousRoute = (req, routes = defaultRoutes) => {
-  const path = req.path
-  const session = req.session
+  const { path, session } = req
   const route = getRouteWithIndexByPath(path, routes)
 
   if (!route || (!('index' in route) && process.env.NODE_ENV !== 'production')) {

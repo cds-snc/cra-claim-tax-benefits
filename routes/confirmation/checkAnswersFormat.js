@@ -30,16 +30,16 @@ const formatAnswerInfo = (session) => {
 
   answerInfo.map((section) => {
 
-    answerInfoFormatted[section.sectionName] = []
+    answerInfoFormatted[section.sectionTitle] = []
 
-    section.sectionLines.map((line) => {
+    section.sectionRows.map((line) => {
 
       if(
         !Object.prototype.hasOwnProperty.call(line, 'displayIf') ||
         Object.prototype.hasOwnProperty.call(line, 'displayIf') &&
         hasData(session, line.displayIf)
       ){
-        answerInfoFormatted[section.sectionName].push({
+        answerInfoFormatted[section.sectionTitle].push({
           ...line,
           data: formatDataLine(line.infoPath, session),
         })

@@ -1,7 +1,7 @@
 const answerInfo = [
   { 
-    'sectionName': 'Personal Information',
-    'sectionLines': [
+    'sectionTitle': 'Personal Information',
+    'sectionRows': [
       {
         'text': 'Name',
         'infoPath': ['personal.firstName', 'personal.lastName'],
@@ -35,8 +35,8 @@ const answerInfo = [
     ],
   },
   {
-    'sectionName': 'Tax Claims',
-    'sectionLines': [
+    'sectionTitle': 'Tax Claims',
+    'sectionRows': [
       {
         'text': 'Did You Contribute to an RRSP?',
         'infoPath': ['deductions.rrspClaim'],
@@ -84,8 +84,8 @@ const answerInfo = [
     ],
   },
   {
-    'sectionName': 'Tax Benefits',
-    'sectionLines': [
+    'sectionTitle': 'Tax Benefits',
+    'sectionRows': [
       {
         'text': 'Did you pay rent?',
         'infoPath': ['deductions.trilliumRentClaim'],

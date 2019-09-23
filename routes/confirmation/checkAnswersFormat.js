@@ -15,13 +15,15 @@ const formatDataLine = (data, session) => {
     }
 
   } else {
-    return (hasData(session,data[0],true) === null)
-      ? 'No'
-      : (hasData(session,data[0],true) === true)
-        ? 'Yes'
-        : (data[0].includes('Birth'))
-          ? dateFilter(hasData(session,data[0],true))
-          : hasData(session,data[0],true)
+    if(hasData(session,data[0],true) === null) {
+      return 'No'
+    } else if (hasData(session,data[0],true) === true) {
+      return 'Yes'
+    } else if (data[0].includes('Birth')) {
+      return dateFilter(hasData(session,data[0],true))
+    } else {
+      return hasData(session,data[0],true)
+    }
   }
 }
 

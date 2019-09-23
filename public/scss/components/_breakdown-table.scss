@@ -123,7 +123,10 @@
   }
 
   .breakdown-table__row-link {
+    font-size: 0.8em;
+
     @include md {
+      font-size: 1em;
       width: 20%;
     }
   }

@@ -6,6 +6,8 @@ const routes = [
   { path: '/offramp', editInfo: 'skip' },
   { path: '/login/sin' },
   { path: '/login/dateOfBirth' },
+  { path: '/login/securityQuestion' },
+  { path: '/login/questions/child' },
   { path: '/personal/name' },
   { path: '/offramp/name', editInfo: 'skip' },
   { path: '/personal/residence' },

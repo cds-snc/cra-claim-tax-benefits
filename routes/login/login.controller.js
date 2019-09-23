@@ -1,5 +1,11 @@
 const { validationResult, checkSchema } = require('express-validator')
-const { errorArray2ErrorObject, doRedirect, renderWithData, checkErrors, getPreviousRoute } = require('./../../utils')
+const {
+  errorArray2ErrorObject,
+  doRedirect,
+  renderWithData,
+  checkErrors,
+  getPreviousRoute,
+} = require('./../../utils')
 const { loginSchema, sinSchema, dobSchema } = require('./../../schemas')
 const API = require('../../api')
 const request = require('request-promise')
@@ -17,6 +23,11 @@ module.exports = function(app) {
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
   app.post('/login/dateOfBirth', checkSchema(dobSchema), postDateOfBirth, doRedirect)
+
+  app.get('/login/securityQuestion', renderWithData('login/securityQuestion'))
+  app.get('/login/questions/child', renderWithData('login/questions/child'))
+
+  app.get('/login/questions', (req, res) => res.redirect('/login/securityQuestion'))
 }
 
 const postLoginCode = async (req, res, next) => {

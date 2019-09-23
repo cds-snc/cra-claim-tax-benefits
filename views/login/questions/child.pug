@@ -1,0 +1,58 @@
+extends ../../base
+
+block variables
+  -var title = __('Enter your child’s name and date of birth')
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('This information helps to verify your identity. Please enter your child’s date of birth in the field below.')}
+    p #{__('Choose a different question if you didn’t get a benefit from CRA for this child.')}
+
+  div
+    form.cra-form.cra-form--lg.cra-form--dob(method='post')
+
+      div(class={['has-error']: errors && errors.childName})
+        fieldset.fieldset(role="group",)
+          legend
+            h2 #{__('Your child’s full name')}
+
+          div.w-1-2.d--ib
+            label(for='childFirstName') #{__('First name')}
+            input#childFirstName(name='childFirstName', autofocus, type='text', value=dobDay, autocomplete='bday-day', aria-describedby=(errors && errors.childFirstName ? 'childFirstName-error' : false))
+
+          div.w-1-2.d--ib
+            label(for='childLastName') #{__('Last name')}
+            input#childLastName(name='childLastName', autofocus, type='text', value=dobMonth, autocomplete='bday-month', aria-describedby=(errors && errors.childLastName ? 'childLastName-error' : false))
+
+      div.dob-container(class={['has-error']: errors && errors.dobDay})
+        fieldset.fieldset(role="group", aria-describedby="dobHint")
+          legend
+            h2 #{__('Your child’s date of birth')}
+
+          span#dobHint.cra-form-message #{__('For Example:')} 08 10 2003
+
+          //- hmm, not sure about this
+          if errors
+            ul
+              each err in errors
+                li
+                  +validationMessage(err.msg, err.param)
+
+          div.w-1-4.d--ib
+            label(for='dobDay') #{__('Day')}
+            input#dobDay(name='dobDay', autofocus, type='text', value=dobDay, autocomplete='bday-day', aria-describedby=(errors && errors.dobDay ? 'dobDay-error' : false))
+
+          div.w-1-4.d--ib
+            label(for='dobMonth') #{__('Month')}
+            input#dobMonth(name='dobMonth', autofocus, type='text', value=dobMonth, autocomplete='bday-month', aria-describedby=(errors && errors.dobMonth ? 'dobMonth-error' : false))
+
+          div.w-1-2.d--ib
+            label(for='dobYear') #{__('Year')}
+            input#dobYear(name='dobYear', autofocus, type='text', value=dobYear, autocomplete='bday-year', aria-describedby=(errors && errors.dobYear ? 'dobYear-error' : false))
+
+      input#redirect(name='redirect', type='hidden', value='/personal/name')
+
+      +formButtons()

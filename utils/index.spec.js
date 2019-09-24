@@ -116,12 +116,3 @@ describe('Test isoDateHintText function', () => {
     )
   })
 })
-
-describe('Test dateFilter', () => {
-  const dateFilterSamples = [['1977-09-09', '9 September 1977'], ['1981-07-19', '19 July 1981']]
-  dateFilterSamples.map(values => {
-    test(`returns "${values[1]}" for "${values[0]}"`, () => {
-      expect(dateFilter(values[0])).toEqual(values[1])
-    })
-  })
-})

@@ -1,0 +1,63 @@
+{ 
+  "rows": [
+    {
+      "key": "Name",
+      "value": "Gabrielle Roy"
+    },
+    {
+      "key": "Date of Birth",
+      "value": "9 September 1977"
+    },
+    {
+      "key": "Province of Residence",
+      "value": "Ontario"
+    },
+    {
+      "key": "Mailing Address",
+      "value": "Unit 202-303 Blake Blvd."
+    },
+    {
+      "key": "Income Information",
+      "value": "Yes"
+    },
+    {
+      "key": "Marital Status",
+      "value": "Single"
+    },
+    {
+      "key": "Did You Contribute to an RRSP?",
+      "value": "No"
+    },
+    {
+      "key": "Do you have medical expenses?",
+      "value": "No"
+    },
+    {
+      "key": "Did you contribute to a political party",
+      "value": "No"
+    },
+    {
+      "key": "Did you Donate to a Charity",
+      "value": "No"
+    },
+    {
+      "key": "Did you pay rent?",
+      "value": "No"
+    },
+    {
+      "key": "Student residence",
+      "value": "No"
+    },
+    {
+      "key": "Home energy costs on a reserve",
+      "value": "No"
+    },
+    {
+      "key": "Public long-term care home",
+      "value": "No"
+    },
+    {
+      "key": "Small or rural community",
+      "value": "No"
+    }]
+  }

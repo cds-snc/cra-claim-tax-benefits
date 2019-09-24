@@ -22,6 +22,6 @@ const postConfirmIncome = (req, res, next) => {
     return res.redirect('/offramp/financial')
   }
 
-  req.session.incomeConfirmed = true
+  req.session.financial.incomeConfirmed = true
   next()
 }

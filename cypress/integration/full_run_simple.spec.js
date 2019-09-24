@@ -286,6 +286,15 @@ describe('Full run through', function() {
       .click()
   })
 
+  it('navigates the Check Your Answers page', function() {
+    cy.url().should('contain', '/checkAnswers')
+    cy.get('h1').should('contain', 'Check Your Answers Before Filing Your Return')
+    cy.fixture('checkAnswersRows.json').then((rows) => {
+      checkTableRows(cy, rows.rows)
+    })
+    cy.get('.buttons-row a').contains('Confirm').click()
+  })
+
   it('navigates the Review page', function() {
     //REVIEW
     cy.url().should('contain', '/review')
@@ -302,13 +311,6 @@ describe('Full run through', function() {
     cy.get('form button[type="submit"]')
       .should('contain', 'Submit my return')
       .click()
-  })
-
-  it('navigates the Check Your Answers page', function() {
-    cy.url().should('contain', '/checkAnswers')
-    cy.get('h1').should('contain', 'Check Your Answers Before Filing Your Return')
-    //TODO: check the row values. I've had to change user and a couple other things to accommodate this eventuality
-    cy.get('.buttons-row a').contains('Confirm').click()
   })
 
   it('checks the Confirmation page', function() {

@@ -16,7 +16,7 @@ const formatDataLine = (data, session) => {
     }
 
   } else {
-    if(hasData(session,data[0],true) === null) {
+    if(hasData(session,data[0],true) === null || hasData(session,data[0],true) === false) {
       return 'No'
     } else if (hasData(session,data[0],true) === true) {
       return 'Yes'
@@ -41,7 +41,7 @@ const formatAnswerInfo = (session) => {
       if(
         !Object.prototype.hasOwnProperty.call(line, 'displayIf') ||
         Object.prototype.hasOwnProperty.call(line, 'displayIf') &&
-        hasData(session, line.displayIf)
+        hasData(session, line.displayIf) && hasData(session, line.displayIf, true) !== false
       ){
         answerInfoFormatted[section.sectionTitle].push({
           ...line,

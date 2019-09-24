@@ -96,6 +96,7 @@ const checkErrors = template => {
     if (!errors.isEmpty()) {
       return res.status(422).render(template, {
         prevRoute: getPreviousRoute(req),
+        nextRoute: getNextRoute(req),
         data: req.session,
         body,
         errors: errorArray2ErrorObject(errors),
@@ -124,6 +125,7 @@ const renderWithData = template => {
     res.render(template, {
       data: req.session,
       prevRoute: getPreviousRoute(req),
+      nextRoute: getNextRoute(req),
     })
   }
 }
@@ -257,6 +259,14 @@ const sortByLineNumber = (...objToSort) => {
   return sortedArrayObj
 }
 
+const routeHasIndex = route => {
+  if (!route || !route.hasOwnProperty('index')) {
+    return false
+  }
+
+  return true
+}
+
 /**
  * @param {String} name route name
  * @param {Array} routes array of route objects { name: "start", path: "/start" },
@@ -266,7 +276,7 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
   const { path, session } = req
   const route = getRouteWithIndexByPath(path, routes)
 
-  if (!route || (!('index' in route) && process.env.NODE_ENV !== 'production')) {
+  if (!routeHasIndex(route) && process.env.NODE_ENV !== 'production') {
     throw new Error('Previous route error.  \n Are your route paths correct in route.config?')
   }
 
@@ -289,6 +299,40 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
   }
 
   return prevRoute()
+}
+
+/**
+ * @param {String} name route name
+ * @param {Array} routes array of route objects { name: "start", path: "/start" }
+ * @returns { name: "", path: "" }
+ */
+const getNextRoute = (req, routes = defaultRoutes) => {
+  const { path, session } = req
+  const route = getRouteWithIndexByPath(path, routes)
+
+  if (!routeHasIndex(route) && process.env.NODE_ENV !== 'production') {
+    throw new Error(`Next route error can't find => "${path}"`)
+  }
+
+  const nextRoute = () => {
+    const oneRouteForward = routes[Number(route.index) + 1] || false
+
+    // essentially check if the page before
+    // - exists
+    // - is an edit page
+    // - and if the person actually entered/edited any of that information
+    if (
+      oneRouteForward &&
+      'editInfo' in oneRouteForward &&
+      !hasData(session, oneRouteForward.editInfo, true)
+    ) {
+      return routes[Number(route.index) + 2] || false
+    }
+
+    return oneRouteForward
+  }
+
+  return nextRoute
 }
 
 /**

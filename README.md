@@ -75,6 +75,10 @@ npm run cypress
 npm run cypress:cli # these don't open a browser
 ```
 
+#### Using Cypress
+
+[Cypress](https://www.cypress.io/) is what we use to write our end-to-end tests. It can run in a browser or in headless mode (ie, on the command line) to step through one or more flows. By running our end-to-end tests frequently, we are making sure sure that new changes to the code don't existing user journies.
+
 ## Using Docker
 
 ### [Install `docker`](https://docs.docker.com/install/)

@@ -3,29 +3,39 @@ const { hasData } = require('./../../utils')
 const { format, parseISO } = require('date-fns')
 const { routes } = require('./../../config/routes.config')
 
+const addValues = (data, session) => {
+  const dataValues = []
+
+  data.map((val) => {
+    dataValues.push(hasData(session, val, true))
+  })
+
+  if (data.every( item => item.includes('Amount'))) {
+    return dataValues.reduce((a,b) => Number(a) + Number(b), 0)
+  } else if (data.every( item => typeof item === 'string')) {
+    return dataValues.join(' ')
+  } else {
+    throw new Error('Looks like you\'re trying to combine numebrs and strings  \n Are your infoPaths correct checkAnswers?')
+  }
+
+}
+
 const formatDataLine = (data, session) => {
   if (data.length > 1) {
-    const dataValues = []
-    data.map((val) => {
-      dataValues.push(hasData(session, val, true))
-    })
-
-    if (typeof dataValues[1] === 'number') {
-      return dataValues.reduce((a,b) => a + b, 0)
-    } else if (typeof dataValues[1] === 'string') {
-      return dataValues.join(' ')
-    }
-
+    return addValues(data, session)
   } else {
-    if(hasData(session,data[0],true) === null || hasData(session,data[0],true) === false) {
-      return 'No'
-    } else if (hasData(session,data[0],true) === true) {
-      return 'Yes'
-    } else if (data[0].includes('Birth')) {
-      const initialDate = parseISO(hasData(session,data[0],true))
-      return format(new Date(initialDate), 'd MMMM yyyy')
-    } else {
-      return hasData(session,data[0],true)
+    switch (hasData(session,data[0],true)) {
+      case null:
+      case false:
+        return 'No'
+      case true:
+        return 'Yes'
+      case data[0].includes('Birth'): {
+        const initialDate = parseISO(hasData(session,data[0],true))
+        return format(new Date(initialDate), 'd MMMM yyyy')
+      }
+      default:
+        return hasData(session,data[0],true)
     }
   }
 }

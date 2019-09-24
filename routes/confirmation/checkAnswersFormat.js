@@ -1,5 +1,6 @@
 const { answerInfo } = require('./checkAnswers')
-const { hasData, dateFilter } = require('./../../utils')
+const { hasData } = require('./../../utils')
+const { format, parseISO } = require('date-fns')
 
 const formatDataLine = (data, session) => {
   if (data.length > 1) {
@@ -20,7 +21,8 @@ const formatDataLine = (data, session) => {
     } else if (hasData(session,data[0],true) === true) {
       return 'Yes'
     } else if (data[0].includes('Birth')) {
-      return dateFilter(hasData(session,data[0],true))
+      const initialDate = parseISO(hasData(session,data[0],true))
+      return format(new Date(initialDate), 'd MMMM yyyy')
     } else {
       return hasData(session,data[0],true)
     }

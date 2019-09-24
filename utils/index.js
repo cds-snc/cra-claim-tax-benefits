@@ -227,35 +227,6 @@ const hasData = (obj, key, returnVal = false) => {
   return bool
 }
 
-/**
- * @param {String} date the date we're looking to re-format, pass in as 'yyyy-mm-dd'
- * Returns it in a more written format
- * ex. 1977-09-09 => 9 September 1977
- */
-const dateFilter = (date) => {
-  const splitDate = date.split('-')
-
-  const monthNames = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
-  ]
-
-  let day = splitDate[2]
-  if (
-    Number(day) < 10 && 
-    day.length > 1 && 
-    day.charAt(0) == '0'
-  ) {
-    day = day.substr(1)
-  }
-  const monthIndex = Number(splitDate[1]) - 1
-  const year = splitDate[0]
-
-  return day + ' ' + monthNames[monthIndex] + ' ' + year
-}
-
 const currencyFilter = (number, fractionDigits = 2) => {
   const amount = Number(number)
 
@@ -375,5 +346,4 @@ module.exports = {
   doRedirect,
   doYesNo,
   isoDateHintText,
-  dateFilter,
 }

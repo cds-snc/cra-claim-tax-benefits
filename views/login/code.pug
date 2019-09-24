@@ -8,7 +8,9 @@ block content
   h1 #{title}
 
   div
-    <p>#{__('You can find your personal filing code in the CRA letter about this new')} <i>#{__('Claim Tax Benefits')} </i>#{__('service.')}</p>
+    p #{__('You can find your personal filing code in the CRA letter about this new ')}
+      i #{__('service.name')}
+      | #{__(' service.')}
 
   div
     form.cra-form(method='post')

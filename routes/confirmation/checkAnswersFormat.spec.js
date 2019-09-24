@@ -8,9 +8,9 @@ const sessionWithRent = {
   ...{
     deductions: { 
       trilliumRentClaim: true,
-      trilliumRentAmount: 240
-    }
-  }
+      trilliumRentAmount: 240,
+    },
+  },
 }
 
 const sessionWithPolitical = {
@@ -19,9 +19,9 @@ const sessionWithPolitical = {
     deductions: {
       politicalContributionClaim: true,
       politicalFederalAmount: 7.00,
-      politicalProvincialAmount: 10.00
-    }
-  }
+      politicalProvincialAmount: 10.00,
+    },
+  },
 }
 
 describe('Test checkAnswersFormat function with initialSession', () => { 

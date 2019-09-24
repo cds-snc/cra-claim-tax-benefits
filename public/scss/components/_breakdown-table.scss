@@ -46,7 +46,7 @@
     @include md {
       font-size: 1em;
     }
-  }  
+  }
 }
 
 .breakdown-table__row {
@@ -65,7 +65,8 @@
   }
 
   &-key,
-  &-value {
+  &-value,
+  &-link {
     margin: 0;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -92,6 +93,41 @@
     @include md {
       text-align: right;
       width: 40%;
+    }
+  }
+}
+
+.breakdown-table__row--answers {
+  &:first-child {
+    border-top: 0;
+  }
+  
+  @include md {
+    border-left: 0;
+    border-top: 1px solid $color-grey-light;
+  }
+  .breakdown-table__row-key {
+    font-weight: 700;
+
+    @include md {
+      width: 45%;
+    }
+  }
+
+  .breakdown-table__row-value {
+    text-align: left;
+
+    @include md {
+      width: 35%;
+    }
+  }
+
+  .breakdown-table__row-link {
+    font-size: 0.8em;
+
+    @include md {
+      font-size: 1em;
+      width: 20%;
     }
   }
 }

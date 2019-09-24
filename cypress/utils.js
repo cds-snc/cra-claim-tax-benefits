@@ -13,12 +13,17 @@ const checkTableRows = (cy, rows) => {
 const getIncomeBreakdownRows = user => {
   const incomeRows = []
 
-  user.incomeSources.map(source => {
+  user.financial.incomeSources.map(source => {
     const incomeRow = {
       key: source.name,
       value: currencyFilter(source.total),
     }
     incomeRows.push(incomeRow)
+  })
+
+  incomeRows.push({
+    key: 'Total Income',
+    value: currencyFilter(user.financial.incomes.totalIncome.amount),
   })
 
   return incomeRows
@@ -27,7 +32,7 @@ const getIncomeBreakdownRows = user => {
 const getTaxBreakdownRows = user => {
   const taxRows = []
 
-  Object.values(user.taxes).map(source => {
+  Object.values(user.financial.taxes).map(source => {
     const taxRow = {
       key: `${source.name.replace('Net ', '')} deduction`,
       value: currencyFilter(source.amount),
@@ -37,7 +42,7 @@ const getTaxBreakdownRows = user => {
 
   taxRows.push({
     key: 'Total tax paid for 2018',
-    value: currencyFilter(user.totalTax),
+    value: currencyFilter(user.financial.totalTax),
   })
 
   return taxRows
@@ -77,8 +82,8 @@ const logIn = (cy, user) => {
   cy.get('h1').should('contain', 'Enter your personal access code')
   cy.get('form label').should('have.attr', 'for', 'code')
   cy.get('form input#code')
-    .type(user.code)
-    .should('have.value', user.code)
+    .type(user.login.code)
+    .should('have.value', user.login.code)
   cy.get('form button[type="submit"]')
     .should('contain', 'Continue')
     .click()
@@ -87,11 +92,11 @@ const logIn = (cy, user) => {
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/login/sin')
   cy.get('h1').should('contain', 'Enter your Social Insurance Number (SIN)')
-  cy.get('h2').should('contain', `Thanks, ${user.firstName} ${user.lastName}!`)
+  cy.get('h2').should('contain', `Thanks, ${user.personal.firstName} ${user.personal.lastName}!`)
   cy.get('form label').should('have.attr', 'for', 'sin')
   cy.get('form input#sin')
-    .type(user.sin)
-    .should('have.value', user.sin)
+    .type(user.personal.sin)
+    .should('have.value', user.personal.sin)
   cy.get('form button[type="submit"]')
     .should('contain', 'Continue')
     .click()
@@ -111,7 +116,7 @@ const logIn = (cy, user) => {
     .eq(2)
     .should('have.attr', 'for', 'dobYear')
 
-  const [dobYear, dobMonth, dobDay] = user.dateOfBirth.split('-')
+  const [dobYear, dobMonth, dobDay] = user.personal.dateOfBirth.split('-')
 
   cy.get('form input#dobDay')
     .type(dobDay)

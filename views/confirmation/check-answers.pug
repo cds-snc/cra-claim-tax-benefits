@@ -1,0 +1,37 @@
+extends ../base
+include ../_includes/yesNoRadios
+
+block variables
+  -var title = __('Check Your Answers Before Filing Your Return')
+
+block content
+
+  h1 #{title}
+
+  each section, index in answerInfo
+    div
+      .breakdown-table.breakdown-table--answers
+        h2.breakdown-table__heading #{__(index)}
+        dl.breakdown-table-data
+          each row in section
+            .breakdown-table__row.breakdown-table__row--answers
+              dt.breakdown-table__row-key #{__(row.text)}
+
+              if (row.text.includes('Address'))
+                dd.breakdown-table__row-value
+                  if hasData(data, 'personal.address.line2')
+                    div #{data.personal.address.line2}-#{data.personal.address.line1}
+                  else
+                    div #{data.personal.address.line1}
+                  div #{data.personal.address.city}, #{data.personal.address.province}
+                  div #{data.personal.address.postalCode}
+              else
+                dd.breakdown-table__row-value #{row.data}
+
+              
+              dd.breakdown-table__row-link 
+                if row.urlPath
+                  a(href=row.urlPath)
+                    <span>#{__('Review')}<span class="visually-hidden"> #{__(row.text)}</span>
+  
+  +linkButtons('/review')

@@ -29,7 +29,7 @@ const formatDataLine = (data, session) => {
       case hasData(session,data[0],true) === false:
         return 'No'
       case hasData(session,data[0],true) === true:
-          return 'Yes'
+        return 'Yes'
       case data[0].includes('Birth'):{
         const initialDate = parseISO(hasData(session,data[0],true))
         return format(new Date(initialDate), 'd MMMM yyyy')

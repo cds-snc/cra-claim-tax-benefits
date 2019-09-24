@@ -10,7 +10,6 @@ const answerInfo = [
       {
         'text': 'Date of Birth',
         'infoPath': ['personal.dateOfBirth'],
-        'urlPath': '',
       },
       {
         'text': 'Province of Residence',

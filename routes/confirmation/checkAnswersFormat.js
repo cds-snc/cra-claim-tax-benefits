@@ -1,6 +1,7 @@
 const { answerInfo } = require('./checkAnswers')
 const { hasData } = require('./../../utils')
 const { format, parseISO } = require('date-fns')
+const { routes } = require('./../../config/routes.config')
 
 const formatDataLine = (data, session) => {
   if (data.length > 1) {
@@ -43,6 +44,11 @@ const formatAnswerInfo = (session) => {
         Object.prototype.hasOwnProperty.call(line, 'displayIf') &&
         hasData(session, line.displayIf) && hasData(session, line.displayIf, true) !== false
       ){
+
+        if (Object.prototype.hasOwnProperty.call(line, 'urlPath') && !routes.find(route => route.path === line.urlPath)) {
+          throw new Error('Looks like a urlPath in checkAnswers does not exist in routes.config  \n Are your route paths correct in checkAnswers?')
+        }
+
         answerInfoFormatted[section.sectionTitle].push({
           ...line,
           data: formatDataLine(line.infoPath, session),

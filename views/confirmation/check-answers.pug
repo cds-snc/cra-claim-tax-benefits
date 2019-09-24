@@ -30,7 +30,7 @@ block content
 
               
               dd.breakdown-table__row-link 
-                if row.urlPath !== ""
+                if row.urlPath
                   a(href=row.urlPath)
                     <span>#{__('Review')}<span class="visually-hidden"> #{__(row.text)}</span>
   

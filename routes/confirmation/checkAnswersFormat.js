@@ -1,5 +1,5 @@
 const { answerInfo } = require('./checkAnswers')
-const { hasData } = require('./../../utils')
+const { hasData, currencyFilter } = require('./../../utils')
 const { format, parseISO } = require('date-fns')
 const { routes } = require('./../../config/routes.config')
 
@@ -11,7 +11,7 @@ const addValues = (data, session) => {
   })
 
   if (data.every( item => item.includes('Amount'))) {
-    return dataValues.reduce((a,b) => Number(a) + Number(b), 0)
+    return `$${currencyFilter(dataValues.reduce((a,b) => Number(a) + Number(b), 0))}`
   } else if (data.every( item => typeof item === 'string')) {
     return dataValues.join(' ')
   } else {
@@ -24,16 +24,18 @@ const formatDataLine = (data, session) => {
   if (data.length > 1) {
     return addValues(data, session)
   } else {
-    switch (hasData(session,data[0],true)) {
-      case null:
-      case false:
+    switch (true) {
+      case hasData(session,data[0],true) === null:
+      case hasData(session,data[0],true) === false:
         return 'No'
-      case true:
-        return 'Yes'
-      case data[0].includes('Birth'): {
+      case hasData(session,data[0],true) === true:
+          return 'Yes'
+      case data[0].includes('Birth'):{
         const initialDate = parseISO(hasData(session,data[0],true))
         return format(new Date(initialDate), 'd MMMM yyyy')
       }
+      case data[0].includes('Amount'):
+        return `$${currencyFilter(hasData(session, data[0], true))}`
       default:
         return hasData(session,data[0],true)
     }

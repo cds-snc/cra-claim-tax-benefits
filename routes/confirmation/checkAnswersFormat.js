@@ -15,7 +15,7 @@ const addValues = (data, session) => {
   } else if (data.every( item => typeof item === 'string')) {
     return dataValues.join(' ')
   } else {
-    throw new Error('Looks like you\'re trying to combine numebrs and strings  \n Are your infoPaths correct checkAnswers?')
+    throw new Error('Looks like you\'re trying to combine numbers and strings  \n Are your infoPaths correct in checkAnswers?')
   }
 
 }

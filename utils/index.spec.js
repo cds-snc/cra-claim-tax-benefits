@@ -1,4 +1,4 @@
-const { SINFilter, hasData, getPreviousRoute, isoDateHintText, dateFilter } = require('./index')
+const { SINFilter, hasData, getPreviousRoute, isoDateHintText } = require('./index')
 const API = require('./../api')
 
 const testRoutes = [

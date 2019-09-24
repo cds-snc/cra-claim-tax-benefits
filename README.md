@@ -1,8 +1,10 @@
+![](https://github.com/cds-snc/cra-claim-tax-benefits/workflows/Test,%20build,%20deploy/badge.svg)
+
 # Claim tax benefits
 
 This is a small frontend to trial user flows for a future CRA service that will help Canadians receive the benefits to which they are entitled.
 
-It’s a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and a dash of [Pure CSS](https://purecss.io/).
+It’s a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and schnazzy [SCSS](https://sass-lang.com/) stylesheets.
 
 ## Getting started (npm)
 
@@ -67,7 +69,15 @@ npm test
 
 # run linting
 npm run lint
+
+# run end-to-end tests
+npm run cypress
+npm run cypress:cli # these don't open a browser
 ```
+
+#### Using Cypress
+
+[Cypress](https://www.cypress.io/) is what we use to write our end-to-end tests. It can run in a browser or in headless mode (ie, on the command line) to step through one or more flows. By running our end-to-end tests frequently, we are making sure sure that new changes to the code don't existing user journies.
 
 ## Using Docker
 

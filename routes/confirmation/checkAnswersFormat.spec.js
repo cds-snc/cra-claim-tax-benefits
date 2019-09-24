@@ -8,7 +8,7 @@ const sessionWithRent = {
   ...{
     deductions: { 
       trilliumRentClaim: true,
-      trilliumRentAmount: 240,
+      trilliumRentAmount: '240',
     },
   },
 }
@@ -18,8 +18,8 @@ const sessionWithPolitical = {
   ...{
     deductions: {
       politicalContributionClaim: true,
-      politicalFederalAmount: 7.00,
-      politicalProvincialAmount: 10.00,
+      politicalFederalAmount: '7.00',
+      politicalProvincialAmount: '10.00',
     },
   },
 }
@@ -55,7 +55,7 @@ describe('Test checkAnswersFormat with added displayIf rows for Political Contri
 
   test('it adds the political contribution amount', async () => {
     const politicalAmount = answerInfo['Tax Claims'].find(row => row.urlPath === '/deductions/political/amount')
-    expect(politicalAmount.data).toBe(17)
+    expect(politicalAmount.data).toBe('$17.00')
   })
 })
 
@@ -68,7 +68,7 @@ describe('Test checkAnswersFormat with added displayIf rows for Trillium Rent', 
 
   test('it displays the amount', async () => {
     const rentAmount = answerInfo['Tax Benefits'].find(row => row.urlPath === '/trillium/rent/amount')
-    expect(rentAmount.data).toBe(240)
+    expect(rentAmount.data).toBe('$240.00')
   })
 })
 

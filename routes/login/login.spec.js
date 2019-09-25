@@ -35,7 +35,7 @@ describe('Test /login responses', () => {
     const response = await request(app).get('/login/code')
 
     const $ = cheerio.load(response.text)
-    expect($('h1').text()).toEqual('Enter your personal access code')
+    expect($('h1').text()).toEqual('Enter your personal filing code')
   })
 
   test('it returns a 500 response if no redirect is provided', async () => {

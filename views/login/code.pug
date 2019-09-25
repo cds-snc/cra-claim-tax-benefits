@@ -1,23 +1,25 @@
 extends ../base
 
 block variables
-  -var title = __('Enter your personal access code')
+  -var title = __('Enter your personal filing code')
 
 block content
 
   h1 #{title}
 
   div
-    p #{__('Your personal access code is the the 9-character code at the bottom of your notification letter.')}
+    p #{__('You can find your personal filing code in the CRA letter about this new ')}
+      i #{__('service.name')}
+      | #{__(' service.')}
 
   div
     form.cra-form(method='post')
-      +textInput('Personal access code', null, 'For Example: A5G98S4K1')(class='w-3-4', id='code' name='code', autofocus, value=data.code)
+      +textInput('Personal filing code', null, 'For Example: A5G98S4K1')(class='w-3-4', id='code' name='code', autofocus, value=data.code)
 
       div
         details.
-          <summary><span>#{__('Help with personal access code')}</span></summary>
-          <p>#{__('Your code is on the personally-addressed letter.')}</p>
+          <summary><span>#{__('Help with personal filing code')}</span></summary>
+          <p>#{__('Your code has 9-characters and you can find it on the CRA letter about the Claim Tax Benefits service. The letter has your name and address at the top.')}</p>
 
       input#redirect(name='redirect', type='hidden', value='/login/sin')
 

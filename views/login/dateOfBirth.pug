@@ -11,21 +11,13 @@ block content
 
   h1 #{title}
 
-  
-
-  div
-    p #{__('Thanks!')} #{__('We just need one more piece of information to authenticate you.')}
-
-    p #{__('Please enter your date of birth in the field below.')}
-
-
   div
     form.cra-form.cra-form--lg.cra-form--dob(method='post')
 
       div.dob-container(class={['has-error']: errors && errors.dobDay})
         fieldset.fieldset(role="group", aria-describedby="dobHint",)
           legend
-            h2 #{__('Your date of birth')}
+            h2 #{__('Date of birth')}
 
           span#dobHint.cra-form-message #{__('For Example:')} #{isoDateHintText(data.personal.dateOfBirth)}
 

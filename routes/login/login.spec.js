@@ -113,7 +113,7 @@ describe('Test /login responses', () => {
       const response = await request(app).get('/login/sin')
 
       const $ = cheerio.load(response.text)
-      expect($('h1').text()).toEqual('Enter your Social insurance number (SIN)')
+      expect($('h1').text()).toEqual('Enter your Social Insurance Number (SIN)')
     })
 
     test('it returns a 500 response if no redirect is provided', async () => {

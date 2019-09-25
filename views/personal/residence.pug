@@ -34,6 +34,6 @@ block content
           option(value='Saskatchewan') #{__('Saskatchewan')}
           option(value='Yukon') #{__('Yukon')}
           option(value='Non Resident') #{__('Non Resident')}
-    input#redirect(name='redirect', type='hidden', value='/personal/address')
+    input#redirect(name='redirect', type='hidden', value=nextRoute.path)
 
     +formButtons()

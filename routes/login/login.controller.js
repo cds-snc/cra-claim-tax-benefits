@@ -1,5 +1,5 @@
 const { validationResult, checkSchema } = require('express-validator')
-const { errorArray2ErrorObject, doRedirect, renderWithData, checkErrors, getPreviousRoute } = require('./../../utils')
+const { errorArray2ErrorObject, doRedirect, renderWithData, checkErrors, getPreviousRoute, getNextRoute } = require('./../../utils')
 const { loginSchema, sinSchema, dobSchema } = require('./../../schemas')
 const API = require('../../api')
 const request = require('request-promise')
@@ -28,6 +28,7 @@ const postLoginCode = async (req, res, next) => {
 
     return res.status(422).render('login/code', {
       prevRoute: getPreviousRoute(req),
+      nextRoute: getNextRoute(req),
       data: { code: req.body.code },
       errors: errorArray2ErrorObject(errors),
     })
@@ -81,6 +82,7 @@ const postDateOfBirth = async (req, res, next) => {
 
     return res.status(422).render('login/dateOfBirth', {
       prevRoute: getPreviousRoute(req),
+      nextRoute: getNextRoute(req),
       data: req.session,
       body,
       errors: errObj,

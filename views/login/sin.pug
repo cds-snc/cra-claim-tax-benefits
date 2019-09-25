@@ -29,6 +29,6 @@ block content
         +validationMessage(errors.sin.msg, 'sin')
       input.w-3-4#sin(name='sin', autofocus, type='text', value=sin, autocomplete='off' aria-describedby=(errors && errors.sin ? 'sin-error' : false))
 
-    input#redirect(name='redirect', type='hidden', value='/login/dateOfBirth')
+    input#redirect(name='redirect', type='hidden', value=nextRoute.path)
 
     +formButtons()

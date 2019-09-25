@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { doRedirect, renderWithData, checkErrors, getPreviousRoute } = require('./../../utils')
+const { doRedirect, renderWithData, checkErrors, getPreviousRoute, getNextRoute } = require('./../../utils')
 const { reviewSchema } = require('./../../schemas')
 const { formatAnswerInfo } = require('./checkAnswersFormat')
 
@@ -13,6 +13,7 @@ module.exports = function(app) {
     res.render('confirmation/check-answers', {
       data: req.session,
       prevRoute: getPreviousRoute(req),
+      nextRoute: getNextRoute(req),
       answerInfo: formatAnswerInfo(req.session),
     })
   })

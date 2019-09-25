@@ -19,6 +19,6 @@ block content
           <summary><span>#{__('Help with personal access code')}</span></summary>
           <p>#{__('Your code is on the personally-addressed letter.')}</p>
 
-      input#redirect(name='redirect', type='hidden', value='/login/sin')
+      input#redirect(name='redirect', type='hidden', value=nextRoute.path)
 
       +formButtons()

@@ -16,6 +16,6 @@ block content
   form.cra-form(method='post')
     +textInput('Total RRSP contributions')(class='w-1-2 input-with-unit' name='rrspAmount' placeholder='0.00' aria-labelledby='rrspAmount__unit rrspAmount__label' value=rrspAmount autofocus)
 
-    input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
+    input#redirect(name='redirect', type='hidden', value=nextRoute.path)
 
     +formButtons('Continue', '/deductions/rrsp')

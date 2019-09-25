@@ -18,6 +18,6 @@ block content
   form.cra-form(method='post')
     +textInput('Total annual rent in 2018')(class='w-1-2 input-with-unit' name='trilliumRentAmount' placeholder='0.00' aria-labelledby='trilliumRentAmount__unit trilliumRentAmount__label' value=trilliumRentAmount)
 
-    input#redirect(name='redirect', type='hidden', value='/trillium/propertyTax')
+    input#redirect(name='redirect', type='hidden', value=nextRoute.path)
 
     +formButtons('Continue')

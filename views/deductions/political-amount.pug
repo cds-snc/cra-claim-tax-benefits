@@ -19,6 +19,6 @@ block content
 
     +textInput('Total provincial contributions')(class='w-1-2 input-with-unit' name='politicalProvincialAmount' placeholder='0.00' aria-labelledby='politicalProvincialAmount__unit politicalProvincialAmount__label' value=politicalProvincialAmount)
 
-    input#redirect(name='redirect', type='hidden', value='/deductions/donations')
+    input#redirect(name='redirect', type='hidden', value=nextRoute.path)
 
     +formButtons('Continue', '/deductions/political')

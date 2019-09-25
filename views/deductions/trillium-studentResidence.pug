@@ -14,6 +14,6 @@ block content
   form.cra-form(method='post')
     +yesNoRadios('trilliumStudentResidence', trilliumStudentResidence, 'Did you live in a designated student residence in 2018?', errors)
 
-    input#redirect(name='redirect', type='hidden', value='/trillium/energy')
+    input#redirect(name='redirect', type='hidden', value=nextRoute.path)
 
     +formButtons()

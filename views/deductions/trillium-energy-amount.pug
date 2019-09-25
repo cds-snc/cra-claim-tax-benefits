@@ -18,6 +18,6 @@ block content
   form.cra-form(method='post')
     +textInput('Home energy costs on a reserve in 2018')(class='w-1-2 input-with-unit' name='trilliumEnergyAmount' placeholder='0.00' aria-labelledby='trilliumEnergyAmount__unit trilliumEnergyAmount__label' value=trilliumEnergyAmount)
 
-    input#redirect(name='redirect', type='hidden', value='/trillium/longTermCare')
+    input#redirect(name='redirect', type='hidden', value=nextRoute.path)
 
     +formButtons('Continue')

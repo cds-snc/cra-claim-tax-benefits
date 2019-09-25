@@ -23,6 +23,6 @@ block content
         <summary><span>#{__('How do I know if I live in a small and rural community')}</span></summary>
         <p>#{__('You live in a small or rural community if you')} <strong>#{__('do not')}</strong> #{__('live in these areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph, London, Windsor, Barrie, Sudbury, or Thunder Bay.')}</p>
 
-    input#redirect(name='redirect', type='hidden', value='/checkAnswers')
+    input#redirect(name='redirect', type='hidden', value=nextRoute.path)
 
     +formButtons()

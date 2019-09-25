@@ -122,6 +122,7 @@ const doRedirect = (req, res) => {
 // Render a passed-in template and pass in session data under the "data" key
 const renderWithData = template => {
   return (req, res) => {
+    //console.log(getNextRoute(req))
     res.render(template, {
       data: req.session,
       prevRoute: getPreviousRoute(req),
@@ -332,7 +333,7 @@ const getNextRoute = (req, routes = defaultRoutes) => {
     return oneRouteForward
   }
 
-  return nextRoute
+  return nextRoute()
 }
 
 /**
@@ -380,6 +381,7 @@ module.exports = {
   errorArray2ErrorObject,
   checkErrors,
   getPreviousRoute,
+  getNextRoute,
   renderWithData,
   SINFilter,
   hasData,

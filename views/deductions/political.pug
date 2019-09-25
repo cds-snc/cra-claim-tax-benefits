@@ -17,6 +17,6 @@ block content
   form.cra-form(method='post')
     +yesNoRadios('politicalContributionClaim', politicalContributionClaim, 'Deduct political contributions?', errors)
 
-    input#redirect(name='redirect', type='hidden', value='/deductions/donations')
+    input#redirect(name='redirect', type='hidden', value=nextRoute.path)
 
     +formButtons()

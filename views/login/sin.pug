@@ -2,33 +2,32 @@ extends ../base
 include ../_includes/banner
 
 block variables
-  -var title = __('Enter your Social Insurance Number (SIN)')
+  -var title = __('Enter your Social insurance number (SIN)')
   -var sin = hasData(body, 'sin') ? body.sin : ''
 
 block content
 
   h1 #{title}
-
-  
-  
+    
   +banner('check')
-    p #{__('Your access code was validated!')}
+    p #{__('Your personal filing code was validated!')}
 
   if data.personal
     h2 #{__('Thanks,')} #{data.personal.firstName} #{data.personal.lastName}!
 
-  p #{__('Now that we have your personal code, we need some additional information in order to verify that it’s you.')}
-
-  p #{__('Please enter your Social Insurance Number (SIN) in the field below.')}
-
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.sin})
-      label(for='sin') #{__('Social Insurance Number')}
-      span.cra-form-message #{__('For Example:')} #{SINFilter(data.personal.sin)}
+      label(for='sin') #{__('Social insurance number')}
+      span.cra-form-message #{__('For example:')} #{SINFilter(data.personal.sin)}
       if errors
         +validationMessage(errors.sin.msg, 'sin')
       input.w-3-4#sin(name='sin', autofocus, type='text', value=sin, autocomplete='off' aria-describedby=(errors && errors.sin ? 'sin-error' : false))
 
     input#redirect(name='redirect', type='hidden', value='/login/dateOfBirth')
+
+    div
+      details.
+        <summary><span>#{__('Help with Social insurance number')}</span></summary>
+        <p>#{__('You can find your SIN on your tax return or other correspondence from Service Canada. Service Canada also gave you a card or confirmation letter with your SIN.')}</p>
 
     +formButtons()

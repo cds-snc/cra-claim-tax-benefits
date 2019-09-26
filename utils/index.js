@@ -122,7 +122,6 @@ const doRedirect = (req, res) => {
 // Render a passed-in template and pass in session data under the "data" key
 const renderWithData = template => {
   return (req, res) => {
-    //console.log(getNextRoute(req))
     res.render(template, {
       data: req.session,
       prevRoute: getPreviousRoute(req),

@@ -109,10 +109,14 @@ const checkErrors = template => {
 // POST functions that handle setting the login data in the session and will redirecting to the next page or send back an error to the client.
 // Note that this is not the only error validation, see routes defined above.
 const doRedirect = (req, res) => {
+  
   let redirect = req.body.redirect || null
-  returnToCheckAnswers(req, res)
   if (!redirect) {
     throw new Error(`[POST ${req.path}] 'redirect' parameter missing`)
+  }
+
+  if(req.query.ref) {
+    return returnToCheckAnswers(req, res)
   }
 
   return res.redirect(redirect)
@@ -149,7 +153,9 @@ const doYesNo = (claim, amount) => {
     if (claimVal === 'Yes') {
       req.session.deductions[claim] = true
 
-      returnToCheckAnswers(req, res, true)
+      if(req.query.ref) {
+        return returnToCheckAnswers(req, res, true)
+      }
 
       return res.redirect(`${req.path}/amount`)
     }

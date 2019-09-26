@@ -70,8 +70,6 @@
   "get in contact with the CRA to update your information": "get in contact with the CRA to update your information",
   "Once updated, you can proceed to use this service.": "Once updated, you can proceed to use this service.",
   "My name has changed": "My name has changed",
-  "Confirm your marital status": "Confirm your marital status",
-  "You can find the marital status we have on file below. Click confirm if this is correct or change it. Having your accurate marital status on file is important for you to properly file your taxes and get your benefits.": "You can find the marital status we have on file below. Click confirm if this is correct or change it. Having your accurate marital status on file is important for you to properly file your taxes and get your benefits.",
   "Marital Status": "Marital Status",
   "Change your marital status": "Change your marital status",
   "Please choose the correct status from the options listed below.": "Please choose the correct status from the options listed below.",
@@ -316,5 +314,7 @@
   "Is this your correct address?": "Is this your correct address?",
   "Deduct your Registered Retirement Savings Plan (RRSP) contributions": "Deduct your Registered Retirement Savings Plan (RRSP) contributions",
   "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?": "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?",
-  "Total RRSP contributions before March 1, 2019": "Total RRSP contributions before March 1, 2019"
+  "Total RRSP contributions before March 1, 2019": "Total RRSP contributions before March 1, 2019",
+  "Check your marital status": "Check your marital status",
+  "Is this correct?": "Is this correct?"
 }

@@ -295,6 +295,14 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
     return oneRouteBack
   }
 
+  if(req.query.ref ) {
+    //I'm assuming here we want to let them go back to yes/no
+    if( req.path.includes('amount') ) {
+      return {path: `${prevRoute().path}?ref=checkAnswers`}
+    }
+    return routes.find(route => route.path === '/checkAnswers')
+  } 
+
   return prevRoute()
 }
 

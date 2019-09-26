@@ -2,20 +2,15 @@ extends ../base
 include ../_includes/yesNoRadios
 
 block variables
-  -var title = __('Deduct your RRSP contributions')
+  -var title = __('Deduct your Registered Retirement Savings Plan (RRSP) contributions')
   -var rrspClaim = hasData(data, 'deductions.rrspClaim') ? data.deductions.rrspClaim : ''
 
 block content
 
   h1 #{title}
 
-  
-
-  div
-    p #{__('If you made RRSP contributions before March 1, 2019, you can deduct them from your total income on your taxes this year.')}
-
   form.cra-form(method='post')
-    +yesNoRadios('rrspClaim', rrspClaim, 'Did you contribute to an RRSP?', errors)
+    +yesNoRadios('rrspClaim', rrspClaim, 'Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?', errors)
 
     input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
 

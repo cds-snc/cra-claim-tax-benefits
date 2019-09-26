@@ -103,9 +103,6 @@
   "Use the paper form enclosed in the Claim Tax Benefits package you received in the mail": "Remplir le formulaire papier compris dans le paquet « Obtenir mes avantages fiscaux » que vous avez reçu par la poste",
   "Contact CRA at": "Communiquer avec l’ARC en composant le",
   "for help": "pour obtenir de l’aide",
-  "Deduct your RRSP contributions": "Déduisez les cotisations versées à votre REER",
-  "If you made RRSP contributions before March 1, 2019, you can deduct them from your total income on your taxes this year.": "Si vous avez cotisé à un REER avant le 1 mars 2019, vous pouvez déduire ce montant de votre revenu total dans vos impôts cette année.",
-  "Did you contribute to an RRSP?": "Avez-vous cotisé à un REER?",
   "Total RRSP contributions": "Montant total de vos cotisations à un REER",
   "Contact": "Contact",
   "Terms and conditions": "Avis",
@@ -265,7 +262,6 @@
   "Mailing Address": "Mailing Address",
   "Income Information": "Income Information",
   "Tax Claims": "Tax Claims",
-  "Did You Contribute to an RRSP?": "Did You Contribute to an RRSP?",
   "Do you have medical expenses?": "Do you have medical expenses?",
   "Did you contribute to a political party": "Did you contribute to a political party",
   "Did you Donate to a Charity": "Did you Donate to a Charity",
@@ -292,5 +288,7 @@
   "CRA has information about your 2018 income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.": "CRA has information about your 2018 income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.",
   "Is all of this information correct?": "Is all of this information correct?",
   "Check your mailing address": "Check your mailing address",
-  "Is this your correct address?": "Is this your correct address?"
+  "Is this your correct address?": "Is this your correct address?",
+  "Deduct your Registered Retirement Savings Plan (RRSP) contributions": "Deduct your Registered Retirement Savings Plan (RRSP) contributions",
+  "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?": "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?"
 }

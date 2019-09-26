@@ -91,8 +91,6 @@
   "For Example: K2R 3Z9": "For Example: K2R 3Z9",
   "Province": "Province",
   "Change mailing address": "Change mailing address",
-  "Deduct your RRSP contributions": "Deduct your RRSP contributions",
-  "Did you contribute to an RRSP?": "Did you contribute to an RRSP?",
   "Children stub page": "Children stub page",
   "Your taxes can’t be completed using this service": "Your taxes can’t be completed using this service",
   "Review your estimated benefits": "Review your estimated benefits",
@@ -108,7 +106,6 @@
   "Use the paper form enclosed in the Claim Tax Benefits package you received in the mail": "Use the paper form enclosed in the Claim Tax Benefits package you received in the mail",
   "Contact CRA at": "Contact CRA at",
   "for help": "for help",
-  "If you made RRSP contributions before March 1, 2019, you can deduct them from your total income on your taxes this year.": "If you made RRSP contributions before March 1, 2019, you can deduct them from your total income on your taxes this year.",
   "Total RRSP contributions": "Total RRSP contributions",
   "Contact": "Contact",
   "Terms and conditions": "Terms and conditions",
@@ -280,7 +277,6 @@
   "Mailing Address": "Mailing Address",
   "Income Information": "Income Information",
   "Tax Claims": "Tax Claims",
-  "Did You Contribute to an RRSP?": "Did You Contribute to an RRSP?",
   "Do you have medical expenses?": "Do you have medical expenses?",
   "Did you contribute to a political party": "Did you contribute to a political party",
   "Did you Donate to a Charity": "Did you Donate to a Charity",
@@ -319,5 +315,7 @@
   "CRA has information about your 2018 income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.": "CRA has information about your 2018 income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.",
   "Is all of this information correct?": "Is all of this information correct?",
   "Check your mailing address": "Check your mailing address",
-  "Is this your correct address?": "Is this your correct address?"
+  "Is this your correct address?": "Is this your correct address?",
+  "Deduct your Registered Retirement Savings Plan (RRSP) contributions": "Deduct your Registered Retirement Savings Plan (RRSP) contributions",
+  "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?": "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?"
 }

@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Confirm your province or territory of residence')
+  -var title = __('Enter your province or territory')
 
 block content
 
@@ -10,13 +10,11 @@ block content
   
 
   div
-    p #{__('In order to be eligible for this service, your primary residence on December 31, 2018, must have been in Ontario.')}
-    p #{__('If you live outside of Ontario, we will provide you with alternative options in which you can complete your tax return.')}
-
+    p #{__('On December 31, 2018, what was the province or territory of your home address?')}
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.residence})
-      label(for='residence', name="residence-label") #{__('Province or Territory of Residence')}
+      label(for='residence', name="residence-label") #{__('Province or territory of your home address')}
       if errors
           +validationMessage(errors.residence.msg, 'residence')
       select#residence(name='residence', autofocus, aria-describedby=(errors && errors.residence ? 'residence-error' : false))

@@ -1,4 +1,4 @@
-const { SINFilter, hasData, getPreviousRoute, isoDateHintText } = require('./index')
+const { SINFilter, hasData, getPreviousRoute, isoDateHintText, getNextRoute } = require('./index')
 const API = require('./../api')
 
 const testRoutes = [
@@ -72,6 +72,32 @@ describe('Test hasData function', () => {
     expect(hasData({ obj: { string: 'ophthalmosaurus' } }, 'obj.string', true)).toEqual(
       'ophthalmosaurus',
     )
+  })
+})
+
+describe('Test getNextRoute function', () => {
+  const user = API.getUser('A5G98S4K1')
+
+  test('return false for a route that does not exist', () => {
+    const obj = getNextRoute({path: '/deductions/medical', session: user}, testRoutes)
+    expect(obj.path).toEqual(undefined)
+  })
+
+  test('finds next route path by name', () => {
+    const obj = getNextRoute({path: '/login/code', session: user}, testRoutes)
+    expect(obj.path).toEqual('/deductions/rrsp')
+  })
+
+  test('navigates to an edit page if necessary (yes to amount)', () => {
+    const user = { deductions: { rrspClaim: true } }
+    const obj = getNextRoute({path: '/deductions/rrsp', session: user}, testRoutes)
+    expect(obj.path).toEqual('/deductions/rrsp/amount')
+  })
+
+  test('skips an edit page if no to amount/deduction', () => {
+    const user = { deductions: { rrspClaim: null } }
+    const obj = getNextRoute({path: '/deductions/rrsp', session: user}, testRoutes)
+    expect(obj.path).toEqual('/deductions/medical')
   })
 })
 

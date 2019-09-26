@@ -73,6 +73,12 @@ const isValidDay = {
   },
 }
 
+const toISOFormat = ({ dobYear, dobMonth, dobDay }) => {
+  const if0 = val => (val && val.length === 1 ? `0${val}` : val)
+
+  return `${dobYear}-${if0(dobMonth)}-${if0(dobDay)}`
+}
+
 const isMatchingDoB = {
   errorMessage: 'errors.login.dateOfBirth.match',
   validate: (value, req) => {
@@ -81,8 +87,7 @@ const isMatchingDoB = {
       return true
     }
 
-    const { dobYear: y, dobMonth: m, dobDay: d } = req.body
-    return `${y}-${m}-${d}` === req.session.personal.dateOfBirth
+    return toISOFormat(req.body) === req.session.personal.dateOfBirth
   },
 }
 
@@ -109,4 +114,5 @@ module.exports = {
   dobSchema,
   sinSchema,
   lastDayInMonth,
+  toISOFormat,
 }

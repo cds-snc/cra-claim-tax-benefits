@@ -73,7 +73,11 @@ form.cra-form {
   input,
   select {
     @extend %form-element;
-    width: 500px;
+    width: 300px;
+
+    @include sm {
+      width: 500px;
+    }
   }
 
   fieldset legend,

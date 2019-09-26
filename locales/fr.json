@@ -40,7 +40,6 @@
   "button.start": "Commencer maintenant",
   "Please correct the errors on the page": "Veuillez corriger les erreurs trouvées dans cette page",
   "Enter your RRSP contributions": "Inscrivez le montant de vos cotisations à un REER",
-  "Please enter your RRSP contributions before March 1, 2019.": "Veuillez inscrire le montant des cotisations versées à votre REER avant le 1 mars 2019",
   "Congratulations": "Félicitations",
   "Your taxes have been filed with the Canada Revenue Agency.": "Vous avez produit une déclaration de revenus auprès de l’Agence du revenu du Canada.",
   "Confirmation number": "Numéro de confirmation",
@@ -102,7 +101,6 @@
   "Use the paper form enclosed in the Claim Tax Benefits package you received in the mail": "Remplir le formulaire papier compris dans le paquet « Obtenir mes avantages fiscaux » que vous avez reçu par la poste",
   "Contact CRA at": "Communiquer avec l’ARC en composant le",
   "for help": "pour obtenir de l’aide",
-  "Total RRSP contributions": "Montant total de vos cotisations à un REER",
   "Contact": "Contact",
   "Terms and conditions": "Avis",
   "Privacy": "Confidentialité",
@@ -294,5 +292,6 @@
   "Check your name is correct": "Check your name is correct",
   "CRA doesn't need your middle name.": "CRA doesn't need your middle name.",
   "Is this your name?": "Is this your name?",
-  "Date of birth": "Date de naissance"
+  "Date of birth": "Date de naissance",
+  "Total RRSP contributions before March 1, 2019": "Total RRSP contributions before March 1, 2019"
 }

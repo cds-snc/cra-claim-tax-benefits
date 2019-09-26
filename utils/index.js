@@ -110,7 +110,7 @@ const checkErrors = template => {
 // Note that this is not the only error validation, see routes defined above.
 const doRedirect = (req, res) => {
   let redirect = req.body.redirect || null
-
+  returnToCheckAnswers(req, res)
   if (!redirect) {
     throw new Error(`[POST ${req.path}] 'redirect' parameter missing`)
   }
@@ -149,7 +149,8 @@ const doYesNo = (claim, amount) => {
     if (claimVal === 'Yes') {
       req.session.deductions[claim] = true
 
-      // These two pages are hardcoded together
+      returnToCheckAnswers(req, res, true)
+
       return res.redirect(`${req.path}/amount`)
     }
 
@@ -289,6 +290,27 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
   }
 
   return prevRoute()
+}
+
+const returnToCheckAnswers = (req, res, claimYes = false, routes = defaultRoutes) => {
+
+  const currentRoute = getRouteWithIndexByPath(req.path)
+  const nextRoute = routes[currentRoute.index + 1]
+  const ref = req.query.ref
+  
+  if(
+    ref === 'checkAnswers' && 
+    'editInfo' in nextRoute &&
+    'editInfo' !== 'skip' &&
+    claimYes
+    ) {
+      return res.redirect(`${nextRoute.path}?ref=checkAnswers`)
+    } else if (
+      ref === 'checkAnswers' && 
+      !claimYes 
+    ) {
+      return res.redirect(`/checkAnswers`)
+    }
 }
 
 /**

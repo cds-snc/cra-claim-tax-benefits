@@ -283,10 +283,11 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
   const prevRoute = () => {
     const oneRouteBack = routes[Number(route.index) - 1] || false
 
-    // essentially check if the page before
-    // - exists
-    // - is an edit page
-    // - and if the person actually entered/edited any of that information
+    /**  essentially check if the page before
+     * - exists
+     * - is an edit page
+     * - and if the person actually entered/edited any of that information
+    */
     if (
       oneRouteBack &&
       'editInfo' in oneRouteBack &&
@@ -317,10 +318,11 @@ const getNextRoute = (req, routes = defaultRoutes) => {
   const nextRoute = () => {
     const oneRouteForward = routes[Number(route.index) + 1] || false
 
-    // essentially check if the page before
-    // - exists
-    // - is an edit page
-    // - and if the person actually entered/edited any of that information
+    /**  essentially check if the page ahead
+     * - exists
+     * - is an edit page
+     * - and if the person actually entered/edited any of that information
+    */
     if (
       oneRouteForward &&
       'editInfo' in oneRouteForward &&

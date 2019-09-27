@@ -91,9 +91,6 @@
   "Your taxes can’t be completed using this service": "Your taxes can’t be completed using this service",
   "Review your estimated benefits": "Review your estimated benefits",
   "Change Marital Status": "Change Marital Status",
-  "Deduct your charitable donations": "Deduct your charitable donations",
-  "Did you make any charitable donations in 2018?": "Did you make any charitable donations in 2018?",
-  "Did you make charitable donations?": "Did you make charitable donations?",
   "Enter your charitable donations": "Enter your charitable donations",
   "Please enter your charitable donations into the fields below.": "Please enter your charitable donations into the fields below.",
   "Total donations made to registered charities": "Total donations made to registered charities",
@@ -137,7 +134,6 @@
   "Saskatchewan": "Saskatchewan",
   "Yukon": "Yukon",
   "Non Resident": "Non Resident",
-  "Enter your political contributions": "Enter your political contributions",
   "Total income earned in 2018": "Total income earned in 2018",
   "Detailed breakdown of income earned in 2018": "Detailed breakdown of income earned in 2018",
   "Employer 1 Total Income": "Employer 1 Total Income",
@@ -315,5 +311,8 @@
   "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.": "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.",
   "Do you have receipts for political contributions made in 2018?": "Do you have receipts for political contributions made in 2018?",
   "Total 2018 federal political contributions": "Total 2018 federal political contributions",
-  "Total 2018 provincial political contributions": "Total 2018 provincial political contributions"
+  "Total 2018 provincial political contributions": "Total 2018 provincial political contributions",
+  "Deduct charitable donations": "Deduct charitable donations",
+  "Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five that you didn't already deduct from your taxes.": "Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five that you didn't already deduct from your taxes.",
+  "Do you have tax receipts for charitable donations?": "Do you have tax receipts for charitable donations?"
 }

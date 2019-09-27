@@ -147,7 +147,8 @@ describe('Test /deductions responses', () => {
 
         test('it redirects to the checkAnswers when posting "No" and having come from the checkAnswers page', async () => {
           const response = await request(app)
-            .post(`${yesNoResponse.url}`).query({ref: 'checkAnswers'})
+            .post(`${yesNoResponse.url}`)
+            .query({ref: 'checkAnswers'})
             .send({ [yesNoResponse.key]: 'No', redirect: '/' })
           expect(response.statusCode).toBe(302)
           expect(response.headers.location).toEqual('/checkAnswers')
@@ -155,7 +156,8 @@ describe('Test /deductions responses', () => {
 
         test('it redirects to the amount page with checkAnswers ref when posting "Yes" and having come from the checkAnswers page', async () => {
           const response = await request(app)
-            .post(yesNoResponse.url).query({ref: 'checkAnswers'})
+            .post(yesNoResponse.url)
+            .query({ref: 'checkAnswers'})
             .send({ [yesNoResponse.key]: 'Yes', redirect: '/' })
           expect(response.statusCode).toBe(302)
           if('yesRedir' in yesNoResponse) {

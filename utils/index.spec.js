@@ -2,11 +2,12 @@ const { SINFilter, hasData, getPreviousRoute, isoDateHintText } = require('./ind
 const API = require('./../api')
 
 const testRoutes = [
-  { name: 'start', path: '/start' },
-  { name: 'login code', path: '/login/code' },
-  { name: 'rrsp', path: '/deductions/rrsp' },
-  { name: 'rrsp amount', path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
-  { name: 'medical', path: '/deductions/medical' },
+  { path: '/start' },
+  { path: '/login/code' },
+  { path: '/deductions/rrsp' },
+  { path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
+  { path: '/deductions/medical' },
+  { path: '/checkAnswers' },
 ]
 
 describe('Test SINFilter', () => {
@@ -98,6 +99,11 @@ describe('Test getPreviousRoute function', () => {
     const user = { deductions: { rrspClaim: null } }
     const obj = getPreviousRoute({path: '/deductions/medical', session: user}, testRoutes)
     expect(obj.path).toEqual('/deductions/rrsp')
+  })
+
+  test('it returns checkAnswers route if ref is present', () => {
+    const obj = getPreviousRoute({path: '/deductions/medical', query: { ref: 'checkAnswers' }, session: user}, testRoutes)
+    expect(obj.path).toEqual('/checkAnswers')
   })
 })
 

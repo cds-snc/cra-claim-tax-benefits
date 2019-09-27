@@ -143,8 +143,6 @@
   "Saskatchewan": "Saskatchewan",
   "Yukon": "Yukon",
   "Non Resident": "Non-résident",
-  "Confirm your income information": "Confirmez les renseignements sur votre revenu",
-  "Here’s what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.": "Voici ce que l’ARC connaît sur votre revenu pour l’année d’imposition courante (2018). Vous pourrez faire des réclamations et des demande de déductions additionnelles après votre confirmation.",
   "Total income earned in 2018": "Revenu total gagné en 2018",
   "Detailed breakdown of income earned in 2018": "Répartition détaillée du revenu gagné en 2018",
   "Employer 1 Total Income": "Employeur 1 Revenu total",
@@ -157,8 +155,6 @@
   "CPP deduction": "Déduction du RPC",
   "Total tax paid for 2018": "Total des impôts payés en 2018",
   "Is this information correct?": "Ces renseignements sont-ils exacts?",
-  "If this information doesn’t match your records, you can’t change it here.": "Si ces renseignements ne correspondent à ceux de vos dossiers, vous ne pouvez pas les modifier ici.",
-  "You should not use this service to file income information you believe to be incorrect.": "Vous ne devriez pas utiliser ce service pour déclarer un revenu qui vous paraît incorrect.",
   "Political contributions": "Contributions politiques",
   "Did you make any political contributions in 2018?": "Avez-vous fait des contributions politiques pendant l’année 2018?",
   "Deduct political contributions?": "Voulez-vous déduire vos contributions politiques?",
@@ -293,5 +289,8 @@
   "letter.": "letter.",
   "Enter your province or territory": "Enter your province or territory",
   "On December 31, 2018, what was the province or territory of your home address?": "On December 31, 2018, what was the province or territory of your home address?",
-  "Province or territory of your home address": "Province or territory of your home address"
+  "Province or territory of your home address": "Province or territory of your home address",
+  "Check your income information for the 2018 tax year": "Check your income information for the 2018 tax year",
+  "CRA has information about your 2018 income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.": "CRA has information about your 2018 income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.",
+  "Is all of this information correct?": "Is all of this information correct?"
 }

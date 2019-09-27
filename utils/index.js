@@ -109,10 +109,17 @@ const checkErrors = template => {
 // POST functions that handle setting the login data in the session and will redirecting to the next page or send back an error to the client.
 // Note that this is not the only error validation, see routes defined above.
 const doRedirect = (req, res) => {
+  
   let redirect = req.body.redirect || null
-
   if (!redirect) {
     throw new Error(`[POST ${req.path}] 'redirect' parameter missing`)
+  }
+
+  if( 
+    req.query.ref &&
+    req.query.ref === 'checkAnswers'
+    ) {
+    return returnToCheckAnswers(req, res)
   }
 
   return res.redirect(redirect)
@@ -149,7 +156,13 @@ const doYesNo = (claim, amount) => {
     if (claimVal === 'Yes') {
       req.session.deductions[claim] = true
 
-      // These two pages are hardcoded together
+      if(
+        req.query.ref &&
+        req.query.ref === 'checkAnswers'
+        ) {
+        return returnToCheckAnswers(req, res, true)
+      }
+
       return res.redirect(`${req.path}/amount`)
     }
 
@@ -273,10 +286,12 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
   const prevRoute = () => {
     const oneRouteBack = routes[Number(route.index) - 1] || false
 
-    // essentially check if the page before
-    // - exists
-    // - is an edit page
-    // - and if the person actually entered/edited any of that information
+    /**  
+     * essentially check if the page before
+     * - exists
+     * - is an edit page
+     * - and if the person actually entered/edited any of that information
+     */
     if (
       oneRouteBack &&
       'editInfo' in oneRouteBack &&
@@ -288,7 +303,27 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
     return oneRouteBack
   }
 
+  if(req.query && req.query.ref) {
+    return routes.find(route => route.path === '/checkAnswers')
+  } 
+
   return prevRoute()
+}
+
+const returnToCheckAnswers = (req, res, claimYes = false) => {
+
+  const currentRoute = getRouteWithIndexByPath(req.path)
+  const nextRoute = defaultRoutes[currentRoute.index + 1]
+  
+  if(
+    'editInfo' in nextRoute &&
+    'editInfo' !== 'skip' &&
+    claimYes
+    ) {
+      return res.redirect(`${nextRoute.path}?ref=checkAnswers`)
+    } 
+    
+    return res.redirect(`/checkAnswers`)
 }
 
 /**

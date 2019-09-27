@@ -40,7 +40,6 @@
   "button.start": "Start now",
   "Please correct the errors on the page": "Please correct the errors on the page",
   "Enter your RRSP contributions": "Enter your RRSP contributions",
-  "Please enter your RRSP contributions before March 1, 2019.": "Please enter your RRSP contributions before March 1, 2019.",
   "Congratulations": "Congratulations",
   "Your taxes have been filed with the Canada Revenue Agency.": "Your taxes have been filed with the Canada Revenue Agency.",
   "Confirmation number": "Confirmation number",
@@ -106,7 +105,6 @@
   "Use the paper form enclosed in the Claim Tax Benefits package you received in the mail": "Use the paper form enclosed in the Claim Tax Benefits package you received in the mail",
   "Contact CRA at": "Contact CRA at",
   "for help": "for help",
-  "Total RRSP contributions": "Total RRSP contributions",
   "Contact": "Contact",
   "Terms and conditions": "Terms and conditions",
   "Privacy": "Privacy",
@@ -317,5 +315,6 @@
   "Check your mailing address": "Check your mailing address",
   "Is this your correct address?": "Is this your correct address?",
   "Deduct your Registered Retirement Savings Plan (RRSP) contributions": "Deduct your Registered Retirement Savings Plan (RRSP) contributions",
-  "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?": "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?"
+  "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?": "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?",
+  "Total RRSP contributions before March 1, 2019": "Total RRSP contributions before March 1, 2019"
 }

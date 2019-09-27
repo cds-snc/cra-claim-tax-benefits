@@ -70,9 +70,6 @@
   "Yes": "Oui",
   "No": "Non",
   "Error:": "Erreur :",
-  "Confirm your marital status": "Confirmez votre état matrimonial",
-  "You can find the marital status we have on file below. Click confirm if this is correct or change it. Having your accurate marital status on file is important for you to properly file your taxes and get your benefits.": "Vous pouvez voir ci-dessous l’état matrimonial inscrit à nos dossiers. Cliquez sur « Confirmer » s’il est exact, ou modifiez-le s’il est inexact. Il est important d’inscrire le bon état matrimonial pour que vous puissiez produire correctement votre déclaration de revenus et obtenir vos prestations.",
-  "Marital Status": "État matrimonial",
   "Change your marital status": "Modifier votre état matrimonial",
   "Please choose the correct status from the options listed below.": "Veuillez choisir le bon état matrimonial parmi les options qui suivent.",
   "Change your mailing address": "Modifier votre adresse postale",
@@ -293,5 +290,8 @@
   "CRA doesn't need your middle name.": "CRA doesn't need your middle name.",
   "Is this your name?": "Is this your name?",
   "Date of birth": "Date de naissance",
-  "Total RRSP contributions before March 1, 2019": "Total RRSP contributions before March 1, 2019"
+  "Total RRSP contributions before March 1, 2019": "Total RRSP contributions before March 1, 2019",
+  "Check your marital status": "Check your marital status",
+  "Is this correct?": "Is this correct?",
+  "Marital status": "État matrimonial"
 }

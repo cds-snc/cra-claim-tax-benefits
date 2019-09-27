@@ -97,6 +97,7 @@ describe('Test /deductions responses', () => {
         url: '/trillium/studentResidence',
         key: 'trilliumStudentResidence',
         yesRedir: '/success',
+        noAmountPage: true,
       },
       {
         url: '/trillium/energy',
@@ -110,6 +111,7 @@ describe('Test /deductions responses', () => {
         url: '/deductions/climate-action-incentive',
         key: 'climateActionIncentiveIsRural',
         yesRedir: '/success',
+        noAmountPage: true,
       },
     ]
 
@@ -143,6 +145,26 @@ describe('Test /deductions responses', () => {
             .send({ [yesNoResponse.key]: 'No', redirect: '/' })
           expect(response.statusCode).toBe(302)
           expect(response.headers.location).toEqual('/')
+        })
+
+        test('it redirects to the checkAnswers when posting "No" and having come from the checkAnswers page', async () => {
+          const response = await request(app)
+            .post(`${yesNoResponse.url}`).query({ref: 'checkAnswers'})
+            .send({ [yesNoResponse.key]: 'No', redirect: '/' })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual('/checkAnswers')
+        })
+
+        test('it redirects to the amount page with checkAnswers ref when posting "Yes" and having come from the checkAnswers page', async () => {
+          const response = await request(app)
+            .post(yesNoResponse.url).query({ref: 'checkAnswers'})
+            .send({ [yesNoResponse.key]: 'Yes', redirect: '/' })
+          expect(response.statusCode).toBe(302)
+          if('noAmountPage' in yesNoResponse) {
+            expect(response.headers.location).toEqual(`/checkAnswers`)
+          } else {
+            expect(response.headers.location).toEqual(`${yesNoResponse.url}/amount?ref=checkAnswers`)
+          }
         })
 
         test('it redirects to the edit page when posting "Yes"', async () => {

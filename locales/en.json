@@ -108,7 +108,6 @@
   "total annual rent": "total annual rent",
   "Enter property tax paid in 2018": "Enter property tax paid in 2018",
   "Please enter the total property tax paid for your principal residence in 2018.": "Please enter the total property tax paid for your principal residence in 2018.",
-  "Total property tax in 2018": "Total property tax in 2018",
   "Home energy costs on a reserve": "Home energy costs on a reserve",
   "Please enter the home energy costs paid for your principal residence on a reserve in Ontario in 2018.": "Please enter the home energy costs paid for your principal residence on a reserve in Ontario in 2018.",
   "Home energy costs on a reserve in 2018": "Home energy costs on a reserve in 2018",
@@ -230,9 +229,6 @@
   "Month": "Month",
   "Year": "Year",
   "Rent paid in 2018": "Rent paid in 2018",
-  "Deduct your property tax": "Deduct your property tax",
-  "If you paid property tax in 2018, you may be entitled to receive credits from your": "If you paid property tax in 2018, you may be entitled to receive credits from your",
-  "Did you pay property tax in 2018?": "Did you pay property tax in 2018?",
   "Deduct your home energy costs on a reserve": "Deduct your home energy costs on a reserve",
   "If you lived on a reserve and had home energy costs in 2018, you may be entitled to receive credits from your": "If you lived on a reserve and had home energy costs in 2018, you may be entitled to receive credits from your",
   "Did you live on a reserve and have home energy costs 2018?": "Did you live on a reserve and have home energy costs 2018?",
@@ -329,5 +325,8 @@
   "Did you pay property tax for the place you lived most of 2018?": "Did you pay property tax for the place you lived most of 2018?",
   "Enter your property tax payments to apply for OTB": "Enter your property tax payments to apply for OTB",
   "The government might ask for your property tax receipts.": "The government might ask for your property tax receipts.",
-  "How much total property tax did you pay for the place you lived most of 2018?": "How much total property tax did you pay for the place you lived most of 2018?"
+  "How much total property tax did you pay for the place you lived most of 2018?": "How much total property tax did you pay for the place you lived most of 2018?",
+  "Deduct your rent payments": "Deduct your rent payments",
+  "If you paid rent in 2018, you may be entitled to receive more credits from your": "If you paid rent in 2018, you may be entitled to receive more credits from your",
+  "Did you pay rent in 2018?": "Did you pay rent in 2018?"
 }

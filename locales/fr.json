@@ -211,6 +211,9 @@
   "Day": "Jour",
   "Month": "Mois",
   "Year": "Année",
+  "Deduct your property tax": "Deduct your property tax",
+  "If you paid property tax in 2018, you may be entitled to receive credits from your": "If you paid property tax in 2018, you may be entitled to receive credits from your",
+  "Did you pay property tax in 2018?": "Did you pay property tax in 2018?",
   "Deduct your home energy costs on a reserve": "Deduct your home energy costs on a reserve",
   "If you lived on a reserve and had home energy costs in 2018, you may be entitled to receive credits from your": "If you lived on a reserve and had home energy costs in 2018, you may be entitled to receive credits from your",
   "Did you live on a reserve and have home energy costs 2018?": "Did you live on a reserve and have home energy costs 2018?",
@@ -298,5 +301,13 @@
   "Did you pay property tax for the place you lived most of 2018?": "Did you pay property tax for the place you lived most of 2018?",
   "Enter your property tax payments to apply for OTB": "Enter your property tax payments to apply for OTB",
   "The government might ask for your property tax receipts.": "The government might ask for your property tax receipts.",
-  "How much total property tax did you pay for the place you lived most of 2018?": "How much total property tax did you pay for the place you lived most of 2018?"
+  "How much total property tax did you pay for the place you lived most of 2018?": "How much total property tax did you pay for the place you lived most of 2018?",
+  "The Ontario Trillium Benefit": "The Ontario Trillium Benefit",
+  "The Ontario Trillium Benefit (OTB) is a government payment that helps with energy, sales and property taxes. You can learn about the OTB at": "The Ontario Trillium Benefit (OTB) is a government payment that helps with energy, sales and property taxes. You can learn about the OTB at",
+  "Apply for the OTB on the pages that follow.": "Apply for OTB on the pages that follow.",
+  "Apply for the OTB: rent payments": "Apply for OTB: rent payments",
+  "Did you pay rent for the place you lived most of 2018?": "Did you pay rent for the place you lived most of 2018?",
+  "Enter your rent payments to apply for OTB": "Enter your rent payments to apply for OTB",
+  "The government might ask for your rent receipts.": "The government might ask for your rent receipts.",
+  "How much total rent did you pay for the place you lived most of 2018?": "How much total rent did you pay for the place you lived most of 2018?"
 }

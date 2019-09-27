@@ -29,6 +29,10 @@ module.exports = function(app) {
     checkSchema(rrspSchema),
     checkErrors('deductions/rrsp'),
     doYesNo('rrspClaim', 'rrspAmount'),
+    (req, res, next) => {
+      req.session.deductions.rrspAmount.amount = 0
+      next()
+    },
     doRedirect,
   )
   app.get('/deductions/rrsp/amount', renderWithData('deductions/rrsp-amount'))
@@ -51,6 +55,10 @@ module.exports = function(app) {
     checkSchema(charitableDonationSchema),
     checkErrors('deductions/donations'),
     doYesNo('charitableDonationClaim', 'charitableDonationAmount'),
+    (req, res, next) => {
+      req.session.deductions.charitableDonationAmount = 0
+      next()
+    },
     doRedirect,
   )
   app.get('/deductions/donations/amount', renderWithData('deductions/donations-amount'))
@@ -73,6 +81,10 @@ module.exports = function(app) {
     checkSchema(medicalExpenseSchema),
     checkErrors('deductions/medical'),
     doYesNo('medicalExpenseClaim', 'medicalExpenseAmount'),
+    (req, res, next) => {
+      req.session.deductions.medicalExpenseClaimAmount.amount = 0
+      next()
+    },
     doRedirect,
   )
   app.get('/deductions/medical/amount', renderWithData('deductions/medical-amount'))
@@ -125,6 +137,10 @@ module.exports = function(app) {
     checkSchema(trilliumRentSchema),
     checkErrors('deductions/trillium-rent'),
     doYesNo('trilliumRentClaim', 'trilliumRentAmount'),
+    (req, res, next) => {
+      req.session.deductions.trilliumRentAmount = 0
+      next()
+    },
     doRedirect,
   )
   app.get('/trillium/rent/amount', renderWithData('deductions/trillium-rent-amount'))
@@ -145,6 +161,10 @@ module.exports = function(app) {
     checkSchema(trilliumPropertyTaxSchema),
     checkErrors('deductions/trillium-propertyTax'),
     doYesNo('trilliumPropertyTaxClaim', 'trilliumPropertyTaxAmount'),
+    (req, res, next) => {
+      req.session.deductions.trilliumPropertyTaxAmount = 0
+      next()
+    },
     doRedirect,
   )
   app.get('/trillium/propertyTax/amount', renderWithData('deductions/trillium-propertyTax-amount'))
@@ -178,6 +198,10 @@ module.exports = function(app) {
     checkSchema(trilliumEnergySchema),
     checkErrors('deductions/trillium-energy'),
     doYesNo('trilliumEnergyClaim', 'trilliumEnergyAmount'),
+    (req, res, next) => {
+      req.session.deductions.trilliumEnergyAmount = 0
+      next()
+    },
     doRedirect,
   )
   app.get('/trillium/energy/amount', renderWithData('deductions/trillium-energy-amount'))
@@ -198,6 +222,10 @@ module.exports = function(app) {
     checkSchema(trilliumlongTermCareSchema),
     checkErrors('deductions/trillium-longTermCare'),
     doYesNo('trilliumLongTermCareClaim', 'trilliumLongTermCareAmount'),
+    (req, res, next) => {
+      req.session.deductions.trilliumLongTermCareAmount = 0
+      next()
+    },
     doRedirect,
   )
   app.get(

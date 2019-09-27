@@ -1,22 +1,18 @@
 extends ../base
 
 block variables
-  -var title = __('Enter property tax paid in 2018')
+  -var title = __('Enter your property tax payments to apply for OTB')
   -var trilliumPropertyTaxAmount = hasData(data, 'deductions.trilliumPropertyTaxAmount') &&  data.deductions.trilliumPropertyTaxAmount !== 0 ? data.deductions.trilliumPropertyTaxAmount : ''
 
 block content
 
   h1 #{title}
 
-  
-
   div
-    p #{__('Please enter the total property tax paid for your principal residence in 2018.')}
-
-    p #{__('Please note you may be asked to provide receipts to verify this information later.')}
+    p #{__('The government might ask for your property tax receipts.')}
 
   form.cra-form(method='post')
-    +textInput('Total property tax in 2018')(class='w-1-2 input-with-unit' name='trilliumPropertyTaxAmount' placeholder='0.00' aria-labelledby='trilliumPropertyTaxAmount__unit trilliumPropertyTaxAmount__label' value=trilliumPropertyTaxAmount)
+    +textInput('How much total property tax did you pay for the place you lived most of 2018?')(class='w-1-2 input-with-unit' name='trilliumPropertyTaxAmount' placeholder='0.00' aria-labelledby='trilliumPropertyTaxAmount__unit trilliumPropertyTaxAmount__label' value=trilliumPropertyTaxAmount)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/studentResidence')
 

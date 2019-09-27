@@ -314,7 +314,6 @@ const returnToCheckAnswers = (req, res, claimYes = false) => {
 
   const currentRoute = getRouteWithIndexByPath(req.path)
   const nextRoute = defaultRoutes[currentRoute.index + 1]
-  const ref = req.query.ref
   
   if(
     'editInfo' in nextRoute &&

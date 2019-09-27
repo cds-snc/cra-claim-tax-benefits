@@ -92,8 +92,6 @@
   "Review your estimated benefits": "Review your estimated benefits",
   "Change Marital Status": "Change Marital Status",
   "Enter your charitable donations": "Enter your charitable donations",
-  "Please enter your charitable donations into the fields below.": "Please enter your charitable donations into the fields below.",
-  "Total donations made to registered charities": "Total donations made to registered charities",
   "Your tax return is too complex to be filed using this service. Nothing about your taxes is incorrect — see below for further instructions on how to complete your tax return.": "Your tax return is too complex to be filed using this service. Nothing about your taxes is incorrect — see below for further instructions on how to complete your tax return.",
   "To finish filing your taxes for 2018, you will need to do one of the following:": "To finish filing your taxes for 2018, you will need to do one of the following:",
   "Use the paper form enclosed in the Claim Tax Benefits package you received in the mail": "Use the paper form enclosed in the Claim Tax Benefits package you received in the mail",
@@ -314,5 +312,6 @@
   "Total 2018 provincial political contributions": "Total 2018 provincial political contributions",
   "Deduct charitable donations": "Deduct charitable donations",
   "Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five that you didn't already deduct from your taxes.": "Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five that you didn't already deduct from your taxes.",
-  "Do you have tax receipts for charitable donations?": "Do you have tax receipts for charitable donations?"
+  "Do you have tax receipts for charitable donations?": "Do you have tax receipts for charitable donations?",
+  "Total donations to registered charities": "Total donations to registered charities"
 }

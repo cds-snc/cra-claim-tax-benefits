@@ -87,8 +87,6 @@
   "Change mailing address": "Modifier mon adresse postale",
   "Change Marital Status": "Modifier mon état matrimonial",
   "Enter your charitable donations": "Inscrivez le montant de vos dons de bienfaisance",
-  "Please enter your charitable donations into the fields below.": "Veuillez inscrire le montant de vos dons de bienfaisance dans le champ ci-dessous.",
-  "Total donations made to registered charities": "Montant total des dons faits à des organismes de bienfaisance enregistrés",
   "Your taxes can’t be completed using this service": "Vous ne pouvez pas utiliser ce service pour déclarer vos revenus",
   "Your tax return is too complex to be filed using this service. Nothing about your taxes is incorrect — see below for further instructions on how to complete your tax return.": "Votre déclaration de revenus est trop complexe pour être produite à l’aide de ce service. Il n’y a rien d’incorrect à propos de vos impôts — vous trouverez ci-dessous plus d’instructions sur la façon de produire votre déclaration de revenus.",
   "To finish filing your taxes for 2018, you will need to do one of the following:": "Afin de produire votre déclaration de revenus pour l’année 2018, vous devrez suivre l’une des mesures suivantes :",
@@ -289,5 +287,6 @@
   "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.": "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.",
   "Do you have receipts for political contributions made in 2018?": "Do you have receipts for political contributions made in 2018?",
   "Total 2018 federal political contributions": "Total 2018 federal political contributions",
-  "Total 2018 provincial political contributions": "Total 2018 provincial political contributions"
+  "Total 2018 provincial political contributions": "Total 2018 provincial political contributions",
+  "Total donations to registered charities": "Total donations to registered charities"
 }

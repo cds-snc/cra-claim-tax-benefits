@@ -161,7 +161,7 @@ describe('Test /deductions responses', () => {
             .send({ [yesNoResponse.key]: 'Yes', redirect: '/' })
           expect(response.statusCode).toBe(302)
           if('noAmountPage' in yesNoResponse) {
-            expect(response.headers.location).toEqual(`/checkAnswers`)
+            expect(response.headers.location).toEqual('/checkAnswers')
           } else {
             expect(response.headers.location).toEqual(`${yesNoResponse.url}/amount?ref=checkAnswers`)
           }

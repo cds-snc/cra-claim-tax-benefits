@@ -79,7 +79,7 @@ const logIn = (cy, user) => {
   // LOGIN CODE PAGE
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/login/code')
-  cy.get('h1').should('contain', 'Enter your personal access code')
+  cy.get('h1').should('contain', 'Enter your personal filing code')
   cy.get('form label').should('have.attr', 'for', 'code')
   cy.get('form input#code')
     .type(user.login.code)

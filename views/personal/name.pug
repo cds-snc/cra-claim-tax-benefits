@@ -2,7 +2,7 @@ extends ../base
 include ../_includes/yesNoRadios
 
 block variables
-  -var title = __('Confirm your name')
+  -var title = __('Check your name is correct')
 
 block content
 
@@ -11,9 +11,7 @@ block content
   
 
   div
-    p #{__('We’ve located your file for the current tax year, 2018.')}
-    p #{__('The first step to filing your taxes and getting your benefits is making sure your address and other personal information is up to date.')}
-    p #{__('Please confirm this is still your current name.')}
+    p #{__(`CRA doesn't need your middle name.`)}
 
   div
     table.pure-table

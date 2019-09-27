@@ -2,7 +2,7 @@ extends ../base
 include ../_includes/yesNoRadios
 
 block variables
-  -var title = __('Confirm your income information')
+  -var title = __('Check your income information for the 2018 tax year')
   -var incomeSources = hasData(data, 'financial.incomeSources') ? data.financial.incomeSources : {}
   -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
   -var totalIncome = hasData(data, 'financial.incomes.totalIncome') ? data.financial.incomes.totalIncome : 0
@@ -16,13 +16,13 @@ block content
   
 
   div
-    p #{__(`Here’s what CRA knows about your income for the current tax year (filing for ${year}). Additional claims and deductions can be made afterwards.`)}
+    p #{__(`CRA has information about your ${year} income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.`)}
 
   if incomeSources
     .breakdown-table
       h2.breakdown-table__heading
         span #{__(`Total income earned in ${year}`)} 
-        span $#{currencyFilter(totalIncome.amount, 0)}
+        span $#{currencyFilter(totalIncome.amount, 2)}
   
       p.breakdown-table__subheading #{__(`Detailed breakdown of income earned in ${year}`)}
 
@@ -39,7 +39,7 @@ block content
   .breakdown-table
       h2.breakdown-table__heading 
         span #{__('Total tax')}
-        span.breakdown-table__heading $#{currencyFilter(totalTax, 0)}
+        span.breakdown-table__heading $#{currencyFilter(totalTax, 2)}
 
       p.breakdown-table__subheading #{__(`Detailed breakdown of taxes paid in ${year}`)}
 
@@ -54,11 +54,7 @@ block content
           dd.breakdown-table__row-value $#{currencyFilter(totalTax)}
 
   form.cra-form(method='post')
-    +yesNoRadios('confirmIncome', null, 'Is this information correct?', errors)
-      .no-info#noInfo
-        .no-info__wrapper
-          p #{__('If this information doesn’t match your records, you can’t change it here.')}
-          p #{__('You should not use this service to file income information you believe to be incorrect.')}
+    +yesNoRadios('confirmIncome', null, 'Is all of this information correct?', errors)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/rrsp')
 

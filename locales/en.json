@@ -96,7 +96,6 @@
   "Deduct your RRSP contributions": "Deduct your RRSP contributions",
   "Did you contribute to an RRSP?": "Did you contribute to an RRSP?",
   "Children stub page": "Children stub page",
-  "Confirm your income information": "Confirm your income information",
   "Your taxes can’t be completed using this service": "Your taxes can’t be completed using this service",
   "Review your estimated benefits": "Review your estimated benefits",
   "Change Marital Status": "Change Marital Status",
@@ -155,7 +154,6 @@
   "Please enter your political contributions into the fields below.": "Please enter your political contributions into the fields below.",
   "Total federal contributions": "Total federal contributions",
   "Total provincial contributions": "Total provincial contributions",
-  "Here’s what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.": "Here’s what CRA knows about your income for the current tax year (filing for 2018). Additional claims and deductions can be made afterwards.",
   "Total income earned in 2018": "Total income earned in 2018",
   "Detailed breakdown of income earned in 2018": "Detailed breakdown of income earned in 2018",
   "Employer 1 Total Income": "Employer 1 Total Income",
@@ -321,5 +319,8 @@
   "Enter your province or territory": "Enter your province or territory",
   "On December 31, 2018, what was the province or territory of your home address?": "On December 31, 2018, what was the province or territory of your home address?",
   "Province or territory": "Province or territory",
-  "Province or territory of your home address": "Province or territory of your home address"
+  "Province or territory of your home address": "Province or territory of your home address",
+  "Check your income information for the 2018 tax year": "Check your income information for the 2018 tax year",
+  "CRA has information about your 2018 income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.": "CRA has information about your 2018 income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.",
+  "Is all of this information correct?": "Is all of this information correct?"
 }

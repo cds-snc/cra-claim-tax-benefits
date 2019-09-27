@@ -321,11 +321,9 @@ const returnToCheckAnswers = (req, res, claimYes = false) => {
     claimYes
     ) {
       return res.redirect(`${nextRoute.path}?ref=checkAnswers`)
-    } else if (
-      !claimYes 
-    ) {
-      return res.redirect(`/checkAnswers`)
-    }
+    } 
+    
+    return res.redirect(`/checkAnswers`)
 }
 
 /**

@@ -9,7 +9,7 @@ block content
   h1 #{title}
 
   form.cra-form(method='post')
-    +textInput('Total RRSP contributions before March 1, 2019')(class='w-1-2 input-with-unit' name='rrspAmount' placeholder='0.00' aria-labelledby='rrspAmount__unit rrspAmount__label' value=rrspAmount autofocus)
+    +textInput('Total RRSP contributions before March 1, 2019')(class='label--lg w-1-2 input-with-unit' name='rrspAmount' placeholder='0.00' aria-labelledby='rrspAmount__unit rrspAmount__label' value=rrspAmount autofocus)
 
     input#redirect(name='redirect', type='hidden', value='/personal/maritalStatus')
 

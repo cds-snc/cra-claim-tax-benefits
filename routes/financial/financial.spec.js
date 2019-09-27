@@ -29,4 +29,13 @@ describe('Test /financial responses', () => {
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/deductions/rrsp')
   })
+
+  test('it redirects to the checkAnswers when posting Yes and having come from the checkAnswers page', async () => {
+    const response = await request(app)
+      .post('/financial/income')
+      .query({ref: 'checkAnswers'})
+      .send({ confirmIncome: 'Yes', redirect: '/deductions/rrsp' })
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toEqual('/checkAnswers')
+  }) 
 })

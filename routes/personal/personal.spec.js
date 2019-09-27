@@ -39,6 +39,15 @@ describe('Test /personal responses', () => {
       expect(response.headers.location).toEqual('/success')
       expect(response.statusCode).toBe(302)
     })
+
+    test('it redirects to the checkAnswers when posting Yes and having come from the checkAnswers page', async () => {
+      const response = await request(app)
+        .post('/personal/name')
+        .query({ref: 'checkAnswers'})
+        .send({ redirect: '/', name: 'Yes' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/checkAnswers')
+    })
   })
 
   describe('Test /personal/maritalStatus responses', () => {
@@ -49,6 +58,15 @@ describe('Test /personal responses', () => {
       expect(response.headers.location).toEqual('/offramp')
       expect(response.statusCode).toBe(302)
     })
+
+    test('it redirects to the checkAnswers when posting Yes and having come from the checkAnswers page', async () => {
+      const response = await request(app)
+        .post('/personal/maritalStatus')
+        .query({ref: 'checkAnswers'})
+        .send({ redirect: '/', confirmMaritalStatus: 'Yes' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/checkAnswers')
+    })  
   })
 
   describe('Test /personal/residence responses', () => {
@@ -74,6 +92,15 @@ describe('Test /personal responses', () => {
       expect(response.headers.location).toEqual('/personal/address')
       expect(response.statusCode).toBe(302)
     })
+
+    test('it redirects to the checkAnswers when posting Yes and having come from the checkAnswers page', async () => {
+      const response = await request(app)
+        .post('/personal/residence')
+        .query({ref: 'checkAnswers'})
+        .send({ redirect: '/', residence: 'Ontario' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/checkAnswers')
+    })
   })
 
   describe('Test /personal/address responses', () => {
@@ -84,5 +111,14 @@ describe('Test /personal responses', () => {
       expect(response.headers.location).toEqual('/offramp')
       expect(response.statusCode).toBe(302)
     })
+
+    test('it redirects to the checkAnswers when posting Yes and having come from the checkAnswers page', async () => {
+      const response = await request(app)
+        .post('/personal/address')
+        .query({ref: 'checkAnswers'})
+        .send({ redirect: '/', confirmAddress: 'Yes' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/checkAnswers')
+    }) 
   })
 })

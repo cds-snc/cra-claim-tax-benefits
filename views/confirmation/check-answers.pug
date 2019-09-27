@@ -31,7 +31,7 @@ block content
               
               dd.breakdown-table__row-link 
                 if row.urlPath
-                  a(href=row.urlPath)
+                  a(href=`${row.urlPath}?ref=checkAnswers`)
                     <span>#{__('Review')}<span class="visually-hidden"> #{__(row.text)}</span>
   
   +linkButtons('/review')

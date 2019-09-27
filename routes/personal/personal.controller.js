@@ -55,7 +55,9 @@ const postResidence = (req, res, next) => {
 
 const postName = (req, res, next) => {
   const name = req.body.name
-
+  
+  req.session.personal.confirmedName = name
+  
   if (name !== 'Yes') {
     return res.redirect('/offramp/name')
   }
@@ -65,6 +67,8 @@ const postName = (req, res, next) => {
 
 const postConfirmMaritalStatus = (req, res, next) => {
   const confirmMaritalStatus = req.body.confirmMaritalStatus
+  
+  req.session.personal.confirmedMaritalStatus = confirmMaritalStatus
 
   if (confirmMaritalStatus === 'No') {
     //Income details are not correct
@@ -77,6 +81,8 @@ const postConfirmMaritalStatus = (req, res, next) => {
 
 const postConfirmAddress = (req, res, next) => {
   const confirmAddress = req.body.confirmAddress
+  
+  req.session.personal.confirmedAddress = confirmAddress
 
   if (confirmAddress === 'No') {
     //Income details are not correct

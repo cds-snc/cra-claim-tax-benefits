@@ -3,6 +3,7 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Confirm your marital status')
+  -var confirmedMaritalStatus = hasData(data, 'personal.confirmedMaritalStatus') ? data.personal.confirmedMaritalStatus : ''
 
 block content
 
@@ -24,7 +25,7 @@ block content
             div #{__(data.personal.maritalStatus)}
 
   form.cra-form(method='post')
-    +yesNoRadios('confirmMaritalStatus', null, 'Is this information correct?', errors)
+    +yesNoRadios('confirmMaritalStatus', confirmedMaritalStatus, 'Is this information correct?', errors)
       .no-info#noInfo
         .no-info__wrapper
           p #{__('If this information doesn’t match your records, you can’t change it here.')}

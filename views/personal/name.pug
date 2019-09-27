@@ -3,6 +3,7 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Check your name is correct')
+  -var confirmedName = hasData(data, 'personal.confirmedName') ? data.personal.confirmedName : ''
 
 block content
 
@@ -24,7 +25,7 @@ block content
             div #{data.personal.firstName} #{data.personal.lastName}
   
   form.cra-form(method='post')
-    +yesNoRadios('name', null, 'Is this your name?', errors)
+    +yesNoRadios('name', confirmedName, 'Is this your name?', errors)
 
     input#redirect(name='redirect', type='hidden', value='/personal/residence')
 

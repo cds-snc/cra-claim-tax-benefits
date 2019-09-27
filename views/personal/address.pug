@@ -3,6 +3,7 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Confirm your mailing address')
+  -var confirmedAddress = hasData(data, 'personal.confirmedAddress') ? data.personal.confirmedAddress : ''
 
 block content
 
@@ -30,7 +31,7 @@ block content
               div #{data.personal.address.postalCode}
   
   form.cra-form(method='post')
-    +yesNoRadios('confirmAddress', null, 'Is this information correct?', errors)
+    +yesNoRadios('confirmAddress', confirmedAddress, 'Is this information correct?', errors)
       .no-info#noInfo
         .no-info__wrapper
           p #{__('If this information doesn’t match your records, you can’t change it here.')}

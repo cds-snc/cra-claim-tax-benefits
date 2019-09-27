@@ -280,10 +280,12 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
   const prevRoute = () => {
     const oneRouteBack = routes[Number(route.index) - 1] || false
 
-    // essentially check if the page before
-    // - exists
-    // - is an edit page
-    // - and if the person actually entered/edited any of that information
+    /**  
+     * essentially check if the page before
+     * - exists
+     * - is an edit page
+     * - and if the person actually entered/edited any of that information
+     */
     if (
       oneRouteBack &&
       'editInfo' in oneRouteBack &&
@@ -295,7 +297,7 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
     return oneRouteBack
   }
 
-  if(req.query.ref ) {
+  if(req.query && req.query.ref) {
     //I'm assuming here we want to let them go back to yes/no
     if( req.path.includes('amount') ) {
       return {path: `${prevRoute().path}?ref=checkAnswers`}

@@ -8,6 +8,7 @@ block variables
   -var totalIncome = hasData(data, 'financial.incomes.totalIncome') ? data.financial.incomes.totalIncome : 0
   -var totalTax = hasData(data, 'financial.totalTax') ? data.financial.totalTax : 0
   -var year = new Date().getFullYear()-1
+  -var confirmedIncome = hasData(data, 'financial.incomeConfirmed') ? data.financial.incomeConfirmed : ''
 
 block content
 
@@ -54,7 +55,7 @@ block content
           dd.breakdown-table__row-value $#{currencyFilter(totalTax)}
 
   form.cra-form(method='post')
-    +yesNoRadios('confirmIncome', null, 'Is all of this information correct?', errors)
+    +yesNoRadios('confirmIncome', confirmedIncome, 'Is all of this information correct?', errors)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/rrsp')
 

@@ -72,7 +72,7 @@ module.exports = function(app) {
     '/deductions/medical',
     checkSchema(medicalExpenseSchema),
     checkErrors('deductions/medical'),
-    doYesNo('medicalExpenseClaim', 'medicalExpenseAmount'),
+    doYesNo('medicalExpenseClaim', 'medicalExpenseClaimAmount'),
     doRedirect,
   )
   app.get('/deductions/medical/amount', renderWithData('deductions/medical-amount'))

@@ -3,6 +3,7 @@ include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Check your marital status')
+  -var confirmedMaritalStatus = hasData(data, 'personal.confirmedMaritalStatus') ? data.personal.confirmedMaritalStatus : ''
 
 block content
 
@@ -19,7 +20,7 @@ block content
             div #{__(data.personal.maritalStatus)}
 
   form.cra-form(method='post')
-    +yesNoRadios('confirmMaritalStatus', null, 'Is this correct?', errors)
+    +yesNoRadios('confirmMaritalStatus', confirmedMaritalStatus, 'Is this correct?', errors)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/medical')
 

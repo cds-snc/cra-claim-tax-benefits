@@ -2,34 +2,25 @@ extends ../base
 include ../_includes/yesNoRadios
 
 block variables
-  -var title = __('Confirm your marital status')
+  -var title = __('Check your marital status')
   -var confirmedMaritalStatus = hasData(data, 'personal.confirmedMaritalStatus') ? data.personal.confirmedMaritalStatus : ''
 
 block content
 
   h1 #{title}
 
-  
-
-  div
-    p #{__('You can find the marital status we have on file below. Click confirm if this is correct or change it. Having your accurate marital status on file is important for you to properly file your taxes and get your benefits.')}
-
   div
     table.pure-table
       thead
         tr
-          th #{__('Marital Status')}
+          th #{__('Marital status')}
       tbody
         tr
           td
             div #{__(data.personal.maritalStatus)}
 
   form.cra-form(method='post')
-    +yesNoRadios('confirmMaritalStatus', confirmedMaritalStatus, 'Is this information correct?', errors)
-      .no-info#noInfo
-        .no-info__wrapper
-          p #{__('If this information doesn’t match your records, you can’t change it here.')}
-          p #{__('You should not use this service to file information you believe to be incorrect.')}
+    +yesNoRadios('confirmMaritalStatus', confirmedMaritalStatus, 'Is this correct?', errors)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/medical')
 

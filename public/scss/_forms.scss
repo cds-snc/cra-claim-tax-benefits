@@ -75,6 +75,14 @@ form.cra-form {
     @extend %form-element;
   }
 
+  #rrspAmount__label {
+    width: 300px;
+
+    @include sm {
+      width: 350px;
+    }
+  }
+
   fieldset legend,
   div:not(.multiple-choice__item) > label {
     font-family: 'Lato', sans-serif;

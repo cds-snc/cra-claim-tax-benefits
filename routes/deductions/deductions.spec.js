@@ -97,7 +97,6 @@ describe('Test /deductions responses', () => {
         url: '/trillium/studentResidence',
         key: 'trilliumStudentResidence',
         yesRedir: '/success',
-        noAmountPage: true,
       },
       {
         url: '/trillium/energy',
@@ -111,7 +110,6 @@ describe('Test /deductions responses', () => {
         url: '/deductions/climate-action-incentive',
         key: 'climateActionIncentiveIsRural',
         yesRedir: '/success',
-        noAmountPage: true,
       },
     ]
 
@@ -160,7 +158,7 @@ describe('Test /deductions responses', () => {
             .post(yesNoResponse.url).query({ref: 'checkAnswers'})
             .send({ [yesNoResponse.key]: 'Yes', redirect: '/' })
           expect(response.statusCode).toBe(302)
-          if('noAmountPage' in yesNoResponse) {
+          if('yesRedir' in yesNoResponse) {
             expect(response.headers.location).toEqual('/checkAnswers')
           } else {
             expect(response.headers.location).toEqual(`${yesNoResponse.url}/amount?ref=checkAnswers`)

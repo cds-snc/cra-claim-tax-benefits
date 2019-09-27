@@ -137,9 +137,6 @@
   "Saskatchewan": "Saskatchewan",
   "Yukon": "Yukon",
   "Non Resident": "Non Resident",
-  "Political contributions": "Political contributions",
-  "Did you make any political contributions in 2018?": "Did you make any political contributions in 2018?",
-  "Deduct political contributions?": "Deduct political contributions?",
   "Enter your political contributions": "Enter your political contributions",
   "Please enter your political contributions into the fields below.": "Please enter your political contributions into the fields below.",
   "Total federal contributions": "Total federal contributions",
@@ -316,5 +313,8 @@
   "Total RRSP contributions before March 1, 2019": "Total RRSP contributions before March 1, 2019",
   "Check your marital status": "Check your marital status",
   "Is this correct?": "Is this correct?",
-  "Marital status": "Marital status"
+  "Marital status": "Marital status",
+  "Deduct political contributions": "Deduct political contributions",
+  "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.": "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.",
+  "Do you have receipts for political contributions made in 2018?": "Do you have receipts for political contributions made in 2018?"
 }

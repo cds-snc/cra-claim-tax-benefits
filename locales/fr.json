@@ -145,9 +145,6 @@
   "CPP deduction": "Déduction du RPC",
   "Total tax paid for 2018": "Total des impôts payés en 2018",
   "Is this information correct?": "Ces renseignements sont-ils exacts?",
-  "Political contributions": "Contributions politiques",
-  "Did you make any political contributions in 2018?": "Avez-vous fait des contributions politiques pendant l’année 2018?",
-  "Deduct political contributions?": "Voulez-vous déduire vos contributions politiques?",
   "Enter your political contributions": "Inscrivez le montant de vos contributions politiques",
   "Please enter your political contributions into the fields below.": "Veuillez inscrire le montant de vos contributions politiques dans le champ ci-dessous.",
   "Total federal contributions": "Total des contributions fédérales",
@@ -293,5 +290,8 @@
   "Total RRSP contributions before March 1, 2019": "Total RRSP contributions before March 1, 2019",
   "Check your marital status": "Check your marital status",
   "Is this correct?": "Is this correct?",
-  "Marital status": "État matrimonial"
+  "Marital status": "État matrimonial",
+  "Deduct political contributions": "Deduct political contributions",
+  "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.": "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.",
+  "Do you have receipts for political contributions made in 2018?": "Do you have receipts for political contributions made in 2018?"
 }

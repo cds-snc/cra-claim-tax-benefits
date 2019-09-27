@@ -115,7 +115,10 @@ const doRedirect = (req, res) => {
     throw new Error(`[POST ${req.path}] 'redirect' parameter missing`)
   }
 
-  if(req.query.ref) {
+  if( 
+    req.query.ref &&
+    req.query.ref === 'checkAnswers'
+    ) {
     return returnToCheckAnswers(req, res)
   }
 
@@ -153,7 +156,10 @@ const doYesNo = (claim, amount) => {
     if (claimVal === 'Yes') {
       req.session.deductions[claim] = true
 
-      if(req.query.ref) {
+      if(
+        req.query.ref &&
+        req.query.ref === 'checkAnswers'
+        ) {
         return returnToCheckAnswers(req, res, true)
       }
 
@@ -298,10 +304,6 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
   }
 
   if(req.query && req.query.ref) {
-    //I'm assuming here we want to let them go back to yes/no
-    if( req.path.includes('amount') ) {
-      return {path: `${prevRoute().path}?ref=checkAnswers`}
-    }
     return routes.find(route => route.path === '/checkAnswers')
   } 
 

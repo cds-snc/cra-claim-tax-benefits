@@ -12,7 +12,7 @@ block content
   h1 #{title}
 
   div
-    form.cra-form.cra-form--lg.cra-form--dob(method='post')
+    form.cra-form(method='post')
 
       div.dob-container(class={['has-error']: errors && errors.dobDay})
         fieldset.fieldset(role="group", aria-describedby="dobHint",)
@@ -33,11 +33,11 @@ block content
 
           div.w-1-4.d--ib
             label(for='dobMonth') #{__('Month')}
-            input#dobMonth(name='dobMonth', autofocus, type='text', value=dobMonth, autocomplete='bday-month', aria-describedby=(errors && errors.dobMonth ? 'dobMonth-error' : false))
+            input#dobMonth(name='dobMonth', type='text', value=dobMonth, autocomplete='bday-month', aria-describedby=(errors && errors.dobMonth ? 'dobMonth-error' : false))
 
           div.w-1-2.d--ib
             label(for='dobYear') #{__('Year')}
-            input#dobYear(name='dobYear', autofocus, type='text', value=dobYear, autocomplete='bday-year', aria-describedby=(errors && errors.dobYear ? 'dobYear-error' : false))
+            input#dobYear(name='dobYear', type='text', value=dobYear, autocomplete='bday-year', aria-describedby=(errors && errors.dobYear ? 'dobYear-error' : false))
 
           input#redirect(name='redirect', type='hidden', value='/personal/name')
 

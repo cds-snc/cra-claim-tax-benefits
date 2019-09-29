@@ -135,6 +135,12 @@ const childSchema = {
 
 const trilliumAmountSchema = {
   trilliumAmount: currencySchema(),
+  trilliumPaymentMethod: {
+    isIn: {
+      errorMessage: 'errors.login.paymentMethod',
+      options: [['cheque', 'directDeposit']],
+    },
+  },
 }
 
 module.exports = {

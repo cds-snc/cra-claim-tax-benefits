@@ -212,11 +212,6 @@ describe('Test /deductions responses', () => {
         url: '/trillium/longTermCare/amount',
         key: 'trilliumLongTermCareAmount',
       },
-      // SOME OF THE LOGIN PAGES USE THE "Amount" PATTERN
-      {
-        url: '/login/questions/trillium',
-        key: 'trilliumAmount',
-      },
     ]
 
     amountReponses.map(amountResponse => {

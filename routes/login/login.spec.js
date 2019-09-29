@@ -386,3 +386,106 @@ describe('Test /login responses', () => {
     })
   })
 })
+
+const questionsAmounts = [
+  {
+    url: '/login/questions/trillium',
+    key: 'trillium',
+  },
+]
+
+questionsAmounts.map(amountResponse => {
+  describe(`Test ${amountResponse.url} responses`, () => {
+    test('it returns a 200 response', async () => {
+      const response = await request(app).get(amountResponse.url)
+      expect(response.statusCode).toBe(200)
+    })
+
+    test('it returns a 422 response if no redirect is provided', async () => {
+      const response = await request(app).post(amountResponse.url)
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it returns a 422 response for no posted values', async () => {
+      const response = await request(app)
+        .post(amountResponse.url)
+        .send({ redirect: '/' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    const badAmounts = ['dinosaur', '10.0', '10.000', '-10', '.1']
+    badAmounts.map(badAmount => {
+      test(`it returns a 422 for a bad posted amount: "${badAmount}"`, async () => {
+        const response = await request(app)
+          .post(amountResponse.url)
+          .send({
+            [`${amountResponse.key}Amount`]: badAmount,
+            [`${amountResponse.key}PaymentMethod`]: 'cheque',
+            redirect: '/',
+          })
+        expect(response.statusCode).toBe(422)
+      })
+    })
+
+    test('it returns a 422 response for a good amount but NO payment method', async () => {
+      const response = await request(app)
+        .post(amountResponse.url)
+        .send({
+          [`${amountResponse.key}Amount`]: '10',
+          redirect: '/',
+        })
+      expect(response.statusCode).toBe(422)
+    })
+
+    const goodAmounts = ['0', '10', '10.00', '.10', '', null]
+    goodAmounts.map(goodAmount => {
+      test(`it returns a 302 for a good posted amount: "${goodAmount}"`, async () => {
+        const response = await request(app)
+          .post(amountResponse.url)
+          .send({
+            [`${amountResponse.key}Amount`]: goodAmount,
+            [`${amountResponse.key}PaymentMethod`]: 'cheque',
+            redirect: '/',
+          })
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual('/')
+      })
+    })
+
+    test('it returns a 302 response for NO amount but a good payment method', async () => {
+      const response = await request(app)
+        .post(amountResponse.url)
+        .send({
+          [`${amountResponse.key}PaymentMethod`]: 'cheque',
+          redirect: '/',
+        })
+      expect(response.statusCode).toBe(302)
+    })
+
+    test('it returns a 422 response for a good amount but a BAD payment method', async () => {
+      const response = await request(app)
+        .post(amountResponse.url)
+        .send({
+          [`${amountResponse.key}Amount`]: '10',
+          [`${amountResponse.key}PaymentMethod`]: 'bitcoin',
+          redirect: '/',
+        })
+      expect(response.statusCode).toBe(422)
+    })
+
+    const goodPaymentMethods = ['cheque', 'directDeposit']
+    goodPaymentMethods.map(paymentMethod => {
+      test(`it returns a 302 for a good posted payment method: "${paymentMethod}"`, async () => {
+        const response = await request(app)
+          .post(amountResponse.url)
+          .send({
+            [`${amountResponse.key}Amount`]: '10',
+            [`${amountResponse.key}PaymentMethod`]: paymentMethod,
+            redirect: '/',
+          })
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual('/')
+      })
+    })
+  })
+})

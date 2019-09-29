@@ -6,7 +6,13 @@ const {
   checkErrors,
   getPreviousRoute,
 } = require('./../../utils')
-const { loginSchema, sinSchema, dobSchema, childSchema } = require('./../../schemas')
+const {
+  loginSchema,
+  sinSchema,
+  dobSchema,
+  childSchema,
+  trilliumAmountSchema,
+} = require('./../../schemas')
 const API = require('../../api')
 const request = require('request-promise')
 
@@ -25,11 +31,21 @@ module.exports = function(app) {
   app.post('/login/dateOfBirth', checkSchema(dobSchema), postDateOfBirth, doRedirect)
 
   app.get('/login/securityQuestion', renderWithData('login/securityQuestion'))
+
+  // Security questions
   app.get('/login/questions/child', renderWithData('login/questions/child'))
   app.post(
     '/login/questions/child',
     checkSchema(childSchema),
     checkErrors('login/questions/child'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/trillium', renderWithData('login/questions/trillium'))
+  app.post(
+    '/login/questions/trillium',
+    checkSchema(trilliumAmountSchema),
+    checkErrors('login/questions/trillium'),
     doRedirect,
   )
 

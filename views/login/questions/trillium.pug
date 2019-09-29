@@ -1,0 +1,20 @@
+extends ../../base
+
+block variables
+  -var title = __('Ontario Trillium Benefit amount and payment type')
+  -var trilliumAmount = hasData(body, 'trilliumAmount') ? body.trilliumAmount : ''
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('This information helps to verify your identity. Please enter the amount of your Ontario Trillium Benefit and specify whether you get it as a cheque or direct deposit.')}
+    p #{__('Choose a different question if you don’t receive this benefit.')}
+
+  form.cra-form(method='post')
+    +textInput('How much did you receive from your last Ontario Trillium Benefit refund?')(class='w-3-4 input-with-unit' name='trilliumAmount' placeholder='0.00' aria-labelledby='trilliumAmount__unit trilliumAmount__label' value=trilliumAmount)
+
+    input#redirect(name='redirect', type='hidden', value='/personal/name')
+
+    +formButtons('Continue')

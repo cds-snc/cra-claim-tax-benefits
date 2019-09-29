@@ -1,4 +1,4 @@
-const { validationArray } = require('./utils.schema')
+const { validationArray, currencySchema } = require('./utils.schema')
 const API = require('./../api')
 
 const loginSchema = {
@@ -133,11 +133,16 @@ const childSchema = {
   },
 }
 
+const trilliumAmountSchema = {
+  trilliumAmount: currencySchema(),
+}
+
 module.exports = {
   loginSchema,
   dobSchema,
   sinSchema,
   childSchema,
+  trilliumAmountSchema,
   lastDayInMonth,
   toISOFormat,
 }

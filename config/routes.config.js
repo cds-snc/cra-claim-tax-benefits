@@ -8,6 +8,7 @@ const routes = [
   { path: '/login/dateOfBirth' },
   { path: '/login/securityQuestion' },
   { path: '/login/questions/child' },
+  { path: '/login/questions/trillium' },
   { path: '/personal/name' },
   { path: '/offramp/name', editInfo: 'skip' },
   { path: '/personal/residence' },

@@ -109,10 +109,35 @@ const dobSchema = {
   },
 }
 
+const childSchema = {
+  childLastName: {
+    isEmpty: {
+      errorMessage: 'errors.login.childLastName',
+      negated: true,
+    },
+  },
+  dobDay: {
+    ...validationArray([isValidDay]),
+  },
+  dobMonth: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validMonth',
+      options: { min: 1, max: 12 },
+    },
+  },
+  dobYear: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validYear',
+      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
   dobSchema,
   sinSchema,
+  childSchema,
   lastDayInMonth,
   toISOFormat,
 }

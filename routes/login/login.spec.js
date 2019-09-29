@@ -199,7 +199,7 @@ describe('Test /login responses', () => {
     })
   })
 
-  describe('Test login/dateOfBirth responses', () => {
+  describe('Test date of birth responses', () => {
     let goodDoBRequest = {
       dobDay: '09',
       dobMonth: '09',
@@ -297,20 +297,54 @@ describe('Test /login responses', () => {
       },
     ]
 
-    badDoBRequests.map(badRequest => {
-      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+    describe('for /login/dateOfBirth', () => {
+      badDoBRequests.map(badRequest => {
+        test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+          const response = await request(app)
+            .post('/login/dateOfBirth')
+            .send(badRequest.send)
+          expect(response.statusCode).toBe(422)
+        })
+      })
+
+      test('it returns a 302 with valid dob', async () => {
         const response = await request(app)
           .post('/login/dateOfBirth')
-          .send(badRequest.send)
-        expect(response.statusCode).toBe(422)
+          .send(goodDoBRequest)
+        expect(response.statusCode).toBe(302)
       })
     })
 
-    test('it returns a 302 with valid dob', async () => {
-      const response = await request(app)
-        .post('/login/dateOfBirth')
-        .send(goodDoBRequest)
-      expect(response.statusCode).toBe(302)
+    describe('for /login/questions/child', () => {
+      badDoBRequests.map(badRequest => {
+        test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+          const response = await request(app)
+            .post('/login/questions/child')
+            .send(badRequest.send)
+          expect(response.statusCode).toBe(422)
+        })
+      })
+
+      test('it returns a 422 with valid dob but NO last name', async () => {
+        const response = await request(app)
+          .post('/login/questions/child')
+          .send({ ...goodDoBRequest, ...{ childLastName: '' } })
+        expect(response.statusCode).toBe(422)
+      })
+
+      test('it returns a 422 with NO dob but valid last name', async () => {
+        const response = await request(app)
+          .post('/login/questions/child')
+          .send({ childLastName: 'Laika' })
+        expect(response.statusCode).toBe(422)
+      })
+
+      test('it returns a 302 with valid dob and last name', async () => {
+        const response = await request(app)
+          .post('/login/questions/child')
+          .send({ ...goodDoBRequest, ...{ childLastName: 'Laika' } })
+        expect(response.statusCode).toBe(302)
+      })
     })
   })
 

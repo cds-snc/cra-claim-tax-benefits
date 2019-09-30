@@ -1,21 +1,18 @@
 const request = require('supertest')
 const app = require('../../app.js')
 
-describe('Test /confirmation response', () => {
-  test('it returns a 200 response for /confirmation', async () => {
-    const response = await request(app).get('/confirmation')
-    expect(response.statusCode).toBe(200)
+describe('Test confirmation urls', () => {
+  const urls = ['/review', '/checkAnswers', '/confirmation']
+
+  urls.map(url => {
+    test(`${url} returns a 200 response`, async () => {
+      const response = await request(app).get(url)
+      expect(response.statusCode).toBe(200)
+    })
   })
 })
 
 describe('Test /review', () => {
-  describe('GET responses', () => {
-    test('it returns a 200 response', async () => {
-      const response = await request(app).get('/review')
-      expect(response.statusCode).toBe(200)
-    })
-  })
-
   describe('POST responses', () => {
     test('it returns a 422 response if no values are posted', async () => {
       const response = await request(app).post('/review')

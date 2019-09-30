@@ -1,8 +1,22 @@
 const { validationResult, checkSchema } = require('express-validator')
-const { errorArray2ErrorObject, doRedirect, renderWithData, checkErrors, getPreviousRoute } = require('./../../utils')
-const { loginSchema, sinSchema, dobSchema } = require('./../../schemas')
-const API = require('../../api')
 const request = require('request-promise')
+const {
+  errorArray2ErrorObject,
+  doRedirect,
+  renderWithData,
+  checkErrors,
+  getPreviousRoute,
+} = require('./../../utils')
+const {
+  loginSchema,
+  sinSchema,
+  dobSchema,
+  securityQuestionSchema,
+  childSchema,
+  trilliumAmountSchema,
+} = require('./../../schemas')
+const API = require('../../api')
+const { securityQuestionUrls } = require('../../config/routes.config')
 
 module.exports = function(app) {
   // redirect from "/login" → "/login/code"
@@ -17,6 +31,34 @@ module.exports = function(app) {
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
   app.post('/login/dateOfBirth', checkSchema(dobSchema), postDateOfBirth, doRedirect)
+
+  // Security question page
+  app.get('/login/securityQuestion', renderWithData('login/securityQuestion'))
+  app.post(
+    '/login/securityQuestion',
+    checkSchema(securityQuestionSchema),
+    checkErrors('login/securityQuestion'),
+    postSecurityQuestion,
+  )
+
+  // Security questions
+  app.get('/login/questions/child', renderWithData('login/questions/child'))
+  app.post(
+    '/login/questions/child',
+    checkSchema(childSchema),
+    checkErrors('login/questions/child'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/trillium', renderWithData('login/questions/trillium'))
+  app.post(
+    '/login/questions/trillium',
+    checkSchema(trilliumAmountSchema),
+    checkErrors('login/questions/trillium'),
+    doRedirect,
+  )
+
+  app.get('/login/questions', (req, res) => res.redirect('/login/securityQuestion'))
 }
 
 const postLoginCode = async (req, res, next) => {
@@ -88,4 +130,11 @@ const postDateOfBirth = async (req, res, next) => {
   }
 
   next()
+}
+
+const postSecurityQuestion = async (req, res) => {
+  const url = securityQuestionUrls.find(url => url === req.body.securityQuestion)
+
+  req.session.login.securityQuestion = url
+  return res.redirect(url)
 }

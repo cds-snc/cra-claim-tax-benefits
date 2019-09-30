@@ -1,5 +1,6 @@
-const { validationArray } = require('./utils.schema')
+const { validationArray, currencySchema } = require('./utils.schema')
 const API = require('./../api')
+const { securityQuestionUrls } = require('../config/routes.config')
 
 const loginSchema = {
   code: {
@@ -61,14 +62,15 @@ const isValidDay = {
   errorMessage: 'errors.login.dateOfBirth.validDay',
   validate: (value, req) => {
     const year = parseInt(req.body.dobYear, 10)
-    //subtract one because Date for months starts at a 0 index for Jan 🤓
-    const month = parseInt(req.body.dobMonth, 10) - 1
+    let month = parseInt(req.body.dobMonth, 10)
     const day = parseInt(value, 10)
 
     if (!day || !month || !year) {
       return false
     }
 
+    //subtract one because Date for months starts at a 0 index for Jan 🤓
+    month -= 1
     return day >= 1 && day <= lastDayInMonth(year, month)
   },
 }
@@ -109,10 +111,56 @@ const dobSchema = {
   },
 }
 
+const securityQuestionSchema = {
+  securityQuestion: {
+    isIn: {
+      errorMessage: 'errors.yesNo',
+      options: [securityQuestionUrls],
+    },
+  },
+}
+
+const childSchema = {
+  childLastName: {
+    isEmpty: {
+      errorMessage: 'errors.login.childLastName',
+      negated: true,
+    },
+  },
+  dobDay: {
+    ...validationArray([isValidDay]),
+  },
+  dobMonth: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validMonth',
+      options: { min: 1, max: 12 },
+    },
+  },
+  dobYear: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validYear',
+      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
+    },
+  },
+}
+
+const trilliumAmountSchema = {
+  trilliumAmount: currencySchema(),
+  trilliumPaymentMethod: {
+    isIn: {
+      errorMessage: 'errors.login.paymentMethod',
+      options: [['cheque', 'directDeposit']],
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
   dobSchema,
   sinSchema,
+  childSchema,
+  trilliumAmountSchema,
+  securityQuestionSchema,
   lastDayInMonth,
   toISOFormat,
 }

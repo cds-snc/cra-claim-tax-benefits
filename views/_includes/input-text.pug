@@ -20,7 +20,7 @@ mixin textInput(label, divClasses, hintText)
         errors[attributes.name].msg,
         attributes.name
       )
-    if attributes.class.includes('input-with-unit')
+    if attributes.class && attributes.class.includes('input-with-unit')
       span.input-with-unit__unit(
         id!=attributes.name+'__unit'
       ) $

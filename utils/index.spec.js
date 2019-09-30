@@ -1,9 +1,16 @@
-const { SINFilter, hasData, getPreviousRoute, isoDateHintText } = require('./index')
+const {
+  SINFilter,
+  hasData,
+  getPreviousRoute,
+  isoDateHintText,
+  getRouteWithIndexByPath,
+} = require('./index')
 const API = require('./../api')
 
 const testRoutes = [
   { path: '/start' },
   { path: '/login/code' },
+  { path: '/login/questions', options: ['/login/questions/child', '/login/questions/trillium'] },
   { path: '/deductions/rrsp' },
   { path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
   { path: '/deductions/medical' },
@@ -76,33 +83,78 @@ describe('Test hasData function', () => {
   })
 })
 
+describe('Test getRouteWithIndexByPath', () => {
+  test('Returns null for a non-existent path', () => {
+    const route = getRouteWithIndexByPath('/lets-get-that-money', testRoutes)
+    expect(route).toBe(null)
+  })
+
+  test('Returns the first path with index of existing route', () => {
+    const route = getRouteWithIndexByPath('/start', testRoutes)
+    expect(route).toEqual({ index: 0, route: { path: '/start' } })
+  })
+
+  test('Returns the last path with index of existing route', () => {
+    const route = getRouteWithIndexByPath('/checkAnswers', testRoutes)
+    expect(route).toEqual({ index: 6, route: { path: '/checkAnswers' } })
+  })
+
+  test('Returns a route with an options key by looking for the path', () => {
+    const route = getRouteWithIndexByPath('/login/questions', testRoutes)
+    expect(route).toEqual({
+      index: 2,
+      route: {
+        path: '/login/questions',
+        options: ['/login/questions/child', '/login/questions/trillium'],
+      },
+    })
+  })
+
+  const optsUrls = ['/login/questions/child', '/login/questions/trillium']
+  optsUrls.map(url => {
+    test(`Returns a route with an options key by looking for a path in the options array: ${url}`, () => {
+      const route = getRouteWithIndexByPath(url, testRoutes)
+      expect(route).toEqual({
+        index: 2,
+        route: {
+          path: '/login/questions',
+          options: ['/login/questions/child', '/login/questions/trillium'],
+        },
+      })
+    })
+  })
+})
+
 describe('Test getPreviousRoute function', () => {
   const user = API.getUser('A5G98S4K1')
 
   test('return false for a route that does not exist', () => {
-    const obj = getPreviousRoute({path: '/start', session: user}, testRoutes)
+    const obj = getPreviousRoute({ path: '/start', session: user }, testRoutes)
     expect(obj.path).toEqual(undefined)
   })
 
   test('finds previous route path by name', () => {
-    const obj = getPreviousRoute({path: '/login/code', session: user}, testRoutes)
+    const obj = getPreviousRoute({ path: '/login/code', session: user }, testRoutes)
     expect(obj.path).toEqual('/start')
   })
 
   test('navigates to an edit page if it was edited', () => {
     const user = { deductions: { rrspClaim: true } }
-    const obj = getPreviousRoute({path: '/deductions/medical', session: user}, testRoutes)
+    const obj = getPreviousRoute({ path: '/deductions/medical', session: user }, testRoutes)
     expect(obj.path).toEqual('/deductions/rrsp/amount')
   })
 
   test('skips an edit page if it was not edited', () => {
     const user = { deductions: { rrspClaim: null } }
-    const obj = getPreviousRoute({path: '/deductions/medical', session: user}, testRoutes)
+    const obj = getPreviousRoute({ path: '/deductions/medical', session: user }, testRoutes)
     expect(obj.path).toEqual('/deductions/rrsp')
   })
 
   test('it returns checkAnswers route if ref is present', () => {
-    const obj = getPreviousRoute({path: '/deductions/medical', query: { ref: 'checkAnswers' }, session: user}, testRoutes)
+    const obj = getPreviousRoute(
+      { path: '/deductions/medical', query: { ref: 'checkAnswers' }, session: user },
+      testRoutes,
+    )
     expect(obj.path).toEqual('/checkAnswers')
   })
 })

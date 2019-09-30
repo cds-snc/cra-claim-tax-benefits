@@ -109,16 +109,12 @@ const checkErrors = template => {
 // POST functions that handle setting the login data in the session and will redirecting to the next page or send back an error to the client.
 // Note that this is not the only error validation, see routes defined above.
 const doRedirect = (req, res) => {
-  
   let redirect = req.body.redirect || null
   if (!redirect) {
     throw new Error(`[POST ${req.path}] 'redirect' parameter missing`)
   }
 
-  if( 
-    req.query.ref &&
-    req.query.ref === 'checkAnswers'
-    ) {
+  if (req.query.ref && req.query.ref === 'checkAnswers') {
     return returnToCheckAnswers(req, res)
   }
 
@@ -156,10 +152,7 @@ const doYesNo = (claim, amount) => {
     if (claimVal === 'Yes') {
       req.session.deductions[claim] = true
 
-      if(
-        req.query.ref &&
-        req.query.ref === 'checkAnswers'
-        ) {
+      if (req.query.ref && req.query.ref === 'checkAnswers') {
         return returnToCheckAnswers(req, res, true)
       }
 
@@ -272,7 +265,7 @@ const sortByLineNumber = (...objToSort) => {
 
 /**
  * @param {String} name route name
- * @param {Array} routes array of route objects { name: "start", path: "/start" },
+ * @param {Array} routes array of route objects { path: "/start" },
  * @returns { path: "" }
  */
 const getPreviousRoute = (req, routes = defaultRoutes) => {
@@ -286,7 +279,7 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
   const prevRoute = () => {
     const oneRouteBack = routes[Number(route.index) - 1] || false
 
-    /**  
+    /**
      * essentially check if the page before
      * - exists
      * - is an edit page
@@ -303,48 +296,43 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
     return oneRouteBack
   }
 
-  if(req.query && req.query.ref) {
+  if (req.query && req.query.ref) {
     return routes.find(route => route.path === '/checkAnswers')
-  } 
+  }
 
   return prevRoute()
 }
 
 const returnToCheckAnswers = (req, res, claimYes = false) => {
-
   const currentRoute = getRouteWithIndexByPath(req.path)
   const nextRoute = defaultRoutes[currentRoute.index + 1]
-  
-  if(
-    'editInfo' in nextRoute &&
-    'editInfo' !== 'skip' &&
-    claimYes
-    ) {
-      return res.redirect(`${nextRoute.path}?ref=checkAnswers`)
-    } 
-    
-    return res.redirect(`/checkAnswers`)
+
+  if ('editInfo' in nextRoute && 'editInfo' !== 'skip' && claimYes) {
+    return res.redirect(`${nextRoute.path}?ref=checkAnswers`)
+  }
+
+  return res.redirect('/checkAnswers')
 }
 
 /**
- * @param {String} name route name
- * @param {Array} routes array of route objects { name: "start", path: "/start" }
- * @returns { index: "1", route: { name: "start", path: "/start" } }
+ * @param {String} path the current path being visited
+ * @param {Array} routes array of route objects { path: "/start" }
+ * @returns { index: "1", route: { path: "/start" } }
  */
 const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
-  const route = routes
-    .map((route, index) => {
-      if (route.path === path) {
-        return { index, route }
-      }
-    })
-    .filter(function(route) {
-      return route != null
-    })
+  let routeWithIndex = null
 
-  if (route.length >= 1) {
-    return route[0]
-  }
+  routes.find((route, index) => {
+    let { path: routePath, options: routeOptions = [] } = route
+
+    // if one of the "options" urls is round, match current route
+    // note: this will still return the base "path", not any of the "options" urls
+    if (routePath === path || routeOptions.includes(path)) {
+      routeWithIndex = { index, route }
+    }
+  })
+
+  return routeWithIndex
 }
 
 /*
@@ -381,4 +369,5 @@ module.exports = {
   doRedirect,
   doYesNo,
   isoDateHintText,
+  getRouteWithIndexByPath,
 }

@@ -4,7 +4,7 @@ const cheerio = require('cheerio')
 const app = require('../../app.js')
 
 describe('Test /login responses', () => {
-  const urls = ['/login/code', '/login/sin', '/login/dateOfBirth']
+  const urls = ['/login/code', '/login/sin', '/login/dateOfBirth', '/login/securityQuestion']
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
       const response = await request(app).get(url)
@@ -199,7 +199,7 @@ describe('Test /login responses', () => {
     })
   })
 
-  describe('Test login/dateOfBirth responses', () => {
+  describe('Test date of birth responses', () => {
     let goodDoBRequest = {
       dobDay: '09',
       dobMonth: '09',
@@ -297,20 +297,54 @@ describe('Test /login responses', () => {
       },
     ]
 
-    badDoBRequests.map(badRequest => {
-      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+    describe('for /login/dateOfBirth', () => {
+      badDoBRequests.map(badRequest => {
+        test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+          const response = await request(app)
+            .post('/login/dateOfBirth')
+            .send(badRequest.send)
+          expect(response.statusCode).toBe(422)
+        })
+      })
+
+      test('it returns a 302 with valid dob', async () => {
         const response = await request(app)
           .post('/login/dateOfBirth')
-          .send(badRequest.send)
-        expect(response.statusCode).toBe(422)
+          .send(goodDoBRequest)
+        expect(response.statusCode).toBe(302)
       })
     })
 
-    test('it returns a 302 with valid dob', async () => {
-      const response = await request(app)
-        .post('/login/dateOfBirth')
-        .send(goodDoBRequest)
-      expect(response.statusCode).toBe(302)
+    describe('for /login/questions/child', () => {
+      badDoBRequests.map(badRequest => {
+        test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+          const response = await request(app)
+            .post('/login/questions/child')
+            .send(badRequest.send)
+          expect(response.statusCode).toBe(422)
+        })
+      })
+
+      test('it returns a 422 with valid dob but NO last name', async () => {
+        const response = await request(app)
+          .post('/login/questions/child')
+          .send({ ...goodDoBRequest, ...{ childLastName: '' } })
+        expect(response.statusCode).toBe(422)
+      })
+
+      test('it returns a 422 with NO dob but valid last name', async () => {
+        const response = await request(app)
+          .post('/login/questions/child')
+          .send({ childLastName: 'Laika' })
+        expect(response.statusCode).toBe(422)
+      })
+
+      test('it returns a 302 with valid dob and last name', async () => {
+        const response = await request(app)
+          .post('/login/questions/child')
+          .send({ ...goodDoBRequest, ...{ childLastName: 'Laika' } })
+        expect(response.statusCode).toBe(302)
+      })
     })
   })
 
@@ -349,6 +383,129 @@ describe('Test /login responses', () => {
         .post('/login/dateOfBirth')
         .send({ dobDay: '09', dobMonth: '09', dobYear: '1977', redirect: '/login/success' })
       expect(response.statusCode).toBe(302)
+    })
+  })
+})
+
+const questionsAmounts = [
+  {
+    url: '/login/questions/trillium',
+    key: 'trillium',
+  },
+]
+
+questionsAmounts.map(amountResponse => {
+  describe(`Test ${amountResponse.url} responses`, () => {
+    test('it returns a 200 response', async () => {
+      const response = await request(app).get(amountResponse.url)
+      expect(response.statusCode).toBe(200)
+    })
+
+    test('it returns a 422 response if no redirect is provided', async () => {
+      const response = await request(app).post(amountResponse.url)
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it returns a 422 response for no posted values', async () => {
+      const response = await request(app)
+        .post(amountResponse.url)
+        .send({ redirect: '/' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    const badAmounts = ['dinosaur', '10.0', '10.000', '-10', '.1']
+    badAmounts.map(badAmount => {
+      test(`it returns a 422 for a bad posted amount: "${badAmount}"`, async () => {
+        const response = await request(app)
+          .post(amountResponse.url)
+          .send({
+            [`${amountResponse.key}Amount`]: badAmount,
+            [`${amountResponse.key}PaymentMethod`]: 'cheque',
+            redirect: '/',
+          })
+        expect(response.statusCode).toBe(422)
+      })
+    })
+
+    test('it returns a 422 response for a good amount but NO payment method', async () => {
+      const response = await request(app)
+        .post(amountResponse.url)
+        .send({
+          [`${amountResponse.key}Amount`]: '10',
+          redirect: '/',
+        })
+      expect(response.statusCode).toBe(422)
+    })
+
+    const goodAmounts = ['0', '10', '10.00', '.10', '', null]
+    goodAmounts.map(goodAmount => {
+      test(`it returns a 302 for a good posted amount: "${goodAmount}"`, async () => {
+        const response = await request(app)
+          .post(amountResponse.url)
+          .send({
+            [`${amountResponse.key}Amount`]: goodAmount,
+            [`${amountResponse.key}PaymentMethod`]: 'cheque',
+            redirect: '/',
+          })
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual('/')
+      })
+    })
+
+    test('it returns a 302 response for NO amount but a good payment method', async () => {
+      const response = await request(app)
+        .post(amountResponse.url)
+        .send({
+          [`${amountResponse.key}PaymentMethod`]: 'cheque',
+          redirect: '/',
+        })
+      expect(response.statusCode).toBe(302)
+    })
+
+    test('it returns a 422 response for a good amount but a BAD payment method', async () => {
+      const response = await request(app)
+        .post(amountResponse.url)
+        .send({
+          [`${amountResponse.key}Amount`]: '10',
+          [`${amountResponse.key}PaymentMethod`]: 'bitcoin',
+          redirect: '/',
+        })
+      expect(response.statusCode).toBe(422)
+    })
+
+    const goodPaymentMethods = ['cheque', 'directDeposit']
+    goodPaymentMethods.map(paymentMethod => {
+      test(`it returns a 302 for a good posted payment method: "${paymentMethod}"`, async () => {
+        const response = await request(app)
+          .post(amountResponse.url)
+          .send({
+            [`${amountResponse.key}Amount`]: '10',
+            [`${amountResponse.key}PaymentMethod`]: paymentMethod,
+            redirect: '/',
+          })
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual('/')
+      })
+    })
+  })
+})
+
+describe('Test /login/securityQuestion responses', () => {
+  test('it returns a 422 response when posting a bad value', async () => {
+    const response = await request(app)
+      .post('/login/securityQuestion')
+      .send({ securityQuestion: '/login/question/who-let-the-dogs-out' })
+    expect(response.statusCode).toBe(422)
+  })
+
+  const securityQuestionUrls = ['/login/questions/child', '/login/questions/trillium']
+  securityQuestionUrls.map(url => {
+    test(`it returns a 302 response when posting a good value: ${url}`, async () => {
+      const response = await request(app)
+        .post('/login/securityQuestion')
+        .send({ securityQuestion: url })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual(url)
     })
   })
 })

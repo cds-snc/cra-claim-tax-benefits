@@ -133,6 +133,41 @@ const logIn = (cy, user) => {
   cy.get('form button[type="submit"]')
     .should('contain', 'Continue')
     .click()
+
+  // LOGIN SECURITY QUESTIONS
+  cy.injectAxe().checkA11y()
+  cy.url().should('contain', '/login/securityQuestion')
+  cy.get('h1').should('contain', 'Choose a security question')
+
+  cy.get('form label')
+    .eq(1)
+    .should('have.attr', 'for', 'securityQuestion1')
+  cy.get('#securityQuestion1').check()
+
+  cy.get('form button[type="submit"]')
+    .should('contain', 'Continue')
+    .click()
+
+  // LOGIN TRILLIUM QUESTION
+  cy.injectAxe().checkA11y()
+  cy.url().should('contain', '/login/questions/trillium')
+  cy.get('h1').should('contain', 'Ontario Trillium Benefit amount and payment type')
+
+  cy.get('form label')
+    .eq(0)
+    .should('have.attr', 'for', 'trilliumPaymentMethod0')
+  cy.get('#trilliumPaymentMethod0').check()
+
+  cy.get('form label')
+    .eq(2)
+    .should('have.attr', 'for', 'trilliumAmount')
+  cy.get('#trilliumAmount')
+    .type('1')
+    .should('have.value', '1')
+
+  cy.get('form button[type="submit"]')
+    .should('contain', 'Continue')
+    .click()
 }
 
 module.exports = {

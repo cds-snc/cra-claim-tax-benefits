@@ -2,6 +2,7 @@ extends ../base
 
 block variables
   -var title = __('Choose a security question')
+  -var securityQuestion = hasData(data, 'login.securityQuestion') ? data.login.securityQuestion : ''
 
 block content
 
@@ -18,10 +19,10 @@ block content
               if errors
                 +validationMessage(errors.securityQuestion.msg, 'securityQuestion')
               .multiple-choice__item
-                  input(id="securityQuestion0" name="securityQuestion" type="radio" value="/login/questions/child" aria-describedby=(errors ? 'securityQuestion-error' : false))
+                  input(id="securityQuestion0" name="securityQuestion" type="radio" value="/login/questions/child" aria-describedby=(errors ? 'securityQuestion-error' : false) checked=(securityQuestion && securityQuestion === '/login/questions/child'))
                   label(for="securityQuestion0") #{__('Your child’s name and birthdate')}
               .multiple-choice__item
-                  input(id="securityQuestion1" name="securityQuestion" type="radio" value="/login/questions/trillium" aria-describedby=(errors ? 'securityQuestion-error' : false))
+                  input(id="securityQuestion1" name="securityQuestion" type="radio" value="/login/questions/trillium" aria-describedby=(errors ? 'securityQuestion-error' : false) checked=(securityQuestion && securityQuestion === '/login/questions/trillium'))
                   label(for="securityQuestion1") #{__('Your Ontario Trillium Benefit amount and payment type')}
 
     div

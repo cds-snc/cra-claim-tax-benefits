@@ -62,14 +62,15 @@ const isValidDay = {
   errorMessage: 'errors.login.dateOfBirth.validDay',
   validate: (value, req) => {
     const year = parseInt(req.body.dobYear, 10)
-    //subtract one because Date for months starts at a 0 index for Jan 🤓
-    const month = parseInt(req.body.dobMonth, 10) - 1
+    let month = parseInt(req.body.dobMonth, 10)
     const day = parseInt(value, 10)
 
     if (!day || !month || !year) {
       return false
     }
 
+    //subtract one because Date for months starts at a 0 index for Jan 🤓
+    month -= 1
     return day >= 1 && day <= lastDayInMonth(year, month)
   },
 }

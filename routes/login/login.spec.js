@@ -4,7 +4,7 @@ const cheerio = require('cheerio')
 const app = require('../../app.js')
 
 describe('Test /login responses', () => {
-  const urls = ['/login/code', '/login/sin', '/login/dateOfBirth']
+  const urls = ['/login/code', '/login/sin', '/login/dateOfBirth', '/login/securityQuestion']
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
       const response = await request(app).get(url)
@@ -486,6 +486,26 @@ questionsAmounts.map(amountResponse => {
         expect(response.statusCode).toBe(302)
         expect(response.headers.location).toEqual('/')
       })
+    })
+  })
+})
+
+describe('Test /login/securityQuestion responses', () => {
+  test('it returns a 422 response when posting a bad value', async () => {
+    const response = await request(app)
+      .post('/login/securityQuestion')
+      .send({ securityQuestion: '/login/question/who-let-the-dogs-out' })
+    expect(response.statusCode).toBe(422)
+  })
+
+  const securityQuestionUrls = ['/login/questions/child', '/login/questions/trillium']
+  securityQuestionUrls.map(url => {
+    test(`it returns a 302 response when posting a good value: ${url}`, async () => {
+      const response = await request(app)
+        .post('/login/securityQuestion')
+        .send({ securityQuestion: url })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual(url)
     })
   })
 })

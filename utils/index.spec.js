@@ -109,6 +109,20 @@ describe('Test getRouteWithIndexByPath', () => {
       },
     })
   })
+
+  const optsUrls = ['/login/questions/child', '/login/questions/trillium']
+  optsUrls.map(url => {
+    test(`Returns a route with an options key by looking for a path in the options array: ${url}`, () => {
+      const route = getRouteWithIndexByPath(url, testRoutes)
+      expect(route).toEqual({
+        index: 2,
+        route: {
+          path: '/login/questions',
+          options: ['/login/questions/child', '/login/questions/trillium'],
+        },
+      })
+    })
+  })
 })
 
 describe('Test getPreviousRoute function', () => {

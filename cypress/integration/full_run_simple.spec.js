@@ -33,7 +33,7 @@ describe('Full run through', function() {
   it('navigates the Confirm Name page', function() {
     //CONFIRM NAME
     cy.url().should('contain', '/personal/name')
-    cy.get('h1').should('contain', 'Confirm your name')
+    cy.get('h1').should('contain', 'Check your name is correct')
 
     cy.get('input#nameYes + label').should('have.attr', 'for', 'nameYes')
 
@@ -47,7 +47,7 @@ describe('Full run through', function() {
   it('navigates the Confirm Residence page', function() {
     //CONFIRM RESIDENCE
     cy.url().should('contain', '/personal/residence')
-    cy.get('h1').should('contain', 'Confirm your province or territory of residence')
+    cy.get('h1').should('contain', 'Enter your province or territory')
 
     cy.get('form label').should('have.attr', 'for', 'residence')
 
@@ -59,7 +59,7 @@ describe('Full run through', function() {
   it('navigates the Confirm Mailing page', function() {
     //CONFIRM MAILING
     cy.url().should('contain', '/personal/address')
-    cy.get('h1').should('contain', 'Confirm your mailing address')
+    cy.get('h1').should('contain', 'Check your mailing address')
 
     //format address based on apartment/no apartment
     const addressText = getAddress(this.user.personal.address)
@@ -82,7 +82,7 @@ describe('Full run through', function() {
   it('navigates the Confirm Income page', function() {
     //CONFIRM INCOME
     cy.url().should('contain', '/financial/income')
-    cy.get('h1').should('contain', 'Confirm your income information')
+    cy.get('h1').should('contain', 'Check your income information for the 2018 tax year')
 
     //check table data
     checkTableRows(cy, allIncomeRows(this.user))
@@ -99,7 +99,10 @@ describe('Full run through', function() {
   it('navigates the RRSP Deductions page', function() {
     //DEDUCTIONS RRSP
     cy.url().should('contain', '/deductions/rrsp')
-    cy.get('h1').should('contain', 'Deduct your RRSP contributions')
+    cy.get('h1').should(
+      'contain',
+      'Deduct your Registered Retirement Savings Plan (RRSP) contributions',
+    )
 
     cy.get('input#rrspClaimNo + label').should('have.attr', 'for', 'rrspClaimNo')
 
@@ -113,7 +116,7 @@ describe('Full run through', function() {
   it('navigates the Confirm Marital Status page', function() {
     //CONFIRM MARITAL STATUS
     cy.url().should('contain', '/personal/maritalStatus')
-    cy.get('h1').should('contain', 'Confirm your marital status')
+    cy.get('h1').should('contain', 'Check your marital status')
 
     cy.get('input#confirmMaritalStatusYes + label').should(
       'have.attr',
@@ -151,7 +154,7 @@ describe('Full run through', function() {
   it('navigates the Political Deductions page', function() {
     //DEDUCTIONS POLITICAL
     cy.url().should('contain', '/deductions/political')
-    cy.get('h1').should('contain', 'Political contributions')
+    cy.get('h1').should('contain', 'Deduct political contributions')
 
     cy.get('input#politicalContributionClaimNo + label').should(
       'have.attr',
@@ -169,7 +172,7 @@ describe('Full run through', function() {
   it('navigates the Donations Deductions page', function() {
     //DEDUCTIONS DONATIONS
     cy.url().should('contain', '/deductions/donations')
-    cy.get('h1').should('contain', 'Deduct your charitable donations')
+    cy.get('h1').should('contain', 'Deduct charitable donations')
 
     cy.get('input#charitableDonationClaimNo + label').should(
       'have.attr',
@@ -289,10 +292,12 @@ describe('Full run through', function() {
   it('navigates the Check Your Answers page', function() {
     cy.url().should('contain', '/checkAnswers')
     cy.get('h1').should('contain', 'Check Your Answers Before Filing Your Return')
-    cy.fixture('checkAnswersRows.json').then((rows) => {
+    cy.fixture('checkAnswersRows.json').then(rows => {
       checkTableRows(cy, rows.rows)
     })
-    cy.get('.buttons-row a').contains('Confirm').click()
+    cy.get('.buttons-row a')
+      .contains('Confirm')
+      .click()
   })
 
   it('navigates the Review page', function() {

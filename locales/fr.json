@@ -146,9 +146,6 @@
   "Total tax paid for 2018": "Total des impôts payés en 2018",
   "Is this information correct?": "Ces renseignements sont-ils exacts?",
   "Enter your political contributions": "Inscrivez le montant de vos contributions politiques",
-  "Please enter your political contributions into the fields below.": "Veuillez inscrire le montant de vos contributions politiques dans le champ ci-dessous.",
-  "Total federal contributions": "Total des contributions fédérales",
-  "Total provincial contributions": "Total des contributions provinciales",
   "Home energy costs on a reserve": "Coûts d’énergie domiciliaire dans une réserve",
   "Please enter the home energy costs paid for your principal residence on a reserve in Ontario in 2018.": "Veuillez inscrire les coûts d’énergie domiciliaire payés pour votre résidence principale située dans une réserve en Ontario en 2018.",
   "Home energy costs on a reserve in 2018": "Coûts d’énergie domiciliaire dans une réserve en 2018",
@@ -293,5 +290,7 @@
   "Marital status": "État matrimonial",
   "Deduct political contributions": "Deduct political contributions",
   "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.": "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.",
-  "Do you have receipts for political contributions made in 2018?": "Do you have receipts for political contributions made in 2018?"
+  "Do you have receipts for political contributions made in 2018?": "Do you have receipts for political contributions made in 2018?",
+  "Total 2018 federal political contributions": "Total 2018 federal political contributions",
+  "Total 2018 provincial political contributions": "Total 2018 provincial political contributions"
 }

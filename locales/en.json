@@ -138,9 +138,6 @@
   "Yukon": "Yukon",
   "Non Resident": "Non Resident",
   "Enter your political contributions": "Enter your political contributions",
-  "Please enter your political contributions into the fields below.": "Please enter your political contributions into the fields below.",
-  "Total federal contributions": "Total federal contributions",
-  "Total provincial contributions": "Total provincial contributions",
   "Total income earned in 2018": "Total income earned in 2018",
   "Detailed breakdown of income earned in 2018": "Detailed breakdown of income earned in 2018",
   "Employer 1 Total Income": "Employer 1 Total Income",
@@ -316,5 +313,7 @@
   "Marital status": "Marital status",
   "Deduct political contributions": "Deduct political contributions",
   "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.": "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.",
-  "Do you have receipts for political contributions made in 2018?": "Do you have receipts for political contributions made in 2018?"
+  "Do you have receipts for political contributions made in 2018?": "Do you have receipts for political contributions made in 2018?",
+  "Total 2018 federal political contributions": "Total 2018 federal political contributions",
+  "Total 2018 provincial political contributions": "Total 2018 provincial political contributions"
 }

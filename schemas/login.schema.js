@@ -109,6 +109,15 @@ const dobSchema = {
   },
 }
 
+const securityQuestionSchema = {
+  securityQuestion: {
+    isIn: {
+      errorMessage: 'errors.yesNo',
+      options: [['/login/questions/child', '/login/questions/trillium']],
+    },
+  },
+}
+
 const childSchema = {
   childLastName: {
     isEmpty: {
@@ -149,6 +158,7 @@ module.exports = {
   sinSchema,
   childSchema,
   trilliumAmountSchema,
+  securityQuestionSchema,
   lastDayInMonth,
   toISOFormat,
 }

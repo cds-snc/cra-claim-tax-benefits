@@ -1,4 +1,5 @@
 const { validationResult, checkSchema } = require('express-validator')
+const request = require('request-promise')
 const {
   errorArray2ErrorObject,
   doRedirect,
@@ -10,11 +11,12 @@ const {
   loginSchema,
   sinSchema,
   dobSchema,
+  securityQuestionSchema,
   childSchema,
   trilliumAmountSchema,
 } = require('./../../schemas')
 const API = require('../../api')
-const request = require('request-promise')
+const { securityQuestionUrls } = require('../../config/routes.config')
 
 module.exports = function(app) {
   // redirect from "/login" → "/login/code"
@@ -30,7 +32,14 @@ module.exports = function(app) {
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
   app.post('/login/dateOfBirth', checkSchema(dobSchema), postDateOfBirth, doRedirect)
 
+  // Security question page
   app.get('/login/securityQuestion', renderWithData('login/securityQuestion'))
+  app.post(
+    '/login/securityQuestion',
+    checkSchema(securityQuestionSchema),
+    checkErrors('login/securityQuestion'),
+    postSecurityQuestion,
+  )
 
   // Security questions
   app.get('/login/questions/child', renderWithData('login/questions/child'))
@@ -121,4 +130,11 @@ const postDateOfBirth = async (req, res, next) => {
   }
 
   next()
+}
+
+const postSecurityQuestion = async (req, res) => {
+  const url = securityQuestionUrls.find(url => url === req.body.securityQuestion)
+
+  req.session.login.securityQuestion = url
+  return res.redirect(url)
 }

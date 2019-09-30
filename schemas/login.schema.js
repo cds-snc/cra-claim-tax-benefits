@@ -1,5 +1,6 @@
 const { validationArray, currencySchema } = require('./utils.schema')
 const API = require('./../api')
+const { securityQuestionUrls } = require('../config/routes.config')
 
 const loginSchema = {
   code: {
@@ -113,7 +114,7 @@ const securityQuestionSchema = {
   securityQuestion: {
     isIn: {
       errorMessage: 'errors.yesNo',
-      options: [['/login/questions/child', '/login/questions/trillium']],
+      options: [securityQuestionUrls],
     },
   },
 }

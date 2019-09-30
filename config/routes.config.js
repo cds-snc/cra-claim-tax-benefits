@@ -1,5 +1,7 @@
+// list the urls for security questions
+const securityQuestionUrls = ['/login/questions/child', '/login/questions/trillium']
+
 //list our routes in the flow order in the app
-//for address edit and marital status edit, I am specifically pointing to data that does not exist, to force skipping the route when navigating back
 const routes = [
   { path: '/start' },
   { path: '/login/code' },
@@ -7,7 +9,7 @@ const routes = [
   { path: '/login/sin' },
   { path: '/login/dateOfBirth' },
   { path: '/login/securityQuestion' },
-  { path: '/login/questions', options: ['/login/questions/child', '/login/questions/trillium'] },
+  { path: '/login/questions', options: securityQuestionUrls },
   { path: '/personal/name' },
   { path: '/offramp/name', editInfo: 'skip' },
   { path: '/personal/residence' },
@@ -41,4 +43,5 @@ const routes = [
 
 module.exports = {
   routes,
+  securityQuestionUrls,
 }

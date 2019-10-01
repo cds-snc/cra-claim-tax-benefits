@@ -2,15 +2,14 @@ extends ../base
 
 block variables
   -var title = __('The Ontario Trillium Benefit')
-  -var trilliumRentClaim = !hasData(data, 'deductions.trilliumRentClaim') ? '' : data.deductions.trilliumRentClaim ? 'Yes' : 'No'
 
 block content
 
   h1 #{title}
 
   div
-    p #{__('The Ontario Trillium Benefit (OTB) is a government payment that helps with energy, sales and property taxes. You can learn about the OTB at')} <a href='https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html'>https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html</a>
+    p #{__('The Ontario Trillium Benefit (OTB) is a government payment that helps with energy, sales and property taxes. You can learn about the OTB at')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html')}>#{__('https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html')}</a>
 
     p #{__('Apply for OTB on the pages that follow.')}
 
-    +linkButtons('/trillium/rent', true)
+    +linkButtons('/trillium/rent', 'Continue')

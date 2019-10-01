@@ -154,12 +154,82 @@ const trilliumAmountSchema = {
   },
 }
 
+const _isEmpty = errorMessage => {
+  return {
+    isEmpty: {
+      errorMessage,
+      negated: true,
+    },
+  }
+}
+
+const _customPostalCodeFormat = errorMessage => {
+  return {
+    custom: {
+      options: value => {
+        // Source: https://gist.github.com/nery/9118763
+        var postalCodeRegex = new RegExp(
+          /^\s*[a-ceghj-npr-tvxy]\d[a-ceghj-npr-tv-z][-(\s)]?\d[a-ceghj-npr-tv-z]\d\s*$/i,
+        )
+        return postalCodeRegex.test(value)
+      },
+      errorMessage,
+    },
+  }
+}
+
+const _isInProvinces = errorMessage => {
+  return {
+    isIn: {
+      errorMessage,
+      options: [
+        [
+          'Alberta',
+          'British Columbia',
+          'Manitoba',
+          'New Brunswick',
+          'Newfoundland And Labrador',
+          'Northwest Territories',
+          'Nova Scotia',
+          'Nunavut',
+          'Ontario',
+          'Prince Edward Island',
+          'Quebec',
+          'Saskatchewan',
+          'Yukon',
+        ],
+      ],
+    },
+  }
+}
+
+const addressesSchema = {
+  // fields for first address
+  firstStreetAddress: _isEmpty('errors.address.streetAddress.empty'),
+  firstCity: _isEmpty('errors.address.city.empty'),
+  firstPostalCode: {
+    ..._isEmpty('errors.address.postalCode.empty'),
+    ..._customPostalCodeFormat('errors.address.postalCode.format'),
+  },
+  firstProvince: _isInProvinces('errors.address.province'),
+
+  // fields for second address
+  secondStreetAddress: _isEmpty('errors.address.streetAddress.empty'),
+  secondCity: _isEmpty('errors.address.city.empty'),
+  secondPostalCode: {
+    ..._isEmpty('errors.address.postalCode.empty'),
+    ..._customPostalCodeFormat('errors.address.postalCode.format'),
+  },
+  secondProvince: _isInProvinces('errors.address.province'),
+}
+
 module.exports = {
   loginSchema,
   dobSchema,
   sinSchema,
   childSchema,
   trilliumAmountSchema,
+  addressesSchema,
   securityQuestionSchema,
   lastDayInMonth,
   toISOFormat,

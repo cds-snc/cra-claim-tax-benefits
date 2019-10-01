@@ -1,5 +1,9 @@
 // list the urls for security questions
-const securityQuestionUrls = ['/login/questions/child', '/login/questions/trillium']
+const securityQuestionUrls = [
+  '/login/questions/child',
+  '/login/questions/trillium',
+  '/login/questions/addresses',
+]
 
 //list our routes in the flow order in the app
 const routes = [

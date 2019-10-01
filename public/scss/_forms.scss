@@ -29,23 +29,17 @@ form.cra-form {
       width: 20%;
     }
   }
-}
 
-form.cra-form.cra-form--lg {
-  @include sm {
-    width: 110%;
-    max-width: 800px;
-  }
-
-  fieldset legend,
-  div:not(.multiple-choice__item) > label {
-    font-size: 1em;
-  }
-}
-
-form.cra-form {
   > div:not(:last-of-type) {
     margin-bottom: $space-xl;
+  }
+
+  .group {
+    margin-bottom: $space-xxl !important;
+
+    > div:not(:last-of-type) {
+      margin-bottom: $space-md;
+    }
   }
 
   div *:last-child {
@@ -171,6 +165,18 @@ form.cra-form {
         margin-left: $space-xs;
       }
     }
+  }
+}
+
+form.cra-form.cra-form--lg {
+  @include sm {
+    width: 110%;
+    max-width: 800px;
+  }
+
+  fieldset legend,
+  div:not(.multiple-choice__item) > label {
+    font-size: 1em;
   }
 }
 

@@ -4,7 +4,15 @@ const cheerio = require('cheerio')
 const app = require('../../app.js')
 
 describe('Test /login responses', () => {
-  const urls = ['/login/code', '/login/sin', '/login/dateOfBirth', '/login/securityQuestion']
+  const urls = [
+    '/login/code',
+    '/login/sin',
+    '/login/dateOfBirth',
+    '/login/securityQuestion',
+    '/login/questions/child',
+    '/login/questions/trillium',
+    '/login/questions/addresses',
+  ]
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
       const response = await request(app).get(url)
@@ -507,5 +515,95 @@ describe('Test /login/securityQuestion responses', () => {
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual(url)
     })
+  })
+})
+
+describe('Test /login/questions/addresses responses', () => {
+  let goodRequest = {
+    firstStreetAddress: 'Awesome Avenue',
+    firstCity: 'Awesawa',
+    firstPostalCode: 'H3L1Y4',
+    firstProvince: 'Ontario',
+    secondStreetAddress: 'Oh no cul-de-sac',
+    secondCity: 'Yikesville',
+    secondPostalCode: 'H0N0N0',
+    secondProvince: 'Ontario',
+    redirect: '/personal/name',
+  }
+
+  const badRequests = [
+    {
+      label: 'no streetAddress or city or firstPostalCode or province',
+      firstErrorId: '#firstStreetAddress',
+      send: {
+        ...goodRequest,
+        ...{ firstStreetAddress: '', firstCity: '', firstPostalCode: '', firstProvince: '' },
+      },
+    },
+    {
+      label: 'no streetAddress',
+      firstErrorId: '#firstStreetAddress',
+      send: {
+        ...goodRequest,
+        ...{ firstStreetAddress: '' },
+      },
+    },
+    {
+      label: 'no city',
+      firstErrorId: '#firstCity',
+      send: {
+        ...goodRequest,
+        ...{ firstCity: '' },
+      },
+    },
+    {
+      label: 'no postalCode',
+      firstErrorId: '#firstPostalCode',
+      send: {
+        ...goodRequest,
+        ...{ firstPostalCode: '' },
+      },
+    },
+    {
+      label: 'bad postalCode',
+      firstErrorId: '#firstPostalCode',
+      send: {
+        ...goodRequest,
+        ...{ firstPostalCode: '0h3 N03' },
+      },
+    },
+    {
+      label: 'no province',
+      firstErrorId: '#firstProvince',
+      send: {
+        ...goodRequest,
+        ...{ firstProvince: '' },
+      },
+    },
+    {
+      label: 'bad province',
+      firstErrorId: '#firstProvince',
+      send: {
+        ...goodRequest,
+        ...{ firstProvince: 'Aurora' },
+      },
+    },
+  ]
+
+  badRequests.map(badRequest => {
+    test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+      const response = await request(app)
+        .post('/login/questions/addresses')
+        .send(badRequest.send)
+      expect(response.statusCode).toBe(422)
+    })
+  })
+
+  test('it returns a 302 for a good request cheese', async () => {
+    const response = await request(app)
+      .post('/login/questions/addresses')
+      .send(goodRequest)
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toEqual('/personal/name')
   })
 })

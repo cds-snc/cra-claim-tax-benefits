@@ -15,7 +15,7 @@
   "errors.login.dateOfBirth.validYear": "Please enter a year between 1900 and 2019",
   "errors.login.childLastName": "Please enter your child’s last name",
   "errors.login.paymentMethod": "Please choose how you receive your payments",
-  "errors.address.line1.empty": "Street address can’t be empty",
+  "errors.address.streetAddress.empty": "Street address can’t be empty",
   "errors.address.city.empty": "City can’t be empty",
   "errors.address.postalCode.empty": "Postal code can’t be empty",
   "errors.address.postalCode.format": "Postal code is incorrect format",
@@ -350,5 +350,11 @@
   "Enter your political contributions": "Enter your political contributions",
   "Please note you may be asked to provide receipts to verify this information later.": "Please note you may be asked to provide receipts to verify this information later.",
   "true": true,
-  "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html"
+  "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html",
+  "Apply for OTB: property tax": "Apply for OTB: property tax",
+  "Your last two mailing addresses before your current address": "Your last two mailing addresses before your current address",
+  "Enter the last two mailing addresses before your current address": "Enter the last two mailing addresses before your current address",
+  "You must have used both addresses to file taxes. Choose a different question if you haven’t filed taxes from at least two other addresses.": "You must have used both addresses to file taxes. Choose a different question if you haven’t filed taxes from at least two other addresses.",
+  "Mailing address 1": "Mailing address 1",
+  "Mailing address 2": "Mailing address 2"
 }

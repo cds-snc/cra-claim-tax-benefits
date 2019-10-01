@@ -214,7 +214,7 @@ describe('Full run through', function() {
   it('navigates the Trillium Property Tax page', function() {
     //TRILLIUM PROPERTY TAX
     cy.url().should('contain', '/trillium/propertyTax')
-    cy.get('h1').should('contain', 'Deduct your property tax')
+    cy.get('h1').should('contain', 'Apply for OTB: property tax')
 
     cy.get('input#trilliumPropertyTaxClaimNo + label').should(
       'have.attr',

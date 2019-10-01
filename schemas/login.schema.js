@@ -247,15 +247,40 @@ const addressesSchema = {
   secondProvince: _isInProvinces('errors.address.province'),
 }
 
+const prisonSchema = {
+  prisonDate: {
+    isIn: {
+      errorMessage: 'errors.login.prisonDate',
+      options: [['entry', 'release']],
+    },
+  },
+  dobDay: {
+    ...validationArray([isValidDay]),
+  },
+  dobMonth: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validMonth',
+      options: { min: 1, max: 12 },
+    },
+  },
+  dobYear: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validYear',
+      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
   dobSchema,
   sinSchema,
+  securityQuestionSchema,
   childSchema,
   bankruptcySchema,
   trilliumAmountSchema,
   addressesSchema,
-  securityQuestionSchema,
+  prisonSchema,
   lastDayInMonth,
   toISOFormat,
 }

@@ -16,6 +16,7 @@ const {
   bankruptcySchema,
   trilliumAmountSchema,
   addressesSchema,
+  prisonSchema,
 } = require('./../../schemas')
 const API = require('../../api')
 const { securityQuestionUrls } = require('../../config/routes.config')
@@ -75,6 +76,14 @@ module.exports = function(app) {
     '/login/questions/bankruptcy',
     checkSchema(bankruptcySchema),
     checkErrors('login/questions/bankruptcy'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/prison', renderWithData('login/questions/prison'))
+  app.post(
+    '/login/questions/prison',
+    checkSchema(prisonSchema),
+    checkErrors('login/questions/prison'),
     doRedirect,
   )
 }

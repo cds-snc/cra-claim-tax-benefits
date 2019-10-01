@@ -4,6 +4,7 @@ const securityQuestionUrls = [
   '/login/questions/trillium',
   '/login/questions/addresses',
   '/login/questions/bankruptcy',
+  '/login/questions/prison',
 ]
 
 //list our routes in the flow order in the app

@@ -5,9 +5,9 @@ mixin formButtons(submitButtonText = 'Continue', cancelUrl='/clear')
     .buttons--right
       a.transparent.full-width(href=cancelUrl role='button' draggable='false') #{__('Cancel')}
 
-mixin linkButtons(confirmURL)
+mixin linkButtons(confirmURL, linkButtonText = 'Confirm')
   .buttons-row
-    a(href=confirmURL role='button' draggable='false') #{__('Confirm')}
+    a(href=confirmURL role='button' draggable='false') #{__(linkButtonText)}
     if block
         block
     a.transparent(href='/clear' role='button' draggable='false') #{__('Cancel')}

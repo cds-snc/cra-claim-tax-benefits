@@ -67,6 +67,13 @@ describe('Test /deductions responses', () => {
     })
   })
 
+  describe('It returns a 200 response for /trillium/start', () => {
+    test('it returns a 200 response for the /trillium/start path', async () => {
+      const response = await request(app).get('/trillium/start')
+      expect(response.statusCode).toBe(200)
+    })
+  })
+
   describe('Test /deductions/* yesNo responses', () => {
     const yesNoResponses = [
       {

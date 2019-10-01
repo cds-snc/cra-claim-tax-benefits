@@ -119,6 +119,9 @@ module.exports = function(app) {
   //End of Charitable Donations Section
 
   //Start of Trillum Section
+
+  app.get('/trillium/start', renderWithData('deductions/trillium-start'))
+
   app.get('/trillium/rent', renderWithData('deductions/trillium-rent'))
   app.post(
     '/trillium/rent',

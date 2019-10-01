@@ -14,6 +14,7 @@ const {
   securityQuestionSchema,
   childSchema,
   trilliumAmountSchema,
+  addressesSchema,
 } = require('./../../schemas')
 const API = require('../../api')
 const { securityQuestionUrls } = require('../../config/routes.config')
@@ -41,6 +42,8 @@ module.exports = function(app) {
     postSecurityQuestion,
   )
 
+  app.get('/login/questions', (req, res) => res.redirect('/login/securityQuestion'))
+
   // Security questions
   app.get('/login/questions/child', renderWithData('login/questions/child'))
   app.post(
@@ -58,7 +61,13 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/login/questions', (req, res) => res.redirect('/login/securityQuestion'))
+  app.get('/login/questions/addresses', renderWithData('login/questions/addresses'))
+  app.post(
+    '/login/questions/addresses',
+    checkSchema(addressesSchema),
+    checkErrors('login/questions/addresses'),
+    doRedirect,
+  )
 }
 
 const postLoginCode = async (req, res, next) => {

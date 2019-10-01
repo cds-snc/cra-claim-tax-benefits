@@ -1,0 +1,92 @@
+extends ../../base
+
+block variables
+  -var title = __('Enter the last two mailing addresses before your current address')
+  -var firstAptNumber = hasData(body, 'firstAptNumber') ? body.firstAptNumber : ''
+  -var firstStreetAddress = hasData(body, 'firstStreetAddress') ? body.firstStreetAddress : ''
+  -var firstCity = hasData(body, 'firstCity') ? body.firstCity : ''
+  -var firstPostalCode = hasData(body, 'firstPostalCode') ? body.firstPostalCode : ''
+  -var firstProvince = hasData(body, 'firstProvince') ? body.firstProvince : ''
+  -var secondAptNumber = hasData(body, 'secondAptNumber') ? body.secondAptNumber : ''
+  -var secondStreetAddress = hasData(body, 'secondStreetAddress') ? body.secondStreetAddress : ''
+  -var secondCity = hasData(body, 'secondCity') ? body.secondCity : ''
+  -var secondPostalCode = hasData(body, 'secondPostalCode') ? body.secondPostalCode : ''
+  -var secondProvince = hasData(body, 'secondProvince') ? body.secondProvince : ''
+
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('You must have used both addresses to file taxes. Choose a different question if you haven’t filed taxes from at least two other addresses.')}
+
+  div
+    form.cra-form.cra-form--lg(method='post')
+      .group
+        h2 #{__('Mailing address 1')}
+
+        +textInput('Street address', ['w-3-4','d--ib'])(class='w-3-4' name='firstStreetAddress' value=firstStreetAddress)
+
+        +textInput('Apartment number', 'w-1-2', 'Optional')(class='w-3-4' name='firstAptNumber' value=firstAptNumber )
+
+        +textInput('City', 'w-1-2')(class='w-3-4' value=firstCity name='firstCity')
+
+        +textInput('Postal Code', ['w-1-2'], 'For Example: K2R 3Z9')(class='w-3-4' name='firstPostalCode' value=firstPostalCode)
+
+        .w-1-2(class={['has-error']: errors && errors.firstProvince})
+          label(for='firstProvince') #{__('Province')}
+          if errors && errors.firstProvince
+            +validationMessage(errors.firstProvince.msg, 'firstProvince')
+          select.w-3-4#firstProvince(name='firstProvince' aria-describedby=(errors && errors.firstProvince ? 'firstProvince-error' : false))
+            if !firstProvince
+              option(disabled='', selected='selected', value='')  -- select a province --
+            option(value='Alberta' selected=firstProvince == 'Alberta') #{__('Alberta')}
+            option(value='British Columbia' selected=firstProvince == 'British Columbia') #{__('British Columbia')}
+            option(value='Manitoba' selected=firstProvince == 'Manitoba') #{__('Manitoba')}
+            option(value='New Brunswick' selected=firstProvince == 'New Brunswick') #{__('New Brunswick')}
+            option(value='Newfoundland And Labrador' selected=firstProvince =='Newfoundland And Labrador') #{__('Newfoundland and Labrador')}
+            option(value='Northwest Territories' selected=firstProvince =='Northwest Territories') #{__('Northwest Territories')}
+            option(value='Nova Scotia' selected=firstProvince =='Nova Scotia') #{__('Nova Scotia')}
+            option(value='Nunavut' selected=firstProvince =='Nunavut') #{__('Nunavut')}
+            option(value='Ontario' selected=firstProvince == 'Ontario') #{__('Ontario')}
+            option(value='Prince Edward Island' selected=firstProvince =='Prince Edward Island') #{__('Prince Edward Island')}
+            option(value='Quebec'  selected=firstProvince =='Quebec') #{__('Quebec')}
+            option(value='Saskatchewan' selected=firstProvince =='Saskatchewan') #{__('Saskatchewan')}
+            option(value='Yukon' selected=firstProvince =='Yukon') #{__('Yukon')}
+
+      .group
+        h2 #{__('Mailing address 2')}
+
+        +textInput('Street address', ['w-3-4','d--ib'])(class='w-3-4' name='secondStreetAddress' value=secondStreetAddress)
+
+        +textInput('Apartment number', 'w-1-2', 'Optional')(class='w-3-4' name='secondAptNumber' value=secondAptNumber)
+
+        +textInput('City', 'w-1-2')(class='w-3-4' name='secondCity' value=secondCity)
+
+        +textInput('Postal Code', ['w-1-2'], 'For Example: K2R 3Z9')(class='w-3-4' name='secondPostalCode' value=secondPostalCode)
+
+        .w-1-2(class={['has-error']: errors && errors.secondProvince})
+          label(for='secondProvince') #{__('Province')}
+          if errors && errors.secondProvince
+            +validationMessage(errors.secondProvince.msg, 'secondProvince')
+          select.w-3-4#secondProvince(name='secondProvince' aria-describedby=(errors && errors.secondProvince ? 'secondProvince-error' : false))
+            if !secondProvince
+              option(disabled='', selected='selected', value='')  -- select a province --
+            option(value='Alberta' selected=secondProvince == 'Alberta') #{__('Alberta')}
+            option(value='British Columbia' selected=secondProvince == 'British Columbia') #{__('British Columbia')}
+            option(value='Manitoba' selected=secondProvince == 'Manitoba') #{__('Manitoba')}
+            option(value='New Brunswick' selected=secondProvince == 'New Brunswick') #{__('New Brunswick')}
+            option(value='Newfoundland And Labrador' selected=secondProvince =='Newfoundland And Labrador') #{__('Newfoundland and Labrador')}
+            option(value='Northwest Territories' selected=secondProvince =='Northwest Territories') #{__('Northwest Territories')}
+            option(value='Nova Scotia' selected=secondProvince =='Nova Scotia') #{__('Nova Scotia')}
+            option(value='Nunavut' selected=secondProvince =='Nunavut') #{__('Nunavut')}
+            option(value='Ontario' selected=secondProvince == 'Ontario') #{__('Ontario')}
+            option(value='Prince Edward Island' selected=secondProvince =='Prince Edward Island') #{__('Prince Edward Island')}
+            option(value='Quebec'  selected=secondProvince =='Quebec') #{__('Quebec')}
+            option(value='Saskatchewan' selected=secondProvince =='Saskatchewan') #{__('Saskatchewan')}
+            option(value='Yukon' selected=secondProvince =='Yukon') #{__('Yukon')}
+
+      input#redirect(name='redirect', type='hidden', value='/personal/name')
+
+      +formButtons()

@@ -187,10 +187,20 @@ describe('Full run through', function() {
       .click()
   })
 
+  it('navigates the Trillium Start page', function() {
+    //TRILLIUM RENT
+    cy.url().should('contain', '/trillium/start')
+    cy.get('h1').should('contain', 'The Ontario Trillium Benefit')
+
+    cy.get(`a[href="/trillium/rent"]`)
+      .should('contain', 'Continue')
+      .click()
+  })
+
   it('navigates the Trillium Rent page', function() {
     //TRILLIUM RENT
     cy.url().should('contain', '/trillium/rent')
-    cy.get('h1').should('contain', 'Deduct your rent payments')
+    cy.get('h1').should('contain', 'Apply for OTB: rent payments')
 
     cy.get('input#trilliumRentClaimNo + label').should('have.attr', 'for', 'trilliumRentClaimNo')
 

@@ -15,7 +15,7 @@
   "errors.login.dateOfBirth.validYear": "Veuillez inscrire une année valide",
   "errors.login.childLastName": "Please enter your child’s last name",
   "errors.login.paymentMethod": "Please choose how you receive your payments",
-  "errors.address.line1.empty": "Le nom de la rue doit être inscrit",
+  "errors.address.streetAddress.empty": "Le nom de la rue doit être inscrit",
   "errors.address.city.empty": "La ville doit être inscrite",
   "errors.address.postalCode.empty": "Le code postal doit être inscrit",
   "errors.address.postalCode.format": "Le format du code postal est incorrect",
@@ -310,6 +310,12 @@
   "Enter your rent payments to apply for OTB": "Enter your rent payments to apply for OTB",
   "The government might ask for your rent receipts.": "The government might ask for your rent receipts.",
   "How much total rent did you pay for the place you lived most of 2018?": "How much total rent did you pay for the place you lived most of 2018?",
-  "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html",
-  "Apply for OTB on the pages that follow.": "Apply for OTB on the pages that follow."
+  "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html": "https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/programmes-provinciaux-territoriaux/questions-reponses-prestation-trillium-ontario.html",
+  "Apply for OTB on the pages that follow.": "Apply for OTB on the pages that follow.",
+  "Enter the last two mailing addresses before your current address": "Enter the last two mailing addresses before your current address",
+  "You must have used both addresses to file taxes. Choose a different question if you haven’t filed taxes from at least two other addresses.": "You must have used both addresses to file taxes. Choose a different question if you haven’t filed taxes from at least two other addresses.",
+  "Mailing address 1": "Mailing address 1",
+  "Street address": "Street address",
+  "Mailing address 2": "Mailing address 2",
+  "Your last two mailing addresses before your current address": "Your last two mailing addresses before your current address"
 }

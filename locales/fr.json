@@ -16,6 +16,7 @@
   "errors.login.childLastName": "Please enter your child’s last name",
   "errors.login.paymentMethod": "Please choose how you receive your payments",
   "errors.login.trusteeLastName": "errors.login.trusteeLastName",
+  "errors.login.prisonDate": "errors.login.prisonDate",
   "errors.address.streetAddress.empty": "Le nom de la rue doit être inscrit",
   "errors.address.city.empty": "La ville doit être inscrite",
   "errors.address.postalCode.empty": "Le code postal doit être inscrit",
@@ -322,5 +323,11 @@
   "Enter details about your bankruptcy assignment": "Enter details about your bankruptcy assignment",
   "Date of your bankruptcy assignment": "Date of your bankruptcy assignment",
   "Name of your trustee in bankruptcy": "Name of your trustee in bankruptcy",
-  "Details of your bankruptcy assignment": "Details of your bankruptcy assignment"
+  "Details of your bankruptcy assignment": "Details of your bankruptcy assignment",
+  "Your date of entry or release from prison": "Your date of entry or release from prison",
+  "Enter entry or release date from prison": "Enter entry or release date from prison",
+  "Which date do you want to give?": "Which date do you want to give?",
+  "Entry to prison": "Entry to prison",
+  "Release from prison": "Release from prison",
+  "Give the date": "Give the date"
 }

@@ -1,0 +1,12 @@
+mixin radios(id, legend, value, options)
+    div(class={['has-error']: errors && errors[id]})
+      fieldset
+          legend
+            h2 #{__(legend)}
+          .multiple-choice.multiple-choice--radios
+              if errors && errors[id]
+                +validationMessage(errors[id].msg, id)
+              each opt, index in options
+                .multiple-choice__item
+                    input(id=(id+index) name=id type="radio" value=opt.label aria-describedby=(errors && errors[id] ? id+"-error" : false) checked=(value === opt.id))
+                    label(for=(id+index)) #{__(opt.label)}

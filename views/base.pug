@@ -1,5 +1,6 @@
 include _includes/validationMessage
 include _includes/input-text
+include _includes/radiosMixin
 include _includes/buttonMixin
 
 doctype html
@@ -30,10 +31,10 @@ html(lang=getLocale() === 'fr' ? 'fr' : 'en')
       header
         include _includes/phaseBanner
         include _includes/fip
-      
+
       main
         include _includes/backButton
-        
+
         if errors
           include _includes/errorList.pug
 

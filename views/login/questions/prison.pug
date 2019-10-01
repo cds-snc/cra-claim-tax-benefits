@@ -13,19 +13,10 @@ block content
 
   form.cra-form(method='post')
 
-    div(class={['has-error']: errors && errors.prisonDate})
-      fieldset
-          legend
-            h2 #{__('Which date do you want to give?')}
-          .multiple-choice.multiple-choice--radios
-              if errors && errors.prisonDate
-                +validationMessage(errors.prisonDate.msg, 'prisonDate')
-              .multiple-choice__item
-                  input(id="prisonDate0" name="prisonDate" type="radio" value="entry" aria-describedby=(errors && errors.prisonDate ? 'prisonDate-error' : false) checked=(prisonDate === 'entry'))
-                  label(for="prisonDate0") #{__('Entry to prison')}
-              .multiple-choice__item
-                  input(id="prisonDate1" name="prisonDate" type="radio" value="release" aria-describedby=(errors && errors.prisonDate ? 'prisonDate-error' : false) checked=(prisonDate === 'release'))
-                  label(for="prisonDate1") #{__('Release from prison')}
+    +radios('prisonDate', 'Which date do you want to give?', prisonDate,[
+        {id: "entry", label: "Entry to prison"},
+        {id: "release", label: "Release from prison"}
+    ])
 
     div.dob-container(class={['has-error']: errors && errors.dobDay})
       fieldset.fieldset(role="group", aria-describedby="dobHint")

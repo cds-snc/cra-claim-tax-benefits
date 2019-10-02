@@ -300,7 +300,7 @@ describe('Test /login responses', () => {
           ...{
             dobDay: currentDate.getDate(),
             dobMonth: currentDate.getMonth(),
-            dobYear: currentDate.getFullYear() - 200,
+            dobYear: currentDate.getFullYear() - 201,
           },
         },
       },
@@ -326,10 +326,10 @@ describe('Test /login responses', () => {
 
     describe('for /login/questions/child', () => {
       badDoBRequests.map(badRequest => {
-        test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+        test(`it returns a 422 with a valid lastName but a bad date: "${badRequest.label}"`, async () => {
           const response = await request(app)
             .post('/login/questions/child')
-            .send(badRequest.send)
+            .send({ ...badRequest.send, ...{ childLastName: 'Laika' } })
           expect(response.statusCode).toBe(422)
         })
       })
@@ -353,6 +353,47 @@ describe('Test /login responses', () => {
           .post('/login/questions/child')
           .send({ ...goodDoBRequest, ...{ childLastName: 'Laika' } })
         expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual('/login/success')
+      })
+    })
+
+    describe('for /login/questions/prison', () => {
+      badDoBRequests.map(badRequest => {
+        test(`it returns a 422 with a valid prisonDate but a bad date: "${badRequest.label}"`, async () => {
+          const response = await request(app)
+            .post('/login/questions/prison')
+            .send({ ...badRequest.send, ...{ prisonDate: 'release' } })
+          expect(response.statusCode).toBe(422)
+        })
+      })
+
+      test('it returns a 422 with valid dob but NO selected prisonDate', async () => {
+        const response = await request(app)
+          .post('/login/questions/prison')
+          .send({ ...goodDoBRequest, ...{ prisonDate: '' } })
+        expect(response.statusCode).toBe(422)
+      })
+
+      test('it returns a 422 with valid dob but an invalid prisonDate', async () => {
+        const response = await request(app)
+          .post('/login/questions/prison')
+          .send({ ...goodDoBRequest, ...{ prisonDate: 'jailbreak' } })
+        expect(response.statusCode).toBe(422)
+      })
+
+      test('it returns a 422 with NO date entered but a valid prisonDate', async () => {
+        const response = await request(app)
+          .post('/login/questions/prison')
+          .send({ prisonDate: 'release' })
+        expect(response.statusCode).toBe(422)
+      })
+
+      test('it returns a 302 with valid dob and prisonDate', async () => {
+        const response = await request(app)
+          .post('/login/questions/prison')
+          .send({ ...goodDoBRequest, ...{ prisonDate: 'release' } })
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual('/login/success')
       })
     })
 

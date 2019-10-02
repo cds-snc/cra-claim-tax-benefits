@@ -16,6 +16,7 @@ const {
   bankruptcySchema,
   trilliumAmountSchema,
   addressesSchema,
+  prisonSchema,
 } = require('./../../schemas')
 const API = require('../../api')
 const { securityQuestionUrls } = require('../../config/routes.config')
@@ -54,14 +55,6 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/login/questions/trillium', renderWithData('login/questions/trillium'))
-  app.post(
-    '/login/questions/trillium',
-    checkSchema(trilliumAmountSchema),
-    checkErrors('login/questions/trillium'),
-    doRedirect,
-  )
-
   app.get('/login/questions/addresses', renderWithData('login/questions/addresses'))
   app.post(
     '/login/questions/addresses',
@@ -70,11 +63,27 @@ module.exports = function(app) {
     doRedirect,
   )
 
+  app.get('/login/questions/prison', renderWithData('login/questions/prison'))
+  app.post(
+    '/login/questions/prison',
+    checkSchema(prisonSchema),
+    checkErrors('login/questions/prison'),
+    doRedirect,
+  )
+
   app.get('/login/questions/bankruptcy', renderWithData('login/questions/bankruptcy'))
   app.post(
     '/login/questions/bankruptcy',
     checkSchema(bankruptcySchema),
     checkErrors('login/questions/bankruptcy'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/trillium', renderWithData('login/questions/trillium'))
+  app.post(
+    '/login/questions/trillium',
+    checkSchema(trilliumAmountSchema),
+    checkErrors('login/questions/trillium'),
     doRedirect,
   )
 }

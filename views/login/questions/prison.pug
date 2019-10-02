@@ -1,0 +1,58 @@
+extends ../../base
+
+block variables
+  -var title = __('Enter entry or release date from prison')
+  -var prisonDate = hasData(body, 'prisonDate') ? body.prisonDate : ''
+  -var dobDay = hasData(body, 'dobDay') ? body.dobDay : ''
+  -var dobMonth = hasData(body, 'dobMonth') ? body.dobMonth : ''
+  -var dobYear = hasData(body, 'dobYear') ? body.dobYear : ''
+
+block content
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+
+    div(class={['has-error']: errors && errors.prisonDate})
+      fieldset
+          legend
+            h2 #{__('Which date do you want to give?')}
+          .multiple-choice.multiple-choice--radios
+              if errors && errors.prisonDate
+                +validationMessage(errors.prisonDate.msg, 'prisonDate')
+              .multiple-choice__item
+                  input(id="prisonDate0" name="prisonDate" type="radio" value="entry" aria-describedby=(errors && errors.prisonDate ? 'prisonDate-error' : false) checked=(prisonDate === 'entry'))
+                  label(for="prisonDate0") #{__('Entry to prison')}
+              .multiple-choice__item
+                  input(id="prisonDate1" name="prisonDate" type="radio" value="release" aria-describedby=(errors && errors.prisonDate ? 'prisonDate-error' : false) checked=(prisonDate === 'release'))
+                  label(for="prisonDate1") #{__('Release from prison')}
+
+    div.dob-container(class={['has-error']: errors && errors.dobDay})
+      fieldset.fieldset(role="group", aria-describedby="dobHint")
+        legend
+          h2 #{__('Give the date')}
+
+        span#dobHint.cra-form-message #{__('For Example:')} 21 05 2006
+
+        if errors
+          ul
+            each err in errors
+              - if (err.param.startsWith("dob"))
+                li
+                  +validationMessage(err.msg, err.param)
+
+        div.w-1-4.d--ib
+          label(for='dobDay') #{__('Day')}
+          input#dobDay(name='dobDay', type='text', value=dobDay, autocomplete='bday-day', aria-describedby=(errors && errors.dobDay ? 'dobDay-error' : false))
+
+        div.w-1-4.d--ib
+          label(for='dobMonth') #{__('Month')}
+          input#dobMonth(name='dobMonth', type='text', value=dobMonth, autocomplete='bday-month', aria-describedby=(errors && errors.dobMonth ? 'dobMonth-error' : false))
+
+        div.w-1-2.d--ib
+          label(for='dobYear') #{__('Year')}
+          input#dobYear(name='dobYear', type='text', value=dobYear, autocomplete='bday-year', aria-describedby=(errors && errors.dobYear ? 'dobYear-error' : false))
+
+    input#redirect(name='redirect', type='hidden', value='/personal/name')
+
+    +formButtons('Continue')

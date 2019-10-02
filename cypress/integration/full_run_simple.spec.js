@@ -35,9 +35,9 @@ describe('Full run through', function() {
     cy.url().should('contain', '/personal/name')
     cy.get('h1').should('contain', 'Check your name is correct')
 
-    cy.get('input#nameYes + label').should('have.attr', 'for', 'nameYes')
+    cy.get('input#name0 + label').should('have.attr', 'for', 'name0')
 
-    cy.get('input#nameYes').click()
+    cy.get('input#name0').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')

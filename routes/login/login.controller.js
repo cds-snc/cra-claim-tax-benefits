@@ -55,19 +55,19 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/login/questions/trillium', renderWithData('login/questions/trillium'))
-  app.post(
-    '/login/questions/trillium',
-    checkSchema(trilliumAmountSchema),
-    checkErrors('login/questions/trillium'),
-    doRedirect,
-  )
-
   app.get('/login/questions/addresses', renderWithData('login/questions/addresses'))
   app.post(
     '/login/questions/addresses',
     checkSchema(addressesSchema),
     checkErrors('login/questions/addresses'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/prison', renderWithData('login/questions/prison'))
+  app.post(
+    '/login/questions/prison',
+    checkSchema(prisonSchema),
+    checkErrors('login/questions/prison'),
     doRedirect,
   )
 
@@ -79,11 +79,11 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/login/questions/prison', renderWithData('login/questions/prison'))
+  app.get('/login/questions/trillium', renderWithData('login/questions/trillium'))
   app.post(
-    '/login/questions/prison',
-    checkSchema(prisonSchema),
-    checkErrors('login/questions/prison'),
+    '/login/questions/trillium',
+    checkSchema(trilliumAmountSchema),
+    checkErrors('login/questions/trillium'),
     doRedirect,
   )
 }

@@ -1,10 +1,10 @@
 // list the urls for security questions
 const securityQuestionUrls = [
   '/login/questions/child',
-  '/login/questions/trillium',
   '/login/questions/addresses',
-  '/login/questions/bankruptcy',
   '/login/questions/prison',
+  '/login/questions/bankruptcy',
+  '/login/questions/trillium',
 ]
 
 //list our routes in the flow order in the app

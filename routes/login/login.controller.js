@@ -13,6 +13,7 @@ const {
   dobSchema,
   securityQuestionSchema,
   childSchema,
+  dateOfResidenceSchema,
   bankruptcySchema,
   trilliumAmountSchema,
   addressesSchema,
@@ -77,6 +78,14 @@ module.exports = function(app) {
     '/login/questions/prison',
     checkSchema(prisonSchema),
     checkErrors('login/questions/prison'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/dateOfResidence', renderWithData('login/questions/dateOfResidence'))
+  app.post(
+    '/login/questions/dateOfResidence',
+    checkSchema(dateOfResidenceSchema),
+    checkErrors('login/questions/dateOfResidence'),
     doRedirect,
   )
 

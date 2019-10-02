@@ -140,9 +140,9 @@ const logIn = (cy, user) => {
   cy.get('h1').should('contain', 'Choose a security question')
 
   cy.get('form label')
-    .eq(1)
-    .should('have.attr', 'for', 'securityQuestion1')
-  cy.get('#securityQuestion1').check()
+    .eq(2)
+    .should('have.attr', 'for', 'securityQuestion2')
+  cy.get('#securityQuestion2').check()
 
   cy.get('form button[type="submit"]')
     .should('contain', 'Continue')

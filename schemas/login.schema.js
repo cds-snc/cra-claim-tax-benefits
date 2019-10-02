@@ -144,6 +144,36 @@ const childSchema = {
   },
 }
 
+const bankruptcySchema = {
+  dobDay: {
+    ...validationArray([isValidDay]),
+  },
+  dobMonth: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validMonth',
+      options: { min: 1, max: 12 },
+    },
+  },
+  dobYear: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validYear',
+      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
+    },
+  },
+  trusteeFirstName: {
+    isEmpty: {
+      errorMessage: 'errors.login.trusteeFirst',
+      negated: true,
+    },
+  },
+  trusteeLastName: {
+    isEmpty: {
+      errorMessage: 'errors.login.trusteeLastName',
+      negated: true,
+    },
+  },
+}
+
 const trilliumAmountSchema = {
   trilliumAmount: currencySchema(),
   trilliumPaymentMethod: {
@@ -228,6 +258,7 @@ module.exports = {
   dobSchema,
   sinSchema,
   childSchema,
+  bankruptcySchema,
   trilliumAmountSchema,
   addressesSchema,
   securityQuestionSchema,

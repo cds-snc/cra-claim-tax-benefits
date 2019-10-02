@@ -12,6 +12,7 @@ describe('Test /login responses', () => {
     '/login/questions/child',
     '/login/questions/trillium',
     '/login/questions/addresses',
+    '/login/questions/bankruptcy',
   ]
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
@@ -351,6 +352,38 @@ describe('Test /login responses', () => {
         const response = await request(app)
           .post('/login/questions/child')
           .send({ ...goodDoBRequest, ...{ childLastName: 'Laika' } })
+        expect(response.statusCode).toBe(302)
+      })
+    })
+
+    describe('for /login/questions/bankruptcy', () => {
+      badDoBRequests.map(badRequest => {
+        test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+          const response = await request(app)
+            .post('/login/questions/bankruptcy')
+            .send(badRequest.send)
+          expect(response.statusCode).toBe(422)
+        })
+      })
+
+      test('it returns a 422 with valid dob but NO last name', async () => {
+        const response = await request(app)
+          .post('/login/questions/bankruptcy')
+          .send({ ...goodDoBRequest, ...{ trusteeLastName: '' } })
+        expect(response.statusCode).toBe(422)
+      })
+
+      test('it returns a 422 with NO dob but valid last name', async () => {
+        const response = await request(app)
+          .post('/login/questions/bankruptcy')
+          .send({ trusteeLastName: 'Laika' })
+        expect(response.statusCode).toBe(422)
+      })
+
+      test('it returns a 302 with valid dob and last name', async () => {
+        const response = await request(app)
+          .post('/login/questions/bankruptcy')
+          .send({ ...goodDoBRequest, ...{ trusteeFirstName: 'Mike', trusteeLastName: 'Laika' } })
         expect(response.statusCode).toBe(302)
       })
     })

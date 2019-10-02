@@ -15,6 +15,7 @@
   "errors.login.dateOfBirth.validYear": "Veuillez inscrire une année valide",
   "errors.login.childLastName": "Please enter your child’s last name",
   "errors.login.paymentMethod": "Please choose how you receive your payments",
+  "errors.login.trusteeLastName": "errors.login.trusteeLastName",
   "errors.address.streetAddress.empty": "Le nom de la rue doit être inscrit",
   "errors.address.city.empty": "La ville doit être inscrite",
   "errors.address.postalCode.empty": "Le code postal doit être inscrit",
@@ -317,5 +318,9 @@
   "Mailing address 1": "Mailing address 1",
   "Street address": "Street address",
   "Mailing address 2": "Mailing address 2",
-  "Your last two mailing addresses before your current address": "Your last two mailing addresses before your current address"
+  "Your last two mailing addresses before your current address": "Your last two mailing addresses before your current address",
+  "Enter details about your bankruptcy assignment": "Enter details about your bankruptcy assignment",
+  "Date of your bankruptcy assignment": "Date of your bankruptcy assignment",
+  "Name of your trustee in bankruptcy": "Name of your trustee in bankruptcy",
+  "Details of your bankruptcy assignment": "Details of your bankruptcy assignment"
 }

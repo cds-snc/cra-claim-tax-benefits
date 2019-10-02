@@ -70,7 +70,8 @@ form.cra-form {
     @extend %form-element;
   }
 
-  #rrspAmount__label {
+  #rrspAmount__label,
+  h2.bankruptcy-date {
     width: 300px;
 
     @include sm {

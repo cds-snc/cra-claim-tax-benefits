@@ -27,6 +27,9 @@ block content
               .multiple-choice__item
                   input(id="securityQuestion2" name="securityQuestion" type="radio" value="/login/questions/trillium" aria-describedby=(errors ? 'securityQuestion-error' : false) checked=(securityQuestion && securityQuestion === '/login/questions/trillium'))
                   label(for="securityQuestion2") #{__('Your Ontario Trillium Benefit amount and payment type')}
+              .multiple-choice__item
+                input(id="securityQuestion4" name="securityQuestion" type="radio" value="/login/questions/bankruptcy" aria-describedby=(errors ? 'securityQuestion-error' : false) checked=(securityQuestion && securityQuestion === '/login/questions/bankruptcy'))
+                label(for="securityQuestion4") #{__('Details of your bankruptcy assignment')}
 
     div
       details.

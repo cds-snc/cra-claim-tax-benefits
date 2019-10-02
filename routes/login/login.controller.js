@@ -13,6 +13,7 @@ const {
   dobSchema,
   securityQuestionSchema,
   childSchema,
+  bankruptcySchema,
   trilliumAmountSchema,
   addressesSchema,
 } = require('./../../schemas')
@@ -66,6 +67,14 @@ module.exports = function(app) {
     '/login/questions/addresses',
     checkSchema(addressesSchema),
     checkErrors('login/questions/addresses'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/bankruptcy', renderWithData('login/questions/bankruptcy'))
+  app.post(
+    '/login/questions/bankruptcy',
+    checkSchema(bankruptcySchema),
+    checkErrors('login/questions/bankruptcy'),
     doRedirect,
   )
 }

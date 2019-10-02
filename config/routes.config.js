@@ -19,6 +19,7 @@ const routes = [
   { path: '/login/securityQuestion' },
   { path: '/login/questions', options: ['/login/securityQuestion2'] },
   { path: '/login/questions', options: securityQuestionUrls },
+  { path: '/offramp/securityQuestion', editInfo: 'skip' },
   { path: '/personal/name' },
   { path: '/offramp/name', editInfo: 'skip' },
   { path: '/personal/residence' },

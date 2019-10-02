@@ -160,12 +160,6 @@ const bankruptcySchema = {
       options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
     },
   },
-  trusteeFirstName: {
-    isEmpty: {
-      errorMessage: 'errors.login.trusteeFirst',
-      negated: true,
-    },
-  },
   trusteeLastName: {
     isEmpty: {
       errorMessage: 'errors.login.trusteeLastName',

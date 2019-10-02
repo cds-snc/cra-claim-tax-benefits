@@ -15,6 +15,7 @@
   "errors.login.dateOfBirth.validYear": "Please enter a year between 1900 and 2019",
   "errors.login.childLastName": "Please enter your child’s last name",
   "errors.login.paymentMethod": "Please choose how you receive your payments",
+  "errors.login.trusteeLastName": "Please enter your trustee's last name",
   "errors.address.streetAddress.empty": "Street address can’t be empty",
   "errors.address.city.empty": "City can’t be empty",
   "errors.address.postalCode.empty": "Postal code can’t be empty",
@@ -360,7 +361,5 @@
   "Details of your bankruptcy assignment": "Details of your bankruptcy assignment",
   "Enter details about your bankruptcy assignment": "Enter details about your bankruptcy assignment",
   "Name of your trustee in bankruptcy": "Name of your trustee in bankruptcy",
-  "Date of your bankruptcy assignment": "Date of your bankruptcy assignment",
-  "errors.login.trusteeLastName": "Please enter your trustee's last name",
-  "errors.login.trusteeFirst": "lease enter your trustee's first name"
+  "Date of your bankruptcy assignment": "Date of your bankruptcy assignment"
 }

@@ -376,14 +376,14 @@ describe('Test /login responses', () => {
       test('it returns a 422 with NO dob but valid last name', async () => {
         const response = await request(app)
           .post('/login/questions/bankruptcy')
-          .send({ trusteeLastName: 'Laika' })
+          .send({ trusteeLastName: 'Loblaw' })
         expect(response.statusCode).toBe(422)
       })
 
       test('it returns a 302 with valid dob and last name', async () => {
         const response = await request(app)
           .post('/login/questions/bankruptcy')
-          .send({ ...goodDoBRequest, ...{ trusteeFirstName: 'Mike', trusteeLastName: 'Laika' } })
+          .send({ ...goodDoBRequest, ...{ trusteeLastName: 'Loblaw' } })
         expect(response.statusCode).toBe(302)
       })
     })

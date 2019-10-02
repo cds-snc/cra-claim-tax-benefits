@@ -9,7 +9,7 @@ block content
   h1 #{title}
 
   form.cra-form(method='post')
-    +yesNoRadios('trilliumStudentResidence', trilliumStudentResidence, 'Did you live in a designated student residence in 2018?', errors)
+    +radiosYesNo('trilliumStudentResidence', 'Did you live in a designated student residence in 2018?', trilliumStudentResidence)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/energy')
 

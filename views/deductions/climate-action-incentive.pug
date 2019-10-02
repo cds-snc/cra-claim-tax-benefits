@@ -13,7 +13,7 @@ block content
     p #{__('There is an additional 10% credit for residents of small and rural communities')}
 
   form.cra-form(method='post')
-    +yesNoRadios('climateActionIncentiveIsRural', climateActionIncentiveIsRural, 'Did you live in a small and rural community in December 2018?', errors)
+    +radiosYesNo('climateActionIncentiveIsRural', 'Did you live in a small and rural community in December 2018?', climateActionIncentiveIsRural)
 
     div
       details.

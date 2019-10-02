@@ -19,7 +19,7 @@ block content
             div #{__(data.personal.maritalStatus)}
 
   form.cra-form(method='post')
-    +yesNoRadios('confirmMaritalStatus', confirmedMaritalStatus, 'Is this correct?', errors)
+    +radiosYesNo('confirmMaritalStatus', 'Is this correct?', confirmedMaritalStatus)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/medical')
 

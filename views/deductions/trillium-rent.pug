@@ -9,7 +9,7 @@ block content
   h1 #{title}
 
   form.cra-form(method='post')
-    +yesNoRadios('trilliumRentClaim', trilliumRentClaim, 'Did you pay rent for the place you lived most of 2018?', errors)
+    +radiosYesNo('trilliumRentClaim', 'Did you pay rent for the place you lived most of 2018?', trilliumRentClaim)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/propertyTax')
 

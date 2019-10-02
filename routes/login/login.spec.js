@@ -13,6 +13,7 @@ describe('Test /login responses', () => {
     '/login/questions/trillium',
     '/login/questions/addresses',
     '/login/questions/bankruptcy',
+    '/login/questions/dateOfResidence',
   ]
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
@@ -394,6 +395,24 @@ describe('Test /login responses', () => {
           .send({ ...goodDoBRequest, ...{ prisonDate: 'release' } })
         expect(response.statusCode).toBe(302)
         expect(response.headers.location).toEqual('/login/success')
+      })
+    })
+
+    describe('for /login/questions/dateOfResidence', () => {
+      badDoBRequests.map(badRequest => {
+        test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+          const response = await request(app)
+            .post('/login/questions/dateOfResidence')
+            .send(badRequest.send)
+          expect(response.statusCode).toBe(422)
+        })
+      })
+
+      test('it returns a 302 with valid dob', async () => {
+        const response = await request(app)
+          .post('/login/questions/dateOfResidence')
+          .send(goodDoBRequest)
+        expect(response.statusCode).toBe(302)
       })
     })
 

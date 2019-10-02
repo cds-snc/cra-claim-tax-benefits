@@ -1,5 +1,4 @@
 extends ../base
-include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Medical expenses')
@@ -9,13 +8,11 @@ block content
 
   h1 #{title}
 
-  
-
   div
     p #{__('You can claim medical expenses for your self, spouse or common-law partner, and dependent children born after 2001.')}
 
   form.cra-form(method='post')
-    +yesNoRadios('medicalExpenseClaim', medicalExpenseClaim, 'Would you like to claim medical expenses?', errors)
+    +radiosYesNo('medicalExpenseClaim', 'Would you like to claim medical expenses?', medicalExpenseClaim)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/political')
 

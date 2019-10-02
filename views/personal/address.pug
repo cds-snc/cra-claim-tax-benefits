@@ -1,5 +1,4 @@
 extends ../base
-include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Check your mailing address')
@@ -24,9 +23,9 @@ block content
                 div #{data.personal.address.line1}
               div #{data.personal.address.city}, #{data.personal.address.province}
               div #{data.personal.address.postalCode}
-  
+
   form.cra-form(method='post')
-    +yesNoRadios('confirmAddress', confirmedAddress, 'Is this your correct address?', errors)
+    +radiosYesNo('confirmAddress', 'Is this your correct address?', confirmedAddress)
 
     input#redirect(name='redirect', type='hidden', value='/financial/income')
 

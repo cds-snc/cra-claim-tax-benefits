@@ -1,5 +1,4 @@
 extends ../base
-include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Check your name is correct')
@@ -8,8 +7,6 @@ block variables
 block content
 
   h1 #{title}
-
-  
 
   div
     p #{__(`CRA doesn't need your middle name.`)}
@@ -23,9 +20,9 @@ block content
         tr
           td
             div #{data.personal.firstName} #{data.personal.lastName}
-  
+
   form.cra-form(method='post')
-    +yesNoRadios('name', confirmedName, 'Is this your name?', errors)
+    +radiosYesNo('name', 'Is this your name?', confirmedName)
 
     input#redirect(name='redirect', type='hidden', value='/personal/residence')
 

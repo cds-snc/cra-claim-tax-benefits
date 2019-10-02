@@ -1,5 +1,4 @@
 extends ../base
-include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Deduct political contributions')
@@ -13,7 +12,7 @@ block content
     p #{__('Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.')}
 
   form.cra-form(method='post')
-    +yesNoRadios('politicalContributionClaim', politicalContributionClaim, 'Do you have receipts for political contributions made in 2018?', errors)
+    +radiosYesNo('politicalContributionClaim', 'Do you have receipts for political contributions made in 2018?', politicalContributionClaim)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/donations')
 

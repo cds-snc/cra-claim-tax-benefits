@@ -1,5 +1,4 @@
 extends ../base
-include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Deduct charitable donations')
@@ -13,7 +12,7 @@ block content
     p #{__(`Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five that you didn't already deduct from your taxes.`)}
 
   form.cra-form(method='post')
-    +yesNoRadios('charitableDonationClaim', charitableDonationClaim, 'Do you have tax receipts for charitable donations?', errors)
+    +radiosYesNo('charitableDonationClaim', 'Do you have tax receipts for charitable donations?', charitableDonationClaim)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/start')
 

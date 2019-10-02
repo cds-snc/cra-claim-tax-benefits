@@ -150,20 +150,29 @@ const logIn = (cy, user) => {
 
   // LOGIN TRILLIUM QUESTION
   cy.injectAxe().checkA11y()
-  cy.url().should('contain', '/login/questions/trillium')
-  cy.get('h1').should('contain', 'Ontario Trillium Benefit amount and payment type')
+  cy.url().should('contain', '/login/questions/dateOfResidence')
+  cy.get('h1').should('contain', 'Enter date you became a resident of Canada')
 
   cy.get('form label')
     .eq(0)
-    .should('have.attr', 'for', 'trilliumPaymentMethod0')
-  cy.get('#trilliumPaymentMethod0').check()
+    .should('have.attr', 'for', 'dobDay')
+  cy.get('#dobDay')
+    .type('1')
+    .should('have.value', '1')
+
+  cy.get('form label')
+    .eq(1)
+    .should('have.attr', 'for', 'dobMonth')
+  cy.get('#dobMonth')
+    .type('2')
+    .should('have.value', '2')
 
   cy.get('form label')
     .eq(2)
-    .should('have.attr', 'for', 'trilliumAmount')
-  cy.get('#trilliumAmount')
-    .type('1')
-    .should('have.value', '1')
+    .should('have.attr', 'for', 'dobYear')
+  cy.get('#dobYear')
+    .type('1997')
+    .should('have.value', '1997')
 
   cy.get('form button[type="submit"]')
     .should('contain', 'Continue')

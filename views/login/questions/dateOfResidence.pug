@@ -33,15 +33,15 @@ block content
 
           div.w-1-4.d--ib
             label(for='dobDay') #{__('Day')}
-            input#dobDay(name='dobDay', type='text', value=dobDay, autocomplete='bday-day', aria-describedby=(errors && errors.dobDay ? 'dobDay-error' : false))
+            input#dobDay(name='dobDay', type='text', value=dobDay, aria-describedby=(errors && errors.dobDay ? 'dobDay-error' : false))
 
           div.w-1-4.d--ib
             label(for='dobMonth') #{__('Month')}
-            input#dobMonth(name='dobMonth', type='text', value=dobMonth, autocomplete='bday-month', aria-describedby=(errors && errors.dobMonth ? 'dobMonth-error' : false))
+            input#dobMonth(name='dobMonth', type='text', value=dobMonth, aria-describedby=(errors && errors.dobMonth ? 'dobMonth-error' : false))
 
           div.w-1-2.d--ib
             label(for='dobYear') #{__('Year')}
-            input#dobYear(name='dobYear', type='text', value=dobYear, autocomplete='bday-year', aria-describedby=(errors && errors.dobYear ? 'dobYear-error' : false))
+            input#dobYear(name='dobYear', type='text', value=dobYear, aria-describedby=(errors && errors.dobYear ? 'dobYear-error' : false))
 
       input#redirect(name='redirect', type='hidden', value='/personal/name')
 

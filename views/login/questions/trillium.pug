@@ -11,18 +11,10 @@ block content
 
   form.cra-form.cra-form--lg(method='post')
 
-    div(class={['has-error']: errors && errors.trilliumPaymentMethod})
-      fieldset
-          legend #{__('How do you get your Ontario Trillium Benefit?')}
-          .multiple-choice.multiple-choice--radios
-              if errors && errors.trilliumPaymentMethod
-                +validationMessage(errors.trilliumPaymentMethod.msg, 'trilliumPaymentMethod')
-              .multiple-choice__item
-                  input(id="trilliumPaymentMethod0" name="trilliumPaymentMethod" type="radio" value="cheque" aria-describedby=(errors && errors.trilliumPaymentMethod ? 'trilliumPaymentMethod-error' : false) checked=(trilliumPaymentMethod === 'cheque'))
-                  label(for="trilliumPaymentMethod0") #{__('Cheque')}
-              .multiple-choice__item
-                  input(id="trilliumPaymentMethod1" name="trilliumPaymentMethod" type="radio" value="directDeposit" aria-describedby=(errors && errors.trilliumPaymentMethod ? 'trilliumPaymentMethod-error' : false) checked=(trilliumPaymentMethod === 'directDeposit'))
-                  label(for="trilliumPaymentMethod1") #{__('Direct deposit')}
+    +radios('trilliumPaymentMethod', 'How do you get your Ontario Trillium Benefit?', trilliumPaymentMethod,[
+        {value: "cheque", label: "Cheque"},
+        {value: "directDeposit", label: "Direct deposit"}
+    ])
 
     +textInput('How much did you get each month from your Ontario Trillium Benefit?', ['w-3-4'])(class='w-1-2 input-with-unit' name='trilliumAmount' placeholder='0.00' aria-labelledby='trilliumAmount__unit trilliumAmount__label' value=trilliumAmount)
 

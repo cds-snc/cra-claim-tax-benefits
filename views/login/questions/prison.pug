@@ -14,9 +14,9 @@ block content
   form.cra-form(method='post')
 
     +radios('prisonDate', 'Which date do you want to give?', prisonDate,[
-        {id: "entry", label: "Entry to prison"},
-        {id: "release", label: "Release from prison"}
-    ])
+        {value: "entry", label: "Entry to prison"},
+        {value: "release", label: "Release from prison"}
+    ])(h2=true)
 
     div.dob-container(class={['has-error']: errors && errors.dobDay})
       fieldset.fieldset(role="group", aria-describedby="dobHint")

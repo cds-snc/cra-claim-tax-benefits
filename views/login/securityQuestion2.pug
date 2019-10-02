@@ -9,7 +9,7 @@ block content
   h1 #{title}
 
   form.cra-form.cra-form--lg(method='post')
-    +radios('securityQuestion', 'Answer a question from the list below:', securityQuestion,[
+    +radios('securityQuestion', 'Answer a question from the list below', securityQuestion,[
       {value: "/login/questions/temp", label: "Your bank or credit union account information"},
       {value: "/login/questions/temp", label: "Details of your contribution to a Registered Retirement Savings Plan (RRSP)"},
       {value: "/login/questions/temp", label: "Details of your contribution to a Tax Free Savings Account (TFSA)"},
@@ -19,8 +19,7 @@ block content
     ])
 
     div
-      details.
-        <summary><span>#{__('I can’t answer these questions')}</span></summary>
-        <p>#{__('If you can’t answer these questions, yer done boi.')}</p>
+      p
+        a(href="/offramp") #{__('I can’t answer these questions either')}
 
     +formButtons()

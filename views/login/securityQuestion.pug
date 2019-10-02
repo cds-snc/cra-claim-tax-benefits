@@ -12,27 +12,13 @@ block content
     p #{__('Answer a question from the list below:')}
 
   form.cra-form.cra-form--lg(method='post')
-    div(class={['has-error']: errors && errors.securityQuestion})
-      fieldset
-          legend #{__('Select 1 question to answer from the list below')}
-          .multiple-choice.multiple-choice--radios
-              if errors
-                +validationMessage(errors.securityQuestion.msg, 'securityQuestion')
-              .multiple-choice__item
-                input(id="securityQuestion0" name="securityQuestion" type="radio" value="/login/questions/child" aria-describedby=(errors ? 'securityQuestion-error' : false) checked=(securityQuestion && securityQuestion === '/login/questions/child'))
-                label(for="securityQuestion0") #{__('Your child’s name and birthdate')}
-              .multiple-choice__item
-                input(id="securityQuestion1" name="securityQuestion" type="radio" value="/login/questions/addresses" aria-describedby=(errors ? 'securityQuestion-error' : false) checked=(securityQuestion && securityQuestion === '/login/questions/addresses'))
-                label(for="securityQuestion1") #{__('Your last two mailing addresses before your current address')}
-              .multiple-choice__item
-                input(id="securityQuestion2" name="securityQuestion" type="radio" value="/login/questions/prison" aria-describedby=(errors ? 'securityQuestion-error' : false) checked=(securityQuestion && securityQuestion === '/login/questions/prison'))
-                label(for="securityQuestion2") #{__('Your date of entry or release from prison')}
-              .multiple-choice__item
-                input(id="securityQuestion3" name="securityQuestion" type="radio" value="/login/questions/trillium" aria-describedby=(errors ? 'securityQuestion-error' : false) checked=(securityQuestion && securityQuestion === '/login/questions/trillium'))
-                label(for="securityQuestion3") #{__('Your Ontario Trillium Benefit amount and payment type')}
-              .multiple-choice__item
-                input(id="securityQuestion4" name="securityQuestion" type="radio" value="/login/questions/bankruptcy" aria-describedby=(errors ? 'securityQuestion-error' : false) checked=(securityQuestion && securityQuestion === '/login/questions/bankruptcy'))
-                label(for="securityQuestion4") #{__('Details of your bankruptcy assignment')}
+    +radios('securityQuestion', 'Select 1 question to answer from the list below', securityQuestion,[
+      {value: "/login/questions/child", label: "Your child’s name and birthdate"},
+      {value: "/login/questions/addresses", label: "Your last two mailing addresses before your current address"},
+      {value: "/login/questions/prison", label: "Your date of entry or release from prison"},
+      {value: "/login/questions/trillium", label: "Your Ontario Trillium Benefit amount and payment type"},
+      {value: "/login/questions/bankruptcy", label: "Details of your bankruptcy assignment"}
+    ])
 
     div
       details.

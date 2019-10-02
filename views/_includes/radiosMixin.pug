@@ -19,23 +19,3 @@ mixin radiosYesNo(id, legend, value)
     {value: 'Yes', label: 'Yes'},
     {value: 'No', label: 'No'}
   ])
-
-//- deprecated: don't use this anymore
-mixin yesNoRadios(key, value, question, errors = false)
-  div(class={['has-error']: errors && errors[key]})
-    fieldset
-      legend #{__(question)}
-      .multiple-choice.multiple-choice--radios
-        if errors
-          +validationMessage(errors[key].msg, key)
-        .multiple-choice__item
-          input(id=`${key}Yes` name=key type="radio" value="Yes" checked=(value ==='Yes' || value===true) aria-describedby=(errors ? `${key}-error` : false))
-          label(for=`${key}Yes`) #{__('Yes')}
-        .multiple-choice__item(
-          aria-expanded=(block ? 'false': false)
-          aria-controls=(block ? 'noInfo': false)
-        )
-          input(id=`${key}No` name=key type="radio" value="No" checked=(value ==='No' || value===false) aria-describedby=(errors ? `${key}-error` : false))
-          label(for=`${key}No`) #{__('No')}
-          if block
-            block

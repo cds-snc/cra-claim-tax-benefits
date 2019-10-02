@@ -572,22 +572,26 @@ questionsAmounts.map(amountResponse => {
   })
 })
 
-describe('Test /login/securityQuestion responses', () => {
-  test('it returns a 422 response when posting a bad value', async () => {
-    const response = await request(app)
-      .post('/login/securityQuestion')
-      .send({ securityQuestion: '/login/question/who-let-the-dogs-out' })
-    expect(response.statusCode).toBe(422)
-  })
+describe('Test securityQuestion responses', () => {
+  const securityQuestionPages = ['/login/securityQuestion', '/login/securityQuestion2']
 
-  const securityQuestionUrls = ['/login/questions/child', '/login/questions/trillium']
-  securityQuestionUrls.map(url => {
-    test(`it returns a 302 response when posting a good value: ${url}`, async () => {
+  securityQuestionPages.map(securityQuestionPage => {
+    test('it returns a 422 response when posting a bad value', async () => {
       const response = await request(app)
-        .post('/login/securityQuestion')
-        .send({ securityQuestion: url })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual(url)
+        .post(securityQuestionPage)
+        .send({ securityQuestion: '/login/question/who-let-the-dogs-out' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    const securityQuestionUrls = ['/login/questions/child', '/login/questions/trillium']
+    securityQuestionUrls.map(url => {
+      test(`it returns a 302 response when posting a good value: ${url}`, async () => {
+        const response = await request(app)
+          .post(securityQuestionPage)
+          .send({ securityQuestion: url })
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual(url)
+      })
     })
   })
 })

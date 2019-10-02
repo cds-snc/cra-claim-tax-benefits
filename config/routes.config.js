@@ -5,6 +5,8 @@ const securityQuestionUrls = [
   '/login/questions/prison',
   '/login/questions/bankruptcy',
   '/login/questions/trillium',
+  // TODO: remove this
+  '/login/questions/temp',
 ]
 
 //list our routes in the flow order in the app
@@ -15,6 +17,7 @@ const routes = [
   { path: '/login/sin' },
   { path: '/login/dateOfBirth' },
   { path: '/login/securityQuestion' },
+  { path: '/login/questions', options: ['/login/securityQuestion2'] },
   { path: '/login/questions', options: securityQuestionUrls },
   { path: '/personal/name' },
   { path: '/offramp/name', editInfo: 'skip' },

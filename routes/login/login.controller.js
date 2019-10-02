@@ -44,6 +44,15 @@ module.exports = function(app) {
     postSecurityQuestion,
   )
 
+  // Alternate security question page
+  app.get('/login/securityQuestion2', renderWithData('login/securityQuestion2'))
+  app.post(
+    '/login/securityQuestion2',
+    checkSchema(securityQuestionSchema),
+    checkErrors('login/securityQuestion2'),
+    postSecurityQuestion,
+  )
+
   app.get('/login/questions', (req, res) => res.redirect('/login/securityQuestion'))
 
   // Security questions

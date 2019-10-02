@@ -8,11 +8,8 @@ block content
 
   h1 #{title}
 
-  div
-    p #{__('Answer a question from the list below:')}
-
   form.cra-form.cra-form--lg(method='post')
-    +radios('securityQuestion', 'Select 1 question to answer from the list below', securityQuestion,[
+    +radios('securityQuestion', 'Answer a question from the list below', securityQuestion,[
       {value: "/login/questions/child", label: "Your child’s name and birthdate"},
       {value: "/login/questions/addresses", label: "Your last two mailing addresses before your current address"},
       {value: "/login/questions/prison", label: "Your date of entry or release from prison"},
@@ -21,8 +18,7 @@ block content
     ])
 
     div
-      details.
-        <summary><span>#{__('I can’t answer these questions')}</span></summary>
-        <p>#{__('If you can’t answer these questions, continue to the next page for different questions.')}</p>
+      p
+        a(href="/login/securityQuestion2") #{__('I can’t answer these questions')}
 
     +formButtons()

@@ -294,7 +294,6 @@
   "Direct deposit": "Direct deposit",
   "How much did you get each month from your Ontario Trillium Benefit?": "How much did you get each month from your Ontario Trillium Benefit?",
   "Choose a security question": "Choose a security question",
-  "Answer a question from the list below:": "Answer a question from the list below:",
   "Select 1 question to answer from the list below": "Select 1 question to answer from the list below",
   "Your child’s name and birthdate": "Your child’s name and birthdate",
   "Your Ontario Trillium Benefit amount and payment type": "Your Ontario Trillium Benefit amount and payment type",
@@ -330,5 +329,13 @@
   "Which date do you want to give?": "Which date do you want to give?",
   "Entry to prison": "Entry to prison",
   "Release from prison": "Release from prison",
-  "Give the date": "Give the date"
+  "Give the date": "Give the date",
+  "Your bank or credit union account information": "Your bank or credit union account information",
+  "If you can’t answer these questions, yer done boi.": "If you can’t answer these questions, yer done boi.",
+  "Details of your contribution to a Registered Retirement Savings Plan (RRSP)": "Details of your contribution to a Registered Retirement Savings Plan (RRSP)",
+  "Details of your contribution to a Tax Free Savings Account (TFSA)": "Details of your contribution to a Tax Free Savings Account (TFSA)",
+  "Details of your Canada Child Benefit (CCB)": "Details of your Canada Child Benefit (CCB)",
+  "Date and amount of your most recent payment to CRA": "Date and amount of your most recent payment to CRA",
+  "I can’t answer these questions either": "I can’t answer these questions either",
+  "Answer a question from the list below": "Answer a question from the list below"
 }

@@ -1,5 +1,4 @@
 extends ../base
-include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Check Your Answers Before Filing Your Return')
@@ -28,10 +27,9 @@ block content
               else
                 dd.breakdown-table__row-value #{row.data}
 
-              
-              dd.breakdown-table__row-link 
+              dd.breakdown-table__row-link
                 if row.urlPath
                   a(href=`${row.urlPath}?ref=checkAnswers`)
                     <span>#{__('Review')}<span class="visually-hidden"> #{__(row.text)}</span>
-  
+
   +linkButtons('/review')

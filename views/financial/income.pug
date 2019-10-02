@@ -1,5 +1,4 @@
 extends ../base
-include ../_includes/yesNoRadios
 
 block variables
   -var title = __('Check your income information for the 2018 tax year')
@@ -14,17 +13,15 @@ block content
 
   h1 #{title}
 
-  
-
   div
     p #{__(`CRA has information about your ${year} income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.`)}
 
   if incomeSources
     .breakdown-table
       h2.breakdown-table__heading
-        span #{__(`Total income earned in ${year}`)} 
+        span #{__(`Total income earned in ${year}`)}
         span $#{currencyFilter(totalIncome.amount, 2)}
-  
+
       p.breakdown-table__subheading #{__(`Detailed breakdown of income earned in ${year}`)}
 
       dl.breakdown-table-data
@@ -38,7 +35,7 @@ block content
           dd.breakdown-table__row-value $#{currencyFilter(totalIncome.amount)}
 
   .breakdown-table
-      h2.breakdown-table__heading 
+      h2.breakdown-table__heading
         span #{__('Total tax')}
         span.breakdown-table__heading $#{currencyFilter(totalTax, 2)}
 

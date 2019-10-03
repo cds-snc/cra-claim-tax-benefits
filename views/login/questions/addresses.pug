@@ -40,7 +40,7 @@ block content
             +validationMessage(errors.firstProvince.msg, 'firstProvince')
           select.w-3-4#firstProvince(name='firstProvince' aria-describedby=(errors && errors.firstProvince ? 'firstProvince-error' : false))
             if !firstProvince
-              option(disabled='', selected='selected', value='')  -- select a province --
+              option(disabled='', selected='selected', value='')  -- #{__('select a province')} --
             option(value='Alberta' selected=firstProvince == 'Alberta') #{__('Alberta')}
             option(value='British Columbia' selected=firstProvince == 'British Columbia') #{__('British Columbia')}
             option(value='Manitoba' selected=firstProvince == 'Manitoba') #{__('Manitoba')}
@@ -72,7 +72,7 @@ block content
             +validationMessage(errors.secondProvince.msg, 'secondProvince')
           select.w-3-4#secondProvince(name='secondProvince' aria-describedby=(errors && errors.secondProvince ? 'secondProvince-error' : false))
             if !secondProvince
-              option(disabled='', selected='selected', value='')  -- select a province --
+              option(disabled='', selected='selected', value='')  -- #{__('select a province')} --
             option(value='Alberta' selected=secondProvince == 'Alberta') #{__('Alberta')}
             option(value='British Columbia' selected=secondProvince == 'British Columbia') #{__('British Columbia')}
             option(value='Manitoba' selected=secondProvince == 'Manitoba') #{__('Manitoba')}

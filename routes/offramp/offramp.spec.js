@@ -2,7 +2,7 @@ const request = require('supertest')
 const app = require('../../app.js')
 
 describe('Test /offramp responses', () => {
-  const urls = ['/offramp', '/offramp/name', '/offramp/residence', '/offramp/financial']
+  const urls = ['/offramp', '/offramp/name', '/offramp/residence', '/offramp/financial', '/offramp/securityQuestion']
 
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {

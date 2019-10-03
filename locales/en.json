@@ -380,7 +380,6 @@
   "File your taxes another way": "File your taxes another way",
   "You can file your taxes even if you can’t answer any security questions. Other free and secure ways to file are:": "You can file your taxes even if you can’t answer any security questions. Other free and secure ways to file are:",
   "By mail, using the form sent with the CRA": "By mail, using the form sent with the CRA",
-  "letter": "letter",
   "At a tax clinic, where you can get help to file. Visit canada.ca/taxes-help to find your nearest clinic. ": "At a tax clinic, where you can get help to file. Visit canada.ca/taxes-help to find your nearest clinic. ",
   "Using CRA software called": "Using CRA software called",
   "NETFILE": "NETFILE",
@@ -396,5 +395,7 @@
   "Date you became a resident of Canada": "Date you became a resident of Canada",
   "Enter date you became a resident of Canada": "Enter date you became a resident of Canada",
   "For income tax, you become a resident by building strong ties to Canada as your home. Usually this happens on the date you arrive in Canada.": "For income tax, you become a resident by building strong ties to Canada as your home. Usually this happens on the date you arrive in Canada.",
-  "If you ever lost permanent resident status, enter the date you returned to Canada.": "If you ever lost permanent resident status, enter the date you returned to Canada."
+  "If you ever lost permanent resident status, enter the date you returned to Canada.": "If you ever lost permanent resident status, enter the date you returned to Canada.",
+  "This page is currently under construction": "This page is currently under construction",
+  "We are currently in the process of building this page. You can still proceed through your session by clicking Continue.": "We are currently in the process of building this page. You can still proceed through your session by clicking Continue."
 }

@@ -144,6 +144,24 @@ const childSchema = {
   },
 }
 
+const dateOfResidenceSchema = {
+  dobDay: {
+    ...validationArray([isValidDay]),
+  },
+  dobMonth: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validMonth',
+      options: { min: 1, max: 12 },
+    },
+  },
+  dobYear: {
+    isInt: {
+      errorMessage: 'errors.login.dateOfBirth.validYear',
+      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
+    },
+  },
+}
+
 const bankruptcySchema = {
   dobDay: {
     ...validationArray([isValidDay]),
@@ -277,6 +295,7 @@ module.exports = {
   sinSchema,
   securityQuestionSchema,
   childSchema,
+  dateOfResidenceSchema,
   bankruptcySchema,
   trilliumAmountSchema,
   addressesSchema,

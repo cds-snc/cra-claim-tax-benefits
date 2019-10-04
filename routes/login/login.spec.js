@@ -323,6 +323,18 @@ describe('Test /login responses', () => {
           .send(goodDoBRequest)
         expect(response.statusCode).toBe(302)
       })
+
+      test('it returns a 302 with valid dob even with whitespace included', async () => {
+        const response = await request(app)
+          .post('/login/dateOfBirth')
+          .send({
+            dobDay: ' 9 ',
+            dobMonth: ' 9 ',
+            dobYear: ' 1977 ',
+            redirect: '/login/success',
+          })
+        expect(response.statusCode).toBe(302)
+      })
     })
 
     describe('for /login/questions/child', () => {
@@ -696,7 +708,7 @@ describe('Test /login/questions/addresses responses', () => {
     })
   })
 
-  test('it returns a 302 for a good request cheese', async () => {
+  test('it returns a 302 for a good request', async () => {
     const response = await request(app)
       .post('/login/questions/addresses')
       .send(goodRequest)

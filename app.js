@@ -5,6 +5,7 @@ const globalError = require('http-errors')
 // import node modules.
 const express = require('express'),
   cookieParser = require('cookie-parser'),
+  trimRequest = require('trim-request'),
   compression = require('compression'),
   helmet = require('helmet'),
   morgan = require('morgan'),
@@ -71,6 +72,7 @@ app.use(helmet.contentSecurityPolicy({ directives: csp }))
 
 // gzip response body compression.
 app.use(compression())
+app.use(trimRequest.all)
 
 app.use(checkPublic)
 app.use(checkLangQuery)

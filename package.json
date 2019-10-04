@@ -42,6 +42,7 @@
     "pug": "^2.0.4",
     "purecss": "^1.0.1",
     "request-promise": "^4.2.4",
+    "trim-request": "^1.0.6",
     "validator": "^11.1.0",
     "winston": "^3.2.1"
   },

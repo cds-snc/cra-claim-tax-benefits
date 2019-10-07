@@ -78,6 +78,12 @@ a[role='button'] {
   padding-left: 16px;
   border-bottom: 2px solid;
   text-decoration: none;
+
+  @include sm {
+    font-size: 1em;
+    margin-bottom: $space-xl;
+    border-bottom: 2px solid;
+  }
 }
 
 .back-button:before {

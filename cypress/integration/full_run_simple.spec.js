@@ -136,7 +136,7 @@ describe('Full run through', function() {
     cy.injectAxe()
     cy.checkA11y()
     cy.url().should('contain', '/deductions/medical')
-    cy.get('h1').should('contain', 'Medical expenses')
+    cy.get('h1').should('contain', 'Claim medical expenses')
 
     cy.get('input#medicalExpenseClaim1 + label').should('have.attr', 'for', 'medicalExpenseClaim1')
 

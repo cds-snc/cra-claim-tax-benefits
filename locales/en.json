@@ -202,7 +202,6 @@
   "Total Credits (482)": "Total Credits (482)",
   "Total Refund (484)": "Total Refund (484)",
   "I confirm that, as far as I know, all the information in this tax return is accurate": "I confirm that, as far as I know, all the information in this tax return is accurate",
-  "Please enter the total amount paid for accommodation in a public or non-profit long-term care home in 2018.": "Please enter the total amount paid for accommodation in a public or non-profit long-term care home in 2018.",
   "Ontario Trillium Benefit": "Ontario Trillium Benefit",
   "you paid for your main residence (including a private long-term care home) in 2018.": "you paid for your main residence (including a private long-term care home) in 2018.",
   "Visit a free tax clinic near you. ": "Visit a free tax clinic near you. ",
@@ -246,7 +245,6 @@
   "can include a nursing home or a municipal, First Nations, or charitable home for the aged.": "can include a nursing home or a municipal, First Nations, or charitable home for the aged.",
   "If you lived in a nursing home or another public long-term care facility in 2018, you may be entitled to receive credits from your": "If you lived in a nursing home or another public long-term care facility in 2018, you may be entitled to receive credits from your",
   "Did you live in a public long-term care home in 2018?": "Did you live in a public long-term care home in 2018?",
-  "Long-term care costs in 2018": "Long-term care costs in 2018",
   "Check Your Answers Before Filing Your Return": "Check Your Answers Before Filing Your Return",
   "Personal Information": "Personal Information",
   "Name": "Name",
@@ -349,7 +347,6 @@
   "Marital Status": "Marital Status",
   "Did You Contribute to an RRSP?": "Did You Contribute to an RRSP?",
   "Enter your political contributions": "Enter your political contributions",
-  "Please note you may be asked to provide receipts to verify this information later.": "Please note you may be asked to provide receipts to verify this information later.",
   "true": true,
   "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html",
   "Apply for OTB: property tax": "Apply for OTB: property tax",
@@ -397,5 +394,7 @@
   "This page is currently under construction": "This page is currently under construction",
   "We are currently in the process of building this page. You can still proceed through your session by clicking Continue.": "We are currently in the process of building this page. You can still proceed through your session by clicking Continue.",
   "select a province": "select a province",
-  "Using": "Using"
+  "Using": "Using",
+  "Enter your long-term care home costs to apply for OTB": "Enter your long-term care home costs to apply for OTB",
+  "The government might ask for your long-term care receipts.": "The government might ask for your long-term care receipts.",
 }

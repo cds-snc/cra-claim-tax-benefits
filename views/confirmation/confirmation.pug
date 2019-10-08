@@ -1,43 +1,37 @@
 extends ../base
 
 block variables
-  -var title = __('Congratulations')
+  -var title = __('You have filed your 2018 taxes')
 
 block content
 
   h1 #{title}
 
-  
-
-  div
-    h2 #{__('Your taxes have been filed with the Canada Revenue Agency.')}
-
   div
     table.pure-table
       thead
         tr
-          th #{__('Confirmation number')}
+          th #{__('Your 2018 filing number is')}
       tbody
         tr
           td 5H3P9IO5816
 
-    p #{__('Use this confirmation number if you need to contact CRA for further information or for additional help with your tax return.')}
+    p #{__('Give CRA this number if you need help or information. You can contact CRA by:')}
+    
+    ul 
+      li #{__('Phone: 1-800-959-8281')}
+      li #{__('TTY: 1-800-665-0354')}
 
-    a(href='#' role='button' draggable='false') #{__('Print a summary of your tax return')}
+    p #{__('You can also get help at a free tax clinic. Visit')} <a href=#{__('https://www.canada.ca/en/revenue-agency/campaigns/free-tax-help.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_taxes-help')}>#{__('canada.ca/taxes-help')}</a> #{__('to find your nearest clinic.')}
+
+    a(href='#' role='button' draggable='false') #{__('Print summary of your 2018 tax return')}
 
   div
 
-    p #{__('Your Notice of Assessment is an official CRA communication that confirms that you’ve filed your taxes. It also contains the details of your refund or balance owing. Please read this document carefully.')}
+    p #{__('It is important to read your Notice of Assessment which shows:')}
+    ul
+      li #{__('That you filed taxes')}
+      li #{__('If you will get benefits or money back')}
+      li #{__('If you owe money to CRA')}
 
     a(href='#' role='button' draggable='false') #{__('Download your Notice of Assessment')}
-
-  div
-    h3 #{__('Do you have questions?')}
-
-    p #{__('Now that your return is filed, you should be all set for the year.')}
-    p #{__('However, if you still have further questions, there are several ways to get help:')}
-    ul
-      li #{__('Speak to someone at your nearest tax clinic')}
-      li #{__('Go online to')} <a href="https://apps.cra-arc.gc.ca/ebci/oecv/external/prot/cli_srch_01_ld.action" target="_blank">#{__('find a free tax clinic in your area')}</a>
-      li #{__('Speak to a CRA agent by calling')} #[a(href="tel:123-456-7890") (123) 456-7890]
-

@@ -323,8 +323,8 @@ describe('Full run through', function() {
   it('checks the Confirmation page', function() {
     // CONFIRMATION PAGE
     cy.url().should('contain', '/confirmation')
-    cy.get('h1').should('contain', 'Congratulations')
-    cy.get('h2').should('contain', 'Your taxes have been filed with the Canada Revenue Agency.')
+    cy.get('h1').should('contain', 'You have filed your 2018 taxes')
+    cy.get('th').should('contain', 'Your 2018 filing number is')
     cy.get('td').should('contain', '5H3P9IO5816')
   })
 })

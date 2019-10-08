@@ -103,8 +103,6 @@
   "Home energy costs on a reserve in 2018": "Home energy costs on a reserve in 2018",
   "Please enter the total amount paid for accommodation in a public long-term care home in 2018.": "Please enter the total amount paid for accommodation in a public long-term care home in 2018.",
   "Submit my return": "Submit my return",
-  "Designated student residence": "Designated student residence",
-  "Did you live in a designated student residence in 2018?": "Did you live in a designated student residence in 2018?",
   "Alberta": "Alberta",
   "British Columbia": "British Columbia",
   "Manitoba": "Manitoba",
@@ -416,5 +414,6 @@
   "Total cost of medical expenses for your self, spouse, and dependent children born after 2001": "Total cost of medical expenses for your self, spouse, and dependent children born after 2001",
   "Medical costs": "Medical costs",
   "You may include medical costs for:": "You may include medical costs for:",
-  "Enter total medical costs": "Enter total medical costs"
+  "Enter total medical costs": "Enter total medical costs",
+  "Did you live in a university, college or private school student residence in 2018?": "Did you live in a university, college or private school student residence in 2018?"
 }

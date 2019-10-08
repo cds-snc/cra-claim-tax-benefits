@@ -95,8 +95,6 @@
   "you paid for your main residence (including a private long-term care home) in 2018.": "vous avez payé pour votre résidence principale (cela inclut un foyer privé de soins de longue durée) en 2018.",
   "Review your estimated benefits": "Passez en revue les avantages fiscaux estimés",
   "Submit my return": "Soumettre ma déclaration",
-  "Designated student residence": "Résidence désignée pour étudiants",
-  "Did you live in a designated student residence in 2018?": "Avez-vous vécu dans une résidence désignée pour étudiants en 2018?",
   "Language Selection": "Sélection de la langue",
   "Language selection: French": "Sélection de la langue : anglais",
   "Alberta": "Alberta",
@@ -371,5 +369,6 @@
   "to claim their costs": "to claim their costs",
   "Medical costs": "Medical costs",
   "You may include medical costs for:": "You may include medical costs for:",
-  "Enter total medical costs": "Enter total medical costs"
+  "Enter total medical costs": "Enter total medical costs",
+  "Did you live in a university, college or private school student residence in 2018?": "Did you live in a university, college or private school student residence in 2018?"
 }

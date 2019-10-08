@@ -138,14 +138,6 @@
   "Medical expenses": "Frais médicaux",
   "Would you like to claim medical expenses?": "Souhaitez-vous demander des frais médicaux?",
   "the CRA's guide to eligible medical expenses": "guide des frais médicaux admissibles de l’ARC ",
-  "Climate Action Incentive": "Incitatif à agir pour le climat",
-  "You’re eligible for the Climate Action Incentive, which you will receive automatically.": "Vous êtes admissible à l’Incitatif à agir pour le climat, que vous recevrez automatiquement.",
-  "There is an additional 10% credit for residents of small and rural communities": "Il y a un crédit supplémentaire de 10 % pour les résidents des petites collectivités et des régions rurales.",
-  "Did you live in a small and rural community in December 2018?": "Habitiez-vous dans une petite collectivité rurale en décembre 2018?",
-  "How do I know if I live in a small and rural community": "Comment puis-je savoir si j’habite dans une petite collectivité rurale?",
-  "You live in a small or rural community if you": "Vous habitez dans une petite collectivité rurale si vous",
-  "do not": "ne",
-  "live in these areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph, London, Windsor, Barrie, Sudbury, or Thunder Bay.": "vivez pas dans ces régions : Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph, London, Windsor, Barrie, Sudbury, or Thunder Bay.",
   "Review and file tax return": "Révisez et produisez votre déclaration",
   "This is an overview of your projected tax return, and all the benefits you will receive when you file for the current tax year.": "Voici la prévision de votre déclaration de revenus et de tous les avantages fiscaux que vous recevrez lorsque vous produirez votre déclaration pour l’année d’imposition courante.",
   "Take one final look before continuing. If something looks incorrect, please": "Jetez un dernier coup d’œil avant de produire votre déclaration. S’il semble y avoir des éléments inexacts, veuillez",
@@ -376,5 +368,10 @@
   "Did you live in a public or non-profit long-term care home in 2018?": "Did you live in a public or non-profit long-term care home in 2018?",
   "The government might ask for your long-term care receipts.": "The government might ask for your long-term care receipts.",
   "How much were your total long-term care costs in 2018?": "How much were your total long-term care costs in 2018?",
-  "Enter your long-term care home costs": "Enter your long-term care home costs"
+  "Enter your long-term care home costs": "Enter your long-term care home costs",
+  "The Climate Action Incentive": "The Climate Action Incentive",
+  "The Climate Action Incentive (CAI) lowers the amount of tax you pay. It could also increase the money you get back from filing taxes.": "The Climate Action Incentive (CAI) lowers the amount of tax you pay. It could also increase the money you get back from filing taxes.",
+  "You live in a small and rural community if you don’t live in:": "You live in a small and rural community if you don’t live in:",
+  "Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph, London, Windsor, Barrie, Sudbury, or Thunder Bay.": "Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph, London, Windsor, Barrie, Sudbury, or Thunder Bay.",
+  "Did you live in a small and rural community in 2018?": "Did you live in a small and rural community in 2018?"
 }

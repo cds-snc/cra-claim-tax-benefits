@@ -131,14 +131,6 @@
   "You should not use this service to file income information you believe to be incorrect.": "You should not use this service to file income information you believe to be incorrect.",
   "Language Selection": "Language Selection",
   "Language selection: French": "Language selection: French",
-  "Climate Action Incentive": "Climate Action Incentive",
-  "You’re eligible for the Climate Action Incentive, which you will receive automatically.": "You’re eligible for the Climate Action Incentive, which you will receive automatically.",
-  "There is an additional 10% credit for residents of small and rural communities": "There is an additional 10% credit for residents of small and rural communities",
-  "Did you live in a small and rural community in December 2018?": "Did you live in a small and rural community in December 2018?",
-  "How do I know if I live in a small and rural community": "How do I know if I live in a small and rural community",
-  "You live in a small or rural community if you": "You live in a small or rural community if you",
-  "do not": "do not",
-  "live in these areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph, London, Windsor, Barrie, Sudbury, or Thunder Bay.": "live in these areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph, London, Windsor, Barrie, Sudbury, or Thunder Bay.",
   "Net Federal tax deduction": "Net Federal tax deduction",
   "Net Provincial tax deduction": "Net Provincial tax deduction",
   "EI deduction": "EI deduction",
@@ -423,5 +415,10 @@
   "The government might ask for your long-term care receipts.": "The government might ask for your long-term care receipts.",
   "How much were your total long-term care costs in 2018?": "How much were your total long-term care costs in 2018?",
   "Please note you may be asked to provide receipts to verify this information later.": "Please note you may be asked to provide receipts to verify this information later.",
-  "Enter your long-term care home costs": "Enter your long-term care home costs"
+  "Enter your long-term care home costs": "Enter your long-term care home costs",
+  "The Climate Action Incentive": "The Climate Action Incentive",
+  "The Climate Action Incentive (CAI) lowers the amount of tax you pay. It could also increase the money you get back from filing taxes.": "The Climate Action Incentive (CAI) lowers the amount of tax you pay. It could also increase the money you get back from filing taxes.",
+  "You live in a small and rural community if you don’t live in:": "You live in a small and rural community if you don’t live in:",
+  "Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph, London, Windsor, Barrie, Sudbury, or Thunder Bay.": "Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph, London, Windsor, Barrie, Sudbury, or Thunder Bay.",
+  "Did you live in a small and rural community in 2018?": "Did you live in a small and rural community in 2018?"
 }

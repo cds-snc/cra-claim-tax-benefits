@@ -273,10 +273,10 @@ describe('Full run through', function() {
       .click()
   })
 
-  it('navigates the Climate Action Incentive page', function() {
+  it('navigates  Incentive page', function() {
     //CLIMATE ACTION INCENTIVE
     cy.url().should('contain', '/deductions/climate-action-incentive')
-    cy.get('h1').should('contain', 'Climate Action Incentive')
+    cy.get('h1').should('contain', 'The Climate Action Incentive')
 
     cy.get('input#climateActionIncentiveIsRural1 + label').should(
       'have.attr',

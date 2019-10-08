@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Climate Action Incentive')
+  -var title = __('The Climate Action Incentive')
   -var climateActionIncentiveIsRural = hasData(data, 'deductions.climateActionIncentiveIsRural') ? data.deductions.climateActionIncentiveIsRural : ''
 
 block content
@@ -9,16 +9,14 @@ block content
   h1 #{title}
 
   div
-    p #{__('You’re eligible for the Climate Action Incentive, which you will receive automatically.')}
-    p #{__('There is an additional 10% credit for residents of small and rural communities')}
-
-  form.cra-form(method='post')
-    +radiosYesNo('climateActionIncentiveIsRural', 'Did you live in a small and rural community in December 2018?', climateActionIncentiveIsRural)
-
+    p #{__('The Climate Action Incentive (CAI) lowers the amount of tax you pay. It could also increase the money you get back from filing taxes.')}
     div
       details.
-        <summary><span>#{__('How do I know if I live in a small and rural community')}</span></summary>
-        <p>#{__('You live in a small or rural community if you')} <strong>#{__('do not')}</strong> #{__('live in these areas: Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph, London, Windsor, Barrie, Sudbury, or Thunder Bay.')}</p>
+        <summary><span>#{__('You live in a small and rural community if you don’t live in:')}</span></summary>
+        <p>#{__('Ottawa, Kingston, Belleville, Peterborough, Oshawa, Toronto, Hamilton, St. Catharines-Niagara, Kitchener-Cambridge-Waterloo, Brantford, Guelph, London, Windsor, Barrie, Sudbury, or Thunder Bay.')}</p>
+
+  form.cra-form(method='post')
+    +radiosYesNo('climateActionIncentiveIsRural', 'Did you live in a small and rural community in 2018?', climateActionIncentiveIsRural)
 
     input#redirect(name='redirect', type='hidden', value='/checkAnswers')
 

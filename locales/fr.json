@@ -126,7 +126,6 @@
   "Enter your political contributions": "Inscrivez le montant de vos contributions politiques",
   "Home energy costs on a reserve": "Coûts d’énergie domiciliaire dans une réserve",
   "Please enter the home energy costs paid for your principal residence on a reserve in Ontario in 2018.": "Veuillez inscrire les coûts d’énergie domiciliaire payés pour votre résidence principale située dans une réserve en Ontario en 2018.",
-  "Home energy costs on a reserve in 2018": "Coûts d’énergie domiciliaire dans une réserve en 2018",
   "Married": "Marié/mariée",
   "Single": "Célibataire",
   "Married or common-law": "Marié/mariée ou en union libre",
@@ -197,8 +196,9 @@
   "Deduct your property tax": "Deduct your property tax",
   "If you paid property tax in 2018, you may be entitled to receive credits from your": "If you paid property tax in 2018, you may be entitled to receive credits from your",
   "Did you pay property tax in 2018?": "Did you pay property tax in 2018?",
-  "Enter home energy costs on a reserve in 2018": "Enter home energy costs on a reserve in 2018",
-  "Please enter your home energy costs for your principal residence on a reserve in 2018.": "Please enter your home energy costs for your principal residence on a reserve in 2018.",
+  "Deduct your home energy costs on a reserve": "Deduct your home energy costs on a reserve",
+  "If you lived on a reserve and had home energy costs in 2018, you may be entitled to receive credits from your": "If you lived on a reserve and had home energy costs in 2018, you may be entitled to receive credits from your",
+  "Did you live on a reserve and have home energy costs 2018?": "Did you live on a reserve and have home energy costs 2018?",
   "Deduct your long-term care home costs": "Deduct your long-term care home costs",
   "A": "A",
   "long-term care home": "long-term care home",
@@ -371,5 +371,7 @@
   "https://www.ontario.ca/data/designated-postsecondary-residences": "https://www.ontario.ca/data/designated-postsecondary-residences",
   "Check if you live in a student residence": "Check if you live in a student residence",
   "Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.": "Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.",
-  "In 2018, did you live on a reserve and pay home energy costs?": "In 2018, did you live on a reserve and pay home energy costs?"
+  "In 2018, did you live on a reserve and pay home energy costs?": "In 2018, did you live on a reserve and pay home energy costs?",
+  "The government might ask for receipts later. The receipts must cover energy costs for a home on reserve where you lived most of 2018.": "The government might ask for receipts later. The receipts must cover energy costs for a home on reserve where you lived most of 2018.",
+  "What were your total home energy costs on reserve?": "What were your total home energy costs on reserve?"
 }

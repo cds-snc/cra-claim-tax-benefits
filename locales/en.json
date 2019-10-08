@@ -182,7 +182,6 @@
   "Total Credits (482)": "Total Credits (482)",
   "Total Refund (484)": "Total Refund (484)",
   "I confirm that, as far as I know, all the information in this tax return is accurate": "I confirm that, as far as I know, all the information in this tax return is accurate",
-  "Please enter the total amount paid for accommodation in a public or non-profit long-term care home in 2018.": "Please enter the total amount paid for accommodation in a public or non-profit long-term care home in 2018.",
   "Ontario Trillium Benefit": "Ontario Trillium Benefit",
   "you paid for your main residence (including a private long-term care home) in 2018.": "you paid for your main residence (including a private long-term care home) in 2018.",
   "Visit a free tax clinic near you. ": "Visit a free tax clinic near you. ",
@@ -421,5 +420,8 @@
   "What were your total home energy costs on reserve in 2018?": "What were your total home energy costs on reserve in 2018?",
   "You may live in a long-term care home or facility if costs such as nursing or personal support are combined with your rent. The home must be public or non-profit. This means that a charity, city, First Nations, or similar organization manages the home.": "You may live in a long-term care home or facility if costs such as nursing or personal support are combined with your rent. The home must be public or non-profit. This means that a charity, city, First Nations, or similar organization manages the home.",
   "Public long-term care home costs": "Public long-term care home costs",
-  "Did you live in a public or non-profit long-term care home in 2018?": "Did you live in a public or non-profit long-term care home in 2018?"
+  "Did you live in a public or non-profit long-term care home in 2018?": "Did you live in a public or non-profit long-term care home in 2018?",
+  "The government might ask for your long-term care receipts.": "The government might ask for your long-term care receipts.",
+  "How much were your total long-term care costs in 2018?": "How much were your total long-term care costs in 2018?",
+  "Please note you may be asked to provide receipts to verify this information later.": "Please note you may be asked to provide receipts to verify this information later."
 }

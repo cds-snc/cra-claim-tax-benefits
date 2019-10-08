@@ -11,10 +11,10 @@ block content
 
 
   div
-    p #{__('If you lived on a reserve and had home energy costs in 2018, you may be entitled to receive credits from your')} <strong>#{__('Ontario Trillium Benefit')}</strong>.
+    p #{__('Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.')}</strong>.
 
   form.cra-form(method='post')
-    +radiosYesNo('trilliumEnergyClaim', 'Did you live on a reserve and have home energy costs 2018?', trilliumEnergyClaim)
+    +radiosYesNo('trilliumEnergyClaim', 'In 2018, did you live on a reserve and pay home energy costs?', trilliumEnergyClaim)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/longTermCare')
 

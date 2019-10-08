@@ -197,9 +197,6 @@
   "Deduct your property tax": "Deduct your property tax",
   "If you paid property tax in 2018, you may be entitled to receive credits from your": "If you paid property tax in 2018, you may be entitled to receive credits from your",
   "Did you pay property tax in 2018?": "Did you pay property tax in 2018?",
-  "Deduct your home energy costs on a reserve": "Deduct your home energy costs on a reserve",
-  "If you lived on a reserve and had home energy costs in 2018, you may be entitled to receive credits from your": "If you lived on a reserve and had home energy costs in 2018, you may be entitled to receive credits from your",
-  "Did you live on a reserve and have home energy costs 2018?": "Did you live on a reserve and have home energy costs 2018?",
   "Enter home energy costs on a reserve in 2018": "Enter home energy costs on a reserve in 2018",
   "Please enter your home energy costs for your principal residence on a reserve in 2018.": "Please enter your home energy costs for your principal residence on a reserve in 2018.",
   "Deduct your long-term care home costs": "Deduct your long-term care home costs",
@@ -362,6 +359,7 @@
   "(123) 456-7890": "(123) 456-7890",
   "to learn more.": "to learn more.",
   "Were your private medical expenses over X?": "Were your private medical expenses over X?",
+<<<<<<< HEAD
   "Yourself": "Yourself",
   "Your marriage or common law partner": "Your marriage or common law partner",
   "You or your partner’s children, ": "You or your partner’s children, ",
@@ -373,4 +371,8 @@
   "Did you live in a university, college or private school student residence in 2018?": "Did you live in a university, college or private school student residence in 2018?",
   "https://www.ontario.ca/data/designated-postsecondary-residences": "https://www.ontario.ca/data/designated-postsecondary-residences",
   "Check if you live in a student residence": "Check if you live in a student residence"
+=======
+  "Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.": "Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.",
+  "In 2018, did you live on a reserve and pay home energy costs?": "In 2018, did you live on a reserve and pay home energy costs?"
+>>>>>>> content update to /trillium/energy and translations files
 }

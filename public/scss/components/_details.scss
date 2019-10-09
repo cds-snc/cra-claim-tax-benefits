@@ -2,6 +2,10 @@ details {
   margin-bottom: $space-lg;
   list-style-type: none;
 
+  ul li {
+    margin-left: $space-md;
+  }
+
   summary {
     color: $color-blue-dark;
     cursor: pointer;

@@ -10,27 +10,34 @@ block content
 
   div
     p #{__('Your taxes may be lower if your provincial health plan, work or private insurance didn’t cover all your medical costs or expenses.')}
-    p #{__('Examples of medical costs are:')}
 
-    ul
-      li #{__('Treatment by a medical doctor, nurse or dentist')}
-      li #{__('Prescription medicine')}
-      li #{__('Prescription glasses, hearing aids, wheelchairs, crutches and similar items')}
-      li #{__('Some service animal costs')}
-      li #{__('Some travel expenses for medical treatment')}
+    div
+      details.
+        <summary><span>#{__('Examples of medical costs are:')}</span></summary>
+        <ul>
+          <li>#{__('Treatment by a medical doctor, nurse or dentist')}</li>
+          <li>#{__('Prescription medicine')}</li>
+          <li>#{__('Prescription glasses, hearing aids, wheelchairs, crutches and similar items')}</li>
+          <li>#{__('Some service animal costs')}</li>
+          <li>#{__('Some travel expenses for medical treatment')}</li>
+        </ul>
 
     p #{__('You may be able to enter medical costs for yourself and your children. You may also be able to enter costs for your partner by marriage or common-law, and their children.')}
     p #{__('To include a child’s medical costs, the child must have been under 18 on December 31, 2018, and:')}
 
-    ul
-      li #{__('Depended on you for support for example, with food, shelter, clothing')}
-      li #{__('You or your partner must have had sole custody of the child')}
+    div
+      details.
+        <summary><span>#{__('To include a child’s medical costs, the child must have been under 18 on December 31, 2018, and:')}</span></summary>
+        <ul>
+          <li>#{__('Depended on you for support for example, with food, shelter, clothing')}</li>
+          <li>#{__('You or your partner must have had sole custody of the child')}</li>
+        </ul>
 
     p #{__('You may still be able to claim a child’s medical expenses, even if you or your partner didn’t have sole custody. Contact CRA at, ')} <a href="tel:123-456-7890">#{__('(123) 456-7890')}</a>  #{__('to learn more.')}
 
 
   form.cra-form(method='post')
-    +radiosYesNo('medicalExpenseClaim', 'Were your medical expenses over X?', medicalExpenseClaim)
+    +radiosYesNo('medicalExpenseClaim', 'Were your private medical expenses over X?', medicalExpenseClaim)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/political')
 

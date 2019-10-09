@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Apply for OTB: home energy costs on reserve')
+  -var title = __('Home energy costs on reserve')
   -var trilliumEnergyClaim = !hasData(data, 'deductions.trilliumEnergyClaim') ? '' : data.deductions.trilliumEnergyClaim ? 'Yes' : 'No'
 
 block content
@@ -11,7 +11,7 @@ block content
 
 
   div
-    p #{__('Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.')}</strong>.
+    p #{__('Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.')}</strong>
 
   form.cra-form(method='post')
     +radiosYesNo('trilliumEnergyClaim', 'In 2018, did you live on a reserve and pay home energy costs?', trilliumEnergyClaim)

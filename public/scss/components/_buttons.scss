@@ -69,24 +69,3 @@ a[role='button'] {
     box-shadow: none;
   }
 }
-
-.back-button {
-  margin-bottom: $space-md;
-  padding: 0;
-  text-decoration: none;
-  display: inline-block;
-  border-bottom: 1px solid;
-  font-size: 0.9em;
-
-  @include sm {
-    font-size: 1em;
-    margin-bottom: $space-xl;
-    border-bottom: 2px solid;
-  }
-
-  span {
-    font-size: 0.7em;
-    position: relative;
-    bottom: 2px;
-  }
-}

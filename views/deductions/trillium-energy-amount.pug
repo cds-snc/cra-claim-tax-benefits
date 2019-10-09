@@ -12,7 +12,7 @@ block content
     p #{__('The government might ask for receipts later. The receipts must cover energy costs for a home on reserve where you lived most of 2018.')}
 
   form.cra-form(method='post')
-    +textInput('What were your total home energy costs on reserve?')(class='w-1-2 input-with-unit' name='trilliumEnergyAmount' placeholder='0.00' aria-labelledby='trilliumEnergyAmount__unit trilliumEnergyAmount__label' value=trilliumEnergyAmount)
+    +textInput('What were your total home energy costs on reserve in 2018?')(class='w-1-2 input-with-unit' name='trilliumEnergyAmount' placeholder='0.00' aria-labelledby='trilliumEnergyAmount__unit trilliumEnergyAmount__label' value=trilliumEnergyAmount)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/longTermCare')
 

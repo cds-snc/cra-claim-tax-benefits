@@ -109,7 +109,7 @@ const checkErrors = template => {
 // POST functions that handle setting the login data in the session and will redirecting to the next page or send back an error to the client.
 // Note that this is not the only error validation, see routes defined above.
 const doRedirect = (req, res) => {
-  let redirect = req.body.redirect || null
+  const redirect = req.body.redirect || null
   if (!redirect) {
     throw new Error(`[POST ${req.path}] 'redirect' parameter missing`)
   }
@@ -118,7 +118,15 @@ const doRedirect = (req, res) => {
     return returnToCheckAnswers(req, res)
   }
 
-  return res.redirect(redirect)
+  const { route: { path } = {} } = getRouteWithIndexByPath(redirect)
+
+  if (!path) {
+    throw new Error(
+      `[POST ${req.path}] 'redirect' parameter ${path} not a whitelisted URL. Check the routes config.`,
+    )
+  }
+
+  return res.redirect(path)
 }
 
 // Render a passed-in template and pass in session data under the "data" key
@@ -317,7 +325,7 @@ const returnToCheckAnswers = (req, res, claimYes = false) => {
 /**
  * @param {String} path the current path being visited
  * @param {Array} routes array of route objects { path: "/start" }
- * @returns { index: "1", route: { path: "/start" } }
+ * @returns {Object} { index: "1", route: { path: "/start" } }
  */
 const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
   let routeWithIndex = null

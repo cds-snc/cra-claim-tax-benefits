@@ -259,7 +259,7 @@ describe('Full run through', function() {
   it('navigates the Trillium Long Term Care page', function() {
     //TRILLIUM LONG TERM CARE
     cy.url().should('contain', '/trillium/longTermCare')
-    cy.get('h1').should('contain', 'Apply for OTB: long-term care home costs')
+    cy.get('h1').should('contain', 'Public long-term care home costs')
     cy.get('input#trilliumLongTermCareClaim1 + label').should(
       'have.attr',
       'for',

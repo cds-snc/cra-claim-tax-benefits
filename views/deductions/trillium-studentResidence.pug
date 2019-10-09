@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Apply for OTB: student residence')
+  -var title = __('Student residence')
   -var trilliumStudentResidence = !hasData(data, 'deductions.trilliumStudentResidence') ? null : data.deductions.trilliumStudentResidence === true ? 'Yes' : 'No'
 
 block content
@@ -11,6 +11,11 @@ block content
   form.cra-form(method='post')
     +radiosYesNo('trilliumStudentResidence', 'Did you live in a university, college or private school student residence in 2018?', trilliumStudentResidence)
 
+    div
+      p
+        <a href=#{__('https://www.ontario.ca/data/designated-postsecondary-residences')}>#{__('Learn more about student residences')}</a> 
+
     input#redirect(name='redirect', type='hidden', value='/trillium/energy')
 
     +formButtons()
+

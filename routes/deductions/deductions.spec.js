@@ -14,7 +14,7 @@ describe('Test /deductions responses', () => {
           .send({
             politicalFederalAmount,
             politicalProvincialAmount,
-            redirect: '/',
+            redirect: '/start',
           })
         expect(response.statusCode).toBe(422)
       })
@@ -30,7 +30,7 @@ describe('Test /deductions responses', () => {
           .send({
             politicalFederalAmount,
             politicalProvincialAmount,
-            redirect: '/',
+            redirect: '/start',
           })
         expect(response.statusCode).toBe(422)
       })
@@ -45,7 +45,7 @@ describe('Test /deductions responses', () => {
           .send({
             politicalFederalAmount: politicalAmount,
             politicalProvincialAmount: politicalAmount,
-            redirect: '/',
+            redirect: '/start',
           })
         expect(response.statusCode).toBe(422)
       })
@@ -60,7 +60,7 @@ describe('Test /deductions responses', () => {
           .send({
             politicalFederalAmount: politicalAmount,
             politicalProvincialAmount: politicalAmount,
-            redirect: '/',
+            redirect: '/start',
           })
         expect(response.statusCode).toBe(302)
       })
@@ -103,7 +103,7 @@ describe('Test /deductions responses', () => {
       {
         url: '/trillium/studentResidence',
         key: 'trilliumStudentResidence',
-        yesRedir: '/success',
+        yesRedir: '/start',
       },
       {
         url: '/trillium/energy',
@@ -116,7 +116,7 @@ describe('Test /deductions responses', () => {
       {
         url: '/deductions/climate-action-incentive',
         key: 'climateActionIncentiveIsRural',
-        yesRedir: '/success',
+        yesRedir: '/start',
       },
     ]
 
@@ -130,7 +130,7 @@ describe('Test /deductions responses', () => {
         test('it returns a 422 response for no posted value', async () => {
           const response = await request(app)
             .post(yesNoResponse.url)
-            .send({ redirect: '/' })
+            .send({ redirect: '/start' })
           expect(response.statusCode).toBe(422)
         })
 
@@ -139,7 +139,7 @@ describe('Test /deductions responses', () => {
           test(`it returns a 422 for a bad posted value: "${badValue}"`, async () => {
             const response = await request(app)
               .post(yesNoResponse.url)
-              .send({ [yesNoResponse.key]: badValue, redirect: '/' })
+              .send({ [yesNoResponse.key]: badValue, redirect: '/start' })
             expect(response.statusCode).toBe(422)
           })
         })
@@ -147,16 +147,16 @@ describe('Test /deductions responses', () => {
         test('it redirects to the posted redirect url when posting "No"', async () => {
           const response = await request(app)
             .post(yesNoResponse.url)
-            .send({ [yesNoResponse.key]: 'No', redirect: '/' })
+            .send({ [yesNoResponse.key]: 'No', redirect: '/start' })
           expect(response.statusCode).toBe(302)
-          expect(response.headers.location).toEqual('/')
+          expect(response.headers.location).toEqual('/start')
         })
 
         test('it redirects to the checkAnswers when posting "No" and having come from the checkAnswers page', async () => {
           const response = await request(app)
             .post(`${yesNoResponse.url}`)
             .query({ ref: 'checkAnswers' })
-            .send({ [yesNoResponse.key]: 'No', redirect: '/' })
+            .send({ [yesNoResponse.key]: 'No', redirect: '/start' })
           expect(response.statusCode).toBe(302)
           expect(response.headers.location).toEqual('/checkAnswers')
         })
@@ -165,7 +165,7 @@ describe('Test /deductions responses', () => {
           const response = await request(app)
             .post(yesNoResponse.url)
             .query({ ref: 'checkAnswers' })
-            .send({ [yesNoResponse.key]: 'Yes', redirect: '/' })
+            .send({ [yesNoResponse.key]: 'Yes', redirect: '/start' })
           expect(response.statusCode).toBe(302)
           if ('yesRedir' in yesNoResponse) {
             expect(response.headers.location).toEqual('/checkAnswers')
@@ -236,8 +236,9 @@ describe('Test /deductions responses', () => {
         test('it returns a 302 response for no posted value', async () => {
           const response = await request(app)
             .post(amountResponse.url)
-            .send({ redirect: '/' })
+            .send({ redirect: '/start' })
           expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual('/start')
         })
 
         const badAmounts = ['dinosaur', '10.0', '10.000', '-10', '.1']
@@ -245,7 +246,7 @@ describe('Test /deductions responses', () => {
           test(`it returns a 422 for a bad posted value: "${badAmount}"`, async () => {
             const response = await request(app)
               .post(amountResponse.url)
-              .send({ [amountResponse.key]: badAmount, redirect: '/' })
+              .send({ [amountResponse.key]: badAmount, redirect: '/start' })
             expect(response.statusCode).toBe(422)
           })
         })
@@ -255,9 +256,9 @@ describe('Test /deductions responses', () => {
           test(`it returns a 302 for a good posted value: "${goodAmount}"`, async () => {
             const response = await request(app)
               .post(amountResponse.url)
-              .send({ [amountResponse.key]: goodAmount, redirect: '/' })
+              .send({ [amountResponse.key]: goodAmount, redirect: '/start' })
             expect(response.statusCode).toBe(302)
-            expect(response.headers.location).toEqual('/')
+            expect(response.headers.location).toEqual('/start')
           })
         })
       })

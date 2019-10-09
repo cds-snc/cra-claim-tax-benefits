@@ -22,7 +22,7 @@ describe('Test /review', () => {
     test('it returns a 422 response for no posted value', async () => {
       const response = await request(app)
         .post('/review')
-        .send({ redirect: '/' })
+        .send({ redirect: '/confirmation' })
       expect(response.statusCode).toBe(422)
     })
 
@@ -36,16 +36,16 @@ describe('Test /review', () => {
     test('it returns a 422 response for the wrong value', async () => {
       const response = await request(app)
         .post('/review')
-        .send({ review: 'get er done', redirect: '/' })
+        .send({ review: 'get er done', redirect: '/confirmation' })
       expect(response.statusCode).toBe(422)
     })
 
     test('it returns a 302 response for the right value', async () => {
       const response = await request(app)
         .post('/review')
-        .send({ review: 'review', redirect: '/' })
+        .send({ review: 'review', redirect: '/confirmation' })
       expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/')
+      expect(response.headers.location).toEqual('/confirmation')
     })
   })
 })

@@ -1,14 +1,12 @@
 extends ../base
 
 block variables
-  -var title = __('Enter your home energy costs to apply for OTB')
+  -var title = __('Enter your home energy costs')
   -var trilliumEnergyAmount = hasData(data, 'deductions.trilliumEnergyAmount') && data.deductions.trilliumEnergyAmount !== 0 ? data.deductions.trilliumEnergyAmount : ''
 
 block content
 
   h1 #{title}
-
-  
 
   div
     p #{__('The government might ask for receipts later. The receipts must cover energy costs for a home on reserve where you lived most of 2018.')}

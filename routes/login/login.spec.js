@@ -29,7 +29,7 @@ describe('Test /login responses', () => {
     test(`it returns a 422 response for ${url} if only a redirect is posted`, async () => {
       const response = await request(app)
         .post(url)
-        .send({ redirect: '/' })
+        .send({ redirect: '/start' })
       expect(response.statusCode).toBe(422)
     })
   })
@@ -65,7 +65,7 @@ describe('Test /login responses', () => {
     test('it renders the error-list for /login/code', async () => {
       const response = await request(app)
         .post('/login/code')
-        .send({ redirect: '/' })
+        .send({ redirect: '/start' })
       const $ = cheerio.load(response.text)
       expect($('title').text()).toMatch(/^Error:/)
       expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
@@ -78,7 +78,7 @@ describe('Test /login responses', () => {
     test('it renders an inline error for /login/code with appropriate describedby', async () => {
       const response = await request(app)
         .post('/login/code')
-        .send({ redirect: '/' })
+        .send({ redirect: '/start' })
       const $ = cheerio.load(response.text)
       expect($('.validation-message').text()).toEqual('Error: Access code must be 9 characters')
       expect($('#code').attr('aria-describedby')).toEqual('code-error')
@@ -88,21 +88,21 @@ describe('Test /login responses', () => {
   test('it does not allow a code more than 9 characters', async () => {
     const response = await request(app)
       .post('/login/code')
-      .send({ code: '23XGY12111', redirect: '/' })
+      .send({ code: '23XGY12111', redirect: '/start' })
     expect(response.statusCode).toBe(422)
   })
 
   test('it does not allow a code less than 8 characters', async () => {
     const response = await request(app)
       .post('/login/code')
-      .send({ code: 'A23X', redirect: '/' })
+      .send({ code: 'A23X', redirect: '/start' })
     expect(response.statusCode).toBe(422)
   })
 
   test('it does not allow non-alphanumeric characters', async () => {
     const response = await request(app)
       .post('/login/code')
-      .send({ code: 'A23X456@', redirect: '/' })
+      .send({ code: 'A23X456@', redirect: '/start' })
     expect(response.statusCode).toBe(422)
   })
 
@@ -111,9 +111,9 @@ describe('Test /login responses', () => {
     test(`it redirects if a valid code is provided: "${code}"`, async () => {
       const response = await request(app)
         .post('/login/code')
-        .send({ code, redirect: '/' })
+        .send({ code, redirect: '/start' })
       expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/')
+      expect(response.headers.location).toEqual('/start')
     })
   })
 
@@ -136,7 +136,7 @@ describe('Test /login responses', () => {
     test('it reloads /login/sin with a 422 status if no sin is provided', async () => {
       const response = await request(app)
         .post('/login/sin')
-        .send({ redirect: '/' })
+        .send({ redirect: '/start' })
       expect(response.statusCode).toBe(422)
       const $ = cheerio.load(response.text)
       expect($('title').text()).toMatch(/^Error:/)
@@ -150,7 +150,7 @@ describe('Test /login responses', () => {
       test('it renders the error-list for /login/sin', async () => {
         const response = await request(app)
           .post('/login/sin')
-          .send({ redirect: '/' })
+          .send({ redirect: '/start' })
         const $ = cheerio.load(response.text)
         expect($('title').text()).toMatch(/^Error:/)
         expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
@@ -163,14 +163,14 @@ describe('Test /login responses', () => {
     test('it does not allow a code more than 9 characters', async () => {
       const response = await request(app)
         .post('/login/sin')
-        .send({ code: '12345678910', redirect: '/' })
+        .send({ code: '12345678910', redirect: '/start' })
       expect(response.statusCode).toBe(422)
     })
 
     test('it does not allow a code less than 9 characters', async () => {
       const response = await request(app)
         .post('/login/sin')
-        .send({ code: '12345678', redirect: '/' })
+        .send({ code: '12345678', redirect: '/start' })
       expect(response.statusCode).toBe(422)
     })
 
@@ -214,7 +214,7 @@ describe('Test /login responses', () => {
       dobDay: '09',
       dobMonth: '09',
       dobYear: '1977',
-      redirect: '/login/success',
+      redirect: '/personal/name',
     }
 
     const currentDate = new Date()
@@ -331,7 +331,7 @@ describe('Test /login responses', () => {
             dobDay: ' 9 ',
             dobMonth: ' 9 ',
             dobYear: ' 1977 ',
-            redirect: '/login/success',
+            redirect: '/personal/name',
           })
         expect(response.statusCode).toBe(302)
       })
@@ -366,7 +366,7 @@ describe('Test /login responses', () => {
           .post('/login/questions/child')
           .send({ ...goodDoBRequest, ...{ childLastName: 'Laika' } })
         expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/login/success')
+        expect(response.headers.location).toEqual('/personal/name')
       })
     })
 
@@ -406,7 +406,7 @@ describe('Test /login responses', () => {
           .post('/login/questions/prison')
           .send({ ...goodDoBRequest, ...{ prisonDate: 'release' } })
         expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/login/success')
+        expect(response.headers.location).toEqual('/personal/name')
       })
     })
 
@@ -487,14 +487,14 @@ describe('Test /login responses', () => {
     it('it should return 422 for the wrong DoB', async () => {
       const response = await authSession
         .post('/login/dateOfBirth')
-        .send({ dobDay: '23', dobMonth: '03', dobYear: '1909', redirect: '/login/success' })
+        .send({ dobDay: '23', dobMonth: '03', dobYear: '1909', redirect: '/personal/name' })
       expect(response.statusCode).toBe(422)
     })
 
     it('it should return 302 for the right DoB', async () => {
       const response = await authSession
         .post('/login/dateOfBirth')
-        .send({ dobDay: '09', dobMonth: '09', dobYear: '1977', redirect: '/login/success' })
+        .send({ dobDay: '09', dobMonth: '09', dobYear: '1977', redirect: '/personal/name' })
       expect(response.statusCode).toBe(302)
     })
   })
@@ -522,7 +522,7 @@ questionsAmounts.map(amountResponse => {
     test('it returns a 422 response for no posted values', async () => {
       const response = await request(app)
         .post(amountResponse.url)
-        .send({ redirect: '/' })
+        .send({ redirect: '/start' })
       expect(response.statusCode).toBe(422)
     })
 
@@ -534,7 +534,7 @@ questionsAmounts.map(amountResponse => {
           .send({
             [`${amountResponse.key}Amount`]: badAmount,
             [`${amountResponse.key}PaymentMethod`]: 'cheque',
-            redirect: '/',
+            redirect: '/start',
           })
         expect(response.statusCode).toBe(422)
       })
@@ -545,7 +545,7 @@ questionsAmounts.map(amountResponse => {
         .post(amountResponse.url)
         .send({
           [`${amountResponse.key}Amount`]: '10',
-          redirect: '/',
+          redirect: '/start',
         })
       expect(response.statusCode).toBe(422)
     })
@@ -558,10 +558,10 @@ questionsAmounts.map(amountResponse => {
           .send({
             [`${amountResponse.key}Amount`]: goodAmount,
             [`${amountResponse.key}PaymentMethod`]: 'cheque',
-            redirect: '/',
+            redirect: '/start',
           })
         expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/')
+        expect(response.headers.location).toEqual('/start')
       })
     })
 
@@ -570,7 +570,7 @@ questionsAmounts.map(amountResponse => {
         .post(amountResponse.url)
         .send({
           [`${amountResponse.key}PaymentMethod`]: 'cheque',
-          redirect: '/',
+          redirect: '/start',
         })
       expect(response.statusCode).toBe(302)
     })
@@ -581,7 +581,7 @@ questionsAmounts.map(amountResponse => {
         .send({
           [`${amountResponse.key}Amount`]: '10',
           [`${amountResponse.key}PaymentMethod`]: 'bitcoin',
-          redirect: '/',
+          redirect: '/start',
         })
       expect(response.statusCode).toBe(422)
     })
@@ -594,10 +594,10 @@ questionsAmounts.map(amountResponse => {
           .send({
             [`${amountResponse.key}Amount`]: '10',
             [`${amountResponse.key}PaymentMethod`]: paymentMethod,
-            redirect: '/',
+            redirect: '/start',
           })
         expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/')
+        expect(response.headers.location).toEqual('/start')
       })
     })
   })

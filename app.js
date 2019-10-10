@@ -10,7 +10,7 @@ const express = require('express'),
   compression = require('compression'),
   helmet = require('helmet'),
   morgan = require('morgan'),
-  winston = require('./config/winston.config'),
+  morganConfig = require('./config/morgan.config'),
   sassMiddleware = require('node-sass-middleware'),
   path = require('path'),
   cookieSession = require('cookie-session'),
@@ -58,8 +58,6 @@ app.use(
 // public assets go here (css, js, etc)
 app.use(express.static(path.join(__dirname, 'public')))
 
-const logFormat = process.env.NODE_ENV === 'production' ? 'combined' : 'dev'
-
 if (process.env.NODE_ENV === 'production' && process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
   // register to Azure Application Insights service for telemetry purposes
   // instrumention key is provisioned from Azure App Service application setting (env variable)
@@ -67,7 +65,7 @@ if (process.env.NODE_ENV === 'production' && process.env.APPINSIGHTS_INSTRUMENTA
 }
 
 // add a request logger
-process.env.NODE_ENV !== 'test' && app.use(morgan(logFormat, { stream: winston.stream }))
+process.env.NODE_ENV !== 'test' && app.use(morgan(morganConfig))
 
 // dnsPrefetchControl controls browser DNS prefetching
 // frameguard to prevent clickjacking
@@ -111,19 +109,6 @@ app.get('/clear', (req, res) => {
 
 app.use(function(req, res, next) {
   next(globalError(404))
-})
-
-// handle global errors.
-app.use(function(err, req, res) {
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
-
-  winston.debug(`Service error: ${err}`)
-  winston.error(
-    `${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`,
-  )
-
-  res.status(err.status || 500).json({ message: 'Internal service error.' })
 })
 
 module.exports = app

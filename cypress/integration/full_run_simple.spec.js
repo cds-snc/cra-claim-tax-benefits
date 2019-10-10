@@ -228,7 +228,7 @@ describe('Full run through', function() {
   it('navigates the Trillium Student Residence page', function() {
     //TRILLIUM STUDENT RESIDENCE
     cy.url().should('contain', '/trillium/studentResidence')
-    cy.get('h1').should('contain', 'Designated student residence')
+    cy.get('h1').should('contain', 'Student residence')
     cy.get('input#trilliumStudentResidence1 + label').should(
       'have.attr',
       'for',

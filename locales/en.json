@@ -407,8 +407,6 @@
   "You may still be able to claim a child’s medical expenses, even if you or your partner didn’t have sole custody. Contact CRA at, ": "You may still be able to claim a child’s medical expenses, even if you or your partner didn’t have sole custody. Contact CRA at, ",
   "You can claim medical expenses for your self, spouse or common-law partner, and dependent children born after 2001.": "You can claim medical expenses for your self, spouse or common-law partner, and dependent children born after 2001.",
   "Were your private medical expenses over X?": "Were your private medical expenses over X?",
-  "Enter medical costs": "Enter medical costs",
-  "Enter total medical costs for:": "Enter total medical costs for:",
   "Yourself": "Yourself",
   "Your marriage or common law partner": "Your marriage or common law partner",
   "You or your partner’s children, ": "You or your partner’s children, ",
@@ -416,5 +414,7 @@
   "to claim their costs": "to claim their costs",
   "Enter the total cost of medical expenses for 2001": "Enter the total cost of medical expenses for 2001",
   "Total cost of medical expenses for your self, spouse, and dependent children born after 2001": "Total cost of medical expenses for your self, spouse, and dependent children born after 2001",
-  "Enter the total cost of medical expenses": "Enter the total cost of medical expenses"
+  "Medical costs": "Medical costs",
+  "You may include medical costs for:": "You may include medical costs for:",
+  "Enter total medical costs": "Enter total medical costs"
 }

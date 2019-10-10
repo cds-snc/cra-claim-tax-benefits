@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Enter medical costs')
+  -var title = __('Medical costs')
   -var medicalAmount = hasData(data, 'deductions.medicalExpenseClaimAmount.amount') && data.deductions.medicalExpenseClaimAmount.amount !== 0 ? data.deductions.medicalExpenseClaimAmount.amount : ''
 
 block content
@@ -9,14 +9,14 @@ block content
   h1 #{title}
   
   div
-    p #{__('Enter total medical costs for:')}
+    p #{__('You may include medical costs for:')}
     ul
       li #{__('Yourself')}
       li #{__('Your marriage or common law partner')}
       li #{__('You or your partner’s children, ')} <a href="/deductions/medical">#{__('if you are able')}</a> #{__('to claim their costs')}
 
   form.cra-form(method='post')
-    +textInput('Enter the total cost of medical expenses')(class='w-1-2 input-with-unit' name='medicalAmount' placeholder='0.00' aria-labelledby='medicalAmount__unit medicalAmount__label' value=medicalAmount)
+    +textInput('Enter total medical costs')(class='w-1-2 input-with-unit' name='medicalAmount' placeholder='0.00' aria-labelledby='medicalAmount__unit medicalAmount__label' value=medicalAmount)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/political')
 

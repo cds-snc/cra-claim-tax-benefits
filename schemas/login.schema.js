@@ -58,24 +58,13 @@ const lastDayInMonth = (year, month) => {
   return new Date(year, month + 1, 0).getDate()
 }
 
-const isValidDay = {
-  errorMessage: 'errors.login.dateOfBirth.validDay',
-  validate: (value, req) => {
-    const yearKey = Object.keys(req.body).filter((key) => /Year/.test(key))
-    const monthKey = Object.keys(req.body).filter((key) => /Month/.test(key))
-
-    const year = parseInt(req.body[yearKey], 10)
-    let month = parseInt(req.body[monthKey], 10)
-    const day = parseInt(value, 10)
-
-    if (!day || !month || !year) {
-      return false
-    }
-
-    //subtract one because Date for months starts at a 0 index for Jan 🤓
-    month -= 1
-    return day >= 1 && day <= lastDayInMonth(year, month)
-  },
+const isValidDay = (errorMessageString = 'errors.login.dateOfBirth.validDay') => {
+  return {
+    isInt: {
+      errorMessage: errorMessageString,
+      options: { min: 1, max: 31 },
+    },
+  }
 }
 
 const toISOFormat = ({ dobYear, dobMonth, dobDay }) => {
@@ -98,7 +87,8 @@ const isMatchingDoB = {
 
 const dobSchema = {
   dobDay: {
-    ...validationArray([isValidDay, isMatchingDoB]),
+    ...isValidDay(),
+    ...validationArray([isMatchingDoB]),
   },
   dobMonth: {
     isInt: {
@@ -130,9 +120,7 @@ const childSchema = {
       negated: true,
     },
   },
-  dobDay: {
-    ...validationArray([isValidDay]),
-  },
+  dobDay: isValidDay(),
   dobMonth: {
     isInt: {
       errorMessage: 'errors.login.dateOfBirth.validMonth',
@@ -148,9 +136,7 @@ const childSchema = {
 }
 
 const dateOfResidenceSchema = {
-  dobDay: {
-    ...validationArray([isValidDay]),
-  },
+  dobDay: isValidDay(),
   dobMonth: {
     isInt: {
       errorMessage: 'errors.login.dateOfBirth.validMonth',
@@ -166,9 +152,7 @@ const dateOfResidenceSchema = {
 }
 
 const bankruptcySchema = {
-  dobDay: {
-    ...validationArray([isValidDay]),
-  },
+  dobDay: isValidDay(),
   dobMonth: {
     isInt: {
       errorMessage: 'errors.login.dateOfBirth.validMonth',
@@ -275,9 +259,7 @@ const prisonSchema = {
       options: [['entry', 'release']],
     },
   },
-  dobDay: {
-    ...validationArray([isValidDay]),
-  },
+  dobDay: isValidDay(),
   dobMonth: {
     isInt: {
       errorMessage: 'errors.login.dateOfBirth.validMonth',

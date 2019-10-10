@@ -359,7 +359,6 @@
   "(123) 456-7890": "(123) 456-7890",
   "to learn more.": "to learn more.",
   "Were your private medical expenses over X?": "Were your private medical expenses over X?",
-<<<<<<< HEAD
   "Yourself": "Yourself",
   "Your marriage or common law partner": "Your marriage or common law partner",
   "You or your partner’s children, ": "You or your partner’s children, ",
@@ -370,9 +369,7 @@
   "Enter total medical costs": "Enter total medical costs",
   "Did you live in a university, college or private school student residence in 2018?": "Did you live in a university, college or private school student residence in 2018?",
   "https://www.ontario.ca/data/designated-postsecondary-residences": "https://www.ontario.ca/data/designated-postsecondary-residences",
-  "Check if you live in a student residence": "Check if you live in a student residence"
-=======
+  "Check if you live in a student residence": "Check if you live in a student residence",
   "Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.": "Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.",
   "In 2018, did you live on a reserve and pay home energy costs?": "In 2018, did you live on a reserve and pay home energy costs?"
->>>>>>> content update to /trillium/energy and translations files
 }

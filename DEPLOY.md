@@ -42,7 +42,7 @@ Make sure you have the [docker command line interface](https://docs.docker.com/e
 First, run `docker build` and pass in an optional `GITHUB_SHA_ARG`.
 
 ```
-build -t base --build-arg GITHUB_SHA_ARG=codename_cobra .
+docker build -t base --build-arg GITHUB_SHA_ARG=codename_cobra .
 ```
 
 #### Optional env var
@@ -116,6 +116,18 @@ You can also update the app by using the user interface. For a one-off update, t
 8. Wait for it to say `Settings updated successfully`
 
 Usually takes about 2-4 minutes for the live app to switch over. If you built the container with a `GITHUB_SHA_ARG`, you can check the page `<head>` to see the currently running version. If you didn’t — well, you should have.
+
+### Creating a new Azure App Service for testing purposes
+
+In case you don't want to override the live version of the app, you can spin a new instance of App Service for testing purposes by using the following command:
+
+`az webapp create --resource-group cdscracollab-innovation-rg --plan alphaPlan --name claim-tax-benefits-{tag_name} --deployment-container-image-name cdssnc/cra-claim-tax-benefits:{tag_name}`
+
+You can then find the URL in the JSON response or in the Azure portal. URL should nornmally be `https://claim-tax-benefits-{tag_name}.azurewebsites.net`
+
+When finished testing, you can delete the Azure App Service webapp using the following command:
+
+`az webapp delete --resource-group cracdscollaborationrg --name claim-tax-benefits-{tag_name}`
 
 ### All done!
 

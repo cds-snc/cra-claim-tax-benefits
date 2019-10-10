@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Deduct your long-term care home costs')
+  -var title = __('Public long-term care home costs')
   -var trilliumLongTermCareClaim = !hasData(data, 'deductions.trilliumLongTermCareClaim') ? '' : data.deductions.trilliumLongTermCareClaim ? 'Yes' : 'No'
 
 block content
@@ -9,10 +9,10 @@ block content
   h1 #{title}
 
   div
-    p #{__('A')} <strong>#{__('long-term care home')}</strong> #{__('can include a nursing home or a municipal, First Nations, or charitable home for the aged.')} #{__('If you lived in a nursing home or another public long-term care facility in 2018, you may be entitled to receive credits from your')} <strong>#{__('Ontario Trillium Benefit')}</strong>.
-
+    p #{__('You may live in a long-term care home or facility if costs such as nursing or personal support are combined with your rent. The home must be public or non-profit. This means that a charity, city, First Nations, or similar organization manages the home.')}
+  
   form.cra-form(method='post')
-    +radiosYesNo('trilliumLongTermCareClaim', 'Did you live in a public long-term care home in 2018?', trilliumLongTermCareClaim)
+    +radiosYesNo('trilliumLongTermCareClaim', 'Did you live in a public or non-profit long-term care home in 2018?', trilliumLongTermCareClaim)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/climate-action-incentive')
 

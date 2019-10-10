@@ -1,16 +1,20 @@
 mixin dateInputs(idPrefix, legendText, isoHintText, values)
-  div.date-container(class={['has-error--container']: errors})
+  div.date-container(class={
+    ['has-error--container']: errors,
+    ['has-error']: errors && errors[`${idPrefix}Day`] && errors[`${idPrefix}Day`].msg === 'errors.login.dateOfBirth.match'
+    })
     fieldset.fieldset(role="group", aria-describedby=`${idPrefix}Hint`,)
       legend
         h2 #{__(legendText)}
 
       span#dobHint.cra-form-message #{__('For Example:')} #{isoDateHintText(isoHintText)}
 
-      if errors
+      if errors[`${idPrefix}Day`] || errors[`${idPrefix}Month`] || errors[`${idPrefix}Day`]
         ul
           each err in errors
-            li
-              +validationMessage(err.msg, err.param)
+            if err.param.includes(idPrefix)
+              li
+                +validationMessage(err.msg, err.param)
       div.w-1-4.d--ib(class={['has-error--inline']: errors && errors[`${idPrefix}Day`]})
         label(for=`${idPrefix}Day`) #{__('Day')}
         input#dobDay(name=`${idPrefix}Day`, autofocus, type='text', value=values[0], autocomplete=`${idPrefix}-day`, aria-describedby=(errors && errors[`${idPrefix}Day`] ? `${idPrefix}Day-error` : false))

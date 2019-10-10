@@ -9,7 +9,7 @@ mixin dateInputs(idPrefix, legendText, isoHintText, values)
 
       span#dobHint.cra-form-message #{__('For Example:')} #{isoDateHintText(isoHintText)}
 
-      if errors[`${idPrefix}Day`] || errors[`${idPrefix}Month`] || errors[`${idPrefix}Day`]
+      if errors && errors[`${idPrefix}Day`] || errors && errors[`${idPrefix}Month`] || errors && errors[`${idPrefix}Day`]
         ul
           each err in errors
             if err.param.includes(idPrefix)

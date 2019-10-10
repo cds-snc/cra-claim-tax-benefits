@@ -54,10 +54,6 @@ const sinSchema = {
 
 const currentDate = new Date()
 
-const lastDayInMonth = (year, month) => {
-  return new Date(year, month + 1, 0).getDate()
-}
-
 const isValidDay = (errorMessageString = 'errors.login.dateOfBirth.validDay') => {
   return {
     isInt: {
@@ -285,6 +281,5 @@ module.exports = {
   trilliumAmountSchema,
   addressesSchema,
   prisonSchema,
-  lastDayInMonth,
   toISOFormat,
 }

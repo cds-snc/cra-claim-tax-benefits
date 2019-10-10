@@ -177,7 +177,6 @@
   "Total Refund (484)": "Remboursement total (484)",
   "I confirm that, as far as I know, all the information in this tax return is accurate": "Je confirme que, à ma connaissance, tous les renseignements contenus dans cette déclaration de revenus sont exacts.",
   "Ontario Trillium Benefit": "Prestation Trillium de l’Ontario",
-  "Please enter the total amount paid for accommodation in a public or non-profit long-term care home in 2018.": "Veuillez inscrire le montant total payé pour un hébergement dans un foyer de soins de longue durée public ou sans but lucratif en 2018.",
   "Visit a free tax clinic near you. ": "Vous rendre à une clinique d’impôts gratuits. ",
   "You can have a volunteer help you submit your taxes.": "Vous pourrez obtenir l’aide d’une personne bénévole pour produire votre déclaration.",
   "File your taxes with": "Produire une déclaration de revenus ",
@@ -333,7 +332,7 @@
   "You have filed your 2018 taxes": "You have filed your 2018 taxes",
   "Your 2018 filing number is": "Your 2018 filing number is",
   "Give CRA this number if you need help or information. You can contact CRA by:": "Give CRA this number if you need help or information. You can contact CRA by:",
-  "TTY: 1-800-665-0354": "TTY: 1-800-665-0354",
+  "TTY: 1-800-665-0354": "TTY : 1-800-665-0354",
   "You can also get help at a free tax clinic. Visit": "You can also get help at a free tax clinic. Visit",
   "Print summary of your 2018 tax return": "Print summary of your 2018 tax return",
   "It is important to read your Notice of Assessment which shows:": "It is important to read your Notice of Assessment which shows:",
@@ -374,5 +373,8 @@
   "Please note you may be asked to provide receipts to verify this information later.": "Please note you may be asked to provide receipts to verify this information later.",
   "Public long-term care home costs": "Public long-term care home costs",
   "You may live in a long-term care home or facility if costs such as nursing or personal support are combined with your rent. The home must be public or non-profit. This means that a charity, city, First Nations, or similar organization manages the home.": "You may live in a long-term care home or facility if costs such as nursing or personal support are combined with your rent. The home must be public or non-profit. This means that a charity, city, First Nations, or similar organization manages the home.",
-  "Did you live in a public or non-profit long-term care home in 2018?": "Did you live in a public or non-profit long-term care home in 2018?"
+  "Did you live in a public or non-profit long-term care home in 2018?": "Did you live in a public or non-profit long-term care home in 2018?",
+  "The government might ask for your long-term care receipts.": "The government might ask for your long-term care receipts.",
+  "How much were your total long-term care costs in 2018?": "How much were your total long-term care costs in 2018?",
+  "Enter your long-term care home costs": "Enter your long-term care home costs"
 }

@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Long-term care costs in 2018')
+  -var title = __('Enter your long-term care home costs')
   -var trilliumLongTermCareAmount = hasData(data, 'deductions.trilliumLongTermCareAmount') && data.deductions.trilliumLongTermCareAmount !== 0 ? data.deductions.trilliumLongTermCareAmount : ''
 
 block content
@@ -11,12 +11,10 @@ block content
   
 
   div
-    p #{__('Please enter the total amount paid for accommodation in a public or non-profit long-term care home in 2018.')}
-
-    p #{__('Please note you may be asked to provide receipts to verify this information later.')}
+    p #{__('The government might ask for your long-term care receipts.')}
 
   form.cra-form(method='post')
-    +textInput('Long-term care costs in 2018')(class='w-1-2 input-with-unit' name='trilliumLongTermCareAmount' placeholder='0.00' aria-labelledby='trilliumLongTermCareAmount__unit trilliumLongTermCareAmount__label' value=trilliumLongTermCareAmount)
+    +textInput('How much were your total long-term care costs in 2018?')(class='w-1-2 input-with-unit' name='trilliumLongTermCareAmount' placeholder='0.00' aria-labelledby='trilliumLongTermCareAmount__unit trilliumLongTermCareAmount__label' value=trilliumLongTermCareAmount)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/climate-action-incentive')
 

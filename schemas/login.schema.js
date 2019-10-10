@@ -61,8 +61,11 @@ const lastDayInMonth = (year, month) => {
 const isValidDay = {
   errorMessage: 'errors.login.dateOfBirth.validDay',
   validate: (value, req) => {
-    const year = parseInt(req.body.dobYear, 10)
-    let month = parseInt(req.body.dobMonth, 10)
+    const yearKey = Object.keys(req.body).filter((key) => /Year/.test(key))
+    const monthKey = Object.keys(req.body).filter((key) => /Month/.test(key))
+
+    const year = parseInt(req.body[yearKey], 10)
+    let month = parseInt(req.body[monthKey], 10)
     const day = parseInt(value, 10)
 
     if (!day || !month || !year) {

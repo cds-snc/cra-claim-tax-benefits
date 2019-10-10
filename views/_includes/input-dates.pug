@@ -1,0 +1,24 @@
+mixin dateInputs(idPrefix, label, isoHintText, values)
+  div.date-container(class={['has-error']: errors && errors[`${idPrefix}Day`]})
+    fieldset.fieldset(role="group", aria-describedby=`${idPrefix}Hint`,)
+      legend
+        h2 #{__(label)}
+
+      span#dobHint.cra-form-message #{__('For Example:')} #{isoDateHintText(isoHintText)}
+
+      if errors
+        ul
+          each err in errors
+            li
+              +validationMessage(err.msg, err.param)
+      div.w-1-4.d--ib
+        label(for=`${idPrefix}Day`) #{__('Day')}
+        input#dobDay(name=`${idPrefix}Day`, autofocus, type='text', value=values[0], autocomplete=`${idPrefix}-day`, aria-describedby=(errors && errors[`${idPrefix}Day`] ? `${idPrefix}Day-error` : false))
+
+      div.w-1-4.d--ib
+        label(for=`${idPrefix}Month`) #{__('Month')}
+        input#dobMonth(name=`${idPrefix}Month`, type='text', value=values[1], autocomplete=`${idPrefix}-month`, aria-describedby=(errors && errors[`${idPrefix}Month`] ? `${idPrefix}Month-error` : false))
+
+      div.w-1-2.d--ib
+        label(for=`${idPrefix}Year`) #{__('Year')}
+        input#dobYear(name=`${idPrefix}Year`, type='text', value=values[2], autocomplete=`${idPrefix}-year`, aria-describedby=(errors && errors[`${idPrefix}Year`] ? `${idPrefix}Year-error` : false))

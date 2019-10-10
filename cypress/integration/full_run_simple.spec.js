@@ -245,7 +245,7 @@ describe('Full run through', function() {
   it('navigates the Trillium Home Energy page', function() {
     //TRILLIUM HOME ENERGY
     cy.url().should('contain', '/trillium/energy')
-    cy.get('h1').should('contain', 'Deduct your home energy costs on a reserve')
+    cy.get('h1').should('contain', 'Home energy costs on reserve')
 
     cy.get('input#trilliumEnergyClaim1 + label').should('have.attr', 'for', 'trilliumEnergyClaim1')
 

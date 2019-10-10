@@ -1,8 +1,8 @@
-mixin dateInputs(idPrefix, label, isoHintText, values)
+mixin dateInputs(idPrefix, legendText, isoHintText, values)
   div.date-container(class={['has-error']: errors && errors[`${idPrefix}Day`]})
     fieldset.fieldset(role="group", aria-describedby=`${idPrefix}Hint`,)
       legend
-        h2 #{__(label)}
+        h2 #{__(legendText)}
 
       span#dobHint.cra-form-message #{__('For Example:')} #{isoDateHintText(isoHintText)}
 

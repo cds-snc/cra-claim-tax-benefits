@@ -60,6 +60,18 @@ form.cra-form {
     select {
       border: 2px solid $color-red;
     }
+
+    &--container {
+      padding-left: $space-sm;
+      border-left: $space-xxs solid $color-red;
+    }
+  }
+
+  .has-error--inline {
+    input,
+    select {
+      border: 2px solid $color-red;
+    }
   }
 
   label,
@@ -182,7 +194,7 @@ form.cra-form.cra-form--lg {
 }
 
 form.cra-form {
-  .dob-container {
+  .date-container {
     @include sm {
       width: 90%;
     }

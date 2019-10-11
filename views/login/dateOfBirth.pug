@@ -1,4 +1,5 @@
 extends ../base
+include ../_includes/input-dates
 
 block variables
   -var title = __('Enter your date of birth')
@@ -14,31 +15,8 @@ block content
   div
     form.cra-form(method='post')
 
-      div.dob-container(class={['has-error']: errors && errors.dobDay})
-        fieldset.fieldset(role="group", aria-describedby="dobHint",)
-          legend
-            h2 #{__('Date of birth')}
+      +dateInputs('dob', 'Date of birth', data.personal.dateOfBirth, [dobDay, dobMonth, dobYear], true)
 
-          span#dobHint.cra-form-message #{__('For Example:')} #{isoDateHintText(data.personal.dateOfBirth)}
-
-          if errors
-            ul
-              each err in errors
-                li
-                  +validationMessage(err.msg, err.param)
-
-          div.w-1-4.d--ib
-            label(for='dobDay') #{__('Day')}
-            input#dobDay(name='dobDay', autofocus, type='text', value=dobDay, autocomplete='bday-day', aria-describedby=(errors && errors.dobDay ? 'dobDay-error' : false))
-
-          div.w-1-4.d--ib
-            label(for='dobMonth') #{__('Month')}
-            input#dobMonth(name='dobMonth', type='text', value=dobMonth, autocomplete='bday-month', aria-describedby=(errors && errors.dobMonth ? 'dobMonth-error' : false))
-
-          div.w-1-2.d--ib
-            label(for='dobYear') #{__('Year')}
-            input#dobYear(name='dobYear', type='text', value=dobYear, autocomplete='bday-year', aria-describedby=(errors && errors.dobYear ? 'dobYear-error' : false))
-
-          input#redirect(name='redirect', type='hidden', value='/login/securityQuestion')
+      input#redirect(name='redirect', type='hidden', value='/login/securityQuestion')
 
       +formButtons()

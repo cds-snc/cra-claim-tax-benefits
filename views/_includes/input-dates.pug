@@ -1,0 +1,28 @@
+mixin dateInputs(idPrefix, legendText, isoHintText, values, bday = false)
+  div.date-container(class={
+    ['has-error--container']: errors,
+    ['has-error']: errors && errors[`${idPrefix}Day`] && errors[`${idPrefix}Day`].msg === 'errors.login.dateOfBirth.match'
+    })
+    fieldset.fieldset(role="group", aria-describedby=`${idPrefix}Hint`,)
+      legend
+        h2 #{__(legendText)}
+
+      span#dobHint.cra-form-message #{__('For Example:')} #{isoDateHintText(isoHintText)}
+
+      if errors && errors[`${idPrefix}Day`] || errors && errors[`${idPrefix}Month`] || errors && errors[`${idPrefix}Day`]
+        ul
+          each err in errors
+            if err.param.includes(idPrefix)
+              li
+                +validationMessage(err.msg, err.param)
+      div.w-1-4.d--ib(class={['has-error--inline']: errors && errors[`${idPrefix}Day`]})
+        label(for=`${idPrefix}Day`) #{__('Day')}
+        input#dobDay(name=`${idPrefix}Day`, autofocus=(!errors || errors && errors[`${idPrefix}Day`]), type='text', value=values[0], autocomplete=(bday ? 'bday-day' : null), aria-describedby=(errors && errors[`${idPrefix}Day`] ? `${idPrefix}Day-error` : false))
+
+      div.w-1-4.d--ib(class={['has-error--inline']: errors && errors[`${idPrefix}Month`]})
+        label(for=`${idPrefix}Month`) #{__('Month')}
+        input#dobMonth(name=`${idPrefix}Month`, type='text', value=values[1], autofocus=(errors && errors[`${idPrefix}Month`] && !errors[`${idPrefix}Day`]), autocomplete=(bday ? 'bday-month' : null), aria-describedby=(errors && errors[`${idPrefix}Month`] ? `${idPrefix}Month-error` : false))
+
+      div.w-1-2.d--ib(class={['has-error--inline']: errors && errors[`${idPrefix}Year`]})
+        label(for=`${idPrefix}Year`) #{__('Year')}
+        input#dobYear(name=`${idPrefix}Year`, type='text', value=values[2], autofocus=(errors && errors[`${idPrefix}Year`] && !errors[`${idPrefix}Day`] && !errors[`${idPrefix}Month`] ), autocomplete=(bday ? 'bday-year' : null), aria-describedby=(errors && errors[`${idPrefix}Year`] ? `${idPrefix}Year-error` : false))

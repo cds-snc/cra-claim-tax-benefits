@@ -95,7 +95,7 @@ const dobSchema = {
   dobYear: {
     isInt: {
       errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
+      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() },
     },
   },
 }

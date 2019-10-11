@@ -127,7 +127,7 @@ You can then find the URL in the JSON response or in the Azure portal. URL shoul
 
 When finished testing, you can delete the Azure App Service webapp using the following command:
 
-`az webapp delete --resource-group cracdscollaborationrg --name claim-tax-benefits-{tag_name}`
+`az webapp delete --resource-group cdscracollab-innovation-rg --name claim-tax-benefits-{tag_name}`
 
 ### All done!
 

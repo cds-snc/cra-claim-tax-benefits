@@ -1,4 +1,3 @@
- 
 // import environment variables.
 require('dotenv').config()
 const globalError = require('http-errors')
@@ -30,13 +29,14 @@ const express = require('express'),
 // initialize application.
 var app = express()
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV === 'production' && process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
   // register to Azure Application Insights service for telemetry purposes
   // instrumention key is provisioned from Azure App Service application setting (env variable)
   azureApplicationInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY).start()
-  // add a request logger
-  app.use(morgan('combined', { stream: winston.stream }))
 }
+
+// add a request logger
+app.use(morgan('combined', { stream: winston.stream }))
 
 // view engine setup
 app.set('views', path.join(__dirname, './views'))

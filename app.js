@@ -35,8 +35,8 @@ if (process.env.NODE_ENV === 'production' && process.env.APPINSIGHTS_INSTRUMENTA
   azureApplicationInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY).start()
 }
 
-// add a request logger
-app.use(morgan('combined', { stream: winston.stream }))
+// if NODE_ENV does not equal 'test', add a request logger
+process.env.NODE_ENV !== 'test' && app.use(morgan('combined', { stream: winston.stream }))
 
 // view engine setup
 app.set('views', path.join(__dirname, './views'))

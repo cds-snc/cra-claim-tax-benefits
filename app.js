@@ -29,6 +29,8 @@ const express = require('express'),
 // initialize application.
 var app = express()
 
+const logFormat = process.env.NODE_ENV === 'production' ? 'combined' : 'dev'
+
 if (process.env.NODE_ENV === 'production' && process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
   // register to Azure Application Insights service for telemetry purposes
   // instrumention key is provisioned from Azure App Service application setting (env variable)
@@ -36,7 +38,7 @@ if (process.env.NODE_ENV === 'production' && process.env.APPINSIGHTS_INSTRUMENTA
 }
 
 // add a request logger
-app.use(morgan('combined', { stream: winston.stream }))
+process.env.NODE_ENV !== 'test' && app.use(morgan(logFormat, { stream: winston.stream }))
 
 // view engine setup
 app.set('views', path.join(__dirname, './views'))

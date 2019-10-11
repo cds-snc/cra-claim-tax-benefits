@@ -316,7 +316,7 @@ describe('Full run through', function() {
     cy.get('input#review').click()
 
     cy.get('form button[type="submit"]')
-      .should('contain', 'Submit my return')
+      .should('contain', 'File my taxes now')
       .click()
   })
 

@@ -29,17 +29,6 @@ const express = require('express'),
 // initialize application.
 var app = express()
 
-const logFormat = process.env.NODE_ENV === 'production' ? 'combined' : 'dev'
-
-if (process.env.NODE_ENV === 'production' && process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
-  // register to Azure Application Insights service for telemetry purposes
-  // instrumention key is provisioned from Azure App Service application setting (env variable)
-  azureApplicationInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY).start()
-}
-
-// add a request logger
-process.env.NODE_ENV !== 'test' && app.use(morgan(logFormat, { stream: winston.stream }))
-
 // view engine setup
 app.set('views', path.join(__dirname, './views'))
 app.set('view engine', 'pug')
@@ -68,6 +57,17 @@ app.use(
 
 // public assets go here (css, js, etc)
 app.use(express.static(path.join(__dirname, 'public')))
+
+const logFormat = process.env.NODE_ENV === 'production' ? 'combined' : 'dev'
+
+if (process.env.NODE_ENV === 'production' && process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
+  // register to Azure Application Insights service for telemetry purposes
+  // instrumention key is provisioned from Azure App Service application setting (env variable)
+  azureApplicationInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY).start()
+}
+
+// add a request logger
+process.env.NODE_ENV !== 'test' && app.use(morgan(logFormat, { stream: winston.stream }))
 
 // dnsPrefetchControl controls browser DNS prefetching
 // frameguard to prevent clickjacking

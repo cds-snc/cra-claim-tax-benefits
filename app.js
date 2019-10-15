@@ -1,4 +1,3 @@
-// import environment variables.
 require('dotenv').config()
 const globalError = require('http-errors')
 
@@ -109,6 +108,25 @@ app.get('/clear', (req, res) => {
 
 app.use(function(req, res, next) {
   next(globalError(404))
+})
+
+// Pass error information to res.locals
+app.use((err, req, res, next) => {
+  let errObj = {}
+
+  let status = err.status || err.statusCode || 500
+  status = status < 400 ? 500 : status
+  res.statusCode = status
+
+  errObj.status = status
+  if (err.message) errObj.message = err.message
+  if (err.stack) errObj.stack = err.stack
+  if (err.code) errObj.code = err.code
+  if (err.name) errObj.name = err.name
+  if (err.type) errObj.type = err.type
+
+  res.locals.err = errObj
+  next(err)
 })
 
 module.exports = app

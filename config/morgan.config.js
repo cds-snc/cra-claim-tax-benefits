@@ -4,6 +4,10 @@ morgan.token('sessionId', function getSessionId(req) {
   return req.sessionId
 })
 
+morgan.token('err', function getSessionId(req, res) {
+  return res.locals.err
+})
+
 module.exports = (function morganConfig() {
   return process.env.NODE_ENV === 'production' ? jsonFormatProduction : jsonFormatDev
 })()
@@ -28,5 +32,6 @@ function jsonFormatProduction(tokens, req, res) {
     referrer: tokens['referrer'](req, res),
     'user-agent': tokens['user-agent'](req, res),
     sessionId: tokens['sessionId'](req, res),
+    err: tokens['err'](req, res),
   })
 }

@@ -122,17 +122,7 @@ const postLoginCode = async (req, res, next) => {
     })
   }
 
-  let user
-
-  if (process.env.CTBS_SERVICE_URL && req.body.code) {
-    user = await request({
-      method: 'GET',
-      uri: `${process.env.CTBS_SERVICE_URL}/${req.body.code}`,
-      json: true,
-    })
-  } else {
-    user = API.getUser(req.body.code || null)
-  }
+  const user = API.getUser('A5G98S4K1')
 
   if (!user) {
     throw new Error(`[POST ${req.path}] user not found for access code "${req.body.code}"`)

@@ -1,5 +1,4 @@
 const { validationResult, checkSchema } = require('express-validator')
-const request = require('request-promise')
 const {
   errorArray2ErrorObject,
   doRedirect,

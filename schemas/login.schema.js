@@ -16,10 +16,6 @@ const loginSchema = {
         return value ? value.toUpperCase() : value
       },
     },
-    isIn: {
-      options: [API.getMatches()],
-      errorMessage: 'errors.login.code',
-    },
   },
 }
 
@@ -37,17 +33,6 @@ const sinSchema = {
     },
     isInt: {
       errorMessage: 'errors.login.numericSIN',
-    },
-    custom: {
-      options: (value, { req }) => {
-        /* If there is no session, always return true */
-        if (!req.session || !req.session.personal) {
-          return true
-        }
-
-        return value === req.session.personal.sin
-      },
-      errorMessage: 'errors.login.sin',
     },
   },
 }
@@ -84,7 +69,6 @@ const isMatchingDoB = {
 const dobSchema = {
   dobDay: {
     ...isValidDay(),
-    ...validationArray([isMatchingDoB]),
   },
   dobMonth: {
     isInt: {

@@ -1,6 +1,5 @@
 const validator = require('validator')
-const { validationArray, currencySchema } = require('./utils.schema')
-const API = require('./../api')
+const { currencySchema } = require('./utils.schema')
 const { securityQuestionUrls } = require('../config/routes.config')
 
 const loginSchema = {
@@ -92,6 +91,7 @@ const _toISOFormat = ({ dobYear, dobMonth, dobDay }) => {
   return `${dobYear}-${if0(dobMonth)}-${if0(dobDay)}`
 }
 
+<<<<<<< HEAD
 const isMatchingDoB = {
   errorMessage: 'errors.login.dateOfBirth.match',
   validate: (value, req) => {
@@ -104,6 +104,8 @@ const isMatchingDoB = {
   },
 }
 
+=======
+>>>>>>> remove unused vars and functions to please LGTM
 const dobSchema = {
   dobDay: {
     ...isValidDay(),

@@ -11,11 +11,7 @@ const loginSchema = {
     },
     isAlphanumeric: {
       errorMessage: 'errors.login.alphanumeric',
-    },
-    isIn: {
-      options: [API.getMatches()],
-      errorMessage: 'errors.login.code',
-    },
+    }
   },
 }
 
@@ -46,6 +42,7 @@ const _getSinErrorMessage = (val, expectedSin) => {
 
 const sinSchema = {
   sin: {
+<<<<<<< HEAD
     custom: {
       options: (value, { req }) => {
         /* If there is no session, always return false */
@@ -60,6 +57,20 @@ const sinSchema = {
         return !errorMessage
       },
       errorMessage: () => sinError,
+=======
+    customSanitizer: {
+      options: value => {
+        //We want to remove any spaces, dash or underscores
+        return value ? value.replace(/[ \-_]*/g, '') : value
+      },
+    },
+    isLength: {
+      errorMessage: 'errors.login.lengthSIN',
+      options: { min: 9, max: 9 },
+    },
+    isInt: {
+      errorMessage: 'errors.login.numericSIN',
+>>>>>>> temp changes for usability testing purposes
     },
   },
 }
@@ -96,7 +107,6 @@ const isMatchingDoB = {
 const dobSchema = {
   dobDay: {
     ...isValidDay(),
-    ...validationArray([isMatchingDoB]),
   },
   dobMonth: {
     isInt: {

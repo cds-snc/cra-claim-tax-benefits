@@ -115,7 +115,6 @@ app.use((err, req, res, next) => {
   let errObj = {}
 
   let status = err.status || err.statusCode || 500
-  status = status < 400 ? 500 : status
   res.statusCode = status
 
   errObj.status = status

@@ -200,13 +200,6 @@ describe('Test /login responses', () => {
         expect(response.statusCode).toBe(302)
       })
 
-      it('it should return 422 for the wrong SIN', async () => {
-        const response = await authSession
-          .post('/login/sin')
-          .send({ sin: '123456789', redirect: '/login/sin' })
-        expect(response.statusCode).toBe(422)
-      })
-
       it('it should return 302 for the right SIN', async () => {
         const response = await authSession
           .post('/login/sin')
@@ -284,21 +277,10 @@ describe('Test /login responses', () => {
         },
       },
       {
-        label: 'date of birth day is greater than in that month',
+        label: 'date of birth DAY is greater than 31',
         send: {
           ...goodDoBRequest,
-          ...{ dobDay: '29', dobMonth: '02', dobYear: '2019' },
-        },
-      },
-      {
-        label: 'date of birth is less than a year ago',
-        send: {
-          ...goodDoBRequest,
-          ...{
-            dobDay: currentDate.getDate(),
-            dobMonth: currentDate.getMonth() - 3,
-            dobYear: currentDate.getFullYear(),
-          },
+          ...{ dobDay: '32', dobMonth: '02', dobYear: '2019' },
         },
       },
       {
@@ -489,13 +471,6 @@ describe('Test /login responses', () => {
             .send({ sin: '847339283', redirect: '/login/dateOfBirth' })
         })
       expect(response.statusCode).toBe(302)
-    })
-
-    it('it should return 422 for the wrong DoB', async () => {
-      const response = await authSession
-        .post('/login/dateOfBirth')
-        .send({ dobDay: '23', dobMonth: '03', dobYear: '1909', redirect: '/personal/name' })
-      expect(response.statusCode).toBe(422)
     })
 
     it('it should return 302 for the right DoB', async () => {

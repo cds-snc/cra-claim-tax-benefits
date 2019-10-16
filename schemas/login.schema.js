@@ -1,5 +1,4 @@
-const { validationArray, currencySchema } = require('./utils.schema')
-const API = require('./../api')
+const { currencySchema } = require('./utils.schema')
 const { securityQuestionUrls } = require('../config/routes.config')
 
 const loginSchema = {
@@ -52,18 +51,6 @@ const toISOFormat = ({ dobYear, dobMonth, dobDay }) => {
   const if0 = val => (val && val.length === 1 ? `0${val}` : val)
 
   return `${dobYear}-${if0(dobMonth)}-${if0(dobDay)}`
-}
-
-const isMatchingDoB = {
-  errorMessage: 'errors.login.dateOfBirth.match',
-  validate: (value, req) => {
-    /* If there is no session, always return true */
-    if (!req.session || !req.session.personal) {
-      return true
-    }
-
-    return toISOFormat(req.body) === req.session.personal.dateOfBirth
-  },
 }
 
 const dobSchema = {

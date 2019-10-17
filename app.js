@@ -67,13 +67,16 @@ if (process.env.NODE_ENV === 'production' && process.env.APPINSIGHTS_INSTRUMENTA
 process.env.NODE_ENV !== 'test' && app.use(morgan(morganConfig))
 
 // dnsPrefetchControl controls browser DNS prefetching
-// frameguard to prevent clickjacking
 // hidePoweredBy to remove the X-Powered-By header
 // hsts for HTTP Strict Transport Security
 // ieNoOpen sets X-Download-Options for IE8+
 // noSniff to keep clients from sniffing the MIME type
 // xssFilter adds some small XSS protections
-app.use(helmet())
+app.use(
+  helmet({
+    frameguard: false,
+  }),
+)
 app.use(helmet.contentSecurityPolicy({ directives: csp }))
 
 // gzip response body compression.

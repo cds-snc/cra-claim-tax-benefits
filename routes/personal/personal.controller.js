@@ -73,7 +73,7 @@ const postConfirmMaritalStatus = (req, res, next) => {
   if (confirmMaritalStatus === 'No') {
     //Income details are not correct
     //Lead them to the offramp
-    return res.redirect('/offramp')
+    return res.redirect('/offramp/maritalStatus')
   }
 
   next()

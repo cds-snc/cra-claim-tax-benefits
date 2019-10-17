@@ -27,6 +27,18 @@ variable "docker_image_name" {
   default = "cdssnc/cra-claim-tax-benefits:latest"
 }
 
+variable "appservice_port" {
+  description = "The port number to use for the appservice"
+  type = "string"
+  default = "3000" # Default port for Express application 
+}
+
+variable "appservice_log_retention_days" {
+  description = "The number of days to keep the logs"
+  type = "string"
+  default = "90" # Default value in Azure AppService
+}
+
 # Create Azure Application Insights≈y
 
 resource "azurerm_application_insights" "main" {
@@ -34,13 +46,6 @@ resource "azurerm_application_insights" "main" {
   location            = "${var.location}"
   resource_group_name = "${var.resource_group_name}"
   application_type    = "web"
-}
-
-# Get Azure Application Insights instrumentation key
-output "instrumentation_key" {
-  value = "${azurerm_application_insights.main.instrumentation_key}"
-  description = "The instrumentation key to be used as an environment in the Azure AppService"
-  sensitive = true
 }
 
 # Create Azure AppService
@@ -58,15 +63,10 @@ resource "azurerm_app_service" "main" {
   app_settings = {
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
     "DOCKER_REGISTRY_SERVER_URL"          = "https://index.docker.io"
-    "WEBSITE_HTTPLOGGING_RETENTION_DAYS"  = "90"
-    "WEBSITES_PORT"                       = "3005"
+    "WEBSITE_HTTPLOGGING_RETENTION_DAYS"  = "${var.appservice_log_retention_days}"
+    "WEBSITES_PORT"                       = "${var.appservice_port}"
     "APPINSIGHTS_INSTRUMENTATIONKEY"      = "${azurerm_application_insights.main.instrumentation_key}"
   }
-}
-
-# Display Azure AppService name
-output "app_service_name" {
-  value = "${azurerm_app_service.main.name}"
 }
 
 # Display Azure AppService URL/hostname

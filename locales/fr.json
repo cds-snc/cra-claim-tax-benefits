@@ -385,5 +385,11 @@
   "Enter your property tax": "Enter your property tax",
   "Your code has 9-characters and you can find it on the CRA": "Your code has 9-characters and you can find it on the CRA",
   " letter. The letter has your name and address at the top.": " letter. The letter has your name and address at the top.",
-  "Confirm": "Confirmer"
+  "Confirm": "Confirmer",
+  "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:": "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:",
+  "At a tax clinic, where you may be able to get help. Visit the CRA website to": "At a tax clinic, where you may be able to get help. Visit the CRA website to",
+  "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible",
+  "check if you are eligible for help at a free tax clinic.": "check if you are eligible for help at a free tax clinic.",
+  "With": "With",
+  "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:": "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:"
 }

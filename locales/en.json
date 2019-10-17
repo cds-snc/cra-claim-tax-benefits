@@ -178,8 +178,6 @@
   "RRSP (208)": "RRSP (208)",
   "A benefit signup prototype by the Canadian Digital Service": "A benefit signup prototype by the Canadian Digital Service",
   "This site will change as we test ideas.": "This site will change as we test ideas.",
-  "The income we have on file does not match your records": "The income we have on file does not match your records",
-  "If your records don’t match the income information displayed earlier, or you believe it to be incorrect, you shouldn’t use this service to file your taxes.": "If your records don’t match the income information displayed earlier, or you believe it to be incorrect, you shouldn’t use this service to file your taxes.",
   "Go back": "Go back",
   "Is this your name?": "Is this your name?",
   "Street address": "Street address",
@@ -418,5 +416,14 @@
   "Enter your property tax": "Enter your property tax",
   "Your code has 9-characters and you can find it on the CRA": "Your code has 9-characters and you can find it on the CRA",
   " letter. The letter has your name and address at the top.": " letter. The letter has your name and address at the top.",
-  "Confirm": "Confirm"
+  "Confirm": "Confirm",
+  "Body: You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:": "Body: You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:",
+  "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:": "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:",
+  "At a tax clinic, where you may be able to get help. Visit the CRA website to": "At a tax clinic, where you may be able to get help. Visit the CRA website to",
+  "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible",
+  "check if you are eligible for help at a free tax clinic.": "check if you are eligible for help at a free tax clinic.",
+  "With": "With",
+  "TTY: 1-800-665-0354": "TTY: 1-800-665-0354",
+  "There are also other free and secure ways to file your taxes:": "There are also other free and secure ways to file your taxes:",
+  "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:": "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:"
 }

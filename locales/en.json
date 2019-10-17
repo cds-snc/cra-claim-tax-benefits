@@ -184,9 +184,6 @@
   "RRSP (208)": "RRSP (208)",
   "A benefit signup prototype by the Canadian Digital Service": "A benefit signup prototype by the Canadian Digital Service",
   "This site will change as we test ideas.": "This site will change as we test ideas.",
-  "Continue with an incorrect name on file": "Continue with an incorrect name on file",
-  "Without your correct name on file, you can’t file your taxes using this online service. You can still file using the Claim Tax Benefits service – follow the instructions on page X of the paper package we mailed to you.": "Without your correct name on file, you can’t file your taxes using this online service. You can still file using the Claim Tax Benefits service – follow the instructions on page X of the paper package we mailed to you.",
-  "There are also other free and secure ways to file your taxes:": "There are also other free and secure ways to file your taxes:",
   "This service is only available to residents of Ontario": "This service is only available to residents of Ontario",
   "Since you weren’t a resident of Ontario on December 31, 2018, you can’t use this service to file your taxes.": "Since you weren’t a resident of Ontario on December 31, 2018, you can’t use this service to file your taxes.",
   "The income we have on file does not match your records": "The income we have on file does not match your records",
@@ -360,7 +357,6 @@
   "You have filed your 2018 taxes": "You have filed your 2018 taxes",
   "Your 2018 filing number is": "Your 2018 filing number is",
   "Give CRA this number if you need help or information. You can contact CRA by:": "Give CRA this number if you need help or information. You can contact CRA by:",
-  "TTY: 1-800-665-0354": "TTY: 1-800-665-0354",
   "You can also get help at a free tax clinic. Visit": "You can also get help at a free tax clinic. Visit",
   "Print summary of your 2018 tax return": "Print summary of your 2018 tax return",
   "It is important to read your Notice of Assessment which shows:": "It is important to read your Notice of Assessment which shows:",
@@ -423,5 +419,10 @@
   "File my taxes now": "File my taxes now",
   "As far as I know, everything in this tax return is correct": "As far as I know, everything in this tax return is correct",
   "You can expect the following benefits and refund from your 2018 taxes.": "You can expect the following benefits and refund from your 2018 taxes.",
-  "Please check this information. If anything looks wrong, contact CRA before filing by:": "Please check this information. If anything looks wrong, contact CRA before filing by:"
+  "Please check this information. If anything looks wrong, contact CRA before filing by:": "Please check this information. If anything looks wrong, contact CRA before filing by:",
+  "Change your name with CRA": "Change your name with CRA",
+  "You can still use this online service with the name CRA has on your file.": "You can still use this online service with the name CRA has on your file.",
+  "TTY (text telephone): 1-800-665-0354": "TTY (text telephone): 1-800-665-0354",
+  "You can also": "You can also",
+  "ask CRA to change the name on your file.": "ask CRA to change the name on your file."
 }

@@ -22,7 +22,6 @@ block content
 
     div
       p #{__('For more information, contact CRA by:')}
-        ul
-          li #{__('Phone: 1-800-959-8281')}
-          li #{__('TTY (Teletypewriter): 1-800-665-0354')}
+      include ../_includes/phone-bullets
+      
     +formButtons('Continue', '/deductions/medical')

@@ -116,11 +116,9 @@
   "Employer 1 Total Income": "Employeur 1 Revenu total",
   "Employer 2 Total Income": "Employeur 2 Revenu total",
   "Total Income for 2018": "Revenu total pour 2018",
-  "Total tax": "Impôt total",
   "Detailed breakdown of taxes paid in 2018": "Répartition détaillée des impôts payés en 2018",
   "Federal tax deduction": "Déduction de l’impôt fédéral",
   "Provincial tax deduction": "Déduction de l’impôt provincial",
-  "CPP deduction": "Déduction du RPC",
   "Total tax paid for 2018": "Total des impôts payés en 2018",
   "Is this information correct?": "Ces renseignements sont-ils exacts?",
   "Enter your political contributions": "Inscrivez le montant de vos contributions politiques",
@@ -134,7 +132,6 @@
   "Widowed": "Veuf/veuve",
   "Net Federal tax deduction": "Déduction de l’impôt fédéral net",
   "Net Provincial tax deduction": "Déduction de l’impôt provincial net",
-  "EI deduction": "Déduction d’assurance-emploi",
   "Medical expenses": "Frais médicaux",
   "Would you like to claim medical expenses?": "Souhaitez-vous demander des frais médicaux?",
   "the CRA's guide to eligible medical expenses": "guide des frais médicaux admissibles de l’ARC ",
@@ -219,7 +216,6 @@
   "Enter your province or territory": "Enter your province or territory",
   "On December 31, 2018, what was the province or territory of your home address?": "On December 31, 2018, what was the province or territory of your home address?",
   "Check your income information for the 2018 tax year": "Check your income information for the 2018 tax year",
-  "CRA has information about your 2018 income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.": "CRA has information about your 2018 income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.",
   "Is all of this information correct?": "Is all of this information correct?",
   "Check your mailing address": "Check your mailing address",
   "Is this your correct address?": "Is this your correct address?",
@@ -374,5 +370,9 @@
   "As far as I know, everything in this tax return is correct": "As far as I know, everything in this tax return is correct",
   "File my taxes now": "File my taxes now",
   "You can expect the following benefits and refund from your 2018 taxes.": "You can expect the following benefits and refund from your 2018 taxes.",
-  "Please check this information. If anything looks wrong, contact CRA before filing by:": "Please check this information. If anything looks wrong, contact CRA before filing by:"
+  "Please check this information. If anything looks wrong, contact CRA before filing by:": "Please check this information. If anything looks wrong, contact CRA before filing by:",
+  "Please check that CRA has your correct amounts for 2018. You may add credits and deductions later, but you won't be able to change the amounts for your income and taxes paid.": "Please check that CRA has your correct amounts for 2018. You may add credits and deductions later, but you won't be able to change the amounts for your income and taxes paid.",
+  "Total tax paid in 2018": "Total tax paid in 2018",
+  "Canada Pension Plan (CPP) deduction": "Canada Pension Plan (CPP) deduction",
+  "Employment Insurance (EI) deduction": "Employment Insurance (EI) deduction"
 }

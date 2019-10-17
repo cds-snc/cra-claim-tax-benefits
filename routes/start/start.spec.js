@@ -80,7 +80,7 @@ describe('Test server responses', () => {
       - https://helmetjs.github.io/docs/
     */
     expect(response.headers['x-dns-prefetch-control']).toEqual('off')
-    expect(response.headers['x-frame-options']).toEqual('SAMEORIGIN')
+    expect(response.headers['x-frame-options']).toBeUndefined()
     expect(response.headers['strict-transport-security']).toEqual(
       'max-age=15552000; includeSubDomains',
     )

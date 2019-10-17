@@ -32,20 +32,20 @@ block content
       p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
 
       dl.breakdown-table-data
-        each benefit in benefits
-          if benefit.name !== "totalBenefits"
+        each benefit, index in benefits
+          if index !== "totalBenefits"
             .breakdown-table__row
               dt.breakdown-table__row-key #{__(`${benefit.name}`)}
               dd.breakdown-table__row-value $#{currencyFilter(benefit.amount)}
 
         .breakdown-table__row.breakdown-table__row--summary
-          dt.breakdown-table__row-key #{__('Total Benefits')}
+          dt.breakdown-table__row-key #{__('Total benefits')}
           dd.breakdown-table__row-value $#{currencyFilter(totalBenefits)}
 
   div
     .breakdown-table
       h2.breakdown-table__heading
-        span #{__('Your expected refund')}
+        span #{__('Your expected 2018 refund')}
         span +$#{currencyFilter(totalRefund.amount)}
 
       p.breakdown-table__subheading #{__('Detailed breakdown of tax refund')}
@@ -71,7 +71,7 @@ block content
           +validationMessage(errors.review.msg, key)
         .multiple-choice__item
           input(id='review' name='review' type="checkbox" value="review" checked=(value =='review') aria-describedby=(errors ? `review-error` : false))
-          label(for='review') #{__('As far as I know, everything in this tax return is correct')}
+          label(for='review') #{__('As far as you know, everything in this tax return is correct')}
 
     input#redirect(name='redirect', type='hidden', value='/confirmation')
 

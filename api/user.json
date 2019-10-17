@@ -35,24 +35,24 @@
     ],
     "incomes": {
       "totalIncome": {
-        "name": "Total Income",
+        "name": "Total income",
         "line": 150,
         "amount": 21305.10
       },
       "netIncome": {
-        "name": "Net Income",
+        "name": "Net income",
         "line": 236,
         "amount": 19305.10
       },
       "taxableIncome": {
-        "name": "Taxable Income",
+        "name": "Taxable income",
         "line": 260,
         "amount": 19305.10
       }
     },
     "taxes": {
       "federal": {
-        "name": "Net Federal tax",
+        "name": "Net federal tax",
         "amount": 1060.00,
         "line": 420
       },
@@ -105,7 +105,7 @@
       "amount": 0.00
     },
     "basicPersonalAmount": {
-      "name": "Basic Personal Amount",
+      "name": "Basic personal amount",
       "line": 300,
       "amount": 11809.00
     },
@@ -131,7 +131,7 @@
     "dependentDisabilityClaim": null,
     "medicalExpenseClaim": null,
     "medicalExpenseClaimAmount": {
-      "name": "Medical Expenses",
+      "name": "Medical expenses",
       "line": 330,
       "amount": 0.00
     },
@@ -160,12 +160,12 @@
   },
   "refund": {
     "totalPayable": {
-      "name": "Total Payable",
+      "name": "Total payable",
       "line": 435,
       "amount": 1593.00
     },
     "totalDeducted": {
-      "name": "Total Deducted",
+      "name": "Total deducted",
       "line": 437,
       "amount": 2312.88
     },
@@ -174,7 +174,7 @@
       "amount": 2500.00
     },
     "totalRefund": {
-      "name": "Total Refund",
+      "name": "Total refund",
       "line": 484,
       "amount": 719.88
     }
@@ -185,7 +185,7 @@
        "amount": "154.00"
     },
     "gsthstc": {
-       "name": "GST/HSTC",
+       "name": "Goods and services tax/harmonized sales tax (GST/HST) credit",
        "amount": "440.00"
     },
     "ontarioTrilliumBenefit": {
@@ -193,7 +193,7 @@
        "amount": "307.92"
     },
     "totalBenefits": {
-       "name": "Total Benefits",
+       "name": "Total benefits",
        "amount": "901.92"
     }
  }

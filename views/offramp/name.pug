@@ -2,7 +2,7 @@ extends ../base
 include ../_includes/banner
 
 block variables
-  -var title = __('Continue with an incorrect name on file')
+  -var title = __('Change your name with CRA')
 
 block content
 
@@ -11,8 +11,8 @@ block content
   
 
   .offramp
-    p #{__('Without your correct name on file, you can’t file your taxes using this online service. You can still file using the Claim Tax Benefits service – follow the instructions on page X of the paper package we mailed to you.')}
+    p #{__('If your name has changed . . . you can still file under your previous name. To change the name on your CRA file, visit')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html')}>#{__('the CRA website.')}</a>
 
     div
-      p #{__('There are also other free and secure ways to file your taxes:')}
-      include ../_includes/offramp-bullets
+      p #{__('For more information, contact CRA by:')}
+      include ../_includes/phone-bullets

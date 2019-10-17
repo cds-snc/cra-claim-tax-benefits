@@ -184,9 +184,6 @@
   "RRSP (208)": "RRSP (208)",
   "A benefit signup prototype by the Canadian Digital Service": "A benefit signup prototype by the Canadian Digital Service",
   "This site will change as we test ideas.": "This site will change as we test ideas.",
-  "Continue with an incorrect name on file": "Continue with an incorrect name on file",
-  "Without your correct name on file, you can’t file your taxes using this online service. You can still file using the Claim Tax Benefits service – follow the instructions on page X of the paper package we mailed to you.": "Without your correct name on file, you can’t file your taxes using this online service. You can still file using the Claim Tax Benefits service – follow the instructions on page X of the paper package we mailed to you.",
-  "There are also other free and secure ways to file your taxes:": "There are also other free and secure ways to file your taxes:",
   "This service is only available to residents of Ontario": "This service is only available to residents of Ontario",
   "Since you weren’t a resident of Ontario on December 31, 2018, you can’t use this service to file your taxes.": "Since you weren’t a resident of Ontario on December 31, 2018, you can’t use this service to file your taxes.",
   "The income we have on file does not match your records": "The income we have on file does not match your records",
@@ -423,5 +420,8 @@
   "File my taxes now": "File my taxes now",
   "As far as I know, everything in this tax return is correct": "As far as I know, everything in this tax return is correct",
   "You can expect the following benefits and refund from your 2018 taxes.": "You can expect the following benefits and refund from your 2018 taxes.",
-  "Please check this information. If anything looks wrong, contact CRA before filing by:": "Please check this information. If anything looks wrong, contact CRA before filing by:"
+  "Please check this information. If anything looks wrong, contact CRA before filing by:": "Please check this information. If anything looks wrong, contact CRA before filing by:",
+  "Change your name with CRA": "Change your name with CRA",
+  "If your name has changed . . . you can still file under your previous name. To change the name on your CRA file, visit": "If your name has changed . . . you can still file under your previous name. To change the name on your CRA file, visit",
+  "the CRA website.": "the CRA website."
 }

@@ -181,9 +181,6 @@
   "RRSP (208)": "RRSP (208)",
   "A benefit signup prototype by the Canadian Digital Service": "A benefit signup prototype by the Canadian Digital Service",
   "This site will change as we test ideas.": "This site will change as we test ideas.",
-  "Continue with an incorrect name on file": "Continue with an incorrect name on file",
-  "Without your correct name on file, you can’t file your taxes using this online service. You can still file using the Claim Tax Benefits service – follow the instructions on page X of the paper package we mailed to you.": "Without your correct name on file, you can’t file your taxes using this online service. You can still file using the Claim Tax Benefits service – follow the instructions on page X of the paper package we mailed to you.",
-  "There are also other free and secure ways to file your taxes:": "There are also other free and secure ways to file your taxes:",
   "This service is only available to residents of Ontario": "This service is only available to residents of Ontario",
   "Since you weren’t a resident of Ontario on December 31, 2018, you can’t use this service to file your taxes.": "Since you weren’t a resident of Ontario on December 31, 2018, you can’t use this service to file your taxes.",
   "The income we have on file does not match your records": "The income we have on file does not match your records",
@@ -246,7 +243,6 @@
   " letter.": " letter.",
   "Enter your province or territory": "Enter your province or territory",
   "On December 31, 2018, what was the province or territory of your home address?": "On December 31, 2018, what was the province or territory of your home address?",
-  "Province or territory of your home address": "Province or territory of your home address",
   "Check your income information for the 2018 tax year": "Check your income information for the 2018 tax year",
   "Is all of this information correct?": "Is all of this information correct?",
   "Check your mailing address": "Check your mailing address",
@@ -357,7 +353,6 @@
   "You have filed your 2018 taxes": "You have filed your 2018 taxes",
   "Your 2018 filing number is": "Your 2018 filing number is",
   "Give CRA this number if you need help or information. You can contact CRA by:": "Give CRA this number if you need help or information. You can contact CRA by:",
-  "TTY: 1-800-665-0354": "TTY: 1-800-665-0354",
   "You can also get help at a free tax clinic. Visit": "You can also get help at a free tax clinic. Visit",
   "Print summary of your 2018 tax return": "Print summary of your 2018 tax return",
   "It is important to read your Notice of Assessment which shows:": "It is important to read your Notice of Assessment which shows:",
@@ -424,5 +419,10 @@
   "Please check that CRA has your correct amounts for 2018. You may add credits and deductions later, but you won't be able to change the amounts for your income and taxes paid.": "Please check that CRA has your correct amounts for 2018. You may add credits and deductions later, but you won't be able to change the amounts for your income and taxes paid.",
   "Total tax paid in 2018": "Total tax paid in 2018",
   "Canada Pension Plan (CPP) deduction": "Canada Pension Plan (CPP) deduction",
-  "Employment Insurance (EI) deduction": "Employment Insurance (EI) deduction"
+  "Employment Insurance (EI) deduction": "Employment Insurance (EI) deduction",
+  "Change your name with CRA": "Change your name with CRA",
+  "You can still use this online service with the name CRA has on your file.": "You can still use this online service with the name CRA has on your file.",
+  "TTY (text telephone): 1-800-665-0354": "TTY (text telephone): 1-800-665-0354",
+  "You can also": "You can also",
+  "ask CRA to change the name on your file.": "ask CRA to change the name on your file."
 }

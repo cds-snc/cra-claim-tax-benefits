@@ -215,7 +215,6 @@
   " letter.": "de l’ARC",
   "Enter your province or territory": "Enter your province or territory",
   "On December 31, 2018, what was the province or territory of your home address?": "On December 31, 2018, what was the province or territory of your home address?",
-  "Province or territory of your home address": "Province or territory of your home address",
   "Check your income information for the 2018 tax year": "Check your income information for the 2018 tax year",
   "Is all of this information correct?": "Is all of this information correct?",
   "Check your mailing address": "Check your mailing address",
@@ -375,5 +374,10 @@
   "Please check that CRA has your correct amounts for 2018. You may add credits and deductions later, but you won't be able to change the amounts for your income and taxes paid.": "Please check that CRA has your correct amounts for 2018. You may add credits and deductions later, but you won't be able to change the amounts for your income and taxes paid.",
   "Total tax paid in 2018": "Total tax paid in 2018",
   "Canada Pension Plan (CPP) deduction": "Canada Pension Plan (CPP) deduction",
-  "Employment Insurance (EI) deduction": "Employment Insurance (EI) deduction"
+  "Employment Insurance (EI) deduction": "Employment Insurance (EI) deduction",
+  "Change your name with CRA": "Change your name with CRA",
+  "You can still use this online service with the name CRA has on your file.": "You can still use this online service with the name CRA has on your file.",
+  "TTY (text telephone): 1-800-665-0354": "TTY (text telephone): 1-800-665-0354",
+  "You can also": "You can also",
+  "ask CRA to change the name on your file.": "ask CRA to change the name on your file."
 }

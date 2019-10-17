@@ -7,14 +7,9 @@ block content
 
   h1 #{title}
 
-  
-
-  div
-    p #{__('On December 31, 2018, what was the province or territory of your home address?')}
-
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.residence})
-      label(for='residence', name="residence-label") #{__('Province or territory of your home address')}
+      label(for='residence', name="residence-label") #{__('On December 31, 2018, what was the province or territory of your home address?')}
       if errors
           +validationMessage(errors.residence.msg, 'residence')
       select#residence(name='residence', autofocus, aria-describedby=(errors && errors.residence ? 'residence-error' : false))

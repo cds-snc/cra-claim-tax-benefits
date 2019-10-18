@@ -401,6 +401,7 @@
   "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:": "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:",
   "Confirm": "Confirmer",
   "You can’t use this online service because your marital status doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:": "You can’t use this online service because your marital status doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:",
+  "You can’t use this online service because your address doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:": "You can’t use this online service because your address doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:",
   "By mail, using the form sent with the CRA Claim Tax Benefits letter. You can update your marital status on the form.": "By mail, using the form sent with the CRA Claim Tax Benefits letter. You can update your marital status on the form.",
   "At a tax clinic, where you may be able to get help. Visit the CRA website to": "At a tax clinic, where you may be able to get help. Visit the CRA website to",
   "check if you are eligible for help at a free tax clinic. You can change your marital status at a tax clinic.": "check if you are eligible for help at a free tax clinic. You can change your marital status at a tax clinic.",
@@ -408,8 +409,6 @@
   "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/update-your-marital-status-canada-revenue-agency.html": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/update-your-marital-status-canada-revenue-agency.html",
   "visiting the CRA website.": "visiting the CRA website.",
   "You can use NETFILE software when you are sure CRA has updated your marital status. You can check with CRA:": "You can use NETFILE software when you are sure CRA has updated your marital status. You can check with CRA:",
-  "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/account-individuals.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_my-cra-account": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/account-individuals.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_my-cra-account",
-  "canada.ca/my-cra-account": "canada.ca/my-cra-account",
   "At a tax clinic, where you may be able to get help.": "At a tax clinic, where you may be able to get help.",
   "if you can use a tax clinic. You can change your marital status at a tax clinic.": "if you can use a tax clinic. You can change your marital status at a tax clinic.",
   "You can also file online with ": "You can also file online with ",
@@ -430,5 +429,12 @@
   "instructions for changing marital status.": "instructions for changing marital status.",
   "By phone: 1-800-959-8281": "By phone: 1-800-959-8281",
   "By TTY (text telephone): 1-800-665-0354": "By TTY (text telephone): 1-800-665-0354",
-  "By mail, using the form sent with the CRA ": "By mail, using the form sent with the CRA "
+  "By mail, using the form sent with the CRA ": "By mail, using the form sent with the CRA ",
+  "Online, using My Account. If you don’t have My Account, you can sign up at": "Online, using My Account. If you don’t have My Account, you can sign up at",
+  "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/account-individuals.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_my-cra-account": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/account-individuals.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_my-cra-account",
+  "canada.ca/my-cra-account": "canada.ca/my-cra-account",
+  "By mail, using the form sent with the CRA Claim Tax Benefits letter. You can change your address on the form.": "By mail, using the form sent with the CRA Claim Tax Benefits letter. You can change your address on the form.",
+  "At a tax clinic, where you may be able to get help. You can change your address at the tax clinic. Visit the CRA website to": "At a tax clinic, where you may be able to get help. You can change your address at the tax clinic. Visit the CRA website to",
+  "You can also use CRA software called NETFILE for your taxes. But first you should change your address with CRA. You can change your marital status by": "You can also use CRA software called NETFILE for your taxes. But first you should change your address with CRA. You can change your marital status by",
+  "You can use NETFILE when you are sure CRA has updated your address. Check with CRA:": "You can use NETFILE when you are sure CRA has updated your address. Check with CRA:"
 }

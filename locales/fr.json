@@ -258,7 +258,6 @@
   "Apply for the OTB on the pages that follow.": "Apply for OTB on the pages that follow.",
   "Apply for the OTB: rent payments": "Apply for OTB: rent payments",
   "Did you pay rent for the place you lived most of 2018?": "Did you pay rent for the place you lived most of 2018?",
-  "Enter your rent payments to apply for OTB": "Enter your rent payments to apply for OTB",
   "The government might ask for your rent receipts.": "The government might ask for your rent receipts.",
   "How much total rent did you pay for the place you lived most of 2018?": "How much total rent did you pay for the place you lived most of 2018?",
   "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html": "https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/programmes-provinciaux-territoriaux/questions-reponses-prestation-trillium-ontario.html",
@@ -382,5 +381,6 @@
   "You agree that CRA can use this information to file your 2018 taxes.": "You agree that CRA can use this information to file your 2018 taxes.",
   "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
   "Learn about RRSPs": "Learn about RRSPs",
-  "Political contributions": "Political contributions"
+  "Political contributions": "Political contributions",
+  "Enter your rent": "Enter your rent"
 }

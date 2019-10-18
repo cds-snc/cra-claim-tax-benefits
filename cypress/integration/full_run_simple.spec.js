@@ -99,10 +99,7 @@ describe('Full run through', function() {
   it('navigates the RRSP Deductions page', function() {
     //DEDUCTIONS RRSP
     cy.url().should('contain', '/deductions/rrsp')
-    cy.get('h1').should(
-      'contain',
-      'Deduct your Registered Retirement Savings Plan (RRSP) contributions',
-    )
+    cy.get('h1').should('contain', 'Registered Retirement Savings Plan (RRSP) contributions')
 
     cy.get('input#rrspClaim1 + label').should('have.attr', 'for', 'rrspClaim1')
 
@@ -150,7 +147,7 @@ describe('Full run through', function() {
   it('navigates the Political Deductions page', function() {
     //DEDUCTIONS POLITICAL
     cy.url().should('contain', '/deductions/political')
-    cy.get('h1').should('contain', 'Deduct political contributions')
+    cy.get('h1').should('contain', 'Political contributions')
 
     cy.get('input#politicalContributionClaim1 + label').should(
       'have.attr',
@@ -316,7 +313,7 @@ describe('Full run through', function() {
     cy.get('input#review').click()
 
     cy.get('form button[type="submit"]')
-      .should('contain', 'File my taxes now')
+      .should('contain', 'File your taxes now')
       .click()
   })
 

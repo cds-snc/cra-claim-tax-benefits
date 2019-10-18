@@ -251,7 +251,6 @@
   "Check your marital status": "Check your marital status",
   "Is this correct?": "Is this correct?",
   "Marital status": "Marital status",
-  "Deduct political contributions": "Deduct political contributions",
   "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.": "Your taxes may be lower if you gave money to an election campaign or political party. You will need an official contribution receipt from the candidate or political party.",
   "Do you have receipts for political contributions made in 2018?": "Do you have receipts for political contributions made in 2018?",
   "Total 2018 federal political contributions": "Total 2018 federal political contributions",
@@ -427,5 +426,6 @@
   "File your taxes now": "File your taxes now",
   "You agree that CRA can use this information to file your 2018 taxes.": "You agree that CRA can use this information to file your 2018 taxes.",
   "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
-  "Learn about RRSPs": "Learn about RRSPs"
+  "Learn about RRSPs": "Learn about RRSPs",
+  "Political contributions": "Political contributions"
 }

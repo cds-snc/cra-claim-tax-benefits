@@ -183,16 +183,6 @@ describe('Full run through', function() {
       .click()
   })
 
-  it('navigates the Trillium Start page', function() {
-    //TRILLIUM START PAGE
-    cy.url().should('contain', '/trillium/start')
-    cy.get('h1').should('contain', 'The Ontario Trillium Benefit')
-
-    cy.get(`a[href="/trillium/rent"]`)
-      .should('contain', 'Continue')
-      .click()
-  })
-
   it('navigates the Trillium Rent page', function() {
     //TRILLIUM RENT
     cy.url().should('contain', '/trillium/rent')

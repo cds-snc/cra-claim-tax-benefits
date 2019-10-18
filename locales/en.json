@@ -53,7 +53,6 @@
   "Date of birth": "Date of birth",
   "Cancel": "Cancel",
   "Enter your Social Insurance Number (SIN)": "Enter your Social Insurance Number (SIN)",
-  "Thanks,": "Thanks,",
   "Social Insurance Number": "Social Insurance Number",
   "Error:": "Error:",
   "Full name": "Full name",
@@ -427,5 +426,7 @@
   "You agree that CRA can use this information to file your 2018 taxes.": "You agree that CRA can use this information to file your 2018 taxes.",
   "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
   "Learn about RRSPs": "Learn about RRSPs",
-  "Political contributions": "Political contributions"
+  "Political contributions": "Political contributions",
+  "thanks for your filing code": "thanks for your filing code",
+  "You can find your SIN on your tax return or other mail from Service Canada. Service Canada also gave you a card or confirmation letter with your SIN.": "You can find your SIN on your tax return or other mail from Service Canada. Service Canada also gave you a card or confirmation letter with your SIN."
 }

@@ -51,7 +51,6 @@
   "Continue": "Continuer",
   "Cancel": "Annuler",
   "Enter your Social Insurance Number (SIN)": "Entrez votre numéro d’assurance sociale (NAS)",
-  "Thanks,": "Merci,",
   "Social Insurance Number": "Numéro d’assurance sociale",
   "Full name": "Nom complet",
   "Help with name confirmation": "Aide relative à la confirmation du nom",
@@ -382,5 +381,9 @@
   "You agree that CRA can use this information to file your 2018 taxes.": "You agree that CRA can use this information to file your 2018 taxes.",
   "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
   "Learn about RRSPs": "Learn about RRSPs",
-  "Political contributions": "Political contributions"
+  "Political contributions": "Political contributions",
+  "thanks for your filing code": "thanks for your filing code",
+  "Social insurance number": "Social insurance number",
+  "Help with Social insurance number": "Help with Social insurance number",
+  "You can find your SIN on your tax return or other mail from Service Canada. Service Canada also gave you a card or confirmation letter with your SIN.": "You can find your SIN on your tax return or other mail from Service Canada. Service Canada also gave you a card or confirmation letter with your SIN."
 }

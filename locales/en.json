@@ -246,7 +246,6 @@
   "Is all of this information correct?": "Is all of this information correct?",
   "Check your mailing address": "Check your mailing address",
   "Is this your correct address?": "Is this your correct address?",
-  "Deduct your Registered Retirement Savings Plan (RRSP) contributions": "Deduct your Registered Retirement Savings Plan (RRSP) contributions",
   "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?": "Did you contribute to a Registered Retirement Savings Plan (RRSP) before March 1, 2019?",
   "Total RRSP contributions before March 1, 2019": "Total RRSP contributions before March 1, 2019",
   "Check your marital status": "Check your marital status",
@@ -426,5 +425,7 @@
   "You can also": "You can also",
   "ask CRA to change the name on your file.": "ask CRA to change the name on your file.",
   "File your taxes now": "File your taxes now",
-  "You agree that CRA can use this information to file your 2018 taxes.": "You agree that CRA can use this information to file your 2018 taxes."
+  "You agree that CRA can use this information to file your 2018 taxes.": "You agree that CRA can use this information to file your 2018 taxes.",
+  "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
+  "Learn more about RRSPs": "Learn more about RRSPs"
 }

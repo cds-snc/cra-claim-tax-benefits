@@ -184,7 +184,7 @@ const doYesNo = (claim, amount) => {
 /* Pug filters */
 /**
  * Accepts a string (assumed to be a SIN)
- * If it is 9 characters long 9, this function returns a string with
+ * If it is 9 characters long, this function returns a string with
  * a space inserted after the 3rd character and the 6th character
  *
  * ie, "847339283" => "847 339 283"
@@ -192,10 +192,7 @@ const doYesNo = (claim, amount) => {
  * @param string text a 9-character string assumed to be a social insurance number
  */
 const SINFilter = text => {
-  if (text.length === 9) {
-    text = text.slice(0, 3) + ' ' + text.slice(3, 6) + ' ' + text.slice(6)
-  }
-  return text
+  return text.length === 9 ? `${text.slice(0, 3)} ${text.slice(3, 6)} ${text.slice(6)}` : text
 }
 
 /**

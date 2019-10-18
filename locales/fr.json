@@ -201,8 +201,6 @@
   "Student residence": "Student residence",
   "Public long-term care home": "Public long-term care home",
   "Small or rural community": "Small or rural community",
-  "For Example: A5G98S4K1": "For Example: A5G98S4K1",
-  "Your code has 9-characters and you can find it on the CRA letter about the Claim Tax Benefits service. The letter has your name and address at the top.": "Votre code contient 9 caractères. Vous le trouverez dans la lettre de l'ARC au sujet du service Réclamer des avantages fiscaux. Votre nom et votre adresse figurent au haut de la lettre.",
   "Enter your personal filing code": "Entrez votre code personnel de déclaration de revenus",
   "Personal filing code": "Code personnel de déclaration de revenus",
   "Help with personal filing code": "Aide relative au code personnel de déclaration de revenus",
@@ -382,5 +380,7 @@
   "You agree that CRA can use this information to file your 2018 taxes.": "You agree that CRA can use this information to file your 2018 taxes.",
   "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
   "Learn about RRSPs": "Learn about RRSPs",
-  "Political contributions": "Political contributions"
+  "Political contributions": "Political contributions",
+  "For Example: a5g98s4k1": "For Example: a5g98s4k1",
+  "Your code has 9-characters and you can find it on the CRA Claim Tax Benefits letter. The letter has your name and address at the top.": "Your code has 9-characters and you can find it on the CRA Claim Tax Benefits letter. The letter has your name and address at the top."
 }

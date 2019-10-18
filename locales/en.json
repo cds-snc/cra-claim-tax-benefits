@@ -186,7 +186,6 @@
   "If your records don’t match the income information displayed earlier, or you believe it to be incorrect, you shouldn’t use this service to file your taxes.": "If your records don’t match the income information displayed earlier, or you believe it to be incorrect, you shouldn’t use this service to file your taxes.",
   "Go back": "Go back",
   "Is this your name?": "Is this your name?",
-  "For Example: A5G98S4K1": "For Example: A5G98S4K1",
   "Street address": "Street address",
   "Day": "Day",
   "Month": "Month",
@@ -228,7 +227,6 @@
   "Enter your personal filing code": "Enter your personal filing code",
   "Help with personal filing code": "Help with personal filing code",
   "service.name ": "service.name ",
-  "Your code has 9-characters and you can find it on the CRA letter about the Claim Tax Benefits service. The letter has your name and address at the top.": "Your code has 9-characters and you can find it on the CRA letter about the Claim Tax Benefits service. The letter has your name and address at the top.",
   "Enter your Social insurance number (SIN)": "Enter your Social insurance number (SIN)",
   "Your personal filing code was validated!": "Your personal filing code was validated!",
   "Social insurance number": "Social insurance number",
@@ -427,5 +425,7 @@
   "You agree that CRA can use this information to file your 2018 taxes.": "You agree that CRA can use this information to file your 2018 taxes.",
   "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
   "Learn about RRSPs": "Learn about RRSPs",
-  "Political contributions": "Political contributions"
+  "Political contributions": "Political contributions",
+  "For Example: a5g98s4k1": "For Example: a5g98s4k1",
+  "Your code has 9-characters and you can find it on the CRA Claim Tax Benefits letter. The letter has your name and address at the top.": "Your code has 9-characters and you can find it on the CRA Claim Tax Benefits letter. The letter has your name and address at the top."
 }

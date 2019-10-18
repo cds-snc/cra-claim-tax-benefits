@@ -71,7 +71,7 @@ block content
           +validationMessage(errors.review.msg, key)
         .multiple-choice__item
           input(id='review' name='review' type="checkbox" value="review" checked=(value =='review') aria-describedby=(errors ? `review-error` : false))
-          label(for='review') #{__('As far as you know, everything in this tax return is correct')}
+          label(for='review') #{__('You agree that CRA can use this information to file your 2018 taxes.')}
 
     input#redirect(name='redirect', type='hidden', value='/confirmation')
 

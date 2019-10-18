@@ -14,7 +14,7 @@ block content
   h1 #{title}
 
   div
-    p #{__(`CRA has information about your ${year} income. Please check this information. Later you will be able to enter more information to claim credits and deduct costs.`)}
+    p #{__(`Please check that CRA has your correct amounts for ${year}. You may add credits and deductions later, but you won't be able to change the amounts for your income and taxes paid.`)}
 
   if incomeSources
     .breakdown-table
@@ -36,7 +36,7 @@ block content
 
   .breakdown-table
       h2.breakdown-table__heading
-        span #{__('Total tax')}
+        span #{__(`Total tax paid in ${year}`)}
         span.breakdown-table__heading $#{currencyFilter(totalTax, 2)}
 
       p.breakdown-table__subheading #{__(`Detailed breakdown of taxes paid in ${year}`)}

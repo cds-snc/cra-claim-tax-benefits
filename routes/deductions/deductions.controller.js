@@ -191,19 +191,12 @@ module.exports = function(app) {
     doYesNo('trilliumEnergyCostClaim', 'trilliumEnergyAmount'),
     doRedirect,
   )
-  app.get('/trillium/energy/cost', renderWithData('deductions/trillium-energy-cost'))
-  app.post(
-    '/trillium/energy/cost',
-    checkSchema(trilliumEnergyCostSchema),
-    checkErrors('deductions/trillium-energy-cost'),
-    doYesNo('trilliumEnergyCostClaim', 'trilliumEnergyAmount'),
-    doRedirect,
-  )
-  app.get('/trillium/energy/cost/amount', renderWithData('deductions/trillium-energy-amount'))
+
+  app.get('/trillium/energy/cost/amount', renderWithData('deductions/trillium-energy-cost-amount'))
   app.post(
     '/trillium/energy/cost/amount',
     checkSchema(trilliumEnergyAmountSchema),
-    checkErrors('deductions/trillium-energy-amount'),
+    checkErrors('deductions/trillium-energy-cost-amount'),
     (req, res, next) => {
       req.session.deductions.trilliumEnergyAmount = req.body.trilliumEnergyAmount
       next()

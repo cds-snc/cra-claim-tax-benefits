@@ -104,13 +104,19 @@ const answerInfo = [
       {
         'text': 'Home energy costs on a reserve',
         'infoPath': ['deductions.trilliumEnergyReserveClaim'],
-        'urlPath': '/trillium/energy',
+        'urlPath': '/trillium/energy/reserve',
+      },
+      {
+        'text': 'Yearly energy costs',
+        'infoPath': ['deductions.trilliumEnergyCostClaim'],
+        'urlPath': '/trillium/energy/cost',
+        'displayIf': 'deductions.trilliumEnergyReserveClaim',
       },
       {
         'text': 'Yearly energy costs',
         'infoPath': ['deductions.trilliumEnergyAmount'],
-        'urlPath': '/trillium/energy/amount',
-        'displayIf': 'deductions.trilliumEnergyReserveClaim',
+        'urlPath': '/trillium/energy/cost/amount',
+        'displayIf': 'deductions.trilliumEnergyCostClaim',
       },
       {
         'text': 'Public long-term care home',

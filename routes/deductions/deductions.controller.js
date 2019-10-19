@@ -199,9 +199,9 @@ module.exports = function(app) {
     doYesNo('trilliumEnergyCostClaim', 'trilliumEnergyAmount'),
     doRedirect,
   )
-  app.get('/trillium/energy/amount', renderWithData('deductions/trillium-energy-amount'))
+  app.get('/trillium/energy/cost/amount', renderWithData('deductions/trillium-energy-amount'))
   app.post(
-    '/trillium/energy/amount',
+    '/trillium/energy/cost/amount',
     checkSchema(trilliumEnergyAmountSchema),
     checkErrors('deductions/trillium-energy-amount'),
     (req, res, next) => {

@@ -13,6 +13,7 @@ const express = require('express'),
   sassMiddleware = require('node-sass-middleware'),
   path = require('path'),
   cookieSession = require('cookie-session'),
+  sessionConfig = require('./config/session.config'),
   cookieSessionConfig = require('./config/cookieSession.config'),
   csp = require('./config/csp.config'),
   {
@@ -38,9 +39,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.app_session_secret))
 app.use(require('./config/i18n.config').init)
 
-// in production: use redis for sessions
-// but this works for now
-app.use(cookieSession(cookieSessionConfig))
+// in production we may want to use other than memorysession
+app.use(sessionConfig)
 
 // in production: precompile CSS
 app.use(
@@ -102,7 +102,7 @@ require('./routes/offramp/offramp.controller')(app)
 
 // clear session
 app.get('/clear', (req, res) => {
-  req.session = null
+  req.session.destroy()
   res.redirect(302, '/')
 })
 

@@ -178,8 +178,17 @@ module.exports = function(app) {
   app.post(
     '/trillium/energy/reserve',
     checkSchema(trilliumEnergyReserveSchema),
-    checkErrors('deductions/trillium-energy-reserve'),
-    doYesNo('trilliumEnergyReserveClaim', 'trilliumEnergyAmount'),
+    checkErrors('/trillium/energy/reserve'),
+    postEnergyReserve,
+    doRedirect,
+  )
+
+  app.get('/trillium/energy/cost', renderWithData('deductions/trillium-energy-cost'))
+  app.post(
+    '/trillium/energy/cost',
+    checkSchema(trilliumEnergyCostSchema),
+    checkErrors('deductions/trillium-energy-cost'),
+    doYesNo('trilliumEnergyCostClaim', 'trilliumEnergyAmount'),
     doRedirect,
   )
   app.get('/trillium/energy/cost', renderWithData('deductions/trillium-energy-cost'))
@@ -240,4 +249,16 @@ module.exports = function(app) {
     },
     doRedirect,
   )
+}
+
+const postEnergyReserve = (req, res, next) => {
+  const trilliumEnergyReserveClaim = req.body.trilliumEnergyReserveClaim
+  
+  req.session.deductions.trilliumEnergyReserveClaim = trilliumEnergyReserveClaim
+  
+  if (trilliumEnergyReserveClaim !== 'Yes') {
+    return res.redirect('/trillium/longTermCare')
+  }
+
+  next()
 }

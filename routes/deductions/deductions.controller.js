@@ -14,7 +14,8 @@ const {
   trilliumPropertyTaxSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumStudentResidenceSchema,
-  trilliumEnergySchema,
+  trilliumEnergyReserveSchema,
+  trilliumEnergyCostSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareSchema,
   trilliumlongTermCareAmountSchema,
@@ -173,12 +174,20 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/trillium/energy', renderWithData('deductions/trillium-energy'))
+  app.get('/trillium/energy/reserve', renderWithData('deductions/trillium-energy-reserve'))
   app.post(
-    '/trillium/energy',
-    checkSchema(trilliumEnergySchema),
-    checkErrors('deductions/trillium-energy'),
-    doYesNo('trilliumEnergyClaim', 'trilliumEnergyAmount'),
+    '/trillium/energy/reserve',
+    checkSchema(trilliumEnergyReserveSchema),
+    checkErrors('deductions/trillium-energy-reserve'),
+    doYesNo('trilliumEnergyReserveClaim', 'trilliumEnergyAmount'),
+    doRedirect,
+  )
+  app.get('/trillium/energy/cost', renderWithData('deductions/trillium-energy-cost'))
+  app.post(
+    '/trillium/energy/cost',
+    checkSchema(trilliumEnergyCostSchema),
+    checkErrors('deductions/trillium-energy-cost'),
+    doYesNo('trilliumEnergyCostClaim', 'trilliumEnergyAmount'),
     doRedirect,
   )
   app.get('/trillium/energy/amount', renderWithData('deductions/trillium-energy-amount'))

@@ -178,7 +178,7 @@ module.exports = function(app) {
   app.post(
     '/trillium/energy/reserve',
     checkSchema(trilliumEnergyReserveSchema),
-    checkErrors('/trillium/energy/reserve'),
+    checkErrors('deductions/trillium-energy-reserve'),
     postEnergyReserve,
     doRedirect,
   )

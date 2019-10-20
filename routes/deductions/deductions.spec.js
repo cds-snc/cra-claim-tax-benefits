@@ -99,8 +99,8 @@ describe('Test /deductions responses', () => {
         yesRedir: '/start',
       },
       {
-        url: '/trillium/energy',
-        key: 'trilliumEnergyClaim',
+        url: '/trillium/energy/cost',
+        key: 'trilliumEnergyCostClaim',
       },
       {
         url: '/trillium/longTermCare',
@@ -182,6 +182,38 @@ describe('Test /deductions responses', () => {
     })
   })
 
+  describe('Test /trillium/energy/reserve responses', () => {
+    test('it returns a 422 with no option selected', async () => {
+      const response = await request(app).post('/trillium/energy/reserve')
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it redirects to the /trillium/longTermCare page when selecting No', async () => {
+      const response = await request(app)
+        .post('/trillium/energy/reserve')
+        .send({ trilliumEnergyReserveClaim: 'No' })
+      expect(response.headers.location).toEqual('/trillium/longTermCare')
+      expect(response.statusCode).toBe(302)
+    })
+
+    test('it redirects to the provided redirect value when selecting Yes', async () => {
+      const response = await request(app)
+        .post('/trillium/energy/reserve')
+        .send({ redirect: '/start', trilliumEnergyReserveClaim: 'Yes' })
+      expect(response.headers.location).toEqual('/start')
+      expect(response.statusCode).toBe(302)
+    })
+
+    test('it redirects to the checkAnswers when posting Yes and having come from the checkAnswers page', async () => {
+      const response = await request(app)
+        .post('/trillium/energy/reserve')
+        .query({ ref: 'checkAnswers' })
+        .send({ redirect: '/start', trilliumEnergyReserveClaim: 'Yes' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/checkAnswers')
+    })
+  })
+
   describe('Test /deductions/*/amount responses', () => {
     const amountReponses = [
       {
@@ -205,7 +237,7 @@ describe('Test /deductions responses', () => {
         key: 'trilliumPropertyTaxAmount',
       },
       {
-        url: '/trillium/energy/amount',
+        url: '/trillium/energy/cost/amount',
         key: 'trilliumEnergyAmount',
       },
       {

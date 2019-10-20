@@ -49,7 +49,11 @@
       "value": "No"
     },
     {
-      "key": "Home energy costs on a reserve",
+      "key": "Did you live on a reserve?",
+      "value": "No"
+    },
+    {
+      "key": "Did you pay home energy costs on a reserve?",
       "value": "No"
     },
     {

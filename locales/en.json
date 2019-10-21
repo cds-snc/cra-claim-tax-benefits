@@ -192,7 +192,6 @@
   "Month": "Month",
   "Year": "Year",
   "Rent paid in 2018": "Rent paid in 2018",
-  "Deduct your property tax": "Deduct your property tax",
   "If you paid property tax in 2018, you may be entitled to receive credits from your": "If you paid property tax in 2018, you may be entitled to receive credits from your",
   "Did you pay property tax in 2018?": "Did you pay property tax in 2018?",
   "Deduct your home energy costs on a reserve": "Deduct your home energy costs on a reserve",
@@ -277,7 +276,6 @@
   "Your child’s date of birth": "Your child’s date of birth",
   "Apply for the OTB: property tax": "Apply for OTB: property tax",
   "Did you pay property tax for the place you lived most of 2018?": "Did you pay property tax for the place you lived most of 2018?",
-  "Enter your property tax payments to apply for OTB": "Enter your property tax payments to apply for OTB",
   "The government might ask for your property tax receipts.": "The government might ask for your property tax receipts.",
   "How much total property tax did you pay for the place you lived most of 2018?": "How much total property tax did you pay for the place you lived most of 2018?",
   "Deduct your rent payments": "Deduct your rent payments",
@@ -296,7 +294,6 @@
   "Enter your political contributions": "Enter your political contributions",
   "true": true,
   "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/ontario-trillium-benefit-questions-answers.html",
-  "Apply for OTB: property tax": "Apply for OTB: property tax",
   "Your last two mailing addresses before your current address": "Your last two mailing addresses before your current address",
   "Enter the last two mailing addresses before your current address": "Enter the last two mailing addresses before your current address",
   "You must have used both addresses to file taxes. Choose a different question if you haven’t filed taxes from at least two other addresses.": "You must have used both addresses to file taxes. Choose a different question if you haven’t filed taxes from at least two other addresses.",
@@ -422,5 +419,7 @@
   "You agree that CRA can use this information to file your 2018 taxes.": "You agree that CRA can use this information to file your 2018 taxes.",
   "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
   "Learn about RRSPs": "Learn about RRSPs",
-  "Political contributions": "Political contributions"
+  "Political contributions": "Political contributions",
+  "Property tax": "Property tax",
+  "Enter your property tax": "Enter your property tax"
 }

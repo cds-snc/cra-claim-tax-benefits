@@ -204,13 +204,13 @@ describe('Test /deductions responses', () => {
       expect(response.statusCode).toBe(302)
     })
 
-    test('it redirects to the checkAnswers when posting Yes and having come from the checkAnswers page', async () => {
+    test('it redirects with the checkAnswers ref when posting Yes and having come from the checkAnswers page', async () => {
       const response = await request(app)
         .post('/trillium/energy/reserve')
         .query({ ref: 'checkAnswers' })
-        .send({ redirect: '/start', trilliumEnergyReserveClaim: 'Yes' })
+        .send({ trilliumEnergyReserveClaim: 'Yes' })
       expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/checkAnswers')
+      expect(response.headers.location).toEqual('/trillium/energy/cost?ref=checkAnswers')
     })
   })
 

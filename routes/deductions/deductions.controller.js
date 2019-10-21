@@ -258,7 +258,7 @@ const postEnergyReserve = (req, res, next) => {
   if (trilliumEnergyReserveClaim !== 'Yes') {
 
     req.session.deductions.trilliumEnergyCostClaim = null
-    res.session.deductions.trilliumEnergyAmount = 0
+    req.session.deductions.trilliumEnergyAmount = 0
 
     if (req.query.ref && req.query.ref === 'checkAnswers') {
       return returnToCheckAnswers(req, res)

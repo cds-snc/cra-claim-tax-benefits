@@ -2,7 +2,7 @@ extends ../base
 include ../_includes/banner
 
 block variables
-  -var title = __('Enter your Social Insurance Number (SIN)')
+  -var title = __('Enter your Social insurance number (SIN)')
   -var sin = hasData(body, 'sin') ? body.sin : ''
 
 block content
@@ -10,7 +10,7 @@ block content
   h1 #{title}
 
   if data.personal
-    h2 #{data.personal.firstName}, #{__('thanks for your filing code')}!
+    h2 #{data.personal.firstName}, #{__('thanks for your filing code')}.
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.sin})

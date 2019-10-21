@@ -1,10 +1,6 @@
 var morgan = require('morgan')
 
-morgan.token('sessionId', function getSessionId(req) {
-  return req.sessionId
-})
-
-morgan.token('err', function getSessionId(req, res) {
+morgan.token('err', function getErr(req, res) {
   return res.locals.err
 })
 
@@ -31,7 +27,6 @@ function jsonFormatProduction(tokens, req, res) {
     'content-length': tokens['res'](req, res, 'content-length'),
     referrer: tokens['referrer'](req, res),
     'user-agent': tokens['user-agent'](req, res),
-    sessionId: tokens['sessionId'](req, res),
     err: tokens['err'](req, res),
   })
 }

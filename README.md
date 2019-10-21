@@ -1,10 +1,11 @@
 ![](https://github.com/cds-snc/cra-claim-tax-benefits/workflows/Test,%20build,%20deploy/badge.svg)
 
-# Claim tax benefits
+# Claim tax benefits / Réclamer des avantages fiscaux
 
-This is a small frontend to trial user flows for a future CRA service that will help Canadians receive the benefits to which they are entitled.
-
-It’s a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and schnazzy [SCSS](https://sass-lang.com/) stylesheets.
+| en                                                                                                                                                                                                         | fr                                                                                                                                                                                                                           |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| This is a small frontend to trial user flows for a future CRA service that will help Canadians receive the benefits to which they are entitled.                                                            | Voici une petite interface qui nous sert à tester des parcours utilisateur pour un futur service de l'ARC qui aidera les Canadiens à recevoir les prestations auxquelles ils ont droit.                                      |
+| It’s a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and schnazzy [SCSS](https://sass-lang.com/) stylesheets. | Il s'agit d'une application [express](https://expressjs.com/) qui utilise les modèles [Pug](https://pugjs.org/api/getting-started.html) sur le serveur ainsi que des chics feuilles de style [SCSS](https://sass-lang.com/). |
 
 ## Getting started (npm)
 

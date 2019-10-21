@@ -19,6 +19,7 @@ const getIncomeBreakdownRows = user => {
       value: currencyFilter(source.total),
     }
     incomeRows.push(incomeRow)
+    return
   })
 
   incomeRows.push({
@@ -38,6 +39,7 @@ const getTaxBreakdownRows = user => {
       value: currencyFilter(source.amount),
     }
     taxRows.push(taxRow)
+    return
   })
 
   taxRows.push({
@@ -57,6 +59,7 @@ const getBenefitsBreakdownRows = user => {
       value: currencyFilter(source.amount),
     }
     benefitsRows.push(benefitsRow)
+    return
   })
 
   return benefitsRows

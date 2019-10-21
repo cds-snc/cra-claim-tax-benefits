@@ -4,6 +4,10 @@ morgan.token('version', function getSha() {
   return process.env.GITHUB_SHA
 })
 
+morgan.token('responseId', function getResponseId(req) {
+  return req.session ? req.session.responseId : undefined
+})
+
 morgan.token('err', function getErr(req, res) {
   return res.locals.err
 })
@@ -14,6 +18,7 @@ module.exports = (function morganConfig() {
 
 function jsonFormatDev(tokens, req, res) {
   return JSON.stringify({
+    responseId: tokens['responseId'](req, res),
     method: tokens['method'](req, res),
     url: tokens['url'](req, res),
     status: tokens['status'](req, res),
@@ -23,6 +28,7 @@ function jsonFormatDev(tokens, req, res) {
 
 function jsonFormatProduction(tokens, req, res) {
   return JSON.stringify({
+    responseId: tokens['responseId'](req, res),
     method: tokens['method'](req, res),
     url: tokens['url'](req, res),
     status: tokens['status'](req, res),

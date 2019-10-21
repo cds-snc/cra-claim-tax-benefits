@@ -9,6 +9,12 @@ describe('Test server responses', () => {
     expect(response.headers.location).toEqual('/start')
   })
 
+  test('it redirects to /start and saves query parameters for the root path', async () => {
+    const response = await request(app).get('/?dinosaur=albertosaurus')
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toEqual('/start?dinosaur=albertosaurus')
+  })
+
   test('it returns a 200 response for the /start path', async () => {
     const response = await request(app).get('/start')
     expect(response.statusCode).toBe(200)

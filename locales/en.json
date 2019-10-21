@@ -450,7 +450,6 @@
   "You can also file online with ": "You can also file online with ",
   "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/update-your-marital-status-canada-revenue-agency.html": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/update-your-marital-status-canada-revenue-agency.html",
   "But first you should change your marital status with CRA. CRA gives ": "But first you should change your marital status with CRA. CRA gives ",
-  "instructions for changing marital status": "instructions for changing marital status",
   "which certified NETFILE software is free, and ": "which certified NETFILE software is free, and ",
   "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/eligibility.html": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/eligibility.html",
   "check": "check",
@@ -458,5 +457,6 @@
   "You can use NETFILE when you are sure CRA has updated your marital status. You can check with CRA:": "You can use NETFILE when you are sure CRA has updated your marital status. You can check with CRA:",
   "Online, using My Account. If you don’t have My Account, you can sign up at": "Online, using My Account. If you don’t have My Account, you can sign up at",
   "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/account-individuals.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_my-cra-account": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/account-individuals.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_my-cra-account",
-  "canada.ca/my-cra-account": "canada.ca/my-cra-account"
+  "canada.ca/my-cra-account": "canada.ca/my-cra-account",
+  "instructions for changing marital status.": "instructions for changing marital status."
 }

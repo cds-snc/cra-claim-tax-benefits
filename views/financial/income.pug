@@ -44,7 +44,7 @@ block content
       dl.breakdown-table-data
         each tax in taxes
           .breakdown-table__row
-            dt.breakdown-table__row-key #{__(`${tax.name.replace('Net ', '')} deduction`)}
+            dt.breakdown-table__row-key #{__(`${tax.name.replace('Net ', '').replace(/^\w/, c => c.toUpperCase())} deduction`)}
             dd.breakdown-table__row-value $#{currencyFilter(tax.amount)}
 
         .breakdown-table__row.breakdown-table__row--summary

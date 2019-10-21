@@ -43,7 +43,7 @@ const routes = [
   { path: '/trillium/propertyTax/amount', editInfo: 'deductions.trilliumPropertyTaxAmount' },
   { path: '/trillium/studentResidence' },
   { path: '/trillium/energy/reserve' },
-  { path: '/trillium/energy/cost' },
+  { path: '/trillium/energy/cost', editInfo: 'deductions.trilliumEnergyCostClaim' },
   { path: '/trillium/energy/cost/amount', editInfo: 'deductions.trilliumEnergyAmount' },
   { path: '/trillium/longTermCare' },
   { path: '/trillium/longTermCare/amount', editInfo: 'deductions.trilliumLongTermCareAmount' },

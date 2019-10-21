@@ -378,4 +378,5 @@ module.exports = {
   doYesNo,
   isoDateHintText,
   getRouteWithIndexByPath,
+  returnToCheckAnswers,
 }

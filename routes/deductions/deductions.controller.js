@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { doRedirect, doYesNo, renderWithData, checkErrors } = require('./../../utils')
+const { doRedirect, doYesNo, renderWithData, checkErrors, returnToCheckAnswers } = require('./../../utils')
 const {
   rrspSchema,
   rrspAmountSchema,
@@ -179,7 +179,7 @@ module.exports = function(app) {
     '/trillium/energy/reserve',
     checkSchema(trilliumEnergyReserveSchema),
     checkErrors('deductions/trillium-energy-reserve'),
-    doYesNo('trilliumEnergyReserveClaim'),
+    postEnergyReserve,
     doRedirect,
   )
 
@@ -189,6 +189,11 @@ module.exports = function(app) {
     checkSchema(trilliumEnergyCostSchema),
     checkErrors('deductions/trillium-energy-cost'),
     doYesNo('trilliumEnergyCostClaim', 'trilliumEnergyAmount'),
+    (req, res, next) => {
+      req.session.deductions.trilliumEnergyCostClaim =
+        req.body.trilliumEnergyCostClaim === 'Yes' ? true : false
+      next()
+    },
     doRedirect,
   )
 
@@ -198,7 +203,7 @@ module.exports = function(app) {
     checkSchema(trilliumEnergyAmountSchema),
     checkErrors('deductions/trillium-energy-cost-amount'),
     (req, res, next) => {
-      req.session.deductions.trilliumEnergyAmount = req.body.trilliumEnergyAmount
+      req.session.deductions.trilliumEnergyAmount = req.body.trilliumEnergyAmount ? req.body.trilliumEnergyAmount : false
       next()
     },
     doRedirect,
@@ -242,4 +247,25 @@ module.exports = function(app) {
     },
     doRedirect,
   )
+}
+
+const postEnergyReserve = (req, res, next) => {
+  const trilliumEnergyReserveClaim = req.body.trilliumEnergyReserveClaim
+
+  req.session.deductions.trilliumEnergyReserveClaim = trilliumEnergyReserveClaim
+
+  if (trilliumEnergyReserveClaim !== 'Yes') {
+
+    if (req.query.ref && req.query.ref === 'checkAnswers') {
+      return returnToCheckAnswers(req, res)
+    }
+
+    return res.redirect('/trillium/longTermCare')
+  }
+
+  if (req.query.ref && req.query.ref === 'checkAnswers') {
+    return returnToCheckAnswers(req, res, true)
+  }
+
+  next()
 }

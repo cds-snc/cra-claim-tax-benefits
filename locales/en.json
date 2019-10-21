@@ -186,7 +186,6 @@
   "If your records don’t match the income information displayed earlier, or you believe it to be incorrect, you shouldn’t use this service to file your taxes.": "If your records don’t match the income information displayed earlier, or you believe it to be incorrect, you shouldn’t use this service to file your taxes.",
   "Go back": "Go back",
   "Is this your name?": "Is this your name?",
-  "For Example: A5G98S4K1": "For Example: A5G98S4K1",
   "Street address": "Street address",
   "Day": "Day",
   "Month": "Month",
@@ -227,7 +226,6 @@
   "Enter your personal filing code": "Enter your personal filing code",
   "Help with personal filing code": "Help with personal filing code",
   "service.name ": "service.name ",
-  "Your code has 9-characters and you can find it on the CRA letter about the Claim Tax Benefits service. The letter has your name and address at the top.": "Your code has 9-characters and you can find it on the CRA letter about the Claim Tax Benefits service. The letter has your name and address at the top.",
   "Enter your Social insurance number (SIN)": "Enter your Social insurance number (SIN)",
   "Your personal filing code was validated!": "Your personal filing code was validated!",
   "Social insurance number": "Social insurance number",
@@ -415,10 +413,13 @@
   "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
   "Learn about RRSPs": "Learn about RRSPs",
   "Political contributions": "Political contributions",
+  "For Example: a5g98s4k1": "For Example: a5g98s4k1",
   "Enter your rent": "Enter your rent",
   "Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five years that you didn't already include in your taxes.": "Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five years that you didn't already include in your taxes.",
   "Do you have tax receipts for charitable donations made in the last five years?": "Do you have tax receipts for charitable donations made in the last five years?",
   "Rent": "Rent",
   "Property tax": "Property tax",
-  "Enter your property tax": "Enter your property tax"
+  "Enter your property tax": "Enter your property tax",
+  "Your code has 9-characters and you can find it on the CRA": "Your code has 9-characters and you can find it on the CRA",
+  " letter. The letter has your name and address at the top.": " letter. The letter has your name and address at the top."
 }

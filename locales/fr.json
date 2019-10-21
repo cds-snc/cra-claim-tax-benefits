@@ -200,8 +200,6 @@
   "Student residence": "Student residence",
   "Public long-term care home": "Public long-term care home",
   "Small or rural community": "Small or rural community",
-  "For Example: A5G98S4K1": "For Example: A5G98S4K1",
-  "Your code has 9-characters and you can find it on the CRA letter about the Claim Tax Benefits service. The letter has your name and address at the top.": "Votre code contient 9 caractères. Vous le trouverez dans la lettre de l'ARC au sujet du service Réclamer des avantages fiscaux. Votre nom et votre adresse figurent au haut de la lettre.",
   "Enter your personal filing code": "Entrez votre code personnel de déclaration de revenus",
   "Personal filing code": "Code personnel de déclaration de revenus",
   "Help with personal filing code": "Aide relative au code personnel de déclaration de revenus",
@@ -210,7 +208,7 @@
   "Help with Social Insurance Number": "Aide relative au numéro d'assurance sociale",
   "You can find your SIN on your tax return or other correspondence from Service Canada. Service Canada also gave you a card or confirmation letter with your SIN.": "Vous trouverez votre NAS dans votre déclaration de revenus ou dans toute autre correspondance de Service Canada. Service Canada vous a également remis une carte ou une lettre de confirmation ayant votre NAS.",
   "You can find your personal filing code in the CRA": "Vous trouverez votre code personnel de déclaration de revenus dans la lettre de l'ARC",
-  " letter.": "de l’ARC",
+  " letter.": " de l’ARC",
   "Enter your province or territory": "Enter your province or territory",
   "On December 31, 2018, what was the province or territory of your home address?": "On December 31, 2018, what was the province or territory of your home address?",
   "Check your income information for the 2018 tax year": "Check your income information for the 2018 tax year",
@@ -377,10 +375,13 @@
   "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
   "Learn about RRSPs": "Learn about RRSPs",
   "Political contributions": "Political contributions",
+  "For Example: a5g98s4k1": "For Example: a5g98s4k1",
   "Enter your rent": "Enter your rent",
   "Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five years that you didn't already include in your taxes.": "Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five years that you didn't already include in your taxes.",
   "Do you have tax receipts for charitable donations made in the last five years?": "Do you have tax receipts for charitable donations made in the last five years?",
   "Rent": "Rent",
   "Property tax": "Property tax",
-  "Enter your property tax": "Enter your property tax"
+  "Enter your property tax": "Enter your property tax",
+  "Your code has 9-characters and you can find it on the CRA": "Your code has 9-characters and you can find it on the CRA",
+  " letter. The letter has your name and address at the top.": " letter. The letter has your name and address at the top."
 }

@@ -165,7 +165,7 @@ describe('Full run through', function() {
   it('navigates the Donations Deductions page', function() {
     //DEDUCTIONS DONATIONS
     cy.url().should('contain', '/deductions/donations')
-    cy.get('h1').should('contain', 'Deduct charitable donations')
+    cy.get('h1').should('contain', 'Charitable donations')
 
     cy.get('input#charitableDonationClaim1 + label').should(
       'have.attr',
@@ -183,7 +183,7 @@ describe('Full run through', function() {
   it('navigates the Trillium Rent page', function() {
     //TRILLIUM RENT
     cy.url().should('contain', '/trillium/rent')
-    cy.get('h1').should('contain', 'Apply for OTB: rent payments')
+    cy.get('h1').should('contain', 'Rent')
 
     cy.get('input#trilliumRentClaim1 + label').should('have.attr', 'for', 'trilliumRentClaim1')
 
@@ -197,7 +197,7 @@ describe('Full run through', function() {
   it('navigates the Trillium Property Tax page', function() {
     //TRILLIUM PROPERTY TAX
     cy.url().should('contain', '/trillium/propertyTax')
-    cy.get('h1').should('contain', 'Apply for OTB: property tax')
+    cy.get('h1').should('contain', 'Property tax')
 
     cy.get('input#trilliumPropertyTaxClaim1 + label').should(
       'have.attr',

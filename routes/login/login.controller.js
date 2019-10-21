@@ -113,7 +113,7 @@ const postLoginCode = async (req, res, next) => {
 
   if (!errors.isEmpty()) {
     // clear session
-    req.session = null
+    req.session.destroy()
 
     return res.status(422).render('login/code', {
       prevRoute: getPreviousRoute(req),

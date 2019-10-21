@@ -9,6 +9,17 @@
     "node": ">=10.15"
   },
   "jest": {
+    "testResultsProcessor": "jest-sonar-reporter",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/node_modules/**"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text"
+    ],
     "testPathIgnorePatterns": [
       "/cypress/"
     ]
@@ -17,23 +28,23 @@
     "dev": "nodemon --max-http-header-size=40000 ./bin/www",
     "lint": "node_modules/eslint/bin/eslint.js config routes bin/www app.js",
     "start": "NODE_ENV=production node --max-http-header-size=40000 ./bin/www",
-    "start:cypress": "NODE_ENV=test node ./bin/www",
     "test": "node node_modules/jest/bin/jest.js",
     "cypress:open": "./node_modules/.bin/cypress open",
-    "cypress": "start-server-and-test start:cypress http://localhost:3005 cypress:open",
+    "cypress": "start-server-and-test start http://localhost:3005 cypress:open",
     "cypress:run": "./node_modules/.bin/cypress run",
-    "cypress:cli": "start-server-and-test start:cypress http://localhost:3005 cypress:run"
+    "cypress:cli": "start-server-and-test start http://localhost:3005 cypress:run",
+    "sonar": "sonar-scanner"
   },
   "dependencies": {
     "app-root-path": "^2.2.1",
-    "applicationinsights": "^1.5.0",
+    "applicationinsights": "^1.4.2",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
     "date-fns": "^2.4.1",
     "debug": "~4.1.1",
     "dotenv": "^8.1.0",
     "express": "~4.17.1",
-    "express-session": "^1.17.0",
+    "express-session": "^1.16.2",
     "express-validator": "^6.2.0",
     "helmet": "^3.21.1",
     "i18n": "^0.8.3",
@@ -45,7 +56,8 @@
     "purecss": "^1.0.1",
     "request-promise": "^4.2.4",
     "trim-request": "^1.0.6",
-    "validator": "^11.1.0"
+    "validator": "^11.1.0",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "axe-core": "^3.3.2",
@@ -53,10 +65,12 @@
     "cypress": "^3.4.1",
     "cypress-axe": "^0.5.1",
     "eslint": "^6.5.1",
-    "eslint-plugin-jest": "^22.19.0",
+    "eslint-plugin-jest": "^22.17.0",
     "jest": "^24.9.0",
+    "jest-sonar-reporter": "^2.0.0",
     "nodemon": "^1.19.3",
-    "start-server-and-test": "^1.10.6",
+    "sonarqube-scanner": "^2.5.0",
+    "start-server-and-test": "^1.10.3",
     "supertest": "^4.0.2",
     "supertest-session": "^4.0.0"
   }

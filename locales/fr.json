@@ -27,7 +27,6 @@
   "errors.review": "You must agree to file your tax return. Check the box if you agree.",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/foire-questions-particuliers/comment-pouvez-vous-nous-informer-votre-changement.html",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/programme-communautaire-benevoles-matiere-impot.html",
-  "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/certified-software-netfile-program.html": "https://www.canada.ca/fr/agence-revenu/services/services-electroniques/services-electroniques-particuliers/impotnet-apercu/logiciels-homologues-programme.html",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-330-331-eligible-medical-expenses-you-claim-on-your-tax-return.html#mdcl_xpns": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/tout-votre-declaration-revenus/declaration-revenus/remplir-declaration-revenus/deductions-credits-depenses/lignes-330-331-frais-medicaux-admissibles-vous-pouvez-demander-votre-declaration-revenus.html",
   "service.name": "Réclamer des avantages fiscaux",
   "start.banner.1": "L'Agence du revenu du Canada (ARC) vous a envoyé une lettre concernant le nouveau service",
@@ -387,9 +386,17 @@
   " letter. The letter has your name and address at the top.": " letter. The letter has your name and address at the top.",
   "Confirm": "Confirmer",
   "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:": "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:",
-  "At a tax clinic, where you may be able to get help. Visit the CRA website to": "At a tax clinic, where you may be able to get help. Visit the CRA website to",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible",
-  "check if you are eligible for help at a free tax clinic.": "check if you are eligible for help at a free tax clinic.",
   "With": "With",
-  "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:": "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:"
+  "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:": "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:",
+  "At a free tax clinic, where you may be able to get help.": "At a free tax clinic, where you may be able to get help.",
+  "Learn": "Learn",
+  "if you can use a tax clinic.": "if you can use a tax clinic.",
+  "Online with": "Online with",
+  "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/certified-software-netfile-program.html": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/certified-software-netfile-program.html",
+  "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/eligibility.html": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/eligibility.html",
+  "Learn which certified NETFILE software is free, and": "Learn which certified NETFILE software is free, and",
+  "": "",
+  "check": "check",
+  "if you can use it. Certified means CRA approves the software": "if you can use it. Certified means CRA approves the software"
 }

@@ -40,7 +40,7 @@
   "start.p2": "You will need your:",
   "start.li4.1": "Personal filing code. You can find this code in the CRA letter about this new",
   "start.li4.2": " service.",
-  "start.li5": "Social Insurance Number (SIN).",
+  "start.li5": "Social insurance number (SIN).",
   "start.li6": "Income information.",
   "button.start": "Start now",
   "Please correct the errors on the page": "Please correct the errors on the page",
@@ -419,5 +419,6 @@
   "Property tax": "Property tax",
   "Enter your property tax": "Enter your property tax",
   "Your code has 9-characters and you can find it on the CRA": "Your code has 9-characters and you can find it on the CRA",
-  " letter. The letter has your name and address at the top.": " letter. The letter has your name and address at the top."
+  " letter. The letter has your name and address at the top.": " letter. The letter has your name and address at the top.",
+  "Confirm": "Confirm"
 }

@@ -94,8 +94,8 @@ const logIn = (cy, user) => {
   // LOGIN SIN
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/login/sin')
-  cy.get('h1').should('contain', 'Enter your Social Insurance Number (SIN)')
-  cy.get('h2').should('contain', `Thanks, ${user.personal.firstName} ${user.personal.lastName}!`)
+  cy.get('h1').should('contain', 'Enter your Social insurance number (SIN)')
+  cy.get('h2').should('contain', `${user.personal.firstName}, thanks for your filing code.`)
   cy.get('form label').should('have.attr', 'for', 'sin')
   cy.get('form input#sin')
     .type(user.personal.sin)

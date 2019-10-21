@@ -138,7 +138,8 @@ const postLoginCode = async (req, res, next) => {
     throw new Error(`[POST ${req.path}] user not found for access code "${req.body.code}"`)
   }
 
-  req.session = user // eslint-disable-line require-atomic-updates
+  // setting req.session = {obj} causes an error, so assign the keys one at a time
+  Object.keys(user).map(key => (req.session[key] = user[key]))
 
   next()
 }

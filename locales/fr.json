@@ -374,9 +374,12 @@
   "ask CRA to change the name on your file.": "ask CRA to change the name on your file.",
   "File your taxes now": "File your taxes now",
   "You agree that CRA can use this information to file your 2018 taxes.": "You agree that CRA can use this information to file your 2018 taxes.",
+  "Charitable donations": "Charitable donations",
   "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
   "Learn about RRSPs": "Learn about RRSPs",
   "Political contributions": "Political contributions",
+  "Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five years that you didn't already include in your taxes.": "Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five years that you didn't already include in your taxes.",
+  "Do you have tax receipts for charitable donations made in the last five years?": "Do you have tax receipts for charitable donations made in the last five years?",
   "Rent": "Rent",
   "Property tax": "Property tax",
   "Enter your property tax": "Enter your property tax"

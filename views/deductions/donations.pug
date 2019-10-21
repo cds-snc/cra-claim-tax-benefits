@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Deduct charitable donations')
+  -var title = __('Charitable donations')
   -var charitableDonationClaim = !hasData(data, 'deductions.charitableDonationClaim') ? '' : data.deductions.charitableDonationClaim ? 'Yes' : 'No'
 
 block content
@@ -9,10 +9,10 @@ block content
   h1 #{title}
 
   div
-    p #{__(`Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five that you didn't already deduct from your taxes.`)}
+    p #{__(`Your taxes may be lower if you gave money to a charity or similar organization. You will need an official tax receipt. The charity or organization must be registered with the government to give the receipt. You can enter any donations from the last five years that you didn't already include in your taxes.`)}
 
   form.cra-form(method='post')
-    +radiosYesNo('charitableDonationClaim', 'Do you have tax receipts for charitable donations?', charitableDonationClaim)
+    +radiosYesNo('charitableDonationClaim', 'Do you have tax receipts for charitable donations made in the last five years?', charitableDonationClaim)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/rent')
 

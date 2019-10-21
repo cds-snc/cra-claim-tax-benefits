@@ -24,7 +24,7 @@
   "errors.address.province": "Veuillez choisir une province ou un territoire valide",
   "errors.currency": "Inscrivez un montant supérieur à 0.00, par exemple 120.00",
   "errors.yesNo": "Vous devez choisir l’une des options",
-  "errors.review": "Vous devez accepter de soumettre votre déclaration",
+  "errors.review": "You must agree to file your tax return. Check the box if you agree.",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/foire-questions-particuliers/comment-pouvez-vous-nous-informer-votre-changement.html",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/programme-communautaire-benevoles-matiere-impot.html",
   "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/certified-software-netfile-program.html": "https://www.canada.ca/fr/agence-revenu/services/services-electroniques/services-electroniques-particuliers/impotnet-apercu/logiciels-homologues-programme.html",

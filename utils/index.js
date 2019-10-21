@@ -44,6 +44,21 @@ const checkLangQuery = function(req, res, next) {
 }
 
 /**
+ * This request middleware checks for the "ResponseID" query.
+ * If it finds a query parameter "ResponseID={number}", it will set a responseId key in the session.
+ */
+const checkResponseIDQuery = function(req, res, next) {
+  // the ResponseID param is capitalized, but we want to do camelcase to follow convention
+  let responseId = req.query.ResponseID
+
+  if (responseId && validator.isNumeric(responseId)) {
+    req.session.responseId = responseId
+  }
+
+  return next()
+}
+
+/**
  * This request middleware checks if we are visiting a public path
  * For most of the pages in our app, we expect to have user data in the session
  * If we're visiting one of the non-public paths, it will load user data into the session
@@ -180,7 +195,7 @@ const doYesNo = (claim, amount) => {
       }
     }
 
-    next()
+    return next()
   }
 }
 
@@ -374,6 +389,7 @@ module.exports = {
   currencyFilter,
   sortByLineNumber,
   checkLangQuery,
+  checkResponseIDQuery,
   doRedirect,
   doYesNo,
   isoDateHintText,

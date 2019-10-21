@@ -111,8 +111,10 @@ const postLoginCode = async (req, res, next) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
-    // clear session
-    req.session.destroy()
+    // clear session except for session cookie and responseId
+    Object.keys(req.session).map(k => {
+      if (!['cookie', 'responseId'].includes(k)) delete req.session[k]
+    })
 
     return res.status(422).render('login/code', {
       prevRoute: getPreviousRoute(req),

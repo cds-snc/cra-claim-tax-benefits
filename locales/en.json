@@ -24,7 +24,7 @@
   "errors.address.province": "Please select a valid province or territory",
   "errors.currency": "Enter a dollar amount higher than 0, like 120.00",
   "errors.yesNo": "You must select one of the options",
-  "errors.review": "You must consent to submit your return",
+  "errors.review": "You must agree to file your tax return. Check the box if you agree.",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-330-331-eligible-medical-expenses-you-claim-on-your-tax-return.html#mdcl_xpns": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-330-331-eligible-medical-expenses-you-claim-on-your-tax-return.html#mdcl_xpns",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html",

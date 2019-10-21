@@ -251,7 +251,6 @@
   "Did you pay property tax for the place you lived most of 2018?": "Did you pay property tax for the place you lived most of 2018?",
   "The government might ask for your property tax receipts.": "The government might ask for your property tax receipts.",
   "How much total property tax did you pay for the place you lived most of 2018?": "How much total property tax did you pay for the place you lived most of 2018?",
-  "Apply for the OTB: rent payments": "Apply for OTB: rent payments",
   "Did you pay rent for the place you lived most of 2018?": "Did you pay rent for the place you lived most of 2018?",
   "Enter your rent payments to apply for OTB": "Enter your rent payments to apply for OTB",
   "The government might ask for your rent receipts.": "The government might ask for your rent receipts.",
@@ -378,6 +377,7 @@
   "Registered Retirement Savings Plan (RRSP) contributions": "Registered Retirement Savings Plan (RRSP) contributions",
   "Learn about RRSPs": "Learn about RRSPs",
   "Political contributions": "Political contributions",
+  "Rent": "Rent",
   "Property tax": "Property tax",
   "Enter your property tax": "Enter your property tax"
 }

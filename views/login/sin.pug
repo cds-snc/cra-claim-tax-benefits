@@ -2,7 +2,7 @@ extends ../base
 include ../_includes/banner
 
 block variables
-  -var title = __('Enter your Social Insurance Number (SIN)')
+  -var title = __('Enter your Social insurance number (SIN)')
   -var sin = hasData(body, 'sin') ? body.sin : ''
 
 block content
@@ -10,11 +10,11 @@ block content
   h1 #{title}
 
   if data.personal
-    h2 #{__('Thanks,')} #{data.personal.firstName} #{data.personal.lastName}!
+    h2 #{data.personal.firstName}, #{__('thanks for your filing code')}.
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.sin})
-      label(for='sin') #{__('Social Insurance Number')}
+      label(for='sin') #{__('Social insurance number')}
       span.cra-form-message #{__('For example:')} #{SINFilter(data.personal.sin)}
       if errors
         +validationMessage(errors.sin.msg, 'sin')
@@ -24,7 +24,7 @@ block content
 
     div
       details.
-        <summary><span>#{__('Help with Social Insurance Number')}</span></summary>
-        <p>#{__('You can find your SIN on your tax return or other correspondence from Service Canada. Service Canada also gave you a card or confirmation letter with your SIN.')}</p>
+        <summary><span>#{__('Help with Social insurance number')}</span></summary>
+        <p>#{__('You can find your SIN on your tax return or other mail from Service Canada. Service Canada also gave you a card or confirmation letter with your SIN.')}</p>
 
     +formButtons()

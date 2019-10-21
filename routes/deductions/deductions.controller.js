@@ -189,9 +189,10 @@ module.exports = function(app) {
     checkSchema(trilliumEnergyCostSchema),
     checkErrors('deductions/trillium-energy-cost'),
     doYesNo('trilliumEnergyCostClaim', 'trilliumEnergyAmount'),
+    // These only apply if the user clicked "no"
+    // If they clicked "Yes", they will be redirected by `doYesNo()`
     (req, res, next) => {
-      req.session.deductions.trilliumEnergyCostClaim =
-        req.body.trilliumEnergyCostClaim === 'Yes' ? true : false
+      req.session.deductions.trilliumEnergyAmount = 0
       next()
     },
     doRedirect,
@@ -203,7 +204,7 @@ module.exports = function(app) {
     checkSchema(trilliumEnergyAmountSchema),
     checkErrors('deductions/trillium-energy-cost-amount'),
     (req, res, next) => {
-      req.session.deductions.trilliumEnergyAmount = req.body.trilliumEnergyAmount ? req.body.trilliumEnergyAmount : false
+      req.session.deductions.trilliumEnergyAmount = req.body.trilliumEnergyAmount
       next()
     },
     doRedirect,
@@ -255,6 +256,9 @@ const postEnergyReserve = (req, res, next) => {
   req.session.deductions.trilliumEnergyReserveClaim = trilliumEnergyReserveClaim
 
   if (trilliumEnergyReserveClaim !== 'Yes') {
+
+    req.session.deductions.trilliumEnergyCostClaim = null
+    res.session.deductions.trilliumEnergyAmount = 0
 
     if (req.query.ref && req.query.ref === 'checkAnswers') {
       return returnToCheckAnswers(req, res)

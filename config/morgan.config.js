@@ -1,5 +1,9 @@
 var morgan = require('morgan')
 
+morgan.token('version', function getSha() {
+  return process.env.GITHUB_SHA
+})
+
 morgan.token('err', function getErr(req, res) {
   return res.locals.err
 })
@@ -28,5 +32,6 @@ function jsonFormatProduction(tokens, req, res) {
     referrer: tokens['referrer'](req, res),
     'user-agent': tokens['user-agent'](req, res),
     err: tokens['err'](req, res),
+    version: tokens['version'](),
   })
 }

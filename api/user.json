@@ -153,6 +153,7 @@
     "trilliumPropertyTaxAmount": 0,
     "trilliumStudentResidence": null,
     "trilliumEnergyReserveClaim": null,
+    "trilliumEnergyCostClaim": null,
     "trilliumEnergyAmount": 0,
     "trilliumLongTermCareClaim": null,
     "trilliumLongTermCareAmount": 0,

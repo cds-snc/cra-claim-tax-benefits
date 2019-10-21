@@ -50,12 +50,11 @@ const formatAnswerInfo = (session) => {
     answerInfoFormatted[section.sectionTitle] = []
 
     section.sectionRows.map((line) => {
-
       if(
         !Object.prototype.hasOwnProperty.call(line, 'displayIf') ||
         Object.prototype.hasOwnProperty.call(line, 'displayIf') &&
         hasData(session, line.displayIf) && hasData(session, line.displayIf, true) !== false
-      ){
+      ){  
 
         if (Object.prototype.hasOwnProperty.call(line, 'urlPath') && !routes.find(route => route.path === line.urlPath)) {
           throw new Error('Looks like a urlPath in checkAnswers does not exist in routes.config  \n Are your route paths correct in checkAnswers?')

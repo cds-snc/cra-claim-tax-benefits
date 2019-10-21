@@ -179,7 +179,7 @@ module.exports = function(app) {
     '/trillium/energy/reserve',
     checkSchema(trilliumEnergyReserveSchema),
     checkErrors('deductions/trillium-energy-reserve'),
-    postEnergyReserve,
+    doYesNo('trilliumEnergyReserveClaim'),
     doRedirect,
   )
 
@@ -242,16 +242,4 @@ module.exports = function(app) {
     },
     doRedirect,
   )
-}
-
-const postEnergyReserve = (req, res, next) => {
-  const trilliumEnergyReserveClaim = req.body.trilliumEnergyReserveClaim
-  
-  req.session.deductions.trilliumEnergyReserveClaim = trilliumEnergyReserveClaim
-  
-  if (trilliumEnergyReserveClaim !== 'Yes') {
-    return res.redirect('/trillium/longTermCare')
-  }
-
-  next()
 }

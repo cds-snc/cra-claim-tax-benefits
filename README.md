@@ -80,6 +80,16 @@ npm run cypress:cli # these don't open a browser
 
 [Cypress](https://www.cypress.io/) is what we use to write our end-to-end tests. It can run in a browser or in headless mode (ie, on the command line) to step through one or more flows. By running our end-to-end tests frequently, we are making sure sure that new changes to the code don't existing user journies.
 
+### Using SonarQube
+
+[SonarQube](https://www.sonarqube.org/) is an open-source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities on 20+ programming languages. SonarQube is also used to track test coverage percentage and other value-added metrics.
+
+#### Run a SonarQube analysis
+
+SonarQube can be executed in two main ways: when pushing to GitHub remote repository, which will trigger a new GitHub Actions execution. The second way to trigger a SonarQube analysis is to invoke the `sonar-scanner` command locally. Install Sonar Scanner using the following procedure: https://brewinstall.org/Install-sonar-scanner-on-Mac-with-Brew/
+
+Configuration file for SonarQube is named `sonar-project.properties`, and is located at the root of the project.
+
 ## Using Docker
 
 ### [Install `docker`](https://docs.docker.com/install/)

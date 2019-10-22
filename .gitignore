@@ -78,3 +78,10 @@ cypress/examples
 cypress/support/commands.js
 cypress/plugins
 cypress/screenshots
+
+# SonarQube scanner work temporary files
+.scannerwork
+
+# Jest generated files
+test-report.xml
+coverage

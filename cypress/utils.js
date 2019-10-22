@@ -31,15 +31,12 @@ const getIncomeBreakdownRows = user => {
 }
 
 const getTaxBreakdownRows = user => {
-  const taxRows = []
-
-  Object.values(user.financial.taxes).map(source => {
-    const taxRow = {
+  const taxKeys = Object.values(user.financial.taxes)
+  const taxRows = taxKeys.map(source => {
+    return {
       key: `${source.name.replace('Net ', '')} deduction`,
       value: currencyFilter(source.amount),
     }
-    taxRows.push(taxRow)
-    return
   })
 
   taxRows.push({
@@ -51,15 +48,12 @@ const getTaxBreakdownRows = user => {
 }
 
 const getBenefitsBreakdownRows = user => {
-  const benefitsRows = []
-
-  Object.values(user.benefits).map(source => {
-    const benefitsRow = {
+  const benefitsKeys = Object.values(user.benefits);
+  const benefitsRows = benefitsKeys.map(source => {
+    return {
       key: source.name,
       value: currencyFilter(source.amount),
     }
-    benefitsRows.push(benefitsRow)
-    return
   })
 
   return benefitsRows

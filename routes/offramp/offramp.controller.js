@@ -9,5 +9,9 @@ module.exports = function(app) {
 
   app.get('/offramp/residence', renderWithData('offramp/residence'))
 
+  app.get('/offramp/maritalStatus', renderWithData('offramp/maritalStatus'))
+  
+  app.get('/offramp/address', renderWithData('offramp/address'))
+
   app.get('/offramp/financial', renderWithData('offramp/financial'))
 }

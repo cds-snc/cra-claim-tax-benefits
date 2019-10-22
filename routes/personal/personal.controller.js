@@ -87,7 +87,7 @@ const postConfirmAddress = (req, res, next) => {
   if (confirmAddress === 'No') {
     //Income details are not correct
     //Lead them to the offramp
-    return res.redirect('/offramp')
+    return res.redirect('/offramp/address')
   }
 
   next()

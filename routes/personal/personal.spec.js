@@ -108,7 +108,7 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/address')
         .send({ confirmAddress: 'No' })
-      expect(response.headers.location).toEqual('/offramp')
+      expect(response.headers.location).toEqual('/offramp/address')
       expect(response.statusCode).toBe(302)
     })
 

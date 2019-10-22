@@ -5,6 +5,7 @@ describe('Test /offramp responses', () => {
   const urls = [
     '/offramp',
     '/offramp/name',
+    '/offramp/address',
     '/offramp/residence',
     '/offramp/maritalStatus',
     '/offramp/financial',

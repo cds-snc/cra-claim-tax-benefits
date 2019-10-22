@@ -18,7 +18,7 @@ jobs:
         uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
         with:
           args: run lint
-      - name: Run Quality Analysis on SonarCloud
+      - name: Run quality analysis on SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
         env: 
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}

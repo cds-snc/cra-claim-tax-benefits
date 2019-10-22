@@ -4,7 +4,7 @@ var API = (function(userFound) {
   const _user = userFound
 
   const getUser = code => {
-    if (code === userFound.login.code) {
+    if (code === _user.login.code) {
       return _user
     }
 

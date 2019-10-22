@@ -9,7 +9,7 @@ block content
   h1 #{title}
 
   form.cra-form(method='post')
-    +radiosYesNo('trilliumEnergyReserveClaim', 'In 2018, did you live on a reserve?', trilliumEnergyReserveClaim)
+    +radiosYesNo('trilliumEnergyReserveClaim', 'Did a charity, city, First Nations, or similar organization manage your long-term care home?', trilliumEnergyReserveClaim)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/energy/cost')
 

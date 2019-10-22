@@ -1,0 +1,16 @@
+extends ../base
+
+block variables
+  -var title = __('Public or non-profit long-term care')
+  -var trilliumLongTermCareTypeClaim = !hasData(data, 'deductions.trilliumLongTermCareTypeClaim') ? '' : data.deductions.trilliumLongTermCareTypeClaim ? 'Yes' : 'No'
+
+block content
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('trilliumLongTermCareTypeClaim', 'Did a charity, city, First Nations, or similar organization manage your long-term care home?', trilliumLongTermCareTypeClaim)
+
+    input#redirect(name='redirect', type='hidden', value='/deductions/climate-action-incentive')
+
+    +formButtons()

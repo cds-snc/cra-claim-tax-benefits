@@ -391,7 +391,6 @@
   "You have filed your 2018 taxes": "You have filed your 2018 taxes",
   "Your 2018 filing code is": "Your 2018 filing code is",
   "Use this code if you need to call about your taxes or ask for help from CRA by:": "Use this code if you need to call about your taxes or ask for help from CRA by:",
-  "You may also be able to get help at a free tax clinic. Learn if you can use a tax clinic.": "You may also be able to get help at a free tax clinic. Learn if you can use a tax clinic.",
   "You can get an “express” notice of assessment right after CRA gets your taxes online. It shows:": "You can get an “express” notice of assessment right after CRA gets your taxes online. It shows:",
   "That you filed taxes": "That you filed taxes",
   "If you will get benefits or money back": "If you will get benefits or money back",
@@ -403,5 +402,8 @@
   "CRA will put the money in your bank account if you arranged direct deposit.": "CRA will put the money in your bank account if you arranged direct deposit.",
   "your cheque comes in the mail if you didn’t arrange direct deposit.": "your cheque comes in the mail if you didn’t arrange direct deposit.",
   "Thank you for using our service.": "Thank you for using our service.",
-  "Please share your feedback": "Please share your feedback"
+  "Please share your feedback": "Please share your feedback",
+  "You may also be able to get help at a free tax clinic.": "You may also be able to get help at a free tax clinic.",
+  "Learn if you can use a tax clinic.": "Learn if you can use a tax clinic.",
+  "Please share your feedback.": "Please share your feedback."
 }

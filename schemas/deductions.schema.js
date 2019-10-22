@@ -53,8 +53,12 @@ const trilliumStudentResidenceSchema = {
   trilliumStudentResidence: yesNoSchema(),
 }
 
-const trilliumEnergySchema = {
-  trilliumEnergyClaim: yesNoSchema(),
+const trilliumEnergyReserveSchema = {
+  trilliumEnergyReserveClaim: yesNoSchema(),
+}
+
+const trilliumEnergyCostSchema = {
+  trilliumEnergyCostClaim: yesNoSchema(),
 }
 
 const trilliumEnergyAmountSchema = {
@@ -87,7 +91,8 @@ module.exports = {
   trilliumRentAmountSchema,
   trilliumPropertyTaxSchema,
   trilliumPropertyTaxAmountSchema,
-  trilliumEnergySchema,
+  trilliumEnergyReserveSchema,
+  trilliumEnergyCostSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareSchema,
   trilliumlongTermCareAmountSchema,

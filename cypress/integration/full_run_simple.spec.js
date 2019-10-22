@@ -231,12 +231,12 @@ describe('Full run through', function() {
 
   it('navigates the Trillium Home Energy page', function() {
     //TRILLIUM HOME ENERGY
-    cy.url().should('contain', '/trillium/energy')
-    cy.get('h1').should('contain', 'Home energy costs on reserve')
+    cy.url().should('contain', '/trillium/energy/reserve')
+    cy.get('h1').should('contain', 'Home on reserve')
 
-    cy.get('input#trilliumEnergyClaim1 + label').should('have.attr', 'for', 'trilliumEnergyClaim1')
+    cy.get('input#trilliumEnergyReserveClaim1 + label').should('have.attr', 'for', 'trilliumEnergyReserveClaim1')
 
-    cy.get('input#trilliumEnergyClaim1').click()
+    cy.get('input#trilliumEnergyReserveClaim1').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')

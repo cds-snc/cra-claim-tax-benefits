@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { doRedirect, doYesNo, renderWithData, checkErrors } = require('./../../utils')
+const { doRedirect, doYesNo, renderWithData, checkErrors, returnToCheckAnswers } = require('./../../utils')
 const {
   rrspSchema,
   rrspAmountSchema,
@@ -14,7 +14,8 @@ const {
   trilliumPropertyTaxSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumStudentResidenceSchema,
-  trilliumEnergySchema,
+  trilliumEnergyReserveSchema,
+  trilliumEnergyCostSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareSchema,
   trilliumlongTermCareAmountSchema,
@@ -173,19 +174,35 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/trillium/energy', renderWithData('deductions/trillium-energy'))
+  app.get('/trillium/energy/reserve', renderWithData('deductions/trillium-energy-reserve'))
   app.post(
-    '/trillium/energy',
-    checkSchema(trilliumEnergySchema),
-    checkErrors('deductions/trillium-energy'),
-    doYesNo('trilliumEnergyClaim', 'trilliumEnergyAmount'),
+    '/trillium/energy/reserve',
+    checkSchema(trilliumEnergyReserveSchema),
+    checkErrors('deductions/trillium-energy-reserve'),
+    postEnergyReserve,
     doRedirect,
   )
-  app.get('/trillium/energy/amount', renderWithData('deductions/trillium-energy-amount'))
+
+  app.get('/trillium/energy/cost', renderWithData('deductions/trillium-energy-cost'))
   app.post(
-    '/trillium/energy/amount',
+    '/trillium/energy/cost',
+    checkSchema(trilliumEnergyCostSchema),
+    checkErrors('deductions/trillium-energy-cost'),
+    doYesNo('trilliumEnergyCostClaim', 'trilliumEnergyAmount'),
+    // These only apply if the user clicked "no"
+    // If they clicked "Yes", they will be redirected by `doYesNo()`
+    (req, res, next) => {
+      req.session.deductions.trilliumEnergyAmount = 0
+      next()
+    },
+    doRedirect,
+  )
+
+  app.get('/trillium/energy/cost/amount', renderWithData('deductions/trillium-energy-cost-amount'))
+  app.post(
+    '/trillium/energy/cost/amount',
     checkSchema(trilliumEnergyAmountSchema),
-    checkErrors('deductions/trillium-energy-amount'),
+    checkErrors('deductions/trillium-energy-cost-amount'),
     (req, res, next) => {
       req.session.deductions.trilliumEnergyAmount = req.body.trilliumEnergyAmount
       next()
@@ -231,4 +248,28 @@ module.exports = function(app) {
     },
     doRedirect,
   )
+}
+
+const postEnergyReserve = (req, res, next) => {
+  const trilliumEnergyReserveClaim = req.body.trilliumEnergyReserveClaim
+
+  req.session.deductions.trilliumEnergyReserveClaim = trilliumEnergyReserveClaim
+
+  if (trilliumEnergyReserveClaim !== 'Yes') {
+
+    req.session.deductions.trilliumEnergyCostClaim = null
+    req.session.deductions.trilliumEnergyAmount = 0
+
+    if (req.query.ref && req.query.ref === 'checkAnswers') {
+      return returnToCheckAnswers(req, res)
+    }
+
+    return res.redirect('/trillium/longTermCare')
+  }
+
+  if (req.query.ref && req.query.ref === 'checkAnswers') {
+    return returnToCheckAnswers(req, res, true)
+  }
+
+  next()
 }

@@ -25,6 +25,7 @@ const routes = [
   { path: '/offramp/name', editInfo: 'skip' },
   { path: '/personal/residence' },
   { path: '/offramp/residence', editInfo: 'skip' },
+  { path: '/offramp/maritalStatus', editInfo: 'skip' },
   { path: '/personal/address' },
   { path: '/financial/income' },
   { path: '/offramp/financial', editInfo: 'skip' },

@@ -6,6 +6,8 @@ const { formatAnswerInfo } = require('./checkAnswersFormat')
 module.exports = function(app) {
   app.get('/confirmation', renderWithData('confirmation/confirmation'))
 
+  app.get('/feedback', renderWithData('confirmation/feedback'))
+
   app.get('/review', renderWithData('confirmation/review'))
   app.post('/review', checkSchema(reviewSchema), checkErrors('confirmation/review'), doRedirect)
 

@@ -2,7 +2,7 @@ const request = require('supertest')
 const app = require('../../app.js')
 
 describe('Test confirmation urls', () => {
-  const urls = ['/review', '/checkAnswers', '/confirmation']
+  const urls = ['/review', '/checkAnswers', '/confirmation', '/feedback']
 
   urls.map(url => {
     test(`${url} returns a 200 response`, async () => {

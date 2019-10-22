@@ -53,6 +53,7 @@ const routes = [
   { path: '/checkAnswers' },
   { path: '/review' },
   { path: '/confirmation' },
+  { path: '/feedback', editInfo: 'skip' },
 ]
 
 module.exports = {

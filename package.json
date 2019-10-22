@@ -13,7 +13,10 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.js",
-      "!**/node_modules/**"
+      "!**/coverage/**",
+      "!**/cypress/**",
+      "!**/node_modules/**",
+      "!**/public/**"
     ],
     "coverageReporters": [
       "json",

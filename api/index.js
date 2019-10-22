@@ -1,10 +1,10 @@
 const user = require('./user.json')
 
-var API = (function(user) {
-  const _user = user
+var API = (function(userFound) {
+  const _user = userFound
 
   const getUser = code => {
-    if (code === user.login.code) {
+    if (code === userFound.login.code) {
       return _user
     }
 

@@ -181,7 +181,7 @@ const postDateOfBirth = async (req, res, next) => {
 }
 
 const postSecurityQuestion = async (req, res) => {
-  const url = securityQuestionUrls.find(url => url === req.body.securityQuestion)
+  const url = securityQuestionUrls.find(urlFound => urlFound === req.body.securityQuestion)
 
   req.session.login.securityQuestion = url
   return res.redirect(url)

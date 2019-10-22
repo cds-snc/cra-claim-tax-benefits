@@ -305,7 +305,7 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
   }
 
   if (req.query && req.query.ref) {
-    return routes.find(route => route.path === '/checkAnswers')
+    return routes.find(routeFound => routeFound.path === '/checkAnswers')
   }
 
   return prevRoute()

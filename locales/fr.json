@@ -474,12 +474,9 @@
   "Did you donate to a charity?": "Did you donate to a charity?",
   "Tax benefits": "Tax benefits",
   "Did you live in a student residence?": "Did you live in a student residence?",
-  "Did you live on a reserve?": "Did you live on a reserve?",
-  "Did you live in a long-term care home?": "Did you live in a long-term care home?",
   "Did you live in a small and rural community?": "Did you live in a small and rural community?",
   "Agree": "Agree",
   "letter. You can change your address on the form.": "letter. You can change your address on the form.",
-  "Home on reserve": "Home on reserve",
   "In 2018, did you live on a reserve?": "In 2018, did you live on a reserve?",
   "In 2018, did you pay energy costs for your home on reserve?": "In 2018, did you pay energy costs for your home on reserve?",
   "Is your income information correct?": "Is your income information correct?",
@@ -487,5 +484,9 @@
   "Long-term care home": "Long-term care home",
   "Did you live in a long-term care home in 2018?": "Did you live in a long-term care home in 2018?",
   "Public or non-profit long-term care": "Public or non-profit long-term care",
-  "Did a charity, city, First Nations, or similar organization manage your long-term care home?": "Did a charity, city, First Nations, or similar organization manage your long-term care home?"
+  "Did a charity, city, First Nations, or similar organization manage your long-term care home?": "Did a charity, city, First Nations, or similar organization manage your long-term care home?",
+  "Did you live on a reserve?": "Did you live on a reserve?",
+  "Did you live in a long-term care home?": "Did you live in a long-term care home?",
+  "Home on reserve": "Home on reserve",
+  "Did you live in a public or non-profit long-term care home?": "Did you live in a public or non-profit long-term care home?"
 }

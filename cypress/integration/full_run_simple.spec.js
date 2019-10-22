@@ -246,7 +246,7 @@ describe('Full run through', function() {
   it('navigates the Trillium Long Term Care page', function() {
     //TRILLIUM LONG TERM CARE
     cy.url().should('contain', '/trillium/longTermCare')
-    cy.get('h1').should('contain', 'Public long-term care home costs')
+    cy.get('h1').should('contain', 'Long-term care home')
     cy.get('input#trilliumLongTermCareClaim1 + label').should(
       'have.attr',
       'for',
@@ -263,7 +263,7 @@ describe('Full run through', function() {
   it('navigates  Incentive page', function() {
     //CLIMATE ACTION INCENTIVE
     cy.url().should('contain', '/deductions/climate-action-incentive')
-    cy.get('h1').should('contain', 'The Climate Action Incentive')
+    cy.get('h1').should('contain', 'Small and rural communities')
 
     cy.get('input#climateActionIncentiveIsRural1 + label').should(
       'have.attr',

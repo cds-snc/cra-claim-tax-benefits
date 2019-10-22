@@ -125,9 +125,15 @@ const answerInfo = [
       },
       {
         'text': 'Long-term care costs',
-        'infoPath': ['deductions.trilliumLongTermCareAmount'],
-        'urlPath': '/trillium/longTermCare/amount',
+        'infoPath': ['deductions.trilliumLongTermCareTypeClaim'],
+        'urlPath': '/trillium/longTermCare/type',
         'displayIf': 'deductions.trilliumLongTermCareClaim',
+      },
+      {
+        'text': 'Acommodation cost',
+        'infoPath': ['deductions.trilliumLongTermCareAmount'],
+        'urlPath': '/trillium/longTermCare/type/amount',
+        'displayIf': 'deductions.trilliumLongTermCareTypeClaim',
       },
       {
         'text': 'Did you live in a small and rural community?',

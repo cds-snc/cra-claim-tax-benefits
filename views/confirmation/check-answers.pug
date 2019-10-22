@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Check Your Answers Before Filing Your Return')
+  -var title = __('Check your answers before filing')
 
 block content
 
@@ -16,7 +16,7 @@ block content
             .breakdown-table__row.breakdown-table__row--answers
               dt.breakdown-table__row-key #{__(row.text)}
 
-              if (row.text.includes('Address'))
+              if (row.text.toLowerCase().includes('address'))
                 dd.breakdown-table__row-value
                   if hasData(data, 'personal.address.line2')
                     div #{data.personal.address.line2}-#{data.personal.address.line1}
@@ -32,4 +32,4 @@ block content
                   a(href=`${row.urlPath}?ref=checkAnswers`)
                     <span>#{__('Review')}<span class="visually-hidden"> #{__(row.text)}</span>
 
-  +linkButtons('/review')
+  +linkButtons('/review', 'Agree')

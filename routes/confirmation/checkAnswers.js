@@ -1,6 +1,6 @@
 const answerInfo = [
   { 
-    'sectionTitle': 'Personal Information',
+    'sectionTitle': 'Personal information',
     'sectionRows': [
       {
         'text': 'Name',
@@ -8,26 +8,26 @@ const answerInfo = [
         'urlPath': '/personal/name',
       },
       {
-        'text': 'Date of Birth',
+        'text': 'Date of birth',
         'infoPath': ['personal.dateOfBirth'],
       },
       {
-        'text': 'Province of Residence',
+        'text': 'Province of residence',
         'infoPath': ['personal.address.province'],
         'urlPath': '/personal/residence',
       },
       {
-        'text': 'Mailing Address',
+        'text': 'Mailing address',
         'infoPath': ['personal.address'],
         'urlPath': '/personal/address',
       },
       {
-        'text': 'Income Information',
+        'text': 'Income information',
         'infoPath': ['financial.incomeConfirmed'],
         'urlPath': '/financial/income',
       },
       {
-        'text': 'Marital Status',
+        'text': 'Marital status',
         'infoPath': ['personal.maritalStatus'],
         'urlPath': '/personal/maritalStatus',
       },
@@ -37,12 +37,12 @@ const answerInfo = [
     'sectionTitle': 'Tax Claims',
     'sectionRows': [
       {
-        'text': 'Did You Contribute to an RRSP?',
+        'text': 'Did you contribute to an RRSP?',
         'infoPath': ['deductions.rrspClaim'],
         'urlPath': '/deductions/rrsp',
       },
       {
-        'text': 'RRSP Contribution',
+        'text': 'RRSP contribution',
         'infoPath': ['deductions.rrspAmount.amount'],
         'urlPath': '/deductions/rrsp/amount',
         'displayIf': 'deductions.rrspClaim',
@@ -59,7 +59,7 @@ const answerInfo = [
         'displayIf': 'deductions.medicalExpenseClaim',
       },
       {
-        'text': 'Did you contribute to a political party',
+        'text': 'Did you contribute to a political party?',
         'infoPath': ['deductions.politicalContributionClaim'],
         'urlPath': '/deductions/political',
       },
@@ -70,7 +70,7 @@ const answerInfo = [
         'displayIf': 'deductions.politicalContributionClaim',
       },
       {
-        'text': 'Did you Donate to a Charity',
+        'text': 'Did you Donate to a charity?',
         'infoPath': ['deductions.charitableDonationClaim'],
         'urlPath': '/deductions/donations',
       },
@@ -97,7 +97,7 @@ const answerInfo = [
         'displayIf': 'deductions.trilliumRentClaim',
       },
       {
-        'text': 'Student residence',
+        'text': 'Did you live in a student residence?',
         'infoPath': ['deductions.trilliumStudentResidence'],
         'urlPath': '/trillium/studentResidence',
       },
@@ -107,7 +107,7 @@ const answerInfo = [
         'urlPath': '/trillium/energy/reserve',
       },
       {
-        'text': 'Did you pay home energy costs on a reserve?',
+        'text': 'Did you have home energy costs on a reserve?',
         'infoPath': ['deductions.trilliumEnergyCostClaim'],
         'urlPath': '/trillium/energy/cost',
         'displayIf': 'deductions.trilliumEnergyReserveClaim',
@@ -119,18 +119,22 @@ const answerInfo = [
         'displayIf': 'deductions.trilliumEnergyCostClaim',
       },
       {
-        'text': 'Public long-term care home',
+        'text': 'Did you live in a long-term care home?',
         'infoPath': ['deductions.trilliumLongTermCareClaim'],
         'urlPath': '/trillium/longTermCare',
       },
       {
-        'text': 'Acommodation cost',
+        'text': 'Was it managed by a charity, city, First Nations or similar organization?',
+        'displayIf': 'deductions.trilliumLongTermCareClaim'
+      },
+      {
+        'text': 'Long-term care costs',
         'infoPath': ['deductions.trilliumLongTermCareAmount'],
         'urlPath': '/trillium/longTermCare/amount',
         'displayIf': 'deductions.trilliumLongTermCareClaim',
       },
       {
-        'text': 'Small or rural community',
+        'text': 'Did you live in a small and rural community?',
         'infoPath': ['deductions.climateActionIncentiveIsRural'],
         'urlPath': '/deductions/climate-action-incentive',
       },

@@ -468,7 +468,6 @@
   "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/account-individuals.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_my-cra-account": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/account-individuals.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_my-cra-account",
   "canada.ca/my-cra-account": "canada.ca/my-cra-account",
   "TTY: 1-800-665-0354": "TTY: 1-800-665-0354",
-  "By mail, using the form sent with the CRA Claim Tax Benefits letter. You can change your address on the form.": "By mail, using the form sent with the CRA Claim Tax Benefits letter. You can change your address on the form.",
   "At a tax clinic, where you may be able to get help. You can change your address at the tax clinic. Visit the CRA website to": "At a tax clinic, where you may be able to get help. You can change your address at the tax clinic. Visit the CRA website to",
   "You can use NETFILE when you are sure CRA has updated your address. Check with CRA:": "You can use NETFILE when you are sure CRA has updated your address. Check with CRA:",
   "At a tax clinic, where you may be able to get help.": "At a tax clinic, where you may be able to get help.",
@@ -482,5 +481,6 @@
   " to file online. But first you should change your address with CRA. CRA gives ": " to file online. But first you should change your address with CRA. CRA gives ",
   "Online, using My Account. You can register for My Account at": "Online, using My Account. You can register for My Account at",
   "By phone: 1-800-959-8281": "By phone: 1-800-959-8281",
-  "By TTY (text telephone): 1-800-665-0354": "By TTY (text telephone): 1-800-665-0354"
+  "By TTY (text telephone): 1-800-665-0354": "By TTY (text telephone): 1-800-665-0354",
+  "letter. You can change your address on the form.": "letter. You can change your address on the form."
 }

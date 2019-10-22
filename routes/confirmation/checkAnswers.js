@@ -34,7 +34,7 @@ const answerInfo = [
     ],
   },
   {
-    'sectionTitle': 'Tax Claims',
+    'sectionTitle': 'Tax claims',
     'sectionRows': [
       {
         'text': 'Did you contribute to an RRSP?',
@@ -83,7 +83,7 @@ const answerInfo = [
     ],
   },
   {
-    'sectionTitle': 'Tax Benefits',
+    'sectionTitle': 'Tax benefits',
     'sectionRows': [
       {
         'text': 'Did you pay rent?',

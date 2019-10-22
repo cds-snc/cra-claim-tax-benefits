@@ -418,10 +418,7 @@
   "Rent": "Rent",
   "Property tax": "Property tax",
   "Enter your property tax": "Enter your property tax",
-<<<<<<< HEAD
   "Your code has 9-characters and you can find it on the CRA": "Your code has 9-characters and you can find it on the CRA",
   " letter. The letter has your name and address at the top.": " letter. The letter has your name and address at the top.",
-=======
->>>>>>> Added SonarQube analysis capability
   "Confirm": "Confirm"
 }

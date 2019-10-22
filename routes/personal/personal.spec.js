@@ -55,7 +55,7 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/maritalStatus')
         .send({ confirmMaritalStatus: 'No' })
-      expect(response.headers.location).toEqual('/offramp')
+      expect(response.headers.location).toEqual('/offramp/maritalStatus')
       expect(response.statusCode).toBe(302)
     })
 

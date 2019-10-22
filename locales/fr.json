@@ -384,8 +384,6 @@
   "Enter your property tax": "Enter your property tax",
   "Your code has 9-characters and you can find it on the CRA": "Your code has 9-characters and you can find it on the CRA",
   " letter. The letter has your name and address at the top.": " letter. The letter has your name and address at the top.",
-  "Confirm": "Confirmer",
-  "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:": "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible",
   "With": "With",
   "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:": "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:",
@@ -396,7 +394,9 @@
   "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/certified-software-netfile-program.html": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/certified-software-netfile-program.html",
   "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/eligibility.html": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/eligibility.html",
   "check": "check",
-  "if you can use it. Certified means CRA approves the software": "if you can use it. Certified means CRA approves the software",
   "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview.html": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview.html",
-  " which certified NETFILE software is free, and": " which certified NETFILE software is free, and"
+  " which certified NETFILE software is free, and": " which certified NETFILE software is free, and",
+  "You can’t use this online service because Ontario was not your home province on December 31, 2018. But you can still file your taxes. Other secure ways to file are:": "You can’t use this online service because Ontario was not your home province on December 31, 2018. But you can still file your taxes. Other secure ways to file are:",
+  "if you can use it. Certified means CRA approves the software.": "if you can use it. Certified means CRA approves the software.",
+  "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:": "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:"
 }

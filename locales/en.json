@@ -418,8 +418,6 @@
   "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:": "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other free and secure ways to file are:",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible",
   "TTY: 1-800-665-0354": "TTY: 1-800-665-0354",
-  "There are also other free and secure ways to file your taxes:": "There are also other free and secure ways to file your taxes:",
-  "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:": "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:",
   "At a free tax clinic, where you may be able to get help.": "At a free tax clinic, where you may be able to get help.",
   "Learn": "Learn",
   "if you can use a tax clinic.": "if you can use a tax clinic.",
@@ -431,5 +429,8 @@
   "At a tax clinic, where you may be able to get help. Visit the CRA website to": "At a tax clinic, where you may be able to get help. Visit the CRA website to",
   "check if you are eligible for help at a free tax clinic.": "check if you are eligible for help at a free tax clinic.",
   "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview.html": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview.html",
-  " which certified NETFILE software is free, and": " which certified NETFILE software is free, and"
+  " which certified NETFILE software is free, and": " which certified NETFILE software is free, and",
+  "You can’t use this online service because Ontario was not your home province on December 31, 2018. But you can still file your taxes. Other secure ways to file are:": "You can’t use this online service because Ontario was not your home province on December 31, 2018. But you can still file your taxes. Other secure ways to file are:",
+  "if you can use it. Certified means CRA approves the software.": "if you can use it. Certified means CRA approves the software.",
+  "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:": "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:"
 }

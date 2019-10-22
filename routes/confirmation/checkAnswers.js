@@ -125,7 +125,7 @@ const answerInfo = [
       },
       {
         'text': 'Was it managed by a charity, city, First Nations or similar organization?',
-        'displayIf': 'deductions.trilliumLongTermCareClaim'
+        'displayIf': 'deductions.trilliumLongTermCareClaim',
       },
       {
         'text': 'Long-term care costs',

@@ -238,11 +238,11 @@ describe('Test /deductions responses', () => {
 
     test('it redirects with the checkAnswers ref when posting Yes and having come from the checkAnswers page', async () => {
       const response = await request(app)
-        .post('/trillium/energy/reserve')
+        .post('/trillium/longTermCare')
         .query({ ref: 'checkAnswers' })
-        .send({ trilliumEnergyReserveClaim: 'Yes' })
+        .send({ trilliumLongTermCareClaim: 'Yes' })
       expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/trillium/energy/cost?ref=checkAnswers')
+      expect(response.headers.location).toEqual('/trillium/longTermCare/type?ref=checkAnswers')
     })
   })
 

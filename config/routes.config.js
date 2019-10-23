@@ -13,7 +13,7 @@ const securityQuestionUrls = [
 //list our routes in the flow order in the app
 const routes = [
   { path: '/start' },
-  { path: '/login/code' },
+  { path: '/login/code', editInfo: 'skip' },
   { path: '/offramp', editInfo: 'skip' },
   { path: '/login/sin' },
   { path: '/login/dateOfBirth' },
@@ -33,8 +33,8 @@ const routes = [
   { path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
   { path: '/personal/maritalStatus', editInfo: 'skip' },
   { path: '/offramp/maritalStatus', editInfo: 'skip' },
-  { path: '/deductions/medical' },
-  { path: '/deductions/medical/amount', editInfo: 'deductions.medicalExpenseClaim' },
+  { path: '/deductions/medical', editInfo: 'skip' },
+  { path: '/deductions/medical/amount', editInfo: 'skip' },
   { path: '/deductions/political' },
   { path: '/deductions/political/amount', editInfo: 'deductions.politicalContributionClaim' },
   { path: '/deductions/donations' },

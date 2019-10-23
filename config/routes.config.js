@@ -13,7 +13,7 @@ const securityQuestionUrls = [
 //list our routes in the flow order in the app
 const routes = [
   { path: '/start' },
-  { path: '/login/code' },
+  { path: '/login/code', editInfo: 'skip' },
   { path: '/offramp', editInfo: 'skip' },
   { path: '/login/sin' },
   { path: '/login/dateOfBirth' },

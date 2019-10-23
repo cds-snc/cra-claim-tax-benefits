@@ -77,14 +77,6 @@ describe('Test /personal responses', () => {
       expect(response.statusCode).toBe(422)
     })
 
-    test('it returns a 302 when selecting unsupported province', async () => {
-      const response = await request(app)
-        .post('/personal/residence')
-        .send({ redirect: '/offramp/residence', residence: 'Alberta' })
-      expect(response.headers.location).toEqual('/offramp/residence')
-      expect(response.statusCode).toBe(302)
-    })
-
     test('it returns a 302 when selecting Ontario', async () => {
       const response = await request(app)
         .post('/personal/residence')

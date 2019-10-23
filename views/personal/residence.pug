@@ -2,6 +2,7 @@ extends ../base
 
 block variables
   -var title = __('Enter your province or territory')
+  -var residence = hasData(data, 'personal.residence') ? data.personal.residence : ''
 
 block content
 
@@ -14,20 +15,20 @@ block content
           +validationMessage(errors.residence.msg, 'residence')
       select#residence(name='residence', autofocus, aria-describedby=(errors && errors.residence ? 'residence-error' : false))
           option(value='')
-          option(value='Alberta') #{__('Alberta')}
-          option(value='British Columbia') #{__('British Columbia')}
-          option(value='Manitoba') #{__('Manitoba')}
-          option(value='New Brunswick') #{__('New Brunswick')}
-          option(value='Newfoundland And Labrador') #{__('Newfoundland and Labrador')}
-          option(value='Northwest Territories') #{__('Northwest Territories')}
-          option(value='Nova Scotia') #{__('Nova Scotia')}
-          option(value='Nunavut') #{__('Nunavut')}
-          option(value='Ontario') #{__('Ontario')}
-          option(value='Prince Edward Island') #{__('Prince Edward Island')}
-          option(value='Quebec') #{__('Quebec')}
-          option(value='Saskatchewan') #{__('Saskatchewan')}
-          option(value='Yukon') #{__('Yukon')}
-          option(value='Non Resident') #{__('Non Resident')}
+          option(value='Alberta' selected=(residence==='Alberta')) #{__('Alberta')}
+          option(value='British Columbia' selected=(residence==='British Columbia')) #{__('British Columbia')}
+          option(value='Manitoba' selected=(residence==='Manitoba')) #{__('Manitoba')}
+          option(value='New Brunswick' selected=(residence==='New Brunswick')) #{__('New Brunswick')}
+          option(value='Newfoundland And Labrador' selected=(residence==='Newfoundland And Labrador')) #{__('Newfoundland and Labrador')}
+          option(value='Northwest Territories' selected=(residence==='Northwest Territories')) #{__('Northwest Territories')}
+          option(value='Nova Scotia' selected=(residence==='Nova Scotia')) #{__('Nova Scotia')}
+          option(value='Nunavut' selected=(residence==='Nunavut')) #{__('Nunavut')}
+          option(value='Ontario' selected=(residence==='Ontario')) #{__('Ontario')}
+          option(value='Prince Edward Island' selected=(residence==='Prince Edward Island')) #{__('Prince Edward Island')}
+          option(value='Quebec' selected=(residence==='Quebec')) #{__('Quebec')}
+          option(value='Saskatchewan' selected=(residence==='Saskatchewan')) #{__('Saskatchewan')}
+          option(value='Yukon' selected=(residence==='Yukon')) #{__('Yukon')}
+          option(value='Non Resident' selected=(residence==='Non Resident')) #{__('Non Resident')}
     input#redirect(name='redirect', type='hidden', value='/personal/address')
 
     +formButtons()

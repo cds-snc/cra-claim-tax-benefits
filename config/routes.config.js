@@ -51,6 +51,7 @@ const routes = [
   { path: '/review' },
   { path: '/confirmation' },
   { path: '/feedback', editInfo: 'skip' },
+  { path: '/offramp/confirmation', editInfo: 'skip' },
 ]
 
 module.exports = {

@@ -1,5 +1,5 @@
 const answerInfo = [
-  {
+  { 
     'sectionTitle': 'Personal information',
     'sectionRows': [
       {

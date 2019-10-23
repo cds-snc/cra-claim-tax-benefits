@@ -229,7 +229,7 @@ module.exports = function(app) {
     // These only apply if the user clicked "no"
     // If they clicked "Yes", they will be redirected by `doYesNo()`
     (req, res, next) => {
-      req.session.deductions.trilliumEnergyAmount = 0
+      req.session.deductions.trilliumLongTermCareAmount = 0
       next()
     },
     doRedirect,

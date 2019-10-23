@@ -482,7 +482,6 @@
   "Personal information": "Personal information",
   "Name": "Name",
   "Review": "Review",
-  "Province of residence": "Province of residence",
   "Income information": "Income information",
   "Tax claims": "Tax claims",
   "Did you contribute to an RRSP?": "Did you contribute to an RRSP?",
@@ -503,5 +502,6 @@
   "Property tax": "Property tax",
   "Student residence": "Student residence",
   "Enter your property tax": "Enter your property tax",
-  "Personal filing code": "Personal filing code"
+  "Personal filing code": "Personal filing code",
+  "Is your income information correct?": "Is your income information correct?"
 }

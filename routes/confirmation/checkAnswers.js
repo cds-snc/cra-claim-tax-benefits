@@ -12,7 +12,7 @@ const answerInfo = [
         'infoPath': ['personal.dateOfBirth'],
       },
       {
-        'text': 'Province of residence',
+        'text': 'Province',
         'infoPath': ['personal.address.province'],
         'urlPath': '/personal/residence',
       },

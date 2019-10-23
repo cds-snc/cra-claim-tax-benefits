@@ -498,5 +498,9 @@
   "Student residence": "Student residence",
   "Enter your property tax": "Enter your property tax",
   "Personal filing code": "Personal filing code",
-  "Is your income information correct?": "Is your income information correct?"
+  "Is your income information correct?": "Is your income information correct?",
+  "This is the survey banner": "This is the survey banner",
+  "Survey instructions:": "Survey instructions:",
+  "For the purposes of this survey, please imagine that you see your own name on this page.": "For the purposes of this survey, please imagine that you see your own name on this page.",
+  "For the purposes of this survey, please imagine that you see your own address on this page.": "For the purposes of this survey, please imagine that you see your own address on this page."
 }

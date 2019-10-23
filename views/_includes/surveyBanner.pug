@@ -1,0 +1,13 @@
+- var page = currentRoute
+
+if page === "/personal/name"
+  - var text = "For the purposes of this survey, please imagine that you see your own name on this page."
+else if page === "/financial/income"
+  - var text = "For the purposes of this survey, please imagine that you see your own name on this page."
+else if page === "/personal/address"
+  - var text = "For the purposes of this survey, please imagine that you see your own address on this page."
+
+if page === "/personal/name" || page === "/financial/income" || page === "/personal/address"
+  .survey-banner
+    div
+      p <span>#{__('Survey instructions:')}</span> #{__(text)}

@@ -14,6 +14,9 @@ const testRoutes = [
   { path: '/deductions/rrsp' },
   { path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
   { path: '/deductions/medical' },
+  { path: '/trillium/rent', editInfo: 'skip' },
+  { path: '/trillium/rent/amount', editInfo: 'skip' },
+  { path: '/trillium/propertyTax' },
   { path: '/checkAnswers' },
 ]
 
@@ -96,7 +99,7 @@ describe('Test getRouteWithIndexByPath', () => {
 
   test('Returns the last path with index of existing route', () => {
     const route = getRouteWithIndexByPath('/checkAnswers', testRoutes)
-    expect(route).toEqual({ index: 6, route: { path: '/checkAnswers' } })
+    expect(route).toEqual({ index: 9, route: { path: '/checkAnswers' } })
   })
 
   test('Returns a route with an options key by looking for the path', () => {
@@ -148,6 +151,11 @@ describe('Test getPreviousRoute function', () => {
     const user = { deductions: { rrspClaim: null } }
     const obj = getPreviousRoute({ path: '/deductions/medical', session: user }, testRoutes)
     expect(obj.path).toEqual('/deductions/rrsp')
+  })
+
+  test('skip multiple pages if they are to be skipped', () => {
+    const obj = getPreviousRoute({ path: '/trillium/propertyTax', session: user }, testRoutes)
+    expect(obj.path).toEqual('/deductions/medical')
   })
 
   test('it returns checkAnswers route if ref is present', () => {

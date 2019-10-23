@@ -285,23 +285,19 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
   }
 
   const prevRoute = () => {
-    const oneRouteBack = routes[Number(route.index) - 1] || false
-
-    /**
-     * essentially check if the page before
-     * - exists
-     * - is an edit page
-     * - and if the person actually entered/edited any of that information
-     */
-    if (
-      oneRouteBack &&
-      'editInfo' in oneRouteBack &&
-      !hasData(session, oneRouteBack.editInfo, true)
-    ) {
-      return routes[Number(route.index) - 2] || false
-    }
-
-    return oneRouteBack
+    const allPreviousRoutes = routes.slice(0, route.index).reverse()
+    
+    const previousRoute = allPreviousRoutes.find((route) => {
+      if(
+      'editInfo' in route &&
+      hasData(session, route.editInfo, true) ||
+      !route.hasOwnProperty('editInfo')
+      ) {
+        return route
+      }
+    })
+    
+    return previousRoute || false
   }
 
   if (req.query && req.query.ref) {

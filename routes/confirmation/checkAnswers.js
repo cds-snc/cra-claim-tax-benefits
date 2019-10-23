@@ -1,5 +1,5 @@
 const answerInfo = [
-  { 
+  {
     'sectionTitle': 'Personal information',
     'sectionRows': [
       {
@@ -13,7 +13,7 @@ const answerInfo = [
       },
       {
         'text': 'Province',
-        'infoPath': ['personal.address.province'],
+        'infoPath': ['personal.residence'],
         'urlPath': '/personal/residence',
       },
       {

@@ -29,17 +29,17 @@ describe('Test checkAnswersFormat function with initialSession', () => {
   
   test('it has 3 sections with correct key names', async () => {
     expect(Object.keys(answerInfo).length).toBe(3)
-    expect(Object.keys(answerInfo)).toEqual(['Personal Information', 'Tax Claims', 'Tax Benefits'])
+    expect(Object.keys(answerInfo)).toEqual(['Personal information', 'Tax claims', 'Tax benefits'])
   })
 
   test('it has sections with row lengths of 6, 4, 5', async () => {
-    expect(answerInfo['Personal Information'].length).toBe(6)
-    expect(answerInfo['Tax Claims'].length).toBe(4)
-    expect(answerInfo['Tax Benefits'].length).toBe(5)
+    expect(answerInfo['Personal information'].length).toBe(6)
+    expect(answerInfo['Tax claims'].length).toBe(4)
+    expect(answerInfo['Tax benefits'].length).toBe(5)
   })
 
   test('it has No in all Tax related rows', async () => {
-    const taxSections = answerInfo['Tax Benefits'].concat(answerInfo['Tax Claims'])
+    const taxSections = answerInfo['Tax benefits'].concat(answerInfo['Tax claims'])
     taxSections.map((row) => {
       expect(row.data).toBe('No')
     })
@@ -50,11 +50,11 @@ describe('Test checkAnswersFormat with added displayIf rows for Political Contri
   const answerInfo = formatAnswerInfo(sessionWithPolitical)
   
   test('it has an extra row in Tax Claims for political contribution amount', async () => {
-    expect(answerInfo['Tax Claims'].length).toBe(5)
+    expect(answerInfo['Tax claims'].length).toBe(5)
   })
 
   test('it adds the political contribution amount', async () => {
-    const politicalAmount = answerInfo['Tax Claims'].find(row => row.urlPath === '/deductions/political/amount')
+    const politicalAmount = answerInfo['Tax claims'].find(row => row.urlPath === '/deductions/political/amount')
     expect(politicalAmount.data).toBe('$17.00')
   })
 })
@@ -63,11 +63,11 @@ describe('Test checkAnswersFormat with added displayIf rows for Trillium Rent', 
   const answerInfo = formatAnswerInfo(sessionWithRent)
   
   test('it has an extra row in Tax Benefits for trillium rent amount', async () => {
-    expect(answerInfo['Tax Benefits'].length).toBe(6)
+    expect(answerInfo['Tax benefits'].length).toBe(6)
   })
 
   test('it displays the amount', async () => {
-    const rentAmount = answerInfo['Tax Benefits'].find(row => row.urlPath === '/trillium/rent/amount')
+    const rentAmount = answerInfo['Tax benefits'].find(row => row.urlPath === '/trillium/rent/amount')
     expect(rentAmount.data).toBe('$240.00')
   })
 })

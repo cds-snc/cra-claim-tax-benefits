@@ -17,12 +17,7 @@ block content
         tr
           td
             .address
-              if hasData(data, 'personal.address.line2')
-                div #{data.personal.address.line2}-#{data.personal.address.line1}
-              else
-                div #{data.personal.address.line1}
-              div #{data.personal.address.city}, #{data.personal.address.province}
-              div #{data.personal.address.postalCode}
+              div [Your address here]
 
   form.cra-form(method='post')
     +radiosYesNo('confirmAddress', 'Is this your correct address?', confirmedAddress)

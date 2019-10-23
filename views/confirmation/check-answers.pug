@@ -18,12 +18,7 @@ block content
 
               if (row.text.toLowerCase().includes('address'))
                 dd.breakdown-table__row-value
-                  if hasData(data, 'personal.address.line2')
-                    div #{data.personal.address.line2}-#{data.personal.address.line1}
-                  else
-                    div #{data.personal.address.line1}
-                  div #{data.personal.address.city}, #{data.personal.address.province}
-                  div #{data.personal.address.postalCode}
+                  div [Your address here]
               else
                 dd.breakdown-table__row-value #{row.data}
 

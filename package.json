@@ -29,14 +29,14 @@
   },
   "scripts": {
     "dev": "nodemon --max-http-header-size=40000 ./bin/www",
-    "lint": "node_modules/eslint/bin/eslint.js config routes bin/www app.js",
-    "start": "NODE_ENV=production node --max-http-header-size=40000 ./bin/www",
+    "lint": "node ./node_modules/eslint/bin/eslint.js config routes bin/www app.js",
+    "start": "NODE_ENV=production node ./bin/www",
+    "start:cypress": "NODE_ENV=test node ./bin/www",
     "test": "node node_modules/jest/bin/jest.js",
     "cypress:open": "./node_modules/.bin/cypress open",
     "cypress": "start-server-and-test start:cypress http://localhost:3005 cypress:open",
     "cypress:run": "./node_modules/.bin/cypress run",
     "cypress:cli": "start-server-and-test start:cypress http://localhost:3005 cypress:run",
-    "start:cypress": "NODE_ENV=test node ./bin/www",    
     "sonar": "sonar-scanner"
   },
   "dependencies": {

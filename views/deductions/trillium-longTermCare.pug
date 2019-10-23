@@ -8,6 +8,9 @@ block content
 
   h1 #{title}
 
+  div 
+    p #{__('You may live in a long-term care home or facility if costs such as nursing or personal support are combined with your rent.')}
+
   form.cra-form(method='post')
     +radiosYesNo('trilliumLongTermCareClaim', 'Did you live in a long-term care home in 2018?', trilliumLongTermCareClaim)
 

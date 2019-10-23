@@ -1,0 +1,32 @@
+$banner-height: 57px;
+
+.survey-banner {
+  background: #fff3cd;
+  line-height: 1.33;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: $banner-height;
+  font-size: 0.875em;
+  text-align: center;
+
+  div {
+    @extend %page-container;
+    padding-top: $space-sm;
+    padding-bottom: $space-sm;
+  }
+
+  span {
+    font-weight: 700;
+  }
+
+  @include sm {
+    align-items: center;
+  }
+}
+
+.survey-banner + .phase-banner {
+  margin-top: $banner-height;
+}

@@ -7,10 +7,8 @@ block variables
 block content
 
   h1 #{title}
-
   
-  
-  div
+  .offramp
     p #{__('You can’t use this online service because Ontario was not your home province on December 31, 2018. But you can still file your taxes. Other secure ways to file are:')}
     ul 
       li #{__('At a free tax clinic, where you may be able to get help.')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible')}>#{__('Learn')}</a> #{__('if you can use a tax clinic.')}
@@ -18,3 +16,7 @@ block content
     div
       p #{__('For more information, contact CRA by:')}
       include ../_includes/phone-bullets
+
+    +banner('red')
+        p <strong>#{__('Survey Instructions:')}</strong> #{__('If you are finished, ')} <a href="/offramp/confirmation">#{__('click here')}</a>.
+

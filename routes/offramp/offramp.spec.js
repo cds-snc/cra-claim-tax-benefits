@@ -10,6 +10,7 @@ describe('Test /offramp responses', () => {
     '/offramp/maritalStatus',
     '/offramp/financial',
     '/offramp/securityQuestion',
+    '/offramp/confirmation',
   ]
 
   urls.map(url => {

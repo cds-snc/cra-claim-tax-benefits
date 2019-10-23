@@ -30,7 +30,10 @@ module.exports = function(app) {
     '/personal/residence',
     checkSchema(residenceSchema),
     checkErrors('personal/residence'),
-    postResidence,
+    (req, res, next) => {
+      req.session.personal.residence = req.body.residence
+      next()
+    },
     doRedirect,
   )
 
@@ -44,20 +47,11 @@ module.exports = function(app) {
   )
 }
 
-
-const postResidence = (req, res, next) => {
-  if (req.body.residence !== 'Ontario') {
-    return res.redirect('/offramp/residence')
-  }
-
-  next()
-}
-
 const postName = (req, res, next) => {
   const name = req.body.name
-  
+
   req.session.personal.confirmedName = name
-  
+
   if (name !== 'Yes') {
     return res.redirect('/offramp/name')
   }
@@ -67,7 +61,7 @@ const postName = (req, res, next) => {
 
 const postConfirmMaritalStatus = (req, res, next) => {
   const confirmMaritalStatus = req.body.confirmMaritalStatus
-  
+
   req.session.personal.confirmedMaritalStatus = confirmMaritalStatus
 
   if (confirmMaritalStatus === 'No') {
@@ -81,7 +75,7 @@ const postConfirmMaritalStatus = (req, res, next) => {
 
 const postConfirmAddress = (req, res, next) => {
   const confirmAddress = req.body.confirmAddress
-  
+
   req.session.personal.confirmedAddress = confirmAddress
 
   if (confirmAddress === 'No') {

@@ -124,10 +124,6 @@ const answerInfo = [
         'urlPath': '/trillium/longTermCare',
       },
       {
-        'text': 'Was it managed by a charity, city, First Nations or similar organization?',
-        'displayIf': 'deductions.trilliumLongTermCareClaim',
-      },
-      {
         'text': 'Long-term care costs',
         'infoPath': ['deductions.trilliumLongTermCareAmount'],
         'urlPath': '/trillium/longTermCare/amount',

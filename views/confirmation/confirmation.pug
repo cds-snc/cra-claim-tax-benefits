@@ -1,4 +1,5 @@
 extends ../base
+include ../_includes/offramp-banner
 
 block variables
   -var title = __('You have filed your 2018 taxes')
@@ -29,9 +30,9 @@ block content
       li #{__('If you will get benefits or money back')}
       li #{__('If you owe money to CRA')}
 
-    a(href='#' role='button' draggable='false') #{__('Download your 2018 express notice of assessment')}
+    a(href='/offramp/confirmation' role='button' draggable='false') #{__('Download your 2018 express notice of assessment')}
 
-  div
+  .offramp
     p  #{__('You can print or save the notice after you download it.')}
     p  #{__('You will get a notice of reassessment if CRA makes any changes.')}
     p  #{__('If CRA owes you money, then:')}
@@ -41,3 +42,7 @@ block content
       li #{__('your cheque comes in the mail if you didn’t arrange direct deposit.')}
 
     p  #{__('Thank you for using our service.')} <a href="/feedback">#{__('Please share your feedback.')}</a>
+
+    +offramp-banner
+      p <strong>#{__('Survey Instructions:')}</strong> #{__('If you are finished, ')} <a href="/offramp/confirmation">#{__('click here')}</a>.
+

@@ -1,5 +1,5 @@
 extends ../base
-include ../_includes/banner
+include ../_includes/offramp-banner
 
 block variables
   -var title = __('File your taxes another way')
@@ -24,5 +24,5 @@ block content
         li #{__('By phone: 1-800-959-8281')}
         li #{__('By TTY (text telephone): 1-800-665-0354')}
 
-      +banner('red')
+      +offramp-banner
         p <strong>#{__('Survey Instructions:')}</strong> #{__('If you are finished, ')} <a href="/offramp/confirmation">#{__('click here')}</a>.

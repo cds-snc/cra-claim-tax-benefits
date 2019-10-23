@@ -298,8 +298,8 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
        * - or is not an edit page, and is the next logical page
       */
       if(
-      'editInfo' in route &&
-      hasData(session, route.editInfo, true) ||
+      ('editInfo' in route &&
+      hasData(session, route.editInfo, true)) ||
       !route.hasOwnProperty('editInfo')
       ) {
         return route

@@ -10,7 +10,7 @@ block content
 
   
   
-  div
+  .offramp
     p #{__(`You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:`)}
     ul 
       li #{__('At a free tax clinic, where you may be able to get help.')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible')}>#{__('Learn')}</a> #{__('if you can use a tax clinic.')}
@@ -23,4 +23,8 @@ block content
     p #{__('You may get government benefits, credits, and money back if you file.')}
     
     a(href='/financial/income' role='button' draggable='false') #{__('Go back')}
+
+    +banner('red')
+        p <strong>#{__('Survey Instructions:')}</strong> #{__('If you are finished, ')} <a href="/offramp/confirmation">#{__('click here')}</a>.
+
 

@@ -14,4 +14,6 @@ module.exports = function(app) {
   app.get('/offramp/address', renderWithData('offramp/address'))
 
   app.get('/offramp/financial', renderWithData('offramp/financial'))
+
+  app.get('/offramp/confirmation', renderWithData('offramp/confirmation'))
 }

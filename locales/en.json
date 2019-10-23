@@ -488,7 +488,7 @@
   "Did you contribute to an RRSP?": "Did you contribute to an RRSP?",
   "Do you have medical expenses?": "Do you have medical expenses?",
   "Did you contribute to a political party?": "Did you contribute to a political party?",
-  "Did you Donate to a charity?": "Did you Donate to a charity?",
+  "Did you donate to a charity?": "Did you donate to a charity?",
   "Tax benefits": "Tax benefits",
   "Did you pay rent?": "Did you pay rent?",
   "Did you live in a student residence?": "Did you live in a student residence?",
@@ -502,5 +502,6 @@
   "Rent": "Rent",
   "Property tax": "Property tax",
   "Student residence": "Student residence",
-  "Enter your property tax": "Enter your property tax"
+  "Enter your property tax": "Enter your property tax",
+  "Personal filing code": "Personal filing code"
 }

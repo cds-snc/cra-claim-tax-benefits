@@ -22,7 +22,7 @@ const answerInfo = [
         'urlPath': '/personal/address',
       },
       {
-        'text': 'Income information',
+        'text': 'Is your income information correct?',
         'infoPath': ['financial.incomeConfirmed'],
         'urlPath': '/financial/income',
       },
@@ -70,7 +70,7 @@ const answerInfo = [
         'displayIf': 'deductions.politicalContributionClaim',
       },
       {
-        'text': 'Did you Donate to a charity?',
+        'text': 'Did you donate to a charity?',
         'infoPath': ['deductions.charitableDonationClaim'],
         'urlPath': '/deductions/donations',
       },

@@ -1,5 +1,4 @@
-extends ../base
-include ../_includes/banner
+extends ../baseOfframp
 
 block variables
   -var title = __('Change your name with CRA')
@@ -20,6 +19,3 @@ block content
       include ../_includes/phone-bullets
 
       a(href='/personal/residence' role='button' draggable='false') #{__('Continue')}
-
-    +banner('red')
-        p <strong>#{__('Survey Instructions:')}</strong> #{__('If you are finished, ')} <a href="/offramp/confirmation">#{__('click here')}</a>.

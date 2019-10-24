@@ -85,3 +85,6 @@ cypress/screenshots
 # Jest generated files
 test-report.xml
 coverage
+
+# Terraform generated files
+versions.tf

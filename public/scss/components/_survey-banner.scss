@@ -1,6 +1,5 @@
-
-$banner-height: 97px;
-$banner-height-xl: 100px;
+$banner-height: 77px;
+$banner-height-xl: 57px;
 
 .survey-banner {
   background: #fff3cd;
@@ -14,10 +13,9 @@ $banner-height-xl: 100px;
   display: flex;
   align-items: center;
   text-align: center;
-  font-size: 1.1em;
+  font-size: 0.825em;
 
   @include xl  {
-    font-size: 1.25em;
     height: $banner-height-xl
   }
 

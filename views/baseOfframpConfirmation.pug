@@ -1,0 +1,19 @@
+doctype html
+html(lang=getLocale() === 'fr' ? 'fr' : 'en')
+  block variables
+  head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description' content=`[ALPHA] ${__('A benefit signup prototype by the Canadian Digital Service')}`)
+    if GITHUB_SHA
+      meta(name='keywords' content=`GITHUB_SHA=${GITHUB_SHA}`)
+    link(rel='shortcut icon' href='/favicon.png' type='image/x-icon' sizes='32x32')
+    link(rel='preconnect', href='https://fonts.gstatic.com/', crossorigin='')
+    link(href='https://fonts.googleapis.com/css?family=Lato:700|Noto+Sans:400,700&display=fallback', rel='stylesheet')
+    link(rel='stylesheet', href='/styles.css')
+
+  body
+    block content
+
+    script(src='/js/script.js')

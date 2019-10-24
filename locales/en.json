@@ -525,5 +525,7 @@
   "This is the survey banner": "This is the survey banner",
   "Survey instructions:": "Survey instructions:",
   "For the purposes of this survey, please imagine that you see your own name on this page.": "For the purposes of this survey, please imagine that you see your own name on this page.",
-  "For the purposes of this survey, please imagine that you see your own employers and income amounts listed on this page.": "For the purposes of this survey, please imagine that you see your own employers and income amounts listed on this page."
+  "For the purposes of this survey, please imagine that you see your own employers and income amounts listed on this page.": "For the purposes of this survey, please imagine that you see your own employers and income amounts listed on this page.",
+  "Your input will not be recorded but if you are not comfortable entering your own SIN number, please enter 000 000 000.": "Your input will not be recorded but if you are not comfortable entering your own SIN number, please enter 000\u00A0000\u00A0000.",
+  "For the purposes of this survey, please imagine that you see your own address on this page.": "For the purposes of this survey, please imagine that you see your own address on this page."
 }

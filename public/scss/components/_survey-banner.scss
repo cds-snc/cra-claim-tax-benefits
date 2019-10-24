@@ -1,4 +1,3 @@
-
 $banner-height: 77px;
 $banner-height-xl: 57px;
 
@@ -13,8 +12,8 @@ $banner-height-xl: 57px;
   height: $banner-height;
   display: flex;
   align-items: center;
-  font-size: 0.75em;
   text-align: center;
+  font-size: 0.825em;
 
   @include xl  {
     height: $banner-height-xl
@@ -42,9 +41,13 @@ $banner-height-xl: 57px;
 }
 
 .survey-banner + .page--container {
-  margin-top: calc( #{$banner-height} + 20px);
+  margin-top: $banner-height;
 
   @include xl  {
-    margin-top: calc( #{$banner-height-xl} + 20px)
+    margin-top: $banner-height-xl;
   }
+}
+
+.fip-container {
+  padding-top: $space-md;
 }

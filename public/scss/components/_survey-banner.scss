@@ -1,4 +1,6 @@
-$banner-height: 57px;
+
+$banner-height: 77px;
+$banner-height-xl: 57px;
 
 .survey-banner {
   background: #fff3cd;
@@ -8,16 +10,28 @@ $banner-height: 57px;
   top: 0;
   left: 0;
   width: 100%;
-  max-height: $banner-height;
-  font-size: 0.875em;
+  height: $banner-height;
+  display: flex;
+  align-items: center;
+  font-size: 0.75em;
   text-align: center;
+
+  @include xl  {
+    height: $banner-height-xl
+  }
 
   div {
     @extend %page-container;
     padding-top: $space-sm;
     padding-bottom: $space-sm;
+    display: flex;
+    align-items: center;
   }
 
+  p {
+    margin: 0;
+  }
+  
   span {
     font-weight: 700;
   }
@@ -29,4 +43,8 @@ $banner-height: 57px;
 
 .survey-banner + .phase-banner {
   margin-top: $banner-height;
+
+  @include xl  {
+    margin-top: $banner-height-xl
+  }
 }

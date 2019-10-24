@@ -88,14 +88,15 @@
     align-items: center;
 
     h1 {
-        font-size: 45px;
+        font-size: 48px;
     }
 
-    p {
-        font-size: 24px;
+    h2 {
+        font-size: 32px;
     }
   .offramp-banner-container {
-      width: 60%;
+      width: 90%;
+      text-align: center;
       display: flex;
       flex-direction: column;
   }

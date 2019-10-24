@@ -39,6 +39,11 @@
         }
     }
 
+    &--red {
+        position: fixed;
+        bottom: 0;
+    }
+
     &--red, &--check {
         background: $color-red-light;
 
@@ -60,12 +65,12 @@
 .offramp {
     .banner {
         margin-top: $space-sm;
-        padding: 75px 160px;
-        font-size: 26px;
+        padding: 40px 150px;
+        font-size: 24px;
 
         &__icon {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             display: inline-block;
             border-radius: 50%;
             text-align: center;
@@ -73,9 +78,9 @@
             font-weight: 700;
             color: $color-white;
             line-height: 1;
-            padding-top: 13px;
+            padding-top: 11px;
             position: absolute;
-            top: 70px;
+            top: 37px;
             left: 75px;
         }
     }

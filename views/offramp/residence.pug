@@ -1,5 +1,4 @@
-extends ../base
-include ../_includes/banner
+extends ../baseOfframp
 
 block variables
   -var title = __('File your taxes another way')
@@ -16,7 +15,3 @@ block content
     div
       p #{__('For more information, contact CRA by:')}
       include ../_includes/phone-bullets
-
-    +banner('red')
-        p <strong>#{__('Survey Instructions:')}</strong> #{__('If you are finished, ')} <a href="/offramp/confirmation">#{__('click here')}</a>.
-

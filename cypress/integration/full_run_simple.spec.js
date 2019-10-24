@@ -96,20 +96,6 @@ describe('Full run through', function() {
       .click()
   })
 
-  it('navigates the RRSP Deductions page', function() {
-    //DEDUCTIONS RRSP
-    cy.url().should('contain', '/deductions/rrsp')
-    cy.get('h1').should('contain', 'Registered Retirement Savings Plan (RRSP) contributions')
-
-    cy.get('input#rrspClaim1 + label').should('have.attr', 'for', 'rrspClaim1')
-
-    cy.get('input#rrspClaim1').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
-  })
-
   it('navigates the Confirm Marital Status page', function() {
     //CONFIRM MARITAL STATUS
     cy.url().should('contain', '/personal/maritalStatus')
@@ -122,58 +108,6 @@ describe('Full run through', function() {
     )
 
     cy.get('input#confirmMaritalStatus0').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
-  })
-
-  it('navigates the Medical Deductions page', function() {
-    //DEDUCTIONS MEDICAL
-    cy.injectAxe()
-    cy.checkA11y()
-    cy.url().should('contain', '/deductions/medical')
-    cy.get('h1').should('contain', 'Claim medical expenses')
-
-    cy.get('input#medicalExpenseClaim1 + label').should('have.attr', 'for', 'medicalExpenseClaim1')
-
-    cy.get('input#medicalExpenseClaim1').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
-  })
-
-  it('navigates the Political Deductions page', function() {
-    //DEDUCTIONS POLITICAL
-    cy.url().should('contain', '/deductions/political')
-    cy.get('h1').should('contain', 'Political contributions')
-
-    cy.get('input#politicalContributionClaim1 + label').should(
-      'have.attr',
-      'for',
-      'politicalContributionClaim1',
-    )
-
-    cy.get('input#politicalContributionClaim1').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
-  })
-
-  it('navigates the Donations Deductions page', function() {
-    //DEDUCTIONS DONATIONS
-    cy.url().should('contain', '/deductions/donations')
-    cy.get('h1').should('contain', 'Charitable donations')
-
-    cy.get('input#charitableDonationClaim1 + label').should(
-      'have.attr',
-      'for',
-      'charitableDonationClaim1',
-    )
-
-    cy.get('input#charitableDonationClaim1').click()
 
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
@@ -280,12 +214,12 @@ describe('Full run through', function() {
 
   it('navigates the Check Your Answers page', function() {
     cy.url().should('contain', '/checkAnswers')
-    cy.get('h1').should('contain', 'Check Your Answers Before Filing Your Return')
+    cy.get('h1').should('contain', 'Check your answers before filing')
     cy.fixture('checkAnswersRows.json').then(rows => {
       checkTableRows(cy, rows.rows)
     })
     cy.get('.buttons-row a')
-      .contains('Confirm')
+      .contains('Agree')
       .click()
   })
 
@@ -311,7 +245,7 @@ describe('Full run through', function() {
     // CONFIRMATION PAGE
     cy.url().should('contain', '/confirmation')
     cy.get('h1').should('contain', 'You have filed your 2018 taxes')
-    cy.get('th').should('contain', 'Your 2018 filing number is')
+    cy.get('th').should('contain', 'Your 2018 filing code is')
     cy.get('td').should('contain', '5H3P9IO5816')
   })
 })

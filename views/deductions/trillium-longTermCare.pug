@@ -1,19 +1,19 @@
 extends ../base
 
 block variables
-  -var title = __('Public long-term care home costs')
+  -var title = __('Long-term care home')
   -var trilliumLongTermCareClaim = !hasData(data, 'deductions.trilliumLongTermCareClaim') ? '' : data.deductions.trilliumLongTermCareClaim ? 'Yes' : 'No'
 
 block content
 
   h1 #{title}
 
-  div
-    p #{__('You may live in a long-term care home or facility if costs such as nursing or personal support are combined with your rent. The home must be public or non-profit. This means that a charity, city, First Nations, or similar organization manages the home.')}
-  
-  form.cra-form(method='post')
-    +radiosYesNo('trilliumLongTermCareClaim', 'Did you live in a public or non-profit long-term care home in 2018?', trilliumLongTermCareClaim)
+  div 
+    p #{__('You may live in a long-term care home or facility if costs such as nursing or personal support are combined with your rent.')}
 
-    input#redirect(name='redirect', type='hidden', value='/deductions/climate-action-incentive')
+  form.cra-form(method='post')
+    +radiosYesNo('trilliumLongTermCareClaim', 'Did you live in a long-term care home in 2018?', trilliumLongTermCareClaim)
+
+    input#redirect(name='redirect', type='hidden', value='/trillium/longTermCare/type')
 
     +formButtons()

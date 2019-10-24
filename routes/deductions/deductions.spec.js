@@ -103,8 +103,8 @@ describe('Test /deductions responses', () => {
         key: 'trilliumEnergyCostClaim',
       },
       {
-        url: '/trillium/longTermCare',
-        key: 'trilliumLongTermCareClaim',
+        url: '/trillium/longTermCare/type',
+        key: 'trilliumLongTermCareTypeClaim',
       },
       {
         url: '/deductions/climate-action-incentive',
@@ -214,6 +214,38 @@ describe('Test /deductions responses', () => {
     })
   })
 
+  describe('Test /trillium/longTermCare responses', () => {
+    test('it returns a 422 with no option selected', async () => {
+      const response = await request(app).post('/trillium/longTermCare')
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it redirects to the /deductions/climate-action-incentive page when selecting No', async () => {
+      const response = await request(app)
+        .post('/trillium/longTermCare')
+        .send({ trilliumLongTermCareClaim: 'No' })
+      expect(response.headers.location).toEqual('/deductions/climate-action-incentive')
+      expect(response.statusCode).toBe(302)
+    })
+
+    test('it redirects to the provided redirect value when selecting Yes', async () => {
+      const response = await request(app)
+        .post('/trillium/longTermCare')
+        .send({ redirect: '/start', trilliumLongTermCareClaim: 'Yes' })
+      expect(response.headers.location).toEqual('/start')
+      expect(response.statusCode).toBe(302)
+    })
+
+    test('it redirects with the checkAnswers ref when posting Yes and having come from the checkAnswers page', async () => {
+      const response = await request(app)
+        .post('/trillium/longTermCare')
+        .query({ ref: 'checkAnswers' })
+        .send({ trilliumLongTermCareClaim: 'Yes' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/trillium/longTermCare/type?ref=checkAnswers')
+    })
+  })
+
   describe('Test /deductions/*/amount responses', () => {
     const amountReponses = [
       {
@@ -241,7 +273,7 @@ describe('Test /deductions responses', () => {
         key: 'trilliumEnergyAmount',
       },
       {
-        url: '/trillium/longTermCare/amount',
+        url: '/trillium/longTermCare/type/amount',
         key: 'trilliumLongTermCareAmount',
       },
     ]

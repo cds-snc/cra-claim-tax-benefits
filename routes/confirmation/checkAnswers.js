@@ -124,10 +124,16 @@ const answerInfo = [
         'urlPath': '/trillium/longTermCare',
       },
       {
+        'text': 'Public or non-profit long-term care home?',
+        'infoPath': ['deductions.trilliumLongTermCareTypeClaim'],
+        'urlPath': '/trillium/longTermCare/type',
+        'displayIf': 'deductions.trilliumLongTermCareClaim',
+      },
+      {
         'text': 'Long-term care costs',
         'infoPath': ['deductions.trilliumLongTermCareAmount'],
-        'urlPath': '/trillium/longTermCare/amount',
-        'displayIf': 'deductions.trilliumLongTermCareClaim',
+        'urlPath': '/trillium/longTermCare/type/amount',
+        'displayIf': 'deductions.trilliumLongTermCareTypeClaim',
       },
       {
         'text': 'Did you live in a small and rural community?',

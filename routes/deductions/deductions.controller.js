@@ -18,6 +18,7 @@ const {
   trilliumEnergyCostSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareSchema,
+  trilliumLongTermCareTypeSchema,
   trilliumlongTermCareAmountSchema,
   climateActionIncentiveSchema,
 } = require('./../../schemas')
@@ -215,15 +216,31 @@ module.exports = function(app) {
     '/trillium/longTermCare',
     checkSchema(trilliumlongTermCareSchema),
     checkErrors('deductions/trillium-longTermCare'),
-    doYesNo('trilliumLongTermCareClaim', 'trilliumLongTermCareAmount'),
+    postLongTermCare,
     doRedirect,
   )
+
+  app.get('/trillium/longTermCare/type', renderWithData('deductions/trillium-longTermCare-type'))
+  app.post(
+    '/trillium/longTermCare/type',
+    checkSchema(trilliumLongTermCareTypeSchema),
+    checkErrors('deductions/trillium-longTermCare-type'),
+    doYesNo('trilliumLongTermCareTypeClaim', 'trilliumLongTermCareAmount'),
+    // These only apply if the user clicked "no"
+    // If they clicked "Yes", they will be redirected by `doYesNo()`
+    (req, res, next) => {
+      req.session.deductions.trilliumLongTermCareAmount = 0
+      next()
+    },
+    doRedirect,
+  )
+
   app.get(
-    '/trillium/longTermCare/amount',
+    '/trillium/longTermCare/type/amount',
     renderWithData('deductions/trillium-longTermCare-amount'),
   )
   app.post(
-    '/trillium/longTermCare/amount',
+    '/trillium/longTermCare/type/amount',
     checkSchema(trilliumlongTermCareAmountSchema),
     checkErrors('deductions/trillium-longTermCare-amount'),
     (req, res, next) => {
@@ -265,6 +282,30 @@ const postEnergyReserve = (req, res, next) => {
     }
 
     return res.redirect('/trillium/longTermCare')
+  }
+
+  if (req.query.ref && req.query.ref === 'checkAnswers') {
+    return returnToCheckAnswers(req, res, true)
+  }
+
+  next()
+}
+
+const postLongTermCare = (req, res, next) => {
+  const trilliumLongTermCareClaim = req.body.trilliumLongTermCareClaim
+
+  req.session.deductions.trilliumLongTermCareClaim = trilliumLongTermCareClaim
+
+  if (trilliumLongTermCareClaim !== 'Yes') {
+
+    req.session.deductions.trilliumLongTermCareTypeClaim = null
+    req.session.deductions.trilliumLongTermCareAmount = 0
+
+    if (req.query.ref && req.query.ref === 'checkAnswers') {
+      return returnToCheckAnswers(req, res)
+    }
+
+    return res.redirect('/deductions/climate-action-incentive')
   }
 
   if (req.query.ref && req.query.ref === 'checkAnswers') {

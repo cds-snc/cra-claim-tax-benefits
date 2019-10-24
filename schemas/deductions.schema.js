@@ -69,6 +69,10 @@ const trilliumlongTermCareSchema = {
   trilliumLongTermCareClaim: yesNoSchema(),
 }
 
+const trilliumLongTermCareTypeSchema = {
+  trilliumLongTermCareTypeClaim: yesNoSchema(),
+}
+
 const trilliumlongTermCareAmountSchema = {
   trilliumLongTermCareAmount: currencySchema(),
 }
@@ -95,6 +99,7 @@ module.exports = {
   trilliumEnergyCostSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareSchema,
+  trilliumLongTermCareTypeSchema,
   trilliumlongTermCareAmountSchema,
   trilliumStudentResidenceSchema,
 }

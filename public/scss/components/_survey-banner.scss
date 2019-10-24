@@ -41,10 +41,10 @@ $banner-height-xl: 57px;
   }
 }
 
-.survey-banner + .phase-banner {
-  margin-top: $banner-height;
+.survey-banner + .page--container {
+  margin-top: calc( #{$banner-height} + 20px);
 
   @include xl  {
-    margin-top: $banner-height-xl
+    margin-top: calc( #{$banner-height-xl} + 20px)
   }
 }

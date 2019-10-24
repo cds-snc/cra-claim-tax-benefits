@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "nodemon --max-http-header-size=40000 ./bin/www",
     "lint": "node ./node_modules/eslint/bin/eslint.js config routes bin/www app.js",
-    "start": "NODE_ENV=production --max-http-header-size=40000 node ./bin/www",
+    "start": "NODE_ENV=production node ./bin/www",
     "start:cypress": "NODE_ENV=test node ./bin/www",
     "test": "node node_modules/jest/bin/jest.js",
     "cypress:open": "./node_modules/.bin/cypress open",

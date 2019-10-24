@@ -40,7 +40,7 @@ jobs:
         env:
           AZURE_CONTAINER_REGISTRY_USERNAME: ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}
           AZURE_CONTAINER_REGISTRY_PASSWORD: ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
-        run: docker login -u $AZURE_CONTAINER_REGISTRY_USERNAME -p $AZURE_CONTAINER_REGISTRY_PASSWORD claimtaxbenefits.azurecr.io
+        run: docker login -u $AZURE_CONTAINER_REGISTRY_USERNAME -p $AZURE_CONTAINER_REGISTRY_PASSWORD
       - name: Push container to Azure Container Registry
         run: docker push claimtaxbenefits.azurecr.io/cra-claim-tax-benefits
       - name: Login to Azure

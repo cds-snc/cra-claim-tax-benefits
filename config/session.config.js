@@ -8,7 +8,7 @@ const sessionName = `ctb-${process.env.SESSION_SECRET ||
 // default setup: https://github.com/roccomuso/memorystore#setup
 // options: https://github.com/expressjs/session#options
 module.exports = session({
-  cookie: { httpOnly: true, maxAge: oneHour, sameSite: 'strict' },
+  cookie: { httpOnly: true, maxAge: oneHour, sameSite: 'none' },
   store: new MemoryStore({
     checkPeriod: oneHour, // prune expired entries every hour
   }),

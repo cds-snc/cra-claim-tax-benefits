@@ -1,7 +1,0 @@
-location = "canada central"
-resource_group_name = "cdscracollab-innovation-rg"
-appservice_plan_id = "alphaPlan"
-appservice_name = "claim-tax-benefits-test"
-docker_image_name = "cdssnc/cra-claim-tax-benefits:latest"
-appservice_port = "3005"
-appservice_log_retention_days = "30"

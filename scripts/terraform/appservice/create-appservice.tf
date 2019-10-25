@@ -1,11 +1,11 @@
 variable "location" {
-  description = "The Azure location where all resources in this example should be created"
+  description = "The Azure location where this resource should be created"
   type = "string"
-  default = "canada central"
+  default = "Canada Central"
 }
 
 variable "resource_group_name" {
-  description = "The Azure resource group where all resources in this example should be created"
+  description = "The Azure resource group where this should be created"
   type = "string"
   default = "cdscracollab-innovation-rg"
 }
@@ -24,7 +24,7 @@ variable "appservice_name" {
 variable "docker_image_name" {
   description = "The Docker image name to use for the application"
   type = "string"
-  default = "cdssnc/cra-claim-tax-benefits:latest"
+  default = "claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:latest"
 }
 
 variable "appservice_port" {

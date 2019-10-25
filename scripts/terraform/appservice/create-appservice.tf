@@ -24,7 +24,7 @@ variable "appservice_name" {
 variable "docker_image_name" {
   description = "The Docker image name to use for the application"
   type = "string"
-  default = "cdssnc/cra-claim-tax-benefits:latest"
+  default = "claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:latest"
 }
 
 variable "appservice_port" {

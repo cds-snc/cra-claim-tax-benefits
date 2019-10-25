@@ -34,55 +34,6 @@ const answerInfo = [
     ],
   },
   {
-    'sectionTitle': 'Tax claims',
-    'sectionRows': [
-      {
-        'text': 'Did you contribute to an RRSP?',
-        'infoPath': ['deductions.rrspClaim'],
-        'urlPath': '/deductions/rrsp',
-      },
-      {
-        'text': 'RRSP contribution',
-        'infoPath': ['deductions.rrspAmount.amount'],
-        'urlPath': '/deductions/rrsp/amount',
-        'displayIf': 'deductions.rrspClaim',
-      },
-      {
-        'text': 'Do you have medical expenses?',
-        'infoPath': ['deductions.medicalExpenseClaim'],
-        'urlPath': '/deductions/medical',
-      },
-      {
-        'text': 'Total medical expense cost',
-        'infoPath': ['deductions.medicalExpenseClaimAmount.amount'],
-        'urlPath': '/deductions/medical/amount',
-        'displayIf': 'deductions.medicalExpenseClaim',
-      },
-      {
-        'text': 'Did you contribute to a political party?',
-        'infoPath': ['deductions.politicalContributionClaim'],
-        'urlPath': '/deductions/political',
-      },
-      {
-        'text': 'Amount contributed',
-        'infoPath': ['deductions.politicalFederalAmount', 'deductions.politicalProvincialAmount'],
-        'urlPath': '/deductions/political/amount',
-        'displayIf': 'deductions.politicalContributionClaim',
-      },
-      {
-        'text': 'Did you donate to a charity?',
-        'infoPath': ['deductions.charitableDonationClaim'],
-        'urlPath': '/deductions/donations',
-      },
-      {
-        'text': 'Amount donated',
-        'infoPath': ['deductions.charitableDonationAmount'],
-        'urlPath': '/deductions/donations/amount',
-        'displayIf': 'deductions.charitableDonationClaim',
-      },
-    ],
-  },
-  {
     'sectionTitle': 'Tax benefits',
     'sectionRows': [
       {

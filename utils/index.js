@@ -288,24 +288,23 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
     /**
      * filter to the only possible previous routes (so all routes before this one)
      * reverse the order so when we look over them, we go "backward"
-    */
+     */
     const allPreviousRoutes = routes.slice(0, route.index).reverse()
-    
-    const previousRoute = allPreviousRoutes.find((route) => {
-       /**
+
+    const previousRoute = allPreviousRoutes.find(route => {
+      /**
        * essentially check if the page before
        * - is an edit page, that has been edited
        * - or is not an edit page, and is the next logical page
-      */
-      if(
-      ('editInfo' in route &&
-      hasData(session, route.editInfo, true)) ||
-      !route.hasOwnProperty('editInfo')
+       */
+      if (
+        ('editInfo' in route && hasData(session, route.editInfo, true)) ||
+        !('editInfo' in route)
       ) {
         return route
       }
     })
-    
+
     return previousRoute || false
   }
 

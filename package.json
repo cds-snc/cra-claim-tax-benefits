@@ -29,7 +29,7 @@
   },
   "scripts": {
     "dev": "nodemon --max-http-header-size=40000 ./bin/www",
-    "lint": "node ./node_modules/eslint/bin/eslint.js config routes bin/www app.js",
+    "lint": "node ./node_modules/eslint/bin/eslint.js config routes utils bin/www app.js",
     "start": "NODE_ENV=production node --max-http-header-size=40000 ./bin/www",
     "start:cypress": "NODE_ENV=test node ./bin/www",
     "test": "node node_modules/jest/bin/jest.js",

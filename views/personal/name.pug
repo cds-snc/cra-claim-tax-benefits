@@ -19,7 +19,7 @@ block content
       tbody
         tr
           td
-            div #{data.personal.firstName} #{data.personal.lastName}
+            div #{__(data.personal.firstName)} #{data.personal.lastName}
 
   form.cra-form(method='post')
     +radiosYesNo('name', 'Is this your name?')

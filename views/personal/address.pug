@@ -17,7 +17,7 @@ block content
         tr
           td
             .address
-              div [Your address here]
+              div #{__('[Your address here]')}
 
   form.cra-form(method='post')
     +radiosYesNo('confirmAddress', 'Is this your correct address?', confirmedAddress)

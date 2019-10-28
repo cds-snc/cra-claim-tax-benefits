@@ -96,13 +96,6 @@ describe('Test /login responses', () => {
     expect(response.statusCode).toBe(422)
   })
 
-  test('it does not allow a mixed-case code', async () => {
-    const response = await request(app)
-      .post('/login/code')
-      .send({ code: 'a5G98s4K1', redirect: '/start' })
-    expect(response.statusCode).toBe(422)
-  })
-
   const codes = ['A5G98S4K1', 'a5g98s4k1'] //check uppercase, lowercase
   codes.map(code => {
     test(`it redirects if a valid code is provided: "${code}"`, async () => {

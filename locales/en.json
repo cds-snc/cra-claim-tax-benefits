@@ -540,5 +540,10 @@
   "You have reached the end of this section": "You have reached the end of this section",
   "To continue, click anywhere outside this popup window.": "To continue, click anywhere outside this popup window.",
   "Were your private medical expenses over $640?": "Were your private medical expenses over $640?",
-  "If you are finished, click here": "If you are finished, click here"
+  "If you are finished, click here": "If you are finished, click here",
+  "[Your name here]": "[Your name here]",
+  "[Your address here]": "[Your address here]",
+  "[Your name here] ": "[Your name here] ",
+  "9 September 1977": "9 September 1977",
+  "Did you pay property tax?": "Did you pay property tax?"
 }

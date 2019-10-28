@@ -1,3 +1,4 @@
+const validator = require('validator')
 const { validationArray, currencySchema } = require('./utils.schema')
 const API = require('./../api')
 const { securityQuestionUrls } = require('../config/routes.config')
@@ -18,31 +19,47 @@ const loginSchema = {
   },
 }
 
+let sinError = 'errors.login.matchingSIN'
+const _getSinErrorMessage = (val, expectedSin) => {
+  if (!val) {
+    // technically, 0 characters is the wrong length
+    return 'errors.login.lengthSIN'
+  }
+
+  // remove spaces, hyphens and underscores
+  const digits = val.replace(/[ \-_]*/g, '')
+
+  if (!validator.isNumeric(digits)) {
+    return 'errors.login.numericSIN'
+  }
+
+  if (digits.length !== 9) {
+    return 'errors.login.lengthSIN'
+  }
+
+  if (digits !== expectedSin) {
+    return 'errors.login.matchingSIN'
+  }
+
+  return false
+}
+
 const sinSchema = {
   sin: {
-    customSanitizer: {
-      options: value => {
-        //We want to remove any spaces, dash or underscores
-        return value ? value.replace(/[ \-_]*/g, '') : value
-      },
-    },
-    isLength: {
-      errorMessage: 'errors.login.lengthSIN',
-      options: { min: 9, max: 9 },
-    },
-    isInt: {
-      errorMessage: 'errors.login.numericSIN',
-    },
     custom: {
       options: (value, { req }) => {
-        /* If there is no session, always return true */
+        /* If there is no session, always return false */
         if (!req.session || !req.session.personal) {
-          return true
+          return false
         }
 
-        return value === req.session.personal.sin
+        const errorMessage = _getSinErrorMessage(value, req.session.personal.sin)
+        if (errorMessage) sinError = errorMessage
+
+        /* if an error message exists, we failed validation */
+        return !errorMessage
       },
-      errorMessage: 'errors.login.sin',
+      errorMessage: () => sinError,
     },
   },
 }
@@ -58,7 +75,7 @@ const isValidDay = (errorMessageString = 'errors.login.dateOfBirth.validDay') =>
   }
 }
 
-const toISOFormat = ({ dobYear, dobMonth, dobDay }) => {
+const _toISOFormat = ({ dobYear, dobMonth, dobDay }) => {
   const if0 = val => (val && val.length === 1 ? `0${val}` : val)
 
   return `${dobYear}-${if0(dobMonth)}-${if0(dobDay)}`
@@ -72,7 +89,7 @@ const isMatchingDoB = {
       return true
     }
 
-    return toISOFormat(req.body) === req.session.personal.dateOfBirth
+    return _toISOFormat(req.body) === req.session.personal.dateOfBirth
   },
 }
 
@@ -276,5 +293,6 @@ module.exports = {
   trilliumAmountSchema,
   addressesSchema,
   prisonSchema,
-  toISOFormat,
+  _toISOFormat,
+  _getSinErrorMessage,
 }

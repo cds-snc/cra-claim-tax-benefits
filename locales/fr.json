@@ -5,7 +5,7 @@
   "errors.login.numericSIN": "Votre numéro d’assurance sociale devrait être composé de 9 chiffres",
   "errors.login.lengthSIN": "Votre numéro d’assurance sociale doit contenir 9 chiffres",
   "errors.maritalStatus.maritalStatus": "Vous devez choisir l’une des options",
-  "errors.login.sin": "Le NAS ne correspond pas au code d’accès",
+  "errors.login.matchingSIN": "Le NAS ne correspond pas au code d’accès",
   "errors.login.dateOfBirth": "Veuillez inscrire une date de naissance valide",
   "errors.login.dateOfBirth.match": "La date de naissance ne correspond pas au code d’accès",
   "errors.login.dateOfBirth.format": "Assurez-vous que la date respecte le format aaaa/mm/jj",

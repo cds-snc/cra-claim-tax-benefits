@@ -501,10 +501,6 @@
   "[Your address here]": "[Votre adresse ici]",
   "[Your name here] ": "[Votre nom ici]",
   "9 September 1977": "9 septembre 1977",
-  "$10.00": "10,00 $",
-  "$19.00": "$19.00",
-  "$12.00": "$12.00",
-  "$14.00": "$14.00",
-  "$16.00": "$16.00",
-  "$13.00": "$13.00"
+  "Did you pay property tax?": "Avez-vous payé l’impôt foncier?",
+  "Property tax paid": "Impôt foncier payé"
 }

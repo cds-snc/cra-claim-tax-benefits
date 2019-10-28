@@ -18,9 +18,9 @@ block content
 
               if (row.text.toLowerCase().includes('address'))
                 dd.breakdown-table__row-value
-                  div [Your address here]
+                  div #{__('[Your address here]')}
               else
-                dd.breakdown-table__row-value #{row.data}
+                dd.breakdown-table__row-value #{__(row.data)}
 
               dd.breakdown-table__row-link
                 if row.urlPath

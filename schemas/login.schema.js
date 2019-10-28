@@ -10,12 +10,12 @@ const loginSchema = {
     },
     isAlphanumeric: {
       errorMessage: 'errors.login.alphanumeric',
-    }
+    },
   },
 }
 
 let sinError = 'errors.login.matchingSIN'
-const _getSinErrorMessage = (val, expectedSin) => {
+const _getSinErrorMessage = val => {
   if (!val) {
     // technically, 0 characters is the wrong length
     return 'errors.login.lengthSIN'
@@ -32,16 +32,11 @@ const _getSinErrorMessage = (val, expectedSin) => {
     return 'errors.login.lengthSIN'
   }
 
-  if (digits !== expectedSin) {
-    return 'errors.login.matchingSIN'
-  }
-
   return false
 }
 
 const sinSchema = {
   sin: {
-<<<<<<< HEAD
     custom: {
       options: (value, { req }) => {
         /* If there is no session, always return false */
@@ -56,20 +51,6 @@ const sinSchema = {
         return !errorMessage
       },
       errorMessage: () => sinError,
-=======
-    customSanitizer: {
-      options: value => {
-        //We want to remove any spaces, dash or underscores
-        return value ? value.replace(/[ \-_]*/g, '') : value
-      },
-    },
-    isLength: {
-      errorMessage: 'errors.login.lengthSIN',
-      options: { min: 9, max: 9 },
-    },
-    isInt: {
-      errorMessage: 'errors.login.numericSIN',
->>>>>>> temp changes for usability testing purposes
     },
   },
 }
@@ -91,21 +72,6 @@ const _toISOFormat = ({ dobYear, dobMonth, dobDay }) => {
   return `${dobYear}-${if0(dobMonth)}-${if0(dobDay)}`
 }
 
-<<<<<<< HEAD
-const isMatchingDoB = {
-  errorMessage: 'errors.login.dateOfBirth.match',
-  validate: (value, req) => {
-    /* If there is no session, always return true */
-    if (!req.session || !req.session.personal) {
-      return true
-    }
-
-    return _toISOFormat(req.body) === req.session.personal.dateOfBirth
-  },
-}
-
-=======
->>>>>>> remove unused vars and functions to please LGTM
 const dobSchema = {
   dobDay: {
     ...isValidDay(),

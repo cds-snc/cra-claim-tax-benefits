@@ -153,7 +153,7 @@ const renderWithData = template => {
     res.render(template, {
       data: req.session,
       prevRoute: getPreviousRoute(req),
-      currentRoute: req.path
+      currentRoute: req.path,
     })
   }
 }

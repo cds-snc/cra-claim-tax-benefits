@@ -100,10 +100,10 @@ A docker container allows a developer to package up an application and all of it
 
 ```bash
 # build an image locally
-docker build -t cdssnc/cra-claim-tax-benefits .
+docker build -t claimtaxbenefits.azurecr.io/cra-claim-tax-benefits .
 
 # run the container
-docker run -it -p 3005:3005 cdssnc/cra-claim-tax-benefits
+docker run -it -p 3005:3005 claimtaxbenefits.azurecr.io/cra-claim-tax-benefits
 ```
 
 The container should be running at [http://localhost:3005/](http://localhost:3005/).

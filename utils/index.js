@@ -37,7 +37,7 @@ const checkLangQuery = function(req, res, next) {
   let lang = req.query.lang
 
   if (lang === 'en' || lang === 'fr') {
-    res.cookie('lang', lang, { httpOnly: true, maxAge: oneHour, sameSite: 'strict' })
+    res.cookie('lang', lang, { httpOnly: true, maxAge: oneHour, sameSite: 'none' })
   }
 
   return next()

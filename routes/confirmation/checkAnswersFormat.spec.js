@@ -21,9 +21,9 @@ describe('Test checkAnswersFormat function with initialSession', () => {
     expect(Object.keys(answerInfo)).toEqual(['Personal information', 'Tax benefits'])
   })
 
-  test('it has sections with row lengths of 6, 5', async () => {
+  test('it has sections with row lengths of 6', async () => {
     expect(answerInfo['Personal information'].length).toBe(6)
-    expect(answerInfo['Tax benefits'].length).toBe(5)
+    expect(answerInfo['Tax benefits'].length).toBe(6)
   })
 })
 
@@ -31,7 +31,7 @@ describe('Test checkAnswersFormat with added displayIf rows for Trillium Rent', 
   const answerInfo = formatAnswerInfo(sessionWithRent)
   
   test('it has an extra row in Tax Benefits for trillium rent amount', async () => {
-    expect(answerInfo['Tax benefits'].length).toBe(6)
+    expect(answerInfo['Tax benefits'].length).toBe(7)
   })
 
   test('it displays the amount', async () => {

@@ -274,7 +274,7 @@
   "Give the date": "Give the date",
   "Your date of entry or release from prison": "Your date of entry or release from prison",
   "Your bank or credit union account information": "Your bank or credit union account information",
-  "Details of your contribution to a Registered Retirement Savings Plan (RRSP)":  "Details of your contribution to a Registered Retirement Savings Plan (RRSP)",
+  "Details of your contribution to a Registered Retirement Savings Plan (RRSP)": "Details of your contribution to a Registered Retirement Savings Plan (RRSP)",
   "Details of your contribution to a Tax Free Savings Account (TFSA)": "Details of your contribution to a Tax Free Savings Account (TFSA)",
   "Details of your Canada Child Benefit (CCB)": "Details of your Canada Child Benefit (CCB)",
   "Date and amount of your most recent payment to CRA": "Date and amount of your most recent payment to CRA",
@@ -460,5 +460,7 @@
   "Did you live in a public or non-profit long-term care home?": "Did you live in a public or non-profit long-term care home?",
   "Public or non-profit long-term care home?": "Public or non-profit long-term care home?",
   "Long-term care costs": "Long-term care costs",
-  "Public or non-profit long-term care home": "Public or non-profit long-term care home"
+  "Public or non-profit long-term care home": "Public or non-profit long-term care home",
+  "Did you pay property tax?": "Did you pay property tax?",
+  "Property tax paid": "Property tax paid"
 }

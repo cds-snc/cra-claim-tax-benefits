@@ -32,7 +32,7 @@
   "start.banner.1": "L’Agence du revenu du Canada (ARC) vous a envoyé une lettre à propos du nouveau service",
   "start.banner.2": ". ",
   "start.banner.3": "Vous aurez besoin des informations dans cette lettre pour produire votre déclaration de revenus de 2018 avec ce service.",
-  "start.p1": "Vous pouvez utiliser ce service si l’Ontario était votre province de résidence le 31 décembre 2018. Vos revenus pour l’année d’imposition 2018 doivent être inférieurs à 35\u00A0000\u00A0$. De plus, vos revenus\u00A0:",
+  "start.p1": "Vous pouvez utiliser ce service si l’Ontario était votre province de résidence le 31 décembre 2018. Vos revenus pour l’année d’imposition 2018 doivent être inférieurs à 35 000 $. De plus, vos revenus :",
   "start.li1": "doivent provenir d’un emploi, d’un régime de pension, d’un régime enregistré d’épargne-retraite (REER) ou de prestations comme l’aide sociale.",
   "start.li2": "peuvent comprendre jusqu’à 1 000 $ de revenus d’intérêts de sources canadiennes, comme un compte de banque ou d’épargne.",
   "start.li3": "ne peuvent pas provenir de votre entreprise personnelle ou d’un travail indépendant.",
@@ -418,7 +418,7 @@
   "You may live in a long-term care home or facility if costs such as nursing or personal support are combined with your rent.": "Il est possible que vous viviez dans un foyer ou une résidence de soins de longue durée si des coûts de soins infirmiers ou d’assistance personnelle sont combinés à votre loyer.",
   "Small and rural communities": "Régions rurales et petites collectivités",
   "Check if you live in a small and rural community": "Vérifier si je vis dans une région rurale ou une petite collectivité",
-  "You live in a small and rural community if you live outside of:": "Vous vivez dans une région rurale ou une petite collectivité si vous habitez à l’extérieur de\u00A0:",
+  "You live in a small and rural community if you live outside of:": "Vous vivez dans une région rurale ou une petite collectivité si vous habitez à l’extérieur de :",
   "Barrie": "Barrie",
   "Belleville": "Belleville",
   "Brantford": "Brantford",
@@ -434,5 +434,7 @@
   "St. Catharines-Niagara": "St. Catharines-Niagara",
   "Sudbury": "Sudbury",
   "Thunder Bay": "Thunder Bay",
-  "Windsor": "Windsor"
+  "Windsor": "Windsor",
+  "Did you pay property tax?": "Did you pay property tax?",
+  "Property tax paid": "Property tax paid"
 }

@@ -52,8 +52,6 @@ block content
       dl.breakdown-table-data
         each refundLine in refundLines
           -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
-
-          if (refundLine.name !== "RRSP" && refundLine.name !== "Medical expenses")
             .breakdown-table__row(
               class={
                 ['breakdown-table__row--summary space-row']: refundLine.name === "Total Refund"

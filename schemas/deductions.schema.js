@@ -1,38 +1,5 @@
 const { currencySchema, yesNoSchema } = require('./utils.schema')
 
-const rrspSchema = {
-  rrspClaim: yesNoSchema(),
-}
-
-const rrspAmountSchema = {
-  rrspAmount: currencySchema(),
-}
-
-const charitableDonationSchema = {
-  charitableDonationClaim: yesNoSchema(),
-}
-
-const donationsAmountSchema = {
-  donationsAmount: currencySchema(),
-}
-
-const politicalContributionSchema = {
-  politicalContributionClaim: yesNoSchema(),
-}
-
-const politicalAmountSchema = {
-  politicalProvincialAmount: currencySchema(),
-  politicalFederalAmount: currencySchema(),
-}
-
-const medicalExpenseSchema = {
-  medicalExpenseClaim: yesNoSchema(),
-}
-
-const medicalAmountSchema = {
-  medicalAmount: currencySchema(),
-}
-
 const trilliumRentSchema = {
   trilliumRentClaim: yesNoSchema(),
 }
@@ -83,14 +50,6 @@ const climateActionIncentiveSchema = {
 
 module.exports = {
   climateActionIncentiveSchema,
-  charitableDonationSchema,
-  donationsAmountSchema,
-  medicalExpenseSchema,
-  medicalAmountSchema,
-  politicalContributionSchema,
-  politicalAmountSchema,
-  rrspSchema,
-  rrspAmountSchema,
   trilliumRentSchema,
   trilliumRentAmountSchema,
   trilliumPropertyTaxSchema,

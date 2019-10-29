@@ -1,7 +1,8 @@
-const API = require('./../api')
-const { validationResult } = require('express-validator')
-const { routes: defaultRoutes } = require('../config/routes.config')
 const validator = require('validator')
+const { validationResult } = require('express-validator')
+const API = require('./../api')
+const { routes: defaultRoutes } = require('../config/routes.config')
+const cookieConfig = require('../config/cookie.config')
 
 /*
   original format is an array of error objects: https://express-validator.github.io/docs/validation-result-api.html
@@ -25,8 +26,6 @@ const errorArray2ErrorObject = (errors = []) => {
 }
 
 /* Middleware */
-const oneHour = 1000 * 60 * 60 * 1
-
 /**
  * This request middleware checks for the "lang" query.
  * If it finds a query parameter "lang=fr" or "lang=en", it will set a "lang" cookie to whichever value.
@@ -37,7 +36,7 @@ const checkLangQuery = function(req, res, next) {
   let lang = req.query.lang
 
   if (lang === 'en' || lang === 'fr') {
-    res.cookie('lang', lang, { httpOnly: true, maxAge: oneHour, sameSite: 'strict' })
+    res.cookie('lang', lang, cookieConfig)
   }
 
   return next()

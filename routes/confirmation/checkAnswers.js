@@ -48,6 +48,17 @@ const answerInfo = [
         'displayIf': 'deductions.trilliumRentClaim',
       },
       {
+        'text': 'Did you pay property tax?',
+        'infoPath': ['deductions.trilliumPropertyTaxClaim'],
+        'urlPath': '/trillium/propertyTax',
+      },
+      {
+        'text': 'Property tax paid',
+        'infoPath': ['deductions.trilliumPropertyTaxAmount'],
+        'urlPath': '/trillium/propertyTax/amount',
+        'displayIf': 'deductions.trilliumPropertyTaxClaim',
+      },
+      {
         'text': 'Did you live in a student residence?',
         'infoPath': ['deductions.trilliumStudentResidence'],
         'urlPath': '/trillium/studentResidence',

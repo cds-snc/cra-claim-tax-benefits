@@ -1,14 +1,6 @@
 const { checkSchema } = require('express-validator')
 const { doRedirect, doYesNo, renderWithData, checkErrors, returnToCheckAnswers } = require('./../../utils')
 const {
-  rrspSchema,
-  rrspAmountSchema,
-  charitableDonationSchema,
-  donationsAmountSchema,
-  politicalContributionSchema,
-  politicalAmountSchema,
-  medicalExpenseSchema,
-  medicalAmountSchema,
   trilliumRentSchema,
   trilliumRentAmountSchema,
   trilliumPropertyTaxSchema,
@@ -24,102 +16,6 @@ const {
 } = require('./../../schemas')
 
 module.exports = function(app) {
-  //Start of RRSP Section
-  app.get('/deductions/rrsp', renderWithData('deductions/rrsp'))
-  app.post(
-    '/deductions/rrsp',
-    checkSchema(rrspSchema),
-    checkErrors('deductions/rrsp'),
-    doYesNo('rrspClaim', 'rrspAmount'),
-    doRedirect,
-  )
-  app.get('/deductions/rrsp/amount', renderWithData('deductions/rrsp-amount'))
-  app.post(
-    '/deductions/rrsp/amount',
-    checkSchema(rrspAmountSchema),
-    checkErrors('deductions/rrsp-amount'),
-    (req, res, next) => {
-      req.session.deductions.rrspAmount.amount = req.body.rrspAmount
-      next()
-    },
-    doRedirect,
-  )
-  //End of RRSP Section
-
-  //Start of Charitable Donations Section
-  app.get('/deductions/donations', renderWithData('deductions/donations'))
-  app.post(
-    '/deductions/donations',
-    checkSchema(charitableDonationSchema),
-    checkErrors('deductions/donations'),
-    doYesNo('charitableDonationClaim', 'charitableDonationAmount'),
-    doRedirect,
-  )
-  app.get('/deductions/donations/amount', renderWithData('deductions/donations-amount'))
-  app.post(
-    '/deductions/donations/amount',
-    checkSchema(donationsAmountSchema),
-    checkErrors('deductions/donations-amount'),
-    (req, res, next) => {
-      req.session.deductions.charitableDonationAmount = req.body.donationsAmount
-      next()
-    },
-    doRedirect,
-  )
-  //End of Charitable Donations Section
-
-  //Start of Medical claim Section
-  app.get('/deductions/medical', renderWithData('deductions/medical'))
-  app.post(
-    '/deductions/medical',
-    checkSchema(medicalExpenseSchema),
-    checkErrors('deductions/medical'),
-    doYesNo('medicalExpenseClaim', 'medicalExpenseClaimAmount'),
-    doRedirect,
-  )
-  app.get('/deductions/medical/amount', renderWithData('deductions/medical-amount'))
-  app.post(
-    '/deductions/medical/amount',
-    checkSchema(medicalAmountSchema),
-    checkErrors('deductions/medical-amount'),
-    (req, res, next) => {
-      req.session.deductions.medicalExpenseClaimAmount.amount = req.body.medicalAmount
-      next()
-    },
-    doRedirect,
-  )
-  //End of Medical Claim Section
-
-  //Start of Political Donations Section
-  app.get('/deductions/political', renderWithData('deductions/political'))
-  app.post(
-    '/deductions/political',
-    checkSchema(politicalContributionSchema),
-    checkErrors('deductions/political'),
-    doYesNo('politicalContributionClaim'),
-    // These only apply if the user clicked "no"
-    // If they clicked "Yes", they will be redirected by `doYesNo()`
-    (req, res, next) => {
-      req.session.deductions.politicalFederalAmount = 0
-      req.session.deductions.politicalProvincialAmount = 0
-      next()
-    },
-    doRedirect,
-  )
-  app.get('/deductions/political/amount', renderWithData('deductions/political-amount'))
-  app.post(
-    '/deductions/political/amount',
-    checkSchema(politicalAmountSchema),
-    checkErrors('deductions/political-amount'),
-    (req, res, next) => {
-      req.session.deductions.politicalFederalAmount = req.body.politicalFederalAmount
-      req.session.deductions.politicalProvincialAmount = req.body.politicalProvincialAmount
-      next()
-    },
-    doRedirect,
-  )
-  //End of Charitable Donations Section
-
   //Start of Trillum Section
 
   app.get('/trillium/rent', renderWithData('deductions/trillium-rent'))

@@ -95,12 +95,6 @@
       "name": "Disability",
       "amount": 0.00
     },
-    "rrspClaim": null,
-    "rrspAmount": {
-      "name": "RRSP",
-      "line": 208,
-      "amount": 0.00
-    },
     "basicPersonalAmount": {
       "name": "Basic Personal Amount",
       "line": 300,
@@ -126,21 +120,10 @@
     },
     "singleParentClaim": null,
     "dependentDisabilityClaim": null,
-    "medicalExpenseClaim": null,
-    "medicalExpenseClaimAmount": {
-      "name": "Medical Expenses",
-      "line": 330,
-      "amount": 0.00
-    },
     "amountsFromSpouse": {
       "name": "Amounts transfered from spouse",
       "amount": 0.00
     },
-    "politicalContributionClaim": null,
-    "politicalFederalAmount": 0,
-    "politicalProvincialAmount": 0,
-    "charitableDonationClaim": null,
-    "charitableDonationAmount": null,
     "energyPropertyClaim": null,
     "northernEnergyClaim": null,
     "seniorHomeownerClaim": null,

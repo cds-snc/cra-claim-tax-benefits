@@ -400,7 +400,7 @@
   "Tax benefits": "Avantages fiscaux",
   "Did you live in a student residence?": "Avez-vous vécu dans une résidence pour étudiants?",
   "Did you live in a small and rural community?": "Avez-vous vécu dans une région rurale ou une petite collectivité?",
-  "Agree": "Agree",
+  "Agree": "J’accepte",
   "letter. You can change your address on the form.": ". Vous pourrez modifier votre adresse dans le formulaire.",
   "In 2018, did you live on a reserve?": "En 2018, avez-vous vécu dans une réserve?",
   "In 2018, did you pay energy costs for your home on reserve?": "En 2018, avez-vous payé des coûts d’énergie pour un domicile dans une réserve?",
@@ -434,6 +434,10 @@
   "Sudbury": "Sudbury",
   "Thunder Bay": "Thunder Bay",
   "Windsor": "Windsor",
-  "Did you pay property tax?": "Did you pay property tax?",
-  "Property tax paid": "Property tax paid"
+  "Did you pay property tax?": "Avez-vous payé un impôt foncier?",
+  "Property tax paid": "Impôt foncier payé",
+  "Rent paid": "Loyer payé",
+  "Did you have home energy costs on a reserve?": "Avez-vous eu des coûts d'énergie domiciliaire dans une réserve?",
+  "Yearly energy costs on a reserve": "Coûts d'énergie annuels dans une réserve",
+  "Public or non-profit long-term care home?": "Foyer de soins de longue durée public ou à but non lucratif?"
 }

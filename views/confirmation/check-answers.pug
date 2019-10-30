@@ -25,7 +25,11 @@ block content
                   div #{data.personal.address.city}, #{data.personal.address.province}
                   div #{data.personal.address.postalCode}
               else
-                dd.breakdown-table__row-value #{row.data}
+                //- we don't want to translate the name, dollar amounts, or birthday (formatting the birthday is done prior to hitting the template in checkAnswersFormat)
+                if (row.text.toLowerCase().includes('name') || row.data.includes('$') || row.text.toLowerCase().includes('birth'))
+                  dd.breakdown-table__row-value #{row.data}
+                else
+                  dd.breakdown-table__row-value #{__(row.data)}
 
               dd.breakdown-table__row-link
                 if row.urlPath

@@ -15,7 +15,7 @@ module.exports = function(app) {
     res.render('confirmation/check-answers', {
       data: req.session,
       prevRoute: getPreviousRoute(req),
-      answerInfo: formatAnswerInfo(req.session),
+      answerInfo: formatAnswerInfo(req),
     })
   })
 }

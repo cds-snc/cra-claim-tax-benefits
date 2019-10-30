@@ -1,7 +1,9 @@
 const { answerInfo } = require('./checkAnswers')
 const { hasData, currencyFilter } = require('./../../utils')
 const { format, parseISO } = require('date-fns')
+const { fr, enCA } = require('date-fns/locale')
 const { routes } = require('./../../config/routes.config')
+
 
 const addValues = (data, session) => {
   const dataValues = []
@@ -21,7 +23,9 @@ const addValues = (data, session) => {
   }
 }
 
-const formatDataLine = (data, session) => {
+const formatDataLine = (data, req) => {
+  const { session, locale } = req
+
   if (data.length > 1) {
     return addValues(data, session)
   } else {
@@ -32,10 +36,13 @@ const formatDataLine = (data, session) => {
       case hasData(session, data[0], true) === true:
         return 'Yes'
       case data[0].includes('Birth'): {
+        const dateLocale = (!locale || locale === 'en') ? enCA : fr
         const initialDate = parseISO(hasData(session, data[0], true))
-        return format(new Date(initialDate), 'd MMMM yyyy')
+        return format(new Date(initialDate), 'd MMMM yyyy', {
+          locale: dateLocale,
+        })
       }
-      case data[0].includes('Amount'):
+      case data[0].includes('Amount'): 
         return `$${currencyFilter(hasData(session, data[0], true))}`
       default:
         return hasData(session, data[0], true)
@@ -43,7 +50,8 @@ const formatDataLine = (data, session) => {
   }
 }
 
-const formatAnswerInfo = session => {
+const formatAnswerInfo = req => {
+  const { session } = req
   const answerInfoFormatted = {}
 
   answerInfo.map(section => {
@@ -68,7 +76,7 @@ const formatAnswerInfo = session => {
 
         answerInfoFormatted[section.sectionTitle].push({
           ...line,
-          data: formatDataLine(line.infoPath, session),
+          data: formatDataLine(line.infoPath, req),
         })
       }
     })

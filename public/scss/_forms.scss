@@ -146,7 +146,7 @@ form.cra-form {
     &.fr {
       padding-left: 0;
       margin-left: 0;
-      padding-right: $space-xl;
+      padding-right: $space-xl + $space-xs;
       margin-right: -$space-xl;
     }
   }

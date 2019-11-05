@@ -61,7 +61,8 @@
     "request-promise": "^4.2.4",
     "trim-request": "^1.0.6",
     "validator": "^11.1.0",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "axe-core": "^3.3.2",

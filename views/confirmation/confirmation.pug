@@ -9,8 +9,8 @@ block content
   h1 #{title}
 
   +banner('blue')
-    div #{__('Your 2018 filing code is')}
-    div 
+    div(class='year') #{__('Your 2018 filing code is')}
+    div(class='filing-code')
       strong 5H3P9IO5816
 
   p #{__('Use this code if you need to call about your taxes or ask for help from CRA by:')}

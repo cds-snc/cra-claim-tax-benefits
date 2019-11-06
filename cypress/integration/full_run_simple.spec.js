@@ -245,7 +245,7 @@ describe('Full run through', function() {
     // CONFIRMATION PAGE
     cy.url().should('contain', '/confirmation')
     cy.get('h1').should('contain', 'You have filed your 2018 taxes')
-    cy.get('.year').should('contain', 'Your 2018 filing code is')
-    cy.get('.filing-code').should('contain', '5H3P9IO5816')
+    cy.get('th').should('contain', 'Your 2018 filing code is')
+    cy.get('td').should('contain', '5H3P9IO5816')
   })
 })

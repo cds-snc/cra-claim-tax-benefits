@@ -2,7 +2,7 @@ extends ../base
 
 block variables
   -var title = __('Small and rural communities')
-  -var climateActionIncentiveIsRural = hasData(data, 'deductions.climateActionIncentiveIsRural') ? data.deductions.climateActionIncentiveIsRural : ''
+  -var climateActionIncentiveIsRural = !hasData(data, 'deductions.climateActionIncentiveIsRural') ? '' : data.deductions.climateActionIncentiveIsRural ? 'Yes' : 'No'
 
 block content
 

@@ -2,7 +2,6 @@ const request = require('supertest')
 const app = require('../../app.js')
 
 describe('Test /deductions responses', () => {
-
   describe('Test /deductions/* yesNo responses', () => {
     const yesNoResponses = [
       {
@@ -108,19 +107,19 @@ describe('Test /deductions responses', () => {
       expect(response.statusCode).toBe(422)
     })
 
-    test('it redirects to the /trillium/longTermCare page when selecting No', async () => {
+    test('it redirects to the provided redirect value page when selecting No', async () => {
       const response = await request(app)
         .post('/trillium/energy/reserve')
-        .send({ trilliumEnergyReserveClaim: 'No' })
-      expect(response.headers.location).toEqual('/trillium/longTermCare')
+        .send({ trilliumEnergyReserveClaim: 'No', redirect: '/start' })
+      expect(response.headers.location).toEqual('/start')
       expect(response.statusCode).toBe(302)
     })
 
-    test('it redirects to the provided redirect value when selecting Yes', async () => {
+    test('it redirects to "/trillium/energy/cost" when selecting Yes', async () => {
       const response = await request(app)
         .post('/trillium/energy/reserve')
-        .send({ redirect: '/start', trilliumEnergyReserveClaim: 'Yes' })
-      expect(response.headers.location).toEqual('/start')
+        .send({ trilliumEnergyReserveClaim: 'Yes' })
+      expect(response.headers.location).toEqual('/trillium/energy/cost')
       expect(response.statusCode).toBe(302)
     })
 
@@ -140,19 +139,19 @@ describe('Test /deductions responses', () => {
       expect(response.statusCode).toBe(422)
     })
 
-    test('it redirects to the /deductions/climate-action-incentive page when selecting No', async () => {
+    test('it redirects to the provided redirect value when selecting No', async () => {
       const response = await request(app)
         .post('/trillium/longTermCare')
-        .send({ trilliumLongTermCareClaim: 'No' })
-      expect(response.headers.location).toEqual('/deductions/climate-action-incentive')
+        .send({ trilliumLongTermCareClaim: 'No', redirect: '/start' })
+      expect(response.headers.location).toEqual('/start')
       expect(response.statusCode).toBe(302)
     })
 
-    test('it redirects to the provided redirect value when selecting Yes', async () => {
+    test('it redirects to "/trillium/longTermCare/type" when selecting Yes', async () => {
       const response = await request(app)
         .post('/trillium/longTermCare')
-        .send({ redirect: '/start', trilliumLongTermCareClaim: 'Yes' })
-      expect(response.headers.location).toEqual('/start')
+        .send({ trilliumLongTermCareClaim: 'Yes' })
+      expect(response.headers.location).toEqual('/trillium/longTermCare/type')
       expect(response.statusCode).toBe(302)
     })
 

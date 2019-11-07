@@ -103,7 +103,10 @@ require('./routes/offramp/offramp.controller')(app)
 
 // clear session
 app.get('/clear', (req, res) => {
-  req.session.destroy()
+  // clear session except for session cookie and responseId
+  Object.keys(req.session).map(k => {
+    if (!['cookie', 'responseId'].includes(k)) delete req.session[k]
+  })
   res.redirect(302, '/')
 })
 

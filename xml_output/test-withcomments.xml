@@ -16,8 +16,8 @@
         </tp:TaxpayerResidenceData>
         <tp:TaxpayerContactData>
           <comm:TaxpayerName>
-            <comm:GivenName></comm:GivenName>
-            <comm:FamilyName></comm:FamilyName>
+            <comm:GivenName>Gabrielle</comm:GivenName>
+            <comm:FamilyName>Roy</comm:FamilyName>
           </comm:TaxpayerName>
           <tp:TaxpayerMailingAddress>
             <comm:CanadianMailingAddress>
@@ -40,93 +40,104 @@
 
 
       <comm:ReturnLine>
+        <!-- Employment income (box 14 of all T4 slips)  -->
         <comm:FieldCode>101</comm:FieldCode>
         <comm:FieldValue>1234</comm:FieldValue>
       </comm:ReturnLine>
+
       <comm:ReturnLine>
+        <!-- total income -->
         <comm:FieldCode>150</comm:FieldCode>
         <comm:FieldValue>1234</comm:FieldValue>
       </comm:ReturnLine>
+
       <comm:ReturnLine>
+        <!-- taxable income -->
         <comm:FieldCode>260</comm:FieldCode>
         <comm:FieldValue>1234</comm:FieldValue>
       </comm:ReturnLine>
+
       <comm:ReturnLine>
+        <!-- foreign property -->
         <comm:FieldCode>266</comm:FieldCode>
         <comm:FieldValue>2</comm:FieldValue>
       </comm:ReturnLine>
+
       <comm:ReturnLine>
+        <!-- basic personal amount tax credit -->
         <comm:FieldCode>300</comm:FieldCode>
         <comm:FieldValue>11809</comm:FieldValue>
       </comm:ReturnLine>
+
       <comm:ReturnLine>
-        <comm:FieldCode>335</comm:FieldCode>
-        <comm:FieldValue>13004</comm:FieldValue>
-      </comm:ReturnLine>
-      <comm:ReturnLine>
-        <comm:FieldCode>338</comm:FieldCode>
-        <comm:FieldValue>1951</comm:FieldValue>
-      </comm:ReturnLine>
-      <comm:ReturnLine>
+        <!-- Total federal non-refundable tax credits -->
         <comm:FieldCode>350</comm:FieldCode>
         <comm:FieldValue>1951</comm:FieldValue>
       </comm:ReturnLine>
+
       <comm:ReturnLine>
+        <!-- Canada employment amount(Enter $1,195 or the total of your employment income you reported on lines 101 and 104 of your return, whichever is less.) -->
         <comm:FieldCode>363</comm:FieldCode>
         <comm:FieldValue>1195</comm:FieldValue>
       </comm:ReturnLine>
 
       <comm:ReturnLine>
-        <!-- climate action incentive rural yes/no -->
+        <!-- climate action incentive rural amount-->
         <comm:FieldCode>449</comm:FieldCode>
+        <comm:FieldValue>0</comm:FieldValue>
+      </comm:ReturnLine>
+
+       <comm:ReturnLine>
+       <!-- net federal tax -->
+        <comm:FieldCode>420</comm:FieldCode>
         <comm:FieldValue>2048</comm:FieldValue>
       </comm:ReturnLine>
 
       <comm:ReturnLine>
-        <comm:FieldCode>450</comm:FieldCode>
-        <comm:FieldValue>2048</comm:FieldValue>
-      </comm:ReturnLine>
-      <comm:ReturnLine>
-        <comm:FieldCode>465</comm:FieldCode>
-        <comm:FieldValue>1000</comm:FieldValue>
-      </comm:ReturnLine>
-      <comm:ReturnLine>
-        <comm:FieldCode>466</comm:FieldCode>
-        <comm:FieldValue>8548</comm:FieldValue>
-      </comm:ReturnLine>
-      <comm:ReturnLine>
-        <comm:FieldCode>479</comm:FieldCode>
-        <comm:FieldValue>7500</comm:FieldValue>
-      </comm:ReturnLine>
-      <comm:ReturnLine>
+        <!-- refund amount -->
         <comm:FieldCode>484</comm:FieldCode>
         <comm:FieldValue>9548</comm:FieldValue>
       </comm:ReturnLine>
+
       <comm:ReturnLine>
+      <!-- total EI premiums ???? -->
         <comm:FieldCode>5028</comm:FieldCode>
         <comm:FieldValue>2048</comm:FieldValue>
       </comm:ReturnLine>
+
+      <!-- Actual CPP contributions ??? -->
       <comm:ReturnLine>
         <comm:FieldCode>5034</comm:FieldCode>
         <comm:FieldValue>1</comm:FieldValue>
       </comm:ReturnLine>
+
+      <!-- EI insurable earnings ??? -->
       <comm:ReturnLine>
         <comm:FieldCode>5478</comm:FieldCode>
         <comm:FieldValue>1234</comm:FieldValue>
       </comm:ReturnLine>
+
+      <!-- Total CPP pensionable earnings ??? -->
       <comm:ReturnLine>
         <comm:FieldCode>5549</comm:FieldCode>
         <comm:FieldValue>1234</comm:FieldValue>
       </comm:ReturnLine>
+
+      <!-- Ontario non-refundable tax credits -->
       <comm:ReturnLine>
+        <!-- Basic personal amount ontario -->
         <comm:FieldCode>5804</comm:FieldCode>
         <comm:FieldValue>10354</comm:FieldValue>
       </comm:ReturnLine>
+
       <comm:ReturnLine>
+        <!-- this is a combo of a couple lines, but for our simple purposes right now will just spit out 5804 -->
         <comm:FieldCode>5880</comm:FieldCode>
         <comm:FieldValue>10354</comm:FieldValue>
       </comm:ReturnLine>
+
       <comm:ReturnLine>
+        <!-- multiple 5880 by the Ontario non-refundable tax credit rate (currently 5.05%) -->
         <comm:FieldCode>5884</comm:FieldCode>
         <comm:FieldValue>523</comm:FieldValue>
       </comm:ReturnLine>
@@ -185,10 +196,13 @@
       </comm:ReturnLine>
       
       <comm:ReturnLine>
+        <!-- Ontario non-refundable tax credits ??? -->
         <comm:FieldCode>6150</comm:FieldCode>
         <comm:FieldValue>523</comm:FieldValue>
       </comm:ReturnLine>
+
       <comm:ReturnLine>
+        <!-- Ontario political contributions made in 2018  -->
         <comm:FieldCode>6310</comm:FieldCode>
         <comm:FieldValue>100</comm:FieldValue>
       </comm:ReturnLine>

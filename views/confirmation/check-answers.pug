@@ -1,4 +1,5 @@
 extends ../base
+include ../_includes/address
 
 block variables
   -var title = __('Check your answers before filing')
@@ -18,15 +19,7 @@ block content
 
               if (row.text.toLowerCase().includes('address'))
                 dd.breakdown-table__row-value
-                  if hasData(data, 'personal.address.line2')
-                    div #{data.personal.address.line2[getLocale()]}-#{data.personal.address.line1[getLocale()]}
-                  else
-                    div #{data.personal.address.line1}
-                  if (getLocale() == "en")
-                    div #{data.personal.address.city}, #{data.personal.address.province}
-                  else
-                    div #{data.personal.address.city} (#{data.personal.address.province})
-                  div #{data.personal.address.postalCode}
+                  +address(data)
               else
                 //- we don't want to translate the name, dollar amounts, or birthday (formatting the birthday is done prior to hitting the template in checkAnswersFormat)
                 if (row.text.toLowerCase().includes('name') || row.data.includes('$') || row.text.toLowerCase().includes('birth'))

@@ -10,8 +10,14 @@
     "sin": "847339283",
     "dateOfBirth": "1977-09-09",
     "address": {
-      "line1": "303 Blake Blvd.",
-      "line2": "Unit 202",
+      "line1": {
+        "en": "303 Blake Blvd.",
+        "fr": "303, boul. Blake"
+      },
+      "line2": {
+        "en": "Unit 202",
+        "fr": "202"
+      },
       "postalCode": "K2R 3Z9",
       "city": "Ottawa",
       "province": "Ontario"

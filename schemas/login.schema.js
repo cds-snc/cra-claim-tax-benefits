@@ -1,5 +1,5 @@
 const validator = require('validator')
-const { currencySchema } = require('./utils.schema')
+const { currencySchema, validationArray } = require('./utils.schema')
 const { securityQuestionUrls } = require('../config/routes.config')
 
 const loginSchema = {
@@ -15,7 +15,7 @@ const loginSchema = {
 }
 
 let sinError = 'errors.login.matchingSIN'
-const _getSinErrorMessage = val => {
+const _getSinErrorMessage = (val, expectedSin) => {
   if (!val) {
     // technically, 0 characters is the wrong length
     return 'errors.login.lengthSIN'
@@ -32,6 +32,10 @@ const _getSinErrorMessage = val => {
     return 'errors.login.lengthSIN'
   }
 
+  if (digits !== expectedSin) {
+    return 'errors.login.matchingSIN'
+  }
+
   return false
 }
 
@@ -44,7 +48,7 @@ const sinSchema = {
           return false
         }
 
-        const errorMessage = _getSinErrorMessage(value, req.session.personal.sin)
+        const errorMessage = _getSinErrorMessage(value, '000000000')
         if (errorMessage) sinError = errorMessage
 
         /* if an error message exists, we failed validation */
@@ -72,9 +76,22 @@ const _toISOFormat = ({ dobYear, dobMonth, dobDay }) => {
   return `${dobYear}-${if0(dobMonth)}-${if0(dobDay)}`
 }
 
+const isMatchingDoB = {
+  errorMessage: 'errors.login.dateOfBirth.match',
+  validate: (value, req) => {
+    /* If there is no session, always return true */
+    if (!req.session || !req.session.personal) {
+      return true
+    }
+
+    return _toISOFormat(req.body) === '1974-01-08'
+  },
+}
+
 const dobSchema = {
   dobDay: {
     ...isValidDay(),
+    ...validationArray([isMatchingDoB]),
   },
   dobMonth: {
     isInt: {

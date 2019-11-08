@@ -488,7 +488,6 @@
   "For the purposes of this survey, please imagine that you see your own name on this page.": "Pour les besoins du sondage, faites comme si votre propre nom était écrit sur la page.",
   "For the purposes of this survey, please imagine that you see your own employers and income amounts listed on this page.": "Pour les besoins du sondage, faites comme si le nom de vos propres employeurs et vos propres revenus étaient écrits sur la page.",
   "For the purposes of this survey, please imagine that you see your own address on this page.": "Pour les besoins du sondage, faites comme si votre propre adresse était écrite sur la page.",
-  "Your input will not be recorded but if you are not comfortable entering your own SIN number, please enter 000 000 000.": "Vos réponses ne seront pas conservées, mais si vous ne voulez pas entrer votre propre numéro d’assurance sociale, veuillez inscrire 000 000 000.",
   "If you are finished, click here": "Si vous avez terminé, cliquez ici",
   "You have reached the end of this section": "Vous êtes maintenant à la fin de la section",
   "To continue, click anywhere outside this popup window.": "Pour poursuivre, cliquez à l’extérieur de la fenêtre contextuelle.",
@@ -502,5 +501,7 @@
   "[Your name here] ": "[Votre nom ici]",
   "9 September 1977": "9 septembre 1977",
   "Did you pay property tax?": "Avez-vous payé l’impôt foncier?",
-  "Property tax paid": "Impôt foncier payé"
+  "Property tax paid": "Impôt foncier payé",
+  "Please enter 000 000 000 as your SIN number.": "Pour votre numéro d’assurance sociale, veuillez inscrire 000 000 000.",
+  "Please enter 08 01 1974 as your date of birth.": "Pour votre date de naissance, veuillez inscrire 08 01 1974."
 }

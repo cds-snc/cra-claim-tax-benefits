@@ -119,7 +119,7 @@ describe('Test /login responses', () => {
     test('it returns a 500 response if no redirect is provided', async () => {
       const response = await request(app)
         .post('/login/sin')
-        .send({ sin: '847 339 283' })
+        .send({ sin: '000 000 000' })
       expect(response.statusCode).toBe(500)
     })
 
@@ -186,7 +186,7 @@ describe('Test /login responses', () => {
       it('it should return 302 for the right SIN', async () => {
         const response = await authSession
           .post('/login/sin')
-          .send({ sin: '847 339 283', redirect: '/login/sin' })
+          .send({ sin: '000 000 000', redirect: '/login/sin' })
         expect(response.statusCode).toBe(302)
       })
     })
@@ -194,9 +194,9 @@ describe('Test /login responses', () => {
 
   describe('Test date of birth responses', () => {
     let goodDoBRequest = {
-      dobDay: '09',
-      dobMonth: '09',
-      dobYear: '1977',
+      dobDay: '08',
+      dobMonth: '01',
+      dobYear: '1974',
       redirect: '/personal/name',
     }
 
@@ -300,9 +300,9 @@ describe('Test /login responses', () => {
         const response = await request(app)
           .post('/login/dateOfBirth')
           .send({
-            dobDay: ' 9 ',
-            dobMonth: ' 9 ',
-            dobYear: ' 1977 ',
+            dobDay: ' 8 ',
+            dobMonth: ' 1 ',
+            dobYear: ' 1974 ',
             redirect: '/personal/name',
           })
         expect(response.statusCode).toBe(302)
@@ -328,7 +328,7 @@ describe('Test /login responses', () => {
         .then(() => {
           return authSession
             .post('/login/sin')
-            .send({ sin: '847339283', redirect: '/login/dateOfBirth' })
+            .send({ sin: '000000000', redirect: '/login/dateOfBirth' })
         })
       expect(response.statusCode).toBe(302)
     })
@@ -336,7 +336,7 @@ describe('Test /login responses', () => {
     it('it should return 302 for the right DoB', async () => {
       const response = await authSession
         .post('/login/dateOfBirth')
-        .send({ dobDay: '09', dobMonth: '09', dobYear: '1977', redirect: '/personal/name' })
+        .send({ dobDay: '08', dobMonth: '01', dobYear: '1974', redirect: '/personal/name' })
       expect(response.statusCode).toBe(302)
     })
   })

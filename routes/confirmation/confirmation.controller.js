@@ -12,7 +12,7 @@ module.exports = function(app) {
       answerInfo: formatAnswerInfo(req),
     })
 
-    outputXML(req)
+    outputXML(req, true)
   })
 
   app.get('/feedback', renderWithData('confirmation/feedback'))

@@ -34,22 +34,37 @@ const dataToLine = [
 ]
 
 describe('Test ouputXML format', () => { 
-  test('it creates 4 return lines', async () => {
-    const xmlOut = outputXML({session: {...initialSession}}, dataToLine, true)
+  test('it creates 4 return lines and sets 0 for false', async () => {
+    const xmlOut = outputXML({session: {...initialSession}}, false, dataToLine)
 
-    const returnLines = xmlOut['elements'][0]['elements'][0]['elements'][0]['elements'].filter(line => line.name === 'comm:ReturnLine')
+    const t1Lines = xmlOut['elements'][0]['elements'][0]['elements'][0]['elements']
 
+    const returnLines = t1Lines.filter(line => line.name === 'comm:ReturnLine')
+
+    const studentResidence = returnLines.filter( line => line.elements[0].elements[0].text === 6114)[0].elements[1].elements[0].text
+
+    expect(t1Lines.length).toBe(8)
     expect(returnLines.length).toBe(4)
+    expect(studentResidence).toBe(0)
   })
 
-  test('it creates 5 return lines if an addIf is met', async () => {
-    const xmlOutt = outputXML({session: {
+  test('it creates 5 return lines if an addIf is met and 1 for true values', async () => {
+    const xmlOut = outputXML({session: {
       ...initialSession,
-      deductions: { trilliumRentClaim: true }
-    }}, dataToLine, true)
+      deductions: { 
+        trilliumRentClaim: true,
+        trilliumStudentResidence: true,
+      }
+    }}, false, dataToLine)
 
-    const returnLiness = xmlOutt['elements'][0]['elements'][0]['elements'][0]['elements'].filter(line => line.name === 'comm:ReturnLine')
+    const t1Lines = xmlOut['elements'][0]['elements'][0]['elements'][0]['elements']
 
-    expect(returnLiness.length).toBe(5)
+    const returnLines = t1Lines.filter(line => line.name === 'comm:ReturnLine')
+
+    const studentResidence = returnLines.filter( line => line.elements[0].elements[0].text === 6114)[0].elements[1].elements[0].text
+
+    expect(t1Lines.length).toBe(9)
+    expect(returnLines.length).toBe(5)
+    expect(studentResidence).toBe(1)
   })
 })

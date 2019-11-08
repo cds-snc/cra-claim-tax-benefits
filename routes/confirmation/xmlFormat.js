@@ -93,7 +93,7 @@ const lineShouldBeAdded = (line, session) => {
   return !Object.prototype.hasOwnProperty.call(line, 'addIf') || (Object.prototype.hasOwnProperty.call(line, 'addIf') && hasData(session, line.addIf))
 }
 
-const outputXML = (req, linesToAdd = dataToLine, noLog = false) => {
+const outputXML = (req, createFile = false, linesToAdd = dataToLine) => {
   //const user = {name:'azraq',country:'egypt', change:'yeah'};
   // const json = JSON.stringify(user);
   // const filename = 'user.json';
@@ -176,7 +176,7 @@ const outputXML = (req, linesToAdd = dataToLine, noLog = false) => {
   const data = convert.json2xml(newXml , {spaces: 2})
 
   // this because I don't want an output everytime we run the spec files
-  if(noLog !== true) {
+  if(createFile) {
     fs.writeFileSync('xml_output/testconvert.xml', data, (err) => {
       if (err) throw err
     })

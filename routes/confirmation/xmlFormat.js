@@ -101,17 +101,16 @@ const outputXML = (req, linesToAdd = dataToLine, noLog = false) => {
   // res.setHeader('Content-Type', mimetype);
   // res.setHeader('Content-disposition','attachment; filename='+filename);
   // res.send( json );
-  let newXml = {}
-  newXml = {...testxml}
+  
+  // force a deep copy to keep it clean between runs
+  const newXml = JSON.parse(JSON.stringify(testxml))
 
-  
-  let linesForEdit = newXml['elements'][0]['elements'][0]['elements'][0]['elements']
-  
-  console.log(linesForEdit)
+  const linesForEdit = newXml['elements'][0]['elements'][0]['elements'][0]['elements']
   
   linesForEdit.push(addTaxPayerInfo(req.session.personal, req.locale))
 
-  linesToAdd.map((line) => {
+  linesToAdd.map((originalLine) => {
+    let line = Object.assign({}, originalLine)
     let newLine = {}
 
     /**
@@ -173,6 +172,7 @@ const outputXML = (req, linesToAdd = dataToLine, noLog = false) => {
     }
   })
   
+
   const data = convert.json2xml(newXml , {spaces: 2})
 
   // this because I don't want an output everytime we run the spec files

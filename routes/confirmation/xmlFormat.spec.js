@@ -42,10 +42,17 @@ describe('Test ouputXML format', () => {
     const returnLines = t1Lines.filter(line => line.name === 'comm:ReturnLine')
 
     const studentResidence = returnLines.filter( line => line.elements[0].elements[0].text === 6114)[0].elements[1].elements[0].text
-
+    
+    const maritalStatus = t1Lines.find( line => line.name === 't1:TaxpayerData').elements[0].elements[3].elements[0].text
+    
+    
+    const address = t1Lines.find( line => line.name === 't1:TaxpayerData').elements[2].elements[1].elements[0].elements[0].elements[0].text
+    
     expect(t1Lines.length).toBe(8)
     expect(returnLines.length).toBe(4)
     expect(studentResidence).toBe(0)
+    expect(maritalStatus).toBe(6)
+    expect(address).toBe(`${initialSession.personal.address.line2}-${initialSession.personal.address.line1}`)
   })
 
   test('it creates 5 return lines if an addIf is met and 1 for true values', async () => {

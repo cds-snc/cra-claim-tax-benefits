@@ -60,9 +60,9 @@
     "purecss": "^1.0.1",
     "request-promise": "^4.2.5",
     "trim-request": "^1.0.6",
-    "xml-js": "^1.6.11",
     "validator": "^12.0.0",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "axe-core": "^3.4.0",

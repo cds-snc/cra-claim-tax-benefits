@@ -1,5 +1,5 @@
 const validator = require('validator')
-const { currencySchema } = require('./utils.schema')
+const { currencySchema, validationArray } = require('./utils.schema')
 const { securityQuestionUrls } = require('../config/routes.config')
 
 const loginSchema = {
@@ -72,9 +72,22 @@ const _toISOFormat = ({ dobYear, dobMonth, dobDay }) => {
   return `${dobYear}-${if0(dobMonth)}-${if0(dobDay)}`
 }
 
+const isMatchingDoB = {
+  errorMessage: 'errors.login.dateOfBirth.match',
+  validate: (value, req) => {
+    /* If there is no session, always return true */
+    if (!req.session || !req.session.personal) {
+      return true
+    }
+
+    return _toISOFormat(req.body) === '1974-01-08'
+  },
+}
+
 const dobSchema = {
   dobDay: {
     ...isValidDay(),
+    ...validationArray([isMatchingDoB]),
   },
   dobMonth: {
     isInt: {

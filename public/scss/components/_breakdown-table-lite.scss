@@ -1,0 +1,149 @@
+.breakdown-table-lite {
+  $table: &;
+
+  dl {
+    margin-bottom: $space-lg;
+  }
+
+  hr:last-of-type {
+    margin-bottom: $space-lg;
+  }
+
+  @include md {
+    max-width: 1050px;
+  }
+
+  &-data {
+    @include md {
+      border-collapse: collapse;
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+  }
+
+  h2#{$table}__heading {
+    text-align: left;
+    background: $color-grey-light;
+    padding: 28px;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1.5em;
+
+    @include md {
+      font-size: 1.3em;
+    }
+
+    span {
+      width: 60%;
+      display: inline-block;
+
+      &:last-child {
+        width: 39%;
+        text-align: right;
+      }
+    }
+  }
+
+  p#{$table}__subheading {
+    text-align: left;
+    font-weight: 400;
+    padding: 10px 28px;
+    padding-bottom: $space-md;
+    font-size: 0.9em;
+
+    @include md {
+      font-size: 1em;
+    }
+  }
+}
+
+.breakdown-table-lite__row {
+  border-top: 1px solid $color-grey-light;
+  padding: 10px 28px;
+
+  @include md {
+    padding: 0;
+    display: table-row;
+    border-top: 0;
+    border-left: 2px solid $color-grey-light;
+  }
+
+  &--summary {
+    font-weight: 700;
+  }
+
+  &-key,
+  &-value,
+  &-link {
+    margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 0.9em;
+
+    @include md {
+      font-size: 1em;
+      display: table-cell;
+      padding: 10px 28px;
+    }
+  }
+
+  &-key {
+    margin-bottom: 5px;
+    font-weight: 700;
+    @include md {
+      font-weight: 400;
+      width: 60%;
+    }
+  }
+
+  &-value {
+    white-space: pre-wrap;
+    @include md {
+      text-align: right;
+      width: 40%;
+    }
+  }
+}
+
+.breakdown-table-lite__row--answers {
+  &:first-child {
+    border-top: 0;
+  }
+
+  @include md {
+    border-left: 0;
+    border-top: 1px solid $color-grey-light;
+  }
+  .breakdown-table-lite__row-key {
+    font-weight: 700;
+
+    @include md {
+      width: 30%;
+    }
+  }
+
+  .breakdown-table-lite__row-value {
+    text-align: left;
+
+    @include md {
+      width: 50%;
+    }
+  }
+
+  .row-link {
+    margin-top: $space-md;
+  }
+
+  .breakdown-table-lite__row-link {
+    font-size: 0.8em;
+
+    span {
+      margin-top: 100px;
+    }
+    @include md {
+      font-size: 1em;
+      width: 20%;
+    }
+  }
+}

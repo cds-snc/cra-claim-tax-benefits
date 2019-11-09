@@ -44,6 +44,7 @@ const routes = [
   { path: '/trillium/longTermCare/type/amount', editInfo: 'deductions.trilliumLongTermCareAmount' },
   { path: '/deductions/climate-action-incentive' },
   { path: '/checkAnswers' },
+  { path: '/reviewLite' },
   { path: '/review' },
   { path: '/confirmation' },
   { path: '/feedback', editInfo: 'skip' },

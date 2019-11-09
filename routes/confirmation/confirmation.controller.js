@@ -32,6 +32,9 @@ module.exports = function(app) {
   app.get('/review', renderWithData('confirmation/review'))
   app.post('/review', checkSchema(reviewSchema), checkErrors('confirmation/review'), doRedirect)
 
+
+  app.get('/reviewLite', renderWithData('confirmation/review-lite'))
+
   app.get('/checkAnswers', (req, res) => {
     res.render('confirmation/check-answers', {
       data: req.session,

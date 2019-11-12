@@ -27,7 +27,10 @@ block content
       dl.breakdown-table-data
         each income in incomeSources
           .breakdown-table__row
-            dt.breakdown-table__row-key #{income.name} #{__('Total Income')}
+            if getLocale() === 'en'
+              dt.breakdown-table__row-key #{income.name} #{__('Total Income')}
+            else
+              dt.breakdown-table__row-key #{__('Total Income')} #{income.name}
             dd.breakdown-table__row-value $#{currencyFilter(income.total)}
 
         .breakdown-table__row.breakdown-table__row--summary

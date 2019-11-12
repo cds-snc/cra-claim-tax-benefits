@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { doRedirect, doYesNo, renderWithData, checkErrors, returnToCheckAnswers } = require('./../../utils')
+const { doRedirect, doYesNo, renderWithData, checkErrors } = require('./../../utils')
 const {
   trilliumRentSchema,
   trilliumRentAmountSchema,
@@ -23,7 +23,7 @@ module.exports = function(app) {
     '/trillium/rent',
     checkSchema(trilliumRentSchema),
     checkErrors('deductions/trillium-rent'),
-    doYesNo('trilliumRentClaim', 'trilliumRentAmount'),
+    doYesNo('trilliumRentClaim', ['trilliumRentAmount']),
     doRedirect,
   )
   app.get('/trillium/rent/amount', renderWithData('deductions/trillium-rent-amount'))
@@ -43,7 +43,7 @@ module.exports = function(app) {
     '/trillium/propertyTax',
     checkSchema(trilliumPropertyTaxSchema),
     checkErrors('deductions/trillium-propertyTax'),
-    doYesNo('trilliumPropertyTaxClaim', 'trilliumPropertyTaxAmount'),
+    doYesNo('trilliumPropertyTaxClaim', ['trilliumPropertyTaxAmount']),
     doRedirect,
   )
   app.get('/trillium/propertyTax/amount', renderWithData('deductions/trillium-propertyTax-amount'))
@@ -76,7 +76,7 @@ module.exports = function(app) {
     '/trillium/energy/reserve',
     checkSchema(trilliumEnergyReserveSchema),
     checkErrors('deductions/trillium-energy-reserve'),
-    postEnergyReserve,
+    doYesNo('trilliumEnergyReserveClaim', ['trilliumEnergyCostClaim', 'trilliumEnergyAmount']),
     doRedirect,
   )
 
@@ -85,13 +85,7 @@ module.exports = function(app) {
     '/trillium/energy/cost',
     checkSchema(trilliumEnergyCostSchema),
     checkErrors('deductions/trillium-energy-cost'),
-    doYesNo('trilliumEnergyCostClaim', 'trilliumEnergyAmount'),
-    // These only apply if the user clicked "no"
-    // If they clicked "Yes", they will be redirected by `doYesNo()`
-    (req, res, next) => {
-      req.session.deductions.trilliumEnergyAmount = 0
-      next()
-    },
+    doYesNo('trilliumEnergyCostClaim', ['trilliumEnergyAmount']),
     doRedirect,
   )
 
@@ -112,7 +106,10 @@ module.exports = function(app) {
     '/trillium/longTermCare',
     checkSchema(trilliumlongTermCareSchema),
     checkErrors('deductions/trillium-longTermCare'),
-    postLongTermCare,
+    doYesNo('trilliumLongTermCareClaim', [
+      'trilliumLongTermCareTypeClaim',
+      'trilliumLongTermCareAmount',
+    ]),
     doRedirect,
   )
 
@@ -121,13 +118,7 @@ module.exports = function(app) {
     '/trillium/longTermCare/type',
     checkSchema(trilliumLongTermCareTypeSchema),
     checkErrors('deductions/trillium-longTermCare-type'),
-    doYesNo('trilliumLongTermCareTypeClaim', 'trilliumLongTermCareAmount'),
-    // These only apply if the user clicked "no"
-    // If they clicked "Yes", they will be redirected by `doYesNo()`
-    (req, res, next) => {
-      req.session.deductions.trilliumLongTermCareAmount = 0
-      next()
-    },
+    doYesNo('trilliumLongTermCareTypeClaim', ['trilliumLongTermCareAmount']),
     doRedirect,
   )
 
@@ -156,57 +147,10 @@ module.exports = function(app) {
     checkSchema(climateActionIncentiveSchema),
     checkErrors('deductions/climate-action-incentive'),
     (req, res, next) => {
-      req.session.deductions.climateActionIncentiveIsRural = req.body.climateActionIncentiveIsRural
+      req.session.deductions.climateActionIncentiveIsRural =
+        req.body.climateActionIncentiveIsRural === 'Yes' ? true : false
       next()
     },
     doRedirect,
   )
-}
-
-const postEnergyReserve = (req, res, next) => {
-  const trilliumEnergyReserveClaim = req.body.trilliumEnergyReserveClaim
-
-  req.session.deductions.trilliumEnergyReserveClaim = trilliumEnergyReserveClaim
-
-  if (trilliumEnergyReserveClaim !== 'Yes') {
-
-    req.session.deductions.trilliumEnergyCostClaim = null
-    req.session.deductions.trilliumEnergyAmount = 0
-
-    if (req.query.ref && req.query.ref === 'checkAnswers') {
-      return returnToCheckAnswers(req, res)
-    }
-
-    return res.redirect('/trillium/longTermCare')
-  }
-
-  if (req.query.ref && req.query.ref === 'checkAnswers') {
-    return returnToCheckAnswers(req, res, true)
-  }
-
-  next()
-}
-
-const postLongTermCare = (req, res, next) => {
-  const trilliumLongTermCareClaim = req.body.trilliumLongTermCareClaim
-
-  req.session.deductions.trilliumLongTermCareClaim = trilliumLongTermCareClaim
-
-  if (trilliumLongTermCareClaim !== 'Yes') {
-
-    req.session.deductions.trilliumLongTermCareTypeClaim = null
-    req.session.deductions.trilliumLongTermCareAmount = 0
-
-    if (req.query.ref && req.query.ref === 'checkAnswers') {
-      return returnToCheckAnswers(req, res)
-    }
-
-    return res.redirect('/deductions/climate-action-incentive')
-  }
-
-  if (req.query.ref && req.query.ref === 'checkAnswers') {
-    return returnToCheckAnswers(req, res, true)
-  }
-
-  next()
 }

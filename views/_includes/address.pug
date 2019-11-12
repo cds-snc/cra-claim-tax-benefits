@@ -1,0 +1,10 @@
+mixin address(data)
+  if hasData(data, 'personal.address.line2')
+    div #{data.personal.address.line2[getLocale()]}-#{data.personal.address.line1[getLocale()]}
+  else
+    div #{data.personal.address.line1}
+  if (getLocale() == "en")
+    div #{data.personal.address.city}, #{data.personal.address.province}
+  else
+    div #{data.personal.address.city} (#{data.personal.address.province})
+  div #{data.personal.address.postalCode}

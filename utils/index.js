@@ -149,13 +149,13 @@ const renderWithData = template => {
  *
  * If the yesNo page comes back "No"
  * - set the session variable to "false"
- * - reset the "amount" var to 0
+ * - reset dependent fields to 0 or "null"
  * - continue
  *
  * @param string claim the variable name with the claim
- * @param string amount the variable name with the amount
+ * @param array fields an array of fields to reset (if the claim is "no")
  */
-const doYesNo = (claim, amount) => {
+const doYesNo = (claim, fields) => {
   return (req, res, next) => {
     const claimVal = req.body[claim]
 
@@ -166,18 +166,28 @@ const doYesNo = (claim, amount) => {
         return returnToCheckAnswers(req, res, true)
       }
 
-      return res.redirect(`${req.path}/amount`)
+      const currentRoute = getRouteWithIndexByPath(req.path)
+      return res.redirect(defaultRoutes[currentRoute.index + 1].path)
     }
 
     req.session.deductions[claim] = false
 
-    if (amount && req.session.deductions[amount]) {
-      if (Object.keys(req.session.deductions[amount]).includes('amount')) {
-        req.session.deductions[amount].amount = 0.0
-      } else {
-        req.session.deductions[amount] = 0
+    // fields is an array
+    fields.map(field => {
+      // if the field is truthy
+      if (req.session.deductions[field]) {
+        // "Amount" fields are zeroed -- others are nulled
+        if (field.endsWith('Amount')) {
+          if (Object.keys(req.session.deductions[field]).includes('amount')) {
+            req.session.deductions[field].amount = 0.0
+          } else {
+            req.session.deductions[field] = 0
+          }
+        } else {
+          req.session.deductions[field] = null
+        }
       }
-    }
+    })
 
     next()
   }

@@ -1,4 +1,4 @@
-const testxml = {
+const templateXml = {
   "declaration": {
     "attributes": {
       "version": "1.0",
@@ -77,5 +77,5 @@ const testxml = {
 }
 
 module.exports = {
-  testxml,
+  templateXml,
 }

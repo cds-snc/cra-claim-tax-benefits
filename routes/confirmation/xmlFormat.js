@@ -1,4 +1,4 @@
-const { testxml } = require('./../../xml_output/testxml')
+const { templateXml } = require('./../../xml_output/template-xml')
 const { hasData } = require('./../../utils')
 const convert = require('xml-js')
 const fs = require('fs')
@@ -94,16 +94,8 @@ const lineShouldBeAdded = (line, session) => {
 }
 
 const outputXML = (req, createFile = false, linesToAdd = dataToLine) => {
-  //const user = {name:'azraq',country:'egypt', change:'yeah'};
-  // const json = JSON.stringify(user);
-  // const filename = 'user.json';
-  // const mimetype = 'application/json';
-  // res.setHeader('Content-Type', mimetype);
-  // res.setHeader('Content-disposition','attachment; filename='+filename);
-  // res.send( json );
-  
   // force a deep copy to keep it clean between runs
-  const newXml = JSON.parse(JSON.stringify(testxml))
+  const newXml = JSON.parse(JSON.stringify(templateXml))
 
   const linesForEdit = newXml['elements'][0]['elements'][0]['elements'][0]['elements']
   
@@ -177,7 +169,11 @@ const outputXML = (req, createFile = false, linesToAdd = dataToLine) => {
 
   // this because I don't want an output everytime we run the spec files
   if(createFile) {
-    fs.writeFileSync('xml_output/testconvert.xml', data, (err) => {
+    /**
+     * we can add a dynamic name later if we want
+     * I just wanted to avoid a bunch of outputs running cypress tests, for example
+     */
+    fs.writeFileSync('xml_output/taxfile-2018.xml', data, (err) => {
       if (err) throw err
     })
   }

@@ -35,7 +35,7 @@ const dataToLine = [
 
 describe('Test ouputXML format', () => { 
   test('it creates 4 return lines and sets 0 for false', async () => {
-    const xmlOut = outputXML({session: {...initialSession}}, false, dataToLine)
+    const xmlOut = outputXML({session: {...initialSession}}, dataToLine)
 
     const t1Lines = xmlOut['elements'][0]['elements'][0]['elements'][0]['elements']
 
@@ -62,7 +62,7 @@ describe('Test ouputXML format', () => {
         trilliumRentClaim: true,
         trilliumStudentResidence: true,
       },
-    }}, false, dataToLine)
+    }}, dataToLine)
 
     const t1Lines = xmlOut['elements'][0]['elements'][0]['elements'][0]['elements']
 

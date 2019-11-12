@@ -93,7 +93,7 @@ const lineShouldBeAdded = (line, session) => {
   return !Object.prototype.hasOwnProperty.call(line, 'addIf') || (Object.prototype.hasOwnProperty.call(line, 'addIf') && hasData(session, line.addIf))
 }
 
-const outputXML = (req, createFile = false, linesToAdd = dataToLine) => {
+const outputXML = (req, linesToAdd = dataToLine) => {
   // force a deep copy to keep it clean between runs
   const newXml = JSON.parse(JSON.stringify(templateXml))
 
@@ -168,7 +168,7 @@ const outputXML = (req, createFile = false, linesToAdd = dataToLine) => {
   const data = convert.json2xml(newXml , {spaces: 2})
 
   // this because I don't want an output everytime we run the spec files
-  if(createFile) {
+  if(process.env.NODE_ENV !== 'test') {
     /**
      * we can add a dynamic name later if we want
      * I just wanted to avoid a bunch of outputs running cypress tests, for example

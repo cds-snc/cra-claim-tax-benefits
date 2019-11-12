@@ -37,7 +37,7 @@ const templateXml = {
                   "elements": [
                     {
                       "type": "text",
-                      "text": "024G"
+                      "text": "FLCT"
                     }
                   ]
                 },
@@ -47,7 +47,7 @@ const templateXml = {
                   "elements": [
                     {
                       "type": "text",
-                      "text": "2019-02-22"
+                      "text": "2019-11-12"
                     }
                   ]
                 },

@@ -12,15 +12,19 @@ module.exports = function(app) {
       answerInfo: formatAnswerInfo(req),
     })
 
-    outputXML(req, true)
+    outputXML(req)
   })
 
-  app.get('/download', (req,res) => {
+  app.get('/download', (req, res) => {
     /**
      * I imagine back in outputXML, we'll want to disable the download button until the function is done. We'll rarely see it happen, but just to avoid any issues around downloading and incomplete file
      */
     const file = './xml_output/taxfile-2018.xml'
-    res.download(file)
+    res.download(file, 'taxfile-2018.xml', (err)=> {
+      if (err) {
+        res.status(500).send('Download not available')
+      }
+    })
   })
 
   app.get('/feedback', renderWithData('confirmation/feedback'))

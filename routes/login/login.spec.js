@@ -15,6 +15,7 @@ describe('Test /login responses', () => {
     '/login/questions/bankruptcy',
     '/login/questions/dateOfResidence',
   ]
+  
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
       const response = await request(app).get(url)
@@ -22,15 +23,29 @@ describe('Test /login responses', () => {
     })
 
     test(`it returns a 422 response for ${url} if nothing is posted`, async () => {
-      const response = await request(app).post(url)
-      expect(response.statusCode).toBe(422)
+      request(app)
+        .get(url)
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post(url)
+            .send({_csrf: csrfToken})
+          expect(response.statusCode).toBe(422)
+        })
     })
 
     test(`it returns a 422 response for ${url} if only a redirect is posted`, async () => {
-      const response = await request(app)
-        .post(url)
-        .send({ redirect: '/start' })
-      expect(response.statusCode).toBe(422)
+      request(app)
+        .get(url)
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post(url)
+            .send({ redirect: '/start', _csrf: csrfToken })
+          expect(response.statusCode).toBe(422)
+        })
     })
   })
 
@@ -49,10 +64,16 @@ describe('Test /login responses', () => {
   })
 
   test('it returns a 500 response if no redirect is provided', async () => {
-    const response = await request(app)
-      .post('/login/code')
-      .send({ code: 'A5G98S4K1' })
-    expect(response.statusCode).toBe(500)
+    request(app)
+      .get('/login/code')
+      .expect(200)
+      .end(async function(err, res) {
+        var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+        const response = await request(app)
+          .post('/login/code')
+          .send({ code: 'A5G98S4K1', _csrf: csrfToken })
+        expect(response.statusCode).toBe(500)
+      })
   })
 
   test('it autofocuses on the single input on the page', async () => {
@@ -63,64 +84,106 @@ describe('Test /login responses', () => {
 
   describe('Error list tests', () => {
     test('it renders the error-list for /login/code', async () => {
-      const response = await request(app)
-        .post('/login/code')
-        .send({ redirect: '/start' })
-      const $ = cheerio.load(response.text)
-      expect($('title').text()).toMatch(/^Error:/)
-      expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
-      expect($('.error-list__list').children()).toHaveLength(1)
-      expect($('.validation-message').text()).toEqual('Error: Access code must be 9 characters')
-      expect($('#code').attr('aria-describedby')).toEqual('code-error')
-      expect($('#code').attr('autofocus')).toEqual('autofocus')
+      request(app)
+        .get('/login/code')
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post('/login/code')
+            .send({ redirect: '/start', _csrf: csrfToken })
+          const $ = cheerio.load(response.text)
+          expect($('title').text()).toMatch(/^Error:/)
+          expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
+          expect($('.error-list__list').children()).toHaveLength(1)
+          expect($('.validation-message').text()).toEqual('Error: Access code must be 9 characters')
+          expect($('#code').attr('aria-describedby')).toEqual('code-error')
+          expect($('#code').attr('autofocus')).toEqual('autofocus')
+        })
     })
 
     test('it renders an inline error for /login/code with appropriate describedby', async () => {
-      const response = await request(app)
-        .post('/login/code')
-        .send({ redirect: '/start' })
-      const $ = cheerio.load(response.text)
-      expect($('.validation-message').text()).toEqual('Error: Access code must be 9 characters')
-      expect($('#code').attr('aria-describedby')).toEqual('code-error')
+      request(app)
+        .get('/login/code')
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post('/login/code')
+            .send({ redirect: '/start', _csrf: csrfToken })
+          const $ = cheerio.load(response.text)
+          expect($('.validation-message').text()).toEqual('Error: Access code must be 9 characters')
+          expect($('#code').attr('aria-describedby')).toEqual('code-error')
+        })
     })
   })
 
   test('it does not allow a code more than 9 characters', async () => {
-    const response = await request(app)
-      .post('/login/code')
-      .send({ code: '23XGY12111', redirect: '/start' })
-    expect(response.statusCode).toBe(422)
+    request(app)
+      .get('/login/code')
+      .expect(200)
+      .end(async function(err, res) {
+        var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+        const response = await request(app)
+          .post('/login/code')
+          .send({ code: '23XGY12111', redirect: '/start', _csrf: csrfToken })
+        expect(response.statusCode).toBe(422)
+      })
   })
 
   test('it does not allow a code less than 8 characters', async () => {
-    const response = await request(app)
-      .post('/login/code')
-      .send({ code: 'A23X', redirect: '/start' })
-    expect(response.statusCode).toBe(422)
+    request(app)
+      .get('/login/code')
+      .expect(200)
+      .end(async function(err, res) {
+        var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+        const response = await request(app)
+          .post('/login/code')
+          .send({ code: 'A23X', redirect: '/start', _csrf: csrfToken })
+        expect(response.statusCode).toBe(422)
+      })
   })
 
   test('it does not allow non-alphanumeric characters', async () => {
-    const response = await request(app)
-      .post('/login/code')
-      .send({ code: 'A23X456@', redirect: '/start' })
-    expect(response.statusCode).toBe(422)
+    request(app)
+      .get('/login/code')
+      .expect(200)
+      .end(async function(err, res) {
+        var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+        const response = await request(app)
+          .post('/login/code')
+          .send({ code: 'A23X456@', redirect: '/start', _csrf: csrfToken })
+        expect(response.statusCode).toBe(422)
+      })
   })
 
   test('it does not allow a mixed-case code', async () => {
-    const response = await request(app)
-      .post('/login/code')
-      .send({ code: 'a5G98s4K1', redirect: '/start' })
-    expect(response.statusCode).toBe(422)
+    request(app)
+      .get('/login/code')
+      .expect(200)
+      .end(async function(err, res) {
+        var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+        const response = await request(app)
+          .post('/login/code')
+          .send({ code: 'a5G98s4K1', redirect: '/start', _csrf: csrfToken })
+        expect(response.statusCode).toBe(422)
+      })
   })
 
   const codes = ['A5G98S4K1', 'a5g98s4k1'] //check uppercase, lowercase
   codes.map(code => {
     test(`it redirects if a valid code is provided: "${code}"`, async () => {
-      const response = await request(app)
-        .post('/login/code')
-        .send({ code, redirect: '/start' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/start')
+      request(app)
+        .get('/login/code')
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post('/login/code')
+            .send({ code, redirect: '/start', _csrf: csrfToken })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual('/start')
+        })
     })
   })
 
@@ -134,51 +197,85 @@ describe('Test /login responses', () => {
     })
 
     test('it returns a 500 response if no redirect is provided', async () => {
-      const response = await request(app)
-        .post('/login/sin')
-        .send({ sin: '847 339 283' })
-      expect(response.statusCode).toBe(500)
+      request(app)
+        .get('/login/sin')
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post('/login/sin')
+            .send({ sin: '847 339 283', _csrf: csrfToken })
+          expect(response.statusCode).toBe(500)
+        })
     })
 
     test('it reloads /login/sin with a 422 status if no sin is provided', async () => {
-      const response = await request(app)
-        .post('/login/sin')
-        .send({ redirect: '/start' })
-      expect(response.statusCode).toBe(422)
-      const $ = cheerio.load(response.text)
-      expect($('title').text()).toMatch(/^Error:/)
-      expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
-      expect($('.error-list__list').children()).toHaveLength(1)
-      expect($('.validation-message').text()).toEqual('Error: Your SIN should have 9 numbers')
-      expect($('#sin').attr('aria-describedby')).toEqual('sin-error')
+      request(app)
+        .get('/login/sin')
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post('/login/sin')
+            
+            .send({ redirect: '/start', _csrf: csrfToken })
+          expect(response.statusCode).toBe(422)
+          const $ = cheerio.load(response.text)
+          expect($('title').text()).toMatch(/^Error:/)
+          expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
+          expect($('.error-list__list').children()).toHaveLength(1)
+          expect($('.validation-message').text()).toEqual('Error: Your SIN should have 9 numbers')
+          expect($('#sin').attr('aria-describedby')).toEqual('sin-error')
+        })
     })
 
     describe('Error list tests', () => {
       test('it renders the error-list for /login/sin', async () => {
-        const response = await request(app)
-          .post('/login/sin')
-          .send({ redirect: '/start' })
-        const $ = cheerio.load(response.text)
-        expect($('title').text()).toMatch(/^Error:/)
-        expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
-        expect($('.error-list__list').children()).toHaveLength(1)
-        expect($('.validation-message').text()).toEqual('Error: Your SIN should have 9 numbers')
-        expect($('#sin').attr('aria-describedby')).toEqual('sin-error')
+        request(app)
+          .get('/login/sin')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/sin')
+              
+              .send({ redirect: '/start', _csrf: csrfToken })
+            const $ = cheerio.load(response.text)
+            expect($('title').text()).toMatch(/^Error:/)
+            expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
+            expect($('.error-list__list').children()).toHaveLength(1)
+            expect($('.validation-message').text()).toEqual('Error: Your SIN should have 9 numbers')
+            expect($('#sin').attr('aria-describedby')).toEqual('sin-error')
+          })
       })
     })
 
     test('it does not allow a code more than 9 characters', async () => {
-      const response = await request(app)
-        .post('/login/sin')
-        .send({ code: '12345678910', redirect: '/start' })
-      expect(response.statusCode).toBe(422)
+      request(app)
+        .get('/login/sin')
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post('/login/sin')
+            
+            .send({ code: '12345678910', redirect: '/start', _csrf: csrfToken })
+          expect(response.statusCode).toBe(422)
+        })
     })
 
     test('it does not allow a code less than 9 characters', async () => {
-      const response = await request(app)
-        .post('/login/sin')
-        .send({ code: '12345678', redirect: '/start' })
-      expect(response.statusCode).toBe(422)
+      request(app)
+        .get('/login/sin')
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post('/login/sin')
+            
+            .send({ code: '12345678', redirect: '/start', _csrf: csrfToken })
+          expect(response.statusCode).toBe(422)
+        })
     })
 
     /*
@@ -194,24 +291,45 @@ describe('Test /login responses', () => {
 
       beforeEach(async () => {
         authSession = session(app)
-        const response = await authSession
-          .post('/login/code')
-          .send({ code: 'A5G98S4K1', redirect: '/login/sin' })
-        expect(response.statusCode).toBe(302)
+        authSession
+          .get('/login/sin')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await authSession
+              .post('/login/code')
+              
+              .send({ code: 'A5G98S4K1', redirect: '/login/sin', _csrf: csrfToken })
+            expect(response.statusCode).toBe(302)
+          })
       })
 
       it('it should return 422 for the wrong SIN', async () => {
-        const response = await authSession
-          .post('/login/sin')
-          .send({ sin: '123456789', redirect: '/login/sin' })
-        expect(response.statusCode).toBe(422)
+        authSession
+          .get('/login/sin')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await authSession
+              .post('/login/sin')
+              
+              .send({ sin: '123456789', redirect: '/login/sin', _csrf: csrfToken })
+            expect(response.statusCode).toBe(422)
+          })
       })
 
       it('it should return 302 for the right SIN', async () => {
-        const response = await authSession
-          .post('/login/sin')
-          .send({ sin: '847 339 283', redirect: '/login/sin' })
-        expect(response.statusCode).toBe(302)
+        authSession
+          .get('/login/sin')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await authSession
+              .post('/login/sin')
+              
+              .send({ sin: '847 339 283', redirect: '/login/sin', _csrf: csrfToken })
+            expect(response.statusCode).toBe(302)
+          })
       })
     })
   })
@@ -317,153 +435,280 @@ describe('Test /login responses', () => {
     describe('for /login/dateOfBirth', () => {
       badDoBRequests.map(badRequest => {
         test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-          const response = await request(app)
-            .post('/login/dateOfBirth')
-            .send(badRequest.send)
-          expect(response.statusCode).toBe(422)
+          request(app)
+            .get('/login/dateOfBirth')
+            .expect(200)
+            .end(async function(err, res) {
+              var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+              const response = await request(app)
+                .post('/login/dateOfBirth')
+                
+                .send({ ...badRequest.send, _csrf: csrfToken })
+              expect(response.statusCode).toBe(422)
+            })
         })
       })
 
       test('it returns a 302 with valid dob', async () => {
-        const response = await request(app)
-          .post('/login/dateOfBirth')
-          .send(goodDoBRequest)
-        expect(response.statusCode).toBe(302)
+        request(app)
+          .get('/login/dateOfBirth')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/dateOfBirth')
+              
+              .send({ ...goodDoBRequest, _csrf: csrfToken})
+            expect(response.statusCode).toBe(302)
+          })
       })
 
       test('it returns a 302 with valid dob even with whitespace included', async () => {
-        const response = await request(app)
-          .post('/login/dateOfBirth')
-          .send({
-            dobDay: ' 9 ',
-            dobMonth: ' 9 ',
-            dobYear: ' 1977 ',
-            redirect: '/personal/name',
-          })
-        expect(response.statusCode).toBe(302)
+        request(app)
+          .get('/login/dateOfBirth')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/dateOfBirth')
+              
+              .send({
+                dobDay: ' 9 ',
+                dobMonth: ' 9 ',
+                dobYear: ' 1977 ',
+                redirect: '/personal/name',
+                _csrf: csrfToken
+              })
+            expect(response.statusCode).toBe(302)
+          });
       })
     })
 
     describe('for /login/questions/child', () => {
       badDoBRequests.map(badRequest => {
         test(`it returns a 422 with a valid lastName but a bad date: "${badRequest.label}"`, async () => {
-          const response = await request(app)
-            .post('/login/questions/child')
-            .send({ ...badRequest.send, ...{ childLastName: 'Laika' } })
-          expect(response.statusCode).toBe(422)
+          request(app)
+            .get('/login/questions/child')
+            .expect(200)
+            .end(async function(err, res) {
+              var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+              const response = await request(app)
+                .post('/login/questions/child')
+                
+                .send({ ...badRequest.send, ...{ childLastName: 'Laika' }, _csrf: csrfToken })
+              expect(response.statusCode).toBe(422)
+            })
         })
       })
 
       test('it returns a 422 with valid dob but NO last name', async () => {
-        const response = await request(app)
-          .post('/login/questions/child')
-          .send({ ...goodDoBRequest, ...{ childLastName: '' } })
-        expect(response.statusCode).toBe(422)
+        request(app)
+          .get('/login/questions/child')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/questions/child')
+              
+              .send({ ...goodDoBRequest, ...{ childLastName: '' }, _csrf: csrfToken })
+            expect(response.statusCode).toBe(422)
+          })
       })
 
       test('it returns a 422 with NO dob but valid last name', async () => {
-        const response = await request(app)
-          .post('/login/questions/child')
-          .send({ childLastName: 'Laika' })
-        expect(response.statusCode).toBe(422)
+        request(app)
+          .get('/login/questions/child')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/questions/child')
+              
+              .send({ childLastName: 'Laika', _csrf: csrfToken })
+            expect(response.statusCode).toBe(422)
+          })
       })
 
       test('it returns a 302 with valid dob and last name', async () => {
-        const response = await request(app)
-          .post('/login/questions/child')
-          .send({ ...goodDoBRequest, ...{ childLastName: 'Laika' } })
-        expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/personal/name')
+        request(app)
+          .get('/login/questions/child')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/questions/child')
+              
+              .send({ ...goodDoBRequest, ...{ childLastName: 'Laika' }, _csrf: csrfToken })
+            expect(response.statusCode).toBe(302)
+            expect(response.headers.location).toEqual('/personal/name')
+          })
       })
     })
 
     describe('for /login/questions/prison', () => {
       badDoBRequests.map(badRequest => {
         test(`it returns a 422 with a valid prisonDate but a bad date: "${badRequest.label}"`, async () => {
-          const response = await request(app)
-            .post('/login/questions/prison')
-            .send({ ...badRequest.send, ...{ prisonDate: 'release' } })
-          expect(response.statusCode).toBe(422)
+          request(app)
+            .get('/login/questions/prison')
+            .expect(200)
+            .end(async function(err, res) {
+              var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+              const response = await request(app)
+                .post('/login/questions/prison')
+                
+                .send({ ...badRequest.send, ...{ prisonDate: 'release' }, _csrf: csrfToken })
+              expect(response.statusCode).toBe(422)
+            })
         })
       })
 
       test('it returns a 422 with valid dob but NO selected prisonDate', async () => {
-        const response = await request(app)
-          .post('/login/questions/prison')
-          .send({ ...goodDoBRequest, ...{ prisonDate: '' } })
-        expect(response.statusCode).toBe(422)
+        request(app)
+          .get('/login/questions/prison')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/questions/prison')
+              
+              .send({ ...goodDoBRequest, ...{ prisonDate: '' }, _csrf: csrfToken })
+            expect(response.statusCode).toBe(422)
+          })
       })
 
       test('it returns a 422 with valid dob but an invalid prisonDate', async () => {
-        const response = await request(app)
-          .post('/login/questions/prison')
-          .send({ ...goodDoBRequest, ...{ prisonDate: 'jailbreak' } })
-        expect(response.statusCode).toBe(422)
+        request(app)
+          .get('/login/questions/prison')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/questions/prison')
+              
+              .send({ ...goodDoBRequest, ...{ prisonDate: 'jailbreak' }, _csrf: csrfToken })
+            expect(response.statusCode).toBe(422)
+          });
       })
 
       test('it returns a 422 with NO date entered but a valid prisonDate', async () => {
-        const response = await request(app)
-          .post('/login/questions/prison')
-          .send({ prisonDate: 'release' })
-        expect(response.statusCode).toBe(422)
+        request(app)
+          .get('/login/questions/prison')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/questions/prison')
+              
+              .send({ prisonDate: 'release', _csrf: csrfToken })
+            expect(response.statusCode).toBe(422)
+          })
       })
 
       test('it returns a 302 with valid dob and prisonDate', async () => {
-        const response = await request(app)
-          .post('/login/questions/prison')
-          .send({ ...goodDoBRequest, ...{ prisonDate: 'release' } })
-        expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/personal/name')
+        request(app)
+          .get('/login/questions/prison')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/questions/prison')
+              
+              .send({ ...goodDoBRequest, ...{ prisonDate: 'release' }, _csrf: csrfToken })
+            expect(response.statusCode).toBe(302)
+            expect(response.headers.location).toEqual('/personal/name')
+          })
       })
     })
 
     describe('for /login/questions/dateOfResidence', () => {
       badDoBRequests.map(badRequest => {
         test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-          const response = await request(app)
-            .post('/login/questions/dateOfResidence')
-            .send(badRequest.send)
-          expect(response.statusCode).toBe(422)
+          request(app)
+            .get('/login/questions/dateOfResidence')
+            .expect(200)
+            .end(async function(err, res) {
+              var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+              const response = await request(app)
+                .post('/login/questions/dateOfResidence')
+                
+                .send({ ...badRequest.send, _csrf: csrfToken })
+              expect(response.statusCode).toBe(422)
+            })
         })
       })
 
       test('it returns a 302 with valid dob', async () => {
-        const response = await request(app)
-          .post('/login/questions/dateOfResidence')
-          .send(goodDoBRequest)
-        expect(response.statusCode).toBe(302)
+        request(app)
+          .get('/login/questions/dateOfResidence')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/questions/dateOfResidence')
+              
+              .send({ ...goodDoBRequest, _csrf: csrfToken})
+            expect(response.statusCode).toBe(302)
+          })
       })
     })
 
     describe('for /login/questions/bankruptcy', () => {
       badDoBRequests.map(badRequest => {
         test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-          const response = await request(app)
-            .post('/login/questions/bankruptcy')
-            .send(badRequest.send)
-          expect(response.statusCode).toBe(422)
+          request(app)
+            .get('/login/questions/bankruptcy')
+            .expect(200)
+            .end(async function(err, res) {
+              var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+              const response = await request(app)
+                .post('/login/questions/bankruptcy')
+                
+                .send({ ...badRequest.send, _csrf: csrfToken })
+              expect(response.statusCode).toBe(422)
+            })
         })
       })
 
       test('it returns a 422 with valid dob but NO last name', async () => {
-        const response = await request(app)
-          .post('/login/questions/bankruptcy')
-          .send({ ...goodDoBRequest, ...{ trusteeLastName: '' } })
-        expect(response.statusCode).toBe(422)
+        request(app)
+          .get('/login/questions/bankruptcy')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/questions/bankruptcy')
+              
+              .send({ ...goodDoBRequest, ...{ trusteeLastName: '' }, _csrf: csrfToken })
+            expect(response.statusCode).toBe(422)
+          })
       })
 
       test('it returns a 422 with NO dob but valid last name', async () => {
-        const response = await request(app)
-          .post('/login/questions/bankruptcy')
-          .send({ trusteeLastName: 'Loblaw' })
-        expect(response.statusCode).toBe(422)
+        request(app)
+          .get('/login/questions/bankruptcy')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/questions/bankruptcy')
+              
+              .send({ trusteeLastName: 'Loblaw', _csrf: csrfToken })
+            expect(response.statusCode).toBe(422)
+          })
       })
 
       test('it returns a 302 with valid dob and last name', async () => {
-        const response = await request(app)
-          .post('/login/questions/bankruptcy')
-          .send({ ...goodDoBRequest, ...{ trusteeLastName: 'Loblaw' } })
-        expect(response.statusCode).toBe(302)
+        request(app)
+          .get('/login/questions/bankruptcy')
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post('/login/questions/bankruptcy')
+              
+              .send({ ...goodDoBRequest, ...{ trusteeLastName: 'Loblaw' }, _csrf: csrfToken })
+            expect(response.statusCode).toBe(302)
+          })
       })
     })
   })
@@ -480,29 +725,49 @@ describe('Test /login responses', () => {
 
     beforeEach(async () => {
       authSession = session(app)
-      const response = await authSession
-        .post('/login/code')
-        .send({ code: 'A5G98S4K1', redirect: '/login/sin' })
-        .then(() => {
-          return authSession
-            .post('/login/sin')
-            .send({ sin: '847339283', redirect: '/login/dateOfBirth' })
+      authSession
+        .get('/login/code')
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await authSession
+            .post('/login/code')
+            
+            .send({ code: 'A5G98S4K1', redirect: '/login/sin', _csrf: csrfToken })
+            .then(() => {
+              return authSession
+                .post('/login/sin')
+                .send({ sin: '847339283', redirect: '/login/dateOfBirth' })
+            })
+          expect(response.statusCode).toBe(302)
         })
-      expect(response.statusCode).toBe(302)
     })
 
     it('it should return 422 for the wrong DoB', async () => {
-      const response = await authSession
-        .post('/login/dateOfBirth')
-        .send({ dobDay: '23', dobMonth: '03', dobYear: '1909', redirect: '/personal/name' })
-      expect(response.statusCode).toBe(422)
+      authSession
+        .get('/login/dateOfBirth')
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await authSession
+            .post('/login/dateOfBirth')
+            
+            .send({ dobDay: '23', dobMonth: '03', dobYear: '1909', redirect: '/personal/name', _csrf: csrfToken })
+          expect(response.statusCode).toBe(422)
+        })
     })
 
     it('it should return 302 for the right DoB', async () => {
-      const response = await authSession
-        .post('/login/dateOfBirth')
-        .send({ dobDay: '09', dobMonth: '09', dobYear: '1977', redirect: '/personal/name' })
-      expect(response.statusCode).toBe(302)
+      request(app)
+        .get('/login/dateOfBirth')
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await authSession
+            .post('/login/dateOfBirth')
+            
+            .send({ dobDay: '09', dobMonth: '09', dobYear: '1977', redirect: '/personal/name', _csrf: csrfToken })
+          expect(response.statusCode).toBe(302)
+        })
     })
   })
 })
@@ -522,89 +787,153 @@ questionsAmounts.map(amountResponse => {
     })
 
     test('it returns a 422 response if no redirect is provided', async () => {
-      const response = await request(app).post(amountResponse.url)
-      expect(response.statusCode).toBe(422)
+      request(app)
+        .get(amountResponse.url)
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post('/login/questions/addresses')
+            
+            .send({_csrf: csrfToken})
+          expect(response.statusCode).toBe(422)
+        })
     })
 
     test('it returns a 422 response for no posted values', async () => {
-      const response = await request(app)
-        .post(amountResponse.url)
-        .send({ redirect: '/start' })
-      expect(response.statusCode).toBe(422)
+      request(app)
+        .get(amountResponse.url)
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post(amountResponse.url)
+            
+            .send({ redirect: '/start', _csrf: csrfToken })
+          expect(response.statusCode).toBe(422)
+        })
     })
 
     const badAmounts = ['dinosaur', '10.0', '10.000', '-10', '.1']
     badAmounts.map(badAmount => {
       test(`it returns a 422 for a bad posted amount: "${badAmount}"`, async () => {
-        const response = await request(app)
-          .post(amountResponse.url)
-          .send({
-            [`${amountResponse.key}Amount`]: badAmount,
-            [`${amountResponse.key}PaymentMethod`]: 'cheque',
-            redirect: '/start',
+        request(app)
+          .get(amountResponse.url)
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post(amountResponse.url)
+              
+              .send({
+                [`${amountResponse.key}Amount`]: badAmount,
+                [`${amountResponse.key}PaymentMethod`]: 'cheque',
+                redirect: '/start',
+                _csrf: csrfToken
+              })
+            expect(response.statusCode).toBe(422)
           })
-        expect(response.statusCode).toBe(422)
       })
     })
 
     test('it returns a 422 response for a good amount but NO payment method', async () => {
-      const response = await request(app)
-        .post(amountResponse.url)
-        .send({
-          [`${amountResponse.key}Amount`]: '10',
-          redirect: '/start',
+      request(app)
+        .get(amountResponse.url)
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post(amountResponse.url)
+            
+            .send({
+              [`${amountResponse.key}Amount`]: '10',
+              redirect: '/start',
+              _csrf: csrfToken
+            })
+          expect(response.statusCode).toBe(422)
         })
-      expect(response.statusCode).toBe(422)
     })
 
     const goodAmounts = ['0', '10', '10.00', '.10', '', null]
     goodAmounts.map(goodAmount => {
       test(`it returns a 302 for a good posted amount: "${goodAmount}"`, async () => {
-        const response = await request(app)
-          .post(amountResponse.url)
-          .send({
-            [`${amountResponse.key}Amount`]: goodAmount,
-            [`${amountResponse.key}PaymentMethod`]: 'cheque',
-            redirect: '/start',
+        request(app)
+          .get(amountResponse.url)
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post(amountResponse.url)
+              
+              .send({
+                [`${amountResponse.key}Amount`]: goodAmount,
+                [`${amountResponse.key}PaymentMethod`]: 'cheque',
+                redirect: '/start',
+                _csrf: csrfToken
+              })
+            expect(response.statusCode).toBe(302)
+            expect(response.headers.location).toEqual('/start')
           })
-        expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/start')
       })
     })
 
     test('it returns a 302 response for NO amount but a good payment method', async () => {
-      const response = await request(app)
-        .post(amountResponse.url)
-        .send({
-          [`${amountResponse.key}PaymentMethod`]: 'cheque',
-          redirect: '/start',
+      request(app)
+        .get(amountResponse.url)
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post(amountResponse.url)
+            
+            .send({
+              [`${amountResponse.key}PaymentMethod`]: 'cheque',
+              redirect: '/start',
+              _csrf: csrfToken
+            })
+          expect(response.statusCode).toBe(302)
         })
-      expect(response.statusCode).toBe(302)
     })
 
     test('it returns a 422 response for a good amount but a BAD payment method', async () => {
-      const response = await request(app)
-        .post(amountResponse.url)
-        .send({
-          [`${amountResponse.key}Amount`]: '10',
-          [`${amountResponse.key}PaymentMethod`]: 'bitcoin',
-          redirect: '/start',
+      request(app)
+        .get(amountResponse.url)
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post(amountResponse.url)
+            
+            .send({
+              [`${amountResponse.key}Amount`]: '10',
+              [`${amountResponse.key}PaymentMethod`]: 'bitcoin',
+              redirect: '/start',
+              _csrf: csrfToken
+            })
+          expect(response.statusCode).toBe(422)
         })
-      expect(response.statusCode).toBe(422)
     })
 
     const goodPaymentMethods = ['cheque', 'directDeposit']
     goodPaymentMethods.map(paymentMethod => {
       test(`it returns a 302 for a good posted payment method: "${paymentMethod}"`, async () => {
-        const response = await request(app)
-          .post(amountResponse.url)
-          .send({
-            [`${amountResponse.key}Amount`]: '10',
-            [`${amountResponse.key}PaymentMethod`]: paymentMethod,
-            redirect: '/start',
+        request(app)
+          .get(amountResponse.url)
+          .expect(200)
+          .end(async function(err, res) {
+            var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+            const response = await request(app)
+              .post(amountResponse.url)
+              
+              .send({
+                [`${amountResponse.key}Amount`]: '10',
+                [`${amountResponse.key}PaymentMethod`]: paymentMethod,
+                redirect: '/start',
+                _csrf: csrfToken
+              })
+            expect(response.statusCode).toBe(302)
+            expect(response.headers.location).toEqual('/start')
           })
-        expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/start')
       })
     })
   })
@@ -615,20 +944,33 @@ describe('Test securityQuestion responses', () => {
 
   securityQuestionPages.map(securityQuestionPage => {
     test('it returns a 422 response when posting a bad value', async () => {
-      const response = await request(app)
-        .post(securityQuestionPage)
-        .send({ securityQuestion: '/login/question/who-let-the-dogs-out' })
-      expect(response.statusCode).toBe(422)
+      request(app)
+      .get(securityQuestionPage)
+      .expect(200)
+      .end(async function(err, res) {
+        var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+        const response = await request(app)
+          .post(securityQuestionPage)
+          
+          .send({ securityQuestion: '/login/question/who-let-the-dogs-out', _csrf: csrfToken })
+        expect(response.statusCode).toBe(422)
+      })
     })
 
     const securityQuestionUrls = ['/login/questions/child', '/login/questions/trillium']
     securityQuestionUrls.map(url => {
       test(`it returns a 302 response when posting a good value: ${url}`, async () => {
-        const response = await request(app)
-          .post(securityQuestionPage)
-          .send({ securityQuestion: url })
-        expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual(url)
+        request(app)
+        .get(securityQuestionPage)
+        .expect(200)
+        .end(async function(err, res) {
+          var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+          const response = await request(app)
+            .post(securityQuestionPage)
+            .send({ securityQuestion: url, _csrf: csrfToken })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual(url)
+        })
       })
     })
   })
@@ -707,13 +1049,18 @@ describe('Test /login/questions/addresses responses', () => {
   ]
 
   badRequests.map(badRequest => {
-    badRequest._csrf = goodRequest._csrf;
     test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-      console.log(badRequest)
-      const response = await request(app)
-        .post('/login/questions/addresses')
-        .send(badRequest.send)
-      expect(response.statusCode).toBe(422)
+      request(app)
+      .get('/login/questions/addresses')
+      .expect(200)
+      .end(async function(err, res) {
+        var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
+        badRequest._csrf= csrfToken;
+        const response = await request(app)
+          .post('/login/questions/addresses')
+          .send(badRequest.send)
+        expect(response.statusCode).toBe(422)
+      })
     })
   })
 
@@ -722,16 +1069,15 @@ describe('Test /login/questions/addresses responses', () => {
       .get('/login/questions/addresses')
       .expect(200)
       .end(async function(err, res) {
-        var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie'])[1]);
+        var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie']));
         goodRequest._csrf= csrfToken;
         const response = await request(app)
           .post('/login/questions/addresses')
-          .set({cookie: res.headers['set-cookie']})
+          
           .send(goodRequest)
         expect(response.statusCode).toBe(302)
         expect(response.headers.location).toEqual('/personal/name')
       })
-      
     
   })
 })

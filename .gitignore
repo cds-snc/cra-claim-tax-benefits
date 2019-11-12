@@ -88,3 +88,6 @@ coverage
 
 # Terraform generated files
 versions.tf
+
+# Taxfile outputs
+xml_output/taxfile-2018.xml

@@ -707,7 +707,9 @@ describe('Test /login/questions/addresses responses', () => {
   ]
 
   badRequests.map(badRequest => {
+    badRequest._csrf = goodRequest._csrf;
     test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+      console.log(badRequest)
       const response = await request(app)
         .post('/login/questions/addresses')
         .send(badRequest.send)
@@ -716,10 +718,20 @@ describe('Test /login/questions/addresses responses', () => {
   })
 
   test('it returns a 302 for a good request', async () => {
-    const response = await request(app)
-      .post('/login/questions/addresses')
-      .send(goodRequest)
-    expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toEqual('/personal/name')
+    request(app)
+      .get('/login/questions/addresses')
+      .expect(200)
+      .end(async function(err, res) {
+        var csrfToken = unescape(/XSRF-TOKEN=(.*?);/.exec(res.headers['set-cookie'])[1]);
+        goodRequest._csrf= csrfToken;
+        const response = await request(app)
+          .post('/login/questions/addresses')
+          .set({cookie: res.headers['set-cookie']})
+          .send(goodRequest)
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual('/personal/name')
+      })
+      
+    
   })
 })

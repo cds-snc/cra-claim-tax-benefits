@@ -22,4 +22,6 @@ block content
       p
         a(href="/offramp/securityQuestion") #{__('I can’t answer these questions either')}
 
+    input(type='hidden', name="_csrf", value=csrfToken)
+
     +formButtons()

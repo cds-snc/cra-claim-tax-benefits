@@ -21,4 +21,6 @@ block content
       p
         a(href="/login/securityQuestion2") #{__('I can’t answer these questions')}
 
+    input(type='hidden', name="_csrf", value=csrfToken)
+
     +formButtons()

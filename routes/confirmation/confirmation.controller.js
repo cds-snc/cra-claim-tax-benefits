@@ -20,8 +20,8 @@ module.exports = function(app) {
      * I imagine back in outputXML, we'll want to disable the download button until the function is done. We'll rarely see it happen, but just to avoid any issues around downloading and incomplete file
      */
     const file = './xml_output/taxfile-2018.xml'
-    res.download(file); 
-  });
+    res.download(file)
+  })
 
   app.get('/feedback', renderWithData('confirmation/feedback'))
 

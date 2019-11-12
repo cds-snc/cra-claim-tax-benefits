@@ -61,7 +61,7 @@ describe('Test ouputXML format', () => {
       deductions: { 
         trilliumRentClaim: true,
         trilliumStudentResidence: true,
-      }
+      },
     }}, false, dataToLine)
 
     const t1Lines = xmlOut['elements'][0]['elements'][0]['elements'][0]['elements']

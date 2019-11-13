@@ -1,5 +1,3 @@
-const { currencyFilter } = require('./../utils')
-
 const checkTableRows = (cy, rows) => {
   rows.map((row, index) => {
     cy.get('dt.breakdown-table__row-key')
@@ -16,7 +14,7 @@ const getIncomeBreakdownRows = user => {
   user.financial.incomeSources.map(source => {
     const incomeRow = {
       key: source.name,
-      value: currencyFilter(source.total),
+      value: source.total,
     }
     incomeRows.push(incomeRow)
     return
@@ -24,7 +22,7 @@ const getIncomeBreakdownRows = user => {
 
   incomeRows.push({
     key: 'Total Income',
-    value: currencyFilter(user.financial.incomes.totalIncome.amount),
+    value: user.financial.incomes.totalIncome.amount,
   })
 
   return incomeRows
@@ -35,13 +33,13 @@ const getTaxBreakdownRows = user => {
   const taxRows = taxKeys.map(source => {
     return {
       key: `${source.name.replace('Net ', '')} deduction`,
-      value: currencyFilter(source.amount),
+      value: source.amount,
     }
   })
 
   taxRows.push({
     key: 'Total tax paid for 2018',
-    value: currencyFilter(user.financial.totalTax),
+    value: user.financial.totalTax,
   })
 
   return taxRows
@@ -52,7 +50,7 @@ const getBenefitsBreakdownRows = user => {
   const benefitsRows = benefitsKeys.map(source => {
     return {
       key: source.name,
-      value: currencyFilter(source.amount),
+      value: source.amount,
     }
   })
 

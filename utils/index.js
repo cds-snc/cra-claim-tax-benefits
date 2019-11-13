@@ -250,13 +250,21 @@ const hasData = (obj, key, returnVal = false) => {
   return bool
 }
 
-const currencyFilter = (number, fractionDigits = 2) => {
+const currencyFilter = (number, locale = 'en', fractionDigits = 2) => {
   const amount = Number(number)
 
-  return amount.toLocaleString('en-US', {
+  const localeSetting = (locale === 'en') ? 'en-US' : 'fr-CA'
+
+  const filteredAmount = amount.toLocaleString(localeSetting, {
     minimumFractionDigits: fractionDigits,
     maximumFractionDigits: fractionDigits,
   })
+
+  if(locale === 'fr') {
+    return `${filteredAmount}$`
+  }
+
+  return `$${filteredAmount}`
 }
 
 const sortByLineNumber = (...objToSort) => {

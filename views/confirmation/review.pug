@@ -9,6 +9,7 @@ block variables
   -var refund = hasData(data, 'refund') ? data.refund : {}
   -var totalRefund = hasData(data, 'refund.totalRefund') ? data.refund.totalRefund : 0
   -var refundLines = sortByLineNumber(data.deductions, taxes, incomes, refund)
+  -var locale = getLocale()
 
 
 block content
@@ -26,7 +27,7 @@ block content
     .breakdown-table
       h2.breakdown-table__heading
         span #{__('Your 2018 tax benefits')}
-        span $#{currencyFilter(totalBenefits)}
+        span #{currencyFilter(totalBenefits, locale)}
 
       p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
 
@@ -35,17 +36,17 @@ block content
           if index !== "totalBenefits"
             .breakdown-table__row
               dt.breakdown-table__row-key #{__(`${benefit.name}`)}
-              dd.breakdown-table__row-value $#{currencyFilter(benefit.amount)}
+              dd.breakdown-table__row-value #{currencyFilter(benefit.amount, locale)}
 
         .breakdown-table__row.breakdown-table__row--summary
           dt.breakdown-table__row-key #{__('Total benefits')}
-          dd.breakdown-table__row-value $#{currencyFilter(totalBenefits)}
+          dd.breakdown-table__row-value #{currencyFilter(totalBenefits, locale)}
 
   div
     .breakdown-table
       h2.breakdown-table__heading
         span #{__('Your expected 2018 refund')}
-        span +$#{currencyFilter(totalRefund.amount)}
+        span +#{currencyFilter(totalRefund.amount, locale)}
 
       p.breakdown-table__subheading #{__('Detailed breakdown of tax refund')}
 
@@ -58,7 +59,7 @@ block content
             }
           )
             dt.breakdown-table__row-key #{__(`${refundLine.name} (${lineNumber})`)}
-            dd.breakdown-table__row-value $#{currencyFilter(refundLine.amount)}
+            dd.breakdown-table__row-value #{currencyFilter(refundLine.amount, locale)}
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.review})

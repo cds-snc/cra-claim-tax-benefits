@@ -8,6 +8,7 @@ block variables
   -var totalTax = hasData(data, 'financial.totalTax') ? data.financial.totalTax : 0
   -var year = new Date().getFullYear()-1
   -var confirmedIncome = hasData(data, 'financial.incomeConfirmed') ? data.financial.incomeConfirmed : ''
+  -var locale = getLocale()
 
 block content
 
@@ -20,7 +21,7 @@ block content
     .breakdown-table
       h2.breakdown-table__heading
         span #{__(`Total income earned in ${year}`)}
-        span $#{currencyFilter(totalIncome.amount, 2)}
+        span #{currencyFilter(totalIncome.amount, locale)}
 
       p.breakdown-table__subheading #{__(`Detailed breakdown of income earned in ${year}`)}
 
@@ -31,16 +32,16 @@ block content
               dt.breakdown-table__row-key #{income.name} #{__('Total Income')}
             else
               dt.breakdown-table__row-key #{__('Total Income')} #{income.name}
-            dd.breakdown-table__row-value $#{currencyFilter(income.total)}
+            dd.breakdown-table__row-value #{currencyFilter(income.total, locale)}
 
         .breakdown-table__row.breakdown-table__row--summary
           dt.breakdown-table__row-key #{__(`Total Income for ${year}`)}
-          dd.breakdown-table__row-value $#{currencyFilter(totalIncome.amount)}
+          dd.breakdown-table__row-value #{currencyFilter(totalIncome.amount, locale)}
 
   .breakdown-table
       h2.breakdown-table__heading
         span #{__(`Total tax paid in ${year}`)}
-        span.breakdown-table__heading $#{currencyFilter(totalTax, 2)}
+        span.breakdown-table__heading #{currencyFilter(totalTax, locale)}
 
       p.breakdown-table__subheading #{__(`Detailed breakdown of taxes paid in ${year}`)}
 
@@ -48,11 +49,11 @@ block content
         each tax in taxes
           .breakdown-table__row
             dt.breakdown-table__row-key #{__(`${tax.name.replace('Net ', '').replace(/^\w/, c => c.toUpperCase())} deduction`)}
-            dd.breakdown-table__row-value $#{currencyFilter(tax.amount)}
+            dd.breakdown-table__row-value #{currencyFilter(tax.amount, locale)}
 
         .breakdown-table__row.breakdown-table__row--summary
           dt.breakdown-table__row-key #{__(`Total tax paid for ${year}`)}
-          dd.breakdown-table__row-value $#{currencyFilter(totalTax)}
+          dd.breakdown-table__row-value #{currencyFilter(totalTax, locale)}
 
   form.cra-form(method='post')
     +radiosYesNo('confirmIncome', 'Is all of this information correct?', confirmedIncome)

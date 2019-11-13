@@ -37,6 +37,8 @@ module.exports = function(app) {
 
 
   app.get('/reviewLite', renderWithData('confirmation/review-lite'))
+  app.post('/reviewLite', checkSchema(reviewSchema), checkErrors('confirmation/review-lite'), doRedirect)
+
 
   app.get('/checkAnswers', (req, res) => {
     res.render('confirmation/check-answers', {

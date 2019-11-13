@@ -6,17 +6,17 @@ describe('Test /financial responses', () => {
   const session = require('supertest-session')
 
   function extractCsrfToken(res) {
-    var $ = cheerio.load(res.text);
-    return $('[name=_csrf]').val();
+    var $ = cheerio.load(res.text)
+    return $('[name=_csrf]').val()
   }
   let csrfToken,
     cookie
 
   beforeEach(async () => {
     let testSession = session(app)
-    const getresp = await testSession.get('/financial/income');
-    cookie = getresp.headers['set-cookie'];
-    csrfToken = extractCsrfToken(getresp);
+    const getresp = await testSession.get('/financial/income')
+    cookie = getresp.headers['set-cookie']
+    csrfToken = extractCsrfToken(getresp)
   })
   
   test('it returns a 200 response for /financial/income', async () => {

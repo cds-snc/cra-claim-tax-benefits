@@ -6,17 +6,17 @@ describe('Test /deductions responses', () => {
   const session = require('supertest-session')
 
   function extractCsrfToken(res) {
-    var $ = cheerio.load(res.text);
-    return $('[name=_csrf]').val();
+    var $ = cheerio.load(res.text)
+    return $('[name=_csrf]').val()
   }
   let csrfToken,
     cookie
 
   beforeEach(async () => {
     const testSession = session(app)
-    const getresp = await testSession.get('/financial/income');
-    cookie = getresp.headers['set-cookie'];
-    csrfToken = extractCsrfToken(getresp);
+    const getresp = await testSession.get('/financial/income')
+    cookie = getresp.headers['set-cookie']
+    csrfToken = extractCsrfToken(getresp)
   })
 
   describe('Test /deductions/* yesNo responses', () => {
@@ -59,7 +59,7 @@ describe('Test /deductions responses', () => {
         test('it returns a 422 response for no posted value', async () => {
           const response = await request(app)
             .post(yesNoResponse.url)
-            .set("Cookie", cookie)
+            .set('Cookie', cookie)
             .send({ _csrf: csrfToken, redirect: '/start' })
           expect(response.statusCode).toBe(422)
         })
@@ -69,7 +69,7 @@ describe('Test /deductions responses', () => {
           test(`it returns a 422 for a bad posted value: "${badValue}"`, async () => {
             const response = await request(app)
               .post(yesNoResponse.url)
-              .set("Cookie", cookie)
+              .set('Cookie', cookie)
               .send({ _csrf: csrfToken, [yesNoResponse.key]: badValue, redirect: '/start' })
             expect(response.statusCode).toBe(422)
           })
@@ -78,7 +78,7 @@ describe('Test /deductions responses', () => {
         test('it redirects to the posted redirect url when posting "No"', async () => {
           const response = await request(app)
             .post(yesNoResponse.url)
-            .set("Cookie", cookie)
+            .set('Cookie', cookie)
             .send({ _csrf: csrfToken, [yesNoResponse.key]: 'No', redirect: '/start' })
           expect(response.statusCode).toBe(302)
           expect(response.headers.location).toEqual('/start')
@@ -88,7 +88,7 @@ describe('Test /deductions responses', () => {
           const response = await request(app)
             .post(`${yesNoResponse.url}`)
             .query({ ref: 'checkAnswers' })
-            .set("Cookie", cookie)
+            .set('Cookie', cookie)
             .send({ _csrf: csrfToken, [yesNoResponse.key]: 'No', redirect: '/start' })
           expect(response.statusCode).toBe(302)
           expect(response.headers.location).toEqual('/checkAnswers')
@@ -98,7 +98,7 @@ describe('Test /deductions responses', () => {
           const response = await request(app)
             .post(yesNoResponse.url)
             .query({ ref: 'checkAnswers' })
-            .set("Cookie", cookie)
+            .set('Cookie', cookie)
             .send({ _csrf: csrfToken, [yesNoResponse.key]: 'Yes', redirect: '/start' })
           expect(response.statusCode).toBe(302)
           if ('yesRedir' in yesNoResponse) {
@@ -113,7 +113,7 @@ describe('Test /deductions responses', () => {
         test('it redirects to the edit page when posting "Yes"', async () => {
           const response = await request(app)
             .post(yesNoResponse.url)
-            .set("Cookie", cookie)
+            .set('Cookie', cookie)
             .send({ _csrf: csrfToken, [yesNoResponse.key]: 'Yes', redirect: yesNoResponse.yesRedir || '/' })
           expect(response.statusCode).toBe(302)
           expect(response.headers.location).toEqual(
@@ -127,7 +127,7 @@ describe('Test /deductions responses', () => {
   describe('Test /trillium/energy/reserve responses', () => {
     test('it returns a 422 with no option selected', async () => {
       const response = await request(app).post('/trillium/energy/reserve')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken})
       expect(response.statusCode).toBe(422)
     })
@@ -135,7 +135,7 @@ describe('Test /deductions responses', () => {
     test('it redirects to the provided redirect value page when selecting No', async () => {
       const response = await request(app)
         .post('/trillium/energy/reserve')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, trilliumEnergyReserveClaim: 'No', redirect: '/start' })
       expect(response.headers.location).toEqual('/start')
       expect(response.statusCode).toBe(302)
@@ -144,7 +144,7 @@ describe('Test /deductions responses', () => {
     test('it redirects to "/trillium/energy/cost" when selecting Yes', async () => {
       const response = await request(app)
         .post('/trillium/energy/reserve')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, trilliumEnergyReserveClaim: 'Yes' })
       expect(response.headers.location).toEqual('/trillium/energy/cost')
       expect(response.statusCode).toBe(302)
@@ -154,7 +154,7 @@ describe('Test /deductions responses', () => {
       const response = await request(app)
         .post('/trillium/energy/reserve')
         .query({ ref: 'checkAnswers' })
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, trilliumEnergyReserveClaim: 'Yes' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/trillium/energy/cost?ref=checkAnswers')
@@ -164,7 +164,7 @@ describe('Test /deductions responses', () => {
   describe('Test /trillium/longTermCare responses', () => {
     test('it returns a 422 with no option selected', async () => {
       const response = await request(app).post('/trillium/longTermCare')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken })
       expect(response.statusCode).toBe(422)
     })
@@ -172,7 +172,7 @@ describe('Test /deductions responses', () => {
     test('it redirects to the provided redirect value when selecting No', async () => {
       const response = await request(app)
         .post('/trillium/longTermCare')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, trilliumLongTermCareClaim: 'No', redirect: '/start' })
       expect(response.headers.location).toEqual('/start')
       expect(response.statusCode).toBe(302)
@@ -181,7 +181,7 @@ describe('Test /deductions responses', () => {
     test('it redirects to "/trillium/longTermCare/type" when selecting Yes', async () => {
       const response = await request(app)
         .post('/trillium/longTermCare')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, trilliumLongTermCareClaim: 'Yes' })
       expect(response.headers.location).toEqual('/trillium/longTermCare/type')
       expect(response.statusCode).toBe(302)
@@ -191,7 +191,7 @@ describe('Test /deductions responses', () => {
       const response = await request(app)
         .post('/trillium/longTermCare')
         .query({ ref: 'checkAnswers' })
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, trilliumLongTermCareClaim: 'Yes' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/trillium/longTermCare/type?ref=checkAnswers')
@@ -227,7 +227,7 @@ describe('Test /deductions responses', () => {
 
         test('it returns a 500 response if no redirect is provided', async () => {
           const response = await request(app).post(amountResponse.url)
-            .set("Cookie", cookie)
+            .set('Cookie', cookie)
             .send({ _csrf: csrfToken })
           expect(response.statusCode).toBe(500)
         })
@@ -235,7 +235,7 @@ describe('Test /deductions responses', () => {
         test('it returns a 302 response for no posted value', async () => {
           const response = await request(app)
             .post(amountResponse.url)
-            .set("Cookie", cookie)
+            .set('Cookie', cookie)
             .send({ _csrf: csrfToken, redirect: '/start' })
           expect(response.statusCode).toBe(302)
           expect(response.headers.location).toEqual('/start')
@@ -246,7 +246,7 @@ describe('Test /deductions responses', () => {
           test(`it returns a 422 for a bad posted value: "${badAmount}"`, async () => {
             const response = await request(app)
               .post(amountResponse.url)
-              .set("Cookie", cookie)
+              .set('Cookie', cookie)
               .send({ _csrf: csrfToken, [amountResponse.key]: badAmount, redirect: '/start' })
             expect(response.statusCode).toBe(422)
           })
@@ -257,7 +257,7 @@ describe('Test /deductions responses', () => {
           test(`it returns a 302 for a good posted value: "${goodAmount}"`, async () => {
             const response = await request(app)
               .post(amountResponse.url)
-              .set("Cookie", cookie)
+              .set('Cookie', cookie)
               .send({ _csrf: csrfToken, [amountResponse.key]: goodAmount, redirect: '/start' })
             expect(response.statusCode).toBe(302)
             expect(response.headers.location).toEqual('/start')

@@ -23,7 +23,7 @@ const express = require('express'),
     currencyFilter,
     isoDateHintText,
   } = require('./utils'),
-  csrf = require('csurf');
+  csrf = require('csurf')
 
 // initialize application.
 var app = express()

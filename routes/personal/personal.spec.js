@@ -6,17 +6,17 @@ describe('Test /personal responses', () => {
   const session = require('supertest-session')
 
   function extractCsrfToken(res) {
-    var $ = cheerio.load(res.text);
-    return $('[name=_csrf]').val();
+    var $ = cheerio.load(res.text)
+    return $('[name=_csrf]').val()
   }
   let csrfToken,
     cookie
 
   beforeEach(async () => {
     let testSession = session(app)
-    const getresp = await testSession.get('/financial/income');
-    cookie = getresp.headers['set-cookie'];
-    csrfToken = extractCsrfToken(getresp);
+    const getresp = await testSession.get('/financial/income')
+    cookie = getresp.headers['set-cookie']
+    csrfToken = extractCsrfToken(getresp)
   })
 
   describe('Test /personal 200 responses', () => {
@@ -38,7 +38,7 @@ describe('Test /personal responses', () => {
   describe('Test /personal/name responses', () => {
     test('it returns a 422 with no option selected', async () => {
       const response = await request(app).post('/personal/name')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken })
       expect(response.statusCode).toBe(422)
     })
@@ -46,7 +46,7 @@ describe('Test /personal responses', () => {
     test('it redirects to the offramp page when selecting No', async () => {
       const response = await request(app)
         .post('/personal/name')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, name: 'No' })
       expect(response.headers.location).toEqual('/offramp/name')
       expect(response.statusCode).toBe(302)
@@ -55,7 +55,7 @@ describe('Test /personal responses', () => {
     test('it redirects to the provided redirect value when selecting Yes', async () => {
       const response = await request(app)
         .post('/personal/name')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, redirect: '/start', name: 'Yes' })
       expect(response.headers.location).toEqual('/start')
       expect(response.statusCode).toBe(302)
@@ -65,7 +65,7 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/name')
         .query({ ref: 'checkAnswers' })
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, redirect: '/start', name: 'Yes' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/checkAnswers')
@@ -76,7 +76,7 @@ describe('Test /personal responses', () => {
     test('it redirects to the offramp page when selecting No', async () => {
       const response = await request(app)
         .post('/personal/maritalStatus')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, confirmMaritalStatus: 'No' })
       expect(response.headers.location).toEqual('/offramp/maritalStatus')
       expect(response.statusCode).toBe(302)
@@ -86,7 +86,7 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/maritalStatus')
         .query({ ref: 'checkAnswers' })
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, redirect: '/start', confirmMaritalStatus: 'Yes' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/checkAnswers')
@@ -97,7 +97,7 @@ describe('Test /personal responses', () => {
     test('it returns a 422 with no option selected', async () => {
       const response = await request(app)
         .post('/personal/residence')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, redirect: '/personal/address' })
       expect(response.statusCode).toBe(422)
     })
@@ -105,7 +105,7 @@ describe('Test /personal responses', () => {
     test('it returns a 302 when selecting unsupported province', async () => {
       const response = await request(app)
         .post('/personal/residence')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, redirect: '/offramp/residence', residence: 'Alberta' })
       expect(response.headers.location).toEqual('/offramp/residence')
       expect(response.statusCode).toBe(302)
@@ -114,7 +114,7 @@ describe('Test /personal responses', () => {
     test('it returns a 302 when selecting Ontario', async () => {
       const response = await request(app)
         .post('/personal/residence')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, redirect: '/personal/address', residence: 'Ontario' })
       expect(response.headers.location).toEqual('/personal/address')
       expect(response.statusCode).toBe(302)
@@ -124,7 +124,7 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/residence')
         .query({ ref: 'checkAnswers' })
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, redirect: '/start', residence: 'Ontario' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/checkAnswers')
@@ -135,7 +135,7 @@ describe('Test /personal responses', () => {
     test('it redirects to the offramp page when selecting No', async () => {
       const response = await request(app)
         .post('/personal/address')
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, confirmAddress: 'No' })
       expect(response.headers.location).toEqual('/offramp/address')
       expect(response.statusCode).toBe(302)
@@ -145,7 +145,7 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/address')
         .query({ ref: 'checkAnswers' })
-        .set("Cookie", cookie)
+        .set('Cookie', cookie)
         .send({ _csrf: csrfToken, redirect: '/start', confirmAddress: 'Yes' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/checkAnswers')

@@ -1,4 +1,4 @@
-extends ../base
+extends ../baseNoBack
 include ../_includes/address
 
 block variables
@@ -6,6 +6,11 @@ block variables
   -var rows = {}
 
 block content
+  if data.login.securityQuestion === '/checkAnswers'
+    a.back-link(href='/login/securityQuestion') #{__('Go back')} /login/securityQuestion #{data.login.securityQuestion}
+  else     
+    a.back-link(href=prevRoute.path) #{__('Go back')} #{prevRoute.path} #{data.login.securityQuestion}
+
 
   h1 #{title}
 

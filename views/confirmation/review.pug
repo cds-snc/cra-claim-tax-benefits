@@ -9,56 +9,108 @@ block variables
   -var refund = hasData(data, 'refund') ? data.refund : {}
   -var totalRefund = hasData(data, 'refund.totalRefund') ? data.refund.totalRefund : 0
   -var refundLines = sortByLineNumber(data.deductions, taxes, incomes, refund)
+  -
+    var rows =[
+      { 
+        "header":"Goods and services tax/harmonized sales tax (GST/HST) credit:", 
+        "description": "Up to $443 for one person, $580 if you have a marriage or common-law partner, and $153 for each child under age 19.", 
+        "linkURL":"#", 
+        "payment": "Paid yearly"  
+      },
+      { 
+        "header":"Canada child benefit (CCB)", 
+        "description": "A yearly amount which may be up to $6,639 for each child under age 6 and up to $5,602 for each child aged 6 to 17.", 
+        "linkURL":"#", 
+        "payment":"Paid monthly"  
+      },
+      { 
+        "header":"Ontario trillium benefit (OTB)", 
+        "description": "A government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.", 
+        "linkURL":"#", 
+        "payment":"Paid monthly"  
+      },
+      { 
+        "header":"Climate action incentive (CAI)", 
+        "description": "Everyone gets this payment. You get 10 % extra if you live in a small and rural community.", 
+        "linkURL":"#", 
+        "payment":"Paid yearly"  
+      },
+      { 
+        "header":"Disability tax credit (DTC)", 
+        "description": "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application.", 
+        "linkURL":"#", 
+        "payment":"Paid monthly"  
+      }, 
+    ]
 
 
 block content
 
   h1 #{title}
+  if data.login.securityQuestion === '/checkAnswers'
+    div
+      .breakdown-table-lite.breakdown-table-lite--answers
+        h2.breakdown-table-lite__heading #{__('We will use your information to do the math and you may get a refund. You may also get these benefits and credits:')}
+        each row in rows
+          dl.breakdown-table-lite-data
+            .breakdown-table-lite__row.breakdown-table-lite__row--answers
+              dt.breakdown-table-lite__row-key 
+                span #{__(row.header)}
+                dd.breakdown-table-lite__row-value 
+                  span #{__(row.description)}
+                  div.row-link
+                    a(href=row.linkURL)
+                      <span>#{__('Learn more')}</span> 
+                dd.breakdown-table-lite__row-payment
+                  p #{__(row.payment)}
+          hr
 
-  div
-    p #{__('You can expect the following benefits and refund from your 2018 taxes.')}
-    p #{__('Please check this information. If anything looks wrong, contact CRA before filing by:')}
-    ul
-      li #{__('Phone: 1-800-959-8281')}
-      li #{__('TTY (text telephone): 1-800-665-0354')}
+        p #{__('Check the box if you gave correct and complete answers to the previous questions. CRA will file your taxes using this online service. Keep your tax slips or receipts for 6 years in case CRA asks for them.')}
+  else 
+    div
+      p #{__('You can expect the following benefits and refund from your 2018 taxes.')}
+      p #{__('Please check this information. If anything looks wrong, contact CRA before filing by:')}
+      ul
+        li #{__('Phone: 1-800-959-8281')}
+        li #{__('TTY (text telephone): 1-800-665-0354')}
 
-  div
-    .breakdown-table
-      h2.breakdown-table__heading
-        span #{__('Your 2018 tax benefits')}
-        span $#{currencyFilter(totalBenefits)}
+    div
+      .breakdown-table
+        h2.breakdown-table__heading
+          span #{__('Your 2018 tax benefits')}
+          span $#{currencyFilter(totalBenefits)}
 
-      p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
+        p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
 
-      dl.breakdown-table-data
-        each benefit, index in benefits
-          if index !== "totalBenefits"
-            .breakdown-table__row
-              dt.breakdown-table__row-key #{__(`${benefit.name}`)}
-              dd.breakdown-table__row-value $#{currencyFilter(benefit.amount)}
+        dl.breakdown-table-data
+          each benefit, index in benefits
+            if index !== "totalBenefits"
+              .breakdown-table__row
+                dt.breakdown-table__row-key #{__(`${benefit.name}`)}
+                dd.breakdown-table__row-value $#{currencyFilter(benefit.amount)}
 
-        .breakdown-table__row.breakdown-table__row--summary
-          dt.breakdown-table__row-key #{__('Total benefits')}
-          dd.breakdown-table__row-value $#{currencyFilter(totalBenefits)}
+          .breakdown-table__row.breakdown-table__row--summary
+            dt.breakdown-table__row-key #{__('Total benefits')}
+            dd.breakdown-table__row-value $#{currencyFilter(totalBenefits)}
 
-  div
-    .breakdown-table
-      h2.breakdown-table__heading
-        span #{__('Your expected 2018 refund')}
-        span +$#{currencyFilter(totalRefund.amount)}
+    div
+      .breakdown-table
+        h2.breakdown-table__heading
+          span #{__('Your expected 2018 refund')}
+          span +$#{currencyFilter(totalRefund.amount)}
 
-      p.breakdown-table__subheading #{__('Detailed breakdown of tax refund')}
+        p.breakdown-table__subheading #{__('Detailed breakdown of tax refund')}
 
-      dl.breakdown-table-data
-        each refundLine in refundLines
-          -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
-          .breakdown-table__row(
-            class={
-              ['breakdown-table__row--summary space-row']: refundLine.name === "Total Refund"
-            }
-          )
-            dt.breakdown-table__row-key #{__(`${refundLine.name} (${lineNumber})`)}
-            dd.breakdown-table__row-value $#{currencyFilter(refundLine.amount)}
+        dl.breakdown-table-data
+          each refundLine in refundLines
+            -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
+            .breakdown-table__row(
+              class={
+                ['breakdown-table__row--summary space-row']: refundLine.name === "Total Refund"
+              }
+            )
+              dt.breakdown-table__row-key #{__(`${refundLine.name} (${lineNumber})`)}
+              dd.breakdown-table__row-value $#{currencyFilter(refundLine.amount)}
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.review})

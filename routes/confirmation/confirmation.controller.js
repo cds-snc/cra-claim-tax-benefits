@@ -27,18 +27,10 @@ module.exports = function(app) {
     })
   })
 
-  app.get('/confirmationLite', renderWithData('confirmation/confirmationLite'))
-
-
   app.get('/feedback', renderWithData('confirmation/feedback'))
 
   app.get('/review', renderWithData('confirmation/review'))
   app.post('/review', checkSchema(reviewSchema), checkErrors('confirmation/review'), doRedirect)
-
-
-  app.get('/reviewLite', renderWithData('confirmation/review-lite'))
-  app.post('/reviewLite', checkSchema(reviewSchema), checkErrors('confirmation/review-lite'), doRedirect)
-
 
   app.get('/checkAnswers', (req, res) => {
     res.render('confirmation/check-answers', {

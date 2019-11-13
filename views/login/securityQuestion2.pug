@@ -1,4 +1,5 @@
 extends ../base
+include ../_includes/banner
 
 block variables
   -var title = __('Choose a security question')
@@ -14,12 +15,12 @@ block content
       {value: "/login/questions/temp", label: "Details of your contribution to a Registered Retirement Savings Plan (RRSP)"},
       {value: "/login/questions/temp", label: "Details of your contribution to a Tax Free Savings Account (TFSA)"},
       {value: "/login/questions/temp", label: "Details of your Canada Child Benefit (CCB)"},
-      {value: "/login/questions/temp", label: "Date and amount of your most recent payment to CRA"},
-      {value: "/login/questions/trillium", label: "Your Ontario Trillium Benefit amount and payment type"}
+      {value: "/login/questions/trillium", label: "Your Ontario Trillium Benefit amount and payment type"},
+      {value: "/checkAnswers", label: "Skip security questions"}
     ])
 
-    div
-      p
-        a(href="/offramp/securityQuestion") #{__('I can’t answer these questions either')}
+    +banner('blue')
+      p #{__('If you skip these questions, you will wait about 8 weeks to get a notice of assessment.')}
 
-    +formButtons()
+
+    +formButtons('Continue', '/login/securityQuestion', "Back to previous questions")

@@ -8,7 +8,7 @@ const securityQuestionUrls = [
   '/login/questions/taxReturn',
   '/login/questions/bankruptcy',
   '/login/questions/trillium',
-  '/reviewLite',
+  '/checkAnswers',
   // TODO: remove this
   '/login/questions/temp',
 ]
@@ -49,7 +49,6 @@ const routes = [
   { path: '/checkAnswers' },
   { path: '/review' },
   { path: '/confirmation' },
-  { path: '/confirmationLite' },
   { path: '/feedback', editInfo: 'skip' },
 ]
 

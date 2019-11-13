@@ -4,6 +4,7 @@ block variables
   -var title = __('Ontario Trillium Benefit amount and payment type')
   -var trilliumAmount = hasData(body, 'trilliumAmount') ? body.trilliumAmount : ''
   -var trilliumPaymentMethod = hasData(body, 'trilliumPaymentMethod') ? body.trilliumPaymentMethod : ''
+  -var placeholder= currencyFilter(0, getLocale()).replace('$', '')
 
 block content
 
@@ -16,7 +17,7 @@ block content
         {value: "directDeposit", label: "Direct deposit"}
     ])
 
-    +textInput('How much did you get each month from your Ontario Trillium Benefit?', ['w-3-4'])(class='w-1-2 input-with-unit' name='trilliumAmount' placeholder='0.00' aria-labelledby='trilliumAmount__unit trilliumAmount__label' value=trilliumAmount)
+    +textInput('How much did you get each month from your Ontario Trillium Benefit?', ['w-3-4'])(class='w-1-2 input-with-unit' name='trilliumAmount' placeholder=placeholder aria-labelledby='trilliumAmount__unit trilliumAmount__label' value=trilliumAmount)
 
     input#redirect(name='redirect', type='hidden', value='/personal/name')
 

@@ -4,6 +4,8 @@ const securityQuestionUrls = [
   '/login/questions/addresses',
   '/login/questions/prison',
   '/login/questions/dateOfResidence',
+  '/login/questions/bank',
+  '/login/questions/taxReturn',
   '/login/questions/bankruptcy',
   '/login/questions/trillium',
   // TODO: remove this
@@ -47,6 +49,7 @@ const routes = [
   { path: '/reviewLite' },
   { path: '/review' },
   { path: '/confirmation' },
+  { path: '/confirmationLite' },
   { path: '/feedback', editInfo: 'skip' },
 ]
 

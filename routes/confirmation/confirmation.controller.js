@@ -27,6 +27,9 @@ module.exports = function(app) {
     })
   })
 
+  app.get('/confirmationLite', renderWithData('confirmation/confirmationLite'))
+
+
   app.get('/feedback', renderWithData('confirmation/feedback'))
 
   app.get('/review', renderWithData('confirmation/review'))

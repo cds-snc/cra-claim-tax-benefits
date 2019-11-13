@@ -260,6 +260,54 @@ const addressesSchema = {
   secondProvince: _isInProvinces('errors.address.province'),
 }
 
+const bankSchema = {
+  branchNumber: {
+    isLength: {
+      errorMessage: 'errors.login.bank.branchLength',
+      options: { min: 5, max: 5 },
+    },
+    isInt: {
+      errorMessage: 'errors.login.bank.validBranch',
+      options: { min: 1, max: 99999 },
+    },
+  },
+  institutionNumber: {
+    isLength: {
+      errorMessage: 'errors.login.bank.institutionLength',
+      options: { min: 3, max: 3 },
+    },
+    isInt: {
+      errorMessage: 'errors.login.bank.validInstitution',
+      options: { min: 1, max: 999 },
+    },
+  },
+  accountNumber: {
+    isLength: {
+      errorMessage: 'errors.login.bank.accountLength',
+      options: { min: 12, max: 12 },
+    },
+    isInt: {
+      errorMessage: 'errors.login.bank.validAccount',
+      options: { min: 1, max: 999999999999 },
+    },
+  },
+}
+
+const taxReturnSchema = {
+  taxReturnYear: {
+    isInt: {
+      errorMessage: 'errors.login.taxReturn.validYear',
+      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
+    },
+  },
+  taxReturnAmount: {
+    isCurrency: {
+      errorMessage: 'errors.login.taxReturn.currency',
+      options: { allow_negatives: false },
+    },
+  }
+}
+
 const prisonSchema = {
   prisonDate: {
     isIn: {
@@ -292,6 +340,8 @@ module.exports = {
   bankruptcySchema,
   trilliumAmountSchema,
   addressesSchema,
+  bankSchema,
+  taxReturnSchema,
   prisonSchema,
   _toISOFormat,
   _getSinErrorMessage,

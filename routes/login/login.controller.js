@@ -17,6 +17,8 @@ const {
   bankruptcySchema,
   trilliumAmountSchema,
   addressesSchema,
+  bankSchema,
+  taxReturnSchema,
   prisonSchema,
 } = require('./../../schemas')
 const API = require('../../api')
@@ -102,6 +104,22 @@ module.exports = function(app) {
     '/login/questions/trillium',
     checkSchema(trilliumAmountSchema),
     checkErrors('login/questions/trillium'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/bank', renderWithData('login/questions/bank'))
+  app.post(
+    '/login/questions/bank',
+    checkSchema(bankSchema),
+    checkErrors('login/questions/bank'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/taxReturn', renderWithData('login/questions/taxReturn'))
+  app.post(
+    '/login/questions/taxReturn',
+    checkSchema(taxReturnSchema),
+    checkErrors('login/questions/taxReturn'),
     doRedirect,
   )
 

@@ -21,13 +21,12 @@ describe('Test /review', () => {
     return $('[name=_csrf]').val();
   }
   let csrfToken,
-    cookie,
-    testSession = session(app)
+    cookie
 
   beforeEach(async () => {
+    let testSession = session(app)
     const getresp = await testSession.get('/financial/income');
-    if (!cookie)
-      cookie = getresp.headers['set-cookie'];
+    ookie = getresp.headers['set-cookie'];
     csrfToken = extractCsrfToken(getresp);
   })
 

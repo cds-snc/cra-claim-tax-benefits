@@ -10,13 +10,12 @@ describe('Test /deductions responses', () => {
     return $('[name=_csrf]').val();
   }
   let csrfToken,
-    cookie,
-    testSession = session(app)
+    cookie
 
   beforeEach(async () => {
+    const testSession = session(app)
     const getresp = await testSession.get('/financial/income');
-    if (!cookie)
-      cookie = getresp.headers['set-cookie'];
+    cookie = getresp.headers['set-cookie'];
     csrfToken = extractCsrfToken(getresp);
   })
 

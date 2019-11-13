@@ -9,15 +9,14 @@ function extractCsrfToken(res) {
 }
 
 let csrfToken,
-  cookie,
-  testSession = session(app)
+  cookie
 
 describe('Test /login responses', () => {
 
   beforeEach(async () => {
+    const testSession = session(app)
     const getresp = await testSession.get('/login/code');
-    if (!cookie)
-      cookie = getresp.headers['set-cookie'];
+    cookie = getresp.headers['set-cookie'];
     csrfToken = extractCsrfToken(getresp);
   })
 
@@ -35,8 +34,6 @@ describe('Test /login responses', () => {
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
       const response = await request(app).get(url)
-      if (response.statusCode != 200)
-        console.log(response)
       expect(response.statusCode).toBe(200)
     })
 
@@ -230,8 +227,7 @@ describe('Test /login responses', () => {
       beforeEach(async () => {
         authSession = session(app)
         const getresp = await authSession.get('/login/code')
-        if (!cookie)
-          cookie = getresp.headers['set-cookie'];
+        cookie = getresp.headers['set-cookie'];
         csrfToken = extractCsrfToken(getresp);
 
         const response = await authSession
@@ -392,11 +388,10 @@ describe('Test /login responses', () => {
     })
 
     describe('for /login/questions/child', () => {
-      testSession = session(app)
       beforeEach(async () => {
+        const testSession = session(app)
         const getresp = await testSession.get('/login/questions/child');
-        if (!cookie)
-          cookie = getresp.headers['set-cookie'];
+        cookie = getresp.headers['set-cookie'];
         csrfToken = extractCsrfToken(getresp);
       })
 
@@ -551,8 +546,7 @@ describe('Test /login responses', () => {
     beforeEach(async () => {
       authSession = session(app)
       const getresp = await authSession.get('/login/code');
-      if (!cookie)
-        cookie = getresp.headers['set-cookie'];
+      cookie = getresp.headers['set-cookie'];
       csrfToken = extractCsrfToken(getresp);
 
       const response = await authSession
@@ -596,9 +590,9 @@ const questionsAmounts = [
 questionsAmounts.map(amountResponse => {
   describe(`Test ${amountResponse.url} responses`, () => {
     beforeEach(async () => {
+      const testSession = session(app)
       const getresp = await testSession.get(amountResponse.url);
-      if (!cookie)
-        cookie = getresp.headers['set-cookie'];
+      cookie = getresp.headers['set-cookie'];
       csrfToken = extractCsrfToken(getresp);
     })
     test('it returns a 200 response', async () => {
@@ -706,9 +700,9 @@ questionsAmounts.map(amountResponse => {
 
 describe('Test securityQuestion responses', () => {
   beforeEach(async () => {
+    const testSession = session(app)
     const getresp = await testSession.get('/login/securityQuestion');
-    if (!cookie)
-      cookie = getresp.headers['set-cookie'];
+    cookie = getresp.headers['set-cookie'];
     csrfToken = extractCsrfToken(getresp);
   })
 
@@ -739,9 +733,9 @@ describe('Test securityQuestion responses', () => {
 
 describe('Test /login/questions/addresses responses', () => {
   beforeEach(async () => {
+    const testSession = session(app)
     const getresp = await testSession.get('/login/questions/addresses');
-    if (!cookie)
-      cookie = getresp.headers['set-cookie'];
+    cookie = getresp.headers['set-cookie'];
     csrfToken = extractCsrfToken(getresp);
   })
 

@@ -12,12 +12,14 @@ describe('Test /financial responses', () => {
   let csrfToken,
     cookie,
     testSession = session(app)
+
   beforeEach(async () => {
     const getresp = await testSession.get('/financial/income');
     if (!cookie)
       cookie = getresp.headers['set-cookie'];
     csrfToken = extractCsrfToken(getresp);
   })
+  
   test('it returns a 200 response for /financial/income', async () => {
     const response = await request(app).get('/financial/income')
     expect(response.statusCode).toBe(200)

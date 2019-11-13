@@ -26,7 +26,7 @@ describe('Test /review', () => {
   beforeEach(async () => {
     let testSession = session(app)
     const getresp = await testSession.get('/financial/income');
-    ookie = getresp.headers['set-cookie'];
+    cookie = getresp.headers['set-cookie'];
     csrfToken = extractCsrfToken(getresp);
   })
 

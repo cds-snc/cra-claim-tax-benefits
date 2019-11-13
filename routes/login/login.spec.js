@@ -35,6 +35,8 @@ describe('Test /login responses', () => {
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
       const response = await request(app).get(url)
+      if (response.statusCode != 200)
+        console.log(response)
       expect(response.statusCode).toBe(200)
     })
 
@@ -227,6 +229,11 @@ describe('Test /login responses', () => {
 
       beforeEach(async () => {
         authSession = session(app)
+        const getresp = await authSession.get('/login/code')
+        if (!cookie)
+          cookie = getresp.headers['set-cookie'];
+        csrfToken = extractCsrfToken(getresp);
+
         const response = await authSession
           .post('/login/code')
           .set("Cookie", cookie)
@@ -388,7 +395,6 @@ describe('Test /login responses', () => {
       testSession = session(app)
       beforeEach(async () => {
         const getresp = await testSession.get('/login/questions/child');
-        console.log(getresp.statusCode)
         if (!cookie)
           cookie = getresp.headers['set-cookie'];
         csrfToken = extractCsrfToken(getresp);
@@ -396,7 +402,6 @@ describe('Test /login responses', () => {
 
       badDoBRequests.map(badRequest => {
         test(`it returns a 422 with a valid lastName but a bad date: "${badRequest.label}"`, async () => {
-          console.log(csrfToken)
           const response = await request(app)
             .post('/login/questions/child')
             .set("Cookie", cookie)

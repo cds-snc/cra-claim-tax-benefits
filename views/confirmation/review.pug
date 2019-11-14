@@ -69,8 +69,6 @@ block content
           input(id='review' name='review' type="checkbox" value="review" checked=(value =='review') aria-describedby=(errors ? `review-error` : false))
           label(for='review') #{__('You agree that CRA can use this information to file your 2018 taxes.')}
 
-    input#redirect(name='redirect', type='hidden', value='/confirmation')
-
-    input(type='hidden', name="_csrf", value=csrfToken)
+    input#redirect(name='redirect', type='hidden', value='/confirmation')  
 
     +formButtons('File your taxes now')

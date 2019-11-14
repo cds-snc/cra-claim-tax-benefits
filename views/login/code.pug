@@ -20,7 +20,5 @@ block content
           <p>#{__('Your code has 9-characters and you can find it on the CRA')} <i>#{__('service.name')}</i>#{__(' letter. The letter has your name and address at the top.')}</p>
 
       input#redirect(name='redirect', type='hidden', value='/login/sin')
-
-      input(type='hidden', name="_csrf", value=csrfToken)
-
+      
       +formButtons()

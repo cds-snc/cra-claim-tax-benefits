@@ -11,7 +11,7 @@ mixin radios(id, legend, value, options)
           +validationMessage(errors[id].msg, id)
         each opt, index in options
           if opt.label === "Skip security questions"
-            p.multiple-choice__p OR
+            p.multiple-choice__p #{__('OR')}
             .multiple-choice__item
               input(id=(id+index) name=id type="radio" value=opt.value aria-describedby=(errors && errors[id] ? id+"-error" : false) checked=(value === opt.value))
               label(for=(id+index)) #{__(opt.label)}

@@ -12,7 +12,7 @@ block variables
   -
     var rows =[
       { 
-        "header":"Goods and services tax/harmonized sales tax (GST/HST) credit:", 
+        "header":"Goods and services tax/harmonized sales tax (GST/HST) credit", 
         "description": "up to $443 for one person, $580 if you have a marriage or common-law partner, and $153 for each child under age 19.", 
         "linkURL":"#", 
         "payment": "paid yearly"  
@@ -57,7 +57,7 @@ block content
               dt.breakdown-table-lite__row-key 
                 span #{__(row.header)}
                 dd.breakdown-table-lite__row-value 
-                  span #{row.description}
+                  span #{__(row.description)}
                   div.row-link
                     a(href=row.linkURL)
                       <span>#{__('Learn more')}</span>

@@ -22,11 +22,6 @@ const answerInfo = [
         'urlPath': '/personal/address',
       },
       {
-        'text': 'Is your income information correct?',
-        'infoPath': ['financial.incomeConfirmed'],
-        'urlPath': '/financial/income',
-      },
-      {
         'text': 'Marital status',
         'infoPath': ['personal.maritalStatus'],
         'urlPath': '/personal/maritalStatus',

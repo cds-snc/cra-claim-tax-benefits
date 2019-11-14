@@ -10,7 +10,7 @@ block content
   h1 #{title}
 
   form.cra-form.cra-form--lg(method='post')
-    +radios('securityQuestion', 'Answer a question from the list below', null,[
+    +radios('securityQuestion', 'Answer a question from this list to get your notice of assessment immediately after you file with this service:', null,[
       {value: "/login/questions/temp", label: "Your bank or credit union account information"},
       {value: "/login/questions/temp", label: "Details of your contribution to a Registered Retirement Savings Plan (RRSP)"},
       {value: "/login/questions/temp", label: "Details of your contribution to a Tax Free Savings Account (TFSA)"},

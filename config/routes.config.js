@@ -44,8 +44,6 @@ const routes = [
   { path: '/login/questions', options: ['/login/securityQuestion2'] },
   { path: '/login/questions', options: securityQuestionUrls },
   { path: '/offramp/securityQuestion', editInfo: 'skip' },
-  { path: '/financial/income' },
-  { path: '/offramp/financial', editInfo: 'skip' },
   { path: '/checkAnswers' },
   { path: '/review' },
   { path: '/confirmation' },

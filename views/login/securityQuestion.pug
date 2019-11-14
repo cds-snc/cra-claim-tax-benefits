@@ -9,10 +9,8 @@ block content
 
   h1 #{title}
 
-  p #{__('Answer a question from the list below to get your notice of assessment immediately after you file with this service.')}
-
   form.cra-form.cra-form--lg(method='post')
-    +radios('securityQuestion', 'Choose from the list', null,[
+    +radios('securityQuestion', 'Answer a question from this list to get your notice of assessment immediately after you file with this service:', null,[
       {value: "/login/questions/child", label: "Your child’s name and birthdate"},
       {value: "/login/questions/addresses", label: "Your last two mailing addresses before your current address"},
       {value: "/login/questions/bank", label: "Your bank or credit union account information"},

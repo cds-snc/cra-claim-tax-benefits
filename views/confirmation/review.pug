@@ -13,33 +13,33 @@ block variables
     var rows =[
       { 
         "header":"Goods and services tax/harmonized sales tax (GST/HST) credit:", 
-        "description": "Up to $443 for one person, $580 if you have a marriage or common-law partner, and $153 for each child under age 19.", 
+        "description": "up to $443 for one person, $580 if you have a marriage or common-law partner, and $153 for each child under age 19.", 
         "linkURL":"#", 
-        "payment": "Paid yearly"  
+        "payment": "paid yearly"  
       },
       { 
         "header":"Canada child benefit (CCB)", 
-        "description": "A yearly amount which may be up to $6,639 for each child under age 6 and up to $5,602 for each child aged 6 to 17.", 
+        "description": "a yearly amount which may be up to $6,639 for each child under age 6 and up to $5,602 for each child aged 6 to 17.", 
         "linkURL":"#", 
-        "payment":"Paid monthly"  
+        "payment":"paid monthly"  
       },
       { 
         "header":"Ontario trillium benefit (OTB)", 
-        "description": "A government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.", 
+        "description": "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.", 
         "linkURL":"#", 
-        "payment":"Paid monthly"  
+        "payment":"paid monthly"  
       },
       { 
         "header":"Climate action incentive (CAI)", 
-        "description": "Everyone gets this payment. You get 10 % extra if you live in a small and rural community.", 
+        "description": "everyone gets this payment. You get 10% extra if you live in a small and rural community.", 
         "linkURL":"#", 
-        "payment":"Paid yearly"  
+        "payment":"paid yearly"  
       },
       { 
         "header":"Disability tax credit (DTC)", 
         "description": "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application.", 
         "linkURL":"#", 
-        "payment":"Paid monthly"  
+        "payment":"paid monthly"  
       }, 
     ]
 
@@ -50,17 +50,17 @@ block content
   if data.login.securityQuestion === '/checkAnswers'
     div
       .breakdown-table-lite.breakdown-table-lite--answers
-        h2.breakdown-table-lite__heading #{__('We will use your information to do the math and you may get a refund. You may also get these benefits and credits:')}
+        h2.breakdown-table-lite__heading #{__('We will use your information to file your taxes. You may get a refund. You may also get these benefits and credits:')}
         each row in rows
           dl.breakdown-table-lite-data
             .breakdown-table-lite__row.breakdown-table-lite__row--answers
               dt.breakdown-table-lite__row-key 
                 span #{__(row.header)}
                 dd.breakdown-table-lite__row-value 
-                  span #{__(row.description)}
+                  span #{row.description}
                   div.row-link
                     a(href=row.linkURL)
-                      <span>#{__('Learn more')}</span> 
+                      <span>#{__('Learn more')}</span>
                 dd.breakdown-table-lite__row-payment
                   p #{__(row.payment)}
           hr

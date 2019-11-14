@@ -52,6 +52,6 @@ block content
             label(for='dobYear') #{__('Year')}
             input#dobYear(name='dobYear', type='text', value=dobYear, autocomplete='bday-year', aria-describedby=(errors && errors.dobYear ? 'dobYear-error' : false))
 
-      input#redirect(name='redirect', type='hidden', value='/financial/income')
+      input#redirect(name='redirect', type='hidden', value='/checkAnswers')
 
       +formButtons()

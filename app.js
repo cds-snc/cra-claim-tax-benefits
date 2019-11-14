@@ -23,7 +23,8 @@ const express = require('express'),
     currencyFilter,
     isoDateHintText,
   } = require('./utils'),
-  csrf = require('csurf')
+  csrf = require('csurf'),
+  cookieConfig = require('./config/cookie.config')
 
 // initialize application.
 var app = express()
@@ -43,6 +44,7 @@ app.use(
   csrf({
     cookie: true,
     signed: true,
+    ...cookieConfig,
   }),
 )
 

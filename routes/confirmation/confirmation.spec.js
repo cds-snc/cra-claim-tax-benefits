@@ -1,5 +1,5 @@
 const request = require('supertest')
-const cheerio = require('cheerio')
+const { extractCsrfToken } = require("../../utils/index")
 const app = require('../../app.js')
 
 describe('Test confirmation urls', () => {
@@ -16,10 +16,6 @@ describe('Test confirmation urls', () => {
 describe('Test /review', () => {
   const session = require('supertest-session')
 
-  function extractCsrfToken(res) {
-    var $ = cheerio.load(res.text)
-    return $('[name=_csrf]').val()
-  }
   let csrfToken,
     cookie
 

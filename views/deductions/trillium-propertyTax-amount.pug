@@ -4,6 +4,7 @@ block variables
   -var title = __('Enter your property tax')
   -var trilliumPropertyTaxAmount = hasData(data, 'deductions.trilliumPropertyTaxAmount') &&  data.deductions.trilliumPropertyTaxAmount !== 0 ? data.deductions.trilliumPropertyTaxAmount : ''
   -var placeholder= currencyFilter(0, getLocale()).replace('$', '')
+  -var formattedValue= currencyFilter(trilliumPropertyTaxAmount, getLocale()).replace('$', '')
 
 block content
 
@@ -14,7 +15,7 @@ block content
 
   form.cra-form(method='post')
     +textInput('How much total property tax did you pay for the place you lived most of 2018?')(class='w-1-2 input-with-unit' name='trilliumPropertyTaxAmount' placeholder=placeholder
-    aria-labelledby='trilliumPropertyTaxAmount__unit trilliumPropertyTaxAmount__label' value=trilliumPropertyTaxAmount)
+    aria-labelledby='trilliumPropertyTaxAmount__unit trilliumPropertyTaxAmount__label' value=formattedValue)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/studentResidence')
 

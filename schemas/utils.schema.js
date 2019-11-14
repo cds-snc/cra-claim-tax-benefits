@@ -1,13 +1,25 @@
-const currencySchema = (errorMessageString = 'errors.currency') => {
+const currencySchema = (req, errorMessageString = 'errors.currency') => {
+
+  console.log('THE REQ', req)
+
   return {
     customSanitizer: {
-      options: value => {
-        return value ? value : 0 //if blank we want to assume they meant 0
+      options: (value, {req}) => {
+        let formattedValue = value
+
+        if(req.locale === 'fr') {
+          formattedValue = value.replace(',', '.').replace(' ', '')
+        }
+
+        return formattedValue ? formattedValue : 0 //if blank we want to assume they meant 0
       },
     },
     isCurrency: {
       errorMessage: errorMessageString,
-      options: { allow_negatives: false },
+      options: { 
+        allow_negatives: false,
+        // thousands_separator: ' ', decimal_separator: ','
+      },
     },
   }
 }

@@ -4,6 +4,7 @@ block variables
   -var title = __('Enter your home energy costs')
   -var trilliumEnergyAmount = hasData(data, 'deductions.trilliumEnergyAmount') && data.deductions.trilliumEnergyAmount !== 0 ? data.deductions.trilliumEnergyAmount : ''
   -var placeholder= currencyFilter(0, getLocale()).replace('$', '')
+  -var formattedValue= currencyFilter(trilliumEnergyAmount, getLocale()).replace('$', '')
 
 block content
 
@@ -13,7 +14,7 @@ block content
     p #{__('The government might ask for receipts later. The receipts must cover energy costs for a home on reserve where you lived most of 2018.')}
 
   form.cra-form(method='post')
-    +textInput('What were your total home energy costs on reserve in 2018?')(class='w-1-2 input-with-unit' name='trilliumEnergyAmount' placeholder=placeholder aria-labelledby='trilliumEnergyAmount__unit trilliumEnergyAmount__label' value=trilliumEnergyAmount)
+    +textInput('What were your total home energy costs on reserve in 2018?')(class='w-1-2 input-with-unit' name='trilliumEnergyAmount' placeholder=placeholder aria-labelledby='trilliumEnergyAmount__unit trilliumEnergyAmount__label' value=formattedValue)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/longTermCare')
 

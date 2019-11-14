@@ -193,6 +193,17 @@ const doYesNo = (claim, fields) => {
   }
 }
 
+
+const postAmount = (amount, locale) => {
+  if(locale === 'fr') {
+    const formattedAmount = amount.replace(',','.').replace(' ', '')
+
+    return formattedAmount
+  } 
+
+  return amount
+}
+
 /* Pug filters */
 /**
  * Accepts a string (assumed to be a SIN)
@@ -251,6 +262,7 @@ const hasData = (obj, key, returnVal = false) => {
 }
 
 const currencyFilter = (number, locale = 'en', fractionDigits = 2) => {
+
   const amount = Number(number)
 
   const localeSetting = (locale === 'en') ? 'en-US' : 'fr-CA'
@@ -400,4 +412,5 @@ module.exports = {
   isoDateHintText,
   getRouteWithIndexByPath,
   returnToCheckAnswers,
+  postAmount,
 }

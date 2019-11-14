@@ -1,7 +1,5 @@
 const currencySchema = (req, errorMessageString = 'errors.currency') => {
 
-  console.log('THE REQ', req)
-
   return {
     customSanitizer: {
       options: (value, {req}) => {

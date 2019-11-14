@@ -1,0 +1,19 @@
+extends ../base
+
+block variables
+  -var title = __('Register to vote')
+
+block content
+
+  h1 #{title}
+  
+  div
+    p #{__('Would you like to register to vote in the federal election?')}
+
+  form.cra-form(method='post')
+    +radiosYesNo('confirmOptIn', 'Would you like to register to vote in the federal election?')
+
+    input#redirect(name='redirect', type='hidden', value='/financial/income')
+
+    +formButtons()
+

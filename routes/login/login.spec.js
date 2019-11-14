@@ -1,6 +1,6 @@
 const request = require('supertest')
 const session = require('supertest-session')
-const { extractCsrfToken } = require("../../utils/index")
+const { extractCsrfToken } = require('../../utils/index')
 const cheerio = require('cheerio')
 const app = require('../../app.js')
 

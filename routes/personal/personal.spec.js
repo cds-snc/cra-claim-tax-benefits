@@ -1,5 +1,5 @@
 const request = require('supertest')
-const { extractCsrfToken } = require("../../utils/index")
+const { extractCsrfToken } = require('../../utils/index')
 const app = require('../../app.js')
 
 describe('Test /personal responses', () => {

@@ -398,5 +398,5 @@ module.exports = {
   isoDateHintText,
   getRouteWithIndexByPath,
   returnToCheckAnswers,
-  extractCsrfToken
+  extractCsrfToken,
 }

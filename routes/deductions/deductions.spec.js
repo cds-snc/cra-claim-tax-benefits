@@ -1,6 +1,6 @@
 const request = require('supertest')
 const app = require('../../app.js')
-const { extractCsrfToken } = require("../../utils/index")
+const { extractCsrfToken } = require('../../utils/index')
 
 describe('Test /deductions responses', () => {
   const session = require('supertest-session')

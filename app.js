@@ -22,7 +22,9 @@ const express = require('express'),
     checkLangQuery,
     currencyFilter,
     isoDateHintText,
-  } = require('./utils')
+  } = require('./utils'),
+  csrf = require('csurf'),
+  cookieConfig = require('./config/cookie.config')
 
 // initialize application.
 var app = express()
@@ -36,6 +38,21 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.app_session_secret))
 app.use(require('./config/i18n.config').init)
+
+// CSRF setup
+app.use(
+  csrf({
+    cookie: true,
+    signed: true,
+    ...cookieConfig,
+  }),
+)
+
+// append csrfToken to all responses
+app.use(function(req, res, next) {
+  res.locals.csrfToken = req.csrfToken()
+  next()
+})
 
 // in production we may want to use other than memorysession
 app.use(sessionConfig)

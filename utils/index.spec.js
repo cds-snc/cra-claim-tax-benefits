@@ -42,27 +42,27 @@ describe('Test currencyFilter', () => {
     {
       number: 240.34,
       locale: 'en',
-      expectedResult: '$240.34'
+      expectedResult: '$240.34',
     },
     {
       number: 25086.34,
       locale: 'en',
-      expectedResult: '$25,086.34'
+      expectedResult: '$25,086.34',
     },
     {
       number: 240.34,
       locale: 'fr',
-      expectedResult: '240,34$'
+      expectedResult: '240,34$',
     },
     {
       number: 25086.34,
       locale: 'fr',
-      expectedResult: '25 086,34$'
+      expectedResult: '25 086,34$',
     },
     {
       number: .34,
       locale: 'fr',
-      expectedResult: '0,34$'
+      expectedResult: '0,34$',
     },
   ]
 

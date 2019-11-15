@@ -195,7 +195,7 @@ const doYesNo = (claim, fields) => {
 
 
 const postAmount = (amount, locale) => {
-  if(amount && locale === 'fr') {
+  if(amount && (locale === 'fr')) {
     const formattedAmount = amount.replace(',','.').replace(' ', '')
 
     return formattedAmount

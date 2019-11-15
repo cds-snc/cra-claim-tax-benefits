@@ -215,9 +215,9 @@ describe('Test /deductions responses', () => {
           })
         })
 
-        const badFrAmounts = ['dinosaur', '10.0', '10.000', '-10', '.1']
+        const badFrAmounts = ['dinosaur', '10.0', '10.000', '-10', '.1', '10,000']
         badFrAmounts.map(badAmount => {
-          test(`it returns a 422 for a bad posted value: "${badAmount}"`, async () => {
+          test(`it returns a 422 for a bad posted french value: "${badAmount}"`, async () => {
             const response = await request(app)
               .post(amountResponse.url)
               .query({ lang: 'fr' })
@@ -237,11 +237,12 @@ describe('Test /deductions responses', () => {
           })
         })
 
-        const goodFrAmounts = ['0', '10', '10,00', ',10', '', null]
+        const goodFrAmounts = ['0', '10', '10,00', ',10', '10 000,23', '']
         goodFrAmounts.map(goodAmount => {
-          test(`it returns a 302 for a good posted value: "${goodAmount}"`, async () => {
+          test(`it returns a 302 for a good posted french value: "${goodAmount}"`, async () => {
             const response = await request(app)
               .post(amountResponse.url)
+              .query({ lang: 'fr' })
               .send({ [amountResponse.key]: goodAmount, redirect: '/start' })
             expect(response.statusCode).toBe(302)
             expect(response.headers.location).toEqual('/start')

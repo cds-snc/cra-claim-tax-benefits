@@ -4,6 +4,7 @@ const {
   getPreviousRoute,
   isoDateHintText,
   getRouteWithIndexByPath,
+  currencyFilter,
 } = require('./index')
 const API = require('./../api')
 
@@ -32,6 +33,42 @@ describe('Test SINFilter', () => {
   sinFilterChanged.map(values => {
     test(`returns "${values[1]}" for "${values[0]}"`, () => {
       expect(SINFilter(values[0])).toEqual(values[1])
+    })
+  })
+})
+
+describe('Test currencyFilter', () => {
+  const currencies = [
+    {
+      number: 240.34,
+      locale: 'en',
+      expectedResult: '$240.34'
+    },
+    {
+      number: 25086.34,
+      locale: 'en',
+      expectedResult: '$25,086.34'
+    },
+    {
+      number: 240.34,
+      locale: 'fr',
+      expectedResult: '240,34$'
+    },
+    {
+      number: 25086.34,
+      locale: 'fr',
+      expectedResult: '25 086,34$'
+    },
+    {
+      number: .34,
+      locale: 'fr',
+      expectedResult: '0,34$'
+    },
+  ]
+
+  currencies.map((currency) => {
+    test(`it returns a ${currency.locale} currency format of ${currency.expectedResult}`, () => {
+      expect(currencyFilter(currency.number, currency.locale)).toBe(currency.expectedResult)
     })
   })
 })

@@ -8,13 +8,13 @@ const confirmRegistrationSchema = {
   voterCitizen: {
     isIn: {
       errorMessage: 'errors.voterCitizen',
-      options: [['voterCitizen']]
+      options: [[null, 'voterCitizen']]
     }
   },
   voterConsent: {
     isIn: {
       errorMessage: 'errors.voterConsent',
-      options: [['voterConsent']]
+      options: [[null, 'voterConsent']]
     }
   }
 }

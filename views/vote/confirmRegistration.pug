@@ -2,6 +2,8 @@ extends ../base
 
 block variables
   -var title = __('Register to vote')
+  -var voterCitizen = !hasData(data, 'vote.voterCitizen') ? '' : data.vote.voterCitizen
+  -var voterConsent = !hasData(data, 'vote.voterConsent') ? '' : data.vote.voterConsent
 
 block content
 
@@ -11,15 +13,15 @@ block content
     p #{__('The Canada Elections Act gives rules about elections and voter information. Provincial and territorial governments, members of Parliament, registered political parties, and candidates at election time can have your voter information.')}
 
     p #{__('If you complete this section, you will be registered to vote until you file your next tax return.')}
-
+    
   form.cra-form(method='post')
     .multiple-choice.multiple-choice--checkboxes
       label #{__('Check the boxes if:')}
       .multiple-choice__item
-        input(id='voterCitizen' name='voterCitizen' type="checkbox"  value="voterCitizen" aria-describedby=(errors ? `review-error` : false))
+        input(id='voterCitizen' name='voterCitizen' type="checkbox"  value="voterCitizen" checked=(voterCitizen =='voterCitizen') aria-describedby=(errors ? `review-error` : false))
         label(for='review') #{__('You are a Canadian citizen.')}
       .multiple-choice__item
-        input(id='voterConsent' name='voterConsent' type="checkbox" value="voterConsent" aria-describedby=(errors ? `review-error` : false))
+        input(id='voterConsent' name='voterConsent' type="checkbox" value="voterConsent" checked=(voterConsent =='voterConsent') aria-describedby=(errors ? `review-error` : false))
         label(for='review') #{__('You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.')}
 
     input#redirect(name='redirect', type='hidden', value='/checkAnswers')

@@ -19,15 +19,29 @@ module.exports = function(app) {
     '/vote/confirmRegistration',
     checkSchema(confirmRegistrationSchema),
     checkErrors('vote/confirmRegistration'),
-    postOptIn,
+    postConfirmRegistration,
     doRedirect
   )
 }
 
 const postOptIn = (req, res, next) => {
   const confirmOptIn = req.body.confirmOptIn
-
+  req.session.vote.confirmOptIn = confirmOptIn;
+  console.log(req.session)
+  console.log(confirmOptIn)
   // if yes, go to second page of vote
   // if no, go to confirmation
+  if (confirmOptIn == "No") {
+    return res.redirect('/checkAnswers')
+  }
+  next()
+}
+
+const postConfirmRegistration = (req, res, next) => {
+  console.log(req.session.vote.voterCitizen)
+  console.log(req.session.vote.voterConsent)
+  req.session.vote.voterCitizen = req.body.voterCitizen
+  req.session.vote.voterConsent = req.body.voterConsent
+
   next()
 }

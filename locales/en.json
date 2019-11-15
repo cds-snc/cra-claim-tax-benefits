@@ -474,5 +474,11 @@
   "test2": "test2",
   "You are a Canadian citizen.": "You are a Canadian citizen.",
   "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.": "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.",
-  "Invalid value": "Invalid value"
+  "Invalid value": "Invalid value",
+  "Voter Registration": "Voter Registration",
+  "You are a Canadian citizen": "You are a Canadian citizen",
+  "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records": "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records",
+  "voterCitizen": "voterCitizen",
+  "$999.00": "$999.00",
+  "$0.00": "$0.00"
 }

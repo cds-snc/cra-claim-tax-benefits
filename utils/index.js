@@ -328,7 +328,7 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
 const returnToCheckAnswers = (req, res, claimYes = false) => {
   const currentRoute = getRouteWithIndexByPath(req.path)
   const nextRoute = defaultRoutes[currentRoute.index + 1]
-
+  console.log(claimYes)
   if ('editInfo' in nextRoute && 'editInfo' !== 'skip' && claimYes) {
     return res.redirect(`${nextRoute.path}?ref=checkAnswers`)
   }

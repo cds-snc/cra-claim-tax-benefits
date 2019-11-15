@@ -189,6 +189,7 @@
  },
  "vote": {
    "confirmOptIn": null,
+   "voterPageEdited": 0,
    "voterCitizen": null,
    "voterConsent": null
  }

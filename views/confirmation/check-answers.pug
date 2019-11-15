@@ -17,12 +17,12 @@ block content
             .breakdown-table__row.breakdown-table__row--answers
               dt.breakdown-table__row-key #{__(row.text)}
 
-              if (row.text.toLowerCase().includes('address'))
+              if (row.text.toLowerCase().includes('Mailing address'))
                 dd.breakdown-table__row-value
                   +address(data)
               else
                 //- we don't want to translate the name, dollar amounts, or birthday (formatting the birthday is done prior to hitting the template in checkAnswersFormat)
-                if (row.text.toLowerCase().includes('name') || row.data.includes('$') || row.text.toLowerCase().includes('birth'))
+                if (row.text.toLowerCase().includes('name') || row.text.includes('$') || row.text.toLowerCase().includes('birth'))
                   dd.breakdown-table__row-value #{row.data}
                 else
                   dd.breakdown-table__row-value #{__(row.data)}

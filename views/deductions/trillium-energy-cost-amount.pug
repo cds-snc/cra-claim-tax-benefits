@@ -4,7 +4,7 @@ block variables
   -var title = __('Enter your home energy costs')
   -var trilliumEnergyAmount = hasData(data, 'deductions.trilliumEnergyAmount') && data.deductions.trilliumEnergyAmount !== 0 ? data.deductions.trilliumEnergyAmount : ''
   -var placeholder= currencyFilter(0, getLocale()).replace('$', '')
-  -var formattedValue= currencyFilter(trilliumEnergyAmount, getLocale()).replace('$', '')
+  -var formattedValue= (trilliumEnergyAmount !== '') ? currencyFilter(trilliumEnergyAmount, getLocale()).replace('$', '') : ''
 
 block content
 

@@ -1,3 +1,21 @@
+const currencyFilter = (number, locale = 'en', fractionDigits = 2) => {
+
+  const amount = Number(number)
+
+  const localeSetting = (locale === 'en') ? 'en-US' : 'fr-CA'
+
+  const filteredAmount = amount.toLocaleString(localeSetting, {
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
+  })
+
+  if(locale === 'fr') {
+    return `${filteredAmount}$`
+  }
+
+  return `$${filteredAmount}`
+}
+
 const checkTableRows = (cy, rows) => {
   rows.map((row, index) => {
     cy.get('dt.breakdown-table__row-key')
@@ -14,7 +32,7 @@ const getIncomeBreakdownRows = user => {
   user.financial.incomeSources.map(source => {
     const incomeRow = {
       key: source.name,
-      value: source.total,
+      value: currencyFilter(source.total),
     }
     incomeRows.push(incomeRow)
     return
@@ -22,7 +40,7 @@ const getIncomeBreakdownRows = user => {
 
   incomeRows.push({
     key: 'Total Income',
-    value: user.financial.incomes.totalIncome.amount,
+    value:  currencyFilter(user.financial.incomes.totalIncome.amount),
   })
 
   return incomeRows
@@ -33,13 +51,13 @@ const getTaxBreakdownRows = user => {
   const taxRows = taxKeys.map(source => {
     return {
       key: `${source.name.replace('Net ', '')} deduction`,
-      value: source.amount,
+      value: currencyFilter(source.amount),
     }
   })
 
   taxRows.push({
     key: 'Total tax paid for 2018',
-    value: user.financial.totalTax,
+    value: currencyFilter(user.financial.totalTax),
   })
 
   return taxRows
@@ -50,7 +68,7 @@ const getBenefitsBreakdownRows = user => {
   const benefitsRows = benefitsKeys.map(source => {
     return {
       key: source.name,
-      value: source.amount,
+      value: currencyFilter(source.amount),
     }
   })
 

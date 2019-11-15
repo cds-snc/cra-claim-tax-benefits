@@ -7,6 +7,9 @@ const currencySchema = (req, errorMessageString = 'errors.currency') => {
 
         if(req.locale === 'fr') {
           formattedValue = value.replace(',', '.').replace(' ', '')
+        } else if (formattedValue) {
+          //including the commas makes it not a Number, and messes with formatting, so remove commas from en-CA format just for validation check
+          formattedValue = value.replace(',', '')
         }
 
         return formattedValue ? formattedValue : 0 //if blank we want to assume they meant 0

@@ -4,7 +4,7 @@ block variables
   -var title = __('Enter your rent')
   -var trilliumRentAmount = hasData(data, 'deductions.trilliumRentAmount') && data.deductions.trilliumRentAmount !== 0 ? data.deductions.trilliumRentAmount : ''
   -var placeholder= currencyFilter(0, getLocale()).replace('$', '')
-  -var formattedValue= currencyFilter(trilliumRentAmount, getLocale()).replace('$', '')
+  -var formattedValue= (trilliumRentAmount !== '') ? currencyFilter(trilliumRentAmount, getLocale()).replace('$', '') : ''
 
 block content
 

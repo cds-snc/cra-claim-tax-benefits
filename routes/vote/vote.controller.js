@@ -1,7 +1,8 @@
 const { checkSchema } = require('express-validator')
 const { doRedirect, renderWithData, checkErrors } = require('./../../utils')
 const {
-  optInSchema
+  optInSchema,
+  confirmRegistrationSchema
 } = require('./../../schemas')
 
 module.exports = function(app) {
@@ -10,6 +11,14 @@ module.exports = function(app) {
     '/vote/optIn',
     checkSchema(optInSchema),
     checkErrors('vote/optIn'),
+    postOptIn,
+    doRedirect
+  )
+  app.get('/vote/confirmRegistration', renderWithData('vote/confirmRegistration'))
+  app.post(
+    '/vote/confirmRegistration',
+    checkSchema(confirmRegistrationSchema),
+    checkErrors('vote/confirmRegistration'),
     postOptIn,
     doRedirect
   )

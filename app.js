@@ -112,7 +112,6 @@ require('./routes/login/login.controller')(app)
 require('./routes/personal/personal.controller')(app)
 require('./routes/deductions/deductions.controller')(app)
 require('./routes/financial/financial.controller')(app)
-require('./routes/vote/vote.controller')(app)
 require('./routes/confirmation/confirmation.controller')(app)
 require('./routes/offramp/offramp.controller')(app)
 

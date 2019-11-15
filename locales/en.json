@@ -25,6 +25,8 @@
   "errors.currency": "Enter a dollar amount higher than 0, like 120.00",
   "errors.yesNo": "You must select one of the options",
   "errors.review": "You must agree to file your tax return. Check the box if you agree.",
+  "errors.voterCitizen": "You must be a Canadian citizen to register to vote.",
+  "errors.voterConsent": "You must allow CRA to share information with Elections Canada to register to vote",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-330-331-eligible-medical-expenses-you-claim-on-your-tax-return.html#mdcl_xpns": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-330-331-eligible-medical-expenses-you-claim-on-your-tax-return.html#mdcl_xpns",
@@ -463,5 +465,13 @@
   "Did you pay property tax?": "Did you pay property tax?",
   "Property tax paid": "Property tax paid",
   "Register to vote": "Register to vote",
-  "Would you like to register to vote in the federal election?": "Would you like to register to vote in the federal election?"
+  "Would you like to register to vote in the federal election?": "Would you like to register to vote in the federal election?",
+  "The Canada Elections Act gives rules about elections and voter information. Provincial and territorial governments, members of Parliament, registered political parties, and candidates at election time can have your voter information.": "The Canada Elections Act gives rules about elections and voter information. Provincial and territorial governments, members of Parliament, registered political parties, and candidates at election time can have your voter information.",
+  "If you complete this section, you will be registered to vote until you file your next tax return.": "If you complete this section, you will be registered to vote until you file your next tax return.",
+  "I allow CRA to give my name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.": "I allow CRA to give my name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.",
+  "Check the boxes if:": "Check the boxes if:",
+  "test": "test",
+  "test2": "test2",
+  "You are a Canadian citizen.": "You are a Canadian citizen.",
+  "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.": "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records."
 }

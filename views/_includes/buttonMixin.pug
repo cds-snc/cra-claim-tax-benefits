@@ -1,4 +1,6 @@
 mixin formButtons(submitButtonText = 'Continue', cancelUrl='/clear')
+  input(type='hidden', name="_csrf", value=csrfToken)
+  
   .buttons
     .buttons--left
       button(type='submit') #{__(submitButtonText)}

@@ -1,7 +1,20 @@
 const request = require('supertest')
+const { extractCsrfToken } = require('../../utils/index')
 const app = require('../../app.js')
 
 describe('Test /personal responses', () => {
+  const session = require('supertest-session')
+
+  let csrfToken,
+    cookie
+
+  beforeEach(async () => {
+    let testSession = session(app)
+    const getresp = await testSession.get('/financial/income')
+    cookie = getresp.headers['set-cookie']
+    csrfToken = extractCsrfToken(getresp)
+  })
+
   describe('Test /personal 200 responses', () => {
     const urls = [
       '/personal/name',
@@ -21,13 +34,16 @@ describe('Test /personal responses', () => {
   describe('Test /personal/name responses', () => {
     test('it returns a 422 with no option selected', async () => {
       const response = await request(app).post('/personal/name')
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken })
       expect(response.statusCode).toBe(422)
     })
 
     test('it redirects to the offramp page when selecting No', async () => {
       const response = await request(app)
         .post('/personal/name')
-        .send({ name: 'No' })
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken, name: 'No' })
       expect(response.headers.location).toEqual('/offramp/name')
       expect(response.statusCode).toBe(302)
     })
@@ -35,7 +51,8 @@ describe('Test /personal responses', () => {
     test('it redirects to the provided redirect value when selecting Yes', async () => {
       const response = await request(app)
         .post('/personal/name')
-        .send({ redirect: '/start', name: 'Yes' })
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken, redirect: '/start', name: 'Yes' })
       expect(response.headers.location).toEqual('/start')
       expect(response.statusCode).toBe(302)
     })
@@ -44,7 +61,8 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/name')
         .query({ ref: 'checkAnswers' })
-        .send({ redirect: '/start', name: 'Yes' })
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken, redirect: '/start', name: 'Yes' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/checkAnswers')
     })
@@ -54,7 +72,8 @@ describe('Test /personal responses', () => {
     test('it redirects to the offramp page when selecting No', async () => {
       const response = await request(app)
         .post('/personal/maritalStatus')
-        .send({ confirmMaritalStatus: 'No' })
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken, confirmMaritalStatus: 'No' })
       expect(response.headers.location).toEqual('/offramp/maritalStatus')
       expect(response.statusCode).toBe(302)
     })
@@ -63,7 +82,8 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/maritalStatus')
         .query({ ref: 'checkAnswers' })
-        .send({ redirect: '/start', confirmMaritalStatus: 'Yes' })
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken, redirect: '/start', confirmMaritalStatus: 'Yes' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/checkAnswers')
     })
@@ -73,14 +93,16 @@ describe('Test /personal responses', () => {
     test('it returns a 422 with no option selected', async () => {
       const response = await request(app)
         .post('/personal/residence')
-        .send({ redirect: '/personal/address' })
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken, redirect: '/personal/address' })
       expect(response.statusCode).toBe(422)
     })
 
     test('it returns a 302 when selecting unsupported province', async () => {
       const response = await request(app)
         .post('/personal/residence')
-        .send({ redirect: '/offramp/residence', residence: 'Alberta' })
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken, redirect: '/offramp/residence', residence: 'Alberta' })
       expect(response.headers.location).toEqual('/offramp/residence')
       expect(response.statusCode).toBe(302)
     })
@@ -88,7 +110,8 @@ describe('Test /personal responses', () => {
     test('it returns a 302 when selecting Ontario', async () => {
       const response = await request(app)
         .post('/personal/residence')
-        .send({ redirect: '/personal/address', residence: 'Ontario' })
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken, redirect: '/personal/address', residence: 'Ontario' })
       expect(response.headers.location).toEqual('/personal/address')
       expect(response.statusCode).toBe(302)
     })
@@ -97,7 +120,8 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/residence')
         .query({ ref: 'checkAnswers' })
-        .send({ redirect: '/start', residence: 'Ontario' })
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken, redirect: '/start', residence: 'Ontario' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/checkAnswers')
     })
@@ -107,7 +131,8 @@ describe('Test /personal responses', () => {
     test('it redirects to the offramp page when selecting No', async () => {
       const response = await request(app)
         .post('/personal/address')
-        .send({ confirmAddress: 'No' })
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken, confirmAddress: 'No' })
       expect(response.headers.location).toEqual('/offramp/address')
       expect(response.statusCode).toBe(302)
     })
@@ -116,7 +141,8 @@ describe('Test /personal responses', () => {
       const response = await request(app)
         .post('/personal/address')
         .query({ ref: 'checkAnswers' })
-        .send({ redirect: '/start', confirmAddress: 'Yes' })
+        .set('Cookie', cookie)
+        .send({ _csrf: csrfToken, redirect: '/start', confirmAddress: 'Yes' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/checkAnswers')
     })

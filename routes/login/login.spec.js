@@ -1,14 +1,12 @@
 const request = require('supertest')
 const session = require('supertest-session')
-const { extractCsrfToken } = require('../../utils/index')
+const { extractCsrfToken } = require('../utils.spec')
 const cheerio = require('cheerio')
 const app = require('../../app.js')
 
-let csrfToken,
-  cookie
+let csrfToken, cookie
 
 describe('Test /login responses', () => {
-
   beforeEach(async () => {
     const testSession = session(app)
     const getresp = await testSession.get('/login/code')
@@ -355,7 +353,7 @@ describe('Test /login responses', () => {
           const response = await request(app)
             .post('/login/dateOfBirth')
             .set('Cookie', cookie)
-            .send({ _csrf: csrfToken, ...badRequest.send})
+            .send({ _csrf: csrfToken, ...badRequest.send })
           expect(response.statusCode).toBe(422)
         })
       })
@@ -364,7 +362,7 @@ describe('Test /login responses', () => {
         const response = await request(app)
           .post('/login/dateOfBirth')
           .set('Cookie', cookie)
-          .send({ _csrf: csrfToken, ...goodDoBRequest})
+          .send({ _csrf: csrfToken, ...goodDoBRequest })
         expect(response.statusCode).toBe(302)
       })
 
@@ -372,7 +370,7 @@ describe('Test /login responses', () => {
         const response = await request(app)
           .post('/login/dateOfBirth')
           .set('Cookie', cookie)
-          .send({ 
+          .send({
             _csrf: csrfToken,
             dobDay: ' 9 ',
             dobMonth: ' 9 ',
@@ -478,7 +476,7 @@ describe('Test /login responses', () => {
           const response = await request(app)
             .post('/login/questions/dateOfResidence')
             .set('Cookie', cookie)
-            .send({ _csrf: csrfToken, ...badRequest.send})
+            .send({ _csrf: csrfToken, ...badRequest.send })
           expect(response.statusCode).toBe(422)
         })
       })
@@ -487,7 +485,7 @@ describe('Test /login responses', () => {
         const response = await request(app)
           .post('/login/questions/dateOfResidence')
           .set('Cookie', cookie)
-          .send({ _csrf: csrfToken, ...goodDoBRequest})
+          .send({ _csrf: csrfToken, ...goodDoBRequest })
         expect(response.statusCode).toBe(302)
       })
     })
@@ -498,7 +496,7 @@ describe('Test /login responses', () => {
           const response = await request(app)
             .post('/login/questions/bankruptcy')
             .set('Cookie', cookie)
-            .send({ _csrf: csrfToken, ...badRequest.send})
+            .send({ _csrf: csrfToken, ...badRequest.send })
           expect(response.statusCode).toBe(422)
         })
       })
@@ -536,7 +534,6 @@ describe('Test /login responses', () => {
       will be accepted.
     */
   describe('after entering an access code', () => {
-
     let authSession
 
     beforeEach(async () => {
@@ -562,7 +559,13 @@ describe('Test /login responses', () => {
       const response = await authSession
         .post('/login/dateOfBirth')
         .set('Cookie', cookie)
-        .send({ _csrf: csrfToken, dobDay: '23', dobMonth: '03', dobYear: '1909', redirect: '/personal/name' })
+        .send({
+          _csrf: csrfToken,
+          dobDay: '23',
+          dobMonth: '03',
+          dobYear: '1909',
+          redirect: '/personal/name',
+        })
       expect(response.statusCode).toBe(422)
     })
 
@@ -570,7 +573,13 @@ describe('Test /login responses', () => {
       const response = await authSession
         .post('/login/dateOfBirth')
         .set('Cookie', cookie)
-        .send({ _csrf: csrfToken, dobDay: '09', dobMonth: '09', dobYear: '1977', redirect: '/personal/name' })
+        .send({
+          _csrf: csrfToken,
+          dobDay: '09',
+          dobMonth: '09',
+          dobYear: '1977',
+          redirect: '/personal/name',
+        })
       expect(response.statusCode).toBe(302)
     })
   })
@@ -597,7 +606,8 @@ questionsAmounts.map(amountResponse => {
     })
 
     test('it returns a 422 response if no redirect is provided', async () => {
-      const response = await request(app).post(amountResponse.url)
+      const response = await request(app)
+        .post(amountResponse.url)
         .set('Cookie', cookie)
         .send({ _csrf: csrfToken })
       expect(response.statusCode).toBe(422)
@@ -617,7 +627,8 @@ questionsAmounts.map(amountResponse => {
         const response = await request(app)
           .post(amountResponse.url)
           .set('Cookie', cookie)
-          .send({ _csrf: csrfToken,
+          .send({
+            _csrf: csrfToken,
             [`${amountResponse.key}Amount`]: badAmount,
             [`${amountResponse.key}PaymentMethod`]: 'cheque',
             redirect: '/start',
@@ -630,10 +641,7 @@ questionsAmounts.map(amountResponse => {
       const response = await request(app)
         .post(amountResponse.url)
         .set('Cookie', cookie)
-        .send({ _csrf: csrfToken,
-          [`${amountResponse.key}Amount`]: '10',
-          redirect: '/start',
-        })
+        .send({ _csrf: csrfToken, [`${amountResponse.key}Amount`]: '10', redirect: '/start' })
       expect(response.statusCode).toBe(422)
     })
 
@@ -643,7 +651,8 @@ questionsAmounts.map(amountResponse => {
         const response = await request(app)
           .post(amountResponse.url)
           .set('Cookie', cookie)
-          .send({ _csrf: csrfToken,
+          .send({
+            _csrf: csrfToken,
             [`${amountResponse.key}Amount`]: goodAmount,
             [`${amountResponse.key}PaymentMethod`]: 'cheque',
             redirect: '/start',
@@ -657,7 +666,8 @@ questionsAmounts.map(amountResponse => {
       const response = await request(app)
         .post(amountResponse.url)
         .set('Cookie', cookie)
-        .send({ _csrf: csrfToken,
+        .send({
+          _csrf: csrfToken,
           [`${amountResponse.key}PaymentMethod`]: 'cheque',
           redirect: '/start',
         })
@@ -668,7 +678,8 @@ questionsAmounts.map(amountResponse => {
       const response = await request(app)
         .post(amountResponse.url)
         .set('Cookie', cookie)
-        .send({ _csrf: csrfToken,
+        .send({
+          _csrf: csrfToken,
           [`${amountResponse.key}Amount`]: '10',
           [`${amountResponse.key}PaymentMethod`]: 'bitcoin',
           redirect: '/start',
@@ -682,7 +693,8 @@ questionsAmounts.map(amountResponse => {
         const response = await request(app)
           .post(amountResponse.url)
           .set('Cookie', cookie)
-          .send({ _csrf: csrfToken,
+          .send({
+            _csrf: csrfToken,
             [`${amountResponse.key}Amount`]: '10',
             [`${amountResponse.key}PaymentMethod`]: paymentMethod,
             redirect: '/start',
@@ -811,7 +823,7 @@ describe('Test /login/questions/addresses responses', () => {
       const response = await request(app)
         .post('/login/questions/addresses')
         .set('Cookie', cookie)
-        .send({ ...badRequest.send, _csrf: csrfToken} )
+        .send({ ...badRequest.send, _csrf: csrfToken })
       expect(response.statusCode).toBe(422)
     })
   })
@@ -820,7 +832,7 @@ describe('Test /login/questions/addresses responses', () => {
     const response = await request(app)
       .post('/login/questions/addresses')
       .set('Cookie', cookie)
-      .send({ ...goodRequest, _csrf: csrfToken})
+      .send({ ...goodRequest, _csrf: csrfToken })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/personal/name')
   })

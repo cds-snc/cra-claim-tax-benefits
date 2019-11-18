@@ -3,6 +3,8 @@ extends ../base
 block variables
   -var title = __('Enter your property tax')
   -var trilliumPropertyTaxAmount = hasData(data, 'deductions.trilliumPropertyTaxAmount') &&  data.deductions.trilliumPropertyTaxAmount !== 0 ? data.deductions.trilliumPropertyTaxAmount : ''
+  -var placeholder= currencyWithoutUnit(getLocale())
+  -var formattedValue= currencyWithoutUnit(getLocale(), trilliumPropertyTaxAmount)
 
 block content
 
@@ -12,7 +14,8 @@ block content
     p #{__('The government might ask for your property tax receipts.')}
 
   form.cra-form(method='post')
-    +textInput('How much total property tax did you pay for the place you lived most of 2018?')(class='w-1-2 input-with-unit' name='trilliumPropertyTaxAmount' placeholder='0.00' aria-labelledby='trilliumPropertyTaxAmount__unit trilliumPropertyTaxAmount__label' value=trilliumPropertyTaxAmount)
+    +textInput('How much total property tax did you pay for the place you lived most of 2018?')(class='w-1-2 input-with-unit' name='trilliumPropertyTaxAmount' placeholder=placeholder
+    aria-labelledby='trilliumPropertyTaxAmount__unit trilliumPropertyTaxAmount__label' value=formattedValue)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/studentResidence')
 

@@ -4,6 +4,9 @@ const {
   getPreviousRoute,
   isoDateHintText,
   getRouteWithIndexByPath,
+  currencyFilter,
+  postAmount,
+  currencyWithoutUnit,
 } = require('./index')
 const API = require('./../api')
 
@@ -34,6 +37,105 @@ describe('Test SINFilter', () => {
       expect(SINFilter(values[0])).toEqual(values[1])
     })
   })
+})
+
+describe('Test currencyWithoutUnit', () => {
+  const amounts = [
+    {
+      amount: '25',
+      locale: 'en',
+      expectedResult: '25.00',
+    },
+    {
+      amount: '25',
+      locale: 'fr',
+      expectedResult: '25,00',
+    },
+    {
+      amount: '1200.34',
+      locale: 'en',
+      expectedResult: '1,200.34',
+    },
+    {
+      amount: '1200.34',
+      locale: 'fr',
+      expectedResult: '1 200,34',
+    },
+  ]
+
+  amounts.map( amount => {
+    test(`formatValue returns ${amount.expectedResult}`, () => {
+      expect(currencyWithoutUnit(amount.locale, amount.amount)).toBe(amount.expectedResult)
+    })
+  })
+})
+
+describe('Test currencyWithoutUnit', () => {
+  test('', () => {})
+})
+
+describe('Test currencyFilter', () => {
+  const currencies = [
+    {
+      number: 240.34,
+      locale: 'en',
+      expectedResult: '$240.34',
+    },
+    {
+      number: 25086.34,
+      locale: 'en',
+      expectedResult: '$25,086.34',
+    },
+    {
+      number: 240.34,
+      locale: 'fr',
+      expectedResult: '240,34$',
+    },
+    {
+      number: 25086.34,
+      locale: 'fr',
+      expectedResult: '25 086,34$',
+    },
+    {
+      number: .34,
+      locale: 'fr',
+      expectedResult: '0,34$',
+    },
+  ]
+
+  currencies.map((currency) => {
+    test(`it returns a ${currency.locale} currency format of ${currency.expectedResult}`, () => {
+      expect(currencyFilter(currency.number, currency.locale)).toBe(currency.expectedResult)
+    })
+  })
+})
+
+describe('Test postAmount function', () => {
+
+  const amounts = [
+    {
+      input: '10 341,28',
+      locale: 'fr',
+      expectedResult: '10341.28',
+    },
+    {
+      input: '1,025',
+      locale: 'en',
+      expectedResult: '1025',
+    },
+    {
+      input: '2035.67',
+      locale: 'en',
+      expectedResult: '2035.67',
+    },
+  ]
+
+  amounts.map( amount => {
+    test(`expect postAmount to return ${amount.expectedResult}`, () => {
+      expect(postAmount(amount.input, amount.locale)).toBe(amount.expectedResult)
+    })
+  })
+
 })
 
 describe('Test hasData function', () => {

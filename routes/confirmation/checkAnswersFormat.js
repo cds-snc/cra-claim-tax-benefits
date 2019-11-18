@@ -5,7 +5,8 @@ const { fr, enCA } = require('date-fns/locale')
 const { routes } = require('./../../config/routes.config')
 
 
-const addValues = (data, session) => {
+const addValues = (data, req) => {
+  const { session, locale } = req
   const dataValues = []
 
   data.map(val => {
@@ -13,7 +14,8 @@ const addValues = (data, session) => {
   })
 
   if (data.every(item => item.includes('Amount'))) {
-    return `$${currencyFilter(dataValues.reduce((a, b) => Number(a) + Number(b), 0))}`
+    const addedAmount = dataValues.reduce((a, b) => Number(a) + Number(b), 0)
+    return `${currencyFilter(addedAmount, locale)}`
   } else if (data.every(item => typeof item === 'string')) {
     return dataValues.join(' ')
   } else {
@@ -27,7 +29,7 @@ const formatDataLine = (data, req) => {
   const { session, locale } = req
 
   if (data.length > 1) {
-    return addValues(data, session)
+    return addValues(data, req)
   } else {
     switch (true) {
       case hasData(session, data[0], true) === null:
@@ -42,8 +44,10 @@ const formatDataLine = (data, req) => {
           locale: dateLocale,
         })
       }
-      case data[0].includes('Amount'): 
-        return `$${currencyFilter(hasData(session, data[0], true))}`
+      case data[0].includes('Amount'): {
+        const amount = hasData(session, data[0], true)
+        return `${currencyFilter(amount, locale)}`
+      }
       default:
         return hasData(session, data[0], true)
     }

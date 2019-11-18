@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { doRedirect, doYesNo, renderWithData, checkErrors } = require('./../../utils')
+const { doRedirect, doYesNo, renderWithData, checkErrors, postAmount } = require('./../../utils')
 const {
   trilliumRentSchema,
   trilliumRentAmountSchema,
@@ -32,7 +32,7 @@ module.exports = function(app) {
     checkSchema(trilliumRentAmountSchema),
     checkErrors('deductions/trillium-rent-amount'),
     (req, res, next) => {
-      req.session.deductions.trilliumRentAmount = req.body.trilliumRentAmount
+      req.session.deductions.trilliumRentAmount = postAmount(req.body.trilliumRentAmount, req.locale)
       next()
     },
     doRedirect,
@@ -52,7 +52,7 @@ module.exports = function(app) {
     checkSchema(trilliumPropertyTaxAmountSchema),
     checkErrors('deductions/trillium-propertyTax-amount'),
     (req, res, next) => {
-      req.session.deductions.trilliumPropertyTaxAmount = req.body.trilliumPropertyTaxAmount
+      req.session.deductions.trilliumPropertyTaxAmount = postAmount(req.body.trilliumPropertyTaxAmount, req.locale)
       next()
     },
     doRedirect,
@@ -95,7 +95,7 @@ module.exports = function(app) {
     checkSchema(trilliumEnergyAmountSchema),
     checkErrors('deductions/trillium-energy-cost-amount'),
     (req, res, next) => {
-      req.session.deductions.trilliumEnergyAmount = req.body.trilliumEnergyAmount
+      req.session.deductions.trilliumEnergyAmount = postAmount(req.body.trilliumEnergyAmount, req.locale)
       next()
     },
     doRedirect,
@@ -131,7 +131,7 @@ module.exports = function(app) {
     checkSchema(trilliumlongTermCareAmountSchema),
     checkErrors('deductions/trillium-longTermCare-amount'),
     (req, res, next) => {
-      req.session.deductions.trilliumLongTermCareAmount = req.body.trilliumLongTermCareAmount
+      req.session.deductions.trilliumLongTermCareAmount = postAmount(req.body.trilliumLongTermCareAmount, req.locale)
       next()
     },
     doRedirect,

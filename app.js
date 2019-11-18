@@ -22,6 +22,7 @@ const express = require('express'),
     checkLangQuery,
     currencyFilter,
     isoDateHintText,
+    currencyWithoutUnit,
   } = require('./utils'),
   csrf = require('csurf'),
   cookieConfig = require('./config/cookie.config')
@@ -101,6 +102,7 @@ app.use(checkLangQuery)
 // Adding values/functions to app.locals means we can access them in our templates
 app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
 app.locals.SINFilter = SINFilter
+app.locals.currencyWithoutUnit = currencyWithoutUnit
 app.locals.hasData = hasData
 app.locals.currencyFilter = currencyFilter
 app.locals.sortByLineNumber = sortByLineNumber

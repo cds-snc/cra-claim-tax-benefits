@@ -193,6 +193,22 @@ const doYesNo = (claim, fields) => {
   }
 }
 
+
+const postAmount = (amount, locale) => {
+  if(!amount || amount === '') {
+    return amount
+  }
+
+  if(locale === 'fr') {
+    const formattedAmount = amount.replace(',', '.').replace(/\s/g, '')
+
+    return formattedAmount
+  } 
+
+  //remove commas for English format inputs, just for consistency of storing
+  return amount.replace(/,/g, '')
+}
+
 /* Pug filters */
 /**
  * Accepts a string (assumed to be a SIN)
@@ -250,13 +266,37 @@ const hasData = (obj, key, returnVal = false) => {
   return bool
 }
 
-const currencyFilter = (number, fractionDigits = 2) => {
+/**
+ * @param {String} locale the locale we would like to format for, passed either as 'fr' or 'en' in our case
+ * 
+ * @param {String|Number} amount the number we're passing to format, which is passed either explicitly as a number or a string (we cast it as a number in currencyFilter, regardless)
+ * 
+ * Essentially calls currencyFilter, but removes the dollar sign unit
+ */
+const currencyWithoutUnit = (locale = 'en', amount = 0) => {
+  return (amount !== '') ? currencyFilter(amount, locale).replace(/\$/g, '') : ''
+}
+
+/**
+ * @param {String|Number} number the number we're passing to format, which is passed either explicitly as a number or a string (we cast it as a number first thing, regardless)
+ * @param {String} locale the locale we would like to format for, passed either as 'fr' or 'en' in our case
+ */
+const currencyFilter = (number, locale = 'en') => {
+
   const amount = Number(number)
 
-  return amount.toLocaleString('en-US', {
-    minimumFractionDigits: fractionDigits,
-    maximumFractionDigits: fractionDigits,
+  const localeSetting = (locale === 'en') ? 'en-US' : 'fr-CA'
+
+  const filteredAmount = amount.toLocaleString(localeSetting, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   })
+
+  if(locale === 'fr') {
+    return `${filteredAmount}$`
+  }
+
+  return `$${filteredAmount}`
 }
 
 const sortByLineNumber = (...objToSort) => {
@@ -392,4 +432,6 @@ module.exports = {
   isoDateHintText,
   getRouteWithIndexByPath,
   returnToCheckAnswers,
+  postAmount,
+  currencyWithoutUnit,
 }

@@ -196,13 +196,18 @@ const doYesNo = (claim, fields) => {
 
 
 const postAmount = (amount, locale) => {
+  if(!amount || amount === '') {
+    return amount
+  }
+
   if(amount && (locale === 'fr')) {
-    const formattedAmount = amount.replace(',','.').replace(' ', '')
+    const formattedAmount = amount.replace(',', '.').replace(/\s/g, '')
 
     return formattedAmount
   } 
 
-  return amount
+  //remove commas for English format inputs, just for consistency of storing
+  return amount.replace(/,/g, '')
 }
 
 /* Pug filters */
@@ -262,15 +267,15 @@ const hasData = (obj, key, returnVal = false) => {
   return bool
 }
 
-const currencyFilter = (number, locale = 'en', fractionDigits = 2) => {
+const currencyFilter = (number, locale = 'en') => {
 
   const amount = Number(number)
 
   const localeSetting = (locale === 'en') ? 'en-US' : 'fr-CA'
 
   const filteredAmount = amount.toLocaleString(localeSetting, {
-    minimumFractionDigits: fractionDigits,
-    maximumFractionDigits: fractionDigits,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   })
 
   if(locale === 'fr') {

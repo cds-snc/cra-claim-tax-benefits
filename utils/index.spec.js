@@ -5,6 +5,7 @@ const {
   isoDateHintText,
   getRouteWithIndexByPath,
   currencyFilter,
+  postAmount,
 } = require('./index')
 const API = require('./../api')
 
@@ -71,6 +72,34 @@ describe('Test currencyFilter', () => {
       expect(currencyFilter(currency.number, currency.locale)).toBe(currency.expectedResult)
     })
   })
+})
+
+describe('Test postAmount function', () => {
+
+  const amounts = [
+    {
+      input: '10 341,28',
+      locale: 'fr',
+      expectedResult: '10341.28',
+    },
+    {
+      input: '1,025',
+      locale: 'en',
+      expectedResult: '1025',
+    },
+    {
+      input: '2035.67',
+      locale: 'en',
+      expectedResult: '2035.67',
+    },
+  ]
+
+  amounts.map( amount => {
+    test(`expect postAmount to return ${amount.expectedResult}`, () => {
+      expect(postAmount(amount.input, amount.locale)).toBe(amount.expectedResult)
+    })
+  })
+
 })
 
 describe('Test hasData function', () => {

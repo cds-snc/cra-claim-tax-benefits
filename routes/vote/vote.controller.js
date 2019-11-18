@@ -2,7 +2,7 @@ const { checkSchema } = require('express-validator')
 const { doRedirect, renderWithData, checkErrors, returnToCheckAnswers } = require('./../../utils')
 const {
   optInSchema,
-  confirmRegistrationSchema
+  confirmRegistrationSchema,
 } = require('./../../schemas')
 
 module.exports = function(app) {
@@ -12,7 +12,7 @@ module.exports = function(app) {
     checkSchema(optInSchema),
     checkErrors('vote/optIn'),
     postOptIn,
-    doRedirect
+    doRedirect,
   )
   app.get('/vote/confirmRegistration', renderWithData('vote/confirmRegistration'))
   app.post(
@@ -20,25 +20,24 @@ module.exports = function(app) {
     checkSchema(confirmRegistrationSchema),
     checkErrors('vote/confirmRegistration'),
     postConfirmRegistration,
-    doRedirect
+    doRedirect,
   )
 }
 
 const postOptIn = (req, res, next) => {
   const confirmOptIn = req.body.confirmOptIn
-  req.session.vote.confirmOptIn = confirmOptIn;
-  console.log(req.session)
-  console.log(confirmOptIn)
+  req.session.vote.confirmOptIn = confirmOptIn
+
   // if yes, go to second page of vote
   // if no, go to confirmation
 
-  if (confirmOptIn == "No") {
+  if (confirmOptIn == 'No') {
     req.session.vote.voterCitizen = null
     req.session.vote.voterConsent = null
     req.session.vote.voterPageEdited = 0
     return res.redirect('/checkAnswers')
   }
-  
+
   if (req.query.ref && req.query.ref === 'checkAnswers') {
     return returnToCheckAnswers(req, res, true)
   }
@@ -48,8 +47,8 @@ const postOptIn = (req, res, next) => {
 }
 
 const postConfirmRegistration = (req, res, next) => {
-  req.session.vote.voterCitizen = req.body.voterCitizen == "voterCitizen" ? "Yes" : "No"
-  req.session.vote.voterConsent = req.body.voterConsent == "voterConsent" ? "Yes" : "No"
+  req.session.vote.voterCitizen = req.body.voterCitizen == 'voterCitizen' ? 'Yes' : 'No'
+  req.session.vote.voterConsent = req.body.voterConsent == 'voterConsent' ? 'Yes' : 'No'
 
   next()
 }

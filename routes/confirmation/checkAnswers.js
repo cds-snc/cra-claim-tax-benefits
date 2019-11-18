@@ -124,8 +124,8 @@ const answerInfo = [
         'urlPath': '/vote/confirmRegistration',
         'displayIf': 'vote.confirmOptIn',
       },
-    ]
-  }
+    ],
+  },
 ]
 
 module.exports = {

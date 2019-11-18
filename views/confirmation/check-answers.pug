@@ -17,7 +17,7 @@ block content
             .breakdown-table__row.breakdown-table__row--answers
               dt.breakdown-table__row-key #{__(row.text)}
 
-              if (row.text.toLowerCase().includes('Mailing address'))
+              if (row.text.toLowerCase().includes('address'))
                 dd.breakdown-table__row-value
                   +address(data)
               else

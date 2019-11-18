@@ -212,6 +212,23 @@ describe('Full run through', function() {
       .click()
   })
 
+  it('navigates Voter Opt In page', function() {
+    cy.url().should('contain', '/vote/optIn')
+    cy.get('h1').should('contain', 'Register to vote')
+
+    cy.get('input#confirmOptIn1 + label').should(
+      'have.attr',
+      'for',
+      'confirmOptIn1',
+    )
+
+    cy.get('input#confirmOptIn1').click()
+
+    cy.get('form button[type="submit"]')
+      .should('contain', 'Continue')
+      .click()
+  })
+
   it('navigates the Check Your Answers page', function() {
     cy.url().should('contain', '/checkAnswers')
     cy.get('h1').should('contain', 'Check your answers before filing')

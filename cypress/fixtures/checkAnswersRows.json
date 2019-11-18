@@ -47,5 +47,9 @@
     {
       "key": "Did you live in a small and rural community?",
       "value": "No"
+    },
+    {
+      "key": "Registered to vote",
+      "value": "No"
     }]
   }

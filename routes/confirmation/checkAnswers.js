@@ -108,18 +108,18 @@ const answerInfo = [
     'sectionTitle': 'Voter Registration',
     'sectionRows': [
       {
-        'text': 'Would you like to register to vote in the federal election?',
+        'text': 'Registered to vote',
         'infoPath': ['vote.confirmOptIn'],
         'urlPath': '/vote/optIn',
       },
       {
-        'text': 'You are a Canadian citizen',
+        'text': 'Canadian citizen',
         'infoPath': ['vote.voterCitizen'],
         'urlPath': '/vote/confirmRegistration',
         'displayIf': 'vote.confirmOptIn',
       },
       {
-        'text': 'You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records',
+        'text': 'Elections Canada will update voter record',
         'infoPath': ['vote.voterConsent'],
         'urlPath': '/vote/confirmRegistration',
         'displayIf': 'vote.confirmOptIn',

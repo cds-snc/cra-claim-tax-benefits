@@ -480,5 +480,8 @@
   "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records": "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records",
   "voterCitizen": "voterCitizen",
   "$999.00": "$999.00",
-  "$0.00": "$0.00"
+  "$0.00": "$0.00",
+  "Registered to vote": "Registered to vote",
+  "Canadian citizen": "Canadian citizen",
+  "Elections Canada will update voter record": "Elections Canada will update voter record"
 }

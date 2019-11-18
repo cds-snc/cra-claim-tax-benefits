@@ -30,7 +30,6 @@ const postOptIn = (req, res, next) => {
 
   // if yes, go to second page of vote
   // if no, go to confirmation
-
   if (confirmOptIn == 'No') {
     req.session.vote.voterCitizen = null
     req.session.vote.voterConsent = null

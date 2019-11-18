@@ -13,12 +13,23 @@ const sessionWithRent = {
   },
 }
 
+const sessionWithVoterRegistration = {
+  ...initialSession,
+  ...{
+    vote: {
+      confirmOptIn: 'Yes',
+      voterCitizen: 'Yes',
+      voterConsent: 'Yes',
+    },
+  },
+}
+
 describe('Test checkAnswersFormat function with initialSession', () => { 
   const answerInfo = formatAnswerInfo({session: initialSession})
   
-  test('it has 2 sections with correct key names', async () => {
-    expect(Object.keys(answerInfo).length).toBe(2)
-    expect(Object.keys(answerInfo)).toEqual(['Personal information', 'Tax benefits'])
+  test('it has 3 sections with correct key names', async () => {
+    expect(Object.keys(answerInfo).length).toBe(3)
+    expect(Object.keys(answerInfo)).toEqual(['Personal information', 'Tax benefits', 'Voter Registration'])
   })
 
   test('it has sections with row lengths of 6', async () => {
@@ -37,6 +48,14 @@ describe('Test checkAnswersFormat with added displayIf rows for Trillium Rent', 
   test('it displays the amount', async () => {
     const rentAmount = answerInfo['Tax benefits'].find(row => row.urlPath === '/trillium/rent/amount')
     expect(rentAmount.data).toBe('$240.00')
+  })
+})
+
+describe('Test checkAnswersFormat with added displayIf rows for Voter Registration', () => {
+  const answerInfo = formatAnswerInfo({session: sessionWithVoterRegistration})
+  
+  test('it has extra rows in Voter Registration', async () => {
+    expect(answerInfo['Voter Registration'].length).toBe(3)
   })
 })
 

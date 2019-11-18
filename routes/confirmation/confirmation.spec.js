@@ -1,5 +1,5 @@
 const request = require('supertest')
-const { extractCsrfToken } = require('../../utils/index')
+const { extractCsrfToken } = require('../utils.spec')
 const app = require('../../app.js')
 
 describe('Test confirmation urls', () => {
@@ -16,8 +16,7 @@ describe('Test confirmation urls', () => {
 describe('Test /review', () => {
   const session = require('supertest-session')
 
-  let csrfToken,
-    cookie
+  let csrfToken, cookie
 
   beforeEach(async () => {
     let testSession = session(app)
@@ -28,7 +27,8 @@ describe('Test /review', () => {
 
   describe('POST responses', () => {
     test('it returns a 422 response if no values are posted', async () => {
-      const response = await request(app).post('/review')
+      const response = await request(app)
+        .post('/review')
         .set('Cookie', cookie)
         .send({ _csrf: csrfToken })
       expect(response.statusCode).toBe(422)

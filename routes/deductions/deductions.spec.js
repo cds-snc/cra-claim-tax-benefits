@@ -1,12 +1,11 @@
 const request = require('supertest')
 const app = require('../../app.js')
-const { extractCsrfToken } = require('../../utils/index')
+const { extractCsrfToken } = require('../utils.spec')
 
 describe('Test /deductions responses', () => {
   const session = require('supertest-session')
 
-  let csrfToken,
-    cookie
+  let csrfToken, cookie
 
   beforeEach(async () => {
     const testSession = session(app)
@@ -110,7 +109,11 @@ describe('Test /deductions responses', () => {
           const response = await request(app)
             .post(yesNoResponse.url)
             .set('Cookie', cookie)
-            .send({ _csrf: csrfToken, [yesNoResponse.key]: 'Yes', redirect: yesNoResponse.yesRedir || '/' })
+            .send({
+              _csrf: csrfToken,
+              [yesNoResponse.key]: 'Yes',
+              redirect: yesNoResponse.yesRedir || '/',
+            })
           expect(response.statusCode).toBe(302)
           expect(response.headers.location).toEqual(
             yesNoResponse.yesRedir || `${yesNoResponse.url}/amount`,
@@ -122,9 +125,10 @@ describe('Test /deductions responses', () => {
 
   describe('Test /trillium/energy/reserve responses', () => {
     test('it returns a 422 with no option selected', async () => {
-      const response = await request(app).post('/trillium/energy/reserve')
+      const response = await request(app)
+        .post('/trillium/energy/reserve')
         .set('Cookie', cookie)
-        .send({ _csrf: csrfToken})
+        .send({ _csrf: csrfToken })
       expect(response.statusCode).toBe(422)
     })
 
@@ -159,7 +163,8 @@ describe('Test /deductions responses', () => {
 
   describe('Test /trillium/longTermCare responses', () => {
     test('it returns a 422 with no option selected', async () => {
-      const response = await request(app).post('/trillium/longTermCare')
+      const response = await request(app)
+        .post('/trillium/longTermCare')
         .set('Cookie', cookie)
         .send({ _csrf: csrfToken })
       expect(response.statusCode).toBe(422)
@@ -222,7 +227,8 @@ describe('Test /deductions responses', () => {
         })
 
         test('it returns a 500 response if no redirect is provided', async () => {
-          const response = await request(app).post(amountResponse.url)
+          const response = await request(app)
+            .post(amountResponse.url)
             .set('Cookie', cookie)
             .send({ _csrf: csrfToken })
           expect(response.statusCode).toBe(500)

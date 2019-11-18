@@ -1,12 +1,11 @@
 const request = require('supertest')
 const app = require('../../app.js')
-const { extractCsrfToken } = require('../../utils/index')
+const { extractCsrfToken } = require('../utils.spec')
 
 describe('Test /financial responses', () => {
   const session = require('supertest-session')
 
-  let csrfToken,
-    cookie
+  let csrfToken, cookie
 
   beforeEach(async () => {
     let testSession = session(app)
@@ -14,7 +13,7 @@ describe('Test /financial responses', () => {
     cookie = getresp.headers['set-cookie']
     csrfToken = extractCsrfToken(getresp)
   })
-  
+
   test('it returns a 200 response for /financial/income', async () => {
     const response = await request(app).get('/financial/income')
     expect(response.statusCode).toBe(200)
@@ -49,10 +48,10 @@ describe('Test /financial responses', () => {
   test('it redirects to the checkAnswers when posting Yes and having come from the checkAnswers page', async () => {
     const response = await request(app)
       .post('/financial/income')
-      .query({ref: 'checkAnswers'})
+      .query({ ref: 'checkAnswers' })
       .set('Cookie', cookie)
       .send({ _csrf: csrfToken, confirmIncome: 'Yes', redirect: '/personal/maritalStatus' })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/checkAnswers')
-  }) 
+  })
 })

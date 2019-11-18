@@ -199,7 +199,7 @@ const postAmount = (amount, locale) => {
     return amount
   }
 
-  if(amount && (locale === 'fr')) {
+  if(locale === 'fr') {
     const formattedAmount = amount.replace(',', '.').replace(/\s/g, '')
 
     return formattedAmount
@@ -417,5 +417,5 @@ module.exports = {
   isoDateHintText,
   getRouteWithIndexByPath,
   returnToCheckAnswers,
-  postAmount
+  postAmount,
 }

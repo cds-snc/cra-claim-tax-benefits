@@ -3,7 +3,6 @@ const { validationResult } = require('express-validator')
 const API = require('./../api')
 const { routes: defaultRoutes } = require('../config/routes.config')
 const cookieConfig = require('../config/cookie.config')
-const cheerio = require('cheerio')
 
 /*
   original format is an array of error objects: https://express-validator.github.io/docs/validation-result-api.html
@@ -377,11 +376,6 @@ const isoDateHintText = date => {
   return `${dateParts[2]} ${dateParts[1]} ${dateParts[0]}`
 }
 
-const extractCsrfToken = (res) => {
-  var $ = cheerio.load(res.text)
-  return $('[name=_csrf]').val()
-}
-
 module.exports = {
   errorArray2ErrorObject,
   checkErrors,
@@ -398,5 +392,4 @@ module.exports = {
   isoDateHintText,
   getRouteWithIndexByPath,
   returnToCheckAnswers,
-  extractCsrfToken,
 }

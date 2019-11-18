@@ -3,8 +3,8 @@ extends ../base
 block variables
   -var title = __('Enter your long-term care home costs')
   -var trilliumLongTermCareAmount = hasData(data, 'deductions.trilliumLongTermCareAmount') && data.deductions.trilliumLongTermCareAmount !== 0 ? data.deductions.trilliumLongTermCareAmount : ''
-  -var placeholder= currencyFilter(0, getLocale()).replace('$', '')
-  -var formattedValue= (trilliumLongTermCareAmount !== '') ? currencyFilter(trilliumLongTermCareAmount, getLocale()).replace('$', '') : ''
+  -var placeholder= currencyWithoutUnit(getLocale())
+  -var formattedValue= currencyWithoutUnit(getLocale(), trilliumLongTermCareAmount)
 
 block content
 

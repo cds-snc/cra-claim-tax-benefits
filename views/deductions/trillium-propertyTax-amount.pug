@@ -3,8 +3,8 @@ extends ../base
 block variables
   -var title = __('Enter your property tax')
   -var trilliumPropertyTaxAmount = hasData(data, 'deductions.trilliumPropertyTaxAmount') &&  data.deductions.trilliumPropertyTaxAmount !== 0 ? data.deductions.trilliumPropertyTaxAmount : ''
-  -var placeholder= currencyFilter(0, getLocale()).replace('$', '')
-  -var formattedValue= (trilliumPropertyTaxAmount !== '') ? currencyFilter(trilliumPropertyTaxAmount, getLocale()).replace('$', '') : ''
+  -var placeholder= currencyWithoutUnit(getLocale())
+  -var formattedValue= currencyWithoutUnit(getLocale(), trilliumPropertyTaxAmount)
 
 block content
 

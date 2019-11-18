@@ -266,6 +266,10 @@ const hasData = (obj, key, returnVal = false) => {
   return bool
 }
 
+const currencyWithoutUnit = (locale = 'en', amount = 0) => {
+  return (amount !== '') ? currencyFilter(amount, locale).replace('$', '') : ''
+}
+
 const currencyFilter = (number, locale = 'en') => {
 
   const amount = Number(number)
@@ -418,4 +422,5 @@ module.exports = {
   getRouteWithIndexByPath,
   returnToCheckAnswers,
   postAmount,
+  currencyWithoutUnit,
 }

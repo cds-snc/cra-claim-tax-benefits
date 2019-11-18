@@ -6,6 +6,7 @@ const {
   getRouteWithIndexByPath,
   currencyFilter,
   postAmount,
+  currencyWithoutUnit,
 } = require('./index')
 const API = require('./../api')
 
@@ -36,6 +37,41 @@ describe('Test SINFilter', () => {
       expect(SINFilter(values[0])).toEqual(values[1])
     })
   })
+})
+
+describe('Test currencyWithoutUnit', () => {
+  const amounts = [
+    {
+      amount: '25',
+      locale: 'en',
+      expectedResult: '25.00',
+    },
+    {
+      amount: '25',
+      locale: 'fr',
+      expectedResult: '25,00',
+    },
+    {
+      amount: '1200.34',
+      locale: 'en',
+      expectedResult: '1,200.34',
+    },
+    {
+      amount: '1200.34',
+      locale: 'fr',
+      expectedResult: '1 200,34',
+    },
+  ]
+
+  amounts.map( amount => {
+    test(`formatValue returns ${amount.expectedResult}`, () => {
+      expect(currencyWithoutUnit(amount.locale, amount.amount)).toBe(amount.expectedResult)
+    })
+  })
+})
+
+describe('Test currencyWithoutUnit', () => {
+  test('', () => {})
 })
 
 describe('Test currencyFilter', () => {

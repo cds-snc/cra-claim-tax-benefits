@@ -4,8 +4,8 @@ block variables
   -var title = __('Ontario Trillium Benefit amount and payment type')
   -var trilliumAmount = hasData(body, 'trilliumAmount') ? body.trilliumAmount : ''
   -var trilliumPaymentMethod = hasData(body, 'trilliumPaymentMethod') ? body.trilliumPaymentMethod : ''
-  -var placeholder= currencyFilter(0, getLocale()).replace('$', '')
-  -var formattedValue= (trilliumAmount !== '') ? currencyFilter(trilliumAmount, getLocale()).replace('$', '') : ''
+  -var placeholder= currencyWithoutUnit(getLocale())
+  -var formattedValue= currencyWithoutUnit(getLocale(), trilliumAmount)
 
 block content
 

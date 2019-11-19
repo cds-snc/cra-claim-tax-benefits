@@ -8,13 +8,10 @@ block content
 
   h1 #{title}
 
-  div
-    p #{__('Would you like to register to vote in the federal election?')}
-
   form.cra-form(method='post')
     +radiosYesNo('confirmOptIn', 'Would you like to register to vote in the federal election?', confirmOptIn)
 
-    input#redirect(name='redirect', type='hidden', value='/vote/confirmRegistration')
+    input#redirect(name='redirect', type='hidden', value='/checkAnswers')
 
     +formButtons()
 

@@ -15,14 +15,20 @@ block content
     p #{__('If you complete this section, you will be registered to vote until you file your next tax return.')}
     
   form.cra-form(method='post')
-    .multiple-choice.multiple-choice--checkboxes
-      label #{__('Check the boxes if:')}
-      .multiple-choice__item
-        input(id='voterCitizen' name='voterCitizen' type="checkbox"  value="voterCitizen" checked=(voterCitizen =='Yes') aria-describedby=(errors ? `review-error` : false))
-        label(for='review') #{__('You are a Canadian citizen.')}
-      .multiple-choice__item
-        input(id='voterConsent' name='voterConsent' type="checkbox" value="voterConsent" checked=(voterConsent =='Yes') aria-describedby=(errors ? `review-error` : false))
-        label(for='review') #{__('You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.')}
+    div(class={['has-error']: errors && errors[id]})
+      fieldset
+        if attributes && attributes.h2
+          legend
+            h2 #{__('Check the boxes if:')}
+        else
+          legend #{__('Check the boxes if:')}
+        .multiple-choice.multiple-choice--checkboxes
+          .multiple-choice__item
+            input(id='voterCitizen' name='voterCitizen' type="checkbox"  value="voterCitizen" checked=(voterCitizen =='Yes') aria-describedby=(errors ? `voterCitizen` : false))
+            label(for='voterCitizen') #{__('You are a Canadian citizen.')}
+          .multiple-choice__item
+            input(id='voterConsent' name='voterConsent' type="checkbox" value="voterConsent" checked=(voterConsent =='Yes') aria-describedby=(errors ? `voterConsent` : false))
+            label(for='voterConsent') #{__('You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.')}
 
     input#redirect(name='redirect', type='hidden', value='/checkAnswers')
 

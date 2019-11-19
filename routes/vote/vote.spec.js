@@ -23,7 +23,7 @@ describe('Test /vote responses', () => {
     const response = await request(app)
       .post('/vote/optIn')
       .set('Cookie', cookie)
-      .send({ _csrf: csrfToken, confirmOptIn: 'No' })
+      .send({ _csrf: csrfToken, confirmOptIn: 'No', redirect: '/checkAnswers' })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/checkAnswers')
   })
@@ -44,7 +44,7 @@ describe('Test /vote responses', () => {
       .set('Cookie', cookie)
       .send({ _csrf: csrfToken, confirmOptIn: 'Yes', redirect: '/vote/confirmRegistration' })
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toEqual('/vote/confirmRegistration?ref=checkAnswers')
+    expect(response.headers.location).toEqual('/vote/confirmRegistration')
   })
 
   test('it returns a 200 response for /vote/confirmRegistration', async () => {

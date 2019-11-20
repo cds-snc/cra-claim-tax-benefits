@@ -1,0 +1,48 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    SONAR_LOGIN: ctb-secrets-manager:SONARQUBE_TOKEN
+  variables:
+    SONAR_URL: "https://sonarcloud.io"
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region ca-central-1)
+      # Install dependencies needed for running tests 
+      - npm install
+      # Run JS linter
+      - npm run lint
+      # Discover and run unit tests in the 'tests' directory
+      - npm test
+      # Discover and run Cypress end-to-end tests
+      - npm run cypress:cli
+      # Run SonarQube analysis and Check Quality Gate
+      - npm run sonar
+  build:
+    commands:
+      # Docker build
+      - echo Docker build started on `date`
+      - echo Building Docker image...
+      # Build Docker images, Tag latest and create another tag with the commit SHA (commit hash)
+      - docker build -t 252275126679.dkr.ecr.ca-central-1.amazonaws.com/claim-tax-benefits:latest -t 252275126679.dkr.ecr.ca-central-1.amazonaws.com/claim-tax-benefits:$CODEBUILD_RESOLVED_SOURCE_VERSION  --build-arg GITHUB_SHA_ARG=$CODEBUILD_RESOLVED_SOURCE_VERSION .
+      - echo Docker build completed on `date`
+  post_build:
+    commands:
+      - echo Pushing new Docker image to AWS ECR...
+      - docker push 252275126679.dkr.ecr.ca-central-1.amazonaws.com/claim-tax-benefits
+      - printf '[{"name":"%s","imageUri":"%s"}]' ctb-app 252275126679.dkr.ecr.ca-central-1.amazonaws.com/claim-tax-benefits:latest > imagedefinitions.json
+artifacts:
+  type: zip
+  files:
+    - README.md
+    - package.json
+    - app.js
+    - node_modules/**/*
+    - public/**/*
+    - sonar-project.properties
+    - imagedefinitions.json

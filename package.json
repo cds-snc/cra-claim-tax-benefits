@@ -37,7 +37,7 @@
     "cypress": "start-server-and-test start:cypress http://localhost:3005 cypress:open",
     "cypress:run": "node ./node_modules/.bin/cypress run",
     "cypress:cli": "start-server-and-test start:cypress http://localhost:3005 cypress:run",
-    "sonar": "sonar-scanner"
+    "sonar": "sonarqube-verify"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
@@ -75,7 +75,7 @@
     "jest": "^24.9.0",
     "jest-sonar-reporter": "^2.0.0",
     "nodemon": "^1.19.4",
-    "sonarqube-scanner": "^2.5.0",
+    "sonarqube-verify": "^1.0.2",
     "start-server-and-test": "^1.10.6",
     "supertest": "^4.0.2",
     "supertest-session": "^4.0.0"

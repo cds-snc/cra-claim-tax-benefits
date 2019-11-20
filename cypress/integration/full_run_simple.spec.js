@@ -20,7 +20,7 @@ describe('Full run through', function() {
   it('successfully loads the home page', function() {
     // START PAGE
     cy.checkA11y()
-    cy.get('h1').should('contain', 'Claim benefits by filing taxes')
+    cy.get('h1').should('contain', 'Claim Tax Benefits')
     cy.get('main a')
       .should('contain', 'Start now')
       .click()

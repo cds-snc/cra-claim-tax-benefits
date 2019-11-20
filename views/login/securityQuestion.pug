@@ -10,15 +10,15 @@ block content
   h1 #{title}
 
   form.cra-form.cra-form--lg(method='post')
-    +radios('securityQuestion', 'Answer a question from this list to get your notice of assessment immediately after you file with this service:', null,[
+    +radios('securityQuestion', 'Answer a question from this list to get your notice of assessment immediately after you file with this service:', securityQuestion,[
       {value: "/login/questions/child", label: "Your child’s name and birthdate"},
       {value: "/login/questions/addresses", label: "Your last two mailing addresses before your current address"},
       {value: "/login/questions/bank", label: "Your bank or credit union account information"},
-      {value: "/login/questions/taxReturn", label: "Your total income reported on a previous tax return"},  
+      {value: "/login/questions/taxReturn", label: "Your total income reported on a previous tax return"},
       {value: "/checkAnswers", label: "Skip security questions"}
     ])
 
     +banner('blue')
       p #{__('If you skip these questions, you will wait about 8 weeks to get a notice of assessment.')}
-    
+
     +formButtons('Continue', '/login/securityQuestion2', "Show different questions")

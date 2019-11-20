@@ -47,6 +47,10 @@
   }
 }
 
+.start-button {
+  margin: $space-lg 0 $space-xxl 0;
+}
+
 .cra-form button {
   @extend %button-styles;
   font-family: 'Noto Sans', sans-serif;

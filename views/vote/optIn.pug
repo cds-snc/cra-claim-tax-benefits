@@ -1,0 +1,17 @@
+extends ../base
+
+block variables
+  -var title = __('Register to vote')
+  -var confirmOptIn = !hasData(data, 'vote.confirmOptIn') ? '' : data.vote.confirmOptIn
+
+block content
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('confirmOptIn', 'Would you like to register to vote in the federal election?', confirmOptIn)
+
+    input#redirect(name='redirect', type='hidden', value='/checkAnswers')
+
+    +formButtons()
+

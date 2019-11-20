@@ -104,6 +104,28 @@ const answerInfo = [
       },
     ],
   },
+  {
+    'sectionTitle': 'Voter Registration',
+    'sectionRows': [
+      {
+        'text': 'Registered to vote',
+        'infoPath': ['vote.confirmOptIn'],
+        'urlPath': '/vote/optIn',
+      },
+      {
+        'text': 'Canadian citizen',
+        'infoPath': ['vote.voterCitizen'],
+        'urlPath': '/vote/confirmRegistration',
+        'displayIf': 'vote.confirmOptIn',
+      },
+      {
+        'text': 'Elections Canada will update voter record',
+        'infoPath': ['vote.voterConsent'],
+        'urlPath': '/vote/confirmRegistration',
+        'displayIf': 'vote.confirmOptIn',
+      },
+    ],
+  },
 ]
 
 module.exports = {

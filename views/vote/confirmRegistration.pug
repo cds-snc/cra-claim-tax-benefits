@@ -1,4 +1,5 @@
 extends ../base
+include ../_includes/banner
 
 block variables
   -var title = __('Register to vote')
@@ -8,11 +9,14 @@ block variables
 block content
 
   h1 #{title}
+
+  +banner('blue')
+    p #{__('You cannot register to vote unless you are able to check both boxes.')}
   
   div
     p #{__('The Canada Elections Act gives rules about elections and voter information. Provincial and territorial governments, members of Parliament, registered political parties, and candidates at election time can have your voter information.')}
 
-    p #{__('If you complete this section, you will be registered to vote until you file your next tax return.')}
+    p #{__('If you are able to check both boxes, Elections Canada will put you on the voter’s list until you file taxes again.')}
     
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors[id]})

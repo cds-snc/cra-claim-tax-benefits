@@ -5,20 +5,31 @@ block content
 
   h1 #{__('service.name')}
 
-  +banner('blue')
-    p #{__('start.banner.1')} <i>#{__('service.name')}</i>#{__('start.banner.2')}#{__('start.banner.3')}
-
   div
     p #{__('start.p1')}
+    p #{__('start.p2.1')} <strong>#{__('start.p2.2')}</strong>#{__('start.p2.3')}
     ul
       li #{__('start.li1')}
       li #{__('start.li2')}
       li #{__('start.li3')}
-    p #{__('start.p2')}
+    p #{__('start.p3.1')} <strong>#{__('start.p3.2')}</strong>#{__('start.p3.3')}
+
+    .start-button
+      a(href='/login/code' role='button' draggable='false') #{__('button.start')} <span aria-hidden="true">→</span>
+
+    h2 #{__('start.h2-1')}
+
+    p #{__('start.p4')}
+
     ul
-      li #{__('start.li4.1')} <i>#{__('service.name')}</i>#{__('start.li4.2')}
+      li #{__('start.li4.1')} <i>"#{__('service.name')}"</i>
       li #{__('start.li5')}
       li #{__('start.li6')}
 
-  div
-    a(href='/login/code' role='button' draggable='false') #{__('button.start')} <span aria-hidden="true">→</span>
+    p #{__('start.p5')}
+
+    h2 #{__('start.h2-2')}
+
+    p #{__('start.p6')}
+
+    include ../_includes/phone-bullets

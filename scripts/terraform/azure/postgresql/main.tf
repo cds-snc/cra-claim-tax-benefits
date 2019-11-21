@@ -3,12 +3,12 @@ resource "random_password" "password" {
   special = false
 }
 
-resource "azurerm_postgresql_server" "postgres" {
+resource "azurerm_postgresql_server" "main" {
   lifecycle {
     prevent_destroy = true
   }
 
-  name                = var.name
+  name                = var.server_name
   location            = var.location
   resource_group_name = var.resource_group_name
   tags                = var.tags
@@ -34,5 +34,16 @@ resource "azurerm_postgresql_server" "postgres" {
 
   depends_on = [
     random_password.password
+  ]
+}
+
+resource "azurerm_postgresql_database" "main" {
+  name                = var.database_name
+  resource_group_name = var.resource_group_name
+  server_name         = "${azurerm_postgresql_server.main.name}"
+  charset             = "UTF8"
+  collation           = "English_United States.1252"
+    depends_on = [
+    azurerm_postgresql_server.main
   ]
 }

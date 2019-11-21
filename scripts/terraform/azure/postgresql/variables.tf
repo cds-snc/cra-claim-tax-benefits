@@ -1,4 +1,9 @@
-variable "name" {
+variable "server_name" {
+  description = "Database server name"
+  default = "claim-tax-benefits-pg"
+}
+
+variable "database_name" {
   description = "Database name"
   default = "claim-tax-benefits-db"
 }

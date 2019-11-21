@@ -1,9 +1,9 @@
 output "id" {
   description = "ID of Postgresql server"
-  value       = azurerm_postgresql_server.postgres.id
+  value       = azurerm_postgresql_server.main.id
 }
 
 output "name" {
   description = "Name of Postgresql server"
-  value       = azurerm_postgresql_server.postgres.name
+  value       = azurerm_postgresql_server.main.name
 }

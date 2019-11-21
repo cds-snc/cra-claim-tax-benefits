@@ -24,6 +24,7 @@ describe('Test /login responses', () => {
     '/login/questions/addresses',
     '/login/questions/bankruptcy',
     '/login/questions/dateOfResidence',
+    '/login/questions/bank',
   ]
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
@@ -837,3 +838,104 @@ describe('Test /login/questions/addresses responses', () => {
     expect(response.headers.location).toEqual('/personal/name')
   })
 })
+
+describe('Test /login/questions/bank responses', () => {
+  beforeEach(async () => {
+    const testSession = session(app)
+    const getresp = await testSession.get('/login/questions/addresses')
+    cookie = getresp.headers['set-cookie']
+    csrfToken = extractCsrfToken(getresp)
+  })
+
+  let goodRequest = {
+    branchNumber: '12345',
+    institutionNumber: '123',
+    accountNumber: '111222333444',
+  }
+
+  const badRequests = [
+    {
+      label: 'no branchNumber',
+      firstErrorId: '#branchNumber',
+      send: {
+        ...goodRequest,
+        ...{ branchNumber: '' },
+      },
+    },
+    {
+      label: 'bad branchNumber',
+      firstErrorId: '#branchNumber',
+      send: {
+        ...goodRequest,
+        // wrong number of chars (needs 5)
+        ...{ branchNumber: '1' },
+      },
+    },
+    {
+      label: 'no institutionNumber',
+      firstErrorId: '#institutionNumber',
+      send: {
+        ...goodRequest,
+        ...{ institutionNumber: '' },
+      },
+    },
+    {
+      label: 'bad institutionNumber',
+      firstErrorId: '#institutionNumber',
+      send: {
+        ...goodRequest,
+        // wrong number of chars (needs 3)
+        ...{ institutionNumber: '1' },
+      },
+    },
+    {
+      label: 'no accountNumber',
+      firstErrorId: '#accountNumber',
+      send: {
+        ...goodRequest,
+        ...{ accountNumber: '' },
+      },
+    },
+    {
+      label: 'bad accountNumber',
+      firstErrorId: '#accountNumber',
+      send: {
+        ...goodRequest,
+        // wrong number of chars (needs 12)
+        ...{ accountNumber: '1' },
+      },
+    },
+  ]
+
+  badRequests.map(badRequest => {
+    test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+      const response = await request(app)
+        .post('/login/questions/bank')
+        .set('Cookie', cookie)
+        .send({ ...badRequest.send, _csrf: csrfToken })
+
+      const $ = cheerio.load(response.text)
+      expect(
+        $('.error-list__link')
+          .first()
+          .attr('href'),
+      ).toEqual(badRequest.firstErrorId)
+      expect(response.statusCode).toBe(422)
+    })
+  })
+
+  test('it returns a 302 for a good request', async () => {
+    const response = await request(app)
+      .post('/login/questions/bank')
+      .set('Cookie', cookie)
+      .send({ ...goodRequest, redirect: '/personal/name', _csrf: csrfToken })
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toEqual('/personal/name')
+  })
+})
+
+// bank questions
+// test for a good response
+// test empty
+// test bad numbers
+// test wrong lengths

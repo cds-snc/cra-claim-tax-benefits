@@ -282,6 +282,39 @@ const prisonSchema = {
   },
 }
 
+const bankSchema = {
+  branchNumber: {
+    isLength: {
+      errorMessage: 'errors.login.bank.branchLength',
+      options: { min: 5, max: 5 },
+    },
+    isInt: {
+      errorMessage: 'errors.login.bank.validBranch',
+      options: { min: 1, max: 99999 },
+    },
+  },
+  institutionNumber: {
+    isLength: {
+      errorMessage: 'errors.login.bank.institutionLength',
+      options: { min: 3, max: 3 },
+    },
+    isInt: {
+      errorMessage: 'errors.login.bank.validInstitution',
+      options: { min: 1, max: 999 },
+    },
+  },
+  accountNumber: {
+    isLength: {
+      errorMessage: 'errors.login.bank.accountLength',
+      options: { min: 12, max: 12 },
+    },
+    isInt: {
+      errorMessage: 'errors.login.bank.validAccount',
+      options: { min: 1, max: 999999999999 },
+    },
+  },
+}
+
 module.exports = {
   loginSchema,
   dobSchema,
@@ -293,6 +326,7 @@ module.exports = {
   trilliumAmountSchema,
   addressesSchema,
   prisonSchema,
+  bankSchema,
   _toISOFormat,
   _getSinErrorMessage,
 }

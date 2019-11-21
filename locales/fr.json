@@ -18,6 +18,12 @@
   "errors.login.trusteeLastName": "Veuillez écrire le nom de famille de votre syndic de faillite",
   "errors.login.prisonDate": "Veuillez choisir l'une des deux options",
   "errors.address.streetAddress.empty": "Le nom de la rue doit être inscrit",
+  "errors.login.bank.validBranch": "Votre numéro de succursale ne devrait contenir que des chiffres",
+  "errors.login.bank.validInstitution": "Votre numéro d'institution ne doit contenir que des chiffres",
+  "errors.login.bank.validAccount": "Votre numéro de compte ne doit contenir que des chiffres",
+  "errors.login.bank.branchLength": "Votre numéro de succursale devrait comporter 5 chiffres",
+  "errors.login.bank.institutionLength": "Votre numéro d'institution doit comporter 3 chiffres",
+  "errors.login.bank.accountLength": "Votre numéro de compte doit comporter 12 chiffres",
   "errors.address.city.empty": "La ville doit être inscrite",
   "errors.address.postalCode.empty": "Le code postal doit être inscrit",
   "errors.address.postalCode.format": "Le format du code postal est incorrect",
@@ -446,5 +452,13 @@
   "Rent paid": "Loyer payé",
   "Did you have home energy costs on a reserve?": "Avez-vous eu des coûts d'énergie domiciliaire dans une réserve?",
   "Yearly energy costs on a reserve": "Coûts d'énergie annuels dans une réserve",
-  "Public or non-profit long-term care home?": "Foyer de soins de longue durée public ou à but non lucratif?"
+  "Public or non-profit long-term care home?": "Foyer de soins de longue durée public ou à but non lucratif?",
+  "Enter your account information from a bank or credit union": "Entrez les renseignements de votre compte de banque ou de caisse populaire",
+  "You must have used this account with CRA. Choose a different question if CRA does not have your account information.": "Vous devez avoir utilisé votre compte par le passé pour vos transactions avec l’ARC. Choisissez une question différente si l’ARC n’a pas vos renseignements bancaires.",
+  "Branch number": "Numéro de succursale",
+  "5 digits": "5 chiffres",
+  "Institution number": "Numéro d’institution",
+  "3 digits": "3 chiffres",
+  "Account number": "Numéro de compte",
+  "12 digits": "Jusqu’à 12 chiffres"
 }

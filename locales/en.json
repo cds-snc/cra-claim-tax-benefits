@@ -17,6 +17,12 @@
   "errors.login.paymentMethod": "Please choose how you receive your payments",
   "errors.login.trusteeLastName": "Please enter your trustee's last name",
   "errors.login.prisonDate": "Please select which date you are providing",
+  "errors.login.bank.branchLength": "Your branch number should be 5 digits long",
+  "errors.login.bank.institutionLength": "Your institution number should be 3 digits long",
+  "errors.login.bank.accountLength": "Your account number should be 12 digits long",
+  "errors.login.bank.validBranch": "Your branch number should only contain digits",
+  "errors.login.bank.validInstitution": "Your institution number should only contain digits",
+  "errors.login.bank.validAccount": "Your account number should only contain digits",
   "errors.address.streetAddress.empty": "Street address can’t be empty",
   "errors.address.city.empty": "City can’t be empty",
   "errors.address.postalCode.empty": "Postal code can’t be empty",
@@ -481,5 +487,13 @@
   "Registered to vote": "Registered to vote",
   "Would you like to register to vote in the federal election?": "Would you like to register to vote in the federal election?",
   "Canadian citizen": "Canadian citizen",
-  "Elections Canada will update voter record": "Elections Canada will update voter record"
+  "Elections Canada will update voter record": "Elections Canada will update voter record",
+  "Enter your account information from a bank or credit union": "Enter your account information from a bank or credit union",
+  "You must have used this account with CRA. Choose a different question if CRA does not have your account information.": "You must have used this account with CRA. Choose a different question if CRA does not have your account information.",
+  "Branch number": "Branch number",
+  "5 digits": "5 digits",
+  "Institution number": "Institution number",
+  "3 digits": "3 digits",
+  "Account number": "Account number",
+  "12 digits": "12 digits"
 }

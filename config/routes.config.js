@@ -6,6 +6,7 @@ const securityQuestionUrls = [
   '/login/questions/dateOfResidence',
   '/login/questions/bankruptcy',
   '/login/questions/trillium',
+  '/login/questions/bank',
   // TODO: remove this
   '/login/questions/temp',
 ]

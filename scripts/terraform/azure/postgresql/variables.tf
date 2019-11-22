@@ -15,11 +15,12 @@ variable "resource_group_name" {
 
 variable "location" {
   description = "The location/region where the core network will be created. The full list of Azure regions can be found at https://azure.microsoft.com/regions"
-  default = "canada central"
+  default = "canadacentral"
 }
 
-variable "username" {
-  default = "ctb"
+variable "admin_username" {
+  description = "The database server admin login name"
+  default = "ctb_admin"
 }
 
 variable "pg_version" {
@@ -63,4 +64,3 @@ variable "tags" {
     provisioner = "terraform"
   }
 }
-

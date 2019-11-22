@@ -5,7 +5,7 @@ const {
   getAddress,
 } = require('../utils.js')
 
-describe('Full run through saying "no" to everything', function() {
+describe('Full run through saying "yes" to everything', function() {
   before(function() {
     cy.visit('/clear')
     cy.visit('/')
@@ -97,7 +97,18 @@ describe('Full run through saying "no" to everything', function() {
     cy.confirm({
       url: '/trillium/rent',
       h1: 'Rent',
-      id: 'trilliumRentClaim1', // click No
+      id: 'trilliumRentClaim0', // click Yes
+    })
+
+    cy.continue()
+  })
+
+  //TRILLIUM RENT AMOUNT
+  it('navigates the Trillium Rent AMOUNT page', function() {
+    cy.amount({
+      url: '/trillium/rent/amount',
+      h1: 'Enter your rent',
+      id: 'trilliumRentAmount',
     })
 
     cy.continue()
@@ -108,7 +119,18 @@ describe('Full run through saying "no" to everything', function() {
     cy.confirm({
       url: '/trillium/propertyTax',
       h1: 'Property tax',
-      id: 'trilliumPropertyTaxClaim1', // click No
+      id: 'trilliumPropertyTaxClaim0', // click Yes
+    })
+
+    cy.continue()
+  })
+
+  //TRILLIUM PROPERTY TAX AMOUNT
+  it('navigates the Property Tax AMOUNT page', function() {
+    cy.amount({
+      url: '/trillium/propertyTax/amount',
+      h1: 'Enter your property tax',
+      id: 'trilliumPropertyTaxAmount',
     })
 
     cy.continue()
@@ -119,7 +141,7 @@ describe('Full run through saying "no" to everything', function() {
     cy.confirm({
       url: '/trillium/studentResidence',
       h1: 'Student residence',
-      id: 'trilliumStudentResidence1', // click No
+      id: 'trilliumStudentResidence0', // click Yes
     })
 
     cy.continue()
@@ -130,7 +152,29 @@ describe('Full run through saying "no" to everything', function() {
     cy.confirm({
       url: '/trillium/energy/reserve',
       h1: 'Home on reserve',
-      id: 'trilliumEnergyReserveClaim1', // click No
+      id: 'trilliumEnergyReserveClaim0', // click Yes
+    })
+
+    cy.continue()
+  })
+
+  //TRILLIUM HOME ENERGY COST
+  it('navigates the Trillium Home Energy Cost page', function() {
+    cy.confirm({
+      url: '/trillium/energy/cost',
+      h1: 'Home energy costs on reserve',
+      id: 'trilliumEnergyCostClaim0', // click Yes
+    })
+
+    cy.continue()
+  })
+
+  //TRILLIUM HOME ENERGY COST AMOUNT
+  it('navigates the Trillium Home Energy Cost AMOUNT page', function() {
+    cy.amount({
+      url: '/trillium/energy/cost/amount',
+      h1: 'Enter your home energy costs',
+      id: 'trilliumEnergyAmount',
     })
 
     cy.continue()
@@ -141,7 +185,29 @@ describe('Full run through saying "no" to everything', function() {
     cy.confirm({
       url: '/trillium/longTermCare',
       h1: 'Long-term care home',
-      id: 'trilliumLongTermCareClaim1', // click No
+      id: 'trilliumLongTermCareClaim0', // click Yes
+    })
+
+    cy.continue()
+  })
+
+  //TRILLIUM LONG TERM CARE TYPE
+  it('navigates the Trillium Long Term Care Type page', function() {
+    cy.confirm({
+      url: '/trillium/longTermCare/type',
+      h1: 'Public or non-profit long-term care',
+      id: 'trilliumLongTermCareTypeClaim0', // click Yes
+    })
+
+    cy.continue()
+  })
+
+  //TRILLIUM LONG TERM CARE AMOUNT
+  it('navigates the Trillium Long Term Care AMOUNT page', function() {
+    cy.amount({
+      url: '/trillium/longTermCare/type/amount',
+      h1: 'Enter your long-term care home costs',
+      id: 'trilliumLongTermCareAmount',
     })
 
     cy.continue()
@@ -152,7 +218,7 @@ describe('Full run through saying "no" to everything', function() {
     cy.confirm({
       url: '/deductions/climate-action-incentive',
       h1: 'Small and rural communities',
-      id: 'climateActionIncentiveIsRural1', // click No
+      id: 'climateActionIncentiveIsRural0', // click Yes
     })
 
     cy.continue()
@@ -163,8 +229,22 @@ describe('Full run through saying "no" to everything', function() {
     cy.confirm({
       url: '/vote/optIn',
       h1: 'Register to vote',
-      id: 'confirmOptIn1', // click No
+      id: 'confirmOptIn0', // click Yes
     })
+
+    cy.continue()
+  })
+
+  // VOTER CONFIRMATION
+  it('navigates Voter Confirmation page', function() {
+    cy.url().should('contain', '/vote/confirmRegistration')
+    cy.get('h1').should('contain', 'Register to vote')
+
+    cy.get('input#voterCitizen + label').should('have.attr', 'for', 'voterCitizen')
+    cy.get('input#voterCitizen').click()
+
+    cy.get('input#voterConsent + label').should('have.attr', 'for', 'voterConsent')
+    cy.get('input#voterConsent').click()
 
     cy.continue()
   })
@@ -173,10 +253,9 @@ describe('Full run through saying "no" to everything', function() {
   it('navigates the Check Your Answers page', function() {
     cy.url().should('contain', '/checkAnswers')
     cy.get('h1').should('contain', 'Check your answers before filing')
-    cy.fixture('checkAnswersRows.json').then(rows => {
+    cy.fixture('checkAnswersRowsWithAmounts.json').then(rows => {
       checkTableRows(cy, rows.rows)
     })
-
     cy.get('.buttons-row a')
       .contains('Agree')
       .click()

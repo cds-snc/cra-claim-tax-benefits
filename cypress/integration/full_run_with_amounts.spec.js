@@ -5,7 +5,7 @@ const {
   getAddress,
 } = require('../utils.js')
 
-describe('Full run through', function() {
+describe('Full run through saying "yes" to everything', function() {
   before(function() {
     cy.visit('/clear')
     cy.visit('/')

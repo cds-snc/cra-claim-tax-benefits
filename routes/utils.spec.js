@@ -1,8 +1,16 @@
 const cheerio = require('cheerio')
+const request = require('supertest')
+const app = require('../app.js')
 
 const extractCsrfToken = res => {
   var $ = cheerio.load(res.text)
   return $('[name=_csrf]').val()
+}
+
+const withCSRF = (_cookie, _csrf) => {
+  return request => {
+    request.set('Cookie', _cookie).send({ _csrf })
+  }
 }
 
 describe('Test extractCsrfToken', () => {
@@ -28,4 +36,15 @@ describe('Test extractCsrfToken', () => {
   })
 })
 
-module.exports = { extractCsrfToken }
+describe('Test withCSRF', () => {
+  test('sets cookie and sends data correctly', async () => {
+    const response = await request(app)
+      .get('/start')
+      .use(withCSRF('TestCookie', 'TestToken'))
+
+    expect(response.request.header).toMatchObject({ Cookie: 'TestCookie' })
+    expect(response.request._data).toEqual({ _csrf: 'TestToken' })
+  })
+})
+
+module.exports = { extractCsrfToken, withCSRF }

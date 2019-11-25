@@ -1,6 +1,6 @@
 const request = require('supertest')
 const app = require('../../app.js')
-const { extractCsrfToken } = require('../utils.spec')
+const { extractCsrfToken, withCSRF } = require('../utils.spec')
 
 describe('Test /vote responses', () => {
   const session = require('supertest-session')
@@ -22,8 +22,8 @@ describe('Test /vote responses', () => {
   test('it returns a 302 and redirects to /checkAnswers when NO is selected', async () => {
     const response = await request(app)
       .post('/vote/optIn')
-      .set('Cookie', cookie)
-      .send({ _csrf: csrfToken, confirmOptIn: 'No', redirect: '/checkAnswers' })
+      .use(withCSRF(cookie, csrfToken))
+      .send({ confirmOptIn: 'No', redirect: '/checkAnswers' })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/checkAnswers')
   })
@@ -31,8 +31,8 @@ describe('Test /vote responses', () => {
   test('it returns a 302 and redirects to /vote/confirmRegistration when YES is selected', async () => {
     const response = await request(app)
       .post('/vote/optIn')
-      .set('Cookie', cookie)
-      .send({ _csrf: csrfToken, confirmOptIn: 'Yes', redirect: '/vote/confirmRegistration' })
+      .use(withCSRF(cookie, csrfToken))
+      .send({ confirmOptIn: 'Yes', redirect: '/vote/confirmRegistration' })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/vote/confirmRegistration')
   })
@@ -41,8 +41,8 @@ describe('Test /vote responses', () => {
     const response = await request(app)
       .post('/vote/optIn')
       .query({ ref: 'checkAnswers' })
-      .set('Cookie', cookie)
-      .send({ _csrf: csrfToken, confirmOptIn: 'Yes', redirect: '/vote/confirmRegistration' })
+      .use(withCSRF(cookie, csrfToken))
+      .send({ confirmOptIn: 'Yes', redirect: '/vote/confirmRegistration' })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/vote/confirmRegistration')
   })
@@ -55,8 +55,8 @@ describe('Test /vote responses', () => {
   test('it returns a 302 and redirects to /checkAnswers when submitted', async () => {
     const response = await request(app)
       .post('/vote/confirmRegistration')
-      .set('Cookie', cookie)
-      .send({ _csrf: csrfToken, redirect: '/checkAnswers' })
+      .use(withCSRF(cookie, csrfToken))
+      .send({ redirect: '/checkAnswers' })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/checkAnswers')
   })
@@ -64,8 +64,12 @@ describe('Test /vote responses', () => {
   test('it returns a 302 and redirects to /checkAnswers when submitted with data', async () => {
     const response = await request(app)
       .post('/vote/confirmRegistration')
-      .set('Cookie', cookie)
-      .send({ _csrf: csrfToken, voterCitizen: 'voterCitizen', voterConsent: 'voterConsent', redirect: '/checkAnswers' })
+      .use(withCSRF(cookie, csrfToken))
+      .send({
+        voterCitizen: 'voterCitizen',
+        voterConsent: 'voterConsent',
+        redirect: '/checkAnswers',
+      })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/checkAnswers')
   })

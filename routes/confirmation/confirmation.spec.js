@@ -1,5 +1,5 @@
 const request = require('supertest')
-const { extractCsrfToken } = require('../utils.spec')
+const { extractCsrfToken, withCSRF } = require('../utils.spec')
 const app = require('../../app.js')
 
 describe('Test confirmation urls', () => {
@@ -29,40 +29,39 @@ describe('Test /review', () => {
     test('it returns a 422 response if no values are posted', async () => {
       const response = await request(app)
         .post('/review')
-        .set('Cookie', cookie)
-        .send({ _csrf: csrfToken })
+        .use(withCSRF(cookie, csrfToken))
       expect(response.statusCode).toBe(422)
     })
 
     test('it returns a 422 response for no posted value', async () => {
       const response = await request(app)
         .post('/review')
-        .set('Cookie', cookie)
-        .send({ _csrf: csrfToken, redirect: '/confirmation' })
+        .use(withCSRF(cookie, csrfToken))
+        .send({ redirect: '/confirmation' })
       expect(response.statusCode).toBe(422)
     })
 
     test('it returns a 500 response if no redirect is provided', async () => {
       const response = await request(app)
         .post('/review')
-        .set('Cookie', cookie)
-        .send({ _csrf: csrfToken, review: 'review' })
+        .use(withCSRF(cookie, csrfToken))
+        .send({ review: 'review' })
       expect(response.statusCode).toBe(500)
     })
 
     test('it returns a 422 response for the wrong value', async () => {
       const response = await request(app)
         .post('/review')
-        .set('Cookie', cookie)
-        .send({ _csrf: csrfToken, review: 'get er done', redirect: '/confirmation' })
+        .use(withCSRF(cookie, csrfToken))
+        .send({ review: 'get er done', redirect: '/confirmation' })
       expect(response.statusCode).toBe(422)
     })
 
     test('it returns a 302 response for the right value', async () => {
       const response = await request(app)
         .post('/review')
-        .set('Cookie', cookie)
-        .send({ _csrf: csrfToken, review: 'review', redirect: '/confirmation' })
+        .use(withCSRF(cookie, csrfToken))
+        .send({ review: 'review', redirect: '/confirmation' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/confirmation')
     })

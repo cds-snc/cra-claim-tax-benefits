@@ -17,6 +17,7 @@ const {
   bankruptcySchema,
   trilliumAmountSchema,
   bankSchema,
+  taxReturnSchema,
   addressesSchema,
   prisonSchema,
 } = require('./../../schemas')
@@ -111,6 +112,14 @@ module.exports = function(app) {
     '/login/questions/bank',
     checkSchema(bankSchema),
     checkErrors('login/questions/bank'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/taxReturn', renderWithData('login/questions/taxReturn'))
+  app.post(
+    '/login/questions/taxReturn',
+    checkSchema(taxReturnSchema),
+    checkErrors('login/questions/taxReturn'),
     doRedirect,
   )
 

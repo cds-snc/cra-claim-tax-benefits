@@ -924,8 +924,77 @@ describe('Test /login/questions/bank responses', () => {
   })
 })
 
-// bank questions
-// test for a good response
-// test empty
-// test bad numbers
-// test wrong lengths
+describe('Test /login/questions/taxReturn responses', () => {
+  beforeEach(async () => {
+    const testSession = session(app)
+    const getresp = await testSession.get('/login/questions/taxReturn')
+    cookie = getresp.headers['set-cookie']
+    csrfToken = extractCsrfToken(getresp)
+  })
+
+  let goodRequest = {
+    taxReturnYear: '2018',
+    taxReturnAmount: '10000',
+  }
+
+  const badRequests = [
+    {
+      label: 'no taxReturnYear',
+      firstErrorId: '#taxReturnYear',
+      send: {
+        ...goodRequest,
+        ...{ taxReturnYear: '' },
+      },
+    },
+    {
+      label: 'bad taxReturnYear',
+      firstErrorId: '#taxReturnYear',
+      send: {
+        ...goodRequest,
+        ...{ taxReturnYear: '20' },
+      },
+    },
+    {
+      label: 'no taxReturnAmount',
+      firstErrorId: '#taxReturnAmount',
+      send: {
+        ...goodRequest,
+        ...{ taxReturnAmount: '' },
+      },
+    },
+    {
+      label: 'bad taxReturnAmount',
+      firstErrorId: '#taxReturnAmount',
+      send: {
+        ...goodRequest,
+        ...{ taxReturnAmount: 'abcd' },
+      },
+    },
+  ]
+
+  badRequests.map(badRequest => {
+    test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+      const response = await request(app)
+        .post('/login/questions/taxReturn')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ ...badRequest.send })
+
+      const $ = cheerio.load(response.text)
+      expect(
+        $('.error-list__link')
+          .first()
+          .attr('href'),
+      ).toEqual(badRequest.firstErrorId)
+      expect(response.statusCode).toBe(422)
+    })
+  })
+
+  test('it returns a 302 for a good request', async () => {
+    const response = await request(app)
+      .post('/login/questions/taxReturn')
+      .use(withCSRF(cookie, csrfToken))
+      .send({ ...goodRequest, redirect: '/personal/name' })
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toEqual('/personal/name')
+  })
+})

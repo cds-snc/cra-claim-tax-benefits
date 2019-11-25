@@ -23,6 +23,8 @@
   "errors.login.bank.validBranch": "Your branch number should only contain digits",
   "errors.login.bank.validInstitution": "Your institution number should only contain digits",
   "errors.login.bank.validAccount": "Your account number should only contain digits",
+  "errors.login.taxReturn.validYear": "You must select a valid year that you recently filed",
+  "errors.login.taxReturn.currency": "This should be a number value > 0",
   "errors.address.streetAddress.empty": "Street address can’t be empty",
   "errors.address.city.empty": "City can’t be empty",
   "errors.address.postalCode.empty": "Postal code can’t be empty",
@@ -496,5 +498,8 @@
   "3 digits": "3 digits",
   "Account number": "Account number",
   "12 digits": "12 digits",
-  "Did you have home energy costs on a reserve?": "Did you have home energy costs on a reserve?"
+  "Did you have home energy costs on a reserve?": "Did you have home energy costs on a reserve?",
+  "Check your papers from any year you filed taxes": "Check your papers from any year you filed taxes",
+  "Enter year of tax filing": "Enter year of tax filing",
+  "Enter your total income on line 101 for that year:": "Enter your total income on line 101 for that year:"
 }

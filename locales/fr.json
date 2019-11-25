@@ -24,6 +24,8 @@
   "errors.login.bank.branchLength": "Votre numéro de succursale devrait comporter 5 chiffres",
   "errors.login.bank.institutionLength": "Votre numéro d'institution doit comporter 3 chiffres",
   "errors.login.bank.accountLength": "Votre numéro de compte doit comporter 12 chiffres",
+  "errors.login.taxReturn.validYear": "Vous devez sélectionner une année valide",
+  "errors.login.taxReturn.currency": "Cela devrait être une valeur numérique > 0",
   "errors.address.city.empty": "La ville doit être inscrite",
   "errors.address.postalCode.empty": "Le code postal doit être inscrit",
   "errors.address.postalCode.format": "Le format du code postal est incorrect",
@@ -460,5 +462,8 @@
   "Institution number": "Numéro d’institution",
   "3 digits": "3 chiffres",
   "Account number": "Numéro de compte",
-  "12 digits": "Jusqu’à 12 chiffres"
+  "12 digits": "Jusqu’à 12 chiffres",
+  "Check your papers from any year you filed taxes": "Examinez l’une de vos déclarations de revenus d’une année passée",
+  "Enter year of tax filing": "Entrez l’année où vous avez produit la déclaration :",
+  "Enter your total income on line 101 for that year:": "Entrez le revenu total (ligne 101) de cette déclaration :"
 }

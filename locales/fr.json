@@ -465,5 +465,14 @@
   "12 digits": "Jusqu’à 12 chiffres",
   "Check your papers from any year you filed taxes": "Examinez l’une de vos déclarations de revenus d’une année passée",
   "Enter year of tax filing": "Entrez l’année où vous avez produit la déclaration :",
-  "Enter your total income on line 101 for that year:": "Entrez le revenu total (ligne 101) de cette déclaration :"
+  "Enter your total income on line 101 for that year:": "Entrez le revenu total (ligne 101) de cette déclaration :",
+  "Vote in the federal election": "Vote in the federal election",
+  "Would you like to vote in the federal election?": "Would you like to vote in the federal election?",
+  "Register to vote": "Register to vote",
+  "You cannot register to vote unless you are able to check both boxes.": "You cannot register to vote unless you are able to check both boxes.",
+  "The Canada Elections Act gives rules about elections and voter information. Provincial and territorial governments, members of Parliament, registered political parties, and candidates at election time can have your voter information.": "The Canada Elections Act gives rules about elections and voter information. Provincial and territorial governments, members of Parliament, registered political parties, and candidates at election time can have your voter information.",
+  "If you are able to check both boxes, Elections Canada will put you on the voter’s list until you file taxes again.": "If you are able to check both boxes, Elections Canada will put you on the voter’s list until you file taxes again.",
+  "Check the boxes if:": "Check the boxes if:",
+  "You are a Canadian citizen.": "You are a Canadian citizen.",
+  "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.": "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records."
 }

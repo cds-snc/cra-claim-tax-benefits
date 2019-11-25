@@ -228,7 +228,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates Voter Opt In page', function() {
     cy.confirm({
       url: '/vote/optIn',
-      h1: 'Register to vote',
+      h1: 'Vote in the federal election',
       id: 'confirmOptIn0', // click Yes
     })
 

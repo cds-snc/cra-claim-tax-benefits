@@ -1,4 +1,4 @@
-const API = require('./index')
+const { API } = require('./index')
 
 test('returns expected user with correct login.code', () => {
   const user = API.getUser('A5G98S4K1')

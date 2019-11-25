@@ -1,6 +1,6 @@
 const validator = require('validator')
 const { validationResult } = require('express-validator')
-const API = require('./../api')
+const user = require('./../api/user.json')
 const { routes: defaultRoutes } = require('../config/routes.config')
 const cookieConfig = require('../config/cookie.config')
 
@@ -53,6 +53,7 @@ const checkLangQuery = function(req, res, next) {
  */
 const checkPublic = function(req, res, next) {
   const publicPaths = ['/', '/clear', '/start', '/login/code']
+  const loginPaths = ['/login/sin', '/login/dateOfBirth']
   if (publicPaths.includes(req.path)) {
     return next()
   }
@@ -61,13 +62,16 @@ const checkPublic = function(req, res, next) {
   const { login: { code = null } = {} } = req.session
   if (!code) {
     // TODO - error page because code doesn't exist?
-    //const user = API.getUser('A5G98S4K1') // deprecated
     req.session.login = {
-      code: 'A5G98S4K1'
+      code: 'A5G98S4K1',
     }
-
     // setting req.session = {obj} causes an error, so assign the keys one at a time
-    //Object.keys(user).map(key => (req.session[key] = user[key]))
+    if (loginPaths.includes(req.path)) {
+      // create a session but don't add data if we're visiting a login page
+      Object.keys(user).map(key => (req.session[key] = {}))
+    } else {
+      Object.keys(user).map(key => (req.session[key] = user[key]))
+    }
   }
 
   return next()

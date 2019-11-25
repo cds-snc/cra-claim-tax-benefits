@@ -8,7 +8,7 @@ const {
   postAmount,
   currencyWithoutUnit,
 } = require('./index')
-const API = require('./../api')
+const { API } = require('./../api')
 
 const testRoutes = [
   { path: '/start' },

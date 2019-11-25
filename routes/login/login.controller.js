@@ -1,5 +1,4 @@
 const { validationResult, checkSchema } = require('express-validator')
-const request = require('request-promise')
 const {
   errorArray2ErrorObject,
   doRedirect,
@@ -9,6 +8,7 @@ const {
 } = require('./../../utils')
 const {
   loginSchema,
+  _toISOFormat,
   sinSchema,
   dobSchema,
   noticeSchema,
@@ -179,9 +179,10 @@ const postLoginCode = async (req, res, next) => {
     })
   }
 
-
+  // check if code is valid
+  let validCode = DB.validateCode(req.body.code)
   /*
-  TODO: port to the actual DB
+  TODO: port to the actual DB - the function of this code will probably be in the above DB.validateCode
   if (process.env.CTBS_SERVICE_URL && req.body.code) {
     user = await request({
       method: 'GET',
@@ -192,9 +193,6 @@ const postLoginCode = async (req, res, next) => {
     user = API.getUser(req.body.code || null)
   }
   */
-
-  // check if code is valid
-  let validCode = DB.validateCode(req.body.code);
 
   if (!validCode) {
     throw new Error(`[POST ${req.path}] user not found for access code "${req.body.code}"`)
@@ -210,31 +208,61 @@ const postLoginCode = async (req, res, next) => {
 }
 
 const postDateOfBirth = async (req, res, next) => {
-  console.log(req.session)
   const errors = validationResult(req)
 
   // copy all posted parameters, but remove the redirect
   let body = Object.assign({}, req.body)
   delete body.redirect
 
-  console.log(errors)
-
   if (!errors.isEmpty()) {
     let errObj = errorArray2ErrorObject(errors)
 
-    /*
-    We don't want to show the "birthdate doesn't match" error if there
-    are other errors, because it is obvious the birthdate doesn't match if
-    you enter a month of 99.
+    return res.status(422).render('login/dateOfBirth', {
+      prevRoute: getPreviousRoute(req),
+      data: req.session,
+      body,
+      errors: errObj,
+    })
+  }
+  req.session.personal.dateOfBirth = _toISOFormat(req.body)
 
-    If exists more than 1 error, and the match error exists, delete the match error
-    */
-    if (
-      Object.keys(errObj).length > 1 &&
-      errObj.dobDay &&
-      errObj.dobDay.msg === 'errors.login.dateOfBirth.match'
-    ) {
-      delete errObj.dobDay
+  // check access code + SIN + DoB
+  // if session doesn't have a sin, throw error
+  if(!req.session.personal.sin) {
+    // error no sin
+    console.log(req.session)
+    let errObj = {
+      sin: {
+        msg: 'errors.login.matchingSIN',
+      },
+    }
+    return res.status(422).render('login/dateOfBirth', {
+      prevRoute: getPreviousRoute(req),
+      data: req.session,
+      body,
+      errors: errObj,
+    })
+  }
+
+  let login = {
+    code: req.session.login.code,
+    sin: req.session.personal.sin.replace(/\s/g, ''),
+    dateOfBirth: req.session.personal.dateOfBirth,
+  }
+  let validUser = DB.validateUser(login)
+
+  if (validUser) {
+    // populate the rest of the session
+    // populate from user.json for now
+    Object.keys(user).map(key => {
+      req.session[key] = user[key]
+    })
+  } else {
+    // TODO: update error message
+    let errObj = {
+      dateOfBirth: {
+        msg: 'errors.login.dateOfBirth.match',
+      },
     }
 
     return res.status(422).render('login/dateOfBirth', {
@@ -244,18 +272,6 @@ const postDateOfBirth = async (req, res, next) => {
       errors: errObj,
     })
   }
-
-  // check access code + SIN + DoB
-  // construct string
-  let code = ""
-  let validUser = DB.validateUser(code)
-  // populate session
-  if (validUser) {
-    // populate from user.json for now
-    Object.keys(user).map(key => (req.session[key] = user[key]))
-  }
-  // TODO - Else error page - credentials do not match
-  console.log(req.session)
   next()
 }
 

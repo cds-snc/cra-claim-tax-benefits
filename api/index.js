@@ -26,26 +26,26 @@ var DB = (() => {
     code = code.toUpperCase()
 
     // Terrible Non-DB code 
-    let user = false;
-    user = db.find(function(u, i) {
+    let dbUser = false;
+    dbUser = db.find(function(u, i) {
       if(u.code === code)
         return true
     })
 
-    return user
+    return dbUser
   }
 
   const validateUser = (login) => {
     // validates user code / sin / DoB
-    login = login.toUpperCase()
 
-    let user = false
-    user = db.find(function(u,i) {
-      if (u.login === login)
-        return true
+    let dbUser = false
+    dbUser = db.find(function(u,i) {
+      return (login.code.toUpperCase() === u.code) &&
+        (login.sin === u.sin.replace(/\s/g, '')) &&
+        (login.dateOfBirth === u.dateOfBirth)
     })
-
-    return false
+    
+    return dbUser
   }
 
   return {

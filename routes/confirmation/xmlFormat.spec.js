@@ -1,4 +1,4 @@
-const API = require('./../../api')
+const { API } = require('./../../api')
 const { outputXML } = require('./xmlFormat')
 
 const initialSession = API.getUser('A5G98S4K1')

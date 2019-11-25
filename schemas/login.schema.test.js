@@ -43,15 +43,4 @@ describe('Test _getSinErrorMessage', () => {
       expect(_getSinErrorMessage(badLengthSin)).toEqual('errors.login.lengthSIN')
     })
   })
-
-  test('returns error message for a SIN that doesn’t match the expected SIN', () => {
-    expect(_getSinErrorMessage('123 456 789', '111 111 111')).toEqual('errors.login.matchingSIN')
-  })
-
-  const matchingSins = ['123456789', '123 456 789', '123-456-789', '  1-2-3 4 5 6 7_8_9  ']
-  matchingSins.map(matchingSin => {
-    test(`returns no error message for a matching SIN: ${matchingSin}`, () => {
-      expect(_getSinErrorMessage(matchingSin, '123456789')).toBe(false)
-    })
-  })
 })

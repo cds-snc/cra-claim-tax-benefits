@@ -351,9 +351,30 @@ describe('Test /login responses', () => {
     ]
 
     describe('for /login/dateOfBirth', () => {
+      // need an auth session with a code / sin
+      let authSession
+      beforeEach(async () => {
+        authSession = session(app)
+        const getresp = await authSession.get('/login/code')
+        cookie = getresp.headers['set-cookie']
+        csrfToken = extractCsrfToken(getresp)
+
+        const response = await authSession
+          .post('/login/code')
+          .set('Cookie', cookie)
+          .send({ _csrf: csrfToken, code: 'A5G98S4K1', redirect: '/login/sin' })
+          .then(() => {
+            return authSession
+              .post('/login/sin')
+              .set('Cookie', cookie)
+              .send({ _csrf: csrfToken, sin: '847339283', redirect: '/login/dateOfBirth' })
+          })
+        expect(response.statusCode).toBe(302)
+      })
+
       badDoBRequests.map(badRequest => {
         test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-          const response = await request(app)
+          const response = await authSession
             .post('/login/dateOfBirth')
             .use(withCSRF(cookie, csrfToken))
             .send({ ...badRequest.send })
@@ -362,7 +383,7 @@ describe('Test /login responses', () => {
       })
 
       test('it returns a 302 with valid dob', async () => {
-        const response = await request(app)
+        const response = await authSession
           .post('/login/dateOfBirth')
           .use(withCSRF(cookie, csrfToken))
           .send({ ...goodDoBRequest })
@@ -370,7 +391,7 @@ describe('Test /login responses', () => {
       })
 
       test('it returns a 302 with valid dob even with whitespace included', async () => {
-        const response = await request(app)
+        const response = await authSession
           .post('/login/dateOfBirth')
           .use(withCSRF(cookie, csrfToken))
           .send({

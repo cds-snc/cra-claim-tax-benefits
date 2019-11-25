@@ -23,6 +23,8 @@
   "errors.login.bank.validBranch": "Your branch number should only contain digits",
   "errors.login.bank.validInstitution": "Your institution number should only contain digits",
   "errors.login.bank.validAccount": "Your account number should only contain digits",
+  "errors.login.taxReturn.validYear": "errors.login.taxReturn.validYear",
+  "errors.login.taxReturn.currency": "errors.login.taxReturn.currency",
   "errors.address.streetAddress.empty": "Street address can’t be empty",
   "errors.address.city.empty": "City can’t be empty",
   "errors.address.postalCode.empty": "Postal code can’t be empty",
@@ -499,7 +501,5 @@
   "Did you have home energy costs on a reserve?": "Did you have home energy costs on a reserve?",
   "Check your papers from any year you filed taxes": "Check your papers from any year you filed taxes",
   "Enter year of tax filing": "Enter year of tax filing",
-  "Enter your total income on line 101 for that year:": "Enter your total income on line 101 for that year:",
-  "errors.login.taxReturn.validYear": "errors.login.taxReturn.validYear",
-  "errors.login.taxReturn.currency": "errors.login.taxReturn.currency"
+  "Enter your total income on line 101 for that year:": "Enter your total income on line 101 for that year:"
 }

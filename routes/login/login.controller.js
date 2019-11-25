@@ -138,6 +138,8 @@ module.exports = function(app) {
     doRedirect,
   )
 
+  app.get('/login/questions/rrsp', renderWithData('login/questions/rrsp'))
+
   app.get('/login/questions/temp', renderWithData('login/questions/temp'))
 }
 

@@ -8,6 +8,7 @@ const securityQuestionUrls = [
   '/login/questions/trillium',
   '/login/questions/bank',
   '/login/questions/taxReturn',
+  '/login/questions/rrsp',
   // TODO: remove this
   '/login/questions/temp',
 ]

@@ -1,0 +1,18 @@
+extends ../../base
+
+block variables
+  -var title = __('Enter details of your RRSP contribution')
+  -var rrspYear = hasData(body, 'rrspYear') ? body.rrspYear : ''
+  -var rrspAmount = hasData(body, 'rrspAmount') ? body.rrspAmount : ''
+
+block content
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +textInput('Enter any year you contributed to your RRSP')(class='w-1-4' name='rrspYear' value=rrspYear )
+    +textInput('Enter amount contributed in the year you listed above')(class='w-3-5 input-with-unit' name='rrspAmount' placeholder='0.00' aria-labelledby='rrspAmount__unit rrspAmount__label' value=rrspAmount)
+
+    input#redirect(name='redirect', type='hidden', value='/financial/income')
+
+    +formButtons('Continue')

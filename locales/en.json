@@ -506,5 +506,8 @@
   "CRA sends your notice of assessment about 2 weeks after you file taxes.": "CRA sends your notice of assessment about 2 weeks after you file taxes.",
   "You can download the notice immediately after filing by answering security questions. You will be able to print or save the downloaded notice.": "You can download the notice immediately after filing by answering security questions. You will be able to print or save the downloaded notice.",
   "The questions ask for information such as your previous addresses and banking details. You may need to check your records to find the answers.": "The questions ask for information such as your previous addresses and banking details. You may need to check your records to find the answers.",
-  "Do you want to answer security questions?": "Do you want to answer security questions?"
+  "Do you want to answer security questions?": "Do you want to answer security questions?",
+  "Enter details of your RRSP contribution": "Enter details of your RRSP contribution",
+  "Enter any year you contributed to your RRSP": "Enter any year you contributed to your RRSP",
+  "Enter your total income on line 101 for that year": "Enter your total income on line 101 for that year"
 }

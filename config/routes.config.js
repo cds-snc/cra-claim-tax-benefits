@@ -19,6 +19,7 @@ const routes = [
   { path: '/offramp', editInfo: 'skip' },
   { path: '/login/sin' },
   { path: '/login/dateOfBirth' },
+  { path: '/login/notice' },
   { path: '/login/securityQuestion' },
   { path: '/login/questions', options: ['/login/securityQuestion2'] },
   { path: '/login/questions', options: securityQuestionUrls },

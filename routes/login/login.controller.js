@@ -11,6 +11,7 @@ const {
   loginSchema,
   sinSchema,
   dobSchema,
+  noticeSchema,
   securityQuestionSchema,
   childSchema,
   dateOfResidenceSchema,
@@ -37,6 +38,15 @@ module.exports = function(app) {
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
   app.post('/login/dateOfBirth', checkSchema(dobSchema), postDateOfBirth, doRedirect)
+
+  app.get('/login/notice', renderWithData('login/notice'))
+  app.post(
+    '/login/notice',
+    checkSchema(noticeSchema),
+    checkErrors('login/notice'),
+    postNotice,
+    doRedirect,
+  )
 
   // Security question page
   app.get('/login/securityQuestion', renderWithData('login/securityQuestion'))
@@ -203,4 +213,15 @@ const postSecurityQuestion = async (req, res) => {
 
   req.session.login.securityQuestion = url
   return res.redirect(url)
+}
+
+const postNotice = (req, res, next) => {
+  const noticeOfAssessment = req.body.noticeOfAssessment
+
+  if (noticeOfAssessment === 'No') {
+    return res.redirect('/')
+  }
+
+  req.session.login.noticeOfAssessment = true
+  next()
 }

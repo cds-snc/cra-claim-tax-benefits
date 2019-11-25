@@ -13,6 +13,14 @@ describe('Test confirmation urls', () => {
   })
 })
 
+describe('Test /download', () => {
+  test('It returns a 500 response', async () => {
+    const response = await request(app).get('/download')
+    expect(response.statusCode).toBe(500)
+    expect(response.text).toMatch('Download not available')
+  })
+})
+
 describe('Test /review', () => {
   const session = require('supertest-session')
 

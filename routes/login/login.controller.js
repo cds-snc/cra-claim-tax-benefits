@@ -24,7 +24,8 @@ const {
   addressesSchema,
   prisonSchema,
 } = require('./../../schemas')
-const API = require('../../api')
+const { DB } = require('../../api')
+const user = require('../../api/user.json')
 const { securityQuestionUrls } = require('../../config/routes.config')
 
 module.exports = function(app) {
@@ -35,7 +36,14 @@ module.exports = function(app) {
 
   // SIN
   app.get('/login/sin', renderWithData('login/sin'))
-  app.post('/login/sin', checkSchema(sinSchema), checkErrors('login/sin'), doRedirect)
+  app.post('/login/sin',
+    checkSchema(sinSchema),
+    checkErrors('login/sin'),
+    (req, res, next) => {
+      req.session.personal.sin = req.body.sin
+      next()
+    },
+    doRedirect)
 
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
@@ -171,8 +179,9 @@ const postLoginCode = async (req, res, next) => {
     })
   }
 
-  let user
 
+  /*
+  TODO: port to the actual DB
   if (process.env.CTBS_SERVICE_URL && req.body.code) {
     user = await request({
       method: 'GET',
@@ -182,23 +191,33 @@ const postLoginCode = async (req, res, next) => {
   } else {
     user = API.getUser(req.body.code || null)
   }
+  */
 
-  if (!user) {
+  // check if code is valid
+  let validCode = DB.validateCode(req.body.code);
+
+  if (!validCode) {
     throw new Error(`[POST ${req.path}] user not found for access code "${req.body.code}"`)
   }
 
+  // populate the session with empty variables in the format of user.json
   // setting req.session = {obj} causes an error, so assign the keys one at a time
-  Object.keys(user).map(key => (req.session[key] = user[key]))
+  Object.keys(user).map(key => (req.session[key] = {}))
+
+  req.session.login.code = req.body.code
 
   next()
 }
 
 const postDateOfBirth = async (req, res, next) => {
+  console.log(req.session)
   const errors = validationResult(req)
 
   // copy all posted parameters, but remove the redirect
   let body = Object.assign({}, req.body)
   delete body.redirect
+
+  console.log(errors)
 
   if (!errors.isEmpty()) {
     let errObj = errorArray2ErrorObject(errors)
@@ -226,6 +245,17 @@ const postDateOfBirth = async (req, res, next) => {
     })
   }
 
+  // check access code + SIN + DoB
+  // construct string
+  let code = ""
+  let validUser = DB.validateUser(code)
+  // populate session
+  if (validUser) {
+    // populate from user.json for now
+    Object.keys(user).map(key => (req.session[key] = user[key]))
+  }
+  // TODO - Else error page - credentials do not match
+  console.log(req.session)
   next()
 }
 

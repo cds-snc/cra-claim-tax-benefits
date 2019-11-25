@@ -15,7 +15,7 @@ block content
   div
     form.cra-form(method='post')
 
-      +dateInputs('dob', 'Date of birth', data.personal.dateOfBirth, [dobDay, dobMonth, dobYear], true)
+      +dateInputs('dob', 'Date of birth', '1977-09-09', [dobDay, dobMonth, dobYear], true)
 
       input#redirect(name='redirect', type='hidden', value='/personal/name')
 

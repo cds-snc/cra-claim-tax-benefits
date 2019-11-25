@@ -58,12 +58,16 @@ const checkPublic = function(req, res, next) {
   }
 
   // check if user exists in session (ie, by checking for firstName)
-  const { personal: { firstName = null } = {} } = req.session
-  if (!firstName) {
-    const user = API.getUser('A5G98S4K1')
+  const { login: { code = null } = {} } = req.session
+  if (!code) {
+    // TODO - error page because code doesn't exist?
+    //const user = API.getUser('A5G98S4K1') // deprecated
+    req.session.login = {
+      code: 'A5G98S4K1'
+    }
 
     // setting req.session = {obj} causes an error, so assign the keys one at a time
-    Object.keys(user).map(key => (req.session[key] = user[key]))
+    //Object.keys(user).map(key => (req.session[key] = user[key]))
   }
 
   return next()

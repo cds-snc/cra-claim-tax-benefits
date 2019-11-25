@@ -10,12 +10,12 @@ block content
   h1 #{title}
 
   if data.personal
-    h2 #{data.personal.firstName}, #{__('thanks for your filing code')}.
+    h2 #{__('Thanks for your filing code')}.
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.sin})
       label(for='sin') #{__('Social insurance number')}
-      span.cra-form-message #{__('For example:')} #{SINFilter(data.personal.sin)}
+      span.cra-form-message #{__('For example:')} #{SINFilter('847339283')}
       if errors
         +validationMessage(errors.sin.msg, 'sin')
       input.w-3-4#sin(name='sin', autofocus, type='text', value=sin, autocomplete='off' aria-describedby=(errors && errors.sin ? 'sin-error' : false))

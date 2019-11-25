@@ -6,7 +6,7 @@ const {
   monthSchema,
   yearSchema,
 } = require('./utils.schema')
-const API = require('./../api')
+const { API } = require('./../api')
 const { securityQuestionUrls } = require('../config/routes.config')
 
 const loginSchema = {
@@ -26,7 +26,7 @@ const loginSchema = {
 }
 
 let sinError = 'errors.login.matchingSIN'
-const _getSinErrorMessage = (val, expectedSin) => {
+const _getSinErrorMessage = val => {
   if (!val) {
     // technically, 0 characters is the wrong length
     return 'errors.login.lengthSIN'
@@ -43,10 +43,6 @@ const _getSinErrorMessage = (val, expectedSin) => {
     return 'errors.login.lengthSIN'
   }
 
-  if (digits !== expectedSin) {
-    return 'errors.login.matchingSIN'
-  }
-
   return false
 }
 
@@ -55,11 +51,11 @@ const sinSchema = {
     custom: {
       options: (value, { req }) => {
         /* If there is no session, always return false */
-        if (!req.session || !req.session.personal) {
+        if (!req.session) {
           return false
         }
 
-        const errorMessage = _getSinErrorMessage(value, req.session.personal.sin)
+        const errorMessage = _getSinErrorMessage(value)
         if (errorMessage) sinError = errorMessage
 
         /* if an error message exists, we failed validation */

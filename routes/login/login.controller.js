@@ -19,6 +19,7 @@ const {
   trilliumAmountSchema,
   bankSchema,
   taxReturnSchema,
+  rrspSchema,
   addressesSchema,
   prisonSchema,
 } = require('./../../schemas')
@@ -139,6 +140,12 @@ module.exports = function(app) {
   )
 
   app.get('/login/questions/rrsp', renderWithData('login/questions/rrsp'))
+  app.post(
+    '/login/questions/rrsp',
+    checkSchema(rrspSchema),
+    checkErrors('login/questions/rrsp'),
+    doRedirect,
+  )
 
   app.get('/login/questions/temp', renderWithData('login/questions/temp'))
 }

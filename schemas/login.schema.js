@@ -278,6 +278,11 @@ const taxReturnSchema = {
   taxReturnAmount: currencySchema(),
 }
 
+const rrspSchema = {
+  rrspYear: yearSchema('errors.login.taxReturn.validYear'),
+  rrspAmount: currencySchema(),
+}
+
 module.exports = {
   loginSchema,
   dobSchema,
@@ -292,6 +297,7 @@ module.exports = {
   prisonSchema,
   bankSchema,
   taxReturnSchema,
+  rrspSchema,
   _toISOFormat,
   _getSinErrorMessage,
 }

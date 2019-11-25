@@ -11,8 +11,6 @@ const securityQuestionUrls = [
   '/login/questions/rrsp',
   '/login/questions/tfsa',
   '/login/questions/ccb',
-  // TODO: remove this
-  '/login/questions/temp',
 ]
 
 //list our routes in the flow order in the app

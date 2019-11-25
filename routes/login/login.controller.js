@@ -164,8 +164,6 @@ module.exports = function(app) {
     checkErrors('login/questions/ccb'),
     doRedirect,
   )
-
-  app.get('/login/questions/temp', renderWithData('login/questions/temp'))
 }
 
 const postLoginCode = async (req, res, next) => {

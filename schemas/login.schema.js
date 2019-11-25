@@ -315,6 +315,21 @@ const bankSchema = {
   },
 }
 
+const taxReturnSchema = {
+  taxReturnYear: {
+    isInt: {
+      errorMessage: 'errors.login.taxReturn.validYear',
+      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
+    },
+  },
+  taxReturnAmount: {
+    isCurrency: {
+      errorMessage: 'errors.login.taxReturn.currency',
+      options: { allow_negatives: false },
+    },
+  }
+}
+
 module.exports = {
   loginSchema,
   dobSchema,
@@ -327,6 +342,7 @@ module.exports = {
   addressesSchema,
   prisonSchema,
   bankSchema,
+  taxReturnSchema,
   _toISOFormat,
   _getSinErrorMessage,
 }

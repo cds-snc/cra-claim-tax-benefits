@@ -460,5 +460,10 @@
   "Institution number": "Numéro d’institution",
   "3 digits": "3 chiffres",
   "Account number": "Numéro de compte",
-  "12 digits": "Jusqu’à 12 chiffres"
+  "12 digits": "Jusqu’à 12 chiffres",
+  "Check your papers from any year you filed taxes": "Examinez l’une de vos déclarations de revenus d’une année passée",
+  "Enter year of tax filing": "Entrez l’année où vous avez produit la déclaration :",
+  "Enter your total income on line 101 for that year:": "Entrez le revenu total (ligne 101) de cette déclaration :",
+  "errors.login.taxReturn.validYear": "Vous devez sélectionner une année valide",
+  "errors.login.taxReturn.currency": "Cela devrait être une valeur numérique > 0"
 }

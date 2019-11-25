@@ -482,5 +482,10 @@
   "Do you want to answer security questions?": "Do you want to answer security questions?",
   "Enter details of your RRSP contribution": "Enter details of your RRSP contribution",
   "Enter any year you contributed to your RRSP": "Enter any year you contributed to your RRSP",
-  "Enter amount contributed in the year you listed above": "Enter amount contributed in the year you listed above"
+  "Enter amount contributed in the year you listed above": "Enter amount contributed in the year you listed above",
+  "Enter details of your TFSA contribution": "Enter details of your TFSA contribution",
+  "Enter any year you contributed to your TFSA": "Enter any year you contributed to your TFSA",
+  "Details of your CRA Canada Child Benefit (CCB)": "Details of your CRA Canada Child Benefit (CCB)",
+  "Enter year": "Enter year",
+  "Enter amount of Family Net Income on your CCB letter": "Enter amount of Family Net Income on your CCB letter"
 }

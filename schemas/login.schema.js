@@ -283,6 +283,16 @@ const rrspSchema = {
   rrspAmount: currencySchema('errors.currency', { allowEmpty: false }),
 }
 
+const tfsaSchema = {
+  tfsaYear: yearSchema('errors.login.taxReturn.validYear'),
+  tfsaAmount: currencySchema('errors.currency', { allowEmpty: false }),
+}
+
+const ccbSchema = {
+  ccbYear: yearSchema('errors.login.taxReturn.validYear'),
+  ccbAmount: currencySchema('errors.currency', { allowEmpty: false }),
+}
+
 module.exports = {
   loginSchema,
   dobSchema,
@@ -298,6 +308,8 @@ module.exports = {
   bankSchema,
   taxReturnSchema,
   rrspSchema,
+  tfsaSchema,
+  ccbSchema,
   _toISOFormat,
   _getSinErrorMessage,
 }

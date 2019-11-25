@@ -27,6 +27,8 @@ describe('Test /login responses', () => {
     '/login/questions/bank',
     '/login/questions/taxReturn',
     '/login/questions/rrsp',
+    '/login/questions/tfsa',
+    '/login/questions/ccb',
   ]
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
@@ -1089,6 +1091,86 @@ describe('Test /login/questions/{year and amount} responses', () => {
     test('it returns a 302 for a good request', async () => {
       const response = await request(app)
         .post('/login/questions/rrsp')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ ...goodRequest })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/start')
+    })
+  })
+
+  describe('Test /login/questions/tfsa responses', () => {
+    let goodRequest = {
+      tfsaYear: '2016',
+      tfsaAmount: '2000',
+      redirect: '/start',
+    }
+
+    const badRequests = _makeBadRequests({
+      goodRequest,
+      yearVar: 'tfsaYear',
+      amountVar: 'tfsaAmount',
+    })
+
+    badRequests.map(badRequest => {
+      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+        const response = await request(app)
+          .post('/login/questions/tfsa')
+          .use(withCSRF(cookie, csrfToken))
+          .send({ ...badRequest.send })
+
+        const $ = cheerio.load(response.text)
+        expect(response.statusCode).toBe(422)
+        expect(
+          $('.error-list__link')
+            .first()
+            .attr('href'),
+        ).toEqual(badRequest.firstErrorId)
+      })
+    })
+
+    test('it returns a 302 for a good request', async () => {
+      const response = await request(app)
+        .post('/login/questions/tfsa')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ ...goodRequest })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/start')
+    })
+  })
+
+  describe('Test /login/questions/ccb responses', () => {
+    let goodRequest = {
+      ccbYear: '2015',
+      ccbAmount: '3000',
+      redirect: '/start',
+    }
+
+    const badRequests = _makeBadRequests({
+      goodRequest,
+      yearVar: 'ccbYear',
+      amountVar: 'ccbAmount',
+    })
+
+    badRequests.map(badRequest => {
+      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+        const response = await request(app)
+          .post('/login/questions/ccb')
+          .use(withCSRF(cookie, csrfToken))
+          .send({ ...badRequest.send })
+
+        const $ = cheerio.load(response.text)
+        expect(response.statusCode).toBe(422)
+        expect(
+          $('.error-list__link')
+            .first()
+            .attr('href'),
+        ).toEqual(badRequest.firstErrorId)
+      })
+    })
+
+    test('it returns a 302 for a good request', async () => {
+      const response = await request(app)
+        .post('/login/questions/ccb')
         .use(withCSRF(cookie, csrfToken))
         .send({ ...goodRequest })
       expect(response.statusCode).toBe(302)

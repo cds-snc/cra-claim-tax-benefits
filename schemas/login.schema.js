@@ -275,12 +275,12 @@ const bankSchema = {
 
 const taxReturnSchema = {
   taxReturnYear: yearSchema('errors.login.taxReturn.validYear'),
-  taxReturnAmount: currencySchema(),
+  taxReturnAmount: currencySchema('errors.currency', { allowEmpty: false }),
 }
 
 const rrspSchema = {
   rrspYear: yearSchema('errors.login.taxReturn.validYear'),
-  rrspAmount: currencySchema(),
+  rrspAmount: currencySchema('errors.currency', { allowEmpty: false }),
 }
 
 module.exports = {

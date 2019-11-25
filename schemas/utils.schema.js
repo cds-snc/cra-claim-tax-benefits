@@ -1,4 +1,4 @@
-const currencySchema = (req, errorMessageString = 'errors.currency') => {
+const currencySchema = (errorMessageString = 'errors.currency', { allowEmpty = true } = {}) => {
   return {
     customSanitizer: {
       options: (value, { req }) => {
@@ -11,14 +11,13 @@ const currencySchema = (req, errorMessageString = 'errors.currency') => {
           formattedValue = value.replace(',', '')
         }
 
-        return formattedValue ? formattedValue : 0 //if blank we want to assume they meant 0
+        return !formattedValue && allowEmpty ? 0 : formattedValue //if blank we want to assume they meant 0
       },
     },
     isCurrency: {
       errorMessage: errorMessageString,
       options: {
         allow_negatives: false,
-        // thousands_separator: ' ', decimal_separator: ','
       },
     },
   }

@@ -25,6 +25,8 @@ describe('Test /login responses', () => {
     '/login/questions/bankruptcy',
     '/login/questions/dateOfResidence',
     '/login/questions/bank',
+    '/login/questions/taxReturn',
+    '/login/questions/rrsp',
   ]
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
@@ -969,7 +971,7 @@ describe('Test /login/questions/bank responses', () => {
   })
 })
 
-describe('Test /login/questions/taxReturn responses', () => {
+describe('Test /login/questions/{year and amount} responses', () => {
   beforeEach(async () => {
     const testSession = session(app)
     const getresp = await testSession.get('/login/questions/taxReturn')
@@ -1014,41 +1016,83 @@ describe('Test /login/questions/taxReturn responses', () => {
     ]
   }
 
-  let goodRequest = {
-    taxReturnYear: '2018',
-    taxReturnAmount: '10000',
-    redirect: '/start',
-  }
+  describe('Test /login/questions/taxReturn responses', () => {
+    let goodRequest = {
+      taxReturnYear: '2018',
+      taxReturnAmount: '10000',
+      redirect: '/start',
+    }
 
-  const badRequests = _makeBadRequests({
-    goodRequest,
-    yearVar: 'taxReturnYear',
-    amountVar: 'taxReturnAmount',
-  })
+    const badRequests = _makeBadRequests({
+      goodRequest,
+      yearVar: 'taxReturnYear',
+      amountVar: 'taxReturnAmount',
+    })
 
-  badRequests.map(badRequest => {
-    test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+    badRequests.map(badRequest => {
+      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+        const response = await request(app)
+          .post('/login/questions/taxReturn')
+          .use(withCSRF(cookie, csrfToken))
+          .send({ ...badRequest.send })
+
+        const $ = cheerio.load(response.text)
+        expect(response.statusCode).toBe(422)
+        expect(
+          $('.error-list__link')
+            .first()
+            .attr('href'),
+        ).toEqual(badRequest.firstErrorId)
+      })
+    })
+
+    test('it returns a 302 for a good request', async () => {
       const response = await request(app)
         .post('/login/questions/taxReturn')
         .use(withCSRF(cookie, csrfToken))
-        .send({ ...badRequest.send })
-
-      const $ = cheerio.load(response.text)
-      expect(response.statusCode).toBe(422)
-      expect(
-        $('.error-list__link')
-          .first()
-          .attr('href'),
-      ).toEqual(badRequest.firstErrorId)
+        .send({ ...goodRequest })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/start')
     })
   })
 
-  test('it returns a 302 for a good request', async () => {
-    const response = await request(app)
-      .post('/login/questions/taxReturn')
-      .use(withCSRF(cookie, csrfToken))
-      .send({ ...goodRequest })
-    expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toEqual('/start')
+  describe('Test /login/questions/rrsp responses', () => {
+    let goodRequest = {
+      rrspYear: '2017',
+      rrspAmount: '1000',
+      redirect: '/start',
+    }
+
+    const badRequests = _makeBadRequests({
+      goodRequest,
+      yearVar: 'rrspYear',
+      amountVar: 'rrspAmount',
+    })
+
+    badRequests.map(badRequest => {
+      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
+        const response = await request(app)
+          .post('/login/questions/rrsp')
+          .use(withCSRF(cookie, csrfToken))
+          .send({ ...badRequest.send })
+
+        const $ = cheerio.load(response.text)
+        expect(response.statusCode).toBe(422)
+        expect(
+          $('.error-list__link')
+            .first()
+            .attr('href'),
+        ).toEqual(badRequest.firstErrorId)
+      })
+    })
+
+    test('it returns a 302 for a good request', async () => {
+      const response = await request(app)
+        .post('/login/questions/rrsp')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ ...goodRequest })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/start')
+    })
   })
 })

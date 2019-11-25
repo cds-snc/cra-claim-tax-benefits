@@ -1,5 +1,11 @@
 const validator = require('validator')
-const { validationArray, currencySchema, yesNoSchema } = require('./utils.schema')
+const {
+  validationArray,
+  currencySchema,
+  yesNoSchema,
+  monthSchema,
+  yearSchema,
+} = require('./utils.schema')
 const API = require('./../api')
 const { securityQuestionUrls } = require('../config/routes.config')
 
@@ -64,8 +70,6 @@ const sinSchema = {
   },
 }
 
-const currentDate = new Date()
-
 const isValidDay = (errorMessageString = 'errors.login.dateOfBirth.validDay') => {
   return {
     isInt: {
@@ -98,18 +102,8 @@ const dobSchema = {
     ...isValidDay(),
     ...validationArray([isMatchingDoB]),
   },
-  dobMonth: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validMonth',
-      options: { min: 1, max: 12 },
-    },
-  },
-  dobYear: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() },
-    },
-  },
+  dobMonth: monthSchema(),
+  dobYear: yearSchema(),
 }
 
 const noticeSchema = {
@@ -133,50 +127,20 @@ const childSchema = {
     },
   },
   dobDay: isValidDay(),
-  dobMonth: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validMonth',
-      options: { min: 1, max: 12 },
-    },
-  },
-  dobYear: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
-    },
-  },
+  dobMonth: monthSchema(),
+  dobYear: yearSchema(),
 }
 
 const dateOfResidenceSchema = {
   dobDay: isValidDay(),
-  dobMonth: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validMonth',
-      options: { min: 1, max: 12 },
-    },
-  },
-  dobYear: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
-    },
-  },
+  dobMonth: monthSchema(),
+  dobYear: yearSchema(),
 }
 
 const bankruptcySchema = {
   dobDay: isValidDay(),
-  dobMonth: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validMonth',
-      options: { min: 1, max: 12 },
-    },
-  },
-  dobYear: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
-    },
-  },
+  dobMonth: monthSchema(),
+  dobYear: yearSchema(),
   trusteeLastName: {
     isEmpty: {
       errorMessage: 'errors.login.trusteeLastName',
@@ -272,18 +236,8 @@ const prisonSchema = {
     },
   },
   dobDay: isValidDay(),
-  dobMonth: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validMonth',
-      options: { min: 1, max: 12 },
-    },
-  },
-  dobYear: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
-    },
-  },
+  dobMonth: monthSchema(),
+  dobYear: yearSchema(),
 }
 
 const bankSchema = {
@@ -320,18 +274,8 @@ const bankSchema = {
 }
 
 const taxReturnSchema = {
-  taxReturnYear: {
-    isInt: {
-      errorMessage: 'errors.login.taxReturn.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
-    },
-  },
-  taxReturnAmount: {
-    isCurrency: {
-      errorMessage: 'errors.login.taxReturn.currency',
-      options: { allow_negatives: false },
-    },
-  },
+  taxReturnYear: yearSchema('errors.login.taxReturn.validYear'),
+  taxReturnAmount: currencySchema(),
 }
 
 module.exports = {

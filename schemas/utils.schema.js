@@ -1,11 +1,10 @@
 const currencySchema = (req, errorMessageString = 'errors.currency') => {
-
   return {
     customSanitizer: {
-      options: (value, {req}) => {
+      options: (value, { req }) => {
         let formattedValue = value
 
-        if(req.locale === 'fr') {
+        if (req.locale === 'fr') {
           formattedValue = value.replace(',', '.').replace(' ', '')
         } else if (formattedValue) {
           //including the commas makes it not a Number, and messes with formatting, so remove commas from en-CA format just for validation check
@@ -17,7 +16,7 @@ const currencySchema = (req, errorMessageString = 'errors.currency') => {
     },
     isCurrency: {
       errorMessage: errorMessageString,
-      options: { 
+      options: {
         allow_negatives: false,
         // thousands_separator: ' ', decimal_separator: ','
       },
@@ -30,6 +29,26 @@ const yesNoSchema = (errorMessageString = 'errors.yesNo') => {
     isIn: {
       errorMessage: errorMessageString,
       options: [['Yes', 'No']],
+    },
+  }
+}
+
+const _currentDate = new Date()
+
+const yearSchema = (errorMessageString = 'errors.login.dateOfBirth.validYear') => {
+  return {
+    isInt: {
+      errorMessage: errorMessageString,
+      options: { min: _currentDate.getFullYear() - 200, max: _currentDate.getFullYear() - 1 },
+    },
+  }
+}
+
+const monthSchema = (errorMessageString = 'errors.login.dateOfBirth.validMonth') => {
+  return {
+    isInt: {
+      errorMessage: errorMessageString,
+      options: { min: 1, max: 12 },
     },
   }
 }
@@ -67,5 +86,7 @@ const validationArray = validators => {
 module.exports = {
   currencySchema,
   yesNoSchema,
+  yearSchema,
+  monthSchema,
   validationArray,
 }

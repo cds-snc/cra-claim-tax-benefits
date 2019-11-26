@@ -141,13 +141,13 @@ form.cra-form {
       padding-left: $space-xl;
       margin-left: -$space-xl;
       z-index: 20;
-    }
 
-    &.fr {
-      padding-left: 0;
-      margin-left: 0;
-      padding-right: $space-xl + $space-xs;
-      margin-right: -$space-xl;
+      &.fr {
+        padding-left: $space-xs;
+        margin-left: 0;
+        padding-right: $space-xl + $space-xs;
+        margin-right: -$space-xl;
+      }
     }
   }
 

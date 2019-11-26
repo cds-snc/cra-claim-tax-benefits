@@ -195,60 +195,36 @@ describe('Test /login responses', () => {
       })
     })
 
-    test('it does not allow a code more than 9 characters', async () => {
+    test('it does not allow a SIN with non-numbers', async () => {
       const response = await request(app)
         .post('/login/sin')
         .use(withCSRF(cookie, csrfToken))
-        .send({ code: '12345678910', redirect: '/start' })
+        .send({ sin: '123 456 78W', redirect: '/start' })
       expect(response.statusCode).toBe(422)
     })
 
-    test('it does not allow a code less than 9 characters', async () => {
+    test('it does not allow a SIN more than 9 characters', async () => {
       const response = await request(app)
         .post('/login/sin')
         .use(withCSRF(cookie, csrfToken))
-        .send({ code: '12345678', redirect: '/start' })
+        .send({ sin: '12345678910', redirect: '/start' })
       expect(response.statusCode).toBe(422)
     })
 
-    /*
-      These tests make sure that a SIN which would ordinarily be
-      accepted (ie, "123456789") is no longer accepted after
-      a user logs in.
-      After that, only the sin used by the user in /api/user.json
-      will be accepted.
-    */
-    describe('after entering an access code', () => {
-      let authSession
+    test('it does not allow a SIN less than 9 characters', async () => {
+      const response = await request(app)
+        .post('/login/sin')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ sin: '12345678', redirect: '/start' })
+      expect(response.statusCode).toBe(422)
+    })
 
-      beforeEach(async () => {
-        authSession = session(app)
-        const getresp = await authSession.get('/login/code')
-        cookie = getresp.headers['set-cookie']
-        csrfToken = extractCsrfToken(getresp)
-
-        const response = await authSession
-          .post('/login/code')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ code: 'A5G98S4K1', redirect: '/login/sin' })
-        expect(response.statusCode).toBe(302)
-      })
-
-      it('it should return 422 for the wrong SIN', async () => {
-        const response = await authSession
-          .post('/login/sin')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ sin: '123456789', redirect: '/login/sin' })
-        expect(response.statusCode).toBe(422)
-      })
-
-      it('it should return 302 for the right SIN', async () => {
-        const response = await authSession
-          .post('/login/sin')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ sin: '847 339 283', redirect: '/login/sin' })
-        expect(response.statusCode).toBe(302)
-      })
+    test('it returns a 302 response if the SIN format is good', async () => {
+      const response = await request(app)
+        .post('/login/sin')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ sin: '123 456 789', redirect: '/start' })
+      expect(response.statusCode).toBe(302)
     })
   })
 
@@ -362,7 +338,7 @@ describe('Test /login responses', () => {
         const response = await authSession
           .post('/login/code')
           .use(withCSRF(cookie, csrfToken))
-          .send({ 
+          .send({
             code: 'A5G98S4K1',
             redirect: '/login/sin',
           })
@@ -408,7 +384,7 @@ describe('Test /login responses', () => {
           })
         expect(response.statusCode).toBe(302)
       })
-      test('it returns a 422 with a dob that does not match the access code', async() => {
+      test('it returns a 422 with a dob that does not match the access code', async () => {
         const response = await authSession
           .post('/login/dateOfBirth')
           .use(withCSRF(cookie, csrfToken))
@@ -420,16 +396,17 @@ describe('Test /login responses', () => {
           })
         expect(response.statusCode).toBe(422)
       })
-      test('it returns a 422 when the SIN on the previous page does not match the access code', async() => {
+
+      test.skip('it returns a 422 when the SIN on the previous page does not match the access code', async () => {
         const testSession = session(app)
         const getresp = await testSession.get('/login/code')
         cookie = getresp.headers['set-cookie']
         csrfToken = extractCsrfToken(getresp)
-  
+
         const response = await testSession
           .post('/login/code')
           .use(withCSRF(cookie, csrfToken))
-          .send({ 
+          .send({
             code: 'A5G98S4K1',
             redirect: '/login/sin',
           })
@@ -443,7 +420,7 @@ describe('Test /login responses', () => {
               })
           })
         expect(response.statusCode).toBe(302)
-        
+
         const response2 = await testSession
           .post('/login/dateOfBirth')
           .use(withCSRF(cookie, csrfToken))

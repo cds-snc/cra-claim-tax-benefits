@@ -19,7 +19,7 @@ const loginSchema = {
   },
 }
 
-let sinError = 'errors.login.matchingSIN'
+let sinError = 'errors.login.lengthSIN'
 const _getSinErrorMessage = val => {
   if (!val) {
     // technically, 0 characters is the wrong length
@@ -43,12 +43,7 @@ const _getSinErrorMessage = val => {
 const sinSchema = {
   sin: {
     custom: {
-      options: (value, { req }) => {
-        /* If there is no session, always return false */
-        if (!req.session) {
-          return false
-        }
-
+      options: value => {
         const errorMessage = _getSinErrorMessage(value)
         if (errorMessage) sinError = errorMessage
 

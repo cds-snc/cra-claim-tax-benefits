@@ -36,16 +36,7 @@ module.exports = function(app) {
 
   // SIN
   app.get('/login/sin', renderWithData('login/sin'))
-  app.post(
-    '/login/sin',
-    checkSchema(sinSchema),
-    checkErrors('login/sin'),
-    (req, res, next) => {
-      req.session.db.sin = req.body.sin
-      next()
-    },
-    doRedirect,
-  )
+  app.post('/login/sin', checkSchema(sinSchema), checkErrors('login/sin'), doRedirect)
 
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
@@ -182,22 +173,14 @@ const postLoginCode = async (req, res, next) => {
   }
 
   // check if code is valid
-  let validCode = DB.validateCode(req.body.code)
+  let row = DB.validateCode(req.body.code)
 
-  if (!validCode) {
+  if (!row) {
     throw new Error(`[POST ${req.path}] user not found for access code "${req.body.code}"`)
   }
 
-  // populate the session with empty variables in the format of user.json
-  // setting req.session = {obj} causes an error, so assign the keys one at a time
-  Object.keys(user).map(key => (req.session[key] = user[key]))
-  req.session.db = {
-    code: req.body.code,
-    firstName: validCode.firstName,
-    sin: null,
-    dateOfBirth: null,
-  }
-
+  // populate the session with our DB row variables in the format of db.json
+  req.session.db = row
   next()
 }
 

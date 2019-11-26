@@ -156,8 +156,8 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
+  // LOGIN SECURITY QUESTIONS
   it('navigates Security Questions', function() {
-    // LOGIN SECURITY QUESTIONS
     cy.injectAxe().checkA11y()
     cy.url().should('contain', '/login/securityQuestion')
     cy.get('h1').should('contain', 'Choose a security question')

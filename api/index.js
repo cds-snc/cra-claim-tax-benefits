@@ -25,7 +25,7 @@ var DB = (() => {
     // validates access code
     code = code.toUpperCase()
 
-    // Terrible Non-DB code 
+    // Real DB code will go here
     let dbUser = false;
     dbUser = db.find(function(u, i) {
       if(u.code === code)
@@ -37,8 +37,8 @@ var DB = (() => {
 
   const validateUser = (login) => {
     // validates user code / sin / DoB
-
     let dbUser = false
+    
     dbUser = db.find(function(u,i) {
       return (login.code.toUpperCase() === u.code) &&
         (login.sin === u.sin.replace(/\s/g, '')) &&

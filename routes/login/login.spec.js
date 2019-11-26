@@ -347,7 +347,7 @@ describe('Test /login responses', () => {
             dobYear: currentDate.getFullYear() - 201,
           },
         },
-      },
+      }
     ]
 
     describe('for /login/dateOfBirth', () => {
@@ -361,13 +361,19 @@ describe('Test /login responses', () => {
 
         const response = await authSession
           .post('/login/code')
-          .set('Cookie', cookie)
-          .send({ _csrf: csrfToken, code: 'A5G98S4K1', redirect: '/login/sin' })
+          .use(withCSRF(cookie, csrfToken))
+          .send({ 
+            code: 'A5G98S4K1',
+            redirect: '/login/sin'
+          })
           .then(() => {
             return authSession
               .post('/login/sin')
-              .set('Cookie', cookie)
-              .send({ _csrf: csrfToken, sin: '847339283', redirect: '/login/dateOfBirth' })
+              .use(withCSRF(cookie, csrfToken))
+              .send({
+                sin: '847339283',
+                redirect: '/login/dateOfBirth'
+              })
           })
         expect(response.statusCode).toBe(302)
       })
@@ -401,6 +407,48 @@ describe('Test /login responses', () => {
             redirect: '/personal/name',
           })
         expect(response.statusCode).toBe(302)
+      })
+      test('it returns a 422 with a dob that does not match the access code', async() => {
+        const response = await authSession
+          .post('/login/dateOfBirth')
+          .use(withCSRF(cookie, csrfToken))
+          .send({
+            dobDay: '8',
+            dobMonth: '8',
+            dobYear: '1970',
+            redirect: '/personal/name',
+          })
+        expect(response.statusCode).toBe(422)
+      })
+      test('it returns a 422 when the SIN on the previous page does not match the access code', async() => {
+        const testSession = session(app)
+        const getresp = await testSession.get('/login/code')
+        cookie = getresp.headers['set-cookie']
+        csrfToken = extractCsrfToken(getresp)
+  
+        const response = await testSession
+          .post('/login/code')
+          .use(withCSRF(cookie, csrfToken))
+          .send({ 
+            code: 'A5G98S4K1',
+            redirect: '/login/sin'
+          })
+          .then(() => {
+            return testSession
+              .post('/login/sin')
+              .use(withCSRF(cookie, csrfToken))
+              .send({
+                sin: '888888888',
+                redirect: '/login/dateOfBirth'
+              })
+          })
+        expect(response.statusCode).toBe(302)
+        
+        const response2 = await testSession
+          .post('/login/dateOfBirth')
+          .use(withCSRF(cookie, csrfToken))
+          .send({ ...goodDoBRequest })
+        expect(response2.statusCode).toBe(422)
       })
     })
 

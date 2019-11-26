@@ -237,6 +237,7 @@ const postDateOfBirth = async (req, res, next) => {
     sin: req.session.personal.sin.replace(/\s/g, ''),
     dateOfBirth: req.session.personal.dateOfBirth,
   }
+
   let validUser = DB.validateUser(login)
 
   if (validUser) {
@@ -252,7 +253,6 @@ const postDateOfBirth = async (req, res, next) => {
         msg: 'errors.login.dateOfBirth.match',
       },
     }
-
     return res.status(422).render('login/dateOfBirth', {
       prevRoute: getPreviousRoute(req),
       data: req.session,

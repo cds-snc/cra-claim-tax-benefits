@@ -236,6 +236,17 @@ describe('Full run through saying "yes" to everything', function() {
     cy.continue()
   })
 
+  // NOTICE
+  it('navigates Notice of Assessment page', function() {
+    cy.confirm({
+      url: '/login/notice',
+      h1: 'Notice of assessment',
+      id: 'noticeOfAssessment0', // click Yes
+    })
+
+    cy.continue()
+  })
+
   // LOGIN SECURITY QUESTIONS
   it('navigates Security Questions', function() {
     cy.injectAxe().checkA11y()

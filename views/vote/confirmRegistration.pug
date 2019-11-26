@@ -12,12 +12,12 @@ block content
 
   +banner('blue')
     p #{__('You cannot register to vote unless you are able to check both boxes.')}
-  
+
   div
     p #{__('The Canada Elections Act gives rules about elections and voter information. Provincial and territorial governments, members of Parliament, registered political parties, and candidates at election time can have your voter information.')}
 
     p #{__('If you are able to check both boxes, Elections Canada will put you on the voter’s list until you file taxes again.')}
-    
+
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors[id]})
       fieldset
@@ -34,6 +34,6 @@ block content
             input(id='voterConsent' name='voterConsent' type="checkbox" value="voterConsent" checked=(voterConsent =='Yes') aria-describedby=(errors ? `voterConsent` : false))
             label(for='voterConsent') #{__('You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.')}
 
-    input#redirect(name='redirect', type='hidden', value='/login/securityQuestion')
+    input#redirect(name='redirect', type='hidden', value='/login/notice')
 
     +formButtons()

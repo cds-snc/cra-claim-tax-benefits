@@ -1,9 +1,4 @@
-const {
-  checkTableRows,
-  allIncomeRows,
-  getBenefitsBreakdownRows,
-  getAddress,
-} = require('../utils.js')
+const { checkTableRows, getBenefitsBreakdownRows, getAddress } = require('../utils.js')
 
 describe('Full run through saying "no" to everything', function() {
   before(function() {
@@ -156,60 +151,13 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
-  // LOGIN SECURITY QUESTIONS
-  it('navigates Security Questions', function() {
-    cy.injectAxe().checkA11y()
-    cy.url().should('contain', '/login/securityQuestion')
-    cy.get('h1').should('contain', 'Choose a security question')
-
-    cy.get('form label')
-      .eq(3)
-      .should('have.attr', 'for', 'securityQuestion3')
-    cy.get('#securityQuestion3').check()
-
-    cy.get("form button[type='submit']")
-      .should('contain', 'Continue')
-      .click() 
-
-    cy.injectAxe().checkA11y()
-    cy.url().should('contain', '/login/questions/dateOfResidence')
-    cy.get('h1').should('contain', 'Enter date you became a resident of Canada')
-
-    cy.get('form label')
-      .eq(0)
-      .should('have.attr', 'for', 'dobDay')
-    cy.get('#dobDay')
-      .type('1')
-      .should('have.value', '1')
-
-    cy.get('form label')
-      .eq(1)
-      .should('have.attr', 'for', 'dobMonth')
-    cy.get('#dobMonth')
-      .type('2')
-      .should('have.value', '2')
-
-    cy.get('form label')
-      .eq(2)
-      .should('have.attr', 'for', 'dobYear')
-    cy.get('#dobYear')
-      .type('1997')
-      .should('have.value', '1997')
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
-  })
-
-  //CONFIRM INCOME
-  it('navigates the Confirm Income page', function() {
+  // NOTICE
+  it('navigates Notice of Assessment page', function() {
     cy.confirm({
-      url: '/financial/income',
-      h1: 'Check your income information for the 2018 tax year',
-      id: 'confirmIncome0',
+      url: '/login/notice',
+      h1: 'Notice of assessment',
+      id: 'noticeOfAssessment1', // click No
     })
-
-    checkTableRows(cy, allIncomeRows(this.user))
 
     cy.continue()
   })

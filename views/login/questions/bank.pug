@@ -10,7 +10,8 @@ block content
 
   h1 #{title}
 
-  p #{__('You must have used this account with CRA. Choose a different question if CRA does not have your account information.')}
+  div
+    p #{__('You must have used this account with CRA. Choose a different question if CRA does not have your account information.')}
 
   form.cra-form(method='post')
     +textInput('Branch number', 'w-1-2', '5 digits')(class='w-3-4' name='branchNumber' value=branchNumber )

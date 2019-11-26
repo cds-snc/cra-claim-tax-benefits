@@ -8,5 +8,5 @@ const reviewSchema = {
 }
 
 module.exports = {
-  reviewSchema
+  reviewSchema,
 }

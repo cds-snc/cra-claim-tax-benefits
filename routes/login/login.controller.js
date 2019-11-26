@@ -19,6 +19,9 @@ const {
   trilliumAmountSchema,
   bankSchema,
   taxReturnSchema,
+  rrspSchema,
+  tfsaSchema,
+  ccbSchema,
   addressesSchema,
   prisonSchema,
 } = require('./../../schemas')
@@ -138,7 +141,29 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/login/questions/temp', renderWithData('login/questions/temp'))
+  app.get('/login/questions/rrsp', renderWithData('login/questions/rrsp'))
+  app.post(
+    '/login/questions/rrsp',
+    checkSchema(rrspSchema),
+    checkErrors('login/questions/rrsp'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/tfsa', renderWithData('login/questions/tfsa'))
+  app.post(
+    '/login/questions/tfsa',
+    checkSchema(tfsaSchema),
+    checkErrors('login/questions/tfsa'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/ccb', renderWithData('login/questions/ccb'))
+  app.post(
+    '/login/questions/ccb',
+    checkSchema(ccbSchema),
+    checkErrors('login/questions/ccb'),
+    doRedirect,
+  )
 }
 
 const postLoginCode = async (req, res, next) => {

@@ -8,8 +8,9 @@ const securityQuestionUrls = [
   '/login/questions/trillium',
   '/login/questions/bank',
   '/login/questions/taxReturn',
-  // TODO: remove this
-  '/login/questions/temp',
+  '/login/questions/rrsp',
+  '/login/questions/tfsa',
+  '/login/questions/ccb',
 ]
 
 //list our routes in the flow order in the app

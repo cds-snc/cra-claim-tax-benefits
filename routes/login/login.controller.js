@@ -11,6 +11,7 @@ const {
   loginSchema,
   sinSchema,
   dobSchema,
+  noticeSchema,
   securityQuestionSchema,
   childSchema,
   dateOfResidenceSchema,
@@ -37,6 +38,20 @@ module.exports = function(app) {
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
   app.post('/login/dateOfBirth', checkSchema(dobSchema), postDateOfBirth, doRedirect)
+
+  app.get('/login/notice', renderWithData('login/notice'))
+  app.post(
+    '/login/notice',
+    checkSchema(noticeSchema),
+    checkErrors('login/notice'),
+    (req, res, next) => {
+      if (req.body.noticeOfAssessment === 'No') {
+        return res.redirect('/checkAnswers')
+      }
+      next()
+    },
+    doRedirect,
+  )
 
   // Security question page
   app.get('/login/securityQuestion', renderWithData('login/securityQuestion'))

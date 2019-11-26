@@ -1,5 +1,5 @@
 const validator = require('validator')
-const { validationArray, currencySchema } = require('./utils.schema')
+const { validationArray, currencySchema, yesNoSchema } = require('./utils.schema')
 const API = require('./../api')
 const { securityQuestionUrls } = require('../config/routes.config')
 
@@ -110,6 +110,10 @@ const dobSchema = {
       options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() },
     },
   },
+}
+
+const noticeSchema = {
+  noticeOfAssessment: yesNoSchema(),
 }
 
 const securityQuestionSchema = {
@@ -327,13 +331,14 @@ const taxReturnSchema = {
       errorMessage: 'errors.login.taxReturn.currency',
       options: { allow_negatives: false },
     },
-  }
+  },
 }
 
 module.exports = {
   loginSchema,
   dobSchema,
   sinSchema,
+  noticeSchema,
   securityQuestionSchema,
   childSchema,
   dateOfResidenceSchema,

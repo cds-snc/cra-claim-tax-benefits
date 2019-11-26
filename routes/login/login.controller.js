@@ -40,7 +40,7 @@ module.exports = function(app) {
     checkSchema(sinSchema),
     checkErrors('login/sin'),
     (req, res, next) => {
-      req.session.personal.sin = req.body.sin
+      req.session.db.sin = req.body.sin
       next()
     },
     doRedirect)
@@ -188,10 +188,13 @@ const postLoginCode = async (req, res, next) => {
 
   // populate the session with empty variables in the format of user.json
   // setting req.session = {obj} causes an error, so assign the keys one at a time
-  Object.keys(user).map(key => (req.session[key] = {}))
-
-  req.session.login.code = req.body.code
-  req.session.personal.firstName = validCode.firstName
+  Object.keys(user).map(key => (req.session[key] = user[key] ))
+  req.session.db = {
+    code: req.body.code,
+    firstName: validCode.firstName,
+    sin: null,
+    dateOfBirth: null
+  }
 
   next()
 }
@@ -213,11 +216,11 @@ const postDateOfBirth = async (req, res, next) => {
       errors: errObj,
     })
   }
-  req.session.personal.dateOfBirth = _toISOFormat(req.body)
+  req.session.db.dateOfBirth = _toISOFormat(req.body)
 
   // check access code + SIN + DoB
   // if session doesn't have a sin, throw error
-  if(!req.session.personal.sin) {
+  if(!req.session.db.sin) {
     // error no sin
     let errObj = {
       sin: {
@@ -233,9 +236,9 @@ const postDateOfBirth = async (req, res, next) => {
   }
 
   let login = {
-    code: req.session.login.code,
-    sin: req.session.personal.sin.replace(/\s/g, ''),
-    dateOfBirth: req.session.personal.dateOfBirth,
+    code: req.session.db.code,
+    sin: req.session.db.sin.replace(/\s/g, ''),
+    dateOfBirth: req.session.db.dateOfBirth,
   }
 
   let validUser = DB.validateUser(login)

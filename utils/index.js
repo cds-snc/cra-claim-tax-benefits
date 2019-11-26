@@ -66,12 +66,7 @@ const checkPublic = function(req, res, next) {
       code: 'A5G98S4K1',
     }
     // setting req.session = {obj} causes an error, so assign the keys one at a time
-    if (loginPaths.includes(req.path)) {
-      // create a session but don't add data if we're visiting a login page
-      Object.keys(user).map(key => (req.session[key] = {}))
-    } else {
-      Object.keys(user).map(key => (req.session[key] = user[key]))
-    }
+    Object.keys(user).map(key => (req.session[key] = user[key]))
   }
 
   return next()

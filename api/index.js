@@ -1,5 +1,4 @@
 const user = require('./user.json')
-const db = require('./db.json')
 
 var API = (function(userFound) {
   const _user = userFound
@@ -20,41 +19,4 @@ var API = (function(userFound) {
   }
 })(user)
 
-var DB = (() => {
-  const validateCode = (code) => {
-    // validates access code
-    code = code.toUpperCase()
-
-    // Real DB code will go here
-    let dbUser = false;
-    dbUser = db.find(function(u, i) {
-      if(u.code === code)
-        return u
-    })
-    // return the whole row for now for populating session with initial data
-    return dbUser
-  }
-
-  const validateUser = (login) => {
-    // validates user code / sin / DoB
-    let dbUser = false
-    
-    dbUser = db.find(function(u,i) {
-      return (login.code.toUpperCase() === u.code) &&
-        (login.sin === u.sin.replace(/\s/g, '')) &&
-        (login.dateOfBirth === u.dateOfBirth)
-    })
-
-    return dbUser
-  }
-
-  return {
-    validateCode,
-    validateUser
-  }
-})()
-
-module.exports = {
-  API,
-  DB
-}
+module.exports = API

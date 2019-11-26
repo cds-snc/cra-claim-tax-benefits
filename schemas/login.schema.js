@@ -1,12 +1,6 @@
 const validator = require('validator')
-const {
-  validationArray,
-  currencySchema,
-  yesNoSchema,
-  monthSchema,
-  yearSchema,
-} = require('./utils.schema')
-const { API } = require('./../api')
+const { currencySchema, yesNoSchema, monthSchema, yearSchema } = require('./utils.schema')
+const API = require('./../api')
 const { securityQuestionUrls } = require('../config/routes.config')
 
 const loginSchema = {

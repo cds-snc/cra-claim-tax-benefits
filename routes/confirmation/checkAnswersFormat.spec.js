@@ -1,4 +1,4 @@
-const { API } = require('./../../api')
+const API = require('./../../api')
 const { formatAnswerInfo } = require('./checkAnswersFormat')
 
 const initialSession = API.getUser('A5G98S4K1')

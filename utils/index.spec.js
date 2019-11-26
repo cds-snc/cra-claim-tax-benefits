@@ -8,7 +8,7 @@ const {
   postAmount,
   currencyWithoutUnit,
 } = require('./index')
-const { API } = require('./../api')
+const API = require('./../api')
 
 const testRoutes = [
   { path: '/start' },
@@ -31,7 +31,10 @@ describe('Test SINFilter', () => {
     })
   })
 
-  const sinFilterChanged = [['123456789', '123 456 789'], ['ABCDEFGHI', 'ABC DEF GHI']]
+  const sinFilterChanged = [
+    ['123456789', '123 456 789'],
+    ['ABCDEFGHI', 'ABC DEF GHI'],
+  ]
   sinFilterChanged.map(values => {
     test(`returns "${values[1]}" for "${values[0]}"`, () => {
       expect(SINFilter(values[0])).toEqual(values[1])
@@ -63,7 +66,7 @@ describe('Test currencyWithoutUnit', () => {
     },
   ]
 
-  amounts.map( amount => {
+  amounts.map(amount => {
     test(`formatValue returns ${amount.expectedResult}`, () => {
       expect(currencyWithoutUnit(amount.locale, amount.amount)).toBe(amount.expectedResult)
     })
@@ -97,13 +100,13 @@ describe('Test currencyFilter', () => {
       expectedResult: '25 086,34$',
     },
     {
-      number: .34,
+      number: 0.34,
       locale: 'fr',
       expectedResult: '0,34$',
     },
   ]
 
-  currencies.map((currency) => {
+  currencies.map(currency => {
     test(`it returns a ${currency.locale} currency format of ${currency.expectedResult}`, () => {
       expect(currencyFilter(currency.number, currency.locale)).toBe(currency.expectedResult)
     })
@@ -111,7 +114,6 @@ describe('Test currencyFilter', () => {
 })
 
 describe('Test postAmount function', () => {
-
   const amounts = [
     {
       input: '10 341,28',
@@ -130,12 +132,11 @@ describe('Test postAmount function', () => {
     },
   ]
 
-  amounts.map( amount => {
+  amounts.map(amount => {
     test(`expect postAmount to return ${amount.expectedResult}`, () => {
       expect(postAmount(amount.input, amount.locale)).toBe(amount.expectedResult)
     })
   })
-
 })
 
 describe('Test hasData function', () => {

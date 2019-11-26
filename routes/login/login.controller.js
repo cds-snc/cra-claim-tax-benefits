@@ -24,7 +24,7 @@ const {
   addressesSchema,
   prisonSchema,
 } = require('./../../schemas')
-const { DB } = require('../../api')
+const DB = require('../../db')
 const user = require('../../api/user.json')
 const { securityQuestionUrls } = require('../../config/routes.config')
 
@@ -36,14 +36,16 @@ module.exports = function(app) {
 
   // SIN
   app.get('/login/sin', renderWithData('login/sin'))
-  app.post('/login/sin',
+  app.post(
+    '/login/sin',
     checkSchema(sinSchema),
     checkErrors('login/sin'),
     (req, res, next) => {
       req.session.db.sin = req.body.sin
       next()
     },
-    doRedirect)
+    doRedirect,
+  )
 
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
@@ -188,12 +190,12 @@ const postLoginCode = async (req, res, next) => {
 
   // populate the session with empty variables in the format of user.json
   // setting req.session = {obj} causes an error, so assign the keys one at a time
-  Object.keys(user).map(key => (req.session[key] = user[key] ))
+  Object.keys(user).map(key => (req.session[key] = user[key]))
   req.session.db = {
     code: req.body.code,
     firstName: validCode.firstName,
     sin: null,
-    dateOfBirth: null
+    dateOfBirth: null,
   }
 
   next()
@@ -220,7 +222,7 @@ const postDateOfBirth = async (req, res, next) => {
 
   // check access code + SIN + DoB
   // if session doesn't have a sin, throw error
-  if(!req.session.db.sin) {
+  if (!req.session.db.sin) {
     // error no sin
     let errObj = {
       sin: {
@@ -246,7 +248,7 @@ const postDateOfBirth = async (req, res, next) => {
   if (validUser) {
     // populate the rest of the session
     // populate from user.json for now
-    Object.keys(user).map(key => (req.session[key] = user[key] ))
+    Object.keys(user).map(key => (req.session[key] = user[key]))
   } else {
     // TODO: update error message
     let errObj = {

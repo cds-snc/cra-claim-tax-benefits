@@ -243,9 +243,7 @@ const postDateOfBirth = async (req, res, next) => {
   if (validUser) {
     // populate the rest of the session
     // populate from user.json for now
-    Object.keys(user).map(key => {
-      req.session[key] = user[key]
-    })
+    Object.keys(user).map(key => (req.session[key] = user[key] ))
   } else {
     // TODO: update error message
     let errObj = {

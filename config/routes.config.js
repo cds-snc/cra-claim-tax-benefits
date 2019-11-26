@@ -11,6 +11,9 @@ const securityQuestionUrls = [
   '/login/questions/rrsp',
   '/login/questions/tfsa',
   '/login/questions/ccb',
+
+  // Skip URL
+  '/checkAnswers',
 ]
 
 //list our routes in the flow order in the app

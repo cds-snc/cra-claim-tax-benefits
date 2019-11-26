@@ -82,6 +82,10 @@
   }
 }
 
+.multiple-choice__p {
+  margin: $space-md 0 $space-md 5px;
+}
+
 .multiple-choice--checkboxes .multiple-choice__item {
   > input[type='checkbox'] {
     top: calc(50% - 20px);

@@ -347,7 +347,7 @@ describe('Test /login responses', () => {
             dobYear: currentDate.getFullYear() - 201,
           },
         },
-      }
+      },
     ]
 
     describe('for /login/dateOfBirth', () => {
@@ -364,7 +364,7 @@ describe('Test /login responses', () => {
           .use(withCSRF(cookie, csrfToken))
           .send({ 
             code: 'A5G98S4K1',
-            redirect: '/login/sin'
+            redirect: '/login/sin',
           })
           .then(() => {
             return authSession
@@ -372,7 +372,7 @@ describe('Test /login responses', () => {
               .use(withCSRF(cookie, csrfToken))
               .send({
                 sin: '847339283',
-                redirect: '/login/dateOfBirth'
+                redirect: '/login/dateOfBirth',
               })
           })
         expect(response.statusCode).toBe(302)
@@ -431,7 +431,7 @@ describe('Test /login responses', () => {
           .use(withCSRF(cookie, csrfToken))
           .send({ 
             code: 'A5G98S4K1',
-            redirect: '/login/sin'
+            redirect: '/login/sin',
           })
           .then(() => {
             return testSession
@@ -439,7 +439,7 @@ describe('Test /login responses', () => {
               .use(withCSRF(cookie, csrfToken))
               .send({
                 sin: '888888888',
-                redirect: '/login/dateOfBirth'
+                redirect: '/login/dateOfBirth',
               })
           })
         expect(response.statusCode).toBe(302)

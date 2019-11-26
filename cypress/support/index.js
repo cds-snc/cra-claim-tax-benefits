@@ -78,50 +78,6 @@ Cypress.Commands.add('login', user => {
   cy.get('form button[type="submit"]')
     .should('contain', 'Continue')
     .click()
-
-  // LOGIN SECURITY QUESTIONS
-  cy.injectAxe().checkA11y()
-  cy.url().should('contain', '/login/securityQuestion')
-  cy.get('h1').should('contain', 'Choose a security question')
-
-  cy.get('form label')
-    .eq(3)
-    .should('have.attr', 'for', 'securityQuestion3')
-  cy.get('#securityQuestion3').check()
-
-  cy.get('form button[type="submit"]')
-    .should('contain', 'Continue')
-    .click()
-
-  // LOGIN TRILLIUM QUESTION
-  cy.injectAxe().checkA11y()
-  cy.url().should('contain', '/login/questions/dateOfResidence')
-  cy.get('h1').should('contain', 'Enter date you became a resident of Canada')
-
-  cy.get('form label')
-    .eq(0)
-    .should('have.attr', 'for', 'dobDay')
-  cy.get('#dobDay')
-    .type('1')
-    .should('have.value', '1')
-
-  cy.get('form label')
-    .eq(1)
-    .should('have.attr', 'for', 'dobMonth')
-  cy.get('#dobMonth')
-    .type('2')
-    .should('have.value', '2')
-
-  cy.get('form label')
-    .eq(2)
-    .should('have.attr', 'for', 'dobYear')
-  cy.get('#dobYear')
-    .type('1997')
-    .should('have.value', '1997')
-
-  cy.get('form button[type="submit"]')
-    .should('contain', 'Continue')
-    .click()
 })
 
 Cypress.Commands.add('confirm', ({ url, h1, id }) => {

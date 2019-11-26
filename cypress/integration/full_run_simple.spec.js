@@ -68,19 +68,6 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
-  //CONFIRM INCOME
-  it('navigates the Confirm Income page', function() {
-    cy.confirm({
-      url: '/financial/income',
-      h1: 'Check your income information for the 2018 tax year',
-      id: 'confirmIncome0',
-    })
-
-    checkTableRows(cy, allIncomeRows(this.user))
-
-    cy.continue()
-  })
-
   //CONFIRM MARITAL STATUS
   it('navigates the Confirm Marital Status page', function() {
     cy.confirm({
@@ -165,6 +152,64 @@ describe('Full run through saying "no" to everything', function() {
       h1: 'Vote in the federal election',
       id: 'confirmOptIn1', // click No
     })
+
+    cy.continue()
+  })
+
+  it('navigates Security Questions', function() {
+    // LOGIN SECURITY QUESTIONS
+    cy.injectAxe().checkA11y()
+    cy.url().should('contain', '/login/securityQuestion')
+    cy.get('h1').should('contain', 'Choose a security question')
+
+    cy.get('form label')
+      .eq(3)
+      .should('have.attr', 'for', 'securityQuestion3')
+    cy.get('#securityQuestion3').check()
+
+    cy.get("form button[type='submit']")
+      .should('contain', 'Continue')
+      .click() 
+
+    cy.injectAxe().checkA11y()
+    cy.url().should('contain', '/login/questions/dateOfResidence')
+    cy.get('h1').should('contain', 'Enter date you became a resident of Canada')
+
+    cy.get('form label')
+      .eq(0)
+      .should('have.attr', 'for', 'dobDay')
+    cy.get('#dobDay')
+      .type('1')
+      .should('have.value', '1')
+
+    cy.get('form label')
+      .eq(1)
+      .should('have.attr', 'for', 'dobMonth')
+    cy.get('#dobMonth')
+      .type('2')
+      .should('have.value', '2')
+
+    cy.get('form label')
+      .eq(2)
+      .should('have.attr', 'for', 'dobYear')
+    cy.get('#dobYear')
+      .type('1997')
+      .should('have.value', '1997')
+
+    cy.get('form button[type="submit"]')
+      .should('contain', 'Continue')
+      .click()
+  })
+
+  //CONFIRM INCOME
+  it('navigates the Confirm Income page', function() {
+    cy.confirm({
+      url: '/financial/income',
+      h1: 'Check your income information for the 2018 tax year',
+      id: 'confirmIncome0',
+    })
+
+    checkTableRows(cy, allIncomeRows(this.user))
 
     cy.continue()
   })

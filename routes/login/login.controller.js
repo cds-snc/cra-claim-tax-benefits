@@ -181,18 +181,6 @@ const postLoginCode = async (req, res, next) => {
 
   // check if code is valid
   let validCode = DB.validateCode(req.body.code)
-  /*
-  TODO: port to the actual DB - the function of this code will probably be in the above DB.validateCode
-  if (process.env.CTBS_SERVICE_URL && req.body.code) {
-    user = await request({
-      method: 'GET',
-      uri: `${process.env.CTBS_SERVICE_URL}/${req.body.code}`,
-      json: true,
-    })
-  } else {
-    user = API.getUser(req.body.code || null)
-  }
-  */
 
   if (!validCode) {
     throw new Error(`[POST ${req.path}] user not found for access code "${req.body.code}"`)
@@ -203,6 +191,7 @@ const postLoginCode = async (req, res, next) => {
   Object.keys(user).map(key => (req.session[key] = {}))
 
   req.session.login.code = req.body.code
+  req.session.personal.firstName = validCode.firstName
 
   next()
 }
@@ -230,7 +219,6 @@ const postDateOfBirth = async (req, res, next) => {
   // if session doesn't have a sin, throw error
   if(!req.session.personal.sin) {
     // error no sin
-    console.log(req.session)
     let errObj = {
       sin: {
         msg: 'errors.login.matchingSIN',

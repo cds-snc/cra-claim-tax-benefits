@@ -29,9 +29,9 @@ var DB = (() => {
     let dbUser = false;
     dbUser = db.find(function(u, i) {
       if(u.code === code)
-        return true
+        return u
     })
-
+    // return the whole row for now for populating session with initial data
     return dbUser
   }
 
@@ -44,7 +44,7 @@ var DB = (() => {
         (login.sin === u.sin.replace(/\s/g, '')) &&
         (login.dateOfBirth === u.dateOfBirth)
     })
-    
+
     return dbUser
   }
 

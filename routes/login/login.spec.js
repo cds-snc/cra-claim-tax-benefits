@@ -382,21 +382,21 @@ describe('Test /login responses', () => {
 
     describe('Test /login/notice responses', () => {
       const session = require('supertest-session')
-    
+
       let csrfToken, cookie
-    
+
       beforeEach(async () => {
         let testSession = session(app)
         const getresp = await testSession.get('/login/notice')
         cookie = getresp.headers['set-cookie']
         csrfToken = extractCsrfToken(getresp)
       })
-    
+
       test('it returns a 200 response for /login/notice', async () => {
         const response = await request(app).get('/login/notice')
         expect(response.statusCode).toBe(200)
       })
-    
+
       test('it returns a 422 with no option selected', async () => {
         const response = await request(app)
           .post('/login/notice')
@@ -404,23 +404,23 @@ describe('Test /login responses', () => {
           .send({ redirect: '/' })
         expect(response.statusCode).toBe(422)
       })
-    
+
       test('it returns a 302 and redirects to offramp when NO is selected', async () => {
         const response = await request(app)
           .post('/login/notice')
           .use(withCSRF(cookie, csrfToken))
-          .send({ noticeOfAssessment: 'No', redirect: '/' })
+          .send({ noticeOfAssessment: 'No', redirect: '/start' })
         expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/')
+        expect(response.headers.location).toEqual('/checkAnswers')
       })
-    
-      test('it returns a 302 and redirects to the same page when YES is selected', async () => {
+
+      test('it returns a 302 and redirects to the posted redirect value when YES is selected', async () => {
         const response = await request(app)
           .post('/login/notice')
           .use(withCSRF(cookie, csrfToken))
-          .send({ noticeOfAssessment: 'Yes', redirect: '/login/securityQuestion' })
+          .send({ noticeOfAssessment: 'Yes', redirect: '/start' })
         expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/login/securityQuestion')
+        expect(response.headers.location).toEqual('/start')
       })
     })
 

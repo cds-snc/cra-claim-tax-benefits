@@ -44,7 +44,12 @@ module.exports = function(app) {
     '/login/notice',
     checkSchema(noticeSchema),
     checkErrors('login/notice'),
-    postNotice,
+    (req, res, next) => {
+      if (req.body.noticeOfAssessment === 'No') {
+        return res.redirect('/checkAnswers')
+      }
+      next()
+    },
     doRedirect,
   )
 
@@ -213,15 +218,4 @@ const postSecurityQuestion = async (req, res) => {
 
   req.session.login.securityQuestion = url
   return res.redirect(url)
-}
-
-const postNotice = (req, res, next) => {
-  const noticeOfAssessment = req.body.noticeOfAssessment
-
-  if (noticeOfAssessment === 'No') {
-    return res.redirect('/')
-  }
-
-  req.session.login.noticeOfAssessment = true
-  next()
 }

@@ -3,7 +3,6 @@ const { validationArray, currencySchema, yesNoSchema } = require('./utils.schema
 const API = require('./../api')
 const { securityQuestionUrls } = require('../config/routes.config')
 
-
 const loginSchema = {
   code: {
     isLength: {
@@ -332,7 +331,7 @@ const taxReturnSchema = {
       errorMessage: 'errors.login.taxReturn.currency',
       options: { allow_negatives: false },
     },
-  }
+  },
 }
 
 module.exports = {

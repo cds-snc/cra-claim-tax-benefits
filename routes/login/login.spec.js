@@ -409,22 +409,22 @@ describe('Test /login responses', () => {
         expect(response.statusCode).toBe(422)
       })
 
-      test('it returns a 302 and redirects to offramp when NO is selected', async () => {
+      test('it returns a 302 and redirects to the posted redirect value when YES is selected', async () => {
         const response = await request(app)
           .post('/login/notice')
           .use(withCSRF(cookie, csrfToken))
           .send({ noticeOfAssessment: 'No', redirect: '/start' })
         expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/checkAnswers')
+        expect(response.headers.location).toEqual('/start')
       })
 
-      test('it returns a 302 and redirects to the posted redirect value when YES is selected', async () => {
+      test('it returns a 302 and redirects to the securityQuestion page when YES is selected', async () => {
         const response = await request(app)
           .post('/login/notice')
           .use(withCSRF(cookie, csrfToken))
           .send({ noticeOfAssessment: 'Yes', redirect: '/start' })
         expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/start')
+        expect(response.headers.location).toEqual('/login/securityQuestion')
       })
     })
 

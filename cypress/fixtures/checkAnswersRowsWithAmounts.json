@@ -1,4 +1,4 @@
-{ 
+{
   "rows": [
     {
       "key": "Name",
@@ -71,5 +71,6 @@
     {
       "key": "Did you live in a small and rural community?",
       "value": "Yes"
-    }]
-  }
+    }
+  ]
+}

@@ -48,8 +48,8 @@ module.exports = function(app) {
     checkSchema(noticeSchema),
     checkErrors('login/notice'),
     (req, res, next) => {
-      if (req.body.noticeOfAssessment === 'No') {
-        return res.redirect('/checkAnswers')
+      if (req.body.noticeOfAssessment === 'Yes') {
+        return res.redirect('/login/securityQuestion')
       }
       next()
     },

@@ -24,8 +24,8 @@ const {
   addressesSchema,
   prisonSchema,
 } = require('./../../schemas')
+const API = require('../../api')
 const DB = require('../../db')
-const user = require('../../api/user.json')
 const { securityQuestionUrls } = require('../../config/routes.config')
 
 module.exports = function(app) {
@@ -35,12 +35,20 @@ module.exports = function(app) {
   app.post('/login/code', checkSchema(loginSchema), postLoginCode, doRedirect)
 
   // SIN
+  // @TODO: redirect if no code
   app.get('/login/sin', renderWithData('login/sin'))
-  app.post('/login/sin', checkSchema(sinSchema), checkErrors('login/sin'), doRedirect)
+  app.post('/login/sin', checkSchema(sinSchema), checkErrors('login/sin'), postSIN, doRedirect)
 
   // Date of Birth
+  // @TODO: redirect if no code or SIN
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
-  app.post('/login/dateOfBirth', checkSchema(dobSchema), postDateOfBirth, doRedirect)
+  app.post(
+    '/login/dateOfBirth',
+    checkSchema(dobSchema),
+    checkErrors('login/dateOfBirth'),
+    postLogin,
+    doRedirect,
+  )
 
   app.get('/login/notice', renderWithData('login/notice'))
   app.post(
@@ -179,73 +187,59 @@ const postLoginCode = async (req, res, next) => {
     throw new Error(`[POST ${req.path}] user not found for access code "${req.body.code}"`)
   }
 
-  // populate the session with our DB row variables in the format of db.json
-  req.session.db = row
+  // populate the session.login with our submitted access code
+  req.session.login = { code: req.body.code }
+
   next()
 }
 
-const postDateOfBirth = async (req, res, next) => {
-  const errors = validationResult(req)
-
-  // copy all posted parameters, but remove the redirect
-  let body = Object.assign({}, req.body)
-  delete body.redirect
-
-  if (!errors.isEmpty()) {
-    let errObj = errorArray2ErrorObject(errors)
-
-    return res.status(422).render('login/dateOfBirth', {
-      prevRoute: getPreviousRoute(req),
-      data: req.session,
-      body,
-      errors: errObj,
-    })
+const postSIN = (req, res, next) => {
+  if (req.session && req.session.login) {
+    req.session.login.sin = req.body.sin
   }
-  req.session.db.dateOfBirth = _toISOFormat(req.body)
+  next()
+}
+
+const postLogin = async (req, res, next) => {
+  // if no session, or no access code, return to access code page
+  // @TODO: test for this
+  // @TODO: this should be an error
+  if (!req.session || !req.session.login || !req.session.login.code) {
+    req.session.destroy()
+    return res.redirect('/login/code')
+  }
+
+  // if no SIN, return to SIN page
+  // @TODO: test for this
+  // @TODO: this should be an error
+  if (!req.session.login.sin) {
+    return res.redirect('/login/sin')
+  }
+
+  req.session.login.dateOfBirth = _toISOFormat(req.body)
 
   // check access code + SIN + DoB
-  // if session doesn't have a sin, throw error
-  if (!req.session.db.sin) {
-    // error no sin
-    let errObj = {
-      sin: {
-        msg: 'errors.login.matchingSIN',
-      },
-    }
-    return res.status(422).render('login/dateOfBirth', {
-      prevRoute: getPreviousRoute(req),
-      data: req.session,
-      body,
-      errors: errObj,
-    })
+  const { code, sin, dateOfBirth } = req.session.login
+
+  let row = DB.validateUser({ code, sin, dateOfBirth })
+
+  // if no row is found, error and return to SIN page
+  if (!row) {
+    // @TODO: this should be an error
+    // @TODO: error might be that the SIN and DoB are for another code, don't handle that right now
+    return res.redirect('/login/sin')
   }
 
-  let login = {
-    code: req.session.db.code,
-    sin: req.session.db.sin.replace(/\s/g, ''),
-    dateOfBirth: req.session.db.dateOfBirth,
+  // @TODO: process.env.CTBS_SERVICE_URL
+  const user = API.getUser(code)
+
+  if (!user) {
+    throw new Error(`[POST ${req.path}] user not found for access code "${code}"`)
   }
 
-  let validUser = DB.validateUser(login)
+  // this overwrites what we have saved in "session.login" up to this point
+  Object.keys(user).map(key => (req.session[key] = user[key]))
 
-  if (validUser) {
-    // populate the rest of the session
-    // populate from user.json for now
-    Object.keys(user).map(key => (req.session[key] = user[key]))
-  } else {
-    // TODO: update error message
-    let errObj = {
-      dateOfBirth: {
-        msg: 'errors.login.dateOfBirth.match',
-      },
-    }
-    return res.status(422).render('login/dateOfBirth', {
-      prevRoute: getPreviousRoute(req),
-      data: req.session,
-      body,
-      errors: errObj,
-    })
-  }
   next()
 }
 

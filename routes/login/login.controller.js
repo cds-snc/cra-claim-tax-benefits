@@ -16,7 +16,6 @@ const {
   childSchema,
   dateOfResidenceSchema,
   bankruptcySchema,
-  trilliumAmountSchema,
   bankSchema,
   taxReturnSchema,
   rrspSchema,
@@ -114,14 +113,6 @@ module.exports = function(app) {
     '/login/questions/bankruptcy',
     checkSchema(bankruptcySchema),
     checkErrors('login/questions/bankruptcy'),
-    doRedirect,
-  )
-
-  app.get('/login/questions/trillium', renderWithData('login/questions/trillium'))
-  app.post(
-    '/login/questions/trillium',
-    checkSchema(trilliumAmountSchema),
-    checkErrors('login/questions/trillium'),
     doRedirect,
   )
 

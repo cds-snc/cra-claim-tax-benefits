@@ -13,7 +13,7 @@ const API = require('./../api')
 const testRoutes = [
   { path: '/start' },
   { path: '/login/code' },
-  { path: '/login/questions', options: ['/login/questions/child', '/login/questions/trillium'] },
+  { path: '/login/questions', options: ['/login/questions/child', '/login/questions/bank'] },
   { path: '/deductions/rrsp' },
   { path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
   { path: '/deductions/medical' },
@@ -210,12 +210,12 @@ describe('Test getRouteWithIndexByPath', () => {
       index: 2,
       route: {
         path: '/login/questions',
-        options: ['/login/questions/child', '/login/questions/trillium'],
+        options: ['/login/questions/child', '/login/questions/bank'],
       },
     })
   })
 
-  const optsUrls = ['/login/questions/child', '/login/questions/trillium']
+  const optsUrls = ['/login/questions/child', '/login/questions/bank']
   optsUrls.map(url => {
     test(`Returns a route with an options key by looking for a path in the options array: ${url}`, () => {
       const route = getRouteWithIndexByPath(url, testRoutes)
@@ -223,7 +223,7 @@ describe('Test getRouteWithIndexByPath', () => {
         index: 2,
         route: {
           path: '/login/questions',
-          options: ['/login/questions/child', '/login/questions/trillium'],
+          options: ['/login/questions/child', '/login/questions/bank'],
         },
       })
     })

@@ -151,46 +151,8 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
-  // LOGIN SECURITY QUESTIONS
-  it('navigates Security Questions', function() {
-    cy.injectAxe().checkA11y()
-    cy.url().should('contain', '/login/securityQuestion')
-    cy.get('h1').should('contain', 'Choose a security question')
-
-    cy.get('form label')
-      .eq(3)
-      .should('have.attr', 'for', 'securityQuestion3')
-    cy.get('#securityQuestion3').check()
-
-    cy.get("form button[type='submit']")
-      .should('contain', 'Continue')
-      .click() 
-
-    cy.injectAxe().checkA11y()
-    cy.url().should('contain', '/login/questions/taxReturn')
-    cy.get('h1').should('contain', 'Check your papers from any year you filed taxes')
-
-    cy.get('form label')
-      .eq(0)
-      .should('have.attr', 'for', 'taxReturnYear')
-    cy.get('#taxReturnYear')
-      .type('2018')
-      .should('have.value', '2018')
-
-    cy.get('form label')
-      .eq(1)
-      .should('have.attr', 'for', 'taxReturnAmount')
-    cy.get('#taxReturnAmount')
-      .type('10000')
-      .should('have.value', '10000')
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
-  })
-
-  //CONFIRM INCOME
-  it('navigates the Confirm Income page', function() {
+  // NOTICE OF ASSESSMENT
+  it('navigates Notice of Assessment page', function() {
     cy.confirm({
       url: '/login/notice',
       h1: 'Notice of assessment',

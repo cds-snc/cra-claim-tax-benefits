@@ -117,14 +117,6 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/login/questions/trillium', renderWithData('login/questions/trillium'))
-  app.post(
-    '/login/questions/trillium',
-    checkSchema(trilliumAmountSchema),
-    checkErrors('login/questions/trillium'),
-    doRedirect,
-  )
-
   app.get('/login/questions/bank', renderWithData('login/questions/bank'))
   app.post(
     '/login/questions/bank',

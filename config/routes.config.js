@@ -5,7 +5,6 @@ const securityQuestionUrls = [
   '/login/questions/prison',
   '/login/questions/dateOfResidence',
   '/login/questions/bankruptcy',
-  '/login/questions/trillium',
   '/login/questions/bank',
   '/login/questions/taxReturn',
   '/login/questions/rrsp',

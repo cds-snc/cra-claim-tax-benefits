@@ -487,5 +487,13 @@
   "Enter any year you contributed to your TFSA": "Enter any year you contributed to your TFSA",
   "Details of your CRA Canada Child Benefit (CCB)": "Details of your CRA Canada Child Benefit (CCB)",
   "Enter year": "Enter year",
-  "Enter amount of Family Net Income on your CCB letter": "Enter amount of Family Net Income on your CCB letter"
+  "Enter amount of Family Net Income on your CCB letter": "Enter amount of Family Net Income on your CCB letter",
+  "Answer a question from this list to get your notice of assessment immediately after you file with this service:": "Pour recevoir votre avis de cotisation tout de suite après avoir produit votre déclaration avec le présent service, choisissez l’une des questions suivantes :",
+  "Your total income reported on a previous tax return": "Le revenu total déclaré dans l’une de vos déclarations de revenus passées",
+  "OR": "OU",
+  "Skip security questions": "Ignorer les questions de sécurité",
+  "If you skip these questions, you will wait about 8 weeks to get a notice of assessment.": "Si vous ne sélectionnez pas de question, vous aurez à attendre environ 8 semaines avant de recevoir votre avis de cotisation.",
+  "Show different questions": "Choisir une question différente",
+  "Back to previous questions": "Regardez les questions précédentes",
+  "Enter your total income on line 101 for that year": "Enter your total income on line 101 for that year"
 }

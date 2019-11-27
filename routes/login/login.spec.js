@@ -20,7 +20,6 @@ describe('Test /login responses', () => {
     '/login/dateOfBirth',
     '/login/securityQuestion',
     '/login/questions/child',
-    '/login/questions/trillium',
     '/login/questions/addresses',
     '/login/questions/bankruptcy',
     '/login/questions/dateOfResidence',
@@ -632,7 +631,7 @@ describe('Test /login responses', () => {
 
 const questionsAmounts = [
   {
-    url: '/login/questions/trillium',
+    url: '/login/questions/bank',
     key: 'trillium',
   },
 ]
@@ -764,7 +763,7 @@ describe('Test securityQuestion responses', () => {
       expect(response.statusCode).toBe(422)
     })
 
-    const securityQuestionUrls = ['/login/questions/child', '/login/questions/trillium']
+    const securityQuestionUrls = ['/login/questions/child', '/login/questions/bank']
     securityQuestionUrls.map(url => {
       test(`it returns a 302 response when posting a good value: ${url}`, async () => {
         const response = await request(app)

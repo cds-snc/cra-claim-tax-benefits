@@ -16,7 +16,6 @@ const {
   childSchema,
   dateOfResidenceSchema,
   bankruptcySchema,
-  trilliumAmountSchema,
   bankSchema,
   taxReturnSchema,
   rrspSchema,

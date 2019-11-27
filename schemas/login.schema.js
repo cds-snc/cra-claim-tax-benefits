@@ -149,16 +149,6 @@ const bankruptcySchema = {
   },
 }
 
-const trilliumAmountSchema = {
-  trilliumAmount: currencySchema(),
-  trilliumPaymentMethod: {
-    isIn: {
-      errorMessage: 'errors.login.paymentMethod',
-      options: [['cheque', 'directDeposit']],
-    },
-  },
-}
-
 const _isEmpty = errorMessage => {
   return {
     isEmpty: {
@@ -302,7 +292,6 @@ module.exports = {
   childSchema,
   dateOfResidenceSchema,
   bankruptcySchema,
-  trilliumAmountSchema,
   addressesSchema,
   prisonSchema,
   bankSchema,

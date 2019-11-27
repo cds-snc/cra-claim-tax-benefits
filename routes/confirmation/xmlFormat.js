@@ -271,9 +271,9 @@ const addTaxPayerInfo = (user, locale) => {
     return address.line1
   }
 
-  const getCorrespondenceCode = (userLocale) => {
+  const getCorrespondenceCode = (locale) => {
     // seems to be 1 for English, 2 for French
-    const langCode = (!userLocale || userLocale === 'en') ? 1 : 2
+    const langCode = (!locale || locale === 'en') ? 1 : 2
 
     return langCode
   }

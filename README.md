@@ -1,4 +1,4 @@
-![](https://codebuild.ca-central-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiWlBLTE4zZFNBRVRESytUZGxGZHhyU081K3hIV2xQMTJtMTJJUmdHQmVZNUs1RnBQbXdKcmpjMUZ2ZlBsaFRPYVRHZlY3YkFheVhFc0t6VGlKdVlvSVVrPSIsIml2UGFyYW1ldGVyU3BlYyI6IklNVUVRRUlNNWpkMFFicksiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+![](https://github.com/cds-snc/cra-claim-tax-benefits/workflows/Test,%20build,%20deploy/badge.svg)
 
 # Claim tax benefits / Réclamer des avantages fiscaux
 

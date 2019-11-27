@@ -23,12 +23,10 @@ jobs:
         with:
           args: run cypress:cli
       - name: Run quality analysis on SonarCloud
-        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
-        with:
-          args: run sonar
+        uses: sonarsource/sonarcloud-github-action@master
         env: 
-          SONAR_LOGIN: ${{ secrets.SONARQUBE_TOKEN }}
-          SONAR_URL: https://sonarcloud.io       
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_SONAR_TOKEN }}          
   deploy:
     name: Build container and deploy
     env:

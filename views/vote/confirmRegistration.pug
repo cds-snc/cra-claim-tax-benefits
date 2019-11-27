@@ -1,0 +1,39 @@
+extends ../base
+include ../_includes/banner
+
+block variables
+  -var title = __('Register to vote')
+  -var voterCitizen = !hasData(data, 'vote.voterCitizen') ? '' : data.vote.voterCitizen
+  -var voterConsent = !hasData(data, 'vote.voterConsent') ? '' : data.vote.voterConsent
+
+block content
+
+  h1 #{title}
+
+  +banner('blue')
+    p #{__('You cannot register to vote unless you are able to check both boxes.')}
+
+  div
+    p #{__('The Canada Elections Act gives rules about elections and voter information. Provincial and territorial governments, members of Parliament, registered political parties, and candidates at election time can have your voter information.')}
+
+    p #{__('If you are able to check both boxes, Elections Canada will put you on the voter’s list until you file taxes again.')}
+
+  form.cra-form(method='post')
+    div(class={['has-error']: errors && errors[id]})
+      fieldset
+        if attributes && attributes.h2
+          legend
+            h2 #{__('Check the boxes if:')}
+        else
+          legend #{__('Check the boxes if:')}
+        .multiple-choice.multiple-choice--checkboxes
+          .multiple-choice__item
+            input(id='voterCitizen' name='voterCitizen' type="checkbox"  value="voterCitizen" checked=(voterCitizen =='Yes') aria-describedby=(errors ? `voterCitizen` : false))
+            label(for='voterCitizen') #{__('You are a Canadian citizen.')}
+          .multiple-choice__item
+            input(id='voterConsent' name='voterConsent' type="checkbox" value="voterConsent" checked=(voterConsent =='Yes') aria-describedby=(errors ? `voterConsent` : false))
+            label(for='voterConsent') #{__('You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.')}
+
+    input#redirect(name='redirect', type='hidden', value='/login/notice')
+
+    +formButtons()

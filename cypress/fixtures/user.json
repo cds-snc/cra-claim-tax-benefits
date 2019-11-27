@@ -182,5 +182,11 @@
        "name": "Total benefits",
        "amount": "901.92"
     }
- }
+ },
+ "vote": {
+    "confirmOptIn": null,
+    "voterPageEdited": 0,
+    "voterCitizen": null,
+    "voterConsent": null
+}
 }

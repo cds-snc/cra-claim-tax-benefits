@@ -11,11 +11,17 @@ const {
   loginSchema,
   sinSchema,
   dobSchema,
+  noticeSchema,
   securityQuestionSchema,
   childSchema,
   dateOfResidenceSchema,
   bankruptcySchema,
   trilliumAmountSchema,
+  bankSchema,
+  taxReturnSchema,
+  rrspSchema,
+  tfsaSchema,
+  ccbSchema,
   addressesSchema,
   prisonSchema,
 } = require('./../../schemas')
@@ -35,6 +41,20 @@ module.exports = function(app) {
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
   app.post('/login/dateOfBirth', checkSchema(dobSchema), postDateOfBirth, doRedirect)
+
+  app.get('/login/notice', renderWithData('login/notice'))
+  app.post(
+    '/login/notice',
+    checkSchema(noticeSchema),
+    checkErrors('login/notice'),
+    (req, res, next) => {
+      if (req.body.noticeOfAssessment === 'Yes') {
+        return res.redirect('/login/securityQuestion')
+      }
+      next()
+    },
+    doRedirect,
+  )
 
   // Security question page
   app.get('/login/securityQuestion', renderWithData('login/securityQuestion'))
@@ -105,7 +125,45 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/login/questions/temp', renderWithData('login/questions/temp'))
+  app.get('/login/questions/bank', renderWithData('login/questions/bank'))
+  app.post(
+    '/login/questions/bank',
+    checkSchema(bankSchema),
+    checkErrors('login/questions/bank'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/taxReturn', renderWithData('login/questions/taxReturn'))
+  app.post(
+    '/login/questions/taxReturn',
+    checkSchema(taxReturnSchema),
+    checkErrors('login/questions/taxReturn'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/rrsp', renderWithData('login/questions/rrsp'))
+  app.post(
+    '/login/questions/rrsp',
+    checkSchema(rrspSchema),
+    checkErrors('login/questions/rrsp'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/tfsa', renderWithData('login/questions/tfsa'))
+  app.post(
+    '/login/questions/tfsa',
+    checkSchema(tfsaSchema),
+    checkErrors('login/questions/tfsa'),
+    doRedirect,
+  )
+
+  app.get('/login/questions/ccb', renderWithData('login/questions/ccb'))
+  app.post(
+    '/login/questions/ccb',
+    checkSchema(ccbSchema),
+    checkErrors('login/questions/ccb'),
+    doRedirect,
+  )
 }
 
 const postLoginCode = async (req, res, next) => {

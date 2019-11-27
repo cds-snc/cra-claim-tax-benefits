@@ -1,12 +1,6 @@
-const {
-  checkTableRows,
-  allIncomeRows,
-  getBenefitsBreakdownRows,
-  getAddress,
-  logIn,
-} = require('../utils.js')
+const { checkTableRows, getBenefitsBreakdownRows, getAddress } = require('../utils.js')
 
-describe('Full run through', function() {
+describe('Full run through saying "no" to everything', function() {
   before(function() {
     cy.visit('/clear')
     cy.visit('/')
@@ -17,8 +11,8 @@ describe('Full run through', function() {
     cy.injectAxe().checkA11y()
   })
 
+  // START PAGE
   it('successfully loads the home page', function() {
-    // START PAGE
     cy.checkA11y()
     cy.get('h1').should('contain', 'Claim Tax Benefits')
     cy.get('main a')
@@ -27,222 +21,177 @@ describe('Full run through', function() {
   })
 
   it('successfully logs in', function() {
-    logIn(cy, this.user)
+    cy.login(this.user)
   })
 
+  //CONFIRM NAME
   it('navigates the Confirm Name page', function() {
-    //CONFIRM NAME
-    cy.url().should('contain', '/personal/name')
-    cy.get('h1').should('contain', 'Check your name is correct')
-
-    cy.get('input#name0 + label').should('have.attr', 'for', 'name0')
-
-    cy.get('input#name0').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
+    cy.confirm({
+      url: '/personal/name',
+      h1: 'Check your name is correct',
+      id: 'name0',
+    })
+    cy.continue()
   })
 
+  //CONFIRM RESIDENCE
   it('navigates the Confirm Residence page', function() {
-    //CONFIRM RESIDENCE
-    cy.url().should('contain', '/personal/residence')
-    cy.get('h1').should('contain', 'Enter your province or territory')
-
-    cy.get('form label').should('have.attr', 'for', 'residence')
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
+    cy.confirm({
+      url: '/personal/residence',
+      h1: 'Enter your province or territory',
+      id: 'residence',
+    })
+    cy.continue()
   })
 
+  //CONFIRM MAILING
   it('navigates the Confirm Mailing page', function() {
-    //CONFIRM MAILING
-    cy.url().should('contain', '/personal/address')
-    cy.get('h1').should('contain', 'Check your mailing address')
+    cy.confirm({
+      url: '/personal/address',
+      h1: 'Check your mailing address',
+      id: 'confirmAddress0',
+    })
 
     //format address based on apartment/no apartment
     const addressText = getAddress(this.user.personal.address)
-
     addressText.map((text, index) => {
       cy.get('div.address div')
         .eq(index)
         .should('contain', text)
     })
 
-    cy.get('input#confirmAddress0 + label').should('have.attr', 'for', 'confirmAddress0')
-
-    cy.get('input#confirmAddress0').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
+    cy.continue()
   })
 
-  it('navigates the Confirm Income page', function() {
-    //CONFIRM INCOME
-    cy.url().should('contain', '/financial/income')
-    cy.get('h1').should('contain', 'Check your income information for the 2018 tax year')
-
-    //check table data
-    checkTableRows(cy, allIncomeRows(this.user))
-
-    cy.get('input#confirmIncome0 + label').should('have.attr', 'for', 'confirmIncome0')
-
-    cy.get('input#confirmIncome0').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
-  })
-
+  //CONFIRM MARITAL STATUS
   it('navigates the Confirm Marital Status page', function() {
-    //CONFIRM MARITAL STATUS
-    cy.url().should('contain', '/personal/maritalStatus')
-    cy.get('h1').should('contain', 'Check your marital status')
+    cy.confirm({
+      url: '/personal/maritalStatus',
+      h1: 'Check your marital status',
+      id: 'confirmMaritalStatus0',
+    })
 
-    cy.get('input#confirmMaritalStatus0 + label').should(
-      'have.attr',
-      'for',
-      'confirmMaritalStatus0',
-    )
-
-    cy.get('input#confirmMaritalStatus0').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
+    cy.continue()
   })
 
+  //TRILLIUM RENT
   it('navigates the Trillium Rent page', function() {
-    //TRILLIUM RENT
-    cy.url().should('contain', '/trillium/rent')
-    cy.get('h1').should('contain', 'Rent')
+    cy.confirm({
+      url: '/trillium/rent',
+      h1: 'Rent',
+      id: 'trilliumRentClaim1', // click No
+    })
 
-    cy.get('input#trilliumRentClaim1 + label').should('have.attr', 'for', 'trilliumRentClaim1')
-
-    cy.get('input#trilliumRentClaim1').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
+    cy.continue()
   })
 
+  //TRILLIUM PROPERTY TAX
   it('navigates the Trillium Property Tax page', function() {
-    //TRILLIUM PROPERTY TAX
-    cy.url().should('contain', '/trillium/propertyTax')
-    cy.get('h1').should('contain', 'Property tax')
+    cy.confirm({
+      url: '/trillium/propertyTax',
+      h1: 'Property tax',
+      id: 'trilliumPropertyTaxClaim1', // click No
+    })
 
-    cy.get('input#trilliumPropertyTaxClaim1 + label').should(
-      'have.attr',
-      'for',
-      'trilliumPropertyTaxClaim1',
-    )
-
-    cy.get('input#trilliumPropertyTaxClaim1').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
+    cy.continue()
   })
 
+  //TRILLIUM STUDENT RESIDENCE
   it('navigates the Trillium Student Residence page', function() {
-    //TRILLIUM STUDENT RESIDENCE
-    cy.url().should('contain', '/trillium/studentResidence')
-    cy.get('h1').should('contain', 'Student residence')
-    cy.get('input#trilliumStudentResidence1 + label').should(
-      'have.attr',
-      'for',
-      'trilliumStudentResidence1',
-    )
+    cy.confirm({
+      url: '/trillium/studentResidence',
+      h1: 'Student residence',
+      id: 'trilliumStudentResidence1', // click No
+    })
 
-    cy.get('input#trilliumStudentResidence1').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
+    cy.continue()
   })
 
+  //TRILLIUM HOME ENERGY
   it('navigates the Trillium Home Energy page', function() {
-    //TRILLIUM HOME ENERGY
-    cy.url().should('contain', '/trillium/energy/reserve')
-    cy.get('h1').should('contain', 'Home on reserve')
+    cy.confirm({
+      url: '/trillium/energy/reserve',
+      h1: 'Home on reserve',
+      id: 'trilliumEnergyReserveClaim1', // click No
+    })
 
-    cy.get('input#trilliumEnergyReserveClaim1 + label').should('have.attr', 'for', 'trilliumEnergyReserveClaim1')
-
-    cy.get('input#trilliumEnergyReserveClaim1').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
+    cy.continue()
   })
 
+  //TRILLIUM LONG TERM CARE
   it('navigates the Trillium Long Term Care page', function() {
-    //TRILLIUM LONG TERM CARE
-    cy.url().should('contain', '/trillium/longTermCare')
-    cy.get('h1').should('contain', 'Long-term care home')
-    cy.get('input#trilliumLongTermCareClaim1 + label').should(
-      'have.attr',
-      'for',
-      'trilliumLongTermCareClaim1',
-    )
+    cy.confirm({
+      url: '/trillium/longTermCare',
+      h1: 'Long-term care home',
+      id: 'trilliumLongTermCareClaim1', // click No
+    })
 
-    cy.get('input#trilliumLongTermCareClaim1').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
+    cy.continue()
   })
 
-  it('navigates  Incentive page', function() {
-    //CLIMATE ACTION INCENTIVE
-    cy.url().should('contain', '/deductions/climate-action-incentive')
-    cy.get('h1').should('contain', 'Small and rural communities')
+  //CLIMATE ACTION INCENTIVE
+  it('navigates Climate Action Incentive page', function() {
+    cy.confirm({
+      url: '/deductions/climate-action-incentive',
+      h1: 'Small and rural communities',
+      id: 'climateActionIncentiveIsRural1', // click No
+    })
 
-    cy.get('input#climateActionIncentiveIsRural1 + label').should(
-      'have.attr',
-      'for',
-      'climateActionIncentiveIsRural1',
-    )
-
-    cy.get('input#climateActionIncentiveIsRural1').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'Continue')
-      .click()
+    cy.continue()
   })
 
+  // VOTER OPT IN
+  it('navigates Voter Opt In page', function() {
+    cy.confirm({
+      url: '/vote/optIn',
+      h1: 'Vote in the federal election',
+      id: 'confirmOptIn1', // click No
+    })
+
+    cy.continue()
+  })
+
+  // NOTICE
+  it('navigates Notice of Assessment page', function() {
+    cy.confirm({
+      url: '/login/notice',
+      h1: 'Notice of assessment',
+      id: 'noticeOfAssessment1', // click No
+    })
+
+    cy.continue()
+  })
+
+  // CHECK ANSWERS
   it('navigates the Check Your Answers page', function() {
     cy.url().should('contain', '/checkAnswers')
     cy.get('h1').should('contain', 'Check your answers before filing')
     cy.fixture('checkAnswersRows.json').then(rows => {
       checkTableRows(cy, rows.rows)
     })
+
     cy.get('.buttons-row a')
       .contains('Agree')
       .click()
   })
 
+  //REVIEW
   it('navigates the Review page', function() {
-    //REVIEW
-    cy.url().should('contain', '/review')
-    cy.get('h1').should('contain', 'Review and file tax return')
+    cy.confirm({
+      url: '/review',
+      h1: 'Review and file tax return',
+      id: 'review', // click checkbox
+    })
 
     //check some table data
     //until we have a more firm grasp on how we're shaping the total refund, i'm just checking benefits
     checkTableRows(cy, getBenefitsBreakdownRows(this.user))
 
-    cy.get('input#review + label').should('have.attr', 'for', 'review')
-
-    cy.get('input#review').click()
-
-    cy.get('form button[type="submit"]')
-      .should('contain', 'File your taxes now')
-      .click()
+    cy.continue('File your taxes now')
   })
 
+  // CONFIRMATION PAGE
   it('checks the Confirmation page', function() {
-    // CONFIRMATION PAGE
     cy.url().should('contain', '/confirmation')
     cy.get('h1').should('contain', 'You have filed your 2018 taxes')
     cy.get('th').should('contain', 'Your 2018 filing code is')

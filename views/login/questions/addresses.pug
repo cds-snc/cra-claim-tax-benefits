@@ -13,7 +13,6 @@ block variables
   -var secondPostalCode = hasData(body, 'secondPostalCode') ? body.secondPostalCode : ''
   -var secondProvince = hasData(body, 'secondProvince') ? body.secondProvince : ''
 
-
 block content
 
   h1 #{title}
@@ -87,6 +86,6 @@ block content
             option(value='Saskatchewan' selected=secondProvince =='Saskatchewan') #{__('Saskatchewan')}
             option(value='Yukon' selected=secondProvince =='Yukon') #{__('Yukon')}
 
-      input#redirect(name='redirect', type='hidden', value='/personal/name')
+      input#redirect(name='redirect', type='hidden', value='/financial/income')
 
       +formButtons()

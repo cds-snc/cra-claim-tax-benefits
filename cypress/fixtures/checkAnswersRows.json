@@ -1,4 +1,4 @@
-{ 
+{
   "rows": [
     {
       "key": "Name",
@@ -15,10 +15,6 @@
     {
       "key": "Mailing address",
       "value": "Unit 202-303 Blake Blvd."
-    },
-    {
-      "key": "Is your income information correct?",
-      "value": "Yes"
     },
     {
       "key": "Marital status",
@@ -47,5 +43,10 @@
     {
       "key": "Did you live in a small and rural community?",
       "value": "No"
-    }]
-  }
+    },
+    {
+      "key": "Registered to vote",
+      "value": "No"
+    }
+  ]
+}

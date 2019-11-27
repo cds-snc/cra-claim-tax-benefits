@@ -1,0 +1,23 @@
+extends ../../base
+
+block variables
+  -var title = __('Enter your account information from a bank or credit union')
+  -var branchNumber = hasData(body, 'branchNumber') ? body.branchNumber : ''
+  -var accountNumber = hasData(body, 'accountNumber') ? body.accountNumber : ''
+  -var institutionNumber = hasData(body, 'institutionNumber') ? body.institutionNumber : ''
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('You must have used this account with CRA. Choose a different question if CRA does not have your account information.')}
+
+  form.cra-form(method='post')
+    +textInput('Branch number', 'w-1-2', '5 digits')(class='w-3-4' name='branchNumber' value=branchNumber )
+    +textInput('Institution number', 'w-1-2', '3 digits')(class='w-3-4' name='institutionNumber' value=institutionNumber )
+    +textInput('Account number', 'w-1-1', '12 digits')(class='w-3-4' name='accountNumber' value=accountNumber )
+
+    input#redirect(name='redirect', type='hidden', value='/financial/income')
+
+    +formButtons('Continue')

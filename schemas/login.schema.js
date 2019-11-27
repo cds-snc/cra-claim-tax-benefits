@@ -1,5 +1,11 @@
 const validator = require('validator')
-const { validationArray, currencySchema } = require('./utils.schema')
+const {
+  validationArray,
+  currencySchema,
+  yesNoSchema,
+  monthSchema,
+  yearSchema,
+} = require('./utils.schema')
 const API = require('./../api')
 const { securityQuestionUrls } = require('../config/routes.config')
 
@@ -64,8 +70,6 @@ const sinSchema = {
   },
 }
 
-const currentDate = new Date()
-
 const isValidDay = (errorMessageString = 'errors.login.dateOfBirth.validDay') => {
   return {
     isInt: {
@@ -98,18 +102,12 @@ const dobSchema = {
     ...isValidDay(),
     ...validationArray([isMatchingDoB]),
   },
-  dobMonth: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validMonth',
-      options: { min: 1, max: 12 },
-    },
-  },
-  dobYear: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() },
-    },
-  },
+  dobMonth: monthSchema(),
+  dobYear: yearSchema(),
+}
+
+const noticeSchema = {
+  noticeOfAssessment: yesNoSchema(),
 }
 
 const securityQuestionSchema = {
@@ -129,50 +127,20 @@ const childSchema = {
     },
   },
   dobDay: isValidDay(),
-  dobMonth: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validMonth',
-      options: { min: 1, max: 12 },
-    },
-  },
-  dobYear: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
-    },
-  },
+  dobMonth: monthSchema(),
+  dobYear: yearSchema(),
 }
 
 const dateOfResidenceSchema = {
   dobDay: isValidDay(),
-  dobMonth: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validMonth',
-      options: { min: 1, max: 12 },
-    },
-  },
-  dobYear: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
-    },
-  },
+  dobMonth: monthSchema(),
+  dobYear: yearSchema(),
 }
 
 const bankruptcySchema = {
   dobDay: isValidDay(),
-  dobMonth: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validMonth',
-      options: { min: 1, max: 12 },
-    },
-  },
-  dobYear: {
-    isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
-    },
-  },
+  dobMonth: monthSchema(),
+  dobYear: yearSchema(),
   trusteeLastName: {
     isEmpty: {
       errorMessage: 'errors.login.trusteeLastName',
@@ -268,24 +236,68 @@ const prisonSchema = {
     },
   },
   dobDay: isValidDay(),
-  dobMonth: {
+  dobMonth: monthSchema(),
+  dobYear: yearSchema(),
+}
+
+const bankSchema = {
+  branchNumber: {
+    isLength: {
+      errorMessage: 'errors.login.bank.branchLength',
+      options: { min: 5, max: 5 },
+    },
     isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validMonth',
-      options: { min: 1, max: 12 },
+      errorMessage: 'errors.login.bank.validBranch',
+      options: { min: 1, max: 99999 },
     },
   },
-  dobYear: {
+  institutionNumber: {
+    isLength: {
+      errorMessage: 'errors.login.bank.institutionLength',
+      options: { min: 3, max: 3 },
+    },
     isInt: {
-      errorMessage: 'errors.login.dateOfBirth.validYear',
-      options: { min: currentDate.getFullYear() - 200, max: currentDate.getFullYear() - 1 },
+      errorMessage: 'errors.login.bank.validInstitution',
+      options: { min: 1, max: 999 },
     },
   },
+  accountNumber: {
+    isLength: {
+      errorMessage: 'errors.login.bank.accountLength',
+      options: { min: 12, max: 12 },
+    },
+    isInt: {
+      errorMessage: 'errors.login.bank.validAccount',
+      options: { min: 1, max: 999999999999 },
+    },
+  },
+}
+
+const taxReturnSchema = {
+  taxReturnYear: yearSchema('errors.login.taxReturn.validYear'),
+  taxReturnAmount: currencySchema('errors.currency', { allowEmpty: false }),
+}
+
+const rrspSchema = {
+  rrspYear: yearSchema('errors.login.taxReturn.validYear'),
+  rrspAmount: currencySchema('errors.currency', { allowEmpty: false }),
+}
+
+const tfsaSchema = {
+  tfsaYear: yearSchema('errors.login.taxReturn.validYear'),
+  tfsaAmount: currencySchema('errors.currency', { allowEmpty: false }),
+}
+
+const ccbSchema = {
+  ccbYear: yearSchema('errors.login.taxReturn.validYear'),
+  ccbAmount: currencySchema('errors.currency', { allowEmpty: false }),
 }
 
 module.exports = {
   loginSchema,
   dobSchema,
   sinSchema,
+  noticeSchema,
   securityQuestionSchema,
   childSchema,
   dateOfResidenceSchema,
@@ -293,6 +305,11 @@ module.exports = {
   trilliumAmountSchema,
   addressesSchema,
   prisonSchema,
+  bankSchema,
+  taxReturnSchema,
+  rrspSchema,
+  tfsaSchema,
+  ccbSchema,
   _toISOFormat,
   _getSinErrorMessage,
 }

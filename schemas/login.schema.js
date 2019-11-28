@@ -1,11 +1,5 @@
 const validator = require('validator')
-const {
-  validationArray,
-  currencySchema,
-  yesNoSchema,
-  monthSchema,
-  yearSchema,
-} = require('./utils.schema')
+const { currencySchema, yesNoSchema, monthSchema, yearSchema } = require('./utils.schema')
 const API = require('./../api')
 const { securityQuestionUrls } = require('../config/routes.config')
 
@@ -25,11 +19,10 @@ const loginSchema = {
   },
 }
 
-let sinError = 'errors.login.matchingSIN'
-const _getSinErrorMessage = (val, expectedSin) => {
+let sinError = 'errors.login.missingSIN'
+const _getSinErrorMessage = val => {
   if (!val) {
-    // technically, 0 characters is the wrong length
-    return 'errors.login.lengthSIN'
+    return 'errors.login.missingSIN'
   }
 
   // remove spaces, hyphens and underscores
@@ -43,23 +36,14 @@ const _getSinErrorMessage = (val, expectedSin) => {
     return 'errors.login.lengthSIN'
   }
 
-  if (digits !== expectedSin) {
-    return 'errors.login.matchingSIN'
-  }
-
   return false
 }
 
 const sinSchema = {
   sin: {
     custom: {
-      options: (value, { req }) => {
-        /* If there is no session, always return false */
-        if (!req.session || !req.session.personal) {
-          return false
-        }
-
-        const errorMessage = _getSinErrorMessage(value, req.session.personal.sin)
+      options: value => {
+        const errorMessage = _getSinErrorMessage(value)
         if (errorMessage) sinError = errorMessage
 
         /* if an error message exists, we failed validation */
@@ -85,22 +69,9 @@ const _toISOFormat = ({ dobYear, dobMonth, dobDay }) => {
   return `${dobYear}-${if0(dobMonth)}-${if0(dobDay)}`
 }
 
-const isMatchingDoB = {
-  errorMessage: 'errors.login.dateOfBirth.match',
-  validate: (value, req) => {
-    /* If there is no session, always return true */
-    if (!req.session || !req.session.personal) {
-      return true
-    }
-
-    return _toISOFormat(req.body) === req.session.personal.dateOfBirth
-  },
-}
-
 const dobSchema = {
   dobDay: {
     ...isValidDay(),
-    ...validationArray([isMatchingDoB]),
   },
   dobMonth: monthSchema(),
   dobYear: yearSchema(),

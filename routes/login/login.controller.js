@@ -1,5 +1,4 @@
 const { validationResult, checkSchema } = require('express-validator')
-const request = require('request-promise')
 const {
   errorArray2ErrorObject,
   doRedirect,
@@ -9,6 +8,7 @@ const {
 } = require('./../../utils')
 const {
   loginSchema,
+  _toISOFormat,
   sinSchema,
   dobSchema,
   noticeSchema,
@@ -25,21 +25,28 @@ const {
   prisonSchema,
 } = require('./../../schemas')
 const API = require('../../api')
+const DB = require('../../db')
 const { securityQuestionUrls } = require('../../config/routes.config')
 
 module.exports = function(app) {
   // redirect from "/login" → "/login/code"
   app.get('/login', (req, res) => res.redirect('/login/code'))
-  app.get('/login/code', renderWithData('login/code'))
+  app.get('/login/code', renderWithData('login/code', { errorsKey: 'login' }))
   app.post('/login/code', checkSchema(loginSchema), postLoginCode, doRedirect)
 
   // SIN
-  app.get('/login/sin', renderWithData('login/sin'))
-  app.post('/login/sin', checkSchema(sinSchema), checkErrors('login/sin'), doRedirect)
+  app.get('/login/sin', renderWithData('login/sin', { errorsKey: 'login' }))
+  app.post('/login/sin', checkSchema(sinSchema), checkErrors('login/sin'), postSIN, doRedirect)
 
   // Date of Birth
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
-  app.post('/login/dateOfBirth', checkSchema(dobSchema), postDateOfBirth, doRedirect)
+  app.post(
+    '/login/dateOfBirth',
+    checkSchema(dobSchema),
+    checkErrors('login/dateOfBirth'),
+    postLogin,
+    doRedirect,
+  )
 
   app.get('/login/notice', renderWithData('login/notice'))
   app.post(
@@ -171,60 +178,69 @@ const postLoginCode = async (req, res, next) => {
     })
   }
 
-  let user
+  // check if code is valid
+  let row = DB.validateCode(req.body.code)
 
-  if (process.env.CTBS_SERVICE_URL && req.body.code) {
-    user = await request({
-      method: 'GET',
-      uri: `${process.env.CTBS_SERVICE_URL}/${req.body.code}`,
-      json: true,
-    })
-  } else {
-    user = API.getUser(req.body.code || null)
-  }
-
-  if (!user) {
+  if (!row) {
     throw new Error(`[POST ${req.path}] user not found for access code "${req.body.code}"`)
   }
 
-  // setting req.session = {obj} causes an error, so assign the keys one at a time
-  Object.keys(user).map(key => (req.session[key] = user[key]))
+  // populate the session.login with our submitted access code
+  req.session.login = { code: row.code, firstName: row.firstName }
 
   next()
 }
 
-const postDateOfBirth = async (req, res, next) => {
-  const errors = validationResult(req)
-
-  // copy all posted parameters, but remove the redirect
-  let body = Object.assign({}, req.body)
-  delete body.redirect
-
-  if (!errors.isEmpty()) {
-    let errObj = errorArray2ErrorObject(errors)
-
-    /*
-    We don't want to show the "birthdate doesn't match" error if there
-    are other errors, because it is obvious the birthdate doesn't match if
-    you enter a month of 99.
-
-    If exists more than 1 error, and the match error exists, delete the match error
-    */
-    if (
-      Object.keys(errObj).length > 1 &&
-      errObj.dobDay &&
-      errObj.dobDay.msg === 'errors.login.dateOfBirth.match'
-    ) {
-      delete errObj.dobDay
-    }
-
-    return res.status(422).render('login/dateOfBirth', {
-      prevRoute: getPreviousRoute(req),
-      data: req.session,
-      body,
-      errors: errObj,
-    })
+const postSIN = (req, res, next) => {
+  if (req.session && req.session.login) {
+    req.session.login.sin = req.body.sin
   }
+  next()
+}
+
+const postLogin = async (req, res, next) => {
+  const _loginError = (req, { id, msg }) => {
+    const oldSession = req.session.login || {}
+    req.session.login = {
+      ...oldSession,
+      ...{ errors: { [id]: { msg, param: id } } },
+    }
+  }
+
+  // if no session, or no access code, return to access code page
+  if (!req.session || !req.session.login || !req.session.login.code) {
+    _loginError(req, { id: 'code', msg: 'errors.login.code.missing' })
+    return res.redirect('/login/code')
+  }
+
+  // if no SIN, return to SIN page
+  if (!req.session.login.sin) {
+    _loginError(req, { id: 'sin', msg: 'errors.login.missingSIN' })
+    return res.redirect('/login/sin')
+  }
+
+  req.session.login.dateOfBirth = _toISOFormat(req.body)
+
+  // check access code + SIN + DoB
+  const { code, sin, dateOfBirth } = req.session.login
+  let row = DB.validateUser({ code, sin, dateOfBirth })
+
+  // if no row is found, error and return to SIN page
+  if (!row) {
+    // @TODO: error might be that the SIN and DoB are for another code
+    _loginError(req, { id: 'sin', msg: 'errors.login.match' })
+    return res.redirect('/login/sin')
+  }
+
+  // @TODO: process.env.CTBS_SERVICE_URL
+  const user = API.getUser(code)
+
+  if (!user) {
+    throw new Error(`[POST ${req.path}] user not found for access code "${code}"`)
+  }
+
+  // this intentionally overwrites what we have saved in "session.login" up to this point
+  Object.keys(user).map(key => (req.session[key] = user[key]))
 
   next()
 }

@@ -2,12 +2,13 @@
   "errors.login.length": "Access code must be 9 characters",
   "errors.login.alphanumeric": "Access code should only contain letters and numbers",
   "errors.login.code": "Access code not recognized",
+  "errors.login.code.missing": "Please enter an access code",
   "errors.login.numericSIN": "Your SIN should only be numbers",
   "errors.login.lengthSIN": "Your SIN should have 9 numbers",
+  "errors.login.missingSIN": "Please enter a SIN",
   "errors.maritalStatus.maritalStatus": "Please select one of the options",
-  "errors.login.matchingSIN": "SIN does not match access code",
+  "errors.login.match": "SIN or date of birth does not match access code",
   "errors.login.dateOfBirth": "Please enter a valid birth date",
-  "errors.login.dateOfBirth.match": "Date of birth does not match access code",
   "errors.login.dateOfBirth.format": "Make sure the date is formatted as yyyy/mm/dd",
   "errors.login.dateOfBirth.characters": "The date may only contain numbers and slashes. Please format as yyyy/mm/dd",
   "errors.login.dateOfBirth.validMonth": "Enter a number between 1 and 12 for the month",
@@ -521,5 +522,6 @@
   "If you skip these questions, you will wait about 8 weeks to get a notice of assessment.": "If you skip these questions, you will wait about 8 weeks to get a notice of assessment.",
   "Show different questions": "Show different questions",
   "OR": "OR",
-  "Back to previous questions": "Back to previous questions"
+  "Back to previous questions": "Back to previous questions",
+  "Thanks for your filing code": "Thanks for your filing code"
 }

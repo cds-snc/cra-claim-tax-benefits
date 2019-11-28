@@ -9,8 +9,8 @@ block content
 
   h1 #{title}
 
-  if data.personal
-    h2 #{data.personal.firstName}, #{__('thanks for your filing code')}.
+  if data.login
+    h2 #{data.login.firstName}, #{__('thanks for your filing code')}.
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.sin})

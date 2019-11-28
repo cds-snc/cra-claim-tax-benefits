@@ -186,7 +186,7 @@ const postLoginCode = async (req, res, next) => {
   }
 
   // populate the session.login with our submitted access code
-  req.session.login = { code: req.body.code }
+  req.session.login = { code: row.code, firstName: row.firstName }
 
   next()
 }
@@ -239,7 +239,7 @@ const postLogin = async (req, res, next) => {
     throw new Error(`[POST ${req.path}] user not found for access code "${code}"`)
   }
 
-  // this overwrites what we have saved in "session.login" up to this point
+  // this intentionally overwrites what we have saved in "session.login" up to this point
   Object.keys(user).map(key => (req.session[key] = user[key]))
 
   next()

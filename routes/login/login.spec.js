@@ -650,7 +650,7 @@ questionsAmounts.map(amountResponse => {
       })
     })
 
-    test('it returns a 422 response for a good amount but NO payment method', async () => {
+    test('it returns a 422 response for a good amount but NO year', async () => {
       const response = await request(app)
         .post(amountResponse.url)
         .use(withCSRF(cookie, csrfToken))
@@ -667,6 +667,46 @@ questionsAmounts.map(amountResponse => {
           .send({
             [`${amountResponse.key}Year`]: '2018',
             [`${amountResponse.key}Amount`]: goodAmount,
+            redirect: '/start',
+          })
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual('/start')
+      })
+    })
+
+    const currentYear = new Date().getFullYear()
+    const badYears = ['dinosaur', '0', currentYear - 201, currentYear]
+    badYears.map(badYear => {
+      test(`it returns a 422 for a bad posted year: "${badYear}"`, async () => {
+        const response = await request(app)
+          .post(amountResponse.url)
+          .use(withCSRF(cookie, csrfToken))
+          .send({
+            [`${amountResponse.key}Year`]: badYear,
+            [`${amountResponse.key}Amount`]: '10',
+            redirect: '/start',
+          })
+        expect(response.statusCode).toBe(422)
+      })
+    })
+
+    test('it returns a 422 response for a good year but NO amount', async () => {
+      const response = await request(app)
+        .post(amountResponse.url)
+        .use(withCSRF(cookie, csrfToken))
+        .send({ [`${amountResponse.key}Year`]: '2018', redirect: '/start' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    const goodYears = ['1977', currentYear - 200, currentYear - 1]
+    goodYears.map(goodYear => {
+      test(`it returns a 302 for a good posted year: "${goodYear}"`, async () => {
+        const response = await request(app)
+          .post(amountResponse.url)
+          .use(withCSRF(cookie, csrfToken))
+          .send({
+            [`${amountResponse.key}Year`]: goodYear,
+            [`${amountResponse.key}Amount`]: '10',
             redirect: '/start',
           })
         expect(response.statusCode).toBe(302)

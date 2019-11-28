@@ -31,16 +31,14 @@ const { securityQuestionUrls } = require('../../config/routes.config')
 module.exports = function(app) {
   // redirect from "/login" → "/login/code"
   app.get('/login', (req, res) => res.redirect('/login/code'))
-  app.get('/login/code', renderWithData('login/code'))
+  app.get('/login/code', renderWithData('login/code', { errorsKey: 'login' }))
   app.post('/login/code', checkSchema(loginSchema), postLoginCode, doRedirect)
 
   // SIN
-  // @TODO: redirect if no code
-  app.get('/login/sin', renderWithData('login/sin'))
+  app.get('/login/sin', renderWithData('login/sin', { errorsKey: 'login' }))
   app.post('/login/sin', checkSchema(sinSchema), checkErrors('login/sin'), postSIN, doRedirect)
 
   // Date of Birth
-  // @TODO: redirect if no code or SIN
   app.get('/login/dateOfBirth', renderWithData('login/dateOfBirth'))
   app.post(
     '/login/dateOfBirth',
@@ -201,18 +199,24 @@ const postSIN = (req, res, next) => {
 }
 
 const postLogin = async (req, res, next) => {
+  const _loginError = (req, { id, msg }) => {
+    const oldSession = req.session.login || {}
+    req.session.login = {
+      ...oldSession,
+      ...{ errors: { [id]: { msg } } },
+    }
+  }
   // if no session, or no access code, return to access code page
   // @TODO: test for this
-  // @TODO: this should be an error
   if (!req.session || !req.session.login || !req.session.login.code) {
-    req.session.destroy()
+    _loginError(req, { id: 'code', msg: 'errors.login.code.missing' })
     return res.redirect('/login/code')
   }
 
   // if no SIN, return to SIN page
   // @TODO: test for this
-  // @TODO: this should be an error
   if (!req.session.login.sin) {
+    _loginError(req.session, { id: 'sin', msg: 'errors.login.missingSIN' })
     return res.redirect('/login/sin')
   }
 
@@ -220,13 +224,12 @@ const postLogin = async (req, res, next) => {
 
   // check access code + SIN + DoB
   const { code, sin, dateOfBirth } = req.session.login
-
   let row = DB.validateUser({ code, sin, dateOfBirth })
 
   // if no row is found, error and return to SIN page
   if (!row) {
-    // @TODO: this should be an error
-    // @TODO: error might be that the SIN and DoB are for another code, don't handle that right now
+    // @TODO: error might be that the SIN and DoB are for another code
+    _loginError(req, { id: 'sin', msg: 'errors.login.match' })
     return res.redirect('/login/sin')
   }
 

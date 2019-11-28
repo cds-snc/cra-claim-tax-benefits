@@ -19,11 +19,10 @@ const loginSchema = {
   },
 }
 
-let sinError = 'errors.login.lengthSIN'
+let sinError = 'errors.login.missingSIN'
 const _getSinErrorMessage = val => {
   if (!val) {
-    // technically, 0 characters is the wrong length
-    return 'errors.login.lengthSIN'
+    return 'errors.login.missingSIN'
   }
 
   // remove spaces, hyphens and underscores

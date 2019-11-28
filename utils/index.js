@@ -132,11 +132,22 @@ const doRedirect = (req, res) => {
 }
 
 // Render a passed-in template and pass in session data under the "data" key
-const renderWithData = template => {
+const renderWithData = (template, { errorsKey } = {}) => {
   return (req, res) => {
-    res.render(template, {
+    let errors = undefined
+
+    // if there are errors in the session under the specified key, add them to the template
+    if (errorsKey && req.session && req.session[errorsKey] && req.session[errorsKey].errors) {
+      errors = req.session[errorsKey].errors
+      // means we only see the error once
+      delete req.session[errorsKey].errors
+    }
+
+    // send a 422 response if errors exist
+    res.status(errors ? 422 : 200).render(template, {
       data: req.session,
       prevRoute: getPreviousRoute(req),
+      errors,
     })
   }
 }

@@ -203,20 +203,19 @@ const postLogin = async (req, res, next) => {
     const oldSession = req.session.login || {}
     req.session.login = {
       ...oldSession,
-      ...{ errors: { [id]: { msg } } },
+      ...{ errors: { [id]: { msg, param: id } } },
     }
   }
+
   // if no session, or no access code, return to access code page
-  // @TODO: test for this
   if (!req.session || !req.session.login || !req.session.login.code) {
     _loginError(req, { id: 'code', msg: 'errors.login.code.missing' })
     return res.redirect('/login/code')
   }
 
   // if no SIN, return to SIN page
-  // @TODO: test for this
   if (!req.session.login.sin) {
-    _loginError(req.session, { id: 'sin', msg: 'errors.login.missingSIN' })
+    _loginError(req, { id: 'sin', msg: 'errors.login.missingSIN' })
     return res.redirect('/login/sin')
   }
 

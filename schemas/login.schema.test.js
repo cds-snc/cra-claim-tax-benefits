@@ -26,11 +26,11 @@ describe('Test _toISOFormat', () => {
 
 describe('Test _getSinErrorMessage', () => {
   test('returns error message for no SIN', () => {
-    expect(_getSinErrorMessage()).toEqual('errors.login.lengthSIN')
+    expect(_getSinErrorMessage()).toEqual('errors.login.missingSIN')
   })
 
   test('returns error message for empty string', () => {
-    expect(_getSinErrorMessage('')).toEqual('errors.login.lengthSIN')
+    expect(_getSinErrorMessage('')).toEqual('errors.login.missingSIN')
   })
 
   test('returns error message for non-numeric SIN', () => {

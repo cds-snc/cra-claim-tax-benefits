@@ -174,10 +174,6 @@ describe('Test /login responses', () => {
       expect(response.statusCode).toBe(422)
       const $ = cheerio.load(response.text)
       expect($('title').text()).toMatch(/^Error:/)
-      expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
-      expect($('.error-list__list').children()).toHaveLength(1)
-      expect($('.validation-message').text()).toEqual('Error: Your SIN should have 9 numbers')
-      expect($('#sin').attr('aria-describedby')).toEqual('sin-error')
     })
 
     describe('Error list tests', () => {
@@ -190,7 +186,7 @@ describe('Test /login responses', () => {
         expect($('title').text()).toMatch(/^Error:/)
         expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
         expect($('.error-list__list').children()).toHaveLength(1)
-        expect($('.validation-message').text()).toEqual('Error: Your SIN should have 9 numbers')
+        expect($('.validation-message').text()).toEqual('Error: Please enter a SIN')
         expect($('#sin').attr('aria-describedby')).toEqual('sin-error')
       })
     })
@@ -364,15 +360,16 @@ describe('Test /login responses', () => {
         })
       })
 
-      test('it returns a 302 with valid dob', async () => {
+      test('it returns a 302 to the /personal/name page with valid dob', async () => {
         const response = await authSession
           .post('/login/dateOfBirth')
           .use(withCSRF(cookie, csrfToken))
           .send({ ...goodDoBRequest })
         expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toBe('/personal/name')
       })
 
-      test('it returns a 302 with valid dob even with whitespace included', async () => {
+      test('it returns a 302 to the /personal/name with valid dob even with whitespace included', async () => {
         const response = await authSession
           .post('/login/dateOfBirth')
           .use(withCSRF(cookie, csrfToken))
@@ -383,8 +380,9 @@ describe('Test /login responses', () => {
             redirect: '/personal/name',
           })
         expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toBe('/personal/name')
       })
-      test('it returns a 422 with a dob that does not match the access code', async () => {
+      test('it returns a 302 to the /login/sin page with a dob that does not match the access code', async () => {
         const response = await authSession
           .post('/login/dateOfBirth')
           .use(withCSRF(cookie, csrfToken))
@@ -394,38 +392,8 @@ describe('Test /login responses', () => {
             dobYear: '1970',
             redirect: '/personal/name',
           })
-        expect(response.statusCode).toBe(422)
-      })
-
-      test.skip('it returns a 422 when the SIN on the previous page does not match the access code', async () => {
-        const testSession = session(app)
-        const getresp = await testSession.get('/login/code')
-        cookie = getresp.headers['set-cookie']
-        csrfToken = extractCsrfToken(getresp)
-
-        const response = await testSession
-          .post('/login/code')
-          .use(withCSRF(cookie, csrfToken))
-          .send({
-            code: 'A5G98S4K1',
-            redirect: '/login/sin',
-          })
-          .then(() => {
-            return testSession
-              .post('/login/sin')
-              .use(withCSRF(cookie, csrfToken))
-              .send({
-                sin: '888888888',
-                redirect: '/login/dateOfBirth',
-              })
-          })
         expect(response.statusCode).toBe(302)
-
-        const response2 = await testSession
-          .post('/login/dateOfBirth')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ ...goodDoBRequest })
-        expect(response2.statusCode).toBe(422)
+        expect(response.headers.location).toBe('/login/sin')
       })
     })
 
@@ -616,61 +584,6 @@ describe('Test /login responses', () => {
           .send({ ...goodDoBRequest, ...{ trusteeLastName: 'Loblaw' } })
         expect(response.statusCode).toBe(302)
       })
-    })
-  })
-
-  /*
-      These tests make sure that a date of birth which would ordinarily be is no longer accepted after
-      a user logs in.
-      After that, only the date of birth corressponding to the user in /api/user.json
-      will be accepted.
-    */
-  describe('after entering an access code', () => {
-    let authSession
-
-    beforeEach(async () => {
-      authSession = session(app)
-      const getresp = await authSession.get('/login/code')
-      cookie = getresp.headers['set-cookie']
-      csrfToken = extractCsrfToken(getresp)
-
-      const response = await authSession
-        .post('/login/code')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ code: 'A5G98S4K1', redirect: '/login/sin' })
-        .then(() => {
-          return authSession
-            .post('/login/sin')
-            .use(withCSRF(cookie, csrfToken))
-            .send({ sin: '847339283', redirect: '/login/dateOfBirth' })
-        })
-      expect(response.statusCode).toBe(302)
-    })
-
-    it('it should return 422 for the wrong DoB', async () => {
-      const response = await authSession
-        .post('/login/dateOfBirth')
-        .use(withCSRF(cookie, csrfToken))
-        .send({
-          dobDay: '23',
-          dobMonth: '03',
-          dobYear: '1909',
-          redirect: '/personal/name',
-        })
-      expect(response.statusCode).toBe(422)
-    })
-
-    it('it should return 302 for the right DoB', async () => {
-      const response = await authSession
-        .post('/login/dateOfBirth')
-        .use(withCSRF(cookie, csrfToken))
-        .send({
-          dobDay: '09',
-          dobMonth: '09',
-          dobYear: '1977',
-          redirect: '/personal/name',
-        })
-      expect(response.statusCode).toBe(302)
     })
   })
 })

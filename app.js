@@ -25,7 +25,8 @@ const express = require('express'),
     currencyWithoutUnit,
   } = require('./utils'),
   csrf = require('csurf'),
-  cookieConfig = require('./config/cookie.config')
+  cookieConfig = require('./config/cookie.config'),
+  rateLimit = require('express-rate-limit')
 
 // initialize application.
 var app = express()
@@ -54,6 +55,14 @@ app.use(function(req, res, next) {
   res.locals.csrfToken = req.csrfToken()
   next()
 })
+
+// set up rate limiter: maximum of five requests per minute
+var limiter = new rateLimit({
+  windowMs: 1*60*1000, // 1 minute
+  max: 120,
+})
+// apply rate limiter to expensive request page(s) - just the one for now
+app.use('/login/dateOfBirth', limiter)
 
 // in production we may want to use other than memorysession
 app.use(sessionConfig)

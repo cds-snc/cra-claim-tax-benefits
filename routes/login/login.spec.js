@@ -593,6 +593,18 @@ const questionsAmounts = [
     url: '/login/questions/taxReturn',
     key: 'taxReturn',
   },
+  {
+    url: '/login/questions/rrsp',
+    key: 'rrsp',
+  },
+  {
+    url: '/login/questions/tfsa',
+    key: 'tfsa',
+  },
+  {
+    url: '/login/questions/ccb',
+    key: 'ccb',
+  },
 ]
 
 questionsAmounts.map(amountResponse => {
@@ -630,15 +642,15 @@ questionsAmounts.map(amountResponse => {
           .post(amountResponse.url)
           .use(withCSRF(cookie, csrfToken))
           .send({
-            taxReturnYear: '2018',
-            taxReturnAmount: badAmount,
+            [`${amountResponse.key}Year`]: '2018',
+            [`${amountResponse.key}Amount`]: badAmount,
             redirect: '/start',
           })
         expect(response.statusCode).toBe(422)
       })
     })
 
-    test('it returns a 422 response for a good amount but NO payment method', async () => {
+    test('it returns a 422 response for a good amount but NO year', async () => {
       const response = await request(app)
         .post(amountResponse.url)
         .use(withCSRF(cookie, csrfToken))
@@ -653,8 +665,8 @@ questionsAmounts.map(amountResponse => {
           .post(amountResponse.url)
           .use(withCSRF(cookie, csrfToken))
           .send({
-            taxReturnYear: '2018',
-            taxReturnAmount: goodAmount,
+            [`${amountResponse.key}Year`]: '2018',
+            [`${amountResponse.key}Amount`]: goodAmount,
             redirect: '/start',
           })
         expect(response.statusCode).toBe(302)
@@ -662,15 +674,39 @@ questionsAmounts.map(amountResponse => {
       })
     })
 
-    const goodYears = ['2018', '2017']
-    goodYears.map(year => {
-      test(`it returns a 302 for a good posted year: "${year}"`, async () => {
+    const currentYear = new Date().getFullYear()
+    const badYears = ['dinosaur', '0', currentYear - 201, currentYear]
+    badYears.map(badYear => {
+      test(`it returns a 422 for a bad posted year: "${badYear}"`, async () => {
         const response = await request(app)
           .post(amountResponse.url)
           .use(withCSRF(cookie, csrfToken))
           .send({
-            taxReturnAmount: '10',
-            taxReturnYear: year,
+            [`${amountResponse.key}Year`]: badYear,
+            [`${amountResponse.key}Amount`]: '10',
+            redirect: '/start',
+          })
+        expect(response.statusCode).toBe(422)
+      })
+    })
+
+    test('it returns a 422 response for a good year but NO amount', async () => {
+      const response = await request(app)
+        .post(amountResponse.url)
+        .use(withCSRF(cookie, csrfToken))
+        .send({ [`${amountResponse.key}Year`]: '2018', redirect: '/start' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    const goodYears = ['1977', currentYear - 200, currentYear - 1]
+    goodYears.map(goodYear => {
+      test(`it returns a 302 for a good posted year: "${goodYear}"`, async () => {
+        const response = await request(app)
+          .post(amountResponse.url)
+          .use(withCSRF(cookie, csrfToken))
+          .send({
+            [`${amountResponse.key}Year`]: goodYear,
+            [`${amountResponse.key}Amount`]: '10',
             redirect: '/start',
           })
         expect(response.statusCode).toBe(302)
@@ -905,211 +941,5 @@ describe('Test /login/questions/bank responses', () => {
       .send({ ...goodRequest })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/start')
-  })
-})
-
-describe('Test /login/questions/{year and amount} responses', () => {
-  beforeEach(async () => {
-    const testSession = session(app)
-    const getresp = await testSession.get('/login/questions/taxReturn')
-    cookie = getresp.headers['set-cookie']
-    csrfToken = extractCsrfToken(getresp)
-  })
-
-  const _makeBadRequests = ({ goodRequest, yearVar, amountVar }) => {
-    return [
-      {
-        label: `no ${yearVar}`,
-        firstErrorId: `#${yearVar}`,
-        send: {
-          ...goodRequest,
-          ...{ [yearVar]: '' },
-        },
-      },
-      {
-        label: `bad ${yearVar}`,
-        firstErrorId: `#${yearVar}`,
-        send: {
-          ...goodRequest,
-          ...{ [yearVar]: '20' },
-        },
-      },
-      {
-        label: `no ${amountVar}`,
-        firstErrorId: `#${amountVar}`,
-        send: {
-          ...goodRequest,
-          ...{ [amountVar]: '' },
-        },
-      },
-      {
-        label: `bad ${amountVar}`,
-        firstErrorId: `#${amountVar}`,
-        send: {
-          ...goodRequest,
-          ...{ [amountVar]: 'abcd' },
-        },
-      },
-    ]
-  }
-
-  describe('Test /login/questions/taxReturn responses', () => {
-    let goodRequest = {
-      taxReturnYear: '2018',
-      taxReturnAmount: '10000',
-      redirect: '/start',
-    }
-
-    const badRequests = _makeBadRequests({
-      goodRequest,
-      yearVar: 'taxReturnYear',
-      amountVar: 'taxReturnAmount',
-    })
-
-    badRequests.map(badRequest => {
-      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-        const response = await request(app)
-          .post('/login/questions/taxReturn')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ ...badRequest.send })
-
-        const $ = cheerio.load(response.text)
-        expect(response.statusCode).toBe(422)
-        expect(
-          $('.error-list__link')
-            .first()
-            .attr('href'),
-        ).toEqual(badRequest.firstErrorId)
-      })
-    })
-
-    test('it returns a 302 for a good request', async () => {
-      const response = await request(app)
-        .post('/login/questions/taxReturn')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ ...goodRequest })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/start')
-    })
-  })
-
-  describe('Test /login/questions/rrsp responses', () => {
-    let goodRequest = {
-      rrspYear: '2017',
-      rrspAmount: '1000',
-      redirect: '/start',
-    }
-
-    const badRequests = _makeBadRequests({
-      goodRequest,
-      yearVar: 'rrspYear',
-      amountVar: 'rrspAmount',
-    })
-
-    badRequests.map(badRequest => {
-      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-        const response = await request(app)
-          .post('/login/questions/rrsp')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ ...badRequest.send })
-
-        const $ = cheerio.load(response.text)
-        expect(response.statusCode).toBe(422)
-        expect(
-          $('.error-list__link')
-            .first()
-            .attr('href'),
-        ).toEqual(badRequest.firstErrorId)
-      })
-    })
-
-    test('it returns a 302 for a good request', async () => {
-      const response = await request(app)
-        .post('/login/questions/rrsp')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ ...goodRequest })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/start')
-    })
-  })
-
-  describe('Test /login/questions/tfsa responses', () => {
-    let goodRequest = {
-      tfsaYear: '2016',
-      tfsaAmount: '2000',
-      redirect: '/start',
-    }
-
-    const badRequests = _makeBadRequests({
-      goodRequest,
-      yearVar: 'tfsaYear',
-      amountVar: 'tfsaAmount',
-    })
-
-    badRequests.map(badRequest => {
-      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-        const response = await request(app)
-          .post('/login/questions/tfsa')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ ...badRequest.send })
-
-        const $ = cheerio.load(response.text)
-        expect(response.statusCode).toBe(422)
-        expect(
-          $('.error-list__link')
-            .first()
-            .attr('href'),
-        ).toEqual(badRequest.firstErrorId)
-      })
-    })
-
-    test('it returns a 302 for a good request', async () => {
-      const response = await request(app)
-        .post('/login/questions/tfsa')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ ...goodRequest })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/start')
-    })
-  })
-
-  describe('Test /login/questions/ccb responses', () => {
-    let goodRequest = {
-      ccbYear: '2015',
-      ccbAmount: '3000',
-      redirect: '/start',
-    }
-
-    const badRequests = _makeBadRequests({
-      goodRequest,
-      yearVar: 'ccbYear',
-      amountVar: 'ccbAmount',
-    })
-
-    badRequests.map(badRequest => {
-      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-        const response = await request(app)
-          .post('/login/questions/ccb')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ ...badRequest.send })
-
-        const $ = cheerio.load(response.text)
-        expect(response.statusCode).toBe(422)
-        expect(
-          $('.error-list__link')
-            .first()
-            .attr('href'),
-        ).toEqual(badRequest.firstErrorId)
-      })
-    })
-
-    test('it returns a 302 for a good request', async () => {
-      const response = await request(app)
-        .post('/login/questions/ccb')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ ...goodRequest })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/start')
-    })
   })
 })

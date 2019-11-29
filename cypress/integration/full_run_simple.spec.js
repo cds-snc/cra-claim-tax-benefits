@@ -1,4 +1,9 @@
-const { checkTableRows, getBenefitsBreakdownRows, getAddress } = require('../utils.js')
+const {
+  checkTableRows,
+  checkTableRowsLite,
+  getBenefitsBreakdownRowsLite,
+  getAddress,
+} = require('../utils.js')
 
 describe('Full run through saying "no" to everything', function() {
   before(function() {
@@ -185,7 +190,7 @@ describe('Full run through saying "no" to everything', function() {
 
     //check some table data
     //until we have a more firm grasp on how we're shaping the total refund, i'm just checking benefits
-    checkTableRows(cy, getBenefitsBreakdownRows(this.user))
+    checkTableRowsLite(cy, getBenefitsBreakdownRowsLite(this.user))
 
     cy.continue('File your taxes now')
   })
@@ -196,5 +201,6 @@ describe('Full run through saying "no" to everything', function() {
     cy.get('h1').should('contain', 'You have filed your 2018 taxes')
     cy.get('th').should('contain', 'Your 2018 filing code is')
     cy.get('td').should('contain', '5H3P9IO5816')
+    cy.get('p').should('contain', 'You will get your notice of assessment in about 8 weeks.')
   })
 })

@@ -8,7 +8,7 @@ block content
 
   h1 #{title}
 
-  if data.login.securityQuestion === '/checkAnswers'
+  if (data.login.securityQuestion === '/checkAnswers') || (!data.login.securityQuestion)
     div
       table.confirmation-table
         thead

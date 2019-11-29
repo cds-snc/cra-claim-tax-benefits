@@ -213,13 +213,18 @@ const postLogin = async (req, res, next) => {
     return res.redirect('/login/code')
   }
 
+  req.session.login.dateOfBirth = _toISOFormat(req.body)
+  
+  // save each box as the user typed it for usability if there is an error
+  req.session.login.dobDay = req.body.dobDay
+  req.session.login.dobMonth = req.body.dobMonth
+  req.session.login.dobYear = req.body.dobYear
+
   // if no SIN, return to SIN page
   if (!req.session.login.sin) {
     _loginError(req, { id: 'sin', msg: 'errors.login.missingSIN' })
     return res.redirect('/login/sin')
   }
-
-  req.session.login.dateOfBirth = _toISOFormat(req.body)
 
   // check access code + SIN + DoB
   const { code, sin, dateOfBirth } = req.session.login

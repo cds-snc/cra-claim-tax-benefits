@@ -3,14 +3,15 @@ include ../_includes/banner
 
 block variables
   -var title = __('Enter your Social insurance number (SIN)')
-  -var sin = hasData(body, 'sin') ? body.sin : ''
+  -var sin = hasData(body, 'sin') ? body.sin : (hasData(data.login, 'sin') ? data.login.sin : '')
+  -var firstName = hasData(data, 'login.firstName') ? data.login.firstName : (hasData(data, 'personal.firstName') ? data.personal.firstName : '' )
 
 block content
 
   h1 #{title}
 
-  if data.login
-    h2 #{data.login.firstName}, #{__('thanks for your filing code')}.
+  if firstName
+    h2 #{firstName}, #{__('thanks for your filing code')}.
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.sin})

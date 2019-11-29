@@ -4,9 +4,9 @@ include ../_includes/input-dates
 block variables
   -var title = __('Enter your date of birth')
   -var dateOfBirth = hasData(body, 'dateOfBirth') ? body.dateOfBirth : ''
-  -var dobDay = hasData(body, 'dobDay') ? body.dobDay : ''
-  -var dobMonth = hasData(body, 'dobMonth') ? body.dobMonth : ''
-  -var dobYear = hasData(body, 'dobYear') ? body.dobYear : ''
+  -var dobDay = hasData(body, 'dobDay') ? body.dobDay : (hasData(data.login, 'dobDay') ? data.login.dobDay : '')
+  -var dobMonth = hasData(body, 'dobMonth') ? body.dobMonth : (hasData(data.login, 'dobMonth') ? data.login.dobMonth : '')
+  -var dobYear = hasData(body, 'dobYear') ? body.dobYear : (hasData(data.login, 'dobYear') ? data.login.dobYear : '')
 
 block content
 

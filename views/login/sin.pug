@@ -3,7 +3,7 @@ include ../_includes/banner
 
 block variables
   -var title = __('Enter your Social insurance number (SIN)')
-  -var sin = hasData(body, 'sin') ? body.sin : ''
+  -var sin = hasData(body, 'sin') ? body.sin : (hasData(data.login, 'sin') ? data.login.sin : '')
 
 block content
 

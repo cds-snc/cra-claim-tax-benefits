@@ -12,10 +12,6 @@ const loginSchema = {
     isAlphanumeric: {
       errorMessage: 'errors.login.alphanumeric',
     },
-    isIn: {
-      options: [API.getMatches()],
-      errorMessage: 'errors.login.code',
-    },
   },
 }
 

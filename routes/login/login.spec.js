@@ -129,14 +129,6 @@ describe('Test /login responses', () => {
     expect(response.statusCode).toBe(422)
   })
 
-  test('it does not allow a mixed-case code', async () => {
-    const response = await request(app)
-      .post('/login/code')
-      .use(withCSRF(cookie, csrfToken))
-      .send({ code: 'a5G98s4K1', redirect: '/start' })
-    expect(response.statusCode).toBe(422)
-  })
-
   const codes = ['A5G98S4K1', 'a5g98s4k1'] //check uppercase, lowercase
   codes.map(code => {
     test(`it redirects if a valid code is provided: "${code}"`, async () => {
@@ -394,6 +386,46 @@ describe('Test /login responses', () => {
           })
         expect(response.statusCode).toBe(302)
         expect(response.headers.location).toBe('/login/sin')
+      })
+    })
+
+    describe('for a valid sin/DoB combo that match a different valid access code', () => {
+      test('it returns a 302 to the /login/code page with a valid sin/DoB combo that match a different access code', async () => {
+        // need an auth session with a code / sin
+        let authSession = session(app)
+        const getresp = await authSession.get('/login/code')
+        cookie = getresp.headers['set-cookie']
+        csrfToken = extractCsrfToken(getresp)
+
+        const response = await authSession
+          .post('/login/code')
+          .use(withCSRF(cookie, csrfToken))
+          .send({
+            code: 'A5G98S4K2',
+            redirect: '/login/sin',
+          })
+          .then(() => {
+            return authSession
+              .post('/login/sin')
+              .use(withCSRF(cookie, csrfToken))
+              .send({
+                sin: '847339283',
+                redirect: '/login/dateOfBirth',
+              })
+          })
+        expect(response.statusCode).toBe(302)
+
+        const response2 = await authSession
+          .post('/login/dateOfBirth')
+          .use(withCSRF(cookie, csrfToken))
+          .send({
+            dobDay: '9',
+            dobMonth: '9',
+            dobYear: '1977',
+            redirect: '/personal/name',
+          })
+        expect(response2.statusCode).toBe(302)
+        expect(response2.headers.location).toBe('/login/code')
       })
     })
 

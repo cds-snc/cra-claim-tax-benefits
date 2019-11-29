@@ -8,13 +8,15 @@ block content
 
   h1 #{title}
 
+  p #{data.login.securityQuestion}
+
   each section, index in answerInfo
     div
       .breakdown-table.breakdown-table--answers
         h2.breakdown-table__heading #{__(index)}
         dl.breakdown-table-data
           each row in section
-            if (data.login.securityQuestion === '/checkAnswers' && !row.text.toLowerCase().includes('income')) || (data.login.securityQuestion !== '/checkAnswers')
+            if (data.login.securityQuestion === '/checkAnswers' && !row.text.toLowerCase().includes('income')) || (data.login.securityQuestion !== '/checkAnswers') || (!data.login.securityQuestion)
               .breakdown-table__row.breakdown-table__row--answers
                 dt.breakdown-table__row-key #{__(row.text)}
 

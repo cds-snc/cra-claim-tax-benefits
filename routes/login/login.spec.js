@@ -481,7 +481,7 @@ describe('Test /login responses', () => {
           .use(withCSRF(cookie, csrfToken))
           .send({ ...goodDoBRequest, ...{ childLastName: 'Laika' } })
         expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/personal/name')
+        expect(response.headers.location).toEqual('/login/securityQuestion')
       })
     })
 
@@ -526,7 +526,7 @@ describe('Test /login responses', () => {
           .use(withCSRF(cookie, csrfToken))
           .send({ ...goodDoBRequest, ...{ prisonDate: 'release' } })
         expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toEqual('/personal/name')
+        expect(response.headers.location).toEqual('/login/securityQuestion')
       })
     })
 

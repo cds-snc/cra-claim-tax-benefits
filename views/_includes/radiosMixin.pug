@@ -1,4 +1,5 @@
 mixin radios(id, legend, value, options)
+
   div(class={['has-error']: errors && errors[id]})
     fieldset
       if attributes && attributes.h2
@@ -13,9 +14,10 @@ mixin radios(id, legend, value, options)
           if opt.label === "Skip security questions"
             p.multiple-choice__p #{__('OR')}
 
-          .multiple-choice__item
-            input(id=(id+index) name=id type="radio" value=opt.value aria-describedby=(errors && errors[id] ? id+"-error" : false) checked=(value === opt.value))
-            label(for=(id+index)) #{__(opt.label)}
+          if (id === 'securityQuestion' && !(data.login.securityQuestion.find( question => question[1] === opt.value ) )) || id !== 'securityQuestion'
+            .multiple-choice__item
+              input(id=(id+index) name=id type="radio" value=opt.value aria-describedby=(errors && errors[id] ? id+"-error" : false) checked=(value === opt.value))
+              label(for=(id+index)) #{__(opt.label)}
 
 mixin radiosYesNo(id, legend, value)
   +radios(id, legend, value, [

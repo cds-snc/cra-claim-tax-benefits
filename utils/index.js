@@ -131,6 +131,20 @@ const doRedirect = (req, res) => {
   return res.redirect(path)
 }
 
+const securityQuestionRedirect = (req, res, next) => {
+  const securityQuestionValues = req.session.login.securityQuestion
+
+  if (securityQuestionValues.length < 2) {
+    //TODO: redirect to the page they came from
+    return res.redirect('/login/securityQuestion')
+  } else if (securityQuestionValues.filter(v => v[0]).length < 2) {
+    //redirect to lite app
+    return res.redirect('/checkAnswers') 
+  }
+
+  next ()
+}
+
 // Render a passed-in template and pass in session data under the "data" key
 const renderWithData = (template, { errorsKey } = {}) => {
   return (req, res) => {
@@ -457,4 +471,5 @@ module.exports = {
   returnToCheckAnswers,
   postAmount,
   currencyWithoutUnit,
+  securityQuestionRedirect,
 }

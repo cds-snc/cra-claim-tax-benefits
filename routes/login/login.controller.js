@@ -5,6 +5,7 @@ const {
   renderWithData,
   checkErrors,
   getPreviousRoute,
+  securityQuestionRedirect,
 } = require('./../../utils')
 const {
   loginSchema,
@@ -68,7 +69,7 @@ module.exports = function(app) {
     '/login/securityQuestion',
     checkSchema(securityQuestionSchema),
     checkErrors('login/securityQuestion'),
-    postSecurityQuestion,
+    postSecurityQuestionSelection,
   )
 
   // Alternate security question page
@@ -77,7 +78,7 @@ module.exports = function(app) {
     '/login/securityQuestion2',
     checkSchema(securityQuestionSchema),
     checkErrors('login/securityQuestion2'),
-    postSecurityQuestion,
+    postSecurityQuestionSelection,
   )
 
   app.get('/login/questions', (req, res) => res.redirect('/login/securityQuestion'))
@@ -88,6 +89,8 @@ module.exports = function(app) {
     '/login/questions/child',
     checkSchema(childSchema),
     checkErrors('login/questions/child'),
+    postSecurityQuestionAnswer,
+    securityQuestionRedirect,
     doRedirect,
   )
 
@@ -96,6 +99,8 @@ module.exports = function(app) {
     '/login/questions/addresses',
     checkSchema(addressesSchema),
     checkErrors('login/questions/addresses'),
+    postSecurityQuestionAnswer,
+    securityQuestionRedirect,
     doRedirect,
   )
 
@@ -104,6 +109,8 @@ module.exports = function(app) {
     '/login/questions/prison',
     checkSchema(prisonSchema),
     checkErrors('login/questions/prison'),
+    postSecurityQuestionAnswer,
+    securityQuestionRedirect,
     doRedirect,
   )
 
@@ -112,6 +119,8 @@ module.exports = function(app) {
     '/login/questions/dateOfResidence',
     checkSchema(dateOfResidenceSchema),
     checkErrors('login/questions/dateOfResidence'),
+    postSecurityQuestionAnswer,
+    securityQuestionRedirect,
     doRedirect,
   )
 
@@ -120,6 +129,8 @@ module.exports = function(app) {
     '/login/questions/bankruptcy',
     checkSchema(bankruptcySchema),
     checkErrors('login/questions/bankruptcy'),
+    postSecurityQuestionAnswer,
+    securityQuestionRedirect,
     doRedirect,
   )
 
@@ -128,6 +139,8 @@ module.exports = function(app) {
     '/login/questions/bank',
     checkSchema(bankSchema),
     checkErrors('login/questions/bank'),
+    postSecurityQuestionAnswer,
+    securityQuestionRedirect,
     doRedirect,
   )
 
@@ -136,6 +149,8 @@ module.exports = function(app) {
     '/login/questions/taxReturn',
     checkSchema(taxReturnSchema),
     checkErrors('login/questions/taxReturn'),
+    postSecurityQuestionAnswer,
+    securityQuestionRedirect,
     doRedirect,
   )
 
@@ -144,6 +159,8 @@ module.exports = function(app) {
     '/login/questions/rrsp',
     checkSchema(rrspSchema),
     checkErrors('login/questions/rrsp'),
+    postSecurityQuestionAnswer,
+    securityQuestionRedirect,
     doRedirect,
   )
 
@@ -152,6 +169,8 @@ module.exports = function(app) {
     '/login/questions/tfsa',
     checkSchema(tfsaSchema),
     checkErrors('login/questions/tfsa'),
+    postSecurityQuestionAnswer,
+    securityQuestionRedirect,
     doRedirect,
   )
 
@@ -160,6 +179,8 @@ module.exports = function(app) {
     '/login/questions/ccb',
     checkSchema(ccbSchema),
     checkErrors('login/questions/ccb'),
+    postSecurityQuestionAnswer,
+    securityQuestionRedirect,
     doRedirect,
   )
 }
@@ -245,9 +266,18 @@ const postLogin = async (req, res, next) => {
   next()
 }
 
-const postSecurityQuestion = async (req, res) => {
+const postSecurityQuestionSelection = async (req, res) => {
   const url = securityQuestionUrls.find(urlFound => urlFound === req.body.securityQuestion)
 
-  req.session.login.securityQuestion = url
   return res.redirect(url)
+}
+
+const postSecurityQuestionAnswer = async (req, res, next) => {
+  const url = req.path
+  /**
+   * we're not concerned with validation of the answer right now, but theoretically when we are:
+   * pass false along with the url when the answer is incorrect
+   */
+  req.session.login.securityQuestion.push([true, url])
+  next()
 }

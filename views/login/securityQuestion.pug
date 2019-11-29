@@ -2,11 +2,10 @@ extends ../base
 include ../_includes/banner
 
 block variables
-  -var title = __('Choose a security question')
+  -var title = data.login.securityQuestion.length ? __('Choose another security question') : __('Choose a security question')
   -var securityQuestion = hasData(data, 'login.securityQuestion') ? data.login.securityQuestion : ''
 
 block content
-
   h1 #{title}
 
   form.cra-form.cra-form--lg(method='post')

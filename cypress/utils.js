@@ -8,6 +8,16 @@ const checkTableRows = (cy, rows) => {
   })
 }
 
+const checkTableRowsLite = (cy, rows) => {
+  rows.map((row, index) => {
+    cy.get('dt.breakdown-table-lite__row-key')
+      .eq(index)
+      .should('contain', row.key)
+      .next('dd')
+      .should('contain', row.value)
+  })
+}
+
 const getIncomeBreakdownRows = user => {
   const incomeRows = []
 
@@ -57,6 +67,18 @@ const getBenefitsBreakdownRows = user => {
   return benefitsRows
 }
 
+const getBenefitsBreakdownRowsLite = user => {
+  const benefitsLiteKeys = Object.values(user.benefitsLite)
+  const benefitsLiteRows = benefitsLiteKeys.map(source => {
+    return {
+      key: source.name,
+      value: source.description,
+    }
+  })
+
+  return benefitsLiteRows
+}
+
 const allIncomeRows = user => getIncomeBreakdownRows(user).concat(getTaxBreakdownRows(user))
 
 const getAddress = address => {
@@ -72,7 +94,9 @@ const getAddress = address => {
 
 module.exports = {
   checkTableRows,
+  checkTableRowsLite,
   allIncomeRows,
   getBenefitsBreakdownRows,
+  getBenefitsBreakdownRowsLite,
   getAddress,
 }

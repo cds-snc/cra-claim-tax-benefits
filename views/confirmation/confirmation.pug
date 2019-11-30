@@ -21,18 +21,19 @@ block content
       p #{__('Keep this filing code in case you need to call about your taxes or ask for help from CRA by:')}
       include ../_includes/phone-bullets
 
-      p #{__('You will get your notice of assessment in about 8 weeks. The notice of assessment:')} 
+      p #{__('You will get your notice of assessment in about 8 weeks. The notice of assessment:')}
       ul
         li #{__('outlines your income, benefits and credits')}
         li #{__('explains if CRA needed to change anything on your taxes')}
 
       p #{__('If CRA owes you money, then:')}
-      ul 
+      ul
         li #{__('CRA will put it in your bank account if you registered for direct deposit')}
         li #{__('Your cheque comes with the notice if you did not register for direct deposit')}
 
       p #{__('Thank you for using the ')} <i>#{__('service.name')}</i> #{__(' online service.')}
-      a(href="#") #{__('Please share your feedback')}
+
+      p #{__('Please ')} <a href="/feeback">#{__('share your feedback')}</a> #{__('to improve this service')}.
 
   else
     div
@@ -66,4 +67,6 @@ block content
         li #{__('CRA will put it in your bank account if you registered for direct deposit.')}
         li #{__('your cheque comes with the notice if you did not register for direct deposit.')}
 
-      p !{__('Thank you for using the Claim Tax Benefits service.')} !{__('Please share your feedback to improve this service.')}
+      p !{__('Thank you for using the Claim Tax Benefits service.')}
+
+      p #{__('Please ')} <a href="/feeback">#{__('share your feedback')}</a> #{__('to improve this service')}.

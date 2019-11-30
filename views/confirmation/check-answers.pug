@@ -8,8 +8,6 @@ block content
 
   h1 #{title}
 
-  p #{data.login.securityQuestion}
-
   each section, index in answerInfo
     div
       .breakdown-table.breakdown-table--answers
@@ -36,4 +34,4 @@ block content
                     a(href=`${row.urlPath}?ref=checkAnswers`)
                       <span>#{__('Review')}<span class="visually-hidden"> #{__(row.text)}</span>
 
-  +linkButtons('/review', 'Agree') 
+  +linkButtons('/review', 'Agree')

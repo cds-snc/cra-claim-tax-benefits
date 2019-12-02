@@ -2,7 +2,7 @@ const DB = require('./index')
 
 const expectedRow = {
   code: 'A5G98S4K1',
-  sin: '847339283',
+  sin: '540739869',
   dateOfBirth: '1977-09-09',
   firstName: 'Gabrielle',
   locked: false,
@@ -31,7 +31,7 @@ describe('test DB', () => {
   describe('test validateUser', () => {
     const login = {
       code: 'A5G98S4K1',
-      sin: '847339283',
+      sin: '540739869',
       dateOfBirth: '1977-09-09',
     }
 
@@ -48,7 +48,7 @@ describe('test DB', () => {
     })
 
     test('returns expected row with correct information including spaces and hyphens in SIN', () => {
-      const row = DB.validateUser({ ...login, ...{ sin: '8-4-7 3-3-9 2-8-3' } })
+      const row = DB.validateUser({ ...login, ...{ sin: '5-4-0 7-3-9 8-6-9' } })
       expect(row).not.toBe(null)
       expect(row).toEqual(expectedRow)
     })

@@ -6,6 +6,7 @@
   "errors.login.numericSIN": "Your SIN should only be numbers",
   "errors.login.lengthSIN": "Your SIN should have 9 numbers",
   "errors.login.missingSIN": "Please enter a SIN",
+  "errors.login.invalidSIN": "The entered SIN is not valid",
   "errors.maritalStatus.maritalStatus": "Please select one of the options",
   "errors.login.match": "SIN or date of birth does not match access code",
   "errors.login.dateOfBirth": "Please enter a valid birth date",

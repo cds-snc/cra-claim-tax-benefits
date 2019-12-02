@@ -61,6 +61,7 @@
     "pug": "^2.0.4",
     "purecss": "^1.0.1",
     "request-promise": "^4.2.5",
+    "social-insurance-number": "0.0.5",
     "trim-request": "^1.0.6",
     "validator": "^12.1.0",
     "xml-js": "^1.6.11"

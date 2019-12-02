@@ -162,7 +162,7 @@ describe('Test /login responses', () => {
       const response = await request(app)
         .post('/login/sin')
         .use(withCSRF(cookie, csrfToken))
-        .send({ sin: '847 339 283' })
+        .send({ sin: '540 739 869' })
       expect(response.statusCode).toBe(500)
     })
 
@@ -215,11 +215,19 @@ describe('Test /login responses', () => {
       expect(response.statusCode).toBe(422)
     })
 
+    test('it does not allow an invalid SIN', async () => {
+      const response = await request(app)
+        .post('/login/sin')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ sin: '847339283', redirect: '/start' })
+      expect(response.statusCode).toBe(422)
+    })
+
     test('it returns a 302 response if the SIN format is good', async () => {
       const response = await request(app)
         .post('/login/sin')
         .use(withCSRF(cookie, csrfToken))
-        .send({ sin: '123 456 789', redirect: '/start' })
+        .send({ sin: '117 166 934', redirect: '/start' })
       expect(response.statusCode).toBe(302)
     })
   })
@@ -343,7 +351,7 @@ describe('Test /login responses', () => {
               .post('/login/sin')
               .use(withCSRF(cookie, csrfToken))
               .send({
-                sin: '847339283',
+                sin: '540739869',
                 redirect: '/login/dateOfBirth',
               })
           })

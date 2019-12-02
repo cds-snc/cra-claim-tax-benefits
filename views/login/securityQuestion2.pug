@@ -9,6 +9,7 @@ block variables
 block content
 
   h1 #{title}
+    span.visually-hidden more options
 
   form.cra-form.cra-form--lg(method='post')
     +radios('securityQuestion', 'Answer a question from this list to get your notice of assessment immediately after you file with this service:', null,[
@@ -16,7 +17,6 @@ block content
       {value: "/login/questions/tfsa", label: "Details of your contribution to a Tax Free Savings Account (TFSA)"},
       {value: "/login/questions/ccb", label: "Details of your Canada Child Benefit (CCB)"},
       {value: "/login/questions/bankruptcy", label: "Details of your bankruptcy assignment"},
-      {value: "/login/questions/dateOfResidence", label: "Date you became a resident of Canada"},
       {value: "/login/questions/prison", label: "Your date of entry or release from prison"},
       {value: "/checkAnswers", label: "Skip security questions"}
     ])

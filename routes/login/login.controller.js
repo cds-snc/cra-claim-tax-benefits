@@ -274,6 +274,7 @@ const postSecurityQuestionSelection = async (req, res) => {
 
 const postSecurityQuestionAnswer = async (req, res, next) => {
   const url = req.path
+
   /**
    * we're not concerned with validation of the answer right now, but theoretically when we are:
    * pass false along with the url when the answer is incorrect

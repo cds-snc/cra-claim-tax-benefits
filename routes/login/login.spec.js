@@ -1113,3 +1113,26 @@ describe('Test /login/questions/{year and amount} responses', () => {
     })
   })
 })
+
+describe('Test securityQuestionRedirect', () => {
+
+  let goodRequest = {
+    ccbYear: '2015',
+    ccbAmount: '3000',
+    redirect: '/start',
+  }
+
+  let securitySession = session(app)
+  //   - [ ] It redirects to the question page if only one question has been attempted
+  // - [ ] It redirects to checkAnswers if less than two questions have been answered correctly
+  // - [ ] It redirects to financial/income if two questions have been answered correctly
+  test('It redirects to the question page if only one question has been attempted', async () => {
+    
+    const response = await securitySession
+      .post('/login/questions/ccb')
+      .use(withCSRF(cookie, csrfToken))
+      .send({ ...goodRequest })
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toEqual('/login/securityQuestion')
+  })
+})

@@ -14,7 +14,7 @@ const doAccessCode = (code = 'A5G98S4K1') => {
   }
 }
 
-const doSIN = (sin = '847 339 283') => {
+const doSIN = (sin = '540 739 869') => {
   return request => {
     request.use(withCSRF(cookie, csrfToken)).send({
       sin,
@@ -94,7 +94,7 @@ describe('Test /login SESSION responses', () => {
       .post('/login/code')
       .use(doAccessCode())
       .then(() => {
-        return testSession.post('/login/sin').use(doSIN('888888888')) // wrong SIN
+        return testSession.post('/login/sin').use(doSIN('117166934')) // wrong SIN
       })
       .then(() => {
         return testSession.post('/login/dateOfBirth').use(doDateofBirth()) // date of birth is good
@@ -138,7 +138,7 @@ describe('Test /login SESSION responses', () => {
       .post('/login/code')
       .use(doAccessCode())
       .then(() => {
-        return testSession.post('/login/sin').use(doSIN('888888888')) // wrong SIN
+        return testSession.post('/login/sin').use(doSIN('117166934')) // wrong SIN
       })
       .then(() => {
         return testSession.post('/login/dateOfBirth').use(doDateofBirth({ dobYear: '1999' })) // wrong year

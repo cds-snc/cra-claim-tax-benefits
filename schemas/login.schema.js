@@ -1,4 +1,5 @@
 const validator = require('validator')
+const SocialInsuranceNumber = require('social-insurance-number')
 const { currencySchema, yesNoSchema, monthSchema, yearSchema } = require('./utils.schema')
 const { securityQuestionUrls } = require('../config/routes.config')
 
@@ -29,6 +30,11 @@ const _getSinErrorMessage = val => {
 
   if (digits.length !== 9) {
     return 'errors.login.lengthSIN'
+  }
+  let sin = new SocialInsuranceNumber(val)
+
+  if (! sin.isValid()) {
+    return 'errors.login.invalidSIN'
   }
 
   return false

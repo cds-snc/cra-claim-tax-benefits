@@ -199,8 +199,8 @@ describe('Full run through saying "no" to everything', function() {
   it('checks the Confirmation page', function() {
     cy.url().should('contain', '/confirmation')
     cy.get('h1').should('contain', 'You have filed your 2018 taxes')
-    cy.get('th').should('contain', 'Your 2018 filing code is')
+    cy.get('th').should('contain', 'Your filing code')
     cy.get('td').should('contain', '5H3P9IO5816')
-    cy.get('p').should('contain', 'You will get your notice of assessment in about 8 weeks.')
+    cy.get('p').should('contain', 'You will get your notice of assessment in about 2 weeks.')
   })
 })

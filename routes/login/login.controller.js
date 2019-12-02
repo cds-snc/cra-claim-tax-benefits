@@ -166,11 +166,9 @@ module.exports = function(app) {
 
 const postLoginCode = async (req, res, next) => {
   const errors = validationResult(req)
-
   if (!errors.isEmpty()) {
     // clear session
     req.session.destroy()
-
     return res.status(422).render('login/code', {
       prevRoute: getPreviousRoute(req),
       data: { code: req.body.code },
@@ -182,7 +180,17 @@ const postLoginCode = async (req, res, next) => {
   let row = DB.validateCode(req.body.code)
 
   if (!row) {
-    throw new Error(`[POST ${req.path}] user not found for access code "${req.body.code}"`)
+    // code is not valid
+    return res.status(422).render('login/code', {
+      prevRoute: getPreviousRoute(req),
+      data: { code: req.body.code },
+      errors: {
+        code: {
+          param: 'code',
+          msg: 'errors.login.code',
+        },
+      },
+    })
   }
 
   // populate the session.login with our submitted access code
@@ -232,11 +240,13 @@ const postLogin = async (req, res, next) => {
 
   // if no row is found, error and return to SIN page
   if (!row) {
-    // @TODO: error might be that the SIN and DoB are for another code
     _loginError(req, { id: 'sin', msg: 'errors.login.match' })
     return res.redirect('/login/sin')
+  } else if (row.error) {
+    // sin and DoB match another access code
+    _loginError(req, { id: 'code', msg: 'errors.login.codeMatch' })
+    return res.redirect('/login/code')
   }
-
   // @TODO: process.env.CTBS_SERVICE_URL
   const user = API.getUser(code)
 

@@ -1,6 +1,5 @@
 const validator = require('validator')
 const { currencySchema, yesNoSchema, monthSchema, yearSchema } = require('./utils.schema')
-const API = require('./../api')
 const { securityQuestionUrls } = require('../config/routes.config')
 
 const loginSchema = {
@@ -11,10 +10,6 @@ const loginSchema = {
     },
     isAlphanumeric: {
       errorMessage: 'errors.login.alphanumeric',
-    },
-    isIn: {
-      options: [API.getMatches()],
-      errorMessage: 'errors.login.code',
     },
   },
 }

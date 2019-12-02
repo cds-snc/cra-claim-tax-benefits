@@ -22,7 +22,7 @@ describe('test DB', () => {
       expect(row).toEqual(expectedRow)
     })
 
-    test('returns null with a nonexistent access code', () => {
+    test('returns a code not recognized error with a nonexistent access code', () => {
       const row = DB.validateCode('H3LLY34H!')
       expect(row).toBe(null)
     })
@@ -63,9 +63,9 @@ describe('test DB', () => {
       expect(row).toBe(null)
     })
 
-    test('returns null with wrong code', () => {
+    test('returns an error with wrong code', () => {
       const row = DB.validateUser({ ...login, ...{ code: 'B5G98S4K1' } }) // starts with 'A', not 'B'
-      expect(row).toBe(null)
+      expect(row.error).not.toBeUndefined()
     })
 
     test('returns null with wrong SIN', () => {

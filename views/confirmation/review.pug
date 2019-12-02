@@ -94,25 +94,6 @@ block content
             dt.breakdown-table__row-key #{__('Total benefits')}
             dd.breakdown-table__row-value #{currencyFilter(totalBenefits)}
 
-    div
-      .breakdown-table
-        h2.breakdown-table__heading
-          span #{__('Your expected 2018 refund')}
-          span +#{currencyFilter(totalRefund.amount)}
-
-        p.breakdown-table__subheading #{__('Detailed breakdown of tax refund')}
-
-        dl.breakdown-table-data
-          each refundLine in refundLines
-            -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
-            .breakdown-table__row(
-              class={
-                ['breakdown-table__row--summary space-row']: refundLine.name === "Total Refund"
-              }
-            )
-              dt.breakdown-table__row-key #{__(`${refundLine.name} (${lineNumber})`)}
-              dd.breakdown-table__row-value #{currencyFilter(refundLine.amount)}
-
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.review})
       .multiple-choice.multiple-choice--checkboxes

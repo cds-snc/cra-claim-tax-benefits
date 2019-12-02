@@ -24,7 +24,7 @@ describe('test DB', () => {
 
     test('returns a code not recognized error with a nonexistent access code', () => {
       const row = DB.validateCode('H3LLY34H!')
-      expect(row.error).not.toBeUndefined()
+      expect(row).toBe(null)
     })
   })
 

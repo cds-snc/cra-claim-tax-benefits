@@ -194,4 +194,20 @@ describe('Test /login SESSION responses', () => {
     expect($('h1').text()).toEqual('Check your name is correct')
     expect($('.error-list__link').length).toBe(0)
   })
+
+  test('it returns a 302 on the /personal/dateOfBirth page and redirects to the /login/code page with a valid sin/DoB combo that match a different access code', async () => {
+    const response = await testSession
+      .post('/login/code')
+      .use(doAccessCode('A5G98S4K2'))
+      .then(() => {
+        return testSession
+          .post('/login/sin')
+          .use(doSIN())
+      })
+      .then(() => {
+        return testSession.post('/login/dateOfBirth').use(doDateofBirth()) // date of birth is good
+      })
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toBe('/login/code')
+  })
 })

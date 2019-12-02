@@ -180,15 +180,14 @@ const postLoginCode = async (req, res, next) => {
   let row = DB.validateCode(req.body.code)
 
   if (!row) {
-    throw new Error(`[POST ${req.path}] user not found for access code "${req.body.code}"`)
-  } else if (row.error) {
+    // code is not valid
     return res.status(422).render('login/code', {
       prevRoute: getPreviousRoute(req),
       data: { code: req.body.code },
       errors: {
         code: {
           param: 'code',
-          msg: row.error,
+          msg: 'errors.login.code',
         },
       },
     })

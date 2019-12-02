@@ -6,7 +6,7 @@ var DB = (() => {
     code = code.toUpperCase()
 
     // Real DB code will go here
-    return db.find(user => user.code === code) || {"error":  'errors.login.code'}
+    return db.find(user => user.code === code) || null
   }
 
   const validateUser = ({ code, sin, dateOfBirth }) => {
@@ -20,7 +20,7 @@ var DB = (() => {
     })
     if (row && row.code !== code) {
       // code from the returned user doesn't match
-      return {"error": "errors.login.codeMatch"}
+      return {"error": true}
     }
     return row || null
   }

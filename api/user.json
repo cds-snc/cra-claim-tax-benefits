@@ -148,27 +148,6 @@
     "trilliumLongTermCareAmount": 0,
     "climateActionIncentiveIsRural": null
   },
-  "refund": {
-    "totalPayable": {
-      "name": "Total payable",
-      "line": 435,
-      "amount": 1593.00
-    },
-    "totalDeducted": {
-      "name": "Total deducted",
-      "line": 437,
-      "amount": 2312.88
-    },
-    "totalCredits": {
-      "name": "Total Credits",
-      "amount": 2500.00
-    },
-    "totalRefund": {
-      "name": "Total refund",
-      "line": 484,
-      "amount": 719.88
-    }
-  },
   "benefits": {
     "climateActionIncentive": {
       "name": "Climate action incentive",

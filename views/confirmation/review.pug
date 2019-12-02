@@ -7,8 +7,6 @@ block variables
   -var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
   -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
   -var refund = hasData(data, 'refund') ? data.refund : {}
-  -var totalRefund = hasData(data, 'refund.totalRefund') ? data.refund.totalRefund : 0
-  -var refundLines = sortByLineNumber(data.deductions, taxes, incomes, refund)
   -var locale = getLocale()
   -
     var rows =[
@@ -93,25 +91,6 @@ block content
           .breakdown-table__row.breakdown-table__row--summary
             dt.breakdown-table__row-key #{__('Total benefits')}
             dd.breakdown-table__row-value #{currencyFilter(totalBenefits)}
-
-    div
-      .breakdown-table
-        h2.breakdown-table__heading
-          span #{__('Your expected 2018 refund')}
-          span +#{currencyFilter(totalRefund.amount)}
-
-        p.breakdown-table__subheading #{__('Detailed breakdown of tax refund')}
-
-        dl.breakdown-table-data
-          each refundLine in refundLines
-            -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
-            .breakdown-table__row(
-              class={
-                ['breakdown-table__row--summary space-row']: refundLine.name === "Total Refund"
-              }
-            )
-              dt.breakdown-table__row-key #{__(`${refundLine.name} (${lineNumber})`)}
-              dd.breakdown-table__row-value #{currencyFilter(refundLine.amount)}
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.review})

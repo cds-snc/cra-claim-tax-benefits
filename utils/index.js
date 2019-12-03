@@ -142,7 +142,7 @@ const securityQuestionRedirect = (req, res, next) => {
     return res.redirect('/checkAnswers') 
   }
 
-  next ()
+  next()
 }
 
 // Render a passed-in template and pass in session data under the "data" key

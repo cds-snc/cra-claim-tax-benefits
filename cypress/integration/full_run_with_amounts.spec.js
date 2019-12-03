@@ -253,6 +253,8 @@ describe('Full run through saying "yes" to everything', function() {
     cy.url().should('contain', '/login/securityQuestion')
     cy.get('h1').should('contain', 'Choose a security question')
 
+    cy.get('form').find('label').should('have.length', 6)
+
     cy.get('form label')
       .eq(3)
       .should('have.attr', 'for', 'securityQuestion3')
@@ -283,6 +285,49 @@ describe('Full run through saying "yes" to everything', function() {
     cy.get('form button[type="submit"]')
       .should('contain', 'Continue')
       .click()
+
+    cy.url().should('contain', '/login/securityQuestion')
+    cy.get('h1').should('contain', 'Choose another security question')
+
+    cy.get('form').find('label').should('have.length', 5)
+
+    cy.get('form label')
+      .eq(3)
+      .should('have.attr', 'for', 'securityQuestion4')
+    cy.get('#securityQuestion4').check()
+
+    cy.get("form button[type='submit']")
+      .should('contain', 'Continue')
+      .click() 
+
+    cy.injectAxe().checkA11y()
+    cy.url().should('contain', '/login/questions/dateOfResidence')
+    cy.get('h1').should('contain', 'Enter date you became a resident of Canada')
+
+    cy.get('form label')
+      .eq(0)
+      .should('have.attr', 'for', 'dobDay')
+    cy.get('#dobDay')
+      .type('21')
+      .should('have.value', '21')
+
+    cy.get('form label')
+      .eq(1)
+      .should('have.attr', 'for', 'dobMonth')
+    cy.get('#dobMonth')
+      .type('05')
+      .should('have.value', '05')
+
+    cy.get('form label')
+      .eq(2)
+      .should('have.attr', 'for', 'dobYear')
+    cy.get('#dobYear')
+      .type('2006')
+      .should('have.value', '2006')
+
+    cy.get("form button[type='submit']")
+      .should('contain', 'Continue')
+      .click() 
   })
 
   //CONFIRM INCOME

@@ -40,6 +40,7 @@ const formatDataLine = (data, req) => {
       case data[0].includes('Birth'): {
         const dateLocale = (!locale || locale === 'en') ? enCA : fr
         const initialDate = parseISO(hasData(session, data[0], true))
+
         return format(new Date(initialDate), 'd MMMM yyyy', {
           locale: dateLocale,
         })

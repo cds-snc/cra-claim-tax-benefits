@@ -1,4 +1,6 @@
 extends ../base
+include ../_includes/banner
+
 
 block variables
   -var title = __('Choose a security question')
@@ -9,16 +11,17 @@ block content
   h1 #{title}
 
   form.cra-form.cra-form--lg(method='post')
-    +radios('securityQuestion', 'Answer a question from the list below', null,[
-      {value: "/login/questions/bank", label: "Your bank or credit union account information"},
+    +radios('securityQuestion', 'Answer a question from this list to get your notice of assessment immediately after you file with this service:', null,[
       {value: "/login/questions/rrsp", label: "Details of your contribution to a Registered Retirement Savings Plan (RRSP)"},
       {value: "/login/questions/tfsa", label: "Details of your contribution to a Tax Free Savings Account (TFSA)"},
       {value: "/login/questions/ccb", label: "Details of your Canada Child Benefit (CCB)"},
-      {value: "/login/questions/trillium", label: "Your Ontario Trillium Benefit amount and payment type"}
+      {value: "/login/questions/bankruptcy", label: "Details of your bankruptcy assignment"},
+      {value: "/login/questions/dateOfResidence", label: "Date you became a resident of Canada"},
+      {value: "/login/questions/prison", label: "Your date of entry or release from prison"},
+      {value: "/checkAnswers", label: "Skip security questions"}
     ])
 
-    div
-      p
-        a(href="/offramp/securityQuestion") #{__('I can’t answer these questions either')}
+    +banner('blue')
+      p #{__('If you skip these questions, you will wait about 8 weeks to get a notice of assessment.')}
 
-    +formButtons()
+    +formButtons('Continue', '/login/securityQuestion', "Back to previous questions")

@@ -11,11 +11,8 @@ var API = (function(userFound) {
     return null
   }
 
-  const getMatches = () => [_user.login.code.toLowerCase(), _user.login.code.toUpperCase()]
-
   return {
     getUser,
-    getMatches,
   }
 })(user)
 

@@ -52,7 +52,7 @@ const checkLangQuery = function(req, res, next) {
  * that a user session exists whatever page you end up on.
  */
 const checkPublic = function(req, res, next) {
-  const publicPaths = ['/', '/clear', '/start', '/login/code']
+  const publicPaths = ['/', '/clear', '/start', '/login/code', '/login/sin', '/login/dateOfBirth']
   if (publicPaths.includes(req.path)) {
     return next()
   }
@@ -132,11 +132,22 @@ const doRedirect = (req, res) => {
 }
 
 // Render a passed-in template and pass in session data under the "data" key
-const renderWithData = template => {
+const renderWithData = (template, { errorsKey } = {}) => {
   return (req, res) => {
-    res.render(template, {
+    let errors = undefined
+
+    // if there are errors in the session under the specified key, add them to the template
+    if (errorsKey && req.session && req.session[errorsKey] && req.session[errorsKey].errors) {
+      errors = req.session[errorsKey].errors
+      // means we only see the error once
+      delete req.session[errorsKey].errors
+    }
+
+    // send a 422 response if errors exist
+    res.status(errors ? 422 : 200).render(template, {
       data: req.session,
       prevRoute: getPreviousRoute(req),
+      errors,
     })
   }
 }
@@ -206,6 +217,17 @@ const postAmount = (amount, locale) => {
 
   //remove commas for English format inputs, just for consistency of storing
   return amount.replace(/,/g, '')
+}
+
+/**
+ * Cleans a string of hyphens and spaces
+ *
+ * ie, "8-4-7339 2 8 3 " => "847 339 283"
+ *
+ * @param string sin a string assumed to be a SIN
+ */
+const cleanSIN = sin => {
+  return sin ? sin.replace(/-|\s/g, '') : sin
 }
 
 /* Pug filters */
@@ -297,6 +319,26 @@ const currencyFilter = (number, locale = 'en') => {
   return `$${filteredAmount}`
 }
 
+/*
+ * Accepts an ISO-format date (1999-09-30)
+ * and returns a string formatted "dd mm yyyy" (30 09 1999)
+ *
+ * @param {*} date a string ISO-format date
+ */
+const isoDateHintText = date => {
+  if (!validator.isISO8601(date)) {
+    throw new Error(`[GET /login/dateOfBirth] Bad date "${date}": must be a valid ISO date`)
+  }
+
+  const dateParts = date.split('-')
+
+  if (dateParts.length !== 3 || dateParts[2].length > 2) {
+    throw new Error(`[GET /login/dateOfBirth] Bad date "${date}": must be formatted yyyy-mm-dd`)
+  }
+
+  return `${dateParts[2]} ${dateParts[1]} ${dateParts[0]}`
+}
+
 const sortByLineNumber = (...objToSort) => {
   //take all the objects, make them into one big object
   const superObj = Object.assign({}, ...objToSort)
@@ -317,6 +359,8 @@ const sortByLineNumber = (...objToSort) => {
 
   return sortedArrayObj
 }
+
+/* Routing functions */
 
 /**
  * @param {String} name route name
@@ -394,31 +438,12 @@ const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
   return routeWithIndex
 }
 
-/*
- * Accepts an ISO-format date (1999-09-30)
- * and returns a string formatted "dd mm yyyy" (30 09 1999)
- *
- * @param {*} date a string ISO-format date
- */
-const isoDateHintText = date => {
-  if (!validator.isISO8601(date)) {
-    throw new Error(`[GET /login/dateOfBirth] Bad date "${date}": must be a valid ISO date`)
-  }
-
-  const dateParts = date.split('-')
-
-  if (dateParts.length !== 3 || dateParts[2].length > 2) {
-    throw new Error(`[GET /login/dateOfBirth] Bad date "${date}": must be formatted yyyy-mm-dd`)
-  }
-
-  return `${dateParts[2]} ${dateParts[1]} ${dateParts[0]}`
-}
-
 module.exports = {
   errorArray2ErrorObject,
   checkErrors,
   getPreviousRoute,
   renderWithData,
+  cleanSIN,
   SINFilter,
   hasData,
   checkPublic,

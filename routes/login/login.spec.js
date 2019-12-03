@@ -20,7 +20,6 @@ describe('Test /login responses', () => {
     '/login/dateOfBirth',
     '/login/securityQuestion',
     '/login/questions/child',
-    '/login/questions/trillium',
     '/login/questions/addresses',
     '/login/questions/bankruptcy',
     '/login/questions/dateOfResidence',
@@ -130,14 +129,6 @@ describe('Test /login responses', () => {
     expect(response.statusCode).toBe(422)
   })
 
-  test('it does not allow a mixed-case code', async () => {
-    const response = await request(app)
-      .post('/login/code')
-      .use(withCSRF(cookie, csrfToken))
-      .send({ code: 'a5G98s4K1', redirect: '/start' })
-    expect(response.statusCode).toBe(422)
-  })
-
   const codes = ['A5G98S4K1', 'a5g98s4k1'] //check uppercase, lowercase
   codes.map(code => {
     test(`it redirects if a valid code is provided: "${code}"`, async () => {
@@ -163,7 +154,7 @@ describe('Test /login responses', () => {
       const response = await request(app)
         .post('/login/sin')
         .use(withCSRF(cookie, csrfToken))
-        .send({ sin: '847 339 283' })
+        .send({ sin: '540 739 869' })
       expect(response.statusCode).toBe(500)
     })
 
@@ -175,10 +166,6 @@ describe('Test /login responses', () => {
       expect(response.statusCode).toBe(422)
       const $ = cheerio.load(response.text)
       expect($('title').text()).toMatch(/^Error:/)
-      expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
-      expect($('.error-list__list').children()).toHaveLength(1)
-      expect($('.validation-message').text()).toEqual('Error: Your SIN should have 9 numbers')
-      expect($('#sin').attr('aria-describedby')).toEqual('sin-error')
     })
 
     describe('Error list tests', () => {
@@ -191,65 +178,49 @@ describe('Test /login responses', () => {
         expect($('title').text()).toMatch(/^Error:/)
         expect($('.error-list__header').text()).toEqual('Please correct the errors on the page')
         expect($('.error-list__list').children()).toHaveLength(1)
-        expect($('.validation-message').text()).toEqual('Error: Your SIN should have 9 numbers')
+        expect($('.validation-message').text()).toEqual('Error: Please enter a SIN')
         expect($('#sin').attr('aria-describedby')).toEqual('sin-error')
       })
     })
 
-    test('it does not allow a code more than 9 characters', async () => {
+    test('it does not allow a SIN with non-numbers', async () => {
       const response = await request(app)
         .post('/login/sin')
         .use(withCSRF(cookie, csrfToken))
-        .send({ code: '12345678910', redirect: '/start' })
+        .send({ sin: '123 456 78W', redirect: '/start' })
       expect(response.statusCode).toBe(422)
     })
 
-    test('it does not allow a code less than 9 characters', async () => {
+    test('it does not allow a SIN more than 9 characters', async () => {
       const response = await request(app)
         .post('/login/sin')
         .use(withCSRF(cookie, csrfToken))
-        .send({ code: '12345678', redirect: '/start' })
+        .send({ sin: '12345678910', redirect: '/start' })
       expect(response.statusCode).toBe(422)
     })
 
-    /*
-      These tests make sure that a SIN which would ordinarily be
-      accepted (ie, "123456789") is no longer accepted after
-      a user logs in.
-      After that, only the sin used by the user in /api/user.json
-      will be accepted.
-    */
-    describe('after entering an access code', () => {
-      let authSession
+    test('it does not allow a SIN less than 9 characters', async () => {
+      const response = await request(app)
+        .post('/login/sin')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ sin: '12345678', redirect: '/start' })
+      expect(response.statusCode).toBe(422)
+    })
 
-      beforeEach(async () => {
-        authSession = session(app)
-        const getresp = await authSession.get('/login/code')
-        cookie = getresp.headers['set-cookie']
-        csrfToken = extractCsrfToken(getresp)
+    test('it does not allow an invalid SIN', async () => {
+      const response = await request(app)
+        .post('/login/sin')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ sin: '847339283', redirect: '/start' })
+      expect(response.statusCode).toBe(422)
+    })
 
-        const response = await authSession
-          .post('/login/code')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ code: 'A5G98S4K1', redirect: '/login/sin' })
-        expect(response.statusCode).toBe(302)
-      })
-
-      it('it should return 422 for the wrong SIN', async () => {
-        const response = await authSession
-          .post('/login/sin')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ sin: '123456789', redirect: '/login/sin' })
-        expect(response.statusCode).toBe(422)
-      })
-
-      it('it should return 302 for the right SIN', async () => {
-        const response = await authSession
-          .post('/login/sin')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ sin: '847 339 283', redirect: '/login/sin' })
-        expect(response.statusCode).toBe(302)
-      })
+    test('it returns a 302 response if the SIN format is good', async () => {
+      const response = await request(app)
+        .post('/login/sin')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ sin: '117 166 934', redirect: '/start' })
+      expect(response.statusCode).toBe(302)
     })
   })
 
@@ -352,9 +323,36 @@ describe('Test /login responses', () => {
     ]
 
     describe('for /login/dateOfBirth', () => {
+      // need an auth session with a code / sin
+      let authSession
+      beforeEach(async () => {
+        authSession = session(app)
+        const getresp = await authSession.get('/login/code')
+        cookie = getresp.headers['set-cookie']
+        csrfToken = extractCsrfToken(getresp)
+
+        const response = await authSession
+          .post('/login/code')
+          .use(withCSRF(cookie, csrfToken))
+          .send({
+            code: 'A5G98S4K1',
+            redirect: '/login/sin',
+          })
+          .then(() => {
+            return authSession
+              .post('/login/sin')
+              .use(withCSRF(cookie, csrfToken))
+              .send({
+                sin: '540739869',
+                redirect: '/login/dateOfBirth',
+              })
+          })
+        expect(response.statusCode).toBe(302)
+      })
+
       badDoBRequests.map(badRequest => {
         test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-          const response = await request(app)
+          const response = await authSession
             .post('/login/dateOfBirth')
             .use(withCSRF(cookie, csrfToken))
             .send({ ...badRequest.send })
@@ -362,16 +360,17 @@ describe('Test /login responses', () => {
         })
       })
 
-      test('it returns a 302 with valid dob', async () => {
-        const response = await request(app)
+      test('it returns a 302 to the /personal/name page with valid dob', async () => {
+        const response = await authSession
           .post('/login/dateOfBirth')
           .use(withCSRF(cookie, csrfToken))
           .send({ ...goodDoBRequest })
         expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toBe('/personal/name')
       })
 
-      test('it returns a 302 with valid dob even with whitespace included', async () => {
-        const response = await request(app)
+      test('it returns a 302 to the /personal/name with valid dob even with whitespace included', async () => {
+        const response = await authSession
           .post('/login/dateOfBirth')
           .use(withCSRF(cookie, csrfToken))
           .send({
@@ -381,6 +380,20 @@ describe('Test /login responses', () => {
             redirect: '/personal/name',
           })
         expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toBe('/personal/name')
+      })
+      test('it returns a 302 to the /login/sin page with a dob that does not match the access code', async () => {
+        const response = await authSession
+          .post('/login/dateOfBirth')
+          .use(withCSRF(cookie, csrfToken))
+          .send({
+            dobDay: '8',
+            dobMonth: '8',
+            dobYear: '1970',
+            redirect: '/personal/name',
+          })
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toBe('/login/sin')
       })
     })
 
@@ -573,67 +586,24 @@ describe('Test /login responses', () => {
       })
     })
   })
-
-  /*
-      These tests make sure that a date of birth which would ordinarily be is no longer accepted after
-      a user logs in.
-      After that, only the date of birth corressponding to the user in /api/user.json
-      will be accepted.
-    */
-  describe('after entering an access code', () => {
-    let authSession
-
-    beforeEach(async () => {
-      authSession = session(app)
-      const getresp = await authSession.get('/login/code')
-      cookie = getresp.headers['set-cookie']
-      csrfToken = extractCsrfToken(getresp)
-
-      const response = await authSession
-        .post('/login/code')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ code: 'A5G98S4K1', redirect: '/login/sin' })
-        .then(() => {
-          return authSession
-            .post('/login/sin')
-            .use(withCSRF(cookie, csrfToken))
-            .send({ sin: '847339283', redirect: '/login/dateOfBirth' })
-        })
-      expect(response.statusCode).toBe(302)
-    })
-
-    it('it should return 422 for the wrong DoB', async () => {
-      const response = await authSession
-        .post('/login/dateOfBirth')
-        .use(withCSRF(cookie, csrfToken))
-        .send({
-          dobDay: '23',
-          dobMonth: '03',
-          dobYear: '1909',
-          redirect: '/personal/name',
-        })
-      expect(response.statusCode).toBe(422)
-    })
-
-    it('it should return 302 for the right DoB', async () => {
-      const response = await authSession
-        .post('/login/dateOfBirth')
-        .use(withCSRF(cookie, csrfToken))
-        .send({
-          dobDay: '09',
-          dobMonth: '09',
-          dobYear: '1977',
-          redirect: '/personal/name',
-        })
-      expect(response.statusCode).toBe(302)
-    })
-  })
 })
 
 const questionsAmounts = [
   {
-    url: '/login/questions/trillium',
-    key: 'trillium',
+    url: '/login/questions/taxReturn',
+    key: 'taxReturn',
+  },
+  {
+    url: '/login/questions/rrsp',
+    key: 'rrsp',
+  },
+  {
+    url: '/login/questions/tfsa',
+    key: 'tfsa',
+  },
+  {
+    url: '/login/questions/ccb',
+    key: 'ccb',
   },
 ]
 
@@ -672,15 +642,15 @@ questionsAmounts.map(amountResponse => {
           .post(amountResponse.url)
           .use(withCSRF(cookie, csrfToken))
           .send({
+            [`${amountResponse.key}Year`]: '2018',
             [`${amountResponse.key}Amount`]: badAmount,
-            [`${amountResponse.key}PaymentMethod`]: 'cheque',
             redirect: '/start',
           })
         expect(response.statusCode).toBe(422)
       })
     })
 
-    test('it returns a 422 response for a good amount but NO payment method', async () => {
+    test('it returns a 422 response for a good amount but NO year', async () => {
       const response = await request(app)
         .post(amountResponse.url)
         .use(withCSRF(cookie, csrfToken))
@@ -688,15 +658,15 @@ questionsAmounts.map(amountResponse => {
       expect(response.statusCode).toBe(422)
     })
 
-    const goodAmounts = ['0', '10', '10.00', '.10', '', null]
+    const goodAmounts = ['10', '10.00', '.10']
     goodAmounts.map(goodAmount => {
       test(`it returns a 302 for a good posted amount: "${goodAmount}"`, async () => {
         const response = await request(app)
           .post(amountResponse.url)
           .use(withCSRF(cookie, csrfToken))
           .send({
+            [`${amountResponse.key}Year`]: '2018',
             [`${amountResponse.key}Amount`]: goodAmount,
-            [`${amountResponse.key}PaymentMethod`]: 'cheque',
             redirect: '/start',
           })
         expect(response.statusCode).toBe(302)
@@ -704,38 +674,39 @@ questionsAmounts.map(amountResponse => {
       })
     })
 
-    test('it returns a 302 response for NO amount but a good payment method', async () => {
-      const response = await request(app)
-        .post(amountResponse.url)
-        .use(withCSRF(cookie, csrfToken))
-        .send({
-          [`${amountResponse.key}PaymentMethod`]: 'cheque',
-          redirect: '/start',
-        })
-      expect(response.statusCode).toBe(302)
-    })
-
-    test('it returns a 422 response for a good amount but a BAD payment method', async () => {
-      const response = await request(app)
-        .post(amountResponse.url)
-        .use(withCSRF(cookie, csrfToken))
-        .send({
-          [`${amountResponse.key}Amount`]: '10',
-          [`${amountResponse.key}PaymentMethod`]: 'bitcoin',
-          redirect: '/start',
-        })
-      expect(response.statusCode).toBe(422)
-    })
-
-    const goodPaymentMethods = ['cheque', 'directDeposit']
-    goodPaymentMethods.map(paymentMethod => {
-      test(`it returns a 302 for a good posted payment method: "${paymentMethod}"`, async () => {
+    const currentYear = new Date().getFullYear()
+    const badYears = ['dinosaur', '0', currentYear - 201, currentYear]
+    badYears.map(badYear => {
+      test(`it returns a 422 for a bad posted year: "${badYear}"`, async () => {
         const response = await request(app)
           .post(amountResponse.url)
           .use(withCSRF(cookie, csrfToken))
           .send({
+            [`${amountResponse.key}Year`]: badYear,
             [`${amountResponse.key}Amount`]: '10',
-            [`${amountResponse.key}PaymentMethod`]: paymentMethod,
+            redirect: '/start',
+          })
+        expect(response.statusCode).toBe(422)
+      })
+    })
+
+    test('it returns a 422 response for a good year but NO amount', async () => {
+      const response = await request(app)
+        .post(amountResponse.url)
+        .use(withCSRF(cookie, csrfToken))
+        .send({ [`${amountResponse.key}Year`]: '2018', redirect: '/start' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    const goodYears = ['1977', currentYear - 200, currentYear - 1]
+    goodYears.map(goodYear => {
+      test(`it returns a 302 for a good posted year: "${goodYear}"`, async () => {
+        const response = await request(app)
+          .post(amountResponse.url)
+          .use(withCSRF(cookie, csrfToken))
+          .send({
+            [`${amountResponse.key}Year`]: goodYear,
+            [`${amountResponse.key}Amount`]: '10',
             redirect: '/start',
           })
         expect(response.statusCode).toBe(302)
@@ -764,7 +735,7 @@ describe('Test securityQuestion responses', () => {
       expect(response.statusCode).toBe(422)
     })
 
-    const securityQuestionUrls = ['/login/questions/child', '/login/questions/trillium']
+    const securityQuestionUrls = ['/login/questions/child', '/login/questions/bank']
     securityQuestionUrls.map(url => {
       test(`it returns a 302 response when posting a good value: ${url}`, async () => {
         const response = await request(app)
@@ -970,211 +941,5 @@ describe('Test /login/questions/bank responses', () => {
       .send({ ...goodRequest })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/start')
-  })
-})
-
-describe('Test /login/questions/{year and amount} responses', () => {
-  beforeEach(async () => {
-    const testSession = session(app)
-    const getresp = await testSession.get('/login/questions/taxReturn')
-    cookie = getresp.headers['set-cookie']
-    csrfToken = extractCsrfToken(getresp)
-  })
-
-  const _makeBadRequests = ({ goodRequest, yearVar, amountVar }) => {
-    return [
-      {
-        label: `no ${yearVar}`,
-        firstErrorId: `#${yearVar}`,
-        send: {
-          ...goodRequest,
-          ...{ [yearVar]: '' },
-        },
-      },
-      {
-        label: `bad ${yearVar}`,
-        firstErrorId: `#${yearVar}`,
-        send: {
-          ...goodRequest,
-          ...{ [yearVar]: '20' },
-        },
-      },
-      {
-        label: `no ${amountVar}`,
-        firstErrorId: `#${amountVar}`,
-        send: {
-          ...goodRequest,
-          ...{ [amountVar]: '' },
-        },
-      },
-      {
-        label: `bad ${amountVar}`,
-        firstErrorId: `#${amountVar}`,
-        send: {
-          ...goodRequest,
-          ...{ [amountVar]: 'abcd' },
-        },
-      },
-    ]
-  }
-
-  describe('Test /login/questions/taxReturn responses', () => {
-    let goodRequest = {
-      taxReturnYear: '2018',
-      taxReturnAmount: '10000',
-      redirect: '/start',
-    }
-
-    const badRequests = _makeBadRequests({
-      goodRequest,
-      yearVar: 'taxReturnYear',
-      amountVar: 'taxReturnAmount',
-    })
-
-    badRequests.map(badRequest => {
-      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-        const response = await request(app)
-          .post('/login/questions/taxReturn')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ ...badRequest.send })
-
-        const $ = cheerio.load(response.text)
-        expect(response.statusCode).toBe(422)
-        expect(
-          $('.error-list__link')
-            .first()
-            .attr('href'),
-        ).toEqual(badRequest.firstErrorId)
-      })
-    })
-
-    test('it returns a 302 for a good request', async () => {
-      const response = await request(app)
-        .post('/login/questions/taxReturn')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ ...goodRequest })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/start')
-    })
-  })
-
-  describe('Test /login/questions/rrsp responses', () => {
-    let goodRequest = {
-      rrspYear: '2017',
-      rrspAmount: '1000',
-      redirect: '/start',
-    }
-
-    const badRequests = _makeBadRequests({
-      goodRequest,
-      yearVar: 'rrspYear',
-      amountVar: 'rrspAmount',
-    })
-
-    badRequests.map(badRequest => {
-      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-        const response = await request(app)
-          .post('/login/questions/rrsp')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ ...badRequest.send })
-
-        const $ = cheerio.load(response.text)
-        expect(response.statusCode).toBe(422)
-        expect(
-          $('.error-list__link')
-            .first()
-            .attr('href'),
-        ).toEqual(badRequest.firstErrorId)
-      })
-    })
-
-    test('it returns a 302 for a good request', async () => {
-      const response = await request(app)
-        .post('/login/questions/rrsp')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ ...goodRequest })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/start')
-    })
-  })
-
-  describe('Test /login/questions/tfsa responses', () => {
-    let goodRequest = {
-      tfsaYear: '2016',
-      tfsaAmount: '2000',
-      redirect: '/start',
-    }
-
-    const badRequests = _makeBadRequests({
-      goodRequest,
-      yearVar: 'tfsaYear',
-      amountVar: 'tfsaAmount',
-    })
-
-    badRequests.map(badRequest => {
-      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-        const response = await request(app)
-          .post('/login/questions/tfsa')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ ...badRequest.send })
-
-        const $ = cheerio.load(response.text)
-        expect(response.statusCode).toBe(422)
-        expect(
-          $('.error-list__link')
-            .first()
-            .attr('href'),
-        ).toEqual(badRequest.firstErrorId)
-      })
-    })
-
-    test('it returns a 302 for a good request', async () => {
-      const response = await request(app)
-        .post('/login/questions/tfsa')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ ...goodRequest })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/start')
-    })
-  })
-
-  describe('Test /login/questions/ccb responses', () => {
-    let goodRequest = {
-      ccbYear: '2015',
-      ccbAmount: '3000',
-      redirect: '/start',
-    }
-
-    const badRequests = _makeBadRequests({
-      goodRequest,
-      yearVar: 'ccbYear',
-      amountVar: 'ccbAmount',
-    })
-
-    badRequests.map(badRequest => {
-      test(`it returns a 422 with: "${badRequest.label}"`, async () => {
-        const response = await request(app)
-          .post('/login/questions/ccb')
-          .use(withCSRF(cookie, csrfToken))
-          .send({ ...badRequest.send })
-
-        const $ = cheerio.load(response.text)
-        expect(response.statusCode).toBe(422)
-        expect(
-          $('.error-list__link')
-            .first()
-            .attr('href'),
-        ).toEqual(badRequest.firstErrorId)
-      })
-    })
-
-    test('it returns a 302 for a good request', async () => {
-      const response = await request(app)
-        .post('/login/questions/ccb')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ ...goodRequest })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/start')
-    })
   })
 })

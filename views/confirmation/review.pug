@@ -7,59 +7,90 @@ block variables
   -var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
   -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
   -var refund = hasData(data, 'refund') ? data.refund : {}
-  -var totalRefund = hasData(data, 'refund.totalRefund') ? data.refund.totalRefund : 0
-  -var refundLines = sortByLineNumber(data.deductions, taxes, incomes, refund)
   -var locale = getLocale()
+  -
+    var rows =[
+      {
+        "header":"Goods and services tax/harmonized sales tax (GST/HST) credit",
+        "description": "up to $443 for one person, $580 if you have a marriage or common-law partner, and $153 for each child under age 19.",
+        "linkURL":"https://www.canada.ca/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit.html",
+        "payment": "paid yearly"
+      },
+      {
+        "header":"Canada child benefit (CCB)",
+        "description": "a yearly amount which may be up to $6,639 for each child under age 6 and up to $5,602 for each child aged 6 to 17.",
+        "linkURL":"https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview.html",
+        "payment":"paid monthly"
+      },
+      {
+        "header":"Ontario trillium benefit (OTB)",
+        "description": "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.",
+        "linkURL":"https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-ontario.html",
+        "payment":"paid monthly"
+      },
+      {
+        "header":"Climate action incentive (CAI)",
+        "description": "everyone gets this payment. You get 10% extra if you live in a small and rural community.",
+        "linkURL":"https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-449-climate-action-incentive.html",
+        "payment":"paid yearly"
+      },
+      {
+        "header":"Disability tax credit (DTC)",
+        "description": "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application.",
+        "linkURL":"https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html",
+        "payment":"paid monthly"
+      },
+    ]
 
 
 block content
 
   h1 #{title}
+  if (data.login.securityQuestion === '/checkAnswers') || (!data.login.securityQuestion)
+    div
+      .breakdown-table-lite.breakdown-table-lite--answers
+        h2.breakdown-table-lite__heading #{__('We will use your information to file your taxes. You may get a refund. You may also get these benefits and credits:')}
+        each row in rows
+          dl.breakdown-table-lite-data
+            .breakdown-table-lite__row.breakdown-table-lite__row--answers
+              dt.breakdown-table-lite__row-key
+                span #{__(row.header)}
+                dd.breakdown-table-lite__row-value
+                  span #{__(row.description)}
+                  div.row-link
+                    a(href=__(row.linkURL), target="_blank")
+                      <span>#{__('Learn more')}</span>
+                dd.breakdown-table-lite__row-payment
+                  p #{__(row.payment)}
+          hr
 
-  div
-    p #{__('You can expect the following benefits and refund from your 2018 taxes.')}
-    p #{__('Please check this information. If anything looks wrong, contact CRA before filing by:')}
-    ul
-      li #{__('Phone: 1-800-959-8281')}
-      li #{__('TTY (text telephone): 1-800-665-0354')}
+        p #{__('Check the box if you gave correct and complete answers to the previous questions. CRA will file your taxes using this online service. Keep your tax slips or receipts for 6 years in case CRA asks for them.')}
+  else
+    div
+      p #{__('You can expect the following benefits and refund from your 2018 taxes.')}
+      p #{__('Please check this information. If anything looks wrong, contact CRA before filing by:')}
+      ul
+        li #{__('Phone: 1-800-959-8281')}
+        li #{__('TTY (text telephone): 1-800-665-0354')}
 
-  div
-    .breakdown-table
-      h2.breakdown-table__heading
-        span #{__('Your 2018 tax benefits')}
-        span #{currencyFilter(totalBenefits, locale)}
+    div
+      .breakdown-table
+        h2.breakdown-table__heading
+          span #{__('Your 2018 tax benefits')}
+          span #{currencyFilter(totalBenefits)}
 
-      p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
+        p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
 
-      dl.breakdown-table-data
-        each benefit, index in benefits
-          if index !== "totalBenefits"
-            .breakdown-table__row
-              dt.breakdown-table__row-key #{__(`${benefit.name}`)}
-              dd.breakdown-table__row-value #{currencyFilter(benefit.amount, locale)}
+        dl.breakdown-table-data
+          each benefit, index in benefits
+            if index !== "totalBenefits"
+              .breakdown-table__row
+                dt.breakdown-table__row-key #{__(`${benefit.name}`)}
+                dd.breakdown-table__row-value #{currencyFilter(benefit.amount)}
 
-        .breakdown-table__row.breakdown-table__row--summary
-          dt.breakdown-table__row-key #{__('Total benefits')}
-          dd.breakdown-table__row-value #{currencyFilter(totalBenefits, locale)}
-
-  div
-    .breakdown-table
-      h2.breakdown-table__heading
-        span #{__('Your expected 2018 refund')}
-        span +#{currencyFilter(totalRefund.amount, locale)}
-
-      p.breakdown-table__subheading #{__('Detailed breakdown of tax refund')}
-
-      dl.breakdown-table-data
-        each refundLine in refundLines
-          -var lineNumber = refundLine.multiLine ? refundLine.multiLine : refundLine.line
-          .breakdown-table__row(
-            class={
-              ['breakdown-table__row--summary space-row']: refundLine.name === "Total Refund"
-            }
-          )
-            dt.breakdown-table__row-key #{__(`${refundLine.name} (${lineNumber})`)}
-            dd.breakdown-table__row-value #{currencyFilter(refundLine.amount, locale)}
+          .breakdown-table__row.breakdown-table__row--summary
+            dt.breakdown-table__row-key #{__('Total benefits')}
+            dd.breakdown-table__row-value #{currencyFilter(totalBenefits)}
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.review})
@@ -70,6 +101,6 @@ block content
           input(id='review' name='review' type="checkbox" value="review" checked=(value =='review') aria-describedby=(errors ? `review-error` : false))
           label(for='review') #{__('You agree that CRA can use this information to file your 2018 taxes.')}
 
-    input#redirect(name='redirect', type='hidden', value='/confirmation')  
+    input#redirect(name='redirect', type='hidden', value='/confirmation')
 
     +formButtons('File your taxes now')

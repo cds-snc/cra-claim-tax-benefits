@@ -1,4 +1,9 @@
-const { checkTableRows, getBenefitsBreakdownRows, getAddress } = require('../utils.js')
+const {
+  checkTableRows,
+  checkTableRowsLite,
+  getBenefitsBreakdownRowsLite,
+  getAddress,
+} = require('../utils.js')
 
 describe('Full run through saying "no" to everything', function() {
   before(function() {
@@ -151,7 +156,7 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
-  // NOTICE
+  // NOTICE OF ASSESSMENT
   it('navigates Notice of Assessment page', function() {
     cy.confirm({
       url: '/login/notice',
@@ -185,7 +190,7 @@ describe('Full run through saying "no" to everything', function() {
 
     //check some table data
     //until we have a more firm grasp on how we're shaping the total refund, i'm just checking benefits
-    checkTableRows(cy, getBenefitsBreakdownRows(this.user))
+    checkTableRowsLite(cy, getBenefitsBreakdownRowsLite(this.user))
 
     cy.continue('File your taxes now')
   })
@@ -194,7 +199,8 @@ describe('Full run through saying "no" to everything', function() {
   it('checks the Confirmation page', function() {
     cy.url().should('contain', '/confirmation')
     cy.get('h1').should('contain', 'You have filed your 2018 taxes')
-    cy.get('th').should('contain', 'Your 2018 filing code is')
+    cy.get('th').should('contain', 'Your filing code')
     cy.get('td').should('contain', '5H3P9IO5816')
+    cy.get('p').should('contain', 'You will get your notice of assessment in about 2 weeks.')
   })
 })

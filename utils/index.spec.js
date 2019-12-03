@@ -7,13 +7,14 @@ const {
   currencyFilter,
   postAmount,
   currencyWithoutUnit,
+  cleanSIN,
 } = require('./index')
 const API = require('./../api')
 
 const testRoutes = [
   { path: '/start' },
   { path: '/login/code' },
-  { path: '/login/questions', options: ['/login/questions/child', '/login/questions/trillium'] },
+  { path: '/login/questions', options: ['/login/questions/child', '/login/questions/bank'] },
   { path: '/deductions/rrsp' },
   { path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
   { path: '/deductions/medical' },
@@ -31,7 +32,10 @@ describe('Test SINFilter', () => {
     })
   })
 
-  const sinFilterChanged = [['123456789', '123 456 789'], ['ABCDEFGHI', 'ABC DEF GHI']]
+  const sinFilterChanged = [
+    ['123456789', '123 456 789'],
+    ['ABCDEFGHI', 'ABC DEF GHI'],
+  ]
   sinFilterChanged.map(values => {
     test(`returns "${values[1]}" for "${values[0]}"`, () => {
       expect(SINFilter(values[0])).toEqual(values[1])
@@ -63,7 +67,7 @@ describe('Test currencyWithoutUnit', () => {
     },
   ]
 
-  amounts.map( amount => {
+  amounts.map(amount => {
     test(`formatValue returns ${amount.expectedResult}`, () => {
       expect(currencyWithoutUnit(amount.locale, amount.amount)).toBe(amount.expectedResult)
     })
@@ -97,13 +101,13 @@ describe('Test currencyFilter', () => {
       expectedResult: '25 086,34$',
     },
     {
-      number: .34,
+      number: 0.34,
       locale: 'fr',
       expectedResult: '0,34$',
     },
   ]
 
-  currencies.map((currency) => {
+  currencies.map(currency => {
     test(`it returns a ${currency.locale} currency format of ${currency.expectedResult}`, () => {
       expect(currencyFilter(currency.number, currency.locale)).toBe(currency.expectedResult)
     })
@@ -111,7 +115,6 @@ describe('Test currencyFilter', () => {
 })
 
 describe('Test postAmount function', () => {
-
   const amounts = [
     {
       input: '10 341,28',
@@ -130,12 +133,11 @@ describe('Test postAmount function', () => {
     },
   ]
 
-  amounts.map( amount => {
+  amounts.map(amount => {
     test(`expect postAmount to return ${amount.expectedResult}`, () => {
       expect(postAmount(amount.input, amount.locale)).toBe(amount.expectedResult)
     })
   })
-
 })
 
 describe('Test hasData function', () => {
@@ -210,12 +212,12 @@ describe('Test getRouteWithIndexByPath', () => {
       index: 2,
       route: {
         path: '/login/questions',
-        options: ['/login/questions/child', '/login/questions/trillium'],
+        options: ['/login/questions/child', '/login/questions/bank'],
       },
     })
   })
 
-  const optsUrls = ['/login/questions/child', '/login/questions/trillium']
+  const optsUrls = ['/login/questions/child', '/login/questions/bank']
   optsUrls.map(url => {
     test(`Returns a route with an options key by looking for a path in the options array: ${url}`, () => {
       const route = getRouteWithIndexByPath(url, testRoutes)
@@ -223,7 +225,7 @@ describe('Test getRouteWithIndexByPath', () => {
         index: 2,
         route: {
           path: '/login/questions',
-          options: ['/login/questions/child', '/login/questions/trillium'],
+          options: ['/login/questions/child', '/login/questions/bank'],
         },
       })
     })
@@ -282,5 +284,21 @@ describe('Test isoDateHintText function', () => {
     expect(() => isoDateHintText('1961-04-12T12:34:56.000Z')).toThrowError(
       /must be formatted yyyy-mm-dd/,
     )
+  })
+})
+
+describe('Test cleanSIN function', () => {
+  const sins = ['123456789', '123 456 789', '123-456-789', '  1-2-3 4 5 6 7-8-9-  ']
+  sins.map(sin => {
+    test(`returns value without spaces or hypens for: ${sin}`, () => {
+      expect(cleanSIN(sin)).toEqual('123456789')
+    })
+  })
+
+  const falseyVals = ['', false, 0, null]
+  falseyVals.map(falseyVal => {
+    test(`returns original value for falsey value: ${falseyVal}`, () => {
+      expect(cleanSIN(falseyVal)).toEqual(falseyVal)
+    })
   })
 })

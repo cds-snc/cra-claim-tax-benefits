@@ -1,12 +1,6 @@
 const validator = require('validator')
-const {
-  validationArray,
-  currencySchema,
-  yesNoSchema,
-  monthSchema,
-  yearSchema,
-} = require('./utils.schema')
-const API = require('./../api')
+const SocialInsuranceNumber = require('social-insurance-number')
+const { currencySchema, yesNoSchema, monthSchema, yearSchema } = require('./utils.schema')
 const { securityQuestionUrls } = require('../config/routes.config')
 
 const loginSchema = {
@@ -18,18 +12,13 @@ const loginSchema = {
     isAlphanumeric: {
       errorMessage: 'errors.login.alphanumeric',
     },
-    isIn: {
-      options: [API.getMatches()],
-      errorMessage: 'errors.login.code',
-    },
   },
 }
 
-let sinError = 'errors.login.matchingSIN'
-const _getSinErrorMessage = (val, expectedSin) => {
+let sinError = 'errors.login.missingSIN'
+const _getSinErrorMessage = val => {
   if (!val) {
-    // technically, 0 characters is the wrong length
-    return 'errors.login.lengthSIN'
+    return 'errors.login.missingSIN'
   }
 
   // remove spaces, hyphens and underscores
@@ -42,9 +31,10 @@ const _getSinErrorMessage = (val, expectedSin) => {
   if (digits.length !== 9) {
     return 'errors.login.lengthSIN'
   }
+  let sin = new SocialInsuranceNumber(val)
 
-  if (digits !== expectedSin) {
-    return 'errors.login.matchingSIN'
+  if (! sin.isValid()) {
+    return 'errors.login.invalidSIN'
   }
 
   return false
@@ -53,13 +43,8 @@ const _getSinErrorMessage = (val, expectedSin) => {
 const sinSchema = {
   sin: {
     custom: {
-      options: (value, { req }) => {
-        /* If there is no session, always return false */
-        if (!req.session || !req.session.personal) {
-          return false
-        }
-
-        const errorMessage = _getSinErrorMessage(value, req.session.personal.sin)
+      options: value => {
+        const errorMessage = _getSinErrorMessage(value)
         if (errorMessage) sinError = errorMessage
 
         /* if an error message exists, we failed validation */
@@ -85,22 +70,9 @@ const _toISOFormat = ({ dobYear, dobMonth, dobDay }) => {
   return `${dobYear}-${if0(dobMonth)}-${if0(dobDay)}`
 }
 
-const isMatchingDoB = {
-  errorMessage: 'errors.login.dateOfBirth.match',
-  validate: (value, req) => {
-    /* If there is no session, always return true */
-    if (!req.session || !req.session.personal) {
-      return true
-    }
-
-    return _toISOFormat(req.body) === req.session.personal.dateOfBirth
-  },
-}
-
 const dobSchema = {
   dobDay: {
     ...isValidDay(),
-    ...validationArray([isMatchingDoB]),
   },
   dobMonth: monthSchema(),
   dobYear: yearSchema(),
@@ -145,16 +117,6 @@ const bankruptcySchema = {
     isEmpty: {
       errorMessage: 'errors.login.trusteeLastName',
       negated: true,
-    },
-  },
-}
-
-const trilliumAmountSchema = {
-  trilliumAmount: currencySchema(),
-  trilliumPaymentMethod: {
-    isIn: {
-      errorMessage: 'errors.login.paymentMethod',
-      options: [['cheque', 'directDeposit']],
     },
   },
 }
@@ -302,7 +264,6 @@ module.exports = {
   childSchema,
   dateOfResidenceSchema,
   bankruptcySchema,
-  trilliumAmountSchema,
   addressesSchema,
   prisonSchema,
   bankSchema,

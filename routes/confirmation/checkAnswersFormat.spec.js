@@ -17,7 +17,7 @@ const sessionWithSecurityQuestion = {
   ...initialSession,
   ...{
     login: {
-      securityQuestion: '/login/question/child',
+      securityQuestion: [[true, '/login/questions/child'], [true, '/login/questions/dateOfResidence']],
     },
   },
 }

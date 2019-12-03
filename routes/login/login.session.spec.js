@@ -14,7 +14,7 @@ const doAccessCode = (code = 'A5G98S4K1') => {
   }
 }
 
-const doSIN = (sin = '847 339 283') => {
+const doSIN = (sin = '540 739 869') => {
   return request => {
     request.use(withCSRF(cookie, csrfToken)).send({
       sin,
@@ -94,7 +94,7 @@ describe('Test /login SESSION responses', () => {
       .post('/login/code')
       .use(doAccessCode())
       .then(() => {
-        return testSession.post('/login/sin').use(doSIN('888888888')) // wrong SIN
+        return testSession.post('/login/sin').use(doSIN('117166934')) // wrong SIN
       })
       .then(() => {
         return testSession.post('/login/dateOfBirth').use(doDateofBirth()) // date of birth is good
@@ -138,7 +138,7 @@ describe('Test /login SESSION responses', () => {
       .post('/login/code')
       .use(doAccessCode())
       .then(() => {
-        return testSession.post('/login/sin').use(doSIN('888888888')) // wrong SIN
+        return testSession.post('/login/sin').use(doSIN('117166934')) // wrong SIN
       })
       .then(() => {
         return testSession.post('/login/dateOfBirth').use(doDateofBirth({ dobYear: '1999' })) // wrong year
@@ -193,5 +193,21 @@ describe('Test /login SESSION responses', () => {
     const $ = cheerio.load(response2.text)
     expect($('h1').text()).toEqual('Check your name is correct')
     expect($('.error-list__link').length).toBe(0)
+  })
+
+  test('it returns a 302 on the /personal/dateOfBirth page and redirects to the /login/code page with a valid sin/DoB combo that match a different access code', async () => {
+    const response = await testSession
+      .post('/login/code')
+      .use(doAccessCode('A5G98S4K2'))
+      .then(() => {
+        return testSession
+          .post('/login/sin')
+          .use(doSIN())
+      })
+      .then(() => {
+        return testSession.post('/login/dateOfBirth').use(doDateofBirth()) // date of birth is good
+      })
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toBe('/login/code')
   })
 })

@@ -3,41 +3,59 @@ include ../_includes/banner
 
 block variables
   -var title = __('You have filed your 2018 taxes')
+  -var securityQuestionValues = data.login.securityQuestion.filter(v => v[0]).length
 
 block content
 
   h1 #{title}
 
-  div
-    table.confirmation-table
-      thead
-        tr
-          th #{__('Your 2018 filing code is')}
-      tbody
-        tr
-          td 5H3P9IO5816
+  if (securityQuestionValues < 2)
+    div
+      table.confirmation-table
+        thead
+          tr
+            th #{__('Your filing code')}
+        tbody
+          tr
+            td 5H3P9IO5816
 
-    p #{__('Use this code if you need to call about your taxes or ask for help from CRA by:')}
-    include ../_includes/phone-bullets
+      p #{__('Keep this filing code and use it if you need to call about your taxes or ask for help from CRA by:')}
+      include ../_includes/phone-bullets
 
-    p #{__('You may also be able to get help at a free tax clinic.')} <a href=#{__('https://www.canada.ca/en/revenue-agency/campaigns/free-tax-help.html')}>#{__('Learn if you can use a tax clinic.')}</a>
+      p #{__('You will get your notice of assessment in about 2 weeks. The notice:')}
+      ul
+        li #{__('proves you filed taxes')}
+        li #{__('lists your benefits')}
+        li #{__('shows if you owe money to CRA or if CRA owes you')}
 
-  div
+      p #{__('CRA pays by cheque, or into your bank account if you have CRA direct deposit.')}
 
-    p #{__('You can get an “express” notice of assessment right after CRA gets your taxes online. It shows:')}
-    ul
-      li #{__('That you filed taxes')}
-      li #{__('If you will get benefits or money back')}
-      li #{__('If you owe money to CRA')}
+      p #{__('Thank you for using this service.')}  <a href="/feeback">#{__('Please help us make it better')}</a>
+      
+  else
+    div
+      p #{__('Now you can download a notice of assessment to print or save.')}
+      a.noa-btn(href='#' role='button' draggable='false') #{__('Download your 2018 express notice of assessment')}
 
-    a(href='/download' role='button' draggable='false') #{__('Download your 2018 express notice of assessment')}
+      p #{__('The notice:')}
+      ul
+        li #{__('proves you filed taxes')}
+        li #{__('lists your benefits')}
+        li #{__('shows if you owe money to CRA or if CRA owes you')}
 
-  div
-    p  #{__('You can print or save the notice after you download it.')}
-    p  #{__('If CRA owes you money, then:')}
+      p #{__('CRA pays by cheque, or into your bank account if you have CRA direct deposit.')}
+    
+    div
+      table.confirmation-table
+        thead
+          tr
+            th #{__('Your filing code')}
+        tbody
+          tr
+            td 5H3P9IO5816
+      p #{__('Keep this filing code and use it if you need to call about your taxes or ask for help from CRA by:')}
+      include ../_includes/phone-bullets
 
-    ul
-      li #{__('CRA will put it in your bank account if you registered for direct deposit.')}
-      li #{__('your cheque comes with the notice if you did not register for direct deposit.')}
+      p #{__('Thank you for using this service.')}  <a href="/feeback">#{__('Please help us make it better')}</a>
 
-    p !{__('Thank you for using the Claim Tax Benefits service.')} !{__('Please share your feedback to improve this service.')}
+

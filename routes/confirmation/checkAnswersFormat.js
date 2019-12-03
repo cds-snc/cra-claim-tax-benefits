@@ -65,10 +65,17 @@ const formatAnswerInfo = req => {
     section.sectionRows.map(line => {
       if (
         !Object.prototype.hasOwnProperty.call(line, 'displayIf') ||
-        (Object.prototype.hasOwnProperty.call(line, 'displayIf') &&
+        (
+          Object.prototype.hasOwnProperty.call(line, 'displayIf') &&
+          !line.text.includes('income') &&
           hasData(session, line.displayIf) &&
           hasData(session, line.displayIf, true) !== false &&
-          hasData(session, line.displayIf, true) !== 'No')
+          hasData(session, line.displayIf, true) !== 'No' 
+        ) ||
+        (
+          line.text.includes('income') &&
+          hasData(session, line.displayIf, true).filter(v => v[0]).length > 1
+        )
       ) {
         if (
           Object.prototype.hasOwnProperty.call(line, 'urlPath') &&

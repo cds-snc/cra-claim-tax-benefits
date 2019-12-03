@@ -3,7 +3,7 @@ include ../_includes/banner
 
 
 block variables
-  -var title = data.login.securityQuestion.length ? __('Choose another security question') : __('Choose a security question')
+  -var title = data.login.securityQuestion.length > 0 ? __('Choose another security question') : __('Choose a security question')
   -var securityQuestion = hasData(data, 'login.securityQuestion') ? data.login.securityQuestion : ''
 
 block content

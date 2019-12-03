@@ -14,9 +14,14 @@ var DB = (() => {
     sin = cleanSIN(sin)
 
     let row = db.find(user => {
-      if (user.code === code && user.sin === sin && user.dateOfBirth === dateOfBirth) return user
+      if (user.sin === sin && user.dateOfBirth === dateOfBirth) {
+        return user
+      }
     })
-
+    if (row && row.code !== code) {
+      // code from the returned user doesn't match
+      return {"error": true}
+    }
     return row || null
   }
 

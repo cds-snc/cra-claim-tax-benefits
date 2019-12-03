@@ -8,7 +8,6 @@ const {
   postAmount,
   currencyWithoutUnit,
   cleanSIN,
-  securityQuestionRedirect,
 } = require('./index')
 const API = require('./../api')
 

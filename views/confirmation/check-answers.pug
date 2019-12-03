@@ -21,6 +21,7 @@ block content
                 dd.breakdown-table__row-value
                   +address(data)
               else
+
                 //- we don't want to translate the name, dollar amounts, or birthday (formatting the birthday is done prior to hitting the template in checkAnswersFormat)
                 if (row.text.toLowerCase().includes('name') || row.data.includes('$') || row.text.toLowerCase().includes('birth'))
                   dd.breakdown-table__row-value #{row.data}

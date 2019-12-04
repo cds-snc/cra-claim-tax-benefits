@@ -7,26 +7,20 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Install npm dependencies
-        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
-        with:
-          args: install
+        run: npm install
       - name: Run jest unit tests
-        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
-        with:
-          args: test
+        run: npm test
       - name: Run JS linter
-        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
-        with:
-          args: run lint
+        run: npm run lint
       - name: Run Cypress end-to-end
         uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
         with:
           args: run cypress:cli
       - name: Run quality analysis on SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
-        env: 
+        env:
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_SONAR_TOKEN }}          
+          GITHUB_TOKEN: ${{ secrets.GITHUB_SONAR_TOKEN }}
   deploy:
     name: Build container and deploy
     env:

@@ -5,7 +5,6 @@ const {
   trilliumRentAmountSchema,
   trilliumPropertyTaxSchema,
   trilliumPropertyTaxAmountSchema,
-  trilliumStudentResidenceSchema,
   trilliumEnergyReserveSchema,
   trilliumEnergyCostSchema,
   trilliumEnergyAmountSchema,
@@ -53,19 +52,6 @@ module.exports = function(app) {
     checkErrors('deductions/trillium-propertyTax-amount'),
     (req, res, next) => {
       req.session.deductions.trilliumPropertyTaxAmount = postAmount(req.body.trilliumPropertyTaxAmount, req.locale)
-      next()
-    },
-    doRedirect,
-  )
-
-  app.get('/trillium/studentResidence', renderWithData('deductions/trillium-studentResidence'))
-  app.post(
-    '/trillium/studentResidence',
-    checkSchema(trilliumStudentResidenceSchema),
-    checkErrors('deductions/trillium-studentResidence'),
-    (req, res, next) => {
-      req.session.deductions.trilliumStudentResidence =
-        req.body.trilliumStudentResidence === 'Yes' ? true : false
       next()
     },
     doRedirect,

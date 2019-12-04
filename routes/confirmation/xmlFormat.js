@@ -64,15 +64,10 @@ const dataToLine = [
     addIf: 'deductions.trilliumPropertyTaxClaim',
   },
   { 
-    line: 6114,
-    value: 'deductions.trilliumStudentResidence',
-  },
-  { 
     //if any of these are true (1), or false(0)
     line: 6118,
     value: [ 
       'deductions.trilliumPropertyTaxAmount',
-      'deductions.trilliumStudentResidence',
       'deductions.trilliumLongTermCareClaim',
       'deductions.trilliumEnergyReserveClaim',
     ],

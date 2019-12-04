@@ -50,7 +50,7 @@ Cypress.Commands.add('login', user => {
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/login/dateOfBirth')
   cy.get('h1').should('contain', 'Enter your date of birth')
-
+  cy.get('h2').should('contain', `${user.personal.firstName}, thanks for your social insurance number.`)
   cy.get('form label')
     .eq(0)
     .should('have.attr', 'for', 'dobDay')

@@ -19,14 +19,9 @@ const dataToLine = [
     addIf: 'deductions.trilliumRentClaim',
   },
   {
-    line: 6114,
-    value: 'deductions.trilliumStudentResidence',
-  },
-  {
     line: 6118,
     value: [
       'deductions.trilliumPropertyTaxAmount',
-      'deductions.trilliumStudentResidence',
       'deductions.trilliumLongTermCareClaim',
       'deductions.trilliumEnergyReserveClaim',
     ],
@@ -41,19 +36,14 @@ describe('Test ouputXML format', () => {
 
     const returnLines = t1Lines.filter(line => line.name === 'comm:ReturnLine')
 
-    const studentResidence = returnLines.filter(
-      line => line.elements[0].elements[0].text === 6114,
-    )[0].elements[1].elements[0].text
-
     const maritalStatus = t1Lines.find(line => line.name === 't1:TaxpayerData').elements[0]
       .elements[3].elements[0].text
 
     const address = t1Lines.find(line => line.name === 't1:TaxpayerData').elements[2].elements[1]
       .elements[0].elements[0].elements[0].text
 
-    expect(t1Lines.length).toBe(8)
-    expect(returnLines.length).toBe(4)
-    expect(studentResidence).toBe(0)
+    expect(t1Lines.length).toBe(7)
+    expect(returnLines.length).toBe(3)
     expect(maritalStatus).toBe(6)
     expect(address).toBe(
       `${initialSession.personal.address.line2}-${initialSession.personal.address.line1}`,
@@ -67,7 +57,6 @@ describe('Test ouputXML format', () => {
           ...initialSession,
           deductions: {
             trilliumRentClaim: true,
-            trilliumStudentResidence: true,
           },
         },
       },
@@ -78,12 +67,7 @@ describe('Test ouputXML format', () => {
 
     const returnLines = t1Lines.filter(line => line.name === 'comm:ReturnLine')
 
-    const studentResidence = returnLines.filter(
-      line => line.elements[0].elements[0].text === 6114,
-    )[0].elements[1].elements[0].text
-
-    expect(t1Lines.length).toBe(9)
-    expect(returnLines.length).toBe(5)
-    expect(studentResidence).toBe(1)
+    expect(t1Lines.length).toBe(8)
+    expect(returnLines.length).toBe(4)
   })
 })

@@ -60,11 +60,6 @@ const answerInfo = [
         displayIf: 'deductions.trilliumPropertyTaxClaim',
       },
       {
-        text: 'Did you live in a student residence?',
-        infoPath: ['deductions.trilliumStudentResidence'],
-        urlPath: '/trillium/studentResidence',
-      },
-      {
         text: 'Did you live on a reserve?',
         infoPath: ['deductions.trilliumEnergyReserveClaim'],
         urlPath: '/trillium/energy/reserve',

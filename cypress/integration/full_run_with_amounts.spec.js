@@ -123,17 +123,6 @@ describe('Full run through saying "yes" to everything', function() {
     cy.continue()
   })
 
-  //TRILLIUM STUDENT RESIDENCE
-  it('navigates the Trillium Student Residence page', function() {
-    cy.confirm({
-      url: '/trillium/studentResidence',
-      h1: 'Student residence',
-      id: 'trilliumStudentResidence0', // click Yes
-    })
-
-    cy.continue()
-  })
-
   //TRILLIUM HOME ENERGY
   it('navigates the Trillium Home Energy page', function() {
     cy.confirm({

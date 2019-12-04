@@ -12,10 +12,6 @@ jobs:
         run: npm test
       - name: Run JS linter
         run: npm run lint
-      - name: Run Cypress end-to-end
-        uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
-        with:
-          args: run cypress:cli
       - name: Run quality analysis on SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
         env:

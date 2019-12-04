@@ -79,7 +79,7 @@ const getBenefitsBreakdownRowsLite = user => {
   return benefitsLiteRows
 }
 
-const allIncomeRows = user => getIncomeBreakdownRows(user).concat(getTaxBreakdownRows(user))
+const allIncomeRows = user => getIncomeBreakdownRows(user)
 
 const getAddress = address => {
   const fullAddress = [`${address.city}, ${address.province}`, `${address.postalCode}`]

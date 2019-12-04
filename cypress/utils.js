@@ -38,23 +38,6 @@ const getIncomeBreakdownRows = user => {
   return incomeRows
 }
 
-const getTaxBreakdownRows = user => {
-  const taxKeys = Object.values(user.financial.taxes)
-  const taxRows = taxKeys.map(source => {
-    return {
-      key: `${source.name.replace('Net ', '')} deduction`,
-      value: `$${source.amount.toLocaleString('en-US')}`,
-    }
-  })
-
-  taxRows.push({
-    key: 'Total tax paid for 2018',
-    value: `$${user.financial.totalTax.toLocaleString('en-US')}`,
-  })
-
-  return taxRows
-}
-
 const getBenefitsBreakdownRows = user => {
   const benefitsKeys = Object.values(user.benefits)
   const benefitsRows = benefitsKeys.map(source => {
@@ -79,7 +62,7 @@ const getBenefitsBreakdownRowsLite = user => {
   return benefitsLiteRows
 }
 
-const allIncomeRows = user => getIncomeBreakdownRows(user).concat(getTaxBreakdownRows(user))
+const allIncomeRows = user => getIncomeBreakdownRows(user)
 
 const getAddress = address => {
   const fullAddress = [`${address.city}, ${address.province}`, `${address.postalCode}`]

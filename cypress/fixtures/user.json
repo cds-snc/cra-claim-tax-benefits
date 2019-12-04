@@ -53,27 +53,6 @@
         "amount": 21305.10
       }
     },
-    "taxes": {
-      "federal": {
-        "name": "Net Federal tax",
-        "amount": 1060.00,
-        "line": 420
-      },
-      "provincial": {
-        "name": "Net Ontario tax",
-        "amount": 533.00,
-        "line": 428
-      },
-      "CPP": {
-        "name": "Canada Pension Plan (CPP)",
-        "amount": 1213.00
-      },
-      "EI": {
-        "name": "Employment Insurance (EI)",
-        "amount": 456.00
-      }
-    },
-    "totalTax": 3263.00,
     "taxableAmount": "$1,000.00"
   },
   "partner": null,

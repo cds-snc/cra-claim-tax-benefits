@@ -423,7 +423,6 @@
   "You may live in a long-term care home or facility if costs such as nursing or personal support are combined with your rent.": "Il est possible que vous viviez dans un foyer ou une résidence de soins de longue durée si des coûts de soins infirmiers ou d’assistance personnelle sont combinés à votre loyer.",
   "Small and rural communities": "Régions rurales et petites collectivités",
   "Check if you live in a small and rural community": "Vérifier si je vis dans une région rurale ou une petite collectivité",
-  "You live in a small and rural community if you live outside of:": "Vous vivez dans une région rurale ou une petite collectivité si vous habitez à l’extérieur de :",
   "Barrie": "Barrie",
   "Belleville": "Belleville",
   "Brantford": "Brantford",
@@ -434,10 +433,8 @@
   "Kitchener-Cambridge-Waterloo": "Kitchener-Cambridge-Waterloo",
   "London": "London",
   "Oshawa": "Oshawa",
-  "Ottawa": "Ottawa",
   "Peterborough": "Peterborough",
   "St. Catharines-Niagara": "St. Catharines-Niagara",
-  "Sudbury": "Sudbury",
   "Thunder Bay": "Thunder Bay",
   "Windsor": "Windsor",
   "Did you pay property tax?": "Avez-vous payé un impôt foncier?",
@@ -517,5 +514,10 @@
   "Please help us make it better": "Please help us make it better",
   "Now you can download a notice of assessment to print or save.": "Now you can download a notice of assessment to print or save.",
   "The notice:": "The notice:",
-  "thanks for your Social insurance number": "thanks for your Social insurance number"
+  "thanks for your Social insurance number": "thanks for your Social insurance number",
+  "You live in a small and rural community if you ": "You live in a small and rural community if you ",
+  "do not": "do not",
+  "Greater Sudbury": "Grand Sudbury",
+  "Ottawa-Gatineau (Ontario part)": "Ottawa-Gatineau (Ontario part)",
+  " live in:": " live in:"
 }

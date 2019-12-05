@@ -25,11 +25,6 @@ describe('Test /deductions responses', () => {
         key: 'trilliumPropertyTaxClaim',
       },
       {
-        url: '/trillium/studentResidence',
-        key: 'trilliumStudentResidence',
-        yesRedir: '/start',
-      },
-      {
         url: '/trillium/energy/cost',
         key: 'trilliumEnergyCostClaim',
       },

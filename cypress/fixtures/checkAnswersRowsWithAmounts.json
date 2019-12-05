@@ -41,18 +41,6 @@
       "value": "$25.00"
     },
     {
-      "key": "Did you live on a reserve?",
-      "value": "Yes"
-    },
-    {
-      "key": "Did you have home energy costs on a reserve?",
-      "value": "Yes"
-    },
-    {
-      "key": "Yearly energy costs on a reserve",
-      "value": "$25.00"
-    },
-    {
       "key": "Did you live in a long-term care home?",
       "value": "Yes"
     },
@@ -62,6 +50,18 @@
     },
     {
       "key": "Long-term care costs",
+      "value": "$25.00"
+    },
+    {
+      "key": "Did you live on a reserve?",
+      "value": "Yes"
+    },
+    {
+      "key": "Did you have home energy costs on a reserve?",
+      "value": "Yes"
+    },
+    {
+      "key": "Yearly energy costs on a reserve",
       "value": "$25.00"
     },
     {

@@ -139,6 +139,7 @@
     "trilliumRentClaim": null,
     "trilliumRentAmount": 0,
     "trilliumPropertyTaxClaim": null,
+    "trilliumPropertyTaxOntario": null,
     "trilliumPropertyTaxAmount": 0,
     "trilliumEnergyReserveClaim": null,
     "trilliumEnergyCostClaim": null,

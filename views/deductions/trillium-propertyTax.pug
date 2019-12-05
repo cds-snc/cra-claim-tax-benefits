@@ -9,8 +9,26 @@ block content
   h1 #{title}
 
   form.cra-form(method='post')
-    +radiosYesNo('trilliumPropertyTaxClaim', 'Did you pay property tax for the place you lived most of 2018?', trilliumPropertyTaxClaim)
+    +radiosYesNo('trilliumPropertyTaxClaim', 'At any time in 2018, did you own your principal residence?', trilliumPropertyTaxClaim)
 
-    input#redirect(name='redirect', type='hidden', value='/trillium/energy/reserve')
+    div
+      details.
+        <summary><span>#{__('Learn about principal residence')}</span></summary>
+        <p>#{__('Your “principal residence” is the main home where you usually live. Your main home may change during the year, but you can only have one main home at a time.')}</p>
+        <p>#{__('Example 1:  In 2018, you moved from an apartment to a house. In February, you paid costs for both the apartment and house, even though you usually stayed at the house. You lived in the house for the rest of the year.')}</p>
+        <p>#{__('When answering the questions about 2018, for:')}</p>
+        <ul>
+          <li>#{__('January, include your apartment costs')}</li>
+          <li>#{__('February, include only your house costs because that was the home where you usually lived')}</li>
+          <li>#{__('March - December, include your house costs')}</li>
+        </ul>
+        <p>#{__('Example 2: You lived in a rooming house for the first 3 weeks of April 2018. You moved into long-term care for the last week of April 2018. You paid long-term care costs for all four weeks of April, even though you only lived there for the last week.')}</p>
+        <p>#{__('When answering questions, include:')}</p>
+        <ul>
+          <li>#{__('Your rooming home costs for the first 3 weeks of April')}</li>
+          <li>#{__('Your long-term care costs for only the last week of April')}</li>
+        </ul>
+
+    input#redirect(name='redirect', type='hidden', value='/trillium/longTermCare')
 
     +formButtons()

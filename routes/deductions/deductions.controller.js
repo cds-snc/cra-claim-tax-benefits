@@ -4,6 +4,7 @@ const {
   trilliumRentSchema,
   trilliumRentAmountSchema,
   trilliumPropertyTaxSchema,
+  trilliumPropertyTaxOntarioSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumEnergyReserveSchema,
   trilliumEnergyCostSchema,
@@ -42,7 +43,15 @@ module.exports = function(app) {
     '/trillium/propertyTax',
     checkSchema(trilliumPropertyTaxSchema),
     checkErrors('deductions/trillium-propertyTax'),
-    doYesNo('trilliumPropertyTaxClaim', ['trilliumPropertyTaxAmount']),
+    doYesNo('trilliumPropertyTaxClaim', ['trilliumPropertyTaxOntario']),
+    doRedirect,
+  )
+  app.get('/trillium/propertyTax/ontario', renderWithData('deductions/trillium-propertyTax-ontario'))
+  app.post(
+    '/trillium/propertyTax/ontario',
+    checkSchema(trilliumPropertyTaxOntarioSchema),
+    checkErrors('deductions/trillium-propertyTax-ontario'),
+    doYesNo('trilliumPropertyTaxOntario', ['trilliumPropertyTaxAmount']),
     doRedirect,
   )
   app.get('/trillium/propertyTax/amount', renderWithData('deductions/trillium-propertyTax-amount'))

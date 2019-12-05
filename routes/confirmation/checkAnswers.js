@@ -60,23 +60,6 @@ const answerInfo = [
         displayIf: 'deductions.trilliumPropertyTaxClaim',
       },
       {
-        text: 'Did you live on a reserve?',
-        infoPath: ['deductions.trilliumEnergyReserveClaim'],
-        urlPath: '/trillium/energy/reserve',
-      },
-      {
-        text: 'Did you have home energy costs on a reserve?',
-        infoPath: ['deductions.trilliumEnergyCostClaim'],
-        urlPath: '/trillium/energy/cost',
-        displayIf: 'deductions.trilliumEnergyReserveClaim',
-      },
-      {
-        text: 'Yearly energy costs on a reserve',
-        infoPath: ['deductions.trilliumEnergyAmount'],
-        urlPath: '/trillium/energy/cost/amount',
-        displayIf: 'deductions.trilliumEnergyCostClaim',
-      },
-      {
         text: 'Did you live in a long-term care home?',
         infoPath: ['deductions.trilliumLongTermCareClaim'],
         urlPath: '/trillium/longTermCare',
@@ -92,6 +75,23 @@ const answerInfo = [
         infoPath: ['deductions.trilliumLongTermCareAmount'],
         urlPath: '/trillium/longTermCare/type/amount',
         displayIf: 'deductions.trilliumLongTermCareTypeClaim',
+      },
+      {
+        text: 'Did you live on a reserve?',
+        infoPath: ['deductions.trilliumEnergyReserveClaim'],
+        urlPath: '/trillium/energy/reserve',
+      },
+      {
+        text: 'Did you have home energy costs on a reserve?',
+        infoPath: ['deductions.trilliumEnergyCostClaim'],
+        urlPath: '/trillium/energy/cost',
+        displayIf: 'deductions.trilliumEnergyReserveClaim',
+      },
+      {
+        text: 'Yearly energy costs on a reserve',
+        infoPath: ['deductions.trilliumEnergyAmount'],
+        urlPath: '/trillium/energy/cost/amount',
+        displayIf: 'deductions.trilliumEnergyCostClaim',
       },
       {
         text: 'Did you live in a small and rural community?',

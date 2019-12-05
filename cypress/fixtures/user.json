@@ -115,11 +115,12 @@
     "trilliumRentClaim": null,
     "trilliumRentAmount": 0,
     "trilliumPropertyTaxClaim": null,
+    "trilliumPropertyTaxOntario": null,
     "trilliumPropertyTaxAmount": 0,
-    "trilliumEnergyReserveClaim": null,
-    "trilliumEnergyAmount": 0,
     "trilliumLongTermCareClaim": null,
     "trilliumLongTermCareAmount": 0,
+    "trilliumEnergyReserveClaim": null,
+    "trilliumEnergyAmount": 0,
     "climateActionIncentiveIsRural": null
   },
   "refund": {

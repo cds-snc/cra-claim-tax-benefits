@@ -255,7 +255,7 @@
   "Your Ontario Trillium Benefit amount and payment type": "Le montant et le type de paiement de votre prestation Trillium de l’Ontario",
   "I can’t answer these questions": "Je ne peux pas répondre à ces questions",
   "Apply for the OTB: property tax": "Apply for OTB: property tax",
-  "Did you pay property tax for the place you lived most of 2018?": "Avez-vous payé des taxes foncières à l’endroit où vous avez vécu la majorité de l’année 2018?",
+  "At any time in 2018, did you own your principal residence?": "At any time in 2018, did you own your principal residence?",
   "The government might ask for your property tax receipts.": "Le gouvernement pourrait vous demander vos reçus d’impôt foncier.",
   "How much total property tax did you pay for the place you lived most of 2018?": "Quel est le montant total des taxes foncières que vous avez payées à l’endroit où vous avez vécu la majorité de l’année 2018?",
   "Did you pay rent for the place you lived most of 2018?": "Avez-vous payé un loyer à l’endroit où vous avez vécu la majorité de l’année 2018?",
@@ -517,5 +517,6 @@
   "Please help us make it better": "Please help us make it better",
   "Now you can download a notice of assessment to print or save.": "Now you can download a notice of assessment to print or save.",
   "The notice:": "The notice:",
-  "thanks for your Social insurance number": "thanks for your Social insurance number"
+  "thanks for your Social insurance number": "thanks for your Social insurance number",
+  "Learn about principal residence": "Learn about principal residence"
 }

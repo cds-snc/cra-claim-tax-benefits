@@ -393,7 +393,6 @@
   "The Climate Action Incentive": "The Climate Action Incentive",
   "Small and rural communities": "Small and rural communities",
   "Check if you live in a small and rural community": "Check if you live in a small and rural community",
-  "You live in a small and rural community if you live outside of:": "You live in a small and rural community if you live outside of:",
   "Barrie": "Barrie",
   "Belleville": "Belleville",
   "Brantford": "Brantford",
@@ -404,10 +403,8 @@
   "Kitchener-Cambridge-Waterloo": "Kitchener-Cambridge-Waterloo",
   "London": "London",
   "Oshawa": "Oshawa",
-  "Ottawa": "Ottawa",
   "Peterborough": "Peterborough",
   "St. Catharines-Niagara": "St. Catharines-Niagara",
-  "Sudbury": "Sudbury",
   "Thunder Bay": "Thunder Bay",
   "Windsor": "Windsor",
   "Did you live in a small and rural community in 2018?": "Did you live in a small and rural community in 2018?",
@@ -554,5 +551,10 @@
   "Your rooming home costs for the first 3 weeks of April": "Your rooming home costs for the first 3 weeks of April",
   "Your long-term care costs for only the last week of April": "Your long-term care costs for only the last week of April",
   "Property tax in Ontario": "Property tax in Ontario",
-  "Was the home in Ontario?": "Was the home in Ontario?"
+  "Was the home in Ontario?": "Was the home in Ontario?",
+  "You live in a small and rural community if you ": "You live in a small and rural community if you ",
+  "do not": "do not",
+  "Greater Sudbury": "Greater Sudbury",
+  "Ottawa-Gatineau (Ontario part)": "Ottawa-Gatineau (Ontario part)",
+  " live in:": " live in:"
 }

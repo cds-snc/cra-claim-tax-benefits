@@ -33,7 +33,7 @@ const routes = [
   { path: '/trillium/rent' },
   { path: '/trillium/rent/amount', editInfo: 'deductions.trilliumRentAmount' },
   { path: '/trillium/propertyTax' },
-  { path: '/trillium/propertyTax/ontario' },
+  { path: '/trillium/propertyTax/ontario', editInfo: 'deductions.trilliumRentAmountOntario' },
   { path: '/trillium/propertyTax/amount', editInfo: 'deductions.trilliumPropertyTaxAmount' },
   { path: '/trillium/longTermCare' },
   { path: '/trillium/longTermCare/type', editInfo: 'deductions.trilliumLongTermCareTypeClaim' },

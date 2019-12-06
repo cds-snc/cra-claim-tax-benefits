@@ -14,15 +14,11 @@ describe('Test /deductions responses', () => {
     csrfToken = extractCsrfToken(getresp)
   })
 
-  describe('Test /deductions/* yesNo responses', () => {
+  describe('Test /deductions/* yesNo responses and /ontario page responses', () => {
     const yesNoResponses = [
       {
         url: '/trillium/rent',
         key: 'trilliumRentClaim',
-      },
-      {
-        url: '/trillium/propertyTax',
-        key: 'trilliumPropertyTaxClaim',
       },
       {
         url: '/trillium/energy/cost',
@@ -37,6 +33,10 @@ describe('Test /deductions responses', () => {
         key: 'climateActionIncentiveIsRural',
         yesRedir: '/start',
       },
+      {
+        url: '/trillium/propertyTax/ontario',
+        key: 'trilliumPropertyTaxOntario',
+      }
     ]
 
     yesNoResponses.map(yesNoResponse => {
@@ -95,7 +95,7 @@ describe('Test /deductions responses', () => {
             expect(response.headers.location).toEqual('/checkAnswers')
           } else {
             expect(response.headers.location).toEqual(
-              `${yesNoResponse.url}/amount?ref=checkAnswers`,
+              `${yesNoResponse.url.replace("/ontario", "")}/amount?ref=checkAnswers`,
             )
           }
         })
@@ -110,7 +110,87 @@ describe('Test /deductions responses', () => {
             })
           expect(response.statusCode).toBe(302)
           expect(response.headers.location).toEqual(
-            yesNoResponse.yesRedir || `${yesNoResponse.url}/amount`,
+            yesNoResponse.yesRedir || `${yesNoResponse.url.replace("/ontario", "")}/amount`,
+          )
+        })
+      })
+    })
+  })
+
+  describe('Test /deductions/* Trillium yesNo responses', () => {
+    const yesNoResponses = [
+      {
+        url: '/trillium/propertyTax',
+        key: 'trilliumPropertyTaxClaim',
+      },
+    ]
+
+    yesNoResponses.map(yesNoResponse => {
+      describe(`Test ${yesNoResponse.url} responses`, () => {
+        test('it returns a 200 response', async () => {
+          const response = await request(app).get(yesNoResponse.url)
+          expect(response.statusCode).toBe(200)
+        })
+
+        test('it returns a 422 response for no posted value', async () => {
+          const response = await request(app)
+            .post(yesNoResponse.url)
+            .use(withCSRF(cookie, csrfToken))
+            .send({ redirect: '/start' })
+          expect(response.statusCode).toBe(422)
+        })
+
+        const badValues = ['', null, false, 0, 'dinosaur', 'yes']
+        badValues.map(badValue => {
+          test(`it returns a 422 for a bad posted value: "${badValue}"`, async () => {
+            const response = await request(app)
+              .post(yesNoResponse.url)
+              .use(withCSRF(cookie, csrfToken))
+              .send({ [yesNoResponse.key]: badValue, redirect: '/start' })
+            expect(response.statusCode).toBe(422)
+          })
+        })
+
+        test('it redirects to the posted redirect url when posting "No"', async () => {
+          const response = await request(app)
+            .post(yesNoResponse.url)
+            .use(withCSRF(cookie, csrfToken))
+            .send({ [yesNoResponse.key]: 'No', redirect: '/start' })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual('/start')
+        })
+
+        test('it redirects to the checkAnswers when posting "No" and having come from the checkAnswers page', async () => {
+          const response = await request(app)
+            .post(`${yesNoResponse.url}`)
+            .query({ ref: 'checkAnswers' })
+            .use(withCSRF(cookie, csrfToken))
+            .send({ [yesNoResponse.key]: 'No', redirect: '/start' })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual('/checkAnswers')
+        })
+
+        test('it redirects to the correct /ontario page with checkAnswers ref when posting "Yes" and having come from the checkAnswers page', async () => {
+          const response = await request(app)
+            .post(yesNoResponse.url)
+            .query({ ref: 'checkAnswers' })
+            .use(withCSRF(cookie, csrfToken))
+            .send({ [yesNoResponse.key]: 'Yes', redirect: '/start' })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual(`${yesNoResponse.url}/ontario?ref=checkAnswers`)
+        })
+
+        test('it redirects to the correct /ontario page when posting "Yes"', async () => {
+          const response = await request(app)
+            .post(yesNoResponse.url)
+            .use(withCSRF(cookie, csrfToken))
+            .send({
+              [yesNoResponse.key]: 'Yes',
+              redirect: yesNoResponse.yesRedir || '/',
+            })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual(
+            yesNoResponse.yesRedir || `${yesNoResponse.url}/ontario`,
           )
         })
       })

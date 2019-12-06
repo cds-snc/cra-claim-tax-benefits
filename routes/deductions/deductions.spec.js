@@ -36,7 +36,7 @@ describe('Test /deductions responses', () => {
       {
         url: '/trillium/propertyTax/ontario',
         key: 'trilliumPropertyTaxOntario',
-      }
+      },
     ]
 
     yesNoResponses.map(yesNoResponse => {
@@ -95,7 +95,7 @@ describe('Test /deductions responses', () => {
             expect(response.headers.location).toEqual('/checkAnswers')
           } else {
             expect(response.headers.location).toEqual(
-              `${yesNoResponse.url.replace("/ontario", "")}/amount?ref=checkAnswers`,
+              `${yesNoResponse.url.replace('/ontario', '')}/amount?ref=checkAnswers`,
             )
           }
         })
@@ -110,7 +110,7 @@ describe('Test /deductions responses', () => {
             })
           expect(response.statusCode).toBe(302)
           expect(response.headers.location).toEqual(
-            yesNoResponse.yesRedir || `${yesNoResponse.url.replace("/ontario", "")}/amount`,
+            yesNoResponse.yesRedir || `${yesNoResponse.url.replace('/ontario', '')}/amount`,
           )
         })
       })

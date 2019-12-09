@@ -1,0 +1,16 @@
+extends ../base
+
+block variables
+  -var title = __('Property tax in Ontario')
+  -var trilliumPropertyTaxOntario = !hasData(data, 'deductions.trilliumPropertyTaxOntario') ? '' : data.deductions.trilliumPropertyTaxOntario ? 'Yes' : 'No'
+
+block content
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('trilliumPropertyTaxOntario', 'Was the home in Ontario?', trilliumPropertyTaxOntario)
+
+    input#redirect(name='redirect', type='hidden', value='/trillium/longTermCare')
+
+    +formButtons()

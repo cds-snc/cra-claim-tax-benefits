@@ -101,23 +101,23 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
-  //TRILLIUM HOME ENERGY
-  it('navigates the Trillium Home Energy page', function() {
-    cy.confirm({
-      url: '/trillium/energy/reserve',
-      h1: 'Home on reserve',
-      id: 'trilliumEnergyReserveClaim1', // click No
-    })
-
-    cy.continue()
-  })
-
   //TRILLIUM LONG TERM CARE
   it('navigates the Trillium Long Term Care page', function() {
     cy.confirm({
       url: '/trillium/longTermCare',
       h1: 'Long-term care home',
       id: 'trilliumLongTermCareClaim1', // click No
+    })
+
+    cy.continue()
+  })
+
+  //TRILLIUM HOME ENERGY
+  it('navigates the Trillium Home Energy page', function() {
+    cy.confirm({
+      url: '/trillium/energy/reserve',
+      h1: 'Home on reserve',
+      id: 'trilliumEnergyReserveClaim1', // click No
     })
 
     cy.continue()

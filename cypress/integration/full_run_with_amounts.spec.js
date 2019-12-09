@@ -112,45 +112,23 @@ describe('Full run through saying "yes" to everything', function() {
     cy.continue()
   })
 
+  //TRILLIUM PROPERTY TAX ONTARIO
+  it('navigates the Trillium Property Tax Ontario page', function() {
+    cy.confirm({
+      url: '/trillium/propertyTax/ontario',
+      h1: 'Property tax in Ontario',
+      id: 'trilliumPropertyTaxOntario0', // click Yes
+    })
+
+    cy.continue()
+  })
+
   //TRILLIUM PROPERTY TAX AMOUNT
   it('navigates the Property Tax AMOUNT page', function() {
     cy.amount({
       url: '/trillium/propertyTax/amount',
       h1: 'Enter your property tax',
       id: 'trilliumPropertyTaxAmount',
-    })
-
-    cy.continue()
-  })
-
-  //TRILLIUM HOME ENERGY
-  it('navigates the Trillium Home Energy page', function() {
-    cy.confirm({
-      url: '/trillium/energy/reserve',
-      h1: 'Home on reserve',
-      id: 'trilliumEnergyReserveClaim0', // click Yes
-    })
-
-    cy.continue()
-  })
-
-  //TRILLIUM HOME ENERGY COST
-  it('navigates the Trillium Home Energy Cost page', function() {
-    cy.confirm({
-      url: '/trillium/energy/cost',
-      h1: 'Home energy costs on reserve',
-      id: 'trilliumEnergyCostClaim0', // click Yes
-    })
-
-    cy.continue()
-  })
-
-  //TRILLIUM HOME ENERGY COST AMOUNT
-  it('navigates the Trillium Home Energy Cost AMOUNT page', function() {
-    cy.amount({
-      url: '/trillium/energy/cost/amount',
-      h1: 'Enter your home energy costs',
-      id: 'trilliumEnergyAmount',
     })
 
     cy.continue()
@@ -184,6 +162,39 @@ describe('Full run through saying "yes" to everything', function() {
       url: '/trillium/longTermCare/type/amount',
       h1: 'Enter your long-term care home costs',
       id: 'trilliumLongTermCareAmount',
+    })
+
+    cy.continue()
+  })
+
+  //TRILLIUM HOME ENERGY
+  it('navigates the Trillium Home Energy page', function() {
+    cy.confirm({
+      url: '/trillium/energy/reserve',
+      h1: 'Home on reserve',
+      id: 'trilliumEnergyReserveClaim0', // click Yes
+    })
+
+    cy.continue()
+  })
+
+  //TRILLIUM HOME ENERGY COST
+  it('navigates the Trillium Home Energy Cost page', function() {
+    cy.confirm({
+      url: '/trillium/energy/cost',
+      h1: 'Home energy costs on reserve',
+      id: 'trilliumEnergyCostClaim0', // click Yes
+    })
+
+    cy.continue()
+  })
+
+  //TRILLIUM HOME ENERGY COST AMOUNT
+  it('navigates the Trillium Home Energy Cost AMOUNT page', function() {
+    cy.amount({
+      url: '/trillium/energy/cost/amount',
+      h1: 'Enter your home energy costs',
+      id: 'trilliumEnergyAmount',
     })
 
     cy.continue()

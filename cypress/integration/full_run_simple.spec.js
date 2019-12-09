@@ -145,17 +145,6 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
-  // NOTICE OF ASSESSMENT
-  it('navigates Notice of Assessment page', function() {
-    cy.confirm({
-      url: '/login/notice',
-      h1: 'Notice of assessment',
-      id: 'noticeOfAssessment1', // click No
-    })
-
-    cy.continue()
-  })
-
   // CHECK ANSWERS
   it('navigates the Check Your Answers page', function() {
     cy.url().should('contain', '/checkAnswers')

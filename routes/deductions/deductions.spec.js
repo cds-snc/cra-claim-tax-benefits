@@ -214,11 +214,20 @@ describe('Test /deductions responses', () => {
       expect(response.statusCode).toBe(302)
     })
 
-    test('it redirects to "/trillium/energy/cost" when selecting Yes', async () => {
+    test('it redirects to "/trillium/energy/reserve/ontario" when selecting Yes', async () => {
       const response = await request(app)
         .post('/trillium/energy/reserve')
         .use(withCSRF(cookie, csrfToken))
         .send({ trilliumEnergyReserveClaim: 'Yes' })
+      expect(response.headers.location).toEqual('/trillium/energy/reserve/ontario')
+      expect(response.statusCode).toBe(302)
+    })
+
+    test('the /ontario page redirects to "/trillium/energy/cost" when selecting Yes', async () => {
+      const response = await request(app)
+        .post('/trillium/energy/reserve/ontario')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ trilliumEnergyReserveOntario: 'Yes' })
       expect(response.headers.location).toEqual('/trillium/energy/cost')
       expect(response.statusCode).toBe(302)
     })
@@ -230,7 +239,7 @@ describe('Test /deductions responses', () => {
         .use(withCSRF(cookie, csrfToken))
         .send({ trilliumEnergyReserveClaim: 'Yes' })
       expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/trillium/energy/cost?ref=checkAnswers')
+      expect(response.headers.location).toEqual('/trillium/energy/reserve/ontario?ref=checkAnswers')
     })
   })
 

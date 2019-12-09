@@ -307,7 +307,7 @@
   "Using": "En utilisant",
   "Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.": "Les coûts d’énergie domiciliaire concernent le chauffage et la climatisation de votre domicile, et l’utilisation d’électroménagers comme une cuisinière ou un réfrigérateur.",
   "In 2018, did you live on a reserve and pay home energy costs?": "In 2018, did you live on a reserve and pay home energy costs?",
-  "The government might ask for receipts later. The receipts must cover energy costs for a home on reserve where you lived most of 2018.": "Le gouvernement pourrait vous demander des reçus. Ces reçus doivent indiquer les coûts d’énergie payés pour le domicile dans une réserve où vous avez vécu la majorité de l’année 2018.",
+  "The government might ask for receipts later. The receipts must cover 2018 energy costs for your principal residence on an Ontario reserve.": "The government might ask for receipts later. The receipts must cover 2018 energy costs for your principal residence on an Ontario reserve.",
   "Enter your home energy costs": "Inscrivez les coûts d’énergie domiciliaire",
   "What were your total home energy costs on reserve in 2018?": "Quels sont les coûts d’énergie totaux que vous avez payés pour un domicile dans une réserve en 2018?",
   "Please note you may be asked to provide receipts to verify this information later.": "Please note you may be asked to provide receipts to verify this information later.",
@@ -533,5 +533,7 @@
   "Greater Sudbury": "Grand Sudbury",
   "Ottawa-Gatineau (Ontario part)": "Ottawa-Gatineau (Ontario part)",
   " live in:": " live in:",
-  "Was the reserve in Ontario?": "Was the reserve in Ontario?"
+  "Was the reserve in Ontario?": "Was the reserve in Ontario?",
+  "Home on reserve in Ontario": "Home on reserve in Ontario",
+  "The government might ask for receipts later. The receipts must cover energy costs for a home on reserve where you lived most of 2018.": "The government might ask for receipts later. The receipts must cover energy costs for a home on reserve where you lived most of 2018."
 }

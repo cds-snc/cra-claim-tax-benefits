@@ -178,6 +178,17 @@ describe('Full run through saying "yes" to everything', function() {
     cy.continue()
   })
 
+  //TRILLIUM HOME ENERGY ONTARIO
+  it('navigates the Trillium Home Energy Ontario page', function() {
+    cy.confirm({
+      url: '/trillium/energy/reserve/ontario',
+      h1: 'Home on reserve in Ontario',
+      id: 'trilliumEnergyReserveOntario0', // click Yes
+    })
+
+    cy.continue()
+  })
+
   //TRILLIUM HOME ENERGY COST
   it('navigates the Trillium Home Energy Cost page', function() {
     cy.confirm({

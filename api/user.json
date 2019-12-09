@@ -142,6 +142,7 @@
     "trilliumPropertyTaxOntario": null,
     "trilliumPropertyTaxAmount": 0,
     "trilliumEnergyReserveClaim": null,
+    "trilliumEnergyReserveOntario": null,
     "trilliumEnergyCostClaim": null,
     "trilliumEnergyAmount": 0,
     "trilliumLongTermCareClaim": null,

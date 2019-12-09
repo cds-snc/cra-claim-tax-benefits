@@ -378,8 +378,8 @@
   "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:": "You can't use this online service because your income doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:",
   "There are also other free and secure ways to file your taxes:": "There are also other free and secure ways to file your taxes:",
   "Home on reserve": "Home on reserve",
-  "In 2018, did you live on a reserve?": "In 2018, did you live on a reserve?",
-  "In 2018, did you pay energy costs for your home on reserve?": "In 2018, did you pay energy costs for your home on reserve?",
+  "At any time in 2018, was your principal residence on a reserve?": "At any time in 2018, was your principal residence on a reserve?",
+  "In 2018, when you lived on an Ontario reserve, did you pay home energy costs, for example, to heat or cool your home, or use appliances like a stove or fridge?": "In 2018, when you lived on an Ontario reserve, did you pay home energy costs, for example, to heat or cool your home, or use appliances like a stove or fridge?",
   "Confirm": "Confirm",
   "Did you live on a reserve?": "Did you live on a reserve?",
   "Yearly energy costs on a reserve": "Yearly energy costs on a reserve",
@@ -556,5 +556,7 @@
   "do not": "do not",
   "Greater Sudbury": "Greater Sudbury",
   "Ottawa-Gatineau (Ontario part)": "Ottawa-Gatineau (Ontario part)",
-  " live in:": " live in:"
+  " live in:": " live in:",
+  "Was the reserve in Ontario?": "Was the reserve in Ontario?",
+  "Home on reserve in Ontario": "Home on reserve in Ontario"
 }

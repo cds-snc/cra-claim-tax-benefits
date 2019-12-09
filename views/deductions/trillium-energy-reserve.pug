@@ -2,14 +2,16 @@ extends ../base
 
 block variables
   -var title = __('Home on reserve')
-  -var trilliumEnergyReserveClaim = !hasData(data, 'deductions.trilliumReserveClaim') ? '' : data.deductions.trilliumEnergyReserveClaim ? 'Yes' : 'No'
+  -var trilliumEnergyReserveClaim = !hasData(data, 'deductions.trilliumEnergyReserveClaim') ? '' : data.deductions.trilliumEnergyReserveClaim ? 'Yes' : 'No'
 
 block content
 
   h1 #{title}
 
   form.cra-form(method='post')
-    +radiosYesNo('trilliumEnergyReserveClaim', 'In 2018, did you live on a reserve?', trilliumEnergyReserveClaim)
+    +radiosYesNo('trilliumEnergyReserveClaim', 'At any time in 2018, was your principal residence on a reserve?', trilliumEnergyReserveClaim)
+
+    include ../_includes/principalResidence
 
     input#redirect(name='redirect', type='hidden', value='/deductions/climate-action-incentive')
 

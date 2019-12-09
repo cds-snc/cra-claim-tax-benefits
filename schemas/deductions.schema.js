@@ -24,6 +24,10 @@ const trilliumEnergyReserveSchema = {
   trilliumEnergyReserveClaim: yesNoSchema(),
 }
 
+const trilliumEnergyReserveOntarioSchema = {
+  trilliumEnergyReserveOntario: yesNoSchema(),
+}
+
 const trilliumEnergyCostSchema = {
   trilliumEnergyCostClaim: yesNoSchema(),
 }
@@ -56,6 +60,7 @@ module.exports = {
   trilliumPropertyTaxOntarioSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumEnergyReserveSchema,
+  trilliumEnergyReserveOntarioSchema,
   trilliumEnergyCostSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareSchema,

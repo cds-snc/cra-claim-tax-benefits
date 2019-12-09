@@ -120,6 +120,7 @@
     "trilliumLongTermCareClaim": null,
     "trilliumLongTermCareAmount": 0,
     "trilliumEnergyReserveClaim": null,
+    "trilliumEnergyReserveOntario": null,
     "trilliumEnergyAmount": 0,
     "climateActionIncentiveIsRural": null
   },

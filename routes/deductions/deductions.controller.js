@@ -7,6 +7,7 @@ const {
   trilliumPropertyTaxOntarioSchema,
   trilliumPropertyTaxAmountSchema,
   trilliumEnergyReserveSchema,
+  trilliumEnergyReserveOntarioSchema,
   trilliumEnergyCostSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareSchema,
@@ -72,6 +73,14 @@ module.exports = function(app) {
     checkSchema(trilliumEnergyReserveSchema),
     checkErrors('deductions/trillium-energy-reserve'),
     doYesNo('trilliumEnergyReserveClaim', ['trilliumEnergyCostClaim', 'trilliumEnergyAmount']),
+    doRedirect,
+  )
+  app.get('/trillium/energy/reserve/ontario', renderWithData('deductions/trillium-energy-reserve-ontario'))
+  app.post(
+    '/trillium/energy/reserve/ontario',
+    checkSchema(trilliumEnergyReserveOntarioSchema),
+    checkErrors('deductions/trillium-energy-reserve-ontario'),
+    doYesNo('trilliumEnergyReserveOntario', ['trilliumEnergyAmount']),
     doRedirect,
   )
 

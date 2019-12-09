@@ -408,8 +408,8 @@
   "Did you live in a small and rural community?": "Avez-vous vécu dans une région rurale ou une petite collectivité?",
   "Agree": "J’accepte",
   "letter. You can change your address on the form.": ". Vous pourrez modifier votre adresse dans le formulaire.",
-  "In 2018, did you live on a reserve?": "En 2018, avez-vous vécu dans une réserve?",
-  "In 2018, did you pay energy costs for your home on reserve?": "En 2018, avez-vous payé des coûts d’énergie pour un domicile dans une réserve?",
+  "At any time in 2018, was your principal residence on a reserve?": "At any time in 2018, was your principal residence on a reserve?",
+  "In 2018, when you lived on an Ontario reserve, did you pay home energy costs, for example, to heat or cool your home, or use appliances like a stove or fridge?": "In 2018, when you lived on an Ontario reserve, did you pay home energy costs, for example, to heat or cool your home, or use appliances like a stove or fridge?",
   "Is your income information correct?": "Les renseignements sur votre revenu sont-ils exacts?",
   "Long-term care costs": "Long-term care costs",
   "Long-term care home": "Foyer de soins de longue durée",
@@ -532,5 +532,6 @@
   "do not": "do not",
   "Greater Sudbury": "Grand Sudbury",
   "Ottawa-Gatineau (Ontario part)": "Ottawa-Gatineau (Ontario part)",
-  " live in:": " live in:"
+  " live in:": " live in:",
+  "Was the reserve in Ontario?": "Was the reserve in Ontario?"
 }

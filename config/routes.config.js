@@ -39,6 +39,7 @@ const routes = [
   { path: '/trillium/longTermCare/type', editInfo: 'deductions.trilliumLongTermCareTypeClaim' },
   { path: '/trillium/longTermCare/type/amount', editInfo: 'deductions.trilliumLongTermCareAmount' },
   { path: '/trillium/energy/reserve' },
+  { path: '/trillium/energy/reserve/ontario', editInfo: 'deductions.trilliumEnergyReserveOntario'},
   { path: '/trillium/energy/cost', editInfo: 'deductions.trilliumEnergyCostClaim' },
   { path: '/trillium/energy/cost/amount', editInfo: 'deductions.trilliumEnergyAmount' },
   { path: '/deductions/climate-action-incentive' },

@@ -14,7 +14,6 @@ const {
 } = require('./../../schemas')
 const API = require('../../api')
 const DB = require('../../db')
-const { securityQuestionUrls } = require('../../config/routes.config')
 
 module.exports = function(app) {
   // redirect from "/login" → "/login/code"

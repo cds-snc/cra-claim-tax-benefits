@@ -1,6 +1,5 @@
 const {
   checkTableRows,
-  checkTableRowsLite,
   getBenefitsBreakdownRowsLite,
   getAddress,
 } = require('../utils.js')
@@ -150,7 +149,7 @@ describe('Full run through saying "no" to everything', function() {
     cy.url().should('contain', '/checkAnswers')
     cy.get('h1').should('contain', 'Check your answers before filing')
     cy.fixture('checkAnswersRows.json').then(rows => {
-      checkTableRows(cy, rows.rows)
+      checkTableRows(cy, rows.rows, 'dt.breakdown-table__row-key')
     })
 
     cy.get('.buttons-row a')
@@ -168,7 +167,7 @@ describe('Full run through saying "no" to everything', function() {
 
     //check some table data
     //until we have a more firm grasp on how we're shaping the total refund, i'm just checking benefits
-    checkTableRowsLite(cy, getBenefitsBreakdownRowsLite(this.user))
+    checkTableRows(cy, getBenefitsBreakdownRowsLite(this.user), 'dt.breakdown-table-lite__row-key')
 
     cy.continue('File your taxes now')
   })

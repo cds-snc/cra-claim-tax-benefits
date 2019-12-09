@@ -13,15 +13,6 @@ const sessionWithRent = {
   },
 }
 
-const sessionWithSecurityQuestion = {
-  ...initialSession,
-  ...{
-    login: {
-      securityQuestion: '/login/question/child',
-    },
-  },
-}
-
 const sessionWithVoterRegistration = {
   ...initialSession,
   ...{
@@ -48,21 +39,6 @@ describe('Test checkAnswersFormat function with initialSession', () => {
   test('it has sections with row lengths of 5 and 6', async () => {
     expect(answerInfo['Personal information'].length).toBe(5)
     expect(answerInfo['Tax benefits'].length).toBe(5)
-  })
-})
-
-describe('Test checkAnswersFormat with added displayIf row for financial information', () => {
-  const answerInfo = formatAnswerInfo({ session: sessionWithSecurityQuestion })
-
-  test('it has an extra row in Personal information for financial info', async () => {
-    expect(answerInfo['Personal information'].length).toBe(6)
-  })
-
-  test('it displays the word Yes', async () => {
-    const financialInfo = answerInfo['Personal information'].find(
-      row => row.urlPath === '/financial/income',
-    )
-    expect(financialInfo.data).toBe('No')
   })
 })
 

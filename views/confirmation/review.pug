@@ -2,12 +2,6 @@ extends ../base
 
 block variables
   -var title = __('Review and file tax return')
-  -var benefits = hasData(data, 'benefits') ? data.benefits : {}
-  -var totalBenefits = hasData(data, 'benefits.totalBenefits.amount') ? data.benefits.totalBenefits.amount : 0
-  -var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
-  -var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
-  -var refund = hasData(data, 'refund') ? data.refund : {}
-  -var locale = getLocale()
   -
     var rows =[
       {
@@ -46,51 +40,25 @@ block variables
 block content
 
   h1 #{title}
-  if (data.login.securityQuestion === '/checkAnswers') || (!data.login.securityQuestion)
-    div
-      .breakdown-table-lite.breakdown-table-lite--answers
-        h2.breakdown-table-lite__heading #{__('We will use your information to file your taxes. You may get a refund. You may also get these benefits and credits:')}
-        each row in rows
-          dl.breakdown-table-lite-data
-            .breakdown-table-lite__row.breakdown-table-lite__row--answers
-              dt.breakdown-table-lite__row-key
-                span #{__(row.header)}
-                dd.breakdown-table-lite__row-value
-                  span #{__(row.description)}
-                  div.row-link
-                    a(href=__(row.linkURL), target="_blank")
-                      <span>#{__('Learn more')}</span>
-                dd.breakdown-table-lite__row-payment
-                  p #{__(row.payment)}
-          hr
+  
+  div
+    .breakdown-table-lite.breakdown-table-lite--answers
+      h2.breakdown-table-lite__heading #{__('We will use your information to file your taxes. You may get a refund. You may also get these benefits and credits:')}
+      each row in rows
+        dl.breakdown-table-lite-data
+          .breakdown-table-lite__row.breakdown-table-lite__row--answers
+            dt.breakdown-table-lite__row-key
+              span #{__(row.header)}
+              dd.breakdown-table-lite__row-value
+                span #{__(row.description)}
+                div.row-link
+                  a(href=__(row.linkURL), target="_blank")
+                    <span>#{__('Learn more')}</span>
+              dd.breakdown-table-lite__row-payment
+                p #{__(row.payment)}
+        hr
 
-        p #{__('Check the box if you gave correct and complete answers to the previous questions. CRA will file your taxes using this online service. Keep your tax slips or receipts for 6 years in case CRA asks for them.')}
-  else
-    div
-      p #{__('You can expect the following benefits and refund from your 2018 taxes.')}
-      p #{__('Please check this information. If anything looks wrong, contact CRA before filing by:')}
-      ul
-        li #{__('Phone: 1-800-959-8281')}
-        li #{__('TTY (text telephone): 1-800-665-0354')}
-
-    div
-      .breakdown-table
-        h2.breakdown-table__heading
-          span #{__('Your 2018 tax benefits')}
-          span #{currencyFilter(totalBenefits)}
-
-        p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
-
-        dl.breakdown-table-data
-          each benefit, index in benefits
-            if index !== "totalBenefits"
-              .breakdown-table__row
-                dt.breakdown-table__row-key #{__(`${benefit.name}`)}
-                dd.breakdown-table__row-value #{currencyFilter(benefit.amount)}
-
-          .breakdown-table__row.breakdown-table__row--summary
-            dt.breakdown-table__row-key #{__('Total benefits')}
-            dd.breakdown-table__row-value #{currencyFilter(totalBenefits)}
+      p #{__('Check the box if you gave correct and complete answers to the previous questions. CRA will file your taxes using this online service. Keep your tax slips or receipts for 6 years in case CRA asks for them.')}
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.review})

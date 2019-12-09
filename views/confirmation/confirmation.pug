@@ -8,53 +8,24 @@ block content
 
   h1 #{title}
 
-  if (data.login.securityQuestion === '/checkAnswers') || (!data.login.securityQuestion)
-    div
-      table.confirmation-table
-        thead
-          tr
-            th #{__('Your filing code')}
-        tbody
-          tr
-            td 5H3P9IO5816
+  div
+    table.confirmation-table
+      thead
+        tr
+          th #{__('Your filing code')}
+      tbody
+        tr
+          td 5H3P9IO5816
 
-      p #{__('Keep this filing code and use it if you need to call about your taxes or ask for help from CRA by:')}
-      include ../_includes/phone-bullets
+    p #{__('Keep this filing code and use it if you need to call about your taxes or ask for help from CRA by:')}
+    include ../_includes/phone-bullets
 
-      p #{__('You will get your notice of assessment in about 2 weeks. The notice:')}
-      ul
-        li #{__('proves you filed taxes')}
-        li #{__('lists your benefits')}
-        li #{__('shows if you owe money to CRA or if CRA owes you')}
+    p #{__('You will get your notice of assessment in about 2 weeks. The notice:')}
+    ul
+      li #{__('proves you filed taxes')}
+      li #{__('lists your benefits')}
+      li #{__('shows if you owe money to CRA or if CRA owes you')}
 
-      p #{__('CRA pays by cheque, or into your bank account if you have CRA direct deposit.')}
+    p #{__('CRA pays by cheque, or into your bank account if you have CRA direct deposit.')}
 
-      p #{__('Thank you for using this service.')}  <a href="/feeback">#{__('Please help us make it better')}</a>
-      
-  else
-    div
-      p #{__('Now you can download a notice of assessment to print or save.')}
-      a.noa-btn(href='#' role='button' draggable='false') #{__('Download your 2018 express notice of assessment')}
-
-      p #{__('The notice:')}
-      ul
-        li #{__('proves you filed taxes')}
-        li #{__('lists your benefits')}
-        li #{__('shows if you owe money to CRA or if CRA owes you')}
-
-      p #{__('CRA pays by cheque, or into your bank account if you have CRA direct deposit.')}
-    
-    div
-      table.confirmation-table
-        thead
-          tr
-            th #{__('Your filing code')}
-        tbody
-          tr
-            td 5H3P9IO5816
-      p #{__('Keep this filing code and use it if you need to call about your taxes or ask for help from CRA by:')}
-      include ../_includes/phone-bullets
-
-      p #{__('Thank you for using this service.')}  <a href="/feeback">#{__('Please help us make it better')}</a>
-
-
+    p #{__('Thank you for using this service.')}  <a href="/feeback">#{__('Please help us make it better')}</a>

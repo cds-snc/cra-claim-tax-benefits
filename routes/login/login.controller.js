@@ -11,18 +11,6 @@ const {
   _toISOFormat,
   sinSchema,
   dobSchema,
-  noticeSchema,
-  securityQuestionSchema,
-  childSchema,
-  dateOfResidenceSchema,
-  bankruptcySchema,
-  bankSchema,
-  taxReturnSchema,
-  rrspSchema,
-  tfsaSchema,
-  ccbSchema,
-  addressesSchema,
-  prisonSchema,
 } = require('./../../schemas')
 const API = require('../../api')
 const DB = require('../../db')
@@ -45,121 +33,6 @@ module.exports = function(app) {
     checkSchema(dobSchema),
     checkErrors('login/dateOfBirth'),
     postLogin,
-    doRedirect,
-  )
-
-  app.get('/login/notice', renderWithData('login/notice'))
-  app.post(
-    '/login/notice',
-    checkSchema(noticeSchema),
-    checkErrors('login/notice'),
-    (req, res, next) => {
-      if (req.body.noticeOfAssessment === 'Yes') {
-        return res.redirect('/login/securityQuestion')
-      }
-      next()
-    },
-    doRedirect,
-  )
-
-  // Security question page
-  app.get('/login/securityQuestion', renderWithData('login/securityQuestion'))
-  app.post(
-    '/login/securityQuestion',
-    checkSchema(securityQuestionSchema),
-    checkErrors('login/securityQuestion'),
-    postSecurityQuestion,
-  )
-
-  // Alternate security question page
-  app.get('/login/securityQuestion2', renderWithData('login/securityQuestion2'))
-  app.post(
-    '/login/securityQuestion2',
-    checkSchema(securityQuestionSchema),
-    checkErrors('login/securityQuestion2'),
-    postSecurityQuestion,
-  )
-
-  app.get('/login/questions', (req, res) => res.redirect('/login/securityQuestion'))
-
-  // Security questions
-  app.get('/login/questions/child', renderWithData('login/questions/child'))
-  app.post(
-    '/login/questions/child',
-    checkSchema(childSchema),
-    checkErrors('login/questions/child'),
-    doRedirect,
-  )
-
-  app.get('/login/questions/addresses', renderWithData('login/questions/addresses'))
-  app.post(
-    '/login/questions/addresses',
-    checkSchema(addressesSchema),
-    checkErrors('login/questions/addresses'),
-    doRedirect,
-  )
-
-  app.get('/login/questions/prison', renderWithData('login/questions/prison'))
-  app.post(
-    '/login/questions/prison',
-    checkSchema(prisonSchema),
-    checkErrors('login/questions/prison'),
-    doRedirect,
-  )
-
-  app.get('/login/questions/dateOfResidence', renderWithData('login/questions/dateOfResidence'))
-  app.post(
-    '/login/questions/dateOfResidence',
-    checkSchema(dateOfResidenceSchema),
-    checkErrors('login/questions/dateOfResidence'),
-    doRedirect,
-  )
-
-  app.get('/login/questions/bankruptcy', renderWithData('login/questions/bankruptcy'))
-  app.post(
-    '/login/questions/bankruptcy',
-    checkSchema(bankruptcySchema),
-    checkErrors('login/questions/bankruptcy'),
-    doRedirect,
-  )
-
-  app.get('/login/questions/bank', renderWithData('login/questions/bank'))
-  app.post(
-    '/login/questions/bank',
-    checkSchema(bankSchema),
-    checkErrors('login/questions/bank'),
-    doRedirect,
-  )
-
-  app.get('/login/questions/taxReturn', renderWithData('login/questions/taxReturn'))
-  app.post(
-    '/login/questions/taxReturn',
-    checkSchema(taxReturnSchema),
-    checkErrors('login/questions/taxReturn'),
-    doRedirect,
-  )
-
-  app.get('/login/questions/rrsp', renderWithData('login/questions/rrsp'))
-  app.post(
-    '/login/questions/rrsp',
-    checkSchema(rrspSchema),
-    checkErrors('login/questions/rrsp'),
-    doRedirect,
-  )
-
-  app.get('/login/questions/tfsa', renderWithData('login/questions/tfsa'))
-  app.post(
-    '/login/questions/tfsa',
-    checkSchema(tfsaSchema),
-    checkErrors('login/questions/tfsa'),
-    doRedirect,
-  )
-
-  app.get('/login/questions/ccb', renderWithData('login/questions/ccb'))
-  app.post(
-    '/login/questions/ccb',
-    checkSchema(ccbSchema),
-    checkErrors('login/questions/ccb'),
     doRedirect,
   )
 }
@@ -258,11 +131,4 @@ const postLogin = async (req, res, next) => {
   Object.keys(user).map(key => (req.session[key] = user[key]))
 
   next()
-}
-
-const postSecurityQuestion = async (req, res) => {
-  const url = securityQuestionUrls.find(urlFound => urlFound === req.body.securityQuestion)
-
-  req.session.login.securityQuestion = url
-  return res.redirect(url)
 }

@@ -9,7 +9,7 @@ describe('Test /deductions responses', () => {
 
   beforeEach(async () => {
     const testSession = session(app)
-    const getresp = await testSession.get('/financial/income')
+    const getresp = await testSession.get('/login/code')
     cookie = getresp.headers['set-cookie']
     csrfToken = extractCsrfToken(getresp)
   })

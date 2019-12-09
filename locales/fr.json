@@ -307,7 +307,7 @@
   "Using": "En utilisant",
   "Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.": "Les coûts d’énergie domiciliaire concernent le chauffage et la climatisation de votre domicile, et l’utilisation d’électroménagers comme une cuisinière ou un réfrigérateur.",
   "In 2018, did you live on a reserve and pay home energy costs?": "In 2018, did you live on a reserve and pay home energy costs?",
-  "The government might ask for receipts later. The receipts must cover energy costs for a home on reserve where you lived most of 2018.": "Le gouvernement pourrait vous demander des reçus. Ces reçus doivent indiquer les coûts d’énergie payés pour le domicile dans une réserve où vous avez vécu la majorité de l’année 2018.",
+  "The government might ask for receipts later. The receipts must cover 2018 energy costs for your principal residence on an Ontario reserve.": "The government might ask for receipts later. The receipts must cover 2018 energy costs for your principal residence on an Ontario reserve.",
   "Enter your home energy costs": "Inscrivez les coûts d’énergie domiciliaire",
   "What were your total home energy costs on reserve in 2018?": "Quels sont les coûts d’énergie totaux que vous avez payés pour un domicile dans une réserve en 2018?",
   "Please note you may be asked to provide receipts to verify this information later.": "Please note you may be asked to provide receipts to verify this information later.",
@@ -408,8 +408,8 @@
   "Did you live in a small and rural community?": "Avez-vous vécu dans une région rurale ou une petite collectivité?",
   "Agree": "J’accepte",
   "letter. You can change your address on the form.": ". Vous pourrez modifier votre adresse dans le formulaire.",
-  "In 2018, did you live on a reserve?": "En 2018, avez-vous vécu dans une réserve?",
-  "In 2018, did you pay energy costs for your home on reserve?": "En 2018, avez-vous payé des coûts d’énergie pour un domicile dans une réserve?",
+  "At any time in 2018, was your principal residence on a reserve?": "At any time in 2018, was your principal residence on a reserve?",
+  "In 2018, when you lived on an Ontario reserve, did you pay home energy costs, for example, to heat or cool your home, or use appliances like a stove or fridge?": "In 2018, when you lived on an Ontario reserve, did you pay home energy costs, for example, to heat or cool your home, or use appliances like a stove or fridge?",
   "Is your income information correct?": "Les renseignements sur votre revenu sont-ils exacts?",
   "Long-term care costs": "Long-term care costs",
   "Long-term care home": "Foyer de soins de longue durée",
@@ -532,5 +532,8 @@
   "do not": "do not",
   "Greater Sudbury": "Grand Sudbury",
   "Ottawa-Gatineau (Ontario part)": "Ottawa-Gatineau (Ontario part)",
-  " live in:": " live in:"
+  " live in:": " live in:",
+  "Was the reserve in Ontario?": "Was the reserve in Ontario?",
+  "Home on reserve in Ontario": "Home on reserve in Ontario",
+  "The government might ask for receipts later. The receipts must cover energy costs for a home on reserve where you lived most of 2018.": "The government might ask for receipts later. The receipts must cover energy costs for a home on reserve where you lived most of 2018."
 }

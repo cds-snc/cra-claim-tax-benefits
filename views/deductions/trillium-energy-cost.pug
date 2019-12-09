@@ -8,14 +8,9 @@ block content
 
   h1 #{title}
 
-
-
-  div
-    p #{__('Home energy costs are paid to heat or cool your home, or use appliances like a stove or fridge.')}</strong>
-
   form.cra-form(method='post')
-    +radiosYesNo('trilliumEnergyCostClaim', 'In 2018, did you pay energy costs for your home on reserve?', trilliumEnergyCostClaim)
+    +radiosYesNo('trilliumEnergyCostClaim', 'In 2018, when you lived on an Ontario reserve, did you pay home energy costs, for example, to heat or cool your home, or use appliances like a stove or fridge?', trilliumEnergyCostClaim)
 
-    input#redirect(name='redirect', type='hidden', value='/trillium/longTermCare')
+    input#redirect(name='redirect', type='hidden', value='/deductions/climate-action-incentive')
 
     +formButtons()

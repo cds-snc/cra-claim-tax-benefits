@@ -28,7 +28,7 @@ const getIncomeBreakdownRows = user => {
   return incomeRows
 }
 
-const getBenefitsBreakdownRowsLite = user => {
+const getBenefitsBreakdownRows = user => {
   const benefitsLiteKeys = Object.values(user.benefitsLite)
   const benefitsLiteRows = benefitsLiteKeys.map(source => {
     return {
@@ -56,6 +56,6 @@ const getAddress = address => {
 module.exports = {
   checkTableRows,
   allIncomeRows,
-  getBenefitsBreakdownRowsLite,
+  getBenefitsBreakdownRows,
   getAddress,
 }

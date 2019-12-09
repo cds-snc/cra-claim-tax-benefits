@@ -131,3 +131,43 @@
     }
   }
 }
+
+.breakdown-table--review {
+
+  dl {
+    margin-bottom: $space-lg;
+  }
+
+  hr:last-of-type {
+    margin-bottom: $space-lg;
+  }
+
+  h2.breakdown-table__heading {
+    line-height: 1.5em;
+  }
+
+  @include md {
+    max-width: 1050px;
+  }
+
+  .breakdown-table__row-key {
+    @include md {
+      width: 30%;
+    }
+  }
+
+  .breakdown-table__row-value {
+    @include md {
+      width: 50%;
+    }
+  }
+
+  .row-link {
+    margin-top: $space-md;
+  }
+
+  .breakdown-table__row-link span {
+    margin-top: 100px;
+  }
+
+}

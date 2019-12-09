@@ -1,6 +1,6 @@
 const {
   checkTableRows,
-  getBenefitsBreakdownRowsLite,
+  getBenefitsBreakdownRows,
   getAddress,
 } = require('../utils.js')
 
@@ -257,7 +257,7 @@ describe('Full run through saying "yes" to everything', function() {
 
     //check some table data
     //until we have a more firm grasp on how we're shaping the total refund, i'm just checking benefits
-    checkTableRows(cy, getBenefitsBreakdownRowsLite(this.user), 'dt.breakdown-table-lite__row-key')
+    checkTableRows(cy, getBenefitsBreakdownRows(this.user), 'dt.breakdown-table__row-key')
 
     cy.continue('File your taxes now')
   })

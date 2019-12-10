@@ -145,25 +145,7 @@
       "amount": 719.88
     }
   },
-  "benefits": {
-    "climateActionIncentive": {
-      "name": "Climate action incentive",
-       "amount": "154.00"
-    },
-    "gsthstc": {
-       "name": "Goods and services tax/harmonized sales tax (GST/HST) credit",
-       "amount": "440.00"
-    },
-    "ontarioTrilliumBenefit": {
-       "name": "Ontario Trillium Benefit",
-       "amount": "307.92"
-    },
-    "totalBenefits": {
-       "name": "Total benefits",
-       "amount": "901.92"
-    }
- },
- "benefitsLite": {
+ "benefits": {
   "gsthstc": {
      "name": "Goods and services tax/harmonized sales tax (GST/HST) credit",
      "description": "up to $443 for one person, $580 if you have a marriage or common-law partner, and $153 for each child under age 19."

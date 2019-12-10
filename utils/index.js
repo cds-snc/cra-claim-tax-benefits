@@ -426,11 +426,11 @@ const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
   let routeWithIndex = null
 
   routes.find((route, index) => {
-    let { path: routePath, options: routeOptions = [] } = route
+    let { path: routePath } = route
 
     // if one of the "options" urls is round, match current route
     // note: this will still return the base "path", not any of the "options" urls
-    if (routePath === path || routeOptions.includes(path)) {
+    if (routePath === path) {
       routeWithIndex = { index, route }
     }
   })

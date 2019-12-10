@@ -48,19 +48,19 @@ block content
   h1 #{title}
   if (data.login.securityQuestion === '/checkAnswers') || (!data.login.securityQuestion)
     div
-      .breakdown-table-lite.breakdown-table-lite--answers
-        h2.breakdown-table-lite__heading #{__('We will use your information to file your taxes. You may get a refund. You may also get these benefits and credits:')}
+      .breakdown-table.breakdown-table--review.breakdown-table--answers
+        h2.breakdown-table__heading #{__('We will use your information to file your taxes. You may get a refund. You may also get these benefits and credits:')}
         each row in rows
-          dl.breakdown-table-lite-data
-            .breakdown-table-lite__row.breakdown-table-lite__row--answers
-              dt.breakdown-table-lite__row-key
+          dl.breakdown-table-data
+            .breakdown-table__row.breakdown-table__row--answers
+              dt.breakdown-table__row-key
                 span #{__(row.header)}
-                dd.breakdown-table-lite__row-value
+                dd.breakdown-table__row-value
                   span #{__(row.description)}
                   div.row-link
                     a(href=__(row.linkURL), target="_blank")
                       <span>#{__('Learn more')}</span>
-                dd.breakdown-table-lite__row-payment
+                dd.breakdown-table__row-payment
                   p #{__(row.payment)}
           hr
 

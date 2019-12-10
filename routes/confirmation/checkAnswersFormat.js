@@ -75,7 +75,7 @@ const formatAnswerInfo = req => {
           !routes.find(route => route.path === line.urlPath)
         ) {
           throw new Error(
-            'Looks like a urlPath in checkAnswers does not exist in routes.config  \n Are your route paths correct in checkAnswers?',
+            `Looks like a urlPath in checkAnswers does not exist in routes.config  \n The url is ${line.urlPath} \n Are your route paths correct in checkAnswers?`,
           )
         }
 

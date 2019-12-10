@@ -1,20 +1,3 @@
-// list the urls for security questions
-const securityQuestionUrls = [
-  '/login/questions/child',
-  '/login/questions/addresses',
-  '/login/questions/prison',
-  '/login/questions/dateOfResidence',
-  '/login/questions/bankruptcy',
-  '/login/questions/bank',
-  '/login/questions/taxReturn',
-  '/login/questions/rrsp',
-  '/login/questions/tfsa',
-  '/login/questions/ccb',
-
-  // Skip URL
-  '/checkAnswers',
-]
-
 //list our routes in the flow order in the app
 const routes = [
   { path: '/start' },
@@ -45,13 +28,6 @@ const routes = [
   { path: '/deductions/climate-action-incentive' },
   { path: '/vote/optIn' },
   { path: '/vote/confirmRegistration', editInfo: 'vote.voterCitizen' },
-  { path: '/login/notice' },
-  { path: '/login/securityQuestion' },
-  { path: '/login/questions', options: ['/login/securityQuestion2'] },
-  { path: '/login/questions', options: securityQuestionUrls },
-  { path: '/offramp/securityQuestion', editInfo: 'skip' },
-  { path: '/financial/income' },
-  { path: '/offramp/financial', editInfo: 'skip' },
   { path: '/checkAnswers' },
   { path: '/review' },
   { path: '/confirmation' },
@@ -60,5 +36,4 @@ const routes = [
 
 module.exports = {
   routes,
-  securityQuestionUrls,
 }

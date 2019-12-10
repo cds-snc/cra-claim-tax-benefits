@@ -11,7 +11,7 @@ block content
   form.cra-form(method='post')
     +radiosYesNo('confirmOptIn', 'Would you like to vote in the federal election?', confirmOptIn)
 
-    input#redirect(name='redirect', type='hidden', value='/login/notice')
+    input#redirect(name='redirect', type='hidden', value='/checkAnswers')
 
     +formButtons()
 

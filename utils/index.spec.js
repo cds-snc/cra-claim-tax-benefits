@@ -14,7 +14,6 @@ const API = require('./../api')
 const testRoutes = [
   { path: '/start' },
   { path: '/login/code' },
-  { path: '/login/questions', options: ['/login/questions/child', '/login/questions/bank'] },
   { path: '/deductions/rrsp' },
   { path: '/deductions/rrsp/amount', editInfo: 'deductions.rrspClaim' },
   { path: '/deductions/medical' },
@@ -203,32 +202,7 @@ describe('Test getRouteWithIndexByPath', () => {
 
   test('Returns the last path with index of existing route', () => {
     const route = getRouteWithIndexByPath('/checkAnswers', testRoutes)
-    expect(route).toEqual({ index: 9, route: { path: '/checkAnswers' } })
-  })
-
-  test('Returns a route with an options key by looking for the path', () => {
-    const route = getRouteWithIndexByPath('/login/questions', testRoutes)
-    expect(route).toEqual({
-      index: 2,
-      route: {
-        path: '/login/questions',
-        options: ['/login/questions/child', '/login/questions/bank'],
-      },
-    })
-  })
-
-  const optsUrls = ['/login/questions/child', '/login/questions/bank']
-  optsUrls.map(url => {
-    test(`Returns a route with an options key by looking for a path in the options array: ${url}`, () => {
-      const route = getRouteWithIndexByPath(url, testRoutes)
-      expect(route).toEqual({
-        index: 2,
-        route: {
-          path: '/login/questions',
-          options: ['/login/questions/child', '/login/questions/bank'],
-        },
-      })
-    })
+    expect(route).toEqual({ index: 8, route: { path: '/checkAnswers' } })
   })
 })
 

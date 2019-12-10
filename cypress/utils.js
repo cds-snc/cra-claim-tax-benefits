@@ -29,15 +29,15 @@ const getIncomeBreakdownRows = user => {
 }
 
 const getBenefitsBreakdownRows = user => {
-  const benefitsLiteKeys = Object.values(user.benefitsLite)
-  const benefitsLiteRows = benefitsLiteKeys.map(source => {
+  const benefitsKeys = Object.values(user.benefits)
+  const benefitsRows = benefitsKeys.map(source => {
     return {
       key: source.name,
       value: source.description,
     }
   })
 
-  return benefitsLiteRows
+  return benefitsRows
 }
 
 const allIncomeRows = user => getIncomeBreakdownRows(user)

@@ -1,0 +1,21 @@
+extends ../base
+
+block variables
+  -var title = __('Enter your total 2018 room and board costs in long-term care')
+  -var trilliumLongTermCareRoomAndBoard = hasData(data, 'deductions.trilliumLongTermCareRoomAndBoardAmount') && data.deductions.trilliumLongTermCareRoomAndBoardAmount !== 0 ? data.deductions.trilliumLongTermCareAmount : ''
+  -var placeholder= currencyWithoutUnit(getLocale())
+  -var formattedValue= currencyWithoutUnit(getLocale(), trilliumLongTermCareRoomAndBoardAmount)
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('The government might ask for your long-term care receipts.')}
+
+  form.cra-form(method='post')
+    +textInput('Enter your total 2018 room and board costs in long-term care')(class='w-1-2 input-with-unit' name='trilliumLongTermCareRoomAndBoardAmount' placeholder=placeholder aria-labelledby='trilliumLongTermCareAmount__unit trilliumLongTermCareAmount__label' value=formattedValue)
+
+    input#redirect(name='redirect', type='hidden', value='/trillium/energy/reserve')
+
+    +formButtons('Continue')

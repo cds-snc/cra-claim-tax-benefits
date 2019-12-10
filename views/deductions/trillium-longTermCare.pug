@@ -8,11 +8,10 @@ block content
 
   h1 #{title}
 
-  div
-    p #{__('You may live in a long-term care home or facility if costs such as nursing or personal support are combined with your rent.')}
-
   form.cra-form(method='post')
-    +radiosYesNo('trilliumLongTermCareClaim', 'Did you live in a long-term care home in 2018?', trilliumLongTermCareClaim)
+    +radiosYesNo('trilliumLongTermCareClaim', 'At any time in 2018, was your principal residence in long-term care where your costs included  nursing or personal support as well as room and board?', trilliumLongTermCareClaim)
+
+    include ../_includes/principalResidence
 
     input#redirect(name='redirect', type='hidden', value='/trillium/energy/reserve')
 

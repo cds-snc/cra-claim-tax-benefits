@@ -65,10 +65,16 @@ const answerInfo = [
         displayIf: 'deductions.trilliumLongTermCareClaim',
       },
       {
+        text: 'Long-term care room and board costs',
+        infoPath: ['deductions.trilliumLongTermCareRoomAndBoardAmount'],
+        urlPath: '/trillium/longTermCare/type/roomAndBoard',
+        displayIf: 'deductions.trilliumLongTermCareCost',
+      },
+      {
         text: 'Long-term care costs',
         infoPath: ['deductions.trilliumLongTermCareAmount'],
         urlPath: '/trillium/longTermCare/type/amount',
-        displayIf: 'deductions.trilliumLongTermCareTypeClaim',
+        displayIf: 'deductions.trilliumLongTermCareIsFullAmount',
       },
       {
         text: 'Did you live on a reserve?',

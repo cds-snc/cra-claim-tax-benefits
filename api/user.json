@@ -147,6 +147,10 @@
     "trilliumEnergyCostClaim": null,
     "trilliumEnergyAmount": 0,
     "trilliumLongTermCareClaim": null,
+    "trilliumLongTermCareOntario": null,
+    "trilliumLongTermCareCost": null,
+    "trilliumLongTermCareRoomAndBoardAmount": 0,
+    "trilliumLongTermCareIsFullAmount": null,
     "trilliumLongTermCareAmount": 0,
     "climateActionIncentiveIsRural": null
   },

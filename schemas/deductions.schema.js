@@ -4,6 +4,10 @@ const trilliumRentSchema = {
   trilliumRentClaim: yesNoSchema(),
 }
 
+const trilliumRentOntarioSchema = {
+  trilliumRentOntario: yesNoSchema(),
+}
+
 const trilliumRentAmountSchema = {
   trilliumRentAmount: currencySchema(),
 }
@@ -55,6 +59,7 @@ const climateActionIncentiveSchema = {
 module.exports = {
   climateActionIncentiveSchema,
   trilliumRentSchema,
+  trilliumRentOntarioSchema,
   trilliumRentAmountSchema,
   trilliumPropertyTaxSchema,
   trilliumPropertyTaxOntarioSchema,

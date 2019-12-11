@@ -25,6 +25,10 @@ describe('Test /deductions responses', () => {
         key: 'trilliumEnergyCostClaim',
       },
       {
+        url: '/deductions/senior-public-transit',
+        key: 'seniorTransitClaim',
+      },
+      {
         url: '/deductions/climate-action-incentive',
         key: 'climateActionIncentiveIsRural',
         yesRedir: '/start',
@@ -352,6 +356,10 @@ describe('Test /deductions responses', () => {
       {
         url: '/trillium/longTermCare/type/amount',
         key: 'trilliumLongTermCareAmount',
+      },
+      {
+        url: '/deductions/senior-public-transit/amount',
+        key: 'seniorTransitAmount',
       },
     ]
 

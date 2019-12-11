@@ -94,6 +94,18 @@ const answerInfo = [
         displayIf: 'deductions.trilliumEnergyCostClaim',
       },
       {
+        text: 'Did you use public transit in 2018?',
+        infoPath: ['deductions.seniorTransitClaim'],
+        urlPath: '/deductions/senior-public-transit',
+        displayIf: 'deductions.seniorTransitClaim',
+      },
+      {
+        text: 'Total amount spent on public transit',
+        infoPath: ['deductions.seniorTransitAmount'],
+        urlPath: '/deductions/senior-public-transit/amount',
+        displayIf: 'deductions.seniorTransitClaim',
+      },
+      {
         text: 'Did you live in a small and rural community?',
         infoPath: ['deductions.climateActionIncentiveIsRural'],
         urlPath: '/deductions/climate-action-incentive',

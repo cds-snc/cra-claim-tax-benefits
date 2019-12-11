@@ -2,6 +2,7 @@ const { checkSchema } = require('express-validator')
 const { doRedirect, doYesNo, renderWithData, checkErrors, postAmount } = require('./../../utils')
 const {
   trilliumRentSchema,
+  trilliumRentOntarioSchema,
   trilliumRentAmountSchema,
   trilliumPropertyTaxSchema,
   trilliumPropertyTaxOntarioSchema,
@@ -27,7 +28,15 @@ module.exports = function(app) {
     '/trillium/rent',
     checkSchema(trilliumRentSchema),
     checkErrors('deductions/trillium-rent'),
-    doYesNo('trilliumRentClaim', ['trilliumRentAmount']),
+    doYesNo('trilliumRentClaim', ['trilliumRentOntario','trilliumRentAmount']),
+    doRedirect,
+  )
+  app.get('/trillium/rent/ontario', renderWithData('deductions/trillium-rent-ontario'))
+  app.post(
+    '/trillium/rent/ontario',
+    checkSchema(trilliumRentOntarioSchema),
+    checkErrors('deductions/trillium-rent-ontario'),
+    doYesNo('trilliumRentOntario', ['trilliumRentAmount']),
     doRedirect,
   )
   app.get('/trillium/rent/amount', renderWithData('deductions/trillium-rent-amount'))

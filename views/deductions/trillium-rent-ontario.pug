@@ -1,0 +1,16 @@
+extends ../base
+
+block variables
+  -var title = __('Rent in Ontario')
+  -var trilliumRentOntario = !hasData(data, 'deductions.trilliumRentOntario') ? '' : data.deductions.trilliumRentOntario ? 'Yes' : 'No'
+
+block content
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('trilliumRentOntario', 'Was this home in Ontario?', trilliumRentOntario)
+
+    input#redirect(name='redirect', type='hidden', value='/trillium/propertyTax')
+
+    +formButtons()

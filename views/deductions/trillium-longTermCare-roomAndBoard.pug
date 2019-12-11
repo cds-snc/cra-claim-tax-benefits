@@ -14,7 +14,7 @@ block content
     p #{__('The government might ask for your long-term care receipts.')}
 
   form.cra-form(method='post')
-    +textInput('Enter your total 2018 room and board costs in long-term care')(class='w-1-2 input-with-unit' name='trilliumLongTermCareRoomAndBoardAmount' placeholder=placeholder aria-labelledby='trilliumLongTermCareAmount__unit trilliumLongTermCareAmount__label' value=formattedValue)
+    +textInput('Enter your total 2018 room and board costs in long-term care')(class='w-1-2 input-with-unit' name='trilliumLongTermCareRoomAndBoardAmount' placeholder=placeholder aria-labelledby='trilliumLongTermCareRoomAndBoardAmount__unit trilliumLongTermCareRoomAndBoardAmount__label' value=formattedValue)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/energy/reserve')
 

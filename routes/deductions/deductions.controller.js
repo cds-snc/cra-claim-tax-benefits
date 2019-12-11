@@ -149,7 +149,7 @@ module.exports = function(app) {
     doYesNo('trilliumLongTermCareCost', [
       'trilliumLongTermCareRoomAndBoardAmount',
       'trilliumLongTermCareAmount',
-      'trilliumLongTermCareIsFullAmount'
+      'trilliumLongTermCareIsFullAmount',
     ]),
     doRedirect,
   )
@@ -175,7 +175,7 @@ module.exports = function(app) {
     checkSchema(trilliumlongTermCareAmountSchema),
     checkErrors('deductions/trillium-longTermCare-amount'),
     (req, res, next) => {
-      req.session.deductions.trilliumLongTermCareIsFullAmount = true;
+      req.session.deductions.trilliumLongTermCareIsFullAmount = true
       req.session.deductions.trilliumLongTermCareAmount = postAmount(req.body.trilliumLongTermCareAmount, req.locale)
       next()
     },

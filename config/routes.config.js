@@ -31,6 +31,8 @@ const routes = [
   { path: '/trillium/energy/cost', editInfo: 'deductions.trilliumEnergyCostClaim' },
   { path: '/trillium/energy/cost/amount', editInfo: 'deductions.trilliumEnergyAmount' },
   { path: '/deductions/climate-action-incentive' },
+  { path: '/deductions/senior-public-transit', editInfo: 'deductions.seniorTransitClaim' },
+  { path: '/deductions/senior-public-transit/amount', editInfo: 'deductions.seniorTransitAmount' },
   { path: '/vote/optIn' },
   { path: '/vote/confirmRegistration', editInfo: 'vote.voterCitizen' },
   { path: '/checkAnswers' },

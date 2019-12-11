@@ -1,0 +1,16 @@
+extends ../base
+
+block variables
+  -var title = __(`Senior's public transit`)
+  -var seniorTransitClaim = !hasData(data, 'deductions.seniorTransitClaim') ? '' : data.deductions.seniorTransitClaim ? 'Yes' : 'No'
+
+block content
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('seniorTransitClaim', 'Did you use public transit in 2018?', seniorTransitClaim)
+
+    input#redirect(name='redirect', type='hidden', value='/vote/optIn')
+
+    +formButtons()

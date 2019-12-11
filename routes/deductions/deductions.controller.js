@@ -10,6 +10,8 @@ const {
   trilliumEnergyReserveSchema,
   trilliumEnergyReserveOntarioSchema,
   trilliumEnergyCostSchema,
+  seniorTransitSchema,
+  seniorTransitAmountSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareSchema,
   trilliumlongTermCareOntarioSchema,
@@ -112,6 +114,27 @@ module.exports = function(app) {
     checkErrors('deductions/trillium-energy-cost-amount'),
     (req, res, next) => {
       req.session.deductions.trilliumEnergyAmount = postAmount(req.body.trilliumEnergyAmount, req.locale)
+      next()
+    },
+    doRedirect,
+  )
+
+  app.get('/deductions/senior-public-transit', renderWithData('deductions/senior-public-transit'))
+  app.post(
+    '/deductions/senior-public-transit',
+    checkSchema(seniorTransitSchema),
+    checkErrors('deductions/senior-public-transit'),
+    doYesNo('seniorTransitClaim', ['seniorTransitAmount']),
+    doRedirect,
+  )
+
+  app.get('/deductions/senior-public-transit/amount', renderWithData('deductions/senior-public-transit-amount'))
+  app.post(
+    '/deductions/senior-public-transit/amount',
+    checkSchema(seniorTransitAmountSchema),
+    checkErrors('deductions/senior-public-transit-amount'),
+    (req, res, next) => {
+      req.session.deductions.seniorTransitAmount = postAmount(req.body.seniorTransitAmount, req.locale)
       next()
     },
     doRedirect,

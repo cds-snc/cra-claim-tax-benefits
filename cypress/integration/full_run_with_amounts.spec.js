@@ -82,8 +82,19 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates the Trillium Rent page', function() {
     cy.confirm({
       url: '/trillium/rent',
-      h1: 'Rent',
+      h1: 'Rent for the home where you usually lived',
       id: 'trilliumRentClaim0', // click Yes
+    })
+
+    cy.continue()
+  })
+
+   //TRILLIUM RENT ONTARIO
+   it('navigates the Trillium Rent Ontario page', function() {
+    cy.confirm({
+      url: '/trillium/rent/ontario',
+      h1: 'Rent in Ontario',
+      id: 'trilliumRentOntario0', // click Yes
     })
 
     cy.continue()

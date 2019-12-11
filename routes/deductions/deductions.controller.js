@@ -11,7 +11,10 @@ const {
   trilliumEnergyCostSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareSchema,
-  trilliumLongTermCareTypeSchema,
+  trilliumlongTermCareOntarioSchema,
+  trilliumlongTermCareTypeSchema,
+  trilliumlongTermCareCostSchema,
+  trilliumlongTermCareRoomAndBoardSchema,
   trilliumlongTermCareAmountSchema,
   climateActionIncentiveSchema,
 } = require('./../../schemas')
@@ -117,12 +120,49 @@ module.exports = function(app) {
     doRedirect,
   )
 
+  app.get('/trillium/longTermCare/ontario', renderWithData('deductions/trillium-longTermCare-ontario'))
+  app.post(
+    '/trillium/longTermCare/ontario',
+    checkSchema(trilliumlongTermCareOntarioSchema),
+    checkErrors('deductions/trillium-longTermCare-ontario'),
+    doYesNo('trilliumLongTermCareOntario', [
+      'trilliumLongTermCareTypeOntario',
+      'trilliumLongTermCareAmount',
+    ]),
+    doRedirect,
+  )
+
   app.get('/trillium/longTermCare/type', renderWithData('deductions/trillium-longTermCare-type'))
   app.post(
     '/trillium/longTermCare/type',
-    checkSchema(trilliumLongTermCareTypeSchema),
+    checkSchema(trilliumlongTermCareTypeSchema),
     checkErrors('deductions/trillium-longTermCare-type'),
     doYesNo('trilliumLongTermCareTypeClaim', ['trilliumLongTermCareAmount']),
+    doRedirect,
+  )
+
+  app.get('/trillium/longTermCare/cost', renderWithData('deductions/trillium-longTermCare-cost'))
+  app.post(
+    '/trillium/longTermCare/cost',
+    checkSchema(trilliumlongTermCareCostSchema),
+    checkErrors('deductions/trillium-longTermCare-cost'),
+    doYesNo('trilliumLongTermCareCost', [
+      'trilliumLongTermCareRoomAndBoardAmount',
+      'trilliumLongTermCareAmount',
+      'trilliumLongTermCareIsFullAmount',
+    ]),
+    doRedirect,
+  )
+
+  app.get('/trillium/longTermCare/type/roomAndBoard',renderWithData('deductions/trillium-longTermCare-roomAndBoard'))
+  app.post(
+    '/trillium/longTermCare/type/roomAndBoard',
+    checkSchema(trilliumlongTermCareRoomAndBoardSchema),
+    checkErrors('deductions/trillium-longTermCare-roomAndBoard'),
+    (req, res, next) => {
+      req.session.deductions.trilliumLongTermCareRoomAndBoardAmount = postAmount(req.body.trilliumLongTermCareRoomAndBoardAmount, req.locale)
+      next()
+    },
     doRedirect,
   )
 
@@ -135,6 +175,7 @@ module.exports = function(app) {
     checkSchema(trilliumlongTermCareAmountSchema),
     checkErrors('deductions/trillium-longTermCare-amount'),
     (req, res, next) => {
+      req.session.deductions.trilliumLongTermCareIsFullAmount = true
       req.session.deductions.trilliumLongTermCareAmount = postAmount(req.body.trilliumLongTermCareAmount, req.locale)
       next()
     },

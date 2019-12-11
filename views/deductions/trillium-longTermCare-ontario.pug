@@ -1,0 +1,16 @@
+extends ../base
+
+block variables
+  -var title = __('Long-term care in Ontario')
+  -var trilliumLongTermCareOntario = !hasData(data, 'deductions.trilliumLongTermCareOntario') ? '' : data.deductions.trilliumLongTermCareOntario ? 'Yes' : 'No'
+
+block content
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('trilliumLongTermCareOntario', 'Was the long-term care home in Ontario?', trilliumLongTermCareOntario)
+
+    input#redirect(name='redirect', type='hidden', value='/trillium/energy/reserve')
+
+    +formButtons()

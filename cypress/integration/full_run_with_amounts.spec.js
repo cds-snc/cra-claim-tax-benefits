@@ -144,6 +144,17 @@ describe('Full run through saying "yes" to everything', function() {
     cy.continue()
   })
 
+  //TRILLIUM LONG TERM CARE ONTARIO
+  it('navigates the Trillium Long Term Care Ontario page', function() {
+    cy.confirm({
+      url: '/trillium/longTermCare/ontario',
+      h1: 'Long-term care in Ontario',
+      id: 'trilliumLongTermCareOntario0', // click Yes
+    })
+
+    cy.continue()
+  })
+
   //TRILLIUM LONG TERM CARE TYPE
   it('navigates the Trillium Long Term Care Type page', function() {
     cy.confirm({
@@ -155,12 +166,23 @@ describe('Full run through saying "yes" to everything', function() {
     cy.continue()
   })
 
+  //TRILLIUM LONG TERM CARE ONTARIO
+  it('navigates the Trillium Long Term Care Costs page', function() {
+    cy.confirm({
+      url: '/trillium/longTermCare/cost',
+      h1: 'Long-term care home costs',
+      id: 'trilliumLongTermCareCost0', // click Yes
+    })
+
+    cy.continue()
+  })
+
   //TRILLIUM LONG TERM CARE AMOUNT
-  it('navigates the Trillium Long Term Care AMOUNT page', function() {
+  it('navigates the Trillium Long Term Care ROOM AND BOARD page', function() {
     cy.amount({
-      url: '/trillium/longTermCare/type/amount',
-      h1: 'Enter your long-term care home costs',
-      id: 'trilliumLongTermCareAmount',
+      url: '/trillium/longTermCare/type/roomAndBoard',
+      h1: 'Enter your total 2018 room and board costs in long-term care',
+      id: 'trilliumLongTermCareRoomAndBoardAmount',
     })
 
     cy.continue()

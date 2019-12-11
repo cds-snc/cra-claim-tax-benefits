@@ -25,10 +25,6 @@ describe('Test /deductions responses', () => {
         key: 'trilliumEnergyCostClaim',
       },
       {
-        url: '/trillium/longTermCare/type',
-        key: 'trilliumLongTermCareTypeClaim',
-      },
-      {
         url: '/deductions/climate-action-incentive',
         key: 'climateActionIncentiveIsRural',
         yesRedir: '/start',
@@ -117,7 +113,7 @@ describe('Test /deductions responses', () => {
     })
   })
 
-  describe('Test /deductions/* Trillium yesNo responses', () => {
+  describe('Test /deductions/* responses', () => {
     const yesNoResponses = [
       {
         url: '/trillium/propertyTax',
@@ -244,40 +240,95 @@ describe('Test /deductions responses', () => {
   })
 
   describe('Test /trillium/longTermCare responses', () => {
-    test('it returns a 422 with no option selected', async () => {
-      const response = await request(app)
-        .post('/trillium/longTermCare')
-        .use(withCSRF(cookie, csrfToken))
-      expect(response.statusCode).toBe(422)
+    const longTermCareUrls = [
+      {
+        url: '/trillium/longTermCare',
+        key: 'trilliumLongTermCareClaim',
+        expectedRedirect: '/trillium/longTermCare/ontario',
+      },
+      {
+        url: '/trillium/longTermCare/ontario',
+        key: 'trilliumLongTermCareOntario',
+        expectedRedirect: '/trillium/longTermCare/type',
+      },
+      {
+        url: '/trillium/longTermCare/type',
+        key: 'trilliumLongTermCareTypeClaim',
+        expectedRedirect: '/trillium/longTermCare/cost',
+      },
+      {
+        url: '/trillium/longTermCare/cost',
+        key: 'trilliumLongTermCareCost',
+        expectedRedirect: '/trillium/longTermCare/type/roomAndBoard',
+      },
+    ]
+    longTermCareUrls.map(longTermCareURL => {
+      describe(`Test ${longTermCareURL.url} responses`, () => {
+        test('it returns a 200 response', async () => {
+          const response = await request(app).get(longTermCareURL.url)
+          expect(response.statusCode).toBe(200)
+        })
+
+        test('it returns a 422 response for no posted value', async () => {
+          const response = await request(app)
+            .post(longTermCareURL.url)
+            .use(withCSRF(cookie, csrfToken))
+            .send({ redirect: '/start' })
+          expect(response.statusCode).toBe(422)
+        })
+
+        const badValues = ['', null, false, 0, 'dinosaur', 'yes']
+        badValues.map(badValue => {
+          test(`it returns a 422 for a bad posted value: "${badValue}"`, async () => {
+            const response = await request(app)
+              .post(longTermCareURL.url)
+              .use(withCSRF(cookie, csrfToken))
+              .send({ [longTermCareURL.key]: badValue, redirect: '/start' })
+            expect(response.statusCode).toBe(422)
+          })
+        })
+
+        test('it redirects to the posted redirect url when posting "No"', async () => {
+          const response = await request(app)
+            .post(longTermCareURL.url)
+            .use(withCSRF(cookie, csrfToken))
+            .send({ [longTermCareURL.key]: 'No', redirect: '/start' })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual('/start')
+        })
+
+        test('it redirects to the correct next page when posting "Yes"', async () => {
+          const response = await request(app)
+            .post(longTermCareURL.url)
+            .use(withCSRF(cookie, csrfToken))
+            .send({ [longTermCareURL.key]: 'Yes', redirect: '/start' })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual(longTermCareURL.expectedRedirect)
+        })
+
+        test('it redirects to the checkAnswers when posting "No" and having come from the checkAnswers page', async () => {
+          const response = await request(app)
+            .post(`${longTermCareURL.url}`)
+            .query({ ref: 'checkAnswers' })
+            .use(withCSRF(cookie, csrfToken))
+            .send({ [longTermCareURL.key]: 'No', redirect: '/start' })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual('/checkAnswers')
+        })
+      })
     })
 
-    test('it redirects to the provided redirect value when selecting No', async () => {
+    test('the /longTermCare/ontario page redirects with the checkAnswers ref when posting Yes and having come from the checkAnswers page', async () => {
       const response = await request(app)
-        .post('/trillium/longTermCare')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ trilliumLongTermCareClaim: 'No', redirect: '/start' })
-      expect(response.headers.location).toEqual('/start')
-      expect(response.statusCode).toBe(302)
-    })
-
-    test('it redirects to "/trillium/longTermCare/type" when selecting Yes', async () => {
-      const response = await request(app)
-        .post('/trillium/longTermCare')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ trilliumLongTermCareClaim: 'Yes' })
-      expect(response.headers.location).toEqual('/trillium/longTermCare/type')
-      expect(response.statusCode).toBe(302)
-    })
-
-    test('it redirects with the checkAnswers ref when posting Yes and having come from the checkAnswers page', async () => {
-      const response = await request(app)
-        .post('/trillium/longTermCare')
+        .post('/trillium/longTermCare/ontario')
         .query({ ref: 'checkAnswers' })
         .use(withCSRF(cookie, csrfToken))
-        .send({ trilliumLongTermCareClaim: 'Yes' })
+        .send({ trilliumLongTermCareOntario: 'Yes' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/trillium/longTermCare/type?ref=checkAnswers')
     })
+
+
   })
 
   describe('Test /deductions/*/amount responses', () => {

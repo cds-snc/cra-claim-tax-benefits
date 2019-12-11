@@ -1,0 +1,16 @@
+extends ../base
+
+block variables
+  -var title = __('Long-term care home costs')
+  -var trilliumLongTermCareCost = !hasData(data, 'deductions.trilliumLongTermCareCost') ? '' : data.deductions.trilliumLongTermCareCost ? 'Yes' : 'No'
+
+block content
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('trilliumLongTermCareCost', 'Does the home list room and board costs as a separate line on your receipts?', trilliumLongTermCareCost)
+
+    input#redirect(name='redirect', type='hidden', value='/trillium/longTermCare/type/amount')
+
+    +formButtons()

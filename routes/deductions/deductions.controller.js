@@ -25,7 +25,7 @@ module.exports = function(app) {
     '/trillium/rent',
     checkSchema(trilliumRentSchema),
     checkErrors('deductions/trillium-rent'),
-    doYesNo('trilliumRentClaim', ['trilliumPropertyTaxOntario']),
+    doYesNo('trilliumRentClaim', ['trilliumRentOntario','trilliumRentAmount']),
     doRedirect,
   )
   app.get('/trillium/rent/ontario', renderWithData('deductions/trillium-rent-ontario'))

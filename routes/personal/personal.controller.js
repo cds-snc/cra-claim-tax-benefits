@@ -64,10 +64,6 @@ const postName = (req, res, next) => {
   next()
 }
 
-const message = () => {
-  console.log('MESSAGE')
-}
-
 const postConfirmMaritalStatus = (req, res, next) => {
   const confirmMaritalStatus = req.body.confirmMaritalStatus
 

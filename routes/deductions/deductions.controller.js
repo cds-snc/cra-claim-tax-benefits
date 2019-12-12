@@ -7,7 +7,6 @@ const {
   checkErrors,
   postAmount,
   getDateDelta,
-  getPreviousRoute,
 } = require('./../../utils')
 const {
   trilliumRentSchema,

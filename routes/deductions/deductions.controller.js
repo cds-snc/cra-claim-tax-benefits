@@ -149,8 +149,6 @@ module.exports = function(app) {
     '/deductions/senior-public-transit',
     seniorRedirect(),
     renderWithData('deductions/senior-public-transit'),
-
-    //return renderWithData('deductions/senior-public-transit')(req, res)
   )
 
   app.post(

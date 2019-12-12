@@ -1,0 +1,13 @@
+extends ../../base
+
+block variables
+  -var title = __('Your SIN and date of birth do not match')
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__('Check that you entered both correctly')}
+
+    a(href='/login/sin' role='button' draggable='false') #{__('Try again')} 

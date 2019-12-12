@@ -5,6 +5,7 @@ const routes = [
   { path: '/offramp', editInfo: 'skip' },
   { path: '/login/sin' },
   { path: '/login/dateOfBirth' },
+  { path: '/login/error/doesNotMatch', editInfo: 'login.error'},
   { path: '/personal/name' },
   { path: '/offramp/name', editInfo: 'skip' },
   { path: '/personal/residence' },

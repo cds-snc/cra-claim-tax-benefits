@@ -372,7 +372,7 @@ describe('Test /login responses', () => {
         expect(response.statusCode).toBe(302)
         expect(response.headers.location).toBe('/personal/name')
       })
-      test('it returns a 302 to the /login/sin page with a dob that does not match the access code', async () => {
+      test('it returns a 302 to the /login/error/doesNotMatch page with a dob that does not match the access code', async () => {
         const response = await authSession
           .post('/login/dateOfBirth')
           .use(withCSRF(cookie, csrfToken))
@@ -383,8 +383,14 @@ describe('Test /login responses', () => {
             redirect: '/personal/name',
           })
         expect(response.statusCode).toBe(302)
-        expect(response.headers.location).toBe('/login/sin')
+        expect(response.headers.location).toBe('/login/error/doesNotMatch')
       })
+    })
+  })
+  describe('for login error pages', () => {
+    test('it returns a 200 response', async () => {
+      const response = await request(app).get('/login/error/doesNotMatch')
+      expect(response.statusCode).toBe(200)
     })
   })
 })

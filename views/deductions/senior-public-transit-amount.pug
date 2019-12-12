@@ -16,6 +16,6 @@ block content
   form.cra-form(method='post')
     +textInput('Total amount spent on public transit')(class='w-1-2 input-with-unit' name='seniorTransitAmount' placeholder=placeholder aria-labelledby='seniorTransitAmount__unit seniorTransitAmount__label' value=formattedValue)
 
-    input#redirect(name='redirect', type='hidden', value='/vote/optIn')
+    input#redirect(name='redirect', type='hidden', value='/trillium/rent')
 
     +formButtons('Continue')

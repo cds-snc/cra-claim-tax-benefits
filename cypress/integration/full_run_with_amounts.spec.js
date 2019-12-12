@@ -1,8 +1,4 @@
-const {
-  checkTableRows,
-  getBenefitsBreakdownRows,
-  getAddress,
-} = require('../utils.js')
+const { checkTableRows, getBenefitsBreakdownRows, getAddress } = require('../utils.js')
 
 describe('Full run through saying "yes" to everything', function() {
   before(function() {
@@ -78,6 +74,28 @@ describe('Full run through saying "yes" to everything', function() {
     cy.continue()
   })
 
+  //SENIOR PUBLIC TRANSIT TAX CREDIT
+  it('navigates the Senior Public Transit Tax Credit page', function() {
+    cy.confirm({
+      url: '/deductions/senior-public-transit',
+      h1: `Senior's public transit`,
+      id: 'seniorTransitClaim0',
+    })
+
+    cy.continue()
+  })
+
+  //ENIOR PUBLIC TRANSIT TAX CREDIT **AMOUNT**
+  it('navigates the Senior Public Transit Tax Credit AMOUNT page', function() {
+    cy.amount({
+      url: '/deductions/senior-public-transit/amount',
+      h1: 'Enter your total 2018 transit costs',
+      id: 'seniorTransitAmount',
+    })
+
+    cy.continue()
+  })
+
   //TRILLIUM RENT
   it('navigates the Trillium Rent page', function() {
     cy.confirm({
@@ -89,8 +107,8 @@ describe('Full run through saying "yes" to everything', function() {
     cy.continue()
   })
 
-   //TRILLIUM RENT ONTARIO
-   it('navigates the Trillium Rent Ontario page', function() {
+  //TRILLIUM RENT ONTARIO
+  it('navigates the Trillium Rent Ontario page', function() {
     cy.confirm({
       url: '/trillium/rent/ontario',
       h1: 'Rent in Ontario',

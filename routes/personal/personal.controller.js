@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator')
-const { doRedirect, renderWithData, checkErrors, getDateDelta } = require('./../../utils')
+const { doRedirect, renderWithData, checkErrors } = require('./../../utils')
 const {
   addressSchema,
   maritalStatusSchema,
@@ -34,7 +34,7 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/personal/maritalStatus', renderWithData('personal/maritalStatus'))
+  app.get('/personal/maritalStatus', renderWithData('personal/maritalStatus') )
   app.post(
     '/personal/maritalStatus',
     checkSchema(maritalStatusSchema),
@@ -64,6 +64,10 @@ const postName = (req, res, next) => {
   next()
 }
 
+const message = () => {
+  console.log('MESSAGE')
+}
+
 const postConfirmMaritalStatus = (req, res, next) => {
   const confirmMaritalStatus = req.body.confirmMaritalStatus
 
@@ -73,11 +77,6 @@ const postConfirmMaritalStatus = (req, res, next) => {
     //Income details are not correct
     //Lead them to the offramp
     return res.redirect('/offramp/maritalStatus')
-  }
-
-  // Just basing the difference in months or years is not a good enough check so we are checking the total delta days
-  if (getDateDelta(req.session.personal.dateOfBirth) === 23725 && confirmMaritalStatus === 'Yes') {
-    return res.redirect('/deductions/senior-public-transit')
   }
 
   next()

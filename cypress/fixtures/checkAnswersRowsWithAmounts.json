@@ -21,6 +21,14 @@
       "value": "Single"
     },
     {
+      "key": "Did you use public transit in 2018?",
+      "value": "Yes"
+    },
+    {
+      "key": "Total amount spent on public transit",
+      "value": "$25.00"
+    },
+    {
       "key": "Did you pay rent?",
       "value": "Yes"
     },

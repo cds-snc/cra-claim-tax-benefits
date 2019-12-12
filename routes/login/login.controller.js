@@ -34,6 +34,8 @@ module.exports = function(app) {
     postLogin,
     doRedirect,
   )
+
+  app.get('/login/error/doesNotMatch', renderWithData('login/error/doesNotMatch'))
 }
 
 const postLoginCode = async (req, res, next) => {
@@ -110,10 +112,9 @@ const postLogin = async (req, res, next) => {
   const { code, sin, dateOfBirth } = req.session.login
   let row = DB.validateUser({ code, sin, dateOfBirth })
 
-  // if no row is found, error and return to SIN page
+  // if no row is found, error and proceed to error page
   if (!row) {
-    _loginError(req, { id: 'sin', msg: 'errors.login.match' })
-    return res.redirect('/login/sin')
+    return res.redirect('/login/error/doesNotMatch')
   } else if (row.error) {
     // sin and DoB match another access code
     _loginError(req, { id: 'code', msg: 'errors.login.codeMatch' })

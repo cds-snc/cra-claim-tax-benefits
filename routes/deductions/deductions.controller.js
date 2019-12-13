@@ -1,5 +1,13 @@
 const { checkSchema } = require('express-validator')
-const { doRedirect, doYesNo, renderWithData, checkErrors, postAmount } = require('./../../utils')
+
+const {
+  doRedirect,
+  doYesNo,
+  renderWithData,
+  checkErrors,
+  postAmount,
+  getDateDelta,
+} = require('./../../utils')
 const {
   trilliumRentSchema,
   trilliumRentOntarioSchema,
@@ -10,6 +18,8 @@ const {
   trilliumEnergyReserveSchema,
   trilliumEnergyReserveOntarioSchema,
   trilliumEnergyCostSchema,
+  seniorTransitSchema,
+  seniorTransitAmountSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareSchema,
   trilliumlongTermCareOntarioSchema,
@@ -20,6 +30,8 @@ const {
   climateActionIncentiveSchema,
 } = require('./../../schemas')
 
+const SIXTY_FIVE_YEARS_IN_DAYS = 23725
+
 module.exports = function(app) {
   //Start of Trillum Section
 
@@ -28,7 +40,7 @@ module.exports = function(app) {
     '/trillium/rent',
     checkSchema(trilliumRentSchema),
     checkErrors('deductions/trillium-rent'),
-    doYesNo('trilliumRentClaim', ['trilliumRentOntario','trilliumRentAmount']),
+    doYesNo('trilliumRentClaim', ['trilliumRentOntario', 'trilliumRentAmount']),
     doRedirect,
   )
   app.get('/trillium/rent/ontario', renderWithData('deductions/trillium-rent-ontario'))
@@ -45,7 +57,10 @@ module.exports = function(app) {
     checkSchema(trilliumRentAmountSchema),
     checkErrors('deductions/trillium-rent-amount'),
     (req, res, next) => {
-      req.session.deductions.trilliumRentAmount = postAmount(req.body.trilliumRentAmount, req.locale)
+      req.session.deductions.trilliumRentAmount = postAmount(
+        req.body.trilliumRentAmount,
+        req.locale,
+      )
       next()
     },
     doRedirect,
@@ -59,7 +74,10 @@ module.exports = function(app) {
     doYesNo('trilliumPropertyTaxClaim', ['trilliumPropertyTaxOntario']),
     doRedirect,
   )
-  app.get('/trillium/propertyTax/ontario', renderWithData('deductions/trillium-propertyTax-ontario'))
+  app.get(
+    '/trillium/propertyTax/ontario',
+    renderWithData('deductions/trillium-propertyTax-ontario'),
+  )
   app.post(
     '/trillium/propertyTax/ontario',
     checkSchema(trilliumPropertyTaxOntarioSchema),
@@ -73,7 +91,10 @@ module.exports = function(app) {
     checkSchema(trilliumPropertyTaxAmountSchema),
     checkErrors('deductions/trillium-propertyTax-amount'),
     (req, res, next) => {
-      req.session.deductions.trilliumPropertyTaxAmount = postAmount(req.body.trilliumPropertyTaxAmount, req.locale)
+      req.session.deductions.trilliumPropertyTaxAmount = postAmount(
+        req.body.trilliumPropertyTaxAmount,
+        req.locale,
+      )
       next()
     },
     doRedirect,
@@ -87,7 +108,10 @@ module.exports = function(app) {
     doYesNo('trilliumEnergyReserveClaim', ['trilliumEnergyCostClaim', 'trilliumEnergyAmount']),
     doRedirect,
   )
-  app.get('/trillium/energy/reserve/ontario', renderWithData('deductions/trillium-energy-reserve-ontario'))
+  app.get(
+    '/trillium/energy/reserve/ontario',
+    renderWithData('deductions/trillium-energy-reserve-ontario'),
+  )
   app.post(
     '/trillium/energy/reserve/ontario',
     checkSchema(trilliumEnergyReserveOntarioSchema),
@@ -111,7 +135,45 @@ module.exports = function(app) {
     checkSchema(trilliumEnergyAmountSchema),
     checkErrors('deductions/trillium-energy-cost-amount'),
     (req, res, next) => {
-      req.session.deductions.trilliumEnergyAmount = postAmount(req.body.trilliumEnergyAmount, req.locale)
+      req.session.deductions.trilliumEnergyAmount = postAmount(
+        req.body.trilliumEnergyAmount,
+        req.locale,
+      )
+      next()
+    },
+    doRedirect,
+  )
+
+  app.get(
+    '/deductions/senior-public-transit',
+    seniorRedirect,
+    renderWithData('deductions/senior-public-transit'),
+  )
+
+  app.post(
+    '/deductions/senior-public-transit',
+    seniorRedirect,
+    checkSchema(seniorTransitSchema),
+    checkErrors('deductions/senior-public-transit'),
+    doYesNo('seniorTransitClaim', ['seniorTransitAmount']),
+    doRedirect,
+  )
+
+  app.get(
+    '/deductions/senior-public-transit/amount',
+    seniorRedirect,
+    renderWithData('deductions/senior-public-transit-amount'),
+  )
+  app.post(
+    '/deductions/senior-public-transit/amount',
+    seniorRedirect,
+    checkSchema(seniorTransitAmountSchema),
+    checkErrors('deductions/senior-public-transit-amount'),
+    (req, res, next) => {
+      req.session.deductions.seniorTransitAmount = postAmount(
+        req.body.seniorTransitAmount,
+        req.locale,
+      )
       next()
     },
     doRedirect,
@@ -129,7 +191,10 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/trillium/longTermCare/ontario', renderWithData('deductions/trillium-longTermCare-ontario'))
+  app.get(
+    '/trillium/longTermCare/ontario',
+    renderWithData('deductions/trillium-longTermCare-ontario'),
+  )
   app.post(
     '/trillium/longTermCare/ontario',
     checkSchema(trilliumlongTermCareOntarioSchema),
@@ -163,13 +228,19 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/trillium/longTermCare/type/roomAndBoard',renderWithData('deductions/trillium-longTermCare-roomAndBoard'))
+  app.get(
+    '/trillium/longTermCare/type/roomAndBoard',
+    renderWithData('deductions/trillium-longTermCare-roomAndBoard'),
+  )
   app.post(
     '/trillium/longTermCare/type/roomAndBoard',
     checkSchema(trilliumlongTermCareRoomAndBoardSchema),
     checkErrors('deductions/trillium-longTermCare-roomAndBoard'),
     (req, res, next) => {
-      req.session.deductions.trilliumLongTermCareRoomAndBoardAmount = postAmount(req.body.trilliumLongTermCareRoomAndBoardAmount, req.locale)
+      req.session.deductions.trilliumLongTermCareRoomAndBoardAmount = postAmount(
+        req.body.trilliumLongTermCareRoomAndBoardAmount,
+        req.locale,
+      )
       next()
     },
     doRedirect,
@@ -185,7 +256,10 @@ module.exports = function(app) {
     checkErrors('deductions/trillium-longTermCare-amount'),
     (req, res, next) => {
       req.session.deductions.trilliumLongTermCareIsFullAmount = true
-      req.session.deductions.trilliumLongTermCareAmount = postAmount(req.body.trilliumLongTermCareAmount, req.locale)
+      req.session.deductions.trilliumLongTermCareAmount = postAmount(
+        req.body.trilliumLongTermCareAmount,
+        req.locale,
+      )
       next()
     },
     doRedirect,
@@ -207,4 +281,15 @@ module.exports = function(app) {
     },
     doRedirect,
   )
+}
+
+// Only skip this page in production. For testing and development, we want to be able to see the senior transit pages just like any other.
+const seniorRedirect = (req, res, next) => {
+  const dobInDays = getDateDelta(req.session.personal.dateOfBirth)
+  if (process.env.NODE_ENV === 'production') {
+    if (dobInDays <= SIXTY_FIVE_YEARS_IN_DAYS) {
+      return res.redirect('/trillium/rent')
+    }
+  }
+  return next()
 }

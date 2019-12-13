@@ -14,6 +14,8 @@ const routes = [
   { path: '/offramp/address', editInfo: 'skip' },
   { path: '/personal/maritalStatus' },
   { path: '/offramp/maritalStatus', editInfo: 'skip' },
+  { path: '/deductions/senior-public-transit', editInfo: 'deductions.seniorTransitClaim' },
+  { path: '/deductions/senior-public-transit/amount', editInfo: 'deductions.seniorTransitAmount' },
   { path: '/trillium/rent' },
   { path: '/trillium/rent/ontario', editInfo: 'deductions.trilliumRentOntario' },
   { path: '/trillium/rent/amount', editInfo: 'deductions.trilliumRentAmount' },

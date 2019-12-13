@@ -446,6 +446,15 @@ const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
   return routeWithIndex
 }
 
+const getDateDelta = (dateOfBirth) => {
+  const today = new Date()
+  const newDate = new Date(dateOfBirth)
+  const diffTime = Math.abs(today - newDate)
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+  return diffDays
+}
+
 module.exports = {
   errorArray2ErrorObject,
   checkErrors,
@@ -465,4 +474,5 @@ module.exports = {
   returnToCheckAnswers,
   postAmount,
   currencyWithoutUnit,
+  getDateDelta,
 }

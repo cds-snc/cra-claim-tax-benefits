@@ -149,6 +149,7 @@
     "trilliumLongTermCareClaim": null,
     "trilliumLongTermCareOntario": null,
     "trilliumLongTermCareCost": null,
+    "trilliumLongTermCareTypeClaim": null,
     "trilliumLongTermCareRoomAndBoardAmount": 0,
     "trilliumLongTermCareIsFullAmount": null,
     "trilliumLongTermCareAmount": 0,

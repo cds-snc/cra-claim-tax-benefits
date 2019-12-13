@@ -146,13 +146,13 @@ module.exports = function(app) {
 
   app.get(
     '/deductions/senior-public-transit',
-    seniorRedirect(),
+    seniorRedirect,
     renderWithData('deductions/senior-public-transit'),
   )
 
   app.post(
     '/deductions/senior-public-transit',
-    seniorRedirect(),
+    seniorRedirect,
     checkSchema(seniorTransitSchema),
     checkErrors('deductions/senior-public-transit'),
     doYesNo('seniorTransitClaim', ['seniorTransitAmount']),
@@ -161,12 +161,12 @@ module.exports = function(app) {
 
   app.get(
     '/deductions/senior-public-transit/amount',
-    seniorRedirect(),
+    seniorRedirect,
     renderWithData('deductions/senior-public-transit-amount'),
   )
   app.post(
     '/deductions/senior-public-transit/amount',
-    seniorRedirect(),
+    seniorRedirect,
     checkSchema(seniorTransitAmountSchema),
     checkErrors('deductions/senior-public-transit-amount'),
     (req, res, next) => {

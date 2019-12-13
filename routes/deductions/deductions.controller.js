@@ -287,7 +287,7 @@ module.exports = function(app) {
 const seniorRedirect = (req, res, next) => {
   const dobInDays = getDateDelta(req.session.personal.dateOfBirth)
   if (process.env.NODE_ENV === 'production') {
-    if (dobInDays <= SIXTYFIVE_YEARS_INDAYS) {
+    if (dobInDays <= SIXTY_FIVE_YEARS_IN_DAYS) {
       return res.redirect('/trillium/rent')
     }
   }

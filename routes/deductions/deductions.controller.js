@@ -30,7 +30,7 @@ const {
   climateActionIncentiveSchema,
 } = require('./../../schemas')
 
-const SIXTYFIVE_YEARS_INDAYS = 23725
+const SIXTY_FIVE_YEARS_IN_DAYS = 23725
 
 module.exports = function(app) {
   //Start of Trillum Section
@@ -283,14 +283,13 @@ module.exports = function(app) {
   )
 }
 
-const seniorRedirect = () => {
-  return (req, res, next) => {
-    const dobInDays = getDateDelta(req.session.personal.dateOfBirth)
-    if (process.env.NODE_ENV === 'production') {
-      if (dobInDays <= SIXTYFIVE_YEARS_INDAYS) {
-        return res.redirect('/trillium/rent')
-      }
+// Only skip this page in production. For testing and development, we want to be able to see the senior transit pages just like any other.
+const seniorRedirect = (req, res, next) => {
+  const dobInDays = getDateDelta(req.session.personal.dateOfBirth)
+  if (process.env.NODE_ENV === 'production') {
+    if (dobInDays <= SIXTYFIVE_YEARS_INDAYS) {
+      return res.redirect('/trillium/rent')
     }
-    return next()
   }
+  return next()
 }

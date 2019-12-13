@@ -52,7 +52,15 @@ const checkLangQuery = function(req, res, next) {
  * that a user session exists whatever page you end up on.
  */
 const checkPublic = function(req, res, next) {
-  const publicPaths = ['/', '/clear', '/start', '/login/code', '/login/sin', '/login/dateOfBirth']
+  const publicPaths = [
+    '/',
+    '/clear',
+    '/start',
+    '/login/code',
+    '/login/sin',
+    '/login/dateOfBirth',
+    '/login/error/doesNotMatch'
+  ]
   if (publicPaths.includes(req.path)) {
     return next()
   }

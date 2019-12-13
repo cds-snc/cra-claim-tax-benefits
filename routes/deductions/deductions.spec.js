@@ -17,8 +17,8 @@ describe('Test /deductions responses', () => {
   describe('Test /deductions/* yesNo responses and /ontario page responses', () => {
     const yesNoResponses = [
       {
-        url: '/trillium/rent',
-        key: 'trilliumRentClaim',
+        url: '/trillium/rent/ontario',
+        key: 'trilliumRentOntario',
       },
       {
         url: '/trillium/energy/cost',
@@ -118,6 +118,10 @@ describe('Test /deductions responses', () => {
       {
         url: '/trillium/propertyTax',
         key: 'trilliumPropertyTaxClaim',
+      },
+      {
+        url: '/trillium/rent',
+        key: 'trilliumRentClaim',
       },
     ]
 

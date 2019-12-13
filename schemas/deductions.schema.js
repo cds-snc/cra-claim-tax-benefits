@@ -40,6 +40,14 @@ const trilliumEnergyAmountSchema = {
   trilliumEnergyAmount: currencySchema(),
 }
 
+const seniorTransitSchema = {
+  seniorTransitClaim: yesNoSchema(),
+}
+
+const seniorTransitAmountSchema = {
+  seniorTransitAmount: currencySchema(),
+}
+
 const trilliumlongTermCareSchema = {
   trilliumLongTermCareClaim: yesNoSchema(),
 }
@@ -79,6 +87,8 @@ module.exports = {
   trilliumEnergyReserveSchema,
   trilliumEnergyReserveOntarioSchema,
   trilliumEnergyCostSchema,
+  seniorTransitSchema,
+  seniorTransitAmountSchema,
   trilliumEnergyAmountSchema,
   trilliumlongTermCareSchema,
   trilliumlongTermCareOntarioSchema,

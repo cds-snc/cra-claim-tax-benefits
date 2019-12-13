@@ -52,7 +52,15 @@ const checkLangQuery = function(req, res, next) {
  * that a user session exists whatever page you end up on.
  */
 const checkPublic = function(req, res, next) {
-  const publicPaths = ['/', '/clear', '/start', '/login/code', '/login/sin', '/login/dateOfBirth']
+  const publicPaths = [
+    '/',
+    '/clear',
+    '/start',
+    '/login/code',
+    '/login/sin',
+    '/login/dateOfBirth',
+    '/login/error/doesNotMatch',
+  ]
   if (publicPaths.includes(req.path)) {
     return next()
   }
@@ -438,6 +446,15 @@ const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
   return routeWithIndex
 }
 
+const getDateDelta = (dateOfBirth) => {
+  const today = new Date()
+  const newDate = new Date(dateOfBirth)
+  const diffTime = Math.abs(today - newDate)
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+  return diffDays
+}
+
 module.exports = {
   errorArray2ErrorObject,
   checkErrors,
@@ -457,4 +474,5 @@ module.exports = {
   returnToCheckAnswers,
   postAmount,
   currencyWithoutUnit,
+  getDateDelta,
 }

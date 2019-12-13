@@ -78,6 +78,17 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
+    //SENIOR PUBLIC TRANSIT TAX CREDIT
+    it('navigates the Senior Public Transit Tax Credit page', function() {
+      cy.confirm({
+        url: '/deductions/senior-public-transit',
+        h1: `Senior's public transit`,
+        id: 'seniorTransitClaim1',
+      })
+  
+      cy.continue()
+    })
+
   //TRILLIUM RENT
   it('navigates the Trillium Rent page', function() {
     cy.confirm({

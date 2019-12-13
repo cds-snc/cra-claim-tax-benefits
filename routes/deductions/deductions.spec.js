@@ -17,6 +17,11 @@ describe('Test /deductions responses', () => {
   describe('Test deductions and trillium yesNo page responses', () => {
     const yesNoResponses = [
       {
+        url: '/deductions/senior-public-transit',
+        key: 'seniorTransitClaim',
+        yesRedir: '/deductions/senior-public-transit/amount'
+      },
+      {
         url: '/trillium/rent',
         key: 'trilliumRentClaim',
         yesRedir: '/trillium/rent/ontario',
@@ -71,6 +76,11 @@ describe('Test /deductions responses', () => {
         url: '/trillium/energy/cost',
         key: 'trilliumEnergyCostClaim',
         yesRedir: '/trillium/energy/cost/amount',
+      },
+      {
+        url: '/deductions/climate-action-incentive',
+        key: 'climateActionIncentiveIsRural',
+        yesRedir: '/vote/optIn',
       },
     ]
 
@@ -155,6 +165,10 @@ describe('Test /deductions responses', () => {
       {
         url: '/trillium/longTermCare/type/amount',
         key: 'trilliumLongTermCareAmount',
+      },
+      {
+        url: '/deductions/senior-public-transit/amount',
+        key: 'seniorTransitAmount',
       },
     ]
 

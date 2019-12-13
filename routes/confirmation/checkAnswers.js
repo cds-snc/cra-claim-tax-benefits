@@ -32,6 +32,18 @@ const answerInfo = [
     sectionTitle: 'Tax benefits',
     sectionRows: [
       {
+        text: 'Did you use public transit in 2018?',
+        infoPath: ['deductions.seniorTransitClaim'],
+        urlPath: '/deductions/senior-public-transit',
+        displayIf: 'deductions.seniorTransitClaim',
+      },
+      {
+        text: 'Total amount spent on public transit',
+        infoPath: ['deductions.seniorTransitAmount'],
+        urlPath: '/deductions/senior-public-transit/amount',
+        displayIf: 'deductions.seniorTransitClaim',
+      },
+      {
         text: 'Did you pay rent?',
         infoPath: ['deductions.trilliumRentClaim'],
         urlPath: '/trillium/rent',

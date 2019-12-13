@@ -14,268 +14,76 @@ describe('Test /deductions responses', () => {
     csrfToken = extractCsrfToken(getresp)
   })
 
-  describe('Test /deductions/* yesNo responses and /ontario page responses', () => {
+  describe('Test deductions and trillium yesNo page responses', () => {
     const yesNoResponses = [
+      {
+        url: '/trillium/rent',
+        key: 'trilliumRentClaim',
+        yesRedir: '/trillium/rent/ontario',
+      },
       {
         url: '/trillium/rent/ontario',
         key: 'trilliumRentOntario',
+        yesRedir: '/trillium/rent/amount',
       },
       {
-        url: '/trillium/energy/cost',
-        key: 'trilliumEnergyCostClaim',
-      },
-      {
-        url: '/deductions/climate-action-incentive',
-        key: 'climateActionIncentiveIsRural',
-        yesRedir: '/start',
+        url: '/trillium/propertyTax',
+        key: 'trilliumPropertyTaxClaim',
+        yesRedir: '/trillium/propertyTax/ontario',
       },
       {
         url: '/trillium/propertyTax/ontario',
         key: 'trilliumPropertyTaxOntario',
+        yesRedir: '/trillium/propertyTax/amount',
       },
-    ]
-
-    yesNoResponses.map(yesNoResponse => {
-      describe(`Test ${yesNoResponse.url} responses`, () => {
-        test('it returns a 200 response', async () => {
-          const response = await request(app).get(yesNoResponse.url)
-          expect(response.statusCode).toBe(200)
-        })
-
-        test('it returns a 422 response for no posted value', async () => {
-          const response = await request(app)
-            .post(yesNoResponse.url)
-            .use(withCSRF(cookie, csrfToken))
-            .send({ redirect: '/start' })
-          expect(response.statusCode).toBe(422)
-        })
-
-        const badValues = ['', null, false, 0, 'dinosaur', 'yes']
-        badValues.map(badValue => {
-          test(`it returns a 422 for a bad posted value: "${badValue}"`, async () => {
-            const response = await request(app)
-              .post(yesNoResponse.url)
-              .use(withCSRF(cookie, csrfToken))
-              .send({ [yesNoResponse.key]: badValue, redirect: '/start' })
-            expect(response.statusCode).toBe(422)
-          })
-        })
-
-        test('it redirects to the posted redirect url when posting "No"', async () => {
-          const response = await request(app)
-            .post(yesNoResponse.url)
-            .use(withCSRF(cookie, csrfToken))
-            .send({ [yesNoResponse.key]: 'No', redirect: '/start' })
-          expect(response.statusCode).toBe(302)
-          expect(response.headers.location).toEqual('/start')
-        })
-
-        test('it redirects to the checkAnswers when posting "No" and having come from the checkAnswers page', async () => {
-          const response = await request(app)
-            .post(`${yesNoResponse.url}`)
-            .query({ ref: 'checkAnswers' })
-            .use(withCSRF(cookie, csrfToken))
-            .send({ [yesNoResponse.key]: 'No', redirect: '/start' })
-          expect(response.statusCode).toBe(302)
-          expect(response.headers.location).toEqual('/checkAnswers')
-        })
-
-        test('it redirects to the amount page with checkAnswers ref when posting "Yes" and having come from the checkAnswers page', async () => {
-          const response = await request(app)
-            .post(yesNoResponse.url)
-            .query({ ref: 'checkAnswers' })
-            .use(withCSRF(cookie, csrfToken))
-            .send({ [yesNoResponse.key]: 'Yes', redirect: '/start' })
-          expect(response.statusCode).toBe(302)
-          if ('yesRedir' in yesNoResponse) {
-            expect(response.headers.location).toEqual('/checkAnswers')
-          } else {
-            expect(response.headers.location).toEqual(
-              `${yesNoResponse.url.replace('/ontario', '')}/amount?ref=checkAnswers`,
-            )
-          }
-        })
-
-        test('it redirects to the edit page when posting "Yes"', async () => {
-          const response = await request(app)
-            .post(yesNoResponse.url)
-            .use(withCSRF(cookie, csrfToken))
-            .send({
-              [yesNoResponse.key]: 'Yes',
-              redirect: yesNoResponse.yesRedir || '/',
-            })
-          expect(response.statusCode).toBe(302)
-          expect(response.headers.location).toEqual(
-            yesNoResponse.yesRedir || `${yesNoResponse.url.replace('/ontario', '')}/amount`,
-          )
-        })
-      })
-    })
-  })
-
-  describe('Test /deductions/* responses', () => {
-    const yesNoResponses = [
-      {
-        url: '/trillium/propertyTax',
-        key: 'trilliumPropertyTaxClaim',
-      },
-      {
-        url: '/trillium/rent',
-        key: 'trilliumRentClaim',
-      },
-    ]
-
-    yesNoResponses.map(yesNoResponse => {
-      describe(`Test ${yesNoResponse.url} responses`, () => {
-        test('it returns a 200 response', async () => {
-          const response = await request(app).get(yesNoResponse.url)
-          expect(response.statusCode).toBe(200)
-        })
-
-        test('it returns a 422 response for no posted value', async () => {
-          const response = await request(app)
-            .post(yesNoResponse.url)
-            .use(withCSRF(cookie, csrfToken))
-            .send({ redirect: '/start' })
-          expect(response.statusCode).toBe(422)
-        })
-
-        const badValues = ['', null, false, 0, 'dinosaur', 'yes']
-        badValues.map(badValue => {
-          test(`it returns a 422 for a bad posted value: "${badValue}"`, async () => {
-            const response = await request(app)
-              .post(yesNoResponse.url)
-              .use(withCSRF(cookie, csrfToken))
-              .send({ [yesNoResponse.key]: badValue, redirect: '/start' })
-            expect(response.statusCode).toBe(422)
-          })
-        })
-
-        test('it redirects to the posted redirect url when posting "No"', async () => {
-          const response = await request(app)
-            .post(yesNoResponse.url)
-            .use(withCSRF(cookie, csrfToken))
-            .send({ [yesNoResponse.key]: 'No', redirect: '/start' })
-          expect(response.statusCode).toBe(302)
-          expect(response.headers.location).toEqual('/start')
-        })
-
-        test('it redirects to the checkAnswers when posting "No" and having come from the checkAnswers page', async () => {
-          const response = await request(app)
-            .post(`${yesNoResponse.url}`)
-            .query({ ref: 'checkAnswers' })
-            .use(withCSRF(cookie, csrfToken))
-            .send({ [yesNoResponse.key]: 'No', redirect: '/start' })
-          expect(response.statusCode).toBe(302)
-          expect(response.headers.location).toEqual('/checkAnswers')
-        })
-
-        test('it redirects to the correct /ontario page with checkAnswers ref when posting "Yes" and having come from the checkAnswers page', async () => {
-          const response = await request(app)
-            .post(yesNoResponse.url)
-            .query({ ref: 'checkAnswers' })
-            .use(withCSRF(cookie, csrfToken))
-            .send({ [yesNoResponse.key]: 'Yes', redirect: '/start' })
-          expect(response.statusCode).toBe(302)
-          expect(response.headers.location).toEqual(`${yesNoResponse.url}/ontario?ref=checkAnswers`)
-        })
-
-        test('it redirects to the correct /ontario page when posting "Yes"', async () => {
-          const response = await request(app)
-            .post(yesNoResponse.url)
-            .use(withCSRF(cookie, csrfToken))
-            .send({
-              [yesNoResponse.key]: 'Yes',
-              redirect: yesNoResponse.yesRedir || '/',
-            })
-          expect(response.statusCode).toBe(302)
-          expect(response.headers.location).toEqual(
-            yesNoResponse.yesRedir || `${yesNoResponse.url}/ontario`,
-          )
-        })
-      })
-    })
-  })
-
-  describe('Test /trillium/energy/reserve responses', () => {
-    test('it returns a 422 with no option selected', async () => {
-      const response = await request(app)
-        .post('/trillium/energy/reserve')
-        .use(withCSRF(cookie, csrfToken))
-      expect(response.statusCode).toBe(422)
-    })
-
-    test('it redirects to the provided redirect value page when selecting No', async () => {
-      const response = await request(app)
-        .post('/trillium/energy/reserve')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ trilliumEnergyReserveClaim: 'No', redirect: '/start' })
-      expect(response.headers.location).toEqual('/start')
-      expect(response.statusCode).toBe(302)
-    })
-
-    test('it redirects to "/trillium/energy/reserve/ontario" when selecting Yes', async () => {
-      const response = await request(app)
-        .post('/trillium/energy/reserve')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ trilliumEnergyReserveClaim: 'Yes' })
-      expect(response.headers.location).toEqual('/trillium/energy/reserve/ontario')
-      expect(response.statusCode).toBe(302)
-    })
-
-    test('the /ontario page redirects to "/trillium/energy/cost" when selecting Yes', async () => {
-      const response = await request(app)
-        .post('/trillium/energy/reserve/ontario')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ trilliumEnergyReserveOntario: 'Yes' })
-      expect(response.headers.location).toEqual('/trillium/energy/cost')
-      expect(response.statusCode).toBe(302)
-    })
-
-    test('it redirects with the checkAnswers ref when posting Yes and having come from the checkAnswers page', async () => {
-      const response = await request(app)
-        .post('/trillium/energy/reserve')
-        .query({ ref: 'checkAnswers' })
-        .use(withCSRF(cookie, csrfToken))
-        .send({ trilliumEnergyReserveClaim: 'Yes' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/trillium/energy/reserve/ontario?ref=checkAnswers')
-    })
-  })
-
-  describe('Test /trillium/longTermCare responses', () => {
-    const longTermCareUrls = [
       {
         url: '/trillium/longTermCare',
         key: 'trilliumLongTermCareClaim',
-        expectedRedirect: '/trillium/longTermCare/ontario',
+        yesRedir: '/trillium/longTermCare/ontario',
       },
       {
         url: '/trillium/longTermCare/ontario',
         key: 'trilliumLongTermCareOntario',
-        expectedRedirect: '/trillium/longTermCare/type',
+        yesRedir: '/trillium/longTermCare/type',
       },
       {
         url: '/trillium/longTermCare/type',
         key: 'trilliumLongTermCareTypeClaim',
-        expectedRedirect: '/trillium/longTermCare/cost',
+        yesRedir: '/trillium/longTermCare/cost',
       },
       {
         url: '/trillium/longTermCare/cost',
         key: 'trilliumLongTermCareCost',
-        expectedRedirect: '/trillium/longTermCare/type/roomAndBoard',
+        yesRedir: '/trillium/longTermCare/type/roomAndBoard',
+        noRedir: '/trillium/longTermCare/type/amount',
+      },
+      {
+        url: '/trillium/energy/reserve',
+        key: 'trilliumEnergyReserveClaim',
+        yesRedir: '/trillium/energy/reserve/ontario',
+      },
+      {
+        url: '/trillium/energy/reserve/ontario',
+        key: 'trilliumEnergyReserveOntario',
+        yesRedir: '/trillium/energy/cost',
+      },
+      {
+        url: '/trillium/energy/cost',
+        key: 'trilliumEnergyCostClaim',
+        yesRedir: '/trillium/energy/cost/amount',
       },
     ]
-    longTermCareUrls.map(longTermCareURL => {
-      describe(`Test ${longTermCareURL.url} responses`, () => {
+
+    yesNoResponses.map(yesNoResponse => {
+      describe(`Test ${yesNoResponse.url} responses`, () => {
         test('it returns a 200 response', async () => {
-          const response = await request(app).get(longTermCareURL.url)
+          const response = await request(app).get(yesNoResponse.url)
           expect(response.statusCode).toBe(200)
         })
 
         test('it returns a 422 response for no posted value', async () => {
           const response = await request(app)
-            .post(longTermCareURL.url)
+            .post(yesNoResponse.url)
             .use(withCSRF(cookie, csrfToken))
             .send({ redirect: '/start' })
           expect(response.statusCode).toBe(422)
@@ -285,54 +93,45 @@ describe('Test /deductions responses', () => {
         badValues.map(badValue => {
           test(`it returns a 422 for a bad posted value: "${badValue}"`, async () => {
             const response = await request(app)
-              .post(longTermCareURL.url)
+              .post(yesNoResponse.url)
               .use(withCSRF(cookie, csrfToken))
-              .send({ [longTermCareURL.key]: badValue, redirect: '/start' })
+              .send({ [yesNoResponse.key]: badValue, redirect: '/start' })
             expect(response.statusCode).toBe(422)
           })
         })
 
         test('it redirects to the posted redirect url when posting "No"', async () => {
           const response = await request(app)
-            .post(longTermCareURL.url)
+            .post(yesNoResponse.url)
             .use(withCSRF(cookie, csrfToken))
-            .send({ [longTermCareURL.key]: 'No', redirect: '/start' })
+            .send({ [yesNoResponse.key]: 'No', redirect: yesNoResponse.noRedir || '/start' })
           expect(response.statusCode).toBe(302)
-          expect(response.headers.location).toEqual('/start')
-        })
-
-        test('it redirects to the correct next page when posting "Yes"', async () => {
-          const response = await request(app)
-            .post(longTermCareURL.url)
-            .use(withCSRF(cookie, csrfToken))
-            .send({ [longTermCareURL.key]: 'Yes', redirect: '/start' })
-          expect(response.statusCode).toBe(302)
-          expect(response.headers.location).toEqual(longTermCareURL.expectedRedirect)
+          expect(response.headers.location).toEqual(yesNoResponse.noRedir || '/start')
         })
 
         test('it redirects to the checkAnswers when posting "No" and having come from the checkAnswers page', async () => {
           const response = await request(app)
-            .post(`${longTermCareURL.url}`)
+            .post(`${yesNoResponse.url}`)
             .query({ ref: 'checkAnswers' })
             .use(withCSRF(cookie, csrfToken))
-            .send({ [longTermCareURL.key]: 'No', redirect: '/start' })
+            .send({ [yesNoResponse.key]: 'No', redirect: '/start' })
           expect(response.statusCode).toBe(302)
           expect(response.headers.location).toEqual('/checkAnswers')
         })
+
+        test('it redirects to the next page when posting "Yes"', async () => {
+          const response = await request(app)
+            .post(yesNoResponse.url)
+            .use(withCSRF(cookie, csrfToken))
+            .send({
+              [yesNoResponse.key]: 'Yes',
+              redirect: yesNoResponse.yesRedir,
+            })
+          expect(response.statusCode).toBe(302)
+          expect(response.headers.location).toEqual(yesNoResponse.yesRedir)
+        })
       })
     })
-
-    test('the /longTermCare/ontario page redirects with the checkAnswers ref when posting Yes and having come from the checkAnswers page', async () => {
-      const response = await request(app)
-        .post('/trillium/longTermCare/ontario')
-        .query({ ref: 'checkAnswers' })
-        .use(withCSRF(cookie, csrfToken))
-        .send({ trilliumLongTermCareOntario: 'Yes' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/trillium/longTermCare/type?ref=checkAnswers')
-    })
-
-
   })
 
   describe('Test /deductions/*/amount responses', () => {
@@ -348,6 +147,10 @@ describe('Test /deductions responses', () => {
       {
         url: '/trillium/energy/cost/amount',
         key: 'trilliumEnergyAmount',
+      },
+      {
+        url: '/trillium/longTermCare/type/roomAndBoard',
+        key: 'trilliumLongTermCareRoomAndBoardAmount',
       },
       {
         url: '/trillium/longTermCare/type/amount',

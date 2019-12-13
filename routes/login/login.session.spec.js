@@ -89,7 +89,7 @@ describe('Test /login SESSION responses', () => {
   })
 
   // TEST REDIRECT TO ERROR PAGE IF SIN IS WRONG
-  test('it returns a 422 on /login/error/doesNotMatch page when the SIN does not match the access code', async () => {
+  test('it returns a 200 on /login/error/doesNotMatch page when the SIN does not match the access code', async () => {
     const response = await testSession
       .post('/login/code')
       .use(doAccessCode())
@@ -103,11 +103,11 @@ describe('Test /login SESSION responses', () => {
     expect(response.headers.location).toBe('/login/error/doesNotMatch')
 
     const response2 = await testSession.get(response.headers.location)
-    expect(response2.statusCode).toBe(422)
+    expect(response2.statusCode).toBe(200)
   })
 
   // TEST REDIRECT TO ERROR PAGE IF DOB IS WRONG
-  test('it returns a 422 on /login/error/doesNotMatch page when the DATE OF BIRTH does not match the access code', async () => {
+  test('it returns a 200 on /login/error/doesNotMatch page when the DATE OF BIRTH does not match the access code', async () => {
     const response = await testSession
       .post('/login/code')
       .use(doAccessCode())
@@ -121,7 +121,7 @@ describe('Test /login SESSION responses', () => {
     expect(response.headers.location).toBe('/login/error/doesNotMatch')
 
     const response2 = await testSession.get(response.headers.location)
-    expect(response2.statusCode).toBe(422)
+    expect(response2.statusCode).toBe(200)
   })
 
   // TEST REDIRECT TO ERROR PAGE IF SIN AND DOB ARE WRONG

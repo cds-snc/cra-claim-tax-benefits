@@ -19,7 +19,7 @@ describe('Test /deductions responses', () => {
       {
         url: '/deductions/senior-public-transit',
         key: 'seniorTransitClaim',
-        yesRedir: '/deductions/senior-public-transit/amount'
+        yesRedir: '/deductions/senior-public-transit/amount',
       },
       {
         url: '/trillium/rent',

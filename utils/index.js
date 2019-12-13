@@ -59,7 +59,7 @@ const checkPublic = function(req, res, next) {
     '/login/code',
     '/login/sin',
     '/login/dateOfBirth',
-    '/login/error/doesNotMatch'
+    '/login/error/doesNotMatch',
   ]
   if (publicPaths.includes(req.path)) {
     return next()

@@ -3,6 +3,8 @@ const { checkSchema } = require('express-validator')
 const {
   doRedirect,
   doYesNo,
+  clearSessionFields,
+  getNextRoute,
   renderWithData,
   checkErrors,
   postAmount,
@@ -220,11 +222,27 @@ module.exports = function(app) {
     '/trillium/longTermCare/cost',
     checkSchema(trilliumlongTermCareCostSchema),
     checkErrors('deductions/trillium-longTermCare-cost'),
-    doYesNo('trilliumLongTermCareCost', [
-      'trilliumLongTermCareRoomAndBoardAmount',
-      'trilliumLongTermCareAmount',
-      'trilliumLongTermCareIsFullAmount',
-    ]),
+    (req, res, next) => {
+      // modified doYesNo code to account for 'Yes' branch
+      const claim = 'trilliumLongTermCareCost'
+      const fields = [
+        'trilliumLongTermCareRoomAndBoardAmount',
+        'trilliumLongTermCareAmount',
+        'trilliumLongTermCareAmountIsFull',
+      ]
+      // set the value in the session
+      req.session.deductions[claim] = req.body[claim] === 'Yes' ? true : false
+
+      // clear associated fields regardless of yes / no answer
+      clearSessionFields(req, fields)
+
+      // if yes still need to redirect to the proper page
+      if (req.body[claim] === 'Yes') {
+        return res.redirect(getNextRoute(req).path)
+      }
+
+      next()
+    },
     doRedirect,
   )
 
@@ -255,7 +273,7 @@ module.exports = function(app) {
     checkSchema(trilliumlongTermCareAmountSchema),
     checkErrors('deductions/trillium-longTermCare-amount'),
     (req, res, next) => {
-      req.session.deductions.trilliumLongTermCareIsFullAmount = true
+      req.session.deductions.trilliumLongTermCareAmountIsFull = true
       req.session.deductions.trilliumLongTermCareAmount = postAmount(
         req.body.trilliumLongTermCareAmount,
         req.locale,

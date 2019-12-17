@@ -86,7 +86,7 @@ const answerInfo = [
         text: 'Long-term care costs',
         infoPath: ['deductions.trilliumLongTermCareAmount'],
         urlPath: '/trillium/longTermCare/type/amount',
-        displayIf: 'deductions.trilliumLongTermCareIsFullAmount',
+        displayIf: 'deductions.trilliumLongTermCareAmountIsFull',
       },
       {
         text: 'Did you live on a reserve?',

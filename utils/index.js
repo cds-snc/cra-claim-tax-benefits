@@ -185,31 +185,34 @@ const doYesNo = (claim, fields) => {
         return returnToCheckAnswers(req, res, true)
       }
 
-      const currentRoute = getRouteWithIndexByPath(req.path)
-      return res.redirect(defaultRoutes[currentRoute.index + 1].path)
+      return res.redirect(getNextRoute(req).path)
     }
 
     req.session.deductions[claim] = false
 
-    // fields is an array
-    fields.map(field => {
-      // if the field is truthy
-      if (req.session.deductions[field]) {
-        // "Amount" fields are zeroed -- others are nulled
-        if (field.endsWith('Amount')) {
-          if (Object.keys(req.session.deductions[field]).includes('amount')) {
-            req.session.deductions[field].amount = 0.0
-          } else {
-            req.session.deductions[field] = 0
-          }
-        } else {
-          req.session.deductions[field] = null
-        }
-      }
-    })
+    clearSessionFields(req, fields)
 
     next()
   }
+}
+
+const clearSessionFields = (req, fields) => {
+  // fields is an array
+  fields.map(field => {
+    // if the field is truthy
+    if (req.session.deductions[field]) {
+      // "Amount" fields are zeroed -- others are nulled
+      if (field.endsWith('Amount')) {
+        if (Object.keys(req.session.deductions[field]).includes('amount')) {
+          req.session.deductions[field].amount = 0.0
+        } else {
+          req.session.deductions[field] = 0
+        }
+      } else {
+        req.session.deductions[field] = null
+      }
+    }
+  })
 }
 
 const postAmount = (amount, locale) => {
@@ -415,8 +418,7 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
 }
 
 const returnToCheckAnswers = (req, res, claimYes = false) => {
-  const currentRoute = getRouteWithIndexByPath(req.path)
-  const nextRoute = defaultRoutes[currentRoute.index + 1]
+  const nextRoute = getNextRoute(req)
 
   if ('editInfo' in nextRoute && 'editInfo' !== 'skip' && claimYes) {
     return res.redirect(`${nextRoute.path}?ref=checkAnswers`)
@@ -446,6 +448,11 @@ const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
   return routeWithIndex
 }
 
+const getNextRoute = (req) => {
+  const currentRoute = getRouteWithIndexByPath(req.path)
+  return defaultRoutes[currentRoute.index + 1]
+}
+
 const getDateDelta = (dateOfBirth) => {
   const today = new Date()
   const newDate = new Date(dateOfBirth)
@@ -459,6 +466,7 @@ module.exports = {
   errorArray2ErrorObject,
   checkErrors,
   getPreviousRoute,
+  getNextRoute,
   renderWithData,
   cleanSIN,
   SINFilter,
@@ -469,6 +477,7 @@ module.exports = {
   checkLangQuery,
   doRedirect,
   doYesNo,
+  clearSessionFields,
   isoDateHintText,
   getRouteWithIndexByPath,
   returnToCheckAnswers,

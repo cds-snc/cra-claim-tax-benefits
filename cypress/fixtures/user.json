@@ -127,7 +127,7 @@
     "trilliumLongTermCareCost": null,
     "trilliumLongTermCareTypeClaim": null,
     "trilliumLongTermCareRoomAndBoardAmount": 0,
-    "trilliumLongTermCareIsFullAmount": null,
+    "trilliumLongTermCareAmountIsFull": null,
     "trilliumLongTermCareAmount": 0,
     "climateActionIncentiveIsRural": null
   },

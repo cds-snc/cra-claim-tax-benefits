@@ -27,12 +27,13 @@ html(lang=getLocale() === 'fr' ? 'fr' : 'en')
       title #{__('service.name')}
 
   body
+    include _includes/skipLink.pug
     .container
       header
         include _includes/phaseBanner
         include _includes/fip
 
-      main
+      main#content
         include _includes/backLink
 
         if errors

@@ -24,14 +24,7 @@ Cypress.Cookies.defaults({
 Cypress.Commands.add('login', user => {
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/login/code')
-  cy.get('h1').should('contain', 'Enter your personal filing code')
-  cy.get('form label').should('have.attr', 'for', 'code')
-  cy.get('form input#code')
-    .type(user.login.code)
-    .should('have.value', user.login.code)
-  cy.get('form button[type="submit"]')
-    .should('contain', 'Continue')
-    .click()
+  cy.code({ code: user.login.code })
 
   // LOGIN SIN
   cy.injectAxe().checkA11y()
@@ -50,7 +43,10 @@ Cypress.Commands.add('login', user => {
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/login/dateOfBirth')
   cy.get('h1').should('contain', 'Enter your date of birth')
-  cy.get('h2').should('contain', `${user.personal.firstName}, thanks for your Social insurance number.`)
+  cy.get('h2').should(
+    'contain',
+    `${user.personal.firstName}, thanks for your Social insurance number.`,
+  )
   cy.get('form label')
     .eq(0)
     .should('have.attr', 'for', 'dobDay')
@@ -78,6 +74,17 @@ Cypress.Commands.add('login', user => {
   cy.get('form button[type="submit"]')
     .should('contain', 'Continue')
     .click()
+})
+
+Cypress.Commands.add('code', ({ code } = {}) => {
+  cy.get('h1').should('contain', 'Enter your personal filing code')
+  cy.get('form label').should('have.attr', 'for', 'code')
+  if (code) {
+    cy.get('form input#code')
+      .type(code)
+      .should('have.value', code)
+  }
+  cy.continue()
 })
 
 Cypress.Commands.add('confirm', ({ url, h1, id }) => {

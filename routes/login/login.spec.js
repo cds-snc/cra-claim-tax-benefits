@@ -63,12 +63,6 @@ describe('Test /login responses', () => {
     expect(response.statusCode).toBe(500)
   })
 
-  test('it autofocuses on the single input on the page', async () => {
-    const response = await request(app).get('/login/code')
-    const $ = cheerio.load(response.text)
-    expect($('#code').attr('autofocus')).toEqual('autofocus')
-  })
-
   describe('Error list tests', () => {
     test('it renders the error-list for /login/code', async () => {
       const response = await request(app)
@@ -81,7 +75,6 @@ describe('Test /login responses', () => {
       expect($('.error-list__list').children()).toHaveLength(1)
       expect($('.validation-message').text()).toEqual('Error: Access code must be 9 characters')
       expect($('#code').attr('aria-describedby')).toEqual('code-error')
-      expect($('#code').attr('autofocus')).toEqual('autofocus')
     })
 
     test('it renders an inline error for /login/code with appropriate describedby', async () => {

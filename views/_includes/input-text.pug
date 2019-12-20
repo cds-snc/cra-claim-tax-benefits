@@ -31,7 +31,6 @@ mixin textInput(label, divClasses, hintText)
       type='text',
       id=(attributes.id || attributes.name)
       aria-describedby=(errors && errors[attributes.name] ? attributes.name + '-error' : false)
-      autofocus=(errors && firstError.param === attributes.name ? true : false)
     )&attributes(attributes)
 
     if attributes.class && attributes.class.includes('input-with-unit') && getLocale() === 'fr'

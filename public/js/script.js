@@ -2,15 +2,27 @@
 
 // Add a a polyfill for the 'details' HTML5 element for older browsers
 if (typeof Promise !== 'function' && document.querySelector('details') !== null) {
-  document.write('<script src="/js/details-element-polyfill.js"></script>')
+  document.write('<script src="/js/details-element-polyfill.js"></script>');
 }
 
 // Find all of the links with the 'button' role and add a click event to them
-var elements = document.querySelectorAll('a[role="button"]')
+var elements = document.querySelectorAll('a[role="button"]');
+
 for (var i = 0, len = elements.length; i < len; i++) {
-  elements[i].addEventListener('keydown', function(e) {
+  elements[i].addEventListener('keydown', function (e) {
     if (e.keyCode == 32) {
-      e.target.click()
+      e.target.click();
     }
-  })
+  });
+}
+
+var form = document.querySelector('#content form');
+if (form) {
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+
+    // remove the #hash component of the url (ie, the last part of /login/code#code)
+    history.replaceState(null, null, ' ');
+    form.submit();
+  });
 }

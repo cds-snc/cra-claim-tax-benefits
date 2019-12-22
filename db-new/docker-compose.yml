@@ -1,0 +1,10 @@
+postgres:
+  image: postgres:latest
+  ports:
+    - '5432:5432'
+  environment:
+    POSTGRES_USER: 'ctbadmin'
+    POSTGRES_PASSWORD: 'ctbpassword'
+    POSTGRES_DB: 'ctb'
+  volumes:
+    - ./init:/docker-entrypoint-initdb.d/

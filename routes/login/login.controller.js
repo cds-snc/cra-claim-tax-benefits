@@ -14,6 +14,7 @@ const {
 } = require('./../../schemas')
 const API = require('../../api')
 const DB = require('../../db')
+const DBNew = require('../../db-new')
 
 module.exports = function(app) {
   // redirect from "/login" → "/login/code"
@@ -51,9 +52,12 @@ const postLoginCode = async (req, res, next) => {
   }
 
   // check if code is valid
-  let row = DB.validateCode(req.body.code)
+  const row = await DBNew.validateCode(req.body.code)
+
+  console.log('EXPRESS ROW: ', row)
 
   if (!row) {
+    console.log(row)
     // code is not valid
     return res.status(422).render('login/code', {
       prevRoute: getPreviousRoute(req),
@@ -110,7 +114,7 @@ const postLogin = async (req, res, next) => {
 
   // check access code + SIN + DoB
   const { code, sin, dateOfBirth } = req.session.login
-  let row = DB.validateUser({ code, sin, dateOfBirth })
+  let row = await DBNew.validateUser({ code, sin, dateOfBirth })
 
   // if no row is found, error and proceed to error page
   if (!row) {

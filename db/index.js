@@ -6,9 +6,10 @@ const { cleanSIN } = require('../utils')
 const useJson = new Promise((resolve, reject) => { 
   pool.query('SELECT NOW()', (err, res) => {
     if (
-      process.env.NODE_ENV !== 'production' && 
+      (process.env.NODE_ENV !== 'production' && 
       (err && err.errno === -61) && 
-      !res
+      !res) ||
+      process.env.NODE_ENV === 'test'
     ) {
       pool.end()
       console.warn('running off of json file instead of local database')

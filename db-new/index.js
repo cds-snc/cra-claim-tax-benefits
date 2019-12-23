@@ -15,14 +15,10 @@ const { cleanSIN } = require('../utils')
 
 var DBNew = (() => {
 
-  const query = (text, params, callback) => {
-    return pool.query(text, params, callback)
-  }
-
   const validateCode = async (code) => {
     code = code.toUpperCase()
 
-    const { rows } = await pool.query('SELECT * FROM users WHERE code = $1', [code])
+    const { rows } = await pool.query('SELECT * FROM public.access_codes WHERE code = $1', [code])
     
     return rows[0] || null
   }
@@ -31,7 +27,7 @@ var DBNew = (() => {
     code = code.toUpperCase()
     sin = cleanSIN(sin)
 
-    const { rows } = await pool.query('SELECT * FROM users WHERE sin = $1 AND date_of_birth = $2', [sin, dateOfBirth])
+    const { rows } = await pool.query('SELECT * FROM public.access_codes WHERE sin = $1 AND dob = $2', [sin, dateOfBirth])
 
     if (rows && rows[0].code !== code) {
       return {"error": true}
@@ -41,7 +37,6 @@ var DBNew = (() => {
   }
 
   return {
-    query,
     validateCode,
     validateUser,
   }

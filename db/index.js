@@ -3,11 +3,7 @@ const jsonDB = require('./db.json')
 
 const { cleanSIN } = require('../utils')
 
-let runWithJson = false
-
-if (process.env.NODE_ENV === 'test') {
-  runWithJson = true
-} else {
+const useJson = new Promise((resolve, reject) => { 
   pool.query('SELECT NOW()', (err, res) => {
     if (
       process.env.NODE_ENV !== 'production' && 
@@ -15,17 +11,21 @@ if (process.env.NODE_ENV === 'test') {
       !res
     ) {
       pool.end()
-      runWithJson = true
-    }
+      console.warn('running off of json file instead of local database')
+      resolve(true)
+    } 
+     
+    resolve(false)
+
   })
-}
+})
 
 var DB = (() => {
 
   const validateCode = async (code) => {
     code = code.toUpperCase()
 
-    if (runWithJson) {
+    if (await useJson) {
       return await jsonDB.find(user => user.code === code) || null
     }
 
@@ -40,7 +40,7 @@ var DB = (() => {
 
     let row
 
-    if (runWithJson) {
+    if (await useJson) {
       row = jsonDB.find(user => {
         if (user.sin === sin && user.dateOfBirth === dateOfBirth) {
           return user

@@ -111,7 +111,7 @@ const postLogin = async (req, res, next) => {
 
   // check access code + SIN + DoB
   const { code, sin, dateOfBirth } = req.session.login
-  let row = await DB.validateUser({ code, sin, dateOfBirth })
+  const row = await DB.validateUser({ code, sin, dateOfBirth })
 
   // if no row is found, error and proceed to error page
   if (!row) {

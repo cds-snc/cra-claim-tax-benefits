@@ -7,4 +7,4 @@ postgres:
     POSTGRES_PASSWORD: 'ctbpassword'
     POSTGRES_DB: 'ctbLocal'
   volumes:
-    - ./init:/docker-entrypoint-initdb.d/
+    - ./db/init:/docker-entrypoint-initdb.d/

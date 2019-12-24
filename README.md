@@ -62,6 +62,12 @@ The app should be running at [http://localhost:3005/](http://localhost:3005/). W
 
 On a Mac, press `Control` + `C` to quit the running application.
 
+### Run with local postgres DB
+
+The application can be run with the local postgres database (it falls back on a JSON file), but if you want to run the db just type `docker-compose up` 
+
+Docker Desktop already has compose included, but just in case, installation instructions for docker-compose can be found [here](https://docs.docker.com/compose/install/)
+
 ### Run tests
 
 ```bash

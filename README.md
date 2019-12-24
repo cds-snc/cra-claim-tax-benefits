@@ -64,7 +64,18 @@ On a Mac, press `Control` + `C` to quit the running application.
 
 ### Run with local postgres DB
 
-The application can be run with the local postgres database (it falls back on a JSON file), but if you want to run the db just type `docker-compose up` 
+The application can be run with the local postgres database (it falls back on a JSON file).
+
+Add the following to a `.env` file
+```
+DB_USER=ctbadmin
+DB_PASSWORD=ctbpassword
+DB_HOST=localhost
+DB_PORT=5432
+DB_DATABASE=ctbLocal
+```
+
+And to run the db just type `docker-compose up` 
 
 Docker Desktop already has compose included, but just in case, installation instructions for docker-compose can be found [here](https://docs.docker.com/compose/install/)
 

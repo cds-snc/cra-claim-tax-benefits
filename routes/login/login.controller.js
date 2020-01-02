@@ -51,7 +51,7 @@ const postLoginCode = async (req, res, next) => {
   }
 
   // check if code is valid
-  let row = DB.validateCode(req.body.code)
+  const row = await DB.validateCode(req.body.code)
 
   if (!row) {
     // code is not valid
@@ -68,6 +68,7 @@ const postLoginCode = async (req, res, next) => {
   }
 
   // populate the session.login with our submitted access code
+  // eslint-disable-next-line
   req.session.login = { code: row.code, firstName: row.firstName }
 
   next()
@@ -110,7 +111,7 @@ const postLogin = async (req, res, next) => {
 
   // check access code + SIN + DoB
   const { code, sin, dateOfBirth } = req.session.login
-  let row = DB.validateUser({ code, sin, dateOfBirth })
+  const row = await DB.validateUser({ code, sin, dateOfBirth })
 
   // if no row is found, error and proceed to error page
   if (!row) {

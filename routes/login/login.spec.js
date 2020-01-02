@@ -278,7 +278,7 @@ describe('Test /login responses', () => {
         label: 'date of birth day is greater than in that month',
         send: {
           ...goodDoBRequest,
-          ...{ dobDay: '29', dobMonth: '02', dobYear: '2019' },
+          ...{ dobDay: '32', dobMonth: '02', dobYear: '2019' },
         },
       },
       {

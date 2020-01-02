@@ -26,17 +26,6 @@ It’s possible to bootstrap this application with no `/.env` file — but if yo
 # environment
 NODE_ENV=development
 PORT=4300
-
-# winston
-winston_file_handleExecptions=true
-winston_file_json=false
-winston_file_maxsize=5242880
-winston_file_maxFiles=5
-winston_file_colorize=false
-winston_console_level=debug
-winston_console_handleExceptions=true
-winston_console_json=false
-winston_console_colorize=true
 ```
 
 </details>
@@ -61,6 +50,14 @@ npm start
 The app should be running at [http://localhost:3005/](http://localhost:3005/). With `npm run dev`, saving a file will restart the server automatically.
 
 On a Mac, press `Control` + `C` to quit the running application.
+
+### Run with local postgres DB
+
+The application can be run with a local postgres database (otherwise, it falls back on a JSON file).
+
+To start the app in development mode, alongside the postgres db type `docker-compose up` 
+
+Docker Desktop already has compose included, but just in case, installation instructions for docker-compose can be found [here](https://docs.docker.com/compose/install/)
 
 ### Run tests
 

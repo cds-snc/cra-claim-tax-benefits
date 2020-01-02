@@ -2,7 +2,7 @@ version: "3"
 
 services:
   app:
-    image: node:alpine
+    image: node:lts-alpine
     volumes:
       - ./:/app
     working_dir: /app

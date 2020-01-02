@@ -10,7 +10,9 @@ const useJson = (() => {
   ) {
     pool.end()
     //console.warn includes native code to colour the output— in case you're wondering
-    console.warn('\x1b[33m%s\x1b[0m','⚠ WARNING ⚠: running off of json file instead of local database')
+    if (process.env.NODE_ENV !== 'test') {
+      console.warn('\x1b[33m%s\x1b[0m','⚠ WARNING ⚠: running off of json file instead of local database')
+    }
     return true
   } 
     

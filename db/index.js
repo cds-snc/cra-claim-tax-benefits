@@ -3,30 +3,26 @@ const jsonDB = require('./db.json')
 
 const { cleanSIN } = require('../utils')
 
-const useJson = new Promise((resolve, reject) => { 
-  pool.query('SELECT NOW()', (err, res) => {
-    if (
-      (process.env.NODE_ENV !== 'production' && 
-      (err && err.errno === -61) && 
-      !res) ||
-      process.env.NODE_ENV === 'test'
-    ) {
-      pool.end()
-      console.warn('running off of json file instead of local database')
-      resolve(true)
-    } 
-     
-    resolve(false)
-
-  })
-})
+const useJson = (() => { 
+  if (
+    process.env.USE_DB !== 'true' ||
+    process.env.NODE_ENV === 'test'
+  ) {
+    pool.end()
+    //console.warn includes native code to colour the output— in case you're wondering
+    console.warn('\x1b[33m%s\x1b[0m','⚠ WARNING ⚠: running off of json file instead of local database')
+    return true
+  } 
+    
+  return false
+})()
 
 var DB = (() => {
 
   const validateCode = async (code) => {
     code = code.toUpperCase()
 
-    if (await useJson) {
+    if (useJson) {
       return await jsonDB.find(user => user.code === code) || null
     }
 
@@ -41,7 +37,7 @@ var DB = (() => {
 
     let row
 
-    if (await useJson) {
+    if (useJson) {
       row = jsonDB.find(user => {
         if (user.sin === sin && user.dateOfBirth === dateOfBirth) {
           return user
@@ -54,6 +50,7 @@ var DB = (() => {
     }
 
     if (row && row.code !== code) {
+      // code from the returned user doesn't match
       return {"error": true}
     }
 

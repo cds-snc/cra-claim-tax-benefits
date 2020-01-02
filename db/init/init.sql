@@ -9,4 +9,6 @@ CREATE TABLE IF NOT EXISTS public.access_codes (
 ) WITH ( OIDS = FALSE );
 
 INSERT INTO public.access_codes (code, sin, dob, login_count, first_name, locked)
-  VALUES ('A5G98S4K1', '540739869', '1977-09-09', 0, 'Gabrielle', false), ('A5G98S4K2', '536520422', '1987-05-05', 0, 'Tom', false);
+  VALUES 
+    ('A5G98S4K1', '540739869', '1977-09-09', 0, 'Gabrielle', false), 
+    ('A5G98S4K2', '536520422', '1987-05-05', 0, 'Tom', false);

@@ -22,7 +22,9 @@ if (form) {
     evt.preventDefault();
 
     // remove the #hash component of the url (ie, the last part of /login/code#code)
-    history.replaceState(null, null, ' ');
+    if ('pushState' in history)
+    {  history.pushState('', document.title, window.location.pathname + window.location.search); }
     form.submit();
   });
 }
+

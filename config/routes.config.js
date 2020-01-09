@@ -3,6 +3,8 @@ const routes = [
   { path: '/start' },
   { path: '/login/code' },
   { path: '/offramp', editInfo: 'skip' },
+  { path: '/eligibility/dependents' },
+  { path: '/offramp/eligible-dependents', editInfo: 'skip' },
   { path: '/login/sin' },
   { path: '/login/dateOfBirth' },
   { path: '/login/error/doesNotMatch', editInfo: 'skip'},

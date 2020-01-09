@@ -1,0 +1,19 @@
+extends ../base
+
+block variables
+  -var title = __('Check if you are eligible to use this service (Step 1 of 3)')
+  -var eligibleDependents = hasData(data, 'login.eligibleDependents') ? data.login.eligibleDependents : ''
+
+block content
+
+  h1 #{title}
+
+  div
+    p #{__(`In order to ensure that you are eligible to use the Claim Tax Benefits online service, we want to ask you a few questions before moving forward.`)}
+
+  form.cra-form(method='post')
+    +radiosYesNo('eligibleDependents', 'Are you trying to claim tax credits regarding a child under the age of 18, or an eligible dependent?')
+
+    input#redirect(name='redirect', type='hidden', value='/personal/residence')
+
+    +formButtons()

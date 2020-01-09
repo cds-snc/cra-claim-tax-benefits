@@ -1,0 +1,18 @@
+extends ../base
+include ../_includes/banner
+
+block variables
+  -var title = __('File your taxes another way')
+
+block content
+
+  h1 #{title}
+
+  .offramp
+    p #{__(`You can’t use this online service because you are trying to claim credits on behalf of a child under the age of 18, or an eligible dependent. Other free and secure ways to file are:`)}
+    ul 
+      li #{__('At a free tax clinic, where you may be able to get help.')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible')}>#{__('Learn')}</a> #{__('if you can use a tax clinic.')}
+      li #{__('Online with')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview.html')}>#{__('NETFILE')}</a>. <a href=#{__('https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/certified-software-netfile-program.html')}>#{__('Learn')}</a> #{__(' which certified NETFILE software is free, and')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/eligibility.html')}>#{__('check')}</a> #{__('if you can use it. Certified means CRA approves the software.')}
+    div
+      p #{__('For more information, contact CRA by:')}
+      include ../_includes/phone-bullets

@@ -11,11 +11,22 @@ const {
   _toISOFormat,
   sinSchema,
   dobSchema,
+  eligibleDependentsSchema,
 } = require('./../../schemas')
 const API = require('../../api')
 const DB = require('../../db')
 
 module.exports = function(app) {
+
+  app.get('/eligibility/dependents', renderWithData('login/eligibility-dependents'))
+  app.post(
+    '/eligibility/dependents',
+    checkSchema(eligibleDependentsSchema),
+    checkErrors('login/eligibility-dependents'),
+    postEligibleDependents,
+    doRedirect,
+  )
+
   // redirect from "/login" → "/login/code"
   app.get('/login', (req, res) => res.redirect('/login/code'))
   app.get('/login/code', renderWithData('login/code', { errorsKey: 'login' }))
@@ -130,6 +141,18 @@ const postLogin = async (req, res, next) => {
 
   // this intentionally overwrites what we have saved in "session.login" up to this point
   Object.keys(user).map(key => (req.session[key] = user[key]))
+
+  next()
+}
+
+const postEligibleDependents = (req, res, next) => {
+  const eligibleDependents = req.body.eligibleDependents
+
+  req.session.login.eligibleDependents = eligibleDependents
+
+  if (eligibleDependents !== 'Yes') {
+    return res.redirect('/offramp/eligible-dependents')
+  }
 
   next()
 }

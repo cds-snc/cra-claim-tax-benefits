@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Check if you are eligible to use this service (Step 1 of 3)')
+  -var title = __('Check your eligibility - Dependents (Step 1 of 3)')
   -var eligibleDependents = hasData(data, 'login.eligibleDependents') ? data.login.eligibleDependents : ''
 
 block content
@@ -14,6 +14,6 @@ block content
   form.cra-form(method='post')
     +radiosYesNo('eligibleDependents', 'Are you trying to claim tax credits regarding a child under the age of 18, or an eligible dependent?')
 
-    input#redirect(name='redirect', type='hidden', value='/personal/residence')
+    input#redirect(name='redirect', type='hidden', value='/eligibility/tuition')
 
     +formButtons()

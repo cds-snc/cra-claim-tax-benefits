@@ -1,0 +1,16 @@
+extends ../base
+
+block variables
+  -var title = __('Check your eligibility - Tuition (Step 2 of 3)')
+  -var tuition = hasData(data, 'login.tuition') ? data.login.tuition : ''
+
+block content
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('tuition', 'Did you make tuition payments to a college or university during the year of 2018?')
+
+    input#redirect(name='redirect', type='hidden', value='/eligibility/income')
+
+    +formButtons()

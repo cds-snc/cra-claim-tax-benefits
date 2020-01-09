@@ -15,5 +15,9 @@ module.exports = function(app) {
 
   app.get('/offramp/financial', renderWithData('offramp/financial'))
 
-  app.get('/offramp/eligible-dependents', renderWithData('offramp/eligible-dependents'))
+  app.get('/offramp/dependents', renderWithData('offramp/dependents'))
+
+  app.get('/offramp/tuition', renderWithData('offramp/tuition'))
+
+  app.get('/offramp/income', renderWithData('offramp/income'))
 }

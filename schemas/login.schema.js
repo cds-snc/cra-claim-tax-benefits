@@ -81,6 +81,14 @@ const eligibleDependentsSchema = {
   eligibleDependents: yesNoSchema(),
 }
 
+const tuitionSchema = {
+  tuition: yesNoSchema(),
+}
+
+const incomeSchema = {
+  income: yesNoSchema(),
+}
+
 module.exports = {
   loginSchema,
   dobSchema,
@@ -88,4 +96,6 @@ module.exports = {
   _toISOFormat,
   _getSinErrorMessage,
   eligibleDependentsSchema,
+  tuitionSchema,
+  incomeSchema,
 }

@@ -12,6 +12,8 @@ const {
   sinSchema,
   dobSchema,
   eligibleDependentsSchema,
+  tuitionSchema,
+  incomeSchema,
 } = require('./../../schemas')
 const API = require('../../api')
 const DB = require('../../db')
@@ -24,6 +26,24 @@ module.exports = function(app) {
     checkSchema(eligibleDependentsSchema),
     checkErrors('login/eligibility-dependents'),
     postEligibleDependents,
+    doRedirect,
+  )
+
+  app.get('/eligibility/tuition', renderWithData('login/eligibility-tuition'))
+  app.post(
+    '/eligibility/tuition',
+    checkSchema(tuitionSchema),
+    checkErrors('login/eligibility-tuition'),
+    postTuition,
+    doRedirect,
+  )
+
+  app.get('/eligibility/income', renderWithData('login/eligibility-income'))
+  app.post(
+    '/eligibility/income',
+    checkSchema(incomeSchema),
+    checkErrors('login/eligibility-income'),
+    postIncome,
     doRedirect,
   )
 
@@ -150,8 +170,32 @@ const postEligibleDependents = (req, res, next) => {
 
   req.session.login.eligibleDependents = eligibleDependents
 
-  if (eligibleDependents !== 'Yes') {
-    return res.redirect('/offramp/eligible-dependents')
+  if (eligibleDependents !== 'No') {
+    return res.redirect('/offramp/dependents')
+  }
+
+  next()
+}
+
+const postTuition = (req, res, next) => {
+  const tuition = req.body.tuition
+
+  req.session.login.tuition = tuition
+
+  if (tuition !== 'No') {
+    return res.redirect('/offramp/tuition')
+  }
+
+  next()
+}
+
+const postIncome = (req, res, next) => {
+  const income = req.body.income
+
+  req.session.login.income = income
+
+  if (income !== 'No') {
+    return res.redirect('/offramp/income')
   }
 
   next()

@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  app:
+    image: node:lts-alpine
+    volumes:
+      - ./:/app
+    working_dir: /app
+    depends_on:
+      - postgres
+    environment:
+      NODE_ENV: development
+      USE_DB: 'true'
+      DB_HOST: host.docker.internal
+      DB_USER: ctbadmin
+      DB_PASSWORD: ctbpassword
+      DB_PORT: 5432
+      DB_DATABASE: ctbLocal
+    ports:
+      - 3005:3005
+    command: sh -c "npm rebuild node-sass && npm run dev"
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: 'ctbadmin'
+      POSTGRES_PASSWORD: 'ctbpassword'
+      POSTGRES_DB: 'ctbLocal'
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d/
+    

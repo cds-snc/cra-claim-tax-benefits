@@ -1,0 +1,21 @@
+extends ../base
+
+block variables
+  -var title = __('Check if you may use this service - Claim tuition?')
+  -var tuitionClaim = hasData(data, 'login.eligibleDependentsClaim') ? data.login.tuitionClaim : ''
+
+block content
+
+  +stepper('3B', '4')
+
+  h1.stepperH1 #{title}
+
+  div 
+    p #{__('If you use this service, you cannot claim tax credits to get money back.  So you may want to file your taxes another way.')}
+
+  form.cra-form(method='post')
+    +radiosYesNo('tuitionClaim', 'Will you claim tax credits for your 2018 tuition?')
+
+    input#redirect(name='redirect', type='hidden', value='/eligibility/income')
+
+    +formButtons()

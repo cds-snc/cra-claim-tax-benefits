@@ -12,13 +12,25 @@ const {
   sinSchema,
   dobSchema,
   eligibleDependentsSchema,
+  eligibleDependentsClaimSchema,
   tuitionSchema,
+  tuitionClaimSchema,
   incomeSchema,
+  childrenSchema,
 } = require('./../../schemas')
 const API = require('../../api')
 const DB = require('../../db')
 
 module.exports = function(app) {
+
+  app.get('/eligibility/children', renderWithData('login/eligibility-children'))
+  app.post(
+    '/eligibility/children',
+    checkSchema(childrenSchema),
+    checkErrors('login/eligibility-children'),
+    postChildren,
+    doRedirect,
+  )
 
   app.get('/eligibility/dependents', renderWithData('login/eligibility-dependents'))
   app.post(
@@ -29,12 +41,30 @@ module.exports = function(app) {
     doRedirect,
   )
 
+  app.get('/eligibility/dependents-claim', renderWithData('login/eligibility-dependents-claim'))
+  app.post(
+    '/eligibility/dependents-claim',
+    checkSchema(eligibleDependentsClaimSchema),
+    checkErrors('login/eligibility-dependents-claim'),
+    postEligibleDependentsClaim,
+    doRedirect,
+  )
+
   app.get('/eligibility/tuition', renderWithData('login/eligibility-tuition'))
   app.post(
     '/eligibility/tuition',
     checkSchema(tuitionSchema),
     checkErrors('login/eligibility-tuition'),
     postTuition,
+    doRedirect,
+  )
+
+  app.get('/eligibility/tuition-claim', renderWithData('login/eligibility-tuition-claim'))
+  app.post(
+    '/eligibility/tuition-claim',
+    checkSchema(tuitionClaimSchema),
+    checkErrors('login/eligibility-tuition-claim'),
+    postTuitionClaim,
     doRedirect,
   )
 
@@ -170,7 +200,27 @@ const postEligibleDependents = (req, res, next) => {
 
   req.session.login.eligibleDependents = eligibleDependents
 
-  if (eligibleDependents !== 'No') {
+  if (eligibleDependents === 'No') {
+    return res.redirect('/eligibility/tuition')
+  }
+
+  if (eligibleDependents === 'Yes') {
+    return res.redirect('/eligibility/dependents-claim')
+  }
+
+  next()
+}
+
+const postEligibleDependentsClaim = (req, res, next) => {
+  const eligibleDependentsClaim = req.body.eligibleDependentsClaim
+
+  req.session.login.eligibleDependentsClaim = eligibleDependentsClaim
+
+  if (eligibleDependentsClaim === 'No') {
+    return res.redirect('/eligibility/tuition')
+  }
+
+  if (eligibleDependentsClaim === 'Yes') {
     return res.redirect('/offramp/dependents')
   }
 
@@ -182,7 +232,27 @@ const postTuition = (req, res, next) => {
 
   req.session.login.tuition = tuition
 
-  if (tuition !== 'No') {
+  if (tuition === 'No') {
+    return res.redirect('/eligibility/income')
+  }
+
+  if (tuition === 'Yes') {
+    return res.redirect('/eligibility/tuition-claim')
+  }
+
+  next()
+}
+
+const postTuitionClaim = (req, res, next) => {
+  const tuitionClaim = req.body.tuitionClaim
+
+  req.session.login.tuitionClaim = tuitionClaim
+
+  if (tuitionClaim=== 'No') {
+    return res.redirect('/eligibility/income')
+  }
+
+  if (tuitionClaim === 'Yes') {
     return res.redirect('/offramp/tuition')
   }
 
@@ -196,6 +266,18 @@ const postIncome = (req, res, next) => {
 
   if (income !== 'No') {
     return res.redirect('/offramp/income')
+  }
+
+  next()
+}
+
+const postChildren = (req, res, next) => {
+  const children = req.body.children
+
+  req.session.login.children = children
+
+  if (children !== 'No') {
+    return res.redirect('/offramp/children')
   }
 
   next()

@@ -1,15 +1,17 @@
 extends ../base
 
 block variables
-  -var title = __('Check your eligibility - Income (Step 3 of 3)')
+  -var title = __('Check your eligibility - Income sources')
   -var income = hasData(data, 'login.income') ? data.login.income : ''
 
 block content
 
-  h1 #{title}
+  +stepper('4','4')
+
+  h1.stepperH1 #{title}
 
   form.cra-form(method='post')
-    +radiosYesNo('income', 'Did you generate income from your own business, self-employment, renting property, investment or foreign income?')
+    +radiosYesNo('income', 'Did any of your 2018 income come from your own business, self-employment, renting property, investments, or from sources outside Canada?')
 
     input#redirect(name='redirect', type='hidden', value='/login/code')
 

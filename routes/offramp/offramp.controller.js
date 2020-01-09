@@ -20,4 +20,6 @@ module.exports = function(app) {
   app.get('/offramp/tuition', renderWithData('offramp/tuition'))
 
   app.get('/offramp/income', renderWithData('offramp/income'))
+
+  app.get('/offramp/children', renderWithData('offramp/children'))
 }

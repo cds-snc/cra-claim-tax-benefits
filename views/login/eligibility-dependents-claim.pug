@@ -1,20 +1,17 @@
 extends ../base
 
 block variables
-  -var title = __('Check if you may use this service - Dependents')
-  -var eligibleDependents = hasData(data, 'login.eligibleDependents') ? data.login.eligibleDependents : ''
+  -var title = __('Check if you may use this service - Claim dependents?')
+  -var eligibleDependentsClaim = hasData(data, 'login.eligibleDependentsClaim') ? data.login.eligibleDependentsClaim : ''
 
 block content
 
-  +stepper('2A','4')
+  +stepper('2B', '4')
 
   h1.stepperH1 #{title}
 
-  div
-    p #{__('An “eligible dependent” may be a family member who usually lives with you and depends on your support, for example with food, shelter, or clothing.')}
-
   form.cra-form(method='post')
-    +radiosYesNo('eligibleDependents', 'Do you have any eligible dependents?')
+    +radiosYesNo('eligibleDependentsClaim', 'Will you claim tax credits for your eligible dependent or dependents?')
 
     input#redirect(name='redirect', type='hidden', value='/eligibility/tuition')
 

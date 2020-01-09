@@ -77,12 +77,24 @@ const dobSchema = {
   dobYear: yearSchema(),
 }
 
+const childrenSchema = {
+  children: yesNoSchema(),
+}
+
 const eligibleDependentsSchema = {
   eligibleDependents: yesNoSchema(),
 }
 
+const eligibleDependentsClaimSchema = {
+  eligibleDependentsClaim: yesNoSchema(),
+}
+
 const tuitionSchema = {
   tuition: yesNoSchema(),
+}
+
+const tuitionClaimSchema = {
+  tuitionClaim: yesNoSchema(),
 }
 
 const incomeSchema = {
@@ -96,6 +108,9 @@ module.exports = {
   _toISOFormat,
   _getSinErrorMessage,
   eligibleDependentsSchema,
+  eligibleDependentsClaimSchema,
   tuitionSchema,
+  tuitionClaimSchema,
   incomeSchema,
+  childrenSchema,
 }

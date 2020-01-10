@@ -1,0 +1,18 @@
+extends ../base
+
+block variables
+  -var title = __('Age')
+  -var ageYesNo = hasData(data, 'login.ageYesNo') ? data.login.ageYesNo : ''
+
+block content
+
+  +stepper('Screening questions', '1', '7')
+
+  h1.stepperH1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('ageYesNo', 'Are you 65 or older?')
+
+    input#redirect(name='redirect', type='hidden', value='/eligibility/taxable-income')
+
+    +formButtons()

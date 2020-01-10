@@ -77,6 +77,14 @@ const dobSchema = {
   dobYear: yearSchema(),
 }
 
+const ageSchema = {
+  ageYesNo: yesNoSchema(),
+}
+
+const taxableIncomeSchema = {
+  taxableIncome: yesNoSchema(),
+}
+
 const childrenSchema = {
   children: yesNoSchema(),
 }
@@ -112,5 +120,7 @@ module.exports = {
   tuitionSchema,
   tuitionClaimSchema,
   incomeSchema,
+  taxableIncomeSchema,
+  ageSchema,
   childrenSchema,
 }

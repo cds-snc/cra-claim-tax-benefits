@@ -17,11 +17,30 @@ const {
   tuitionClaimSchema,
   incomeSchema,
   childrenSchema,
+  taxableIncomeSchema,
+  ageSchema,
 } = require('./../../schemas')
 const API = require('../../api')
 const DB = require('../../db')
 
 module.exports = function(app) {
+  app.get('/eligibility/age', renderWithData('login/eligibility-age'))
+  app.post(
+    '/eligibility/age',
+    checkSchema(ageSchema),
+    checkErrors('login/eligibility-age'),
+    postAge,
+    doRedirect,
+  )
+
+  app.get('/eligibility/taxable-income', renderWithData('login/eligibility-taxable-income'))
+  app.post(
+    '/eligibility/taxable-income',
+    checkSchema(taxableIncomeSchema),
+    checkErrors('login/eligibility-taxable-income'),
+    postTaxableIncome,
+    doRedirect,
+  )
 
   app.get('/eligibility/children', renderWithData('login/eligibility-children'))
   app.post(
@@ -158,7 +177,7 @@ const postLogin = async (req, res, next) => {
   }
 
   req.session.login.dateOfBirth = _toISOFormat(req.body)
-  
+
   // save each box as the user typed it for usability if there is an error
   req.session.login.dobDay = req.body.dobDay
   req.session.login.dobMonth = req.body.dobMonth
@@ -191,6 +210,29 @@ const postLogin = async (req, res, next) => {
 
   // this intentionally overwrites what we have saved in "session.login" up to this point
   Object.keys(user).map(key => (req.session[key] = user[key]))
+
+  next()
+}
+
+const postAge = (req, res, next) => {
+
+  res.redirect('/eligibility/taxable-income')
+
+  next()
+}
+
+const postTaxableIncome = (req, res, next) => {
+  const taxableIncome = req.body.taxableIncome
+
+  req.session.login.taxableIncome = taxableIncome
+
+  if (taxableIncome === 'No') {
+    return res.redirect('/eligibility/income-under-65')
+  }
+
+  if (taxableIncome === 'Yes') {
+    return res.redirect('/eligibility/income-over-65')
+  }
 
   next()
 }
@@ -248,7 +290,7 @@ const postTuitionClaim = (req, res, next) => {
 
   req.session.login.tuitionClaim = tuitionClaim
 
-  if (tuitionClaim=== 'No') {
+  if (tuitionClaim === 'No') {
     return res.redirect('/eligibility/income')
   }
 

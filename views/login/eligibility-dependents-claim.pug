@@ -1,12 +1,12 @@
 extends ../base
 
 block variables
-  -var title = __('Check if you may use this service - Claim dependents?')
+  -var title = __('Check if you may use this service - claim dependents')
   -var eligibleDependentsClaim = hasData(data, 'login.eligibleDependentsClaim') ? data.login.eligibleDependentsClaim : ''
 
 block content
 
-  +stepper('2B', '4')
+  +stepper('2', '4')
 
   h1.stepperH1 #{title}
 

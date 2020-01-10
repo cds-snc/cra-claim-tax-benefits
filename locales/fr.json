@@ -1,5 +1,7 @@
 {
   "1": "1",
+  "2": "2",
+  "3": "3",
   "4": "4",
   "errors.login.length": "Le code d’accès doit contenir 9 caractères",
   "errors.login.alphanumeric": "Le code d’accès ne doit contenir que des lettres et des chiffres",
@@ -573,5 +575,11 @@
   "You cannot use this online service because you will claim tax credits for an eligible dependent. Other secure ways to file are:": "You cannot use this online service because you will claim tax credits for an eligible dependent. Other secure ways to file are:",
   "Check if you may use this service - Claim dependents?": "Check if you may use this service - Claim dependents?",
   "2B": "2B",
-  "Will you claim tax credits for your eligible dependent or dependents?": "Will you claim tax credits for your eligible dependent or dependents?"
+  "Will you claim tax credits for your eligible dependent or dependents?": "Will you claim tax credits for your eligible dependent or dependents?",
+  "Check if you may use this service - children": "Check if you may use this service - children",
+  "Check if you may use this service - dependents": "Check if you may use this service - dependents",
+  "Check if you may use this service - claim dependents": "Check if you may use this service - claim dependents",
+  "Check if you may use this service - tuition": "Check if you may use this service - tuition",
+  "Check if you may use this service - claim tuition": "Check if you may use this service - claim tuition",
+  "Check if you may use this service - income sources": "Check if you may use this service - income sources"
 }

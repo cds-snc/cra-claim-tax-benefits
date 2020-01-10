@@ -1,0 +1,18 @@
+extends ../base
+
+block variables
+  -var title = __('Taxable income')
+  -var taxableIncome = hasData(data, 'login.taxableIncome') ? data.login.taxableIncome : ''
+
+block content
+  p #{data.login.ageYesNo}
+  +stepper('Screening questions', '1', '7')
+
+  h1.stepperH1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('taxableIncome', 'Was your 2019 taxable income $19,563 or less?')
+
+    input#redirect(name='redirect', type='hidden', value='/eligibility/tuition')
+    
+    +formButtons()

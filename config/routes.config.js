@@ -1,6 +1,8 @@
 //list our routes in the flow order in the app
 const routes = [
   { path: '/start' },
+  { path: '/eligibility/age' },
+  { path: '/eligibility/taxable-income' },
   { path: '/eligibility/children' },
   { path: '/offramp/children', editInfo: 'skip' },
   { path: '/eligibility/dependents' },

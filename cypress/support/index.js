@@ -22,6 +22,43 @@ Cypress.Cookies.defaults({
 })
 
 Cypress.Commands.add('login', user => {
+  // ELIGIBILITY CHILDREN
+  cy.injectAxe().checkA11y()
+  cy.confirm({
+    url: '/eligibility/children',
+    h1: 'Check if you may use this service - Children',
+    id: 'children1',
+  })
+  cy.continue()
+
+  // ELIGIBILITY DEPENDENTS
+  cy.injectAxe().checkA11y()
+  cy.confirm({
+    url: '/eligibility/dependents',
+    h1: 'Check if you may use this service - Dependents',
+    id: 'eligibleDependents1',
+  })
+  cy.continue()
+
+  // ELIGIBILITY TUITION
+  cy.injectAxe().checkA11y()
+  cy.confirm({
+    url: '/eligibility/tuition',
+    h1: 'Check if you may use this service - Tuition',
+    id: 'tuition1',
+  })
+  cy.continue()
+
+  // ELIGIBILITY INCOME SOURCES
+  cy.injectAxe().checkA11y()
+  cy.confirm({
+    url: '/eligibility/income',
+    h1: 'Check if you may use this service - Income sources',
+    id: 'income1',
+  })
+  cy.continue()
+
+  // LOGIN CODE
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/login/code')
   cy.code({ code: user.login.code })

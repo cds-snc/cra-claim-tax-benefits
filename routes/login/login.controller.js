@@ -6,7 +6,6 @@ const {
   checkErrors,
   getPreviousRoute,
 } = require('./../../utils')
-const { hashString } = require('./../../utils/crypto.utils')
 const {
   loginSchema,
   _toISOFormat,
@@ -40,7 +39,6 @@ module.exports = function(app) {
 }
 
 const postLoginCode = async (req, res, next) => {
-  console.log(hashString('A5G98S4K1'), hashString('A5G98S4K2'))
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     // clear session
@@ -127,7 +125,7 @@ const postLogin = async (req, res, next) => {
   const user = API.getUser(code)
 
   if (!user) {
-    return Promise.reject(`[POST ${req.path}] user not found for access code "${code}"`)
+    throw new Error(`[POST ${req.path}] user not found for access code "${code}"`)
   }
 
   // this intentionally overwrites what we have saved in "session.login" up to this point

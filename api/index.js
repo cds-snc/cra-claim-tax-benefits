@@ -4,7 +4,7 @@ var API = (function(userFound) {
   const _user = userFound
 
   const getUser = code => {
-    if (code && code.toUpperCase() === _user.login.code) {
+    if (code && code === _user.login.code) {
       return _user
     }
 

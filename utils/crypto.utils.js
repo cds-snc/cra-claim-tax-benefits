@@ -1,26 +1,31 @@
-const crypto = require('crypto');
+const crypto = require('crypto')
 
 const config = {
+  initialSalt: 'd75535de98ecea315854491c8d036f8f',
   iterations: 100000,
   hashBytes: 32,
-  digest: 'sha512'
+  digest: 'sha512',
 }
 
 const hashArgs = [config.iterations, config.hashBytes, config.digest]
 
-const hashString = (stringToHash) => {
+const hashString = (stringToHash, useInitialSalt) => {
   if (!stringToHash) {
-    return Promise.reject('you need to enter a string to hash');
+    return Promise.reject('you need to enter a string to hash')
   }
-  const salt = crypto.randomBytes(16).toString('hex')
+
+  const salt = useInitialSalt ? config.initialSalt : crypto.randomBytes(16).toString('hex')
+
   const hash = crypto.pbkdf2Sync(stringToHash, salt, ...hashArgs).toString('hex')
   return [salt, hash].join('$')
 }
 
-const verifyHash = (stringToHash, original) => {
+const verifyHash = (stringToVerify, original, useInitialSalt) => {
   const originalHash = original.split('$')[1]
-  const salt = original.split('$')[0]
-  const hash = crypto.pbkdf2Sync(stringToHash, salt, ...hashArgs).toString('hex')
+
+  const salt = useInitialSalt ? config.initialSalt : original.split('$')[0]
+
+  const hash = crypto.pbkdf2Sync(stringToVerify, salt, ...hashArgs).toString('hex')
 
   return hash === originalHash
 }

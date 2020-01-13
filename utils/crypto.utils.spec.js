@@ -29,8 +29,7 @@ describe('Test hashString', () => {
 describe('Test verifyHash', () => {
   const hashed = hashString('1977-05-05')
 
-  test('returns true when the string matches the hashed value',
-   async () => {
+  test('returns true when the string matches the hashed value', async () => {
     expect(verifyHash('1977-05-05', hashed)).toBe(true)
   })
 

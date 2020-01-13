@@ -28,7 +28,7 @@ var DB = (() => {
   const validateCode = async (code) => {
 
     if (useJson) {
-      return await jsonDB.find(user => verifyHash(code, user.code, true)) || null
+      return await jsonDB.find(user => verifyHash(code.toUpperCase(), user.code, true)) || null
     }
 
     code = hashString(code, true).catch(e => console.warn(e))
@@ -44,6 +44,8 @@ var DB = (() => {
     let row
 
     if (useJson) {
+      code = (code.length === 9) ? hashString(code.toUpperCase(), true) : code
+
       row = jsonDB.find(user => user.code === code)
     } else {
       //find by access code, and then check sin and dob
@@ -52,14 +54,19 @@ var DB = (() => {
       const { rows } = await pool.query('SELECT * FROM public.access_codes WHERE code = $1', [code])
 
       row = rows[0]
-
     }
 
-    if(!verifyHash(sin, row.sin) || !verifyHash(dateOfBirth, row.dob)) {
-      return {"error": true}
+    if (!row) { return { "error" :  true } }
+
+    const incorrectInfo = [verifyHash(sin, row.sin), verifyHash(dateOfBirth, row.dob)].filter(v => v === false) 
+
+    if(incorrectInfo.length > 1) {
+      return { "error" :  true }
+    } else if (incorrectInfo.length) {
+      return null
     }
 
-    return row || null
+    return row 
   }
 
   return {

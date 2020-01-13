@@ -11,7 +11,7 @@ describe('Test hashString', () => {
 
   test('returns a rejected promise without a string', async () => {
     const hashed = hashString()
-    
+
     hashed.catch((e) => {
       expect(e).toEqual('you need to enter a string to hash')
     })
@@ -27,8 +27,14 @@ describe('Test hashString', () => {
 })
 
 describe('Test verifyHash', () => {
-  //hash a string
-  //with a true value
-  //with a false value
+  const hashed = hashString('1977-05-05')
 
+  test('returns true when the string matches the hashed value',
+   async () => {
+    expect(verifyHash('1977-05-05', hashed)).toBe(true)
+  })
+
+  test('returns false when the string does not match the hashed value', async () => {
+    expect(verifyHash('1987-05-05', hashed)).toBe(false)
+  })
 })

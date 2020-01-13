@@ -31,7 +31,7 @@ var DB = (() => {
       return await jsonDB.find(user => verifyHash(code, user.code, true)) || null
     }
 
-    code = hashString(code, true)
+    code = hashString(code, true).catch(e => console.warn(e))
     
     const { rows } = await pool.query('SELECT * FROM public.access_codes WHERE code = $1', [code])
     

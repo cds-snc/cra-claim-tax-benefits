@@ -1,8 +1,11 @@
 /* eslint-disable */
 
-// Add a a polyfill for the 'details' HTML5 element for older browsers
-if (typeof Promise !== 'function' && document.querySelector('details') !== null) {
-  document.write('<script src="/js/details-element-polyfill.js"></script>');
+var elementIsNative = typeof HTMLDetailsElement != "undefined" && document.createElement("details") instanceof HTMLDetailsElement;
+if (!elementIsNative) {
+  // Add a polyfill for the 'details' HTML5 element for older browsers if there is a 'details' tag on the page
+  if (document.querySelector('details') !== null) {
+    document.write('<script src="/js/details-element-polyfill.js"></script>');
+  }
 }
 
 // Find all of the links with the 'button' role and add a click event to them
@@ -22,9 +25,10 @@ if (form) {
     evt.preventDefault();
 
     // remove the #hash component of the url (ie, the last part of /login/code#code)
-    if ('pushState' in history)
-    {  history.pushState('', document.title, window.location.pathname + window.location.search); }
+    if ('pushState' in history) {
+      history.pushState('', document.title, window.location.pathname + window.location.search);
+    }
+
     form.submit();
   });
 }
-

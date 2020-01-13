@@ -100,7 +100,7 @@ describe('Test server responses', () => {
     */
     expect(response.headers['content-security-policy']).toEqual(
       // eslint-disable-next-line quotes
-      "default-src 'self'; connect-src 'self'; base-uri 'none'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; style-src 'self' https://fonts.googleapis.com",
+      "default-src 'self'; connect-src 'self'; base-uri 'none'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     )
   })
 })

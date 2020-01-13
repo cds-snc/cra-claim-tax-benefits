@@ -13,5 +13,5 @@ module.exports = {
   fontSrc: ["'self'", 'https://fonts.gstatic.com'],
   imgSrc: ["'self'", 'data:'],
   scriptSrc: ["'self'"],
-  styleSrc: ["'self'", 'https://fonts.googleapis.com'],
+  styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
 }

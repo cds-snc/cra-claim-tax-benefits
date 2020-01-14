@@ -145,6 +145,7 @@ li:not(:last-of-type) {
   margin-bottom: 0;
 
   p {
+  margin-top: $space-md;
   margin-bottom: 5px;
   color: $stepper-grey-light;
   }

@@ -73,7 +73,7 @@ Cypress.Commands.add('login', user => {
   cy.injectAxe().checkA11y()
   cy.confirm({
     url: '/eligibility/tuition',
-    h1: 'University or college tuition',
+    h1: '2019 tuition',
     id: 'tuition1',
   })
   cy.continue()

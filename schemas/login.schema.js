@@ -85,6 +85,10 @@ const taxableIncomeSchema = {
   taxableIncome: yesNoSchema(),
 }
 
+const residenceScreeningSchema = {
+  residenceScreening: yesNoSchema(),
+}
+
 const childrenSchema = {
   children: yesNoSchema(),
 }
@@ -105,8 +109,12 @@ const tuitionClaimSchema = {
   tuitionClaim: yesNoSchema(),
 }
 
-const incomeSchema = {
-  income: yesNoSchema(),
+const incomeSourcesSchema = {
+  incomeSources: yesNoSchema(),
+}
+
+const foreignIncomeSchema = {
+  foreignIncome: yesNoSchema(),
 }
 
 module.exports = {
@@ -119,8 +127,10 @@ module.exports = {
   eligibleDependentsClaimSchema,
   tuitionSchema,
   tuitionClaimSchema,
-  incomeSchema,
+  incomeSourcesSchema,
+  foreignIncomeSchema,
   taxableIncomeSchema,
+  residenceScreeningSchema,
   ageSchema,
   childrenSchema,
 }

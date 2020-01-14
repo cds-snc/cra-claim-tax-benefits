@@ -12,11 +12,6 @@ const answerInfo = [
         infoPath: ['personal.dateOfBirth'],
       },
       {
-        text: 'Province',
-        infoPath: ['personal.address.province'],
-        urlPath: '/personal/residence',
-      },
-      {
         text: 'Mailing address',
         infoPath: ['personal.address'],
         urlPath: '/personal/address',

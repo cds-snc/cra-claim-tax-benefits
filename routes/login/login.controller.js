@@ -15,10 +15,12 @@ const {
   eligibleDependentsClaimSchema,
   tuitionSchema,
   tuitionClaimSchema,
-  incomeSchema,
+  incomeSourcesSchema,
+  foreignIncomeSchema,
   childrenSchema,
   taxableIncomeSchema,
   ageSchema,
+  residenceScreeningSchema,
 } = require('./../../schemas')
 const API = require('../../api')
 const DB = require('../../db')
@@ -39,6 +41,15 @@ module.exports = function(app) {
     checkSchema(taxableIncomeSchema),
     checkErrors('login/eligibility-taxable-income'),
     postTaxableIncome,
+    doRedirect,
+  )
+
+  app.get('/eligibility/residence', renderWithData('login/eligibility-residence'))
+  app.post(
+    '/eligibility/residence',
+    checkSchema(residenceScreeningSchema),
+    checkErrors('login/eligibility-residence'),
+    postResidenceScreening,
     doRedirect,
   )
 
@@ -87,12 +98,21 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/eligibility/income', renderWithData('login/eligibility-income'))
+  app.get('/eligibility/income-sources', renderWithData('login/eligibility-income-sources'))
   app.post(
-    '/eligibility/income',
-    checkSchema(incomeSchema),
-    checkErrors('login/eligibility-income'),
-    postIncome,
+    '/eligibility/income-sources',
+    checkSchema(incomeSourcesSchema),
+    checkErrors('login/eligibility-income-sources'),
+    postIncomeSources,
+    doRedirect,
+  )
+
+  app.get('/eligibility/foreign-income', renderWithData('login/eligibility-foreign-income'))
+  app.post(
+    '/eligibility/foreign-income',
+    checkSchema(foreignIncomeSchema),
+    checkErrors('login/eligibility-foreign-income'),
+    postForeignIncome,
     doRedirect,
   )
 
@@ -215,8 +235,9 @@ const postLogin = async (req, res, next) => {
 }
 
 const postAge = (req, res, next) => {
+  const ageYesNo = req.body.ageYesNo
 
-  res.redirect('/eligibility/taxable-income')
+  req.session.login.ageYesNo = ageYesNo
 
   next()
 }
@@ -226,12 +247,32 @@ const postTaxableIncome = (req, res, next) => {
 
   req.session.login.taxableIncome = taxableIncome
 
-  if (taxableIncome === 'No') {
-    return res.redirect('/eligibility/income-under-65')
+  if (taxableIncome !== 'Yes') {
+    return res.redirect('/offramp/taxable-income')
   }
 
-  if (taxableIncome === 'Yes') {
-    return res.redirect('/eligibility/income-over-65')
+  next()
+}
+
+const postResidenceScreening = (req, res, next) => {
+  const residenceScreening = req.body.residenceScreening 
+
+  req.session.login.residenceScreening  = residenceScreening 
+
+  if (residenceScreening  === 'No') {
+    return res.redirect('/offramp/residence')
+  }
+
+  next()
+}
+
+const postChildren = (req, res, next) => {
+  const children = req.body.children
+
+  req.session.login.children = children
+
+  if (children !== 'No') {
+    return res.redirect('/offramp/children')
   }
 
   next()
@@ -275,7 +316,7 @@ const postTuition = (req, res, next) => {
   req.session.login.tuition = tuition
 
   if (tuition === 'No') {
-    return res.redirect('/eligibility/income')
+    return res.redirect('/eligibility/income-sources')
   }
 
   if (tuition === 'Yes') {
@@ -291,7 +332,7 @@ const postTuitionClaim = (req, res, next) => {
   req.session.login.tuitionClaim = tuitionClaim
 
   if (tuitionClaim === 'No') {
-    return res.redirect('/eligibility/income')
+    return res.redirect('/eligibility/income-sources')
   }
 
   if (tuitionClaim === 'Yes') {
@@ -301,25 +342,25 @@ const postTuitionClaim = (req, res, next) => {
   next()
 }
 
-const postIncome = (req, res, next) => {
-  const income = req.body.income
+const postIncomeSources = (req, res, next) => {
+  const incomeSources = req.body.incomeSources
 
-  req.session.login.income = income
+  req.session.login.incomeSources = incomeSources
 
-  if (income !== 'No') {
-    return res.redirect('/offramp/income')
+  if (incomeSources !== 'No') {
+    return res.redirect('/offramp/income-sources')
   }
 
   next()
 }
 
-const postChildren = (req, res, next) => {
-  const children = req.body.children
+const postForeignIncome = (req, res, next) => {
+  const foreignIncome = req.body.foreignIncome
 
-  req.session.login.children = children
+  req.session.login.foreignIncome = foreignIncome
 
-  if (children !== 'No') {
-    return res.redirect('/offramp/children')
+  if (foreignIncome !== 'No') {
+    return res.redirect('/offramp/foreign-income')
   }
 
   next()

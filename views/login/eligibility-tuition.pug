@@ -1,18 +1,18 @@
 extends ../base
 
 block variables
-  -var title = __('Check if you may use this service - tuition')
+  -var title = __('University or college tuition')
   -var tuition = hasData(data, 'login.tuition') ? data.login.tuition : ''
 
 block content
 
-  +stepper('3','4')
+  +stepper('Screening questions', '5', '7')
 
   h1.stepperH1 #{title}
 
   form.cra-form(method='post')
     +radiosYesNo('tuition', 'Were you a student at a college, university or institute in 2018?')
 
-    input#redirect(name='redirect', type='hidden', value='/eligibility/income')
+    input#redirect(name='redirect', type='hidden', value='/eligibility/income-sources')
 
     +formButtons()

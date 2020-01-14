@@ -19,7 +19,11 @@ module.exports = function(app) {
 
   app.get('/offramp/tuition', renderWithData('offramp/tuition'))
 
-  app.get('/offramp/income', renderWithData('offramp/income'))
+  app.get('/offramp/income-sources', renderWithData('offramp/income-sources'))
+
+  app.get('/offramp/foreign-income', renderWithData('offramp/foreign-income'))
+
+  app.get('/offramp/taxable-income', renderWithData('offramp/taxable-income'))
 
   app.get('/offramp/children', renderWithData('offramp/children'))
 }

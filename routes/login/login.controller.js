@@ -116,6 +116,8 @@ module.exports = function(app) {
     doRedirect,
   )
 
+  app.get('/eligibility/success', renderWithData('login/eligibility-success'))
+
   // redirect from "/login" → "/login/code"
   app.get('/login', (req, res) => res.redirect('/login/code'))
   app.get('/login/code', renderWithData('login/code', { errorsKey: 'login' }))

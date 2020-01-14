@@ -1,0 +1,17 @@
+extends ../base
+
+block variables
+  -var title = __('You can file taxes with this service')
+
+block content
+
+  h1 #{title}
+
+  p #{__('You will need:')}
+
+  ul
+    li #{__('Personal code from the Canada Revenue Agency letter')} <i>#{__('service.name')}</i>
+    li #{__('Social insurance number (SIN)')}
+    li #{__('Receipts for rent, long-term care, property tax and home energy costs, if you have them')}
+
+  +linkButtons('/login/code', 'Continue')

@@ -18,7 +18,7 @@ describe('Full run through saying "no" to everything', function() {
   // START PAGE
   it('successfully loads the home page', function() {
     cy.checkA11y()
-    cy.get('h1').should('contain', 'Claim Tax Benefits')
+    cy.get('h1').should('contain', 'File taxes to access benefits')
     cy.get('main a')
       .should('contain', 'Start now')
       .click()

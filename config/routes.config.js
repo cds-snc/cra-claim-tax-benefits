@@ -18,6 +18,7 @@ const routes = [
   { path: '/offramp/income-sources', editInfo: 'skip' },
   { path: '/eligibility/foreign-income' },
   { path: '/offramp/foreign-income', editInfo: 'skip' },
+  { path: '/eligibility/success' },
   { path: '/login/code' },
   { path: '/offramp', editInfo: 'skip' },
   { path: '/login/sin' },

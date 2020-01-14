@@ -18,7 +18,6 @@ describe('Test /personal responses', () => {
     const urls = [
       '/personal/name',
       '/personal/maritalStatus',
-      '/personal/residence',
       '/personal/address',
     ]
 
@@ -83,44 +82,6 @@ describe('Test /personal responses', () => {
         .query({ ref: 'checkAnswers' })
         .use(withCSRF(cookie, csrfToken))
         .send({ redirect: '/start', confirmMaritalStatus: 'Yes' })
-      expect(response.statusCode).toBe(302)
-      expect(response.headers.location).toEqual('/checkAnswers')
-    })
-  })
-
-  describe('Test /personal/residence responses', () => {
-    test('it returns a 422 with no option selected', async () => {
-      const response = await request(app)
-        .post('/personal/residence')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ redirect: '/personal/address' })
-      expect(response.statusCode).toBe(422)
-    })
-
-    test('it returns a 302 when selecting unsupported province', async () => {
-      const response = await request(app)
-        .post('/personal/residence')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ redirect: '/offramp/residence', residence: 'Alberta' })
-      expect(response.headers.location).toEqual('/offramp/residence')
-      expect(response.statusCode).toBe(302)
-    })
-
-    test('it returns a 302 when selecting Ontario', async () => {
-      const response = await request(app)
-        .post('/personal/residence')
-        .use(withCSRF(cookie, csrfToken))
-        .send({ redirect: '/personal/address', residence: 'Ontario' })
-      expect(response.headers.location).toEqual('/personal/address')
-      expect(response.statusCode).toBe(302)
-    })
-
-    test('it redirects to the checkAnswers when posting Yes and having come from the checkAnswers page', async () => {
-      const response = await request(app)
-        .post('/personal/residence')
-        .query({ ref: 'checkAnswers' })
-        .use(withCSRF(cookie, csrfToken))
-        .send({ redirect: '/start', residence: 'Ontario' })
       expect(response.statusCode).toBe(302)
       expect(response.headers.location).toEqual('/checkAnswers')
     })

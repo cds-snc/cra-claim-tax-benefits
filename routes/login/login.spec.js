@@ -13,8 +13,26 @@ beforeEach(async () => {
   csrfToken = extractCsrfToken(getresp)
 })
 
-describe('Test deductions and trillium yesNo page responses', () => {
+describe('Test eligibility yesNo responses', () => {
   const yesNoResponses = [
+    {
+      url: '/eligibility/age',
+      key: 'ageYesNo',
+      yesRedir: '/eligibility/taxable-income',
+      noRedir: '/eligibility/taxable-income',
+    },
+    {
+      url: '/eligibility/taxable-income',
+      key: 'taxableIncome',
+      yesRedir: '/eligibility/residence',
+      noRedir: '/offramp/taxable-income',
+    },
+    {
+      url: '/eligibility/residence',
+      key: 'residenceScreening',
+      yesRedir: '/eligibility/children',
+      noRedir: '/offramp/residence',
+    },
     {
       url: '/eligibility/children',
       key: 'children',
@@ -47,9 +65,15 @@ describe('Test deductions and trillium yesNo page responses', () => {
     },
     {
       url: '/eligibility/income-sources',
-      key: 'income',
-      yesRedir: '/offramp/income',
-      noRedir: '/login/code',
+      key: 'incomeSources',
+      yesRedir: '/offramp/income-sources',
+      noRedir: '/eligibility/foreign-income',
+    },
+    {
+      url: '/eligibility/foreign-income',
+      key: 'foreignIncome',
+      yesRedir: '/offramp/foreign-income',
+      noRedir: '/eligibility/success',
     },
   ]
 
@@ -478,5 +502,12 @@ describe('Test /login responses', () => {
       const response = await request(app).get('/login/error/doesNotMatch')
       expect(response.statusCode).toBe(200)
     })
+  })
+})
+
+describe('Test /elgibility/success server response', () => {
+  test('it returns a 200 response for the /success path', async () => {
+    const response = await request(app).get('/eligibility/success')
+    expect(response.statusCode).toBe(200)
   })
 })

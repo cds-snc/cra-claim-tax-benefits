@@ -22,11 +22,40 @@ Cypress.Cookies.defaults({
 })
 
 Cypress.Commands.add('login', user => {
+  // ELIGIBILITY AGE
+  cy.injectAxe().checkA11y()
+  cy.url().should('contain', '/eligibility/age')
+  cy.get('h1').should('contain', 'Age 65 and above')
+
+  cy.get(`input#ageYesNo1 + label`).should('have.attr', 'for', 'ageYesNo1')
+  cy.get(`input#ageYesNo1`).click()
+
+  cy.continue()
+
+  // ELIGIBILITY TAXABLE INCOME
+  cy.injectAxe().checkA11y()
+  cy.confirm({
+    url: '/eligibility/taxable-income',
+    h1: '2019 Income',
+    id: 'taxableIncome0',
+  })
+  cy.continue()
+
+  // ELIGIBILITY RESIDENCE
+  cy.injectAxe().checkA11y()
+  cy.url().should('contain', '/eligibility/residence')
+  cy.get('h1').should('contain', 'Province or territory of home address')
+
+  cy.get(`input#residenceScreening0 + label`).should('have.attr', 'for', 'residenceScreening0')
+  cy.get(`input#residenceScreening0`).click()
+
+  cy.continue()
+
   // ELIGIBILITY CHILDREN
   cy.injectAxe().checkA11y()
   cy.confirm({
     url: '/eligibility/children',
-    h1: 'Check if you may use this service - Children',
+    h1: 'Children under 18',
     id: 'children1',
   })
   cy.continue()
@@ -35,7 +64,7 @@ Cypress.Commands.add('login', user => {
   cy.injectAxe().checkA11y()
   cy.confirm({
     url: '/eligibility/dependents',
-    h1: 'Check if you may use this service - Dependents',
+    h1: 'Eligible dependents',
     id: 'eligibleDependents1',
   })
   cy.continue()
@@ -44,7 +73,7 @@ Cypress.Commands.add('login', user => {
   cy.injectAxe().checkA11y()
   cy.confirm({
     url: '/eligibility/tuition',
-    h1: 'Check if you may use this service - Tuition',
+    h1: 'University or college tuition',
     id: 'tuition1',
   })
   cy.continue()
@@ -52,11 +81,26 @@ Cypress.Commands.add('login', user => {
   // ELIGIBILITY INCOME SOURCES
   cy.injectAxe().checkA11y()
   cy.confirm({
-    url: '/eligibility/income',
-    h1: 'Check if you may use this service - Income sources',
-    id: 'income1',
+    url: '/eligibility/income-sources',
+    h1: 'Income sources',
+    id: 'incomeSources1',
   })
   cy.continue()
+
+  // ELIGIBILITY FOREIGN INCOME
+  cy.injectAxe().checkA11y()
+  cy.confirm({
+    url: '/eligibility/foreign-income',
+    h1: 'Foreign income',
+    id: 'foreignIncome1',
+  })
+  cy.continue()
+
+  // ELIGIBILITY SUCCESS
+  cy.injectAxe().checkA11y()
+  cy.url().should('contain', '/eligibility/success')
+  cy.get('h1').should('contain', 'You can file taxes with this service')
+  cy.get('a[href="/login/code"]').click()
 
   // LOGIN CODE
   cy.injectAxe().checkA11y()

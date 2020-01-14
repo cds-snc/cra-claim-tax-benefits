@@ -38,16 +38,6 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
-  //CONFIRM RESIDENCE
-  it('navigates the Confirm Residence page', function() {
-    cy.confirm({
-      url: '/personal/residence',
-      h1: 'Enter your province or territory',
-      id: 'residence',
-    })
-    cy.continue()
-  })
-
   //CONFIRM MAILING
   it('navigates the Confirm Mailing page', function() {
     cy.confirm({

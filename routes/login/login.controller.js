@@ -257,11 +257,11 @@ const postTaxableIncome = (req, res, next) => {
 }
 
 const postResidenceScreening = (req, res, next) => {
-  const residenceScreening = req.body.residenceScreening 
+  const residenceScreening = req.body.residenceScreening
 
-  req.session.login.residenceScreening  = residenceScreening 
+  req.session.login.residenceScreening = residenceScreening
 
-  if (residenceScreening  === 'No') {
+  if (residenceScreening === 'No') {
     return res.redirect('/offramp/residence')
   }
 
@@ -289,6 +289,8 @@ const postEligibleDependents = (req, res, next) => {
     return res.redirect('/eligibility/dependents-claim')
   }
 
+  req.session.login.eligibleDependentsClaim = null
+
   next()
 }
 
@@ -312,6 +314,8 @@ const postTuition = (req, res, next) => {
   if (tuition === 'Yes') {
     return res.redirect('/eligibility/tuition-claim')
   }
+
+  req.session.login.tuitionClaim = null
 
   next()
 }

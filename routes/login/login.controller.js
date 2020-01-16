@@ -81,15 +81,15 @@ const postSIN = (req, res, next) => {
   next()
 }
 
-const postLogin = async (req, res, next) => {
-  const _loginError = (req, { id, msg }) => {
-    const oldSession = req.session.login || {}
-    req.session.login = {
-      ...oldSession,
-      ...{ errors: { [id]: { msg, param: id } } },
-    }
+const _loginError = (req, { id, msg }) => {
+  const oldSession = req.session.login || {}
+  req.session.login = {
+    ...oldSession,
+    ...{ errors: { [id]: { msg, param: id } } },
   }
+}
 
+const postLogin = async (req, res, next) => {
   // if no session, or no access code, return to access code page
   if (!req.session || !req.session.login || !req.session.login.code) {
     _loginError(req, { id: 'code', msg: 'errors.login.code.missing' })

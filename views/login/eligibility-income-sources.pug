@@ -11,7 +11,7 @@ block content
   h1 #{title}
 
   form.cra-form(method='post')
-    +radiosYesNo('incomeSources', 'Did any of your 2019 income come from your own business, self-employment, renting property or investments?')
+    +radiosYesNo('incomeSources', 'Did any of your 2019 income come from your own business, self-employment, renting property or investments?', incomeSources)
 
     input#redirect(name='redirect', type='hidden', value='/eligibility/foreign-income')
 

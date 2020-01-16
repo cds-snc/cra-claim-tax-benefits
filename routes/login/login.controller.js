@@ -249,7 +249,7 @@ const postTaxableIncome = (req, res, next) => {
 
   req.session.login.taxableIncome = taxableIncome
 
-  if (taxableIncome !== 'Yes') {
+  if (taxableIncome === 'No') {
     return res.redirect('/offramp/taxable-income')
   }
 
@@ -273,7 +273,7 @@ const postChildren = (req, res, next) => {
 
   req.session.login.children = children
 
-  if (children !== 'No') {
+  if (children === 'Yes') {
     return res.redirect('/offramp/children')
   }
 
@@ -333,7 +333,7 @@ const postIncomeSources = (req, res, next) => {
 
   req.session.login.incomeSources = incomeSources
 
-  if (incomeSources !== 'No') {
+  if (incomeSources === 'Yes') {
     return res.redirect('/offramp/income-sources')
   }
 
@@ -345,7 +345,7 @@ const postForeignIncome = (req, res, next) => {
 
   req.session.login.foreignIncome = foreignIncome
 
-  if (foreignIncome !== 'No') {
+  if (foreignIncome === 'Yes') {
     return res.redirect('/offramp/foreign-income')
   }
 

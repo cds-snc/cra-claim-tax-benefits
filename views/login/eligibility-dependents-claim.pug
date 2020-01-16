@@ -11,7 +11,7 @@ block content
   h1 #{title}
 
   form.cra-form(method='post')
-    +radiosYesNo('eligibleDependentsClaim', 'Will you claim tax credits for your eligible dependent or dependents?')
+    +radiosYesNo('eligibleDependentsClaim', 'Will you claim tax credits for your eligible dependent or dependents?', eligibleDependentsClaim)
 
     input#redirect(name='redirect', type='hidden', value='/eligibility/tuition')
 

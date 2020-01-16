@@ -14,7 +14,7 @@ block content
     p #{__('An “eligible dependent” may be a family member who usually lives with you and depends on your support, for example with food, shelter, or clothing.')}
 
   form.cra-form(method='post')
-    +radiosYesNo('eligibleDependents', 'Do you have any eligible dependents?')
+    +radiosYesNo('eligibleDependents', 'Do you have any eligible dependents?', eligibleDependents)
 
     input#redirect(name='redirect', type='hidden', value='/eligibility/tuition')
 

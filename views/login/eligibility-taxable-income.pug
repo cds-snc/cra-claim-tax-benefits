@@ -11,9 +11,9 @@ block content
 
   form.cra-form(method='post')
     if(data.login.ageYesNo === 'Yes')
-      +radiosYesNo('taxableIncome', 'Was your 2019 taxable income $19,563 or less?')
+      +radiosYesNo('taxableIncome', 'Was your 2019 taxable income $19,563 or less?', taxableIncome)
     else
-      +radiosYesNo('taxableIncome', 'Was your 2019 taxable income $12,069 or less?')
+      +radiosYesNo('taxableIncome', 'Was your 2019 taxable income $12,069 or less?', taxableIncome)
 
     input#redirect(name='redirect' type='hidden' value='/eligibility/residence')
 

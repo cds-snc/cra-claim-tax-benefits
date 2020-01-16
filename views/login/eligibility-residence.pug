@@ -11,7 +11,7 @@ block content
   h1 #{title}
   
   form.cra-form(method='post')
-    +radiosYesNo('residenceScreening', 'On December 31, 2019, was your home address in Ontario?')
+    +radiosYesNo('residenceScreening', 'On December 31, 2019, was your home address in Ontario?', residenceScreening)
 
     input#redirect(name='redirect', type='hidden', value='/eligibility/children')
 

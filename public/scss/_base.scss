@@ -146,14 +146,14 @@ li:not(:last-of-type) {
 
   p {
   margin-top: $space-md;
-  margin-bottom: 5px;
-  color: $stepper-grey-light;
+  margin-bottom: $space-xxs;
+  color: $color-grey-dark;
   }
 
-}
+  + h1 {
+    margin-top: 0;
+  }
 
-.stepperH1 {
-  margin-top: 0;
 }
 
 .pure-table {

@@ -6,12 +6,12 @@ block variables
 
 block content
 
-  +stepper('Screening questions', '5', '7')
+  +stepper('5', '7')
 
-  h1.stepperH1 #{title}
+  h1 #{title}
 
   form.cra-form(method='post')
-    +radiosYesNo('tuition', 'Were you a student at a college, university or institute in 2018?')
+    +radiosYesNo('tuition', 'Were you a student at a college, university or institute in 2019?')
 
     input#redirect(name='redirect', type='hidden', value='/eligibility/income-sources')
 

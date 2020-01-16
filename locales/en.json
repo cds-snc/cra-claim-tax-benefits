@@ -588,7 +588,6 @@
   "Was your 2019 taxable income $12,069 or less?": "Was your 2019 taxable income $12,069 or less?",
   "You cannot use this online service because your taxable income for 2019 was over $12,069. Other secure ways to file are:": "You cannot use this online service because your taxable income for 2019 was over $12,069. Other secure ways to file are:",
   "Province or territory of home address": "Province or territory of home address",
-  "On December 31, 2018, was your home address in Ontario?": "On December 31, 2018, was your home address in Ontario?",
   "Children under 18": "Children under 18",
   "Do you have a child or children under age 18?": "Do you have a child or children under age 18?",
   "You cannot use this online service because you have a child under age 18. Other secure ways to file are:": "You cannot use this online service because you have a child under age 18. Other secure ways to file are:",
@@ -601,7 +600,6 @@
   "Will you claim tax credits for your eligible dependent or dependents?": "Will you claim tax credits for your eligible dependent or dependents?",
   "You cannot use this online service because you will claim tax credits for an eligible dependent. Other secure ways to file are:": "You cannot use this online service because you will claim tax credits for an eligible dependent. Other secure ways to file are:",
   "2019 tuition": "2019 tuition",
-  "Were you a student at a college, university or institute in 2018?": "Were you a student at a college, university or institute in 2018?",
   "Income sources": "Income sources",
   "Tuition tax credit": "Tuition tax credit",
   "You cannot use this online service because you will claim 2019 tuition tax credits. Other free and secure ways to file are:": "You cannot use this online service because you will claim 2019 tuition tax credits. Other free and secure ways to file are:",
@@ -621,5 +619,8 @@
   "You will need:": "You will need:",
   "Personal code from the Canada Revenue Agency letter": "Personal code from the Canada Revenue Agency letter",
   "Social insurance number (SIN)": "Social insurance number (SIN)",
-  "Receipts for rent, long-term care, property tax and home energy costs, if you have them": "Receipts for rent, long-term care, property tax and home energy costs, if you have them"
+  "Receipts for rent, long-term care, property tax and home energy costs, if you have them": "Receipts for rent, long-term care, property tax and home energy costs, if you have them",
+  "On December 31, 2019, was your home address in Ontario?": "On December 31, 2019, was your home address in Ontario?",
+  "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other secure ways to file are:": "You can’t use this online service because Ontario was not your home province on December 31, 2019. But you can still file your taxes. Other secure ways to file are:",
+  "Were you a student at a college, university or institute in 2019?": "Were you a student at a college, university or institute in 2019?"
 }

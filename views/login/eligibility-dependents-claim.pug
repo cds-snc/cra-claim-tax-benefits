@@ -6,9 +6,9 @@ block variables
 
 block content
 
-  +stepper('Screening questions', '4', '7')
+  +stepper('4', '7')
 
-  h1.stepperH1 #{title}
+  h1 #{title}
 
   form.cra-form(method='post')
     +radiosYesNo('eligibleDependentsClaim', 'Will you claim tax credits for your eligible dependent or dependents?')

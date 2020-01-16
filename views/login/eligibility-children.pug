@@ -6,9 +6,9 @@ block variables
 
 block content
 
-  +stepper('Screening questions', '3', '7')
+  +stepper('3', '7')
 
-  h1.stepperH1 #{title}
+  h1 #{title}
   
   form.cra-form(method='post')
     +radiosYesNo('children', 'Do you have a child or children under age 18?')

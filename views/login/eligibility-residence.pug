@@ -6,12 +6,12 @@ block variables
 
 block content
 
-  +stepper('Screening questions', '2', '7')
+  +stepper('2', '7')
 
-  h1.stepperH1 #{title}
+  h1 #{title}
   
   form.cra-form(method='post')
-    +radiosYesNo('residenceScreening', 'On December 31, 2018, was your home address in Ontario?')
+    +radiosYesNo('residenceScreening', 'On December 31, 2019, was your home address in Ontario?')
 
     input#redirect(name='redirect', type='hidden', value='/eligibility/children')
 

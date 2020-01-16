@@ -1,10 +1,6 @@
 {
-  "1": "1",
   "2": "2",
-  "3": "3",
-  "4": "4",
   "5": "5",
-  "6": "6",
   "7": "7",
   "errors.login.length": "Le code d’accès doit contenir 9 caractères",
   "errors.login.alphanumeric": "Le code d’accès ne doit contenir que des lettres et des chiffres",
@@ -557,7 +553,6 @@
   "if you can use a tax clinic.": "if you can use a tax clinic.",
   "You cannot use this online service because your taxable income for 2019 was over $12,069. Other secure ways to file are:": "You cannot use this online service because your taxable income for 2019 was over $12,069. Other secure ways to file are:",
   "Province or territory of home address": "Province or territory of home address",
-  "On December 31, 2018, was your home address in Ontario?": "On December 31, 2018, was your home address in Ontario?",
   "Eligible dependents": "Eligible dependents",
   "An “eligible dependent” may be a family member who usually lives with you and depends on your support, for example with food, shelter, or clothing.": "An “eligible dependent” may be a family member who usually lives with you and depends on your support, for example with food, shelter, or clothing.",
   "Do you have any eligible dependents?": "Do you have any eligible dependents?",
@@ -569,7 +564,6 @@
   "Will you claim tax credits for your eligible dependent or dependents?": "Will you claim tax credits for your eligible dependent or dependents?",
   "You cannot use this online service because you will claim tax credits for an eligible dependent. Other secure ways to file are:": "You cannot use this online service because you will claim tax credits for an eligible dependent. Other secure ways to file are:",
   "2019 tuition": "2019 tuition",
-  "Were you a student at a college, university or institute in 2018?": "Were you a student at a college, university or institute in 2018?",
   "Tuition tax credit": "Tuition tax credit",
   "Will you claim tax credits for your 2019 tuition?": "Will you claim tax credits for your 2019 tuition?",
   "If you use this service, you cannot claim tax credits, so you will not get money back for your tuition. You may want to file your taxes another way.": "If you use this service, you cannot claim tax credits, so you will not get money back for your tuition. You may want to file your taxes another way.",
@@ -583,5 +577,7 @@
   "check ": "check ",
   "Foreign income": "Foreign income",
   "Did any of your 2019 income come from sources outside Canada?": "Did any of your 2019 income come from sources outside Canada?",
-  "You cannot use this online service because you had income from sources outside Canada.": "You cannot use this online service because you had income from sources outside Canada."
+  "You cannot use this online service because you had income from sources outside Canada.": "You cannot use this online service because you had income from sources outside Canada.",
+  "Were you a student at a college, university or institute in 2019?": "Were you a student at a college, university or institute in 2019?",
+  "On December 31, 2019, was your home address in Ontario?": "On December 31, 2019, was your home address in Ontario?"
 }

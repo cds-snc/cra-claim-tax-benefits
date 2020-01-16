@@ -285,10 +285,6 @@ const postEligibleDependents = (req, res, next) => {
 
   req.session.login.eligibleDependents = eligibleDependents
 
-  if (eligibleDependents === 'No') {
-    return res.redirect('/eligibility/tuition')
-  }
-
   if (eligibleDependents === 'Yes') {
     return res.redirect('/eligibility/dependents-claim')
   }
@@ -300,10 +296,6 @@ const postEligibleDependentsClaim = (req, res, next) => {
   const eligibleDependentsClaim = req.body.eligibleDependentsClaim
 
   req.session.login.eligibleDependentsClaim = eligibleDependentsClaim
-
-  if (eligibleDependentsClaim === 'No') {
-    return res.redirect('/eligibility/tuition')
-  }
 
   if (eligibleDependentsClaim === 'Yes') {
     return res.redirect('/offramp/dependents')
@@ -317,10 +309,6 @@ const postTuition = (req, res, next) => {
 
   req.session.login.tuition = tuition
 
-  if (tuition === 'No') {
-    return res.redirect('/eligibility/income-sources')
-  }
-
   if (tuition === 'Yes') {
     return res.redirect('/eligibility/tuition-claim')
   }
@@ -332,10 +320,6 @@ const postTuitionClaim = (req, res, next) => {
   const tuitionClaim = req.body.tuitionClaim
 
   req.session.login.tuitionClaim = tuitionClaim
-
-  if (tuitionClaim === 'No') {
-    return res.redirect('/eligibility/income-sources')
-  }
 
   if (tuitionClaim === 'Yes') {
     return res.redirect('/offramp/tuition')

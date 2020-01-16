@@ -5,9 +5,9 @@ block variables
   -var taxableIncome = hasData(data, 'login.taxableIncome') ? data.login.taxableIncome : ''
 
 block content
-  +stepper('Screening questions', '1', '7')
+  +stepper('1', '7')
 
-  h1.stepperH1 #{title}
+  h1 #{title}
 
   form.cra-form(method='post')
     if(data.login.ageYesNo === 'Yes')

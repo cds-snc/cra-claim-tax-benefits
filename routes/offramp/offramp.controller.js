@@ -14,4 +14,16 @@ module.exports = function(app) {
   app.get('/offramp/address', renderWithData('offramp/address'))
 
   app.get('/offramp/financial', renderWithData('offramp/financial'))
+
+  app.get('/offramp/dependents', renderWithData('offramp/dependents'))
+
+  app.get('/offramp/tuition', renderWithData('offramp/tuition'))
+
+  app.get('/offramp/income-sources', renderWithData('offramp/income-sources'))
+
+  app.get('/offramp/foreign-income', renderWithData('offramp/foreign-income'))
+
+  app.get('/offramp/taxable-income', renderWithData('offramp/taxable-income'))
+
+  app.get('/offramp/children', renderWithData('offramp/children'))
 }

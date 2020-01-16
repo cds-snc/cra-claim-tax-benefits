@@ -1,0 +1,21 @@
+extends ../base
+
+block variables
+  -var title = __('Tuition tax credit')
+  -var tuitionClaim = hasData(data, 'login.eligibleDependentsClaim') ? data.login.tuitionClaim : ''
+
+block content
+
+  +stepper('5', '7')
+
+  h1 #{title}
+
+  div 
+    p #{__('If you use this service, you cannot claim tax credits, so you will not get money back for your tuition. You may want to file your taxes another way.')}
+
+  form.cra-form(method='post')
+    +radiosYesNo('tuitionClaim', 'Will you claim tax credits for your 2019 tuition?', tuitionClaim)
+
+    input#redirect(name='redirect', type='hidden', value='/eligibility/income-sources')
+
+    +formButtons()

@@ -1,0 +1,18 @@
+extends ../base
+
+block variables
+  -var title = __('Province or territory of home address')
+  -var residenceScreening = hasData(data, 'login.residenceScreening') ? data.login.residenceScreening : ''
+
+block content
+
+  +stepper('2', '7')
+
+  h1 #{title}
+  
+  form.cra-form(method='post')
+    +radiosYesNo('residenceScreening', 'On December 31, 2019, was your home address in Ontario?', residenceScreening)
+
+    input#redirect(name='redirect', type='hidden', value='/eligibility/children')
+
+    +formButtons()

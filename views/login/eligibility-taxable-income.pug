@@ -1,0 +1,20 @@
+extends ../base
+
+block variables
+  -var title = __('2019 Income')
+  -var taxableIncome = hasData(data, 'login.taxableIncome') ? data.login.taxableIncome : ''
+
+block content
+  +stepper('1', '7')
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    if(data.login.ageYesNo === 'Yes')
+      +radiosYesNo('taxableIncome', 'Was your 2019 taxable income $19,563 or less?', taxableIncome)
+    else
+      +radiosYesNo('taxableIncome', 'Was your 2019 taxable income $12,069 or less?', taxableIncome)
+
+    input#redirect(name='redirect' type='hidden' value='/eligibility/residence')
+
+    +formButtons()

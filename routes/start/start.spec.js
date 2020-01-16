@@ -33,7 +33,7 @@ describe('Test server responses', () => {
         .set('Accept-Language', 'en')
 
       const $ = cheerio.load(response.text)
-      expect($('h1').text()).toEqual('Claim Tax Benefits')
+      expect($('h1').text()).toEqual('File taxes to access benefits')
       expect($('html').attr('lang')).toEqual('en')
     })
 
@@ -41,7 +41,7 @@ describe('Test server responses', () => {
       const response = await request(app).get('/start?lang=en')
 
       const $ = cheerio.load(response.text)
-      expect($('h1').text()).toEqual('Claim Tax Benefits')
+      expect($('h1').text()).toEqual('File taxes to access benefits')
       expect($('html').attr('lang')).toEqual('en')
     })
 
@@ -49,7 +49,7 @@ describe('Test server responses', () => {
       const response = await request(app).get('/start?lang=pt')
 
       const $ = cheerio.load(response.text)
-      expect($('h1').text()).toEqual('Claim Tax Benefits')
+      expect($('h1').text()).toEqual('File taxes to access benefits')
       expect($('html').attr('lang')).toEqual('en')
     })
 

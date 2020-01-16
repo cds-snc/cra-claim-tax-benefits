@@ -1,0 +1,18 @@
+extends ../base
+
+block variables
+  -var title = __('Income sources')
+  -var incomeSources = hasData(data, 'login.incomeSources') ? data.login.incomeSources : ''
+
+block content
+
+  +stepper('6', '7')
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('incomeSources', 'Did any of your 2019 income come from your own business, self-employment, renting property or investments?', incomeSources)
+
+    input#redirect(name='redirect', type='hidden', value='/eligibility/foreign-income')
+
+    +formButtons()

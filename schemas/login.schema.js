@@ -1,6 +1,6 @@
 const validator = require('validator')
 const SocialInsuranceNumber = require('social-insurance-number')
-const { monthSchema, yearSchema } = require('./utils.schema')
+const { monthSchema, yearSchema, yesNoSchema } = require('./utils.schema')
 
 const loginSchema = {
   code: {
@@ -77,10 +77,60 @@ const dobSchema = {
   dobYear: yearSchema(),
 }
 
+const ageSchema = {
+  ageYesNo: yesNoSchema(),
+}
+
+const taxableIncomeSchema = {
+  taxableIncome: yesNoSchema(),
+}
+
+const residenceScreeningSchema = {
+  residenceScreening: yesNoSchema(),
+}
+
+const childrenSchema = {
+  children: yesNoSchema(),
+}
+
+const eligibleDependentsSchema = {
+  eligibleDependents: yesNoSchema(),
+}
+
+const eligibleDependentsClaimSchema = {
+  eligibleDependentsClaim: yesNoSchema(),
+}
+
+const tuitionSchema = {
+  tuition: yesNoSchema(),
+}
+
+const tuitionClaimSchema = {
+  tuitionClaim: yesNoSchema(),
+}
+
+const incomeSourcesSchema = {
+  incomeSources: yesNoSchema(),
+}
+
+const foreignIncomeSchema = {
+  foreignIncome: yesNoSchema(),
+}
+
 module.exports = {
   loginSchema,
   dobSchema,
   sinSchema,
   _toISOFormat,
   _getSinErrorMessage,
+  eligibleDependentsSchema,
+  eligibleDependentsClaimSchema,
+  tuitionSchema,
+  tuitionClaimSchema,
+  incomeSourcesSchema,
+  foreignIncomeSchema,
+  taxableIncomeSchema,
+  residenceScreeningSchema,
+  ageSchema,
+  childrenSchema,
 }

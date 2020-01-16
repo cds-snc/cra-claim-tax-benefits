@@ -4,7 +4,6 @@ const {
   addressSchema,
   maritalStatusSchema,
   nameSchema,
-  residenceSchema,
 } = require('./../../schemas')
 
 module.exports = function(app) {
@@ -25,15 +24,6 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/personal/residence', renderWithData('personal/residence'))
-  app.post(
-    '/personal/residence',
-    checkSchema(residenceSchema),
-    checkErrors('personal/residence'),
-    postResidence,
-    doRedirect,
-  )
-
   app.get('/personal/maritalStatus', renderWithData('personal/maritalStatus') )
   app.post(
     '/personal/maritalStatus',
@@ -42,14 +32,6 @@ module.exports = function(app) {
     postConfirmMaritalStatus,
     doRedirect,
   )
-}
-
-const postResidence = (req, res, next) => {
-  if (req.body.residence !== 'Ontario') {
-    return res.redirect('/offramp/residence')
-  }
-
-  next()
 }
 
 const postName = (req, res, next) => {

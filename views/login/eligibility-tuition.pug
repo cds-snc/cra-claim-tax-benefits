@@ -1,0 +1,18 @@
+extends ../base
+
+block variables
+  -var title = __('2019 tuition')
+  -var tuition = hasData(data, 'login.tuition') ? data.login.tuition : ''
+
+block content
+
+  +stepper('5', '7')
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('tuition', 'Were you a student at a college, university or institute in 2019?', tuition)
+
+    input#redirect(name='redirect', type='hidden', value='/eligibility/income-sources')
+
+    +formButtons()

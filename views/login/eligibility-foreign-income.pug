@@ -1,0 +1,18 @@
+extends ../base
+
+block variables
+  -var title = __('Foreign income')
+  -var foreignIncome = hasData(data, 'login.foreignIncome') ? data.login.foreignIncome : ''
+
+block content
+
+  +stepper('7', '7')
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('foreignIncome', 'Did any of your 2019 income come from sources outside Canada?', foreignIncome)
+
+    input#redirect(name='redirect', type='hidden', value='/eligibility/success')
+
+    +formButtons()

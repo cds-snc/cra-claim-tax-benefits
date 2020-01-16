@@ -36,8 +36,8 @@ describe('Test checkAnswersFormat function with initialSession', () => {
     ])
   })
 
-  test('it has sections with row lengths of 5 and 6', async () => {
-    expect(answerInfo['Personal information'].length).toBe(5)
+  test('it has sections with row lengths of 4 and 5', async () => {
+    expect(answerInfo['Personal information'].length).toBe(4)
     expect(answerInfo['Tax benefits'].length).toBe(5)
   })
 })

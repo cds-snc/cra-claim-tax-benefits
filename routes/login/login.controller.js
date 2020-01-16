@@ -11,11 +11,113 @@ const {
   _toISOFormat,
   sinSchema,
   dobSchema,
+  eligibleDependentsSchema,
+  eligibleDependentsClaimSchema,
+  tuitionSchema,
+  tuitionClaimSchema,
+  incomeSourcesSchema,
+  foreignIncomeSchema,
+  childrenSchema,
+  taxableIncomeSchema,
+  ageSchema,
+  residenceScreeningSchema,
 } = require('./../../schemas')
 const API = require('../../api')
 const DB = require('../../db')
 
 module.exports = function(app) {
+  app.get('/eligibility/age', renderWithData('login/eligibility-age'))
+  app.post(
+    '/eligibility/age',
+    checkSchema(ageSchema),
+    checkErrors('login/eligibility-age'),
+    postAge,
+    doRedirect,
+  )
+
+  app.get('/eligibility/taxable-income', renderWithData('login/eligibility-taxable-income'))
+  app.post(
+    '/eligibility/taxable-income',
+    checkSchema(taxableIncomeSchema),
+    checkErrors('login/eligibility-taxable-income'),
+    postTaxableIncome,
+    doRedirect,
+  )
+
+  app.get('/eligibility/residence', renderWithData('login/eligibility-residence'))
+  app.post(
+    '/eligibility/residence',
+    checkSchema(residenceScreeningSchema),
+    checkErrors('login/eligibility-residence'),
+    postResidenceScreening,
+    doRedirect,
+  )
+
+  app.get('/eligibility/children', renderWithData('login/eligibility-children'))
+  app.post(
+    '/eligibility/children',
+    checkSchema(childrenSchema),
+    checkErrors('login/eligibility-children'),
+    postChildren,
+    doRedirect,
+  )
+
+  app.get('/eligibility/dependents', renderWithData('login/eligibility-dependents'))
+  app.post(
+    '/eligibility/dependents',
+    checkSchema(eligibleDependentsSchema),
+    checkErrors('login/eligibility-dependents'),
+    postEligibleDependents,
+    doRedirect,
+  )
+
+  app.get('/eligibility/dependents-claim', renderWithData('login/eligibility-dependents-claim'))
+  app.post(
+    '/eligibility/dependents-claim',
+    checkSchema(eligibleDependentsClaimSchema),
+    checkErrors('login/eligibility-dependents-claim'),
+    postEligibleDependentsClaim,
+    doRedirect,
+  )
+
+  app.get('/eligibility/tuition', renderWithData('login/eligibility-tuition'))
+  app.post(
+    '/eligibility/tuition',
+    checkSchema(tuitionSchema),
+    checkErrors('login/eligibility-tuition'),
+    postTuition,
+    doRedirect,
+  )
+
+  app.get('/eligibility/tuition-claim', renderWithData('login/eligibility-tuition-claim'))
+  app.post(
+    '/eligibility/tuition-claim',
+    checkSchema(tuitionClaimSchema),
+    checkErrors('login/eligibility-tuition-claim'),
+    postTuitionClaim,
+    doRedirect,
+  )
+
+  app.get('/eligibility/income-sources', renderWithData('login/eligibility-income-sources'))
+  app.post(
+    '/eligibility/income-sources',
+    checkSchema(incomeSourcesSchema),
+    checkErrors('login/eligibility-income-sources'),
+    postIncomeSources,
+    doRedirect,
+  )
+
+  app.get('/eligibility/foreign-income', renderWithData('login/eligibility-foreign-income'))
+  app.post(
+    '/eligibility/foreign-income',
+    checkSchema(foreignIncomeSchema),
+    checkErrors('login/eligibility-foreign-income'),
+    postForeignIncome,
+    doRedirect,
+  )
+
+  app.get('/eligibility/success', renderWithData('login/eligibility-success'))
+
   // redirect from "/login" → "/login/code"
   app.get('/login', (req, res) => res.redirect('/login/code'))
   app.get('/login/code', renderWithData('login/code', { errorsKey: 'login' }))
@@ -97,7 +199,7 @@ const postLogin = async (req, res, next) => {
   }
 
   req.session.login.dateOfBirth = _toISOFormat(req.body)
-  
+
   // save each box as the user typed it for usability if there is an error
   req.session.login.dobDay = req.body.dobDay
   req.session.login.dobMonth = req.body.dobMonth
@@ -130,6 +232,126 @@ const postLogin = async (req, res, next) => {
 
   // this intentionally overwrites what we have saved in "session.login" up to this point
   Object.keys(user).map(key => (req.session[key] = user[key]))
+
+  next()
+}
+
+const postAge = (req, res, next) => {
+  const ageYesNo = req.body.ageYesNo
+
+  req.session.login.ageYesNo = ageYesNo
+
+  next()
+}
+
+const postTaxableIncome = (req, res, next) => {
+  const taxableIncome = req.body.taxableIncome
+
+  req.session.login.taxableIncome = taxableIncome
+
+  if (taxableIncome === 'No') {
+    return res.redirect('/offramp/taxable-income')
+  }
+
+  next()
+}
+
+const postResidenceScreening = (req, res, next) => {
+  const residenceScreening = req.body.residenceScreening
+
+  req.session.login.residenceScreening = residenceScreening
+
+  if (residenceScreening === 'No') {
+    return res.redirect('/offramp/residence')
+  }
+
+  next()
+}
+
+const postChildren = (req, res, next) => {
+  const children = req.body.children
+
+  req.session.login.children = children
+
+  if (children === 'Yes') {
+    return res.redirect('/offramp/children')
+  }
+
+  next()
+}
+
+const postEligibleDependents = (req, res, next) => {
+  const eligibleDependents = req.body.eligibleDependents
+
+  req.session.login.eligibleDependents = eligibleDependents
+
+  if (eligibleDependents === 'Yes') {
+    return res.redirect('/eligibility/dependents-claim')
+  }
+
+  req.session.login.eligibleDependentsClaim = null
+
+  next()
+}
+
+const postEligibleDependentsClaim = (req, res, next) => {
+  const eligibleDependentsClaim = req.body.eligibleDependentsClaim
+
+  req.session.login.eligibleDependentsClaim = eligibleDependentsClaim
+
+  if (eligibleDependentsClaim === 'Yes') {
+    return res.redirect('/offramp/dependents')
+  }
+
+  next()
+}
+
+const postTuition = (req, res, next) => {
+  const tuition = req.body.tuition
+
+  req.session.login.tuition = tuition
+
+  if (tuition === 'Yes') {
+    return res.redirect('/eligibility/tuition-claim')
+  }
+
+  req.session.login.tuitionClaim = null
+
+  next()
+}
+
+const postTuitionClaim = (req, res, next) => {
+  const tuitionClaim = req.body.tuitionClaim
+
+  req.session.login.tuitionClaim = tuitionClaim
+
+  if (tuitionClaim === 'Yes') {
+    return res.redirect('/offramp/tuition')
+  }
+
+  next()
+}
+
+const postIncomeSources = (req, res, next) => {
+  const incomeSources = req.body.incomeSources
+
+  req.session.login.incomeSources = incomeSources
+
+  if (incomeSources === 'Yes') {
+    return res.redirect('/offramp/income-sources')
+  }
+
+  next()
+}
+
+const postForeignIncome = (req, res, next) => {
+  const foreignIncome = req.body.foreignIncome
+
+  req.session.login.foreignIncome = foreignIncome
+
+  if (foreignIncome === 'Yes') {
+    return res.redirect('/offramp/foreign-income')
+  }
 
   next()
 }

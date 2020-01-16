@@ -6,6 +6,127 @@ const app = require('../../app.js')
 
 let csrfToken, cookie
 
+beforeEach(async () => {
+  const testSession = session(app)
+  const getresp = await testSession.get('/login/code')
+  cookie = getresp.headers['set-cookie']
+  csrfToken = extractCsrfToken(getresp)
+})
+
+describe('Test eligibility yesNo responses', () => {
+  const yesNoResponses = [
+    {
+      url: '/eligibility/age',
+      key: 'ageYesNo',
+      yesRedir: '/eligibility/taxable-income',
+      noRedir: '/eligibility/taxable-income',
+    },
+    {
+      url: '/eligibility/taxable-income',
+      key: 'taxableIncome',
+      yesRedir: '/eligibility/residence',
+      noRedir: '/offramp/taxable-income',
+    },
+    {
+      url: '/eligibility/residence',
+      key: 'residenceScreening',
+      yesRedir: '/eligibility/children',
+      noRedir: '/offramp/residence',
+    },
+    {
+      url: '/eligibility/children',
+      key: 'children',
+      yesRedir: '/offramp/children',
+      noRedir: '/eligibility/dependents',
+    },
+    {
+      url: '/eligibility/dependents',
+      key: 'eligibleDependents',
+      yesRedir: '/eligibility/dependents-claim',
+      noRedir: '/eligibility/tuition',
+    },
+    {
+      url: '/eligibility/dependents-claim',
+      key: 'eligibleDependentsClaim',
+      yesRedir: '/offramp/dependents',
+      noRedir: '/eligibility/tuition',
+    },
+    {
+      url: '/eligibility/tuition',
+      key: 'tuition',
+      yesRedir: '/eligibility/tuition-claim',
+      noRedir: '/eligibility/income-sources',
+    },
+    {
+      url: '/eligibility/tuition-claim',
+      key: 'tuitionClaim',
+      yesRedir: '/offramp/tuition',
+      noRedir: '/eligibility/income-sources',
+    },
+    {
+      url: '/eligibility/income-sources',
+      key: 'incomeSources',
+      yesRedir: '/offramp/income-sources',
+      noRedir: '/eligibility/foreign-income',
+    },
+    {
+      url: '/eligibility/foreign-income',
+      key: 'foreignIncome',
+      yesRedir: '/offramp/foreign-income',
+      noRedir: '/eligibility/success',
+    },
+  ]
+
+  yesNoResponses.map(yesNoResponse => {
+    describe(`Test ${yesNoResponse.url} responses`, () => {
+      test('it returns a 200 response', async () => {
+        const response = await request(app).get(yesNoResponse.url)
+        expect(response.statusCode).toBe(200)
+      })
+
+      test('it returns a 422 response for no posted value', async () => {
+        const response = await request(app)
+          .post(yesNoResponse.url)
+          .use(withCSRF(cookie, csrfToken))
+          .send({ redirect: '/start' })
+        expect(response.statusCode).toBe(422)
+      })
+
+      const badValues = ['', null, false, 0, 'dinosaur', 'yes']
+      badValues.map(badValue => {
+        test(`it returns a 422 for a bad posted value: "${badValue}"`, async () => {
+          const response = await request(app)
+            .post(yesNoResponse.url)
+            .use(withCSRF(cookie, csrfToken))
+            .send({ [yesNoResponse.key]: badValue, redirect: '/start' })
+          expect(response.statusCode).toBe(422)
+        })
+      })
+
+      test('it redirects to the posted redirect url when posting "No"', async () => {
+        const response = await request(app)
+          .post(yesNoResponse.url)
+          .use(withCSRF(cookie, csrfToken))
+          .send({ [yesNoResponse.key]: 'No', redirect: yesNoResponse.noRedir || '/start' })
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual(yesNoResponse.noRedir || '/start')
+      })
+
+      test('it redirects to the next page when posting "Yes"', async () => {
+        const response = await request(app)
+          .post(yesNoResponse.url)
+          .use(withCSRF(cookie, csrfToken))
+          .send({
+            [yesNoResponse.key]: 'Yes',
+            redirect: yesNoResponse.yesRedir,
+          })
+        expect(response.statusCode).toBe(302)
+        expect(response.headers.location).toEqual(yesNoResponse.yesRedir)
+      })
+    })
+  })
+})
+
 describe('Test /login responses', () => {
   beforeEach(async () => {
     const testSession = session(app)
@@ -14,11 +135,7 @@ describe('Test /login responses', () => {
     csrfToken = extractCsrfToken(getresp)
   })
 
-  const urls = [
-    '/login/code',
-    '/login/sin',
-    '/login/dateOfBirth',
-  ]
+  const urls = ['/login/code', '/login/sin', '/login/dateOfBirth']
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
       const response = await request(app).get(url)
@@ -385,5 +502,12 @@ describe('Test /login responses', () => {
       const response = await request(app).get('/login/error/doesNotMatch')
       expect(response.statusCode).toBe(200)
     })
+  })
+})
+
+describe('Test /elgibility/success server response', () => {
+  test('it returns a 200 response for the /success path', async () => {
+    const response = await request(app).get('/eligibility/success')
+    expect(response.statusCode).toBe(200)
   })
 })

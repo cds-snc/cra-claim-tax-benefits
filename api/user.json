@@ -1,7 +1,8 @@
 {
   "login": {
     "code": "A5G98S4K1",
-    "securityQuestion": null
+    "securityQuestion": null,
+    "ageYesNo": null
   },
   "personal": {
     "firstName": "Gabrielle",

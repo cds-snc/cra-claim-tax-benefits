@@ -14,7 +14,7 @@ describe('Full run through saying "yes" to everything', function() {
   // START PAGE
   it('successfully loads the home page', function() {
     cy.checkA11y()
-    cy.get('h1').should('contain', 'Claim Tax Benefits')
+    cy.get('h1').should('contain', 'File taxes to access benefits')
     cy.get('main a')
       .should('contain', 'Start now')
       .click()
@@ -30,16 +30,6 @@ describe('Full run through saying "yes" to everything', function() {
       url: '/personal/name',
       h1: 'Check your name is correct',
       id: 'name0',
-    })
-    cy.continue()
-  })
-
-  //CONFIRM RESIDENCE
-  it('navigates the Confirm Residence page', function() {
-    cy.confirm({
-      url: '/personal/residence',
-      h1: 'Enter your province or territory',
-      id: 'residence',
     })
     cy.continue()
   })

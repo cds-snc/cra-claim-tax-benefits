@@ -3,7 +3,7 @@ const { hashString, verifyHash } = require('./crypto.utils')
 describe('Test hashString', () => {
 
   test('hashes using initialSalt', async () => {
-    const hashed = hashString('1977-05-05', true)
+    const hashed = hashString('1977-05-05', {useInitialSalt: true})
     expect(hashed.length).toBe(97)
     expect(hashed).toEqual(expect.not.stringMatching('1977-05-05'))
     expect(hashed.split('$')[0]).toEqual('d75535de98ecea315854491c8d036f8f')

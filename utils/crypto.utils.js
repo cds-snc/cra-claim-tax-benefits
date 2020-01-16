@@ -9,7 +9,7 @@ const config = {
 
 const hashArgs = [config.iterations, config.hashBytes, config.digest]
 
-const hashString = (stringToHash, useInitialSalt) => {
+const hashString = (stringToHash, { useInitialSalt } = {}) => {
   if (!stringToHash) {
     return Promise.reject('you need to enter a string to hash')
   }
@@ -20,7 +20,7 @@ const hashString = (stringToHash, useInitialSalt) => {
   return [salt, hash].join('$')
 }
 
-const verifyHash = (stringToVerify, original, useInitialSalt) => {
+const verifyHash = (stringToVerify, original, { useInitialSalt } = {}) => {
   const originalHash = original.split('$')[1]
 
   const salt = useInitialSalt ? config.initialSalt : original.split('$')[0]

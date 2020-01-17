@@ -1,8 +1,6 @@
 const { pool } = require('./config')
 const jsonDB = require('./db.json')
 
-const { cleanSIN } = require('../utils')
-
 const useJson = (() => { 
   if (
     process.env.USE_DB !== 'true' ||
@@ -33,20 +31,19 @@ var DB = (() => {
     return rows[0] || null
   }
 
-  const validateUser = async ({ code, sin, dateOfBirth }) => {
+  const validateUser = async ({ code, dateOfBirth }) => {
     code = code.toUpperCase()
-    sin = cleanSIN(sin)
 
     let row
 
     if (useJson) {
       row = jsonDB.find(user => {
-        if (user.sin === sin && user.dateOfBirth === dateOfBirth) {
+        if (user.dateOfBirth === dateOfBirth) {
           return user
         }
       })
     } else {
-      const { rows } = await pool.query('SELECT * FROM public.access_codes WHERE sin = $1 AND dob = $2', [sin, dateOfBirth])
+      const { rows } = await pool.query('SELECT * FROM public.access_codes WHERE dob = $1', [dateOfBirth])
 
       row = rows[0]
     }

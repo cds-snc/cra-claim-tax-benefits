@@ -1,8 +1,6 @@
 const { pool } = require('./config')
 const jsonDB = require('./db.json')
 
-const { cleanSIN } = require('../utils')
-
 const { verifyHash, hashString } = require('../utils/crypto.utils')
 
 const useJson = (() => {
@@ -56,9 +54,7 @@ var DB = (() => {
     return _formatRow(rows[0]) || null
   }
 
-  const validateUser = async ({ code, sin, dateOfBirth }) => {
-    sin = cleanSIN(sin)
-
+  const validateUser = async ({ code, dateOfBirth }) => {
     let row
 
     if (useJson) {
@@ -66,8 +62,8 @@ var DB = (() => {
 
       row = jsonDB.find(user => user.code === code)
     } else {
-      //find by access code, and then check sin and dob
-      //this is to save us from needing to go through each entry and verify each hash. Pull by the code we already have, and then check the sin and dob hash
+      //find by access code, and then check dob
+      //this is to save us from needing to go through each entry and verify each hash. Pull by the code we already have, and then check the dob hash
       //it saves having to use a static salt everywhere (slight security risk), and lets us use a randomly generated salt
       const { rows } = await pool.query('SELECT * FROM public.access_codes WHERE code = $1', [code])
 
@@ -78,10 +74,7 @@ var DB = (() => {
       return { error: true }
     }
 
-    const incorrectInfo = [
-      verifyHash(sin, row.sin),
-      verifyHash(dateOfBirth, row.date_of_birth),
-    ].filter(v => v === false)
+    const incorrectInfo = [verifyHash(dateOfBirth, row.date_of_birth)].filter(v => v === false)
 
     if (incorrectInfo.length > 1) {
       return { error: true }

@@ -56,11 +56,6 @@ describe('test DB', () => {
       expect(row).toEqual(expectedRow)
     })
 
-    test('returns null without SIN', async () => {
-      const row = await DB.validateUser({ ...login, ...{ sin: '' } })
-      expect(row).toBe(null)
-    })
-
     test('returns null without DoB', async () => {
       const row = await DB.validateUser({ ...login, ...{ dateOfBirth: '' } })
       expect(row).toBe(null)
@@ -69,11 +64,6 @@ describe('test DB', () => {
     test('returns an error with wrong code', async () => {
       const row = await DB.validateUser({ ...login, ...{ code: 'B5G98S4K1' } }) // starts with 'A', not 'B'
       expect(row.error).not.toBeUndefined()
-    })
-
-    test('returns null with wrong SIN', async () => {
-      const row = await DB.validateUser({ ...login, ...{ sin: '947339283' } }) // starts with '8', not '9'
-      expect(row).toBe(null)
     })
 
     test('returns null with wrong DoB', async () => {

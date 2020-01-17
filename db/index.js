@@ -31,7 +31,7 @@ var DB = (() => {
       return await jsonDB.find(user => verifyHash(code.toUpperCase(), user.code, {useInitialSalt: true})) || null
     }
 
-    code = hashString(code, {useInitialSalt: true}).catch(e => console.warn(e))
+    code = hashString(code, {useInitialSalt: true})
     
     const { rows } = await pool.query('SELECT * FROM public.access_codes WHERE code = $1', [code])
     
@@ -58,7 +58,7 @@ var DB = (() => {
 
     if (!row) { return { "error" :  true } }
 
-    const incorrectInfo = [verifyHash(sin, row.sin), verifyHash(dateOfBirth, row.dob)].filter(v => v === false) 
+    const incorrectInfo = [verifyHash(sin, row.sin), verifyHash(dateOfBirth, row.date_of_birth)].filter(v => v === false) 
 
     if(incorrectInfo.length > 1) {
       return { "error" :  true }

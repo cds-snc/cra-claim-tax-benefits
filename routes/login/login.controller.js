@@ -69,7 +69,7 @@ const postLoginCode = async (req, res, next) => {
 
   // populate the session.login with our submitted access code
   // eslint-disable-next-line
-  req.session.login = { code: row.code, firstName: row.firstName }
+  req.session.login = { code: row.code, firstName: row.first_name }
 
   next()
 }

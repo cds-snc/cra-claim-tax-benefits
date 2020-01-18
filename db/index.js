@@ -24,21 +24,36 @@ const useJson = (() => {
 })()
 
 var DB = (() => {
+  const _formatRow = row => {
+    if (!row) {
+      return row
+    }
+
+    // remap first_name to firstName and date_of_birth to dateOfBirth
+    const { first_name: firstName, date_of_birth: dateOfBirth, ...props } = row
+
+    return {
+      ...props,
+      firstName,
+      dateOfBirth,
+    }
+  }
 
   const validateCode = async code => {
     if (useJson) {
-      return (
+      const row =
         (await jsonDB.find(user =>
           verifyHash(code.toUpperCase(), user.code, { useInitialSalt: true }),
         )) || null
-      )
+
+      return _formatRow(row)
     }
 
     code = hashString(code, { useInitialSalt: true })
 
     const { rows } = await pool.query('SELECT * FROM public.access_codes WHERE code = $1', [code])
 
-    return rows[0] || null
+    return _formatRow(rows[0]) || null
   }
 
   const validateUser = async ({ code, sin, dateOfBirth }) => {
@@ -74,7 +89,7 @@ var DB = (() => {
       return null
     }
 
-    return row
+    return _formatRow(row)
   }
 
   return {

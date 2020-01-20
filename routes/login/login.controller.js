@@ -62,20 +62,20 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get('/eligibility/dependents', renderWithData('login/eligibility-dependents'))
+  app.get('/eligibility/dependants', renderWithData('login/eligibility-dependants'))
   app.post(
-    '/eligibility/dependents',
+    '/eligibility/dependants',
     checkSchema(eligibleDependentsSchema),
-    checkErrors('login/eligibility-dependents'),
+    checkErrors('login/eligibility-dependants'),
     postEligibleDependents,
     doRedirect,
   )
 
-  app.get('/eligibility/dependents-claim', renderWithData('login/eligibility-dependents-claim'))
+  app.get('/eligibility/dependants-claim', renderWithData('login/eligibility-dependants-claim'))
   app.post(
-    '/eligibility/dependents-claim',
+    '/eligibility/dependants-claim',
     checkSchema(eligibleDependentsClaimSchema),
-    checkErrors('login/eligibility-dependents-claim'),
+    checkErrors('login/eligibility-dependants-claim'),
     postEligibleDependentsClaim,
     doRedirect,
   )
@@ -286,7 +286,7 @@ const postEligibleDependents = (req, res, next) => {
   req.session.login.eligibleDependents = eligibleDependents
 
   if (eligibleDependents === 'Yes') {
-    return res.redirect('/eligibility/dependents-claim')
+    return res.redirect('/eligibility/dependants-claim')
   }
 
   req.session.login.eligibleDependentsClaim = null
@@ -300,7 +300,7 @@ const postEligibleDependentsClaim = (req, res, next) => {
   req.session.login.eligibleDependentsClaim = eligibleDependentsClaim
 
   if (eligibleDependentsClaim === 'Yes') {
-    return res.redirect('/offramp/dependents')
+    return res.redirect('/offramp/dependants')
   }
 
   next()

@@ -63,8 +63,8 @@ Cypress.Commands.add('login', user => {
   // ELIGIBILITY DEPENDENTS
   cy.injectAxe().checkA11y()
   cy.confirm({
-    url: '/eligibility/dependents',
-    h1: 'Eligible dependents',
+    url: '/eligibility/dependants',
+    h1: 'Eligible dependants',
     id: 'eligibleDependents1',
   })
   cy.continue()

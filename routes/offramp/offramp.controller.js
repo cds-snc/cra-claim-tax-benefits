@@ -15,7 +15,7 @@ module.exports = function(app) {
 
   app.get('/offramp/financial', renderWithData('offramp/financial'))
 
-  app.get('/offramp/dependents', renderWithData('offramp/dependents'))
+  app.get('/offramp/dependants', renderWithData('offramp/dependants'))
 
   app.get('/offramp/tuition', renderWithData('offramp/tuition'))
 

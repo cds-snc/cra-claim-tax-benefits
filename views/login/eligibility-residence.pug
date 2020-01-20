@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Province or territory of home address')
+  -var title = __('Province or territory')
   -var residenceScreening = hasData(data, 'login.residenceScreening') ? data.login.residenceScreening : ''
 
 block content
@@ -9,9 +9,11 @@ block content
   +stepper('2', '7')
 
   h1 #{title}
+
+  p #{__('“Principal residence” means your main home, where you usually lived.')}
   
   form.cra-form(method='post')
-    +radiosYesNo('residenceScreening', 'On December 31, 2019, was your home address in Ontario?', residenceScreening)
+    +radiosYesNo('residenceScreening', 'On December 31, 2019, was your principal residence in Ontario?', residenceScreening)
 
     input#redirect(name='redirect', type='hidden', value='/eligibility/children')
 

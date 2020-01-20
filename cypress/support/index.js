@@ -44,7 +44,7 @@ Cypress.Commands.add('login', user => {
   // ELIGIBILITY RESIDENCE
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/eligibility/residence')
-  cy.get('h1').should('contain', 'Province or territory of home address')
+  cy.get('h1').should('contain', 'Province or territory')
 
   cy.get(`input#residenceScreening0 + label`).should('have.attr', 'for', 'residenceScreening0')
   cy.get(`input#residenceScreening0`).click()

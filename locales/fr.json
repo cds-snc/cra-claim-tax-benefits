@@ -557,7 +557,6 @@
   "If you use this service, you cannot claim tax credits, so you will not get money back for your tuition. You may want to file your taxes another way.": "If you use this service, you cannot claim tax credits, so you will not get money back for your tuition. You may want to file your taxes another way.",
   "You cannot use this online service because you will claim 2019 tuition tax credits. Other free and secure ways to file are:": "You cannot use this online service because you will claim 2019 tuition tax credits. Other free and secure ways to file are:",
   "Income sources": "Income sources",
-  "You cannot use this online service because you had income from your own business, self-employment, renting property, or investments. Other free and secure ways to file are:": "You cannot use this online service because you had income from your own business, self-employment, renting property, or investments. Other free and secure ways to file are:",
   "You can use ": "You can use ",
   "NETFILE ": "NETFILE ",
   "to file taxes securely online. ": "to file taxes securely online. ",
@@ -570,5 +569,7 @@
   "Province or territory": "Province or territory",
   "On December 31, 2019, was your principal residence in Ontario?": "On December 31, 2019, was your principal residence in Ontario?",
   "“Principal residence” means your main home, where you usually lived.": "“Principal residence” means your main home, where you usually lived.",
-  "You cannot use this online service because on December 31, 2019, your principal residence was outside Ontario. But you can still file your taxes. Other secure ways to file are:": "You cannot use this online service because on December 31, 2019, your principal residence was outside Ontario. But you can still file your taxes. Other secure ways to file are:"
+  "You cannot use this online service because on December 31, 2019, your principal residence was outside Ontario. But you can still file your taxes. Other secure ways to file are:": "You cannot use this online service because on December 31, 2019, your principal residence was outside Ontario. But you can still file your taxes. Other secure ways to file are:",
+  "Did any of your 2019 income come from your own business, self-employment, rental income, or investments?": "Did any of your 2019 income come from your own business, self-employment, rental income, or investments?",
+  "You cannot use this online service because you had income from your own business, self-employment, rental income, or investments. Other free and secure ways to file are:": "You cannot use this online service because you had income from your own business, self-employment, rental income, or investments. Other free and secure ways to file are:"
 }

@@ -1,0 +1,21 @@
+extends ../base
+
+block variables
+  -var title = __('Tax credits for eligible dependants')
+  -var eligibleDependentsClaim = hasData(data, 'login.eligibleDependentsClaim') ? data.login.eligibleDependentsClaim : ''
+
+block content
+
+  +stepper('4', '7')
+
+  h1 #{title}
+
+  form.cra-form(method='post')
+    +radiosYesNo('eligibleDependentsClaim', 'Will you claim tax credits for your eligible dependant or dependants?', eligibleDependentsClaim)
+
+    input#redirect(name='redirect', type='hidden', value='/eligibility/tuition')
+
+    div 
+      <a href=#{__('https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-305-amount-eligible-dependant/you-claim-amount-eligible-dependant-line-305.html')}>#{__('Learn about eligible dependants')}</a> 
+
+    +formButtons()

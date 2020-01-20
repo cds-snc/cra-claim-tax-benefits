@@ -37,18 +37,18 @@ describe('Test eligibility yesNo responses', () => {
       url: '/eligibility/children',
       key: 'children',
       yesRedir: '/offramp/children',
-      noRedir: '/eligibility/dependents',
+      noRedir: '/eligibility/dependants',
     },
     {
-      url: '/eligibility/dependents',
+      url: '/eligibility/dependants',
       key: 'eligibleDependents',
-      yesRedir: '/eligibility/dependents-claim',
+      yesRedir: '/eligibility/dependants-claim',
       noRedir: '/eligibility/tuition',
     },
     {
-      url: '/eligibility/dependents-claim',
+      url: '/eligibility/dependants-claim',
       key: 'eligibleDependentsClaim',
-      yesRedir: '/offramp/dependents',
+      yesRedir: '/offramp/dependants',
       noRedir: '/eligibility/tuition',
     },
     {

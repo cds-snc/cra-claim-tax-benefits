@@ -8,7 +8,7 @@ describe('Test /offramp responses', () => {
     '/offramp/address',
     '/offramp/residence',
     '/offramp/children',
-    '/offramp/dependents',
+    '/offramp/dependants',
     '/offramp/tuition',
     '/offramp/income',
     '/offramp/maritalStatus',

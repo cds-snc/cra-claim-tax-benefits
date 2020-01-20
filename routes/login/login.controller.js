@@ -171,7 +171,7 @@ const postLoginCode = async (req, res, next) => {
 
   // populate the session.login with our submitted access code
   // eslint-disable-next-line
-  req.session.login = { code: row.code, firstName: row.first_name }
+  req.session.login = { code: row.code, firstName: row.firstName }
 
   next()
 }
@@ -214,7 +214,7 @@ const postLogin = async (req, res, next) => {
   // check access code + SIN + DoB
   const { code, sin, dateOfBirth } = req.session.login
   const row = await DB.validateUser({ code, sin, dateOfBirth })
- 
+
   // if no row is found, error and proceed to error page
   if (!row) {
     return res.redirect('/login/error/doesNotMatch')

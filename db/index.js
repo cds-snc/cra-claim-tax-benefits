@@ -5,37 +5,55 @@ const { cleanSIN } = require('../utils')
 
 const { verifyHash, hashString } = require('../utils/crypto.utils')
 
-
-const useJson = (() => { 
-  if (
-    process.env.USE_DB !== 'true' ||
-    process.env.NODE_ENV === 'test'
-  ) {
+const useJson = (() => {
+  if (process.env.USE_DB !== 'true' || process.env.NODE_ENV === 'test') {
     pool.end()
     //console.warn includes native code to colour the output— in case you're wondering
     if (process.env.NODE_ENV !== 'test') {
-      console.warn('\x1b[33m%s\x1b[0m','⚠ WARNING ⚠: running off of json file instead of local database')
+      // eslint-disable-next-line no-console
+      console.warn(
+        '\x1b[33m%s\x1b[0m',
+        '⚠ WARNING ⚠: running off of json file instead of local database',
+      )
     }
 
     return true
-  } 
-    
+  }
+
   return false
 })()
 
 var DB = (() => {
-
-  const validateCode = async (code) => {
-
-    if (useJson) {
-      return await jsonDB.find(user => verifyHash(code.toUpperCase(), user.code, {useInitialSalt: true})) || null
+  const _formatRow = row => {
+    if (!row) {
+      return row
     }
 
-    code = hashString(code, {useInitialSalt: true})
-    
+    // remap first_name to firstName and date_of_birth to dateOfBirth
+    const { first_name: firstName, date_of_birth: dateOfBirth, ...props } = row
+
+    return {
+      ...props,
+      firstName,
+      dateOfBirth,
+    }
+  }
+
+  const validateCode = async code => {
+    if (useJson) {
+      const row =
+        (await jsonDB.find(user =>
+          verifyHash(code.toUpperCase(), user.code, { useInitialSalt: true }),
+        )) || null
+
+      return _formatRow(row)
+    }
+
+    code = hashString(code, { useInitialSalt: true })
+
     const { rows } = await pool.query('SELECT * FROM public.access_codes WHERE code = $1', [code])
-    
-    return rows[0] || null
+
+    return _formatRow(rows[0]) || null
   }
 
   const validateUser = async ({ code, sin, dateOfBirth }) => {
@@ -44,7 +62,7 @@ var DB = (() => {
     let row
 
     if (useJson) {
-      code = (code.length === 9) ? hashString(code.toUpperCase(), {useInitialSalt: true}) : code
+      code = code.length === 9 ? hashString(code.toUpperCase(), { useInitialSalt: true }) : code
 
       row = jsonDB.find(user => user.code === code)
     } else {
@@ -56,17 +74,22 @@ var DB = (() => {
       row = rows[0]
     }
 
-    if (!row) { return { "error" :  true } }
+    if (!row) {
+      return { error: true }
+    }
 
-    const incorrectInfo = [verifyHash(sin, row.sin), verifyHash(dateOfBirth, row.date_of_birth)].filter(v => v === false) 
+    const incorrectInfo = [
+      verifyHash(sin, row.sin),
+      verifyHash(dateOfBirth, row.date_of_birth),
+    ].filter(v => v === false)
 
-    if(incorrectInfo.length > 1) {
-      return { "error" :  true }
+    if (incorrectInfo.length > 1) {
+      return { error: true }
     } else if (incorrectInfo.length) {
       return null
     }
 
-    return row 
+    return _formatRow(row)
   }
 
   return {

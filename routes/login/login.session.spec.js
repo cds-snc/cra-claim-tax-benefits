@@ -107,7 +107,7 @@ describe('Test /login SESSION responses', () => {
   })
 
   // TEST REDIRECT TO ERROR PAGE IF SIN AND DOB ARE WRONG
-  test('it returns a 422 on /login/code page when the SIN + DATE OF BIRTH does not match the access code', async () => {
+  test('it returns a 200 on /login/error/doesNotMatch page when the SIN + DATE OF BIRTH does not match the access code', async () => {
     const response = await testSession
       .post('/login/code')
       .use(doAccessCode())
@@ -118,10 +118,10 @@ describe('Test /login SESSION responses', () => {
         return testSession.post('/login/dateOfBirth').use(doDateofBirth({ dobYear: '1999' })) // wrong year
       })
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('/login/code')
+    expect(response.headers.location).toBe('/login/error/doesNotMatch')
 
     const response2 = await testSession.get(response.headers.location)
-    expect(response2.statusCode).toBe(422)
+    expect(response2.statusCode).toBe(200)
   })
 
   // TEST RETURN TO SIN PAGE IF THERE IS AN ACCESS CODE AND DOB BUT NO SIN
@@ -165,19 +165,17 @@ describe('Test /login SESSION responses', () => {
     expect($('.error-list__link').length).toBe(0)
   })
 
-  test('it returns a 302 on the /personal/dateOfBirth page and redirects to the /login/code page with a valid sin/DoB combo that match a different access code', async () => {
+  test('it returns a 302 on the /personal/dateOfBirth page and redirects to the /login/error/doesNotMatch page with a valid sin/DoB combo that match a different access code', async () => {
     const response = await testSession
       .post('/login/code')
       .use(doAccessCode('A5G98S4K2'))
       .then(() => {
-        return testSession
-          .post('/login/sin')
-          .use(doSIN())
+        return testSession.post('/login/sin').use(doSIN())
       })
       .then(() => {
         return testSession.post('/login/dateOfBirth').use(doDateofBirth()) // date of birth is good
       })
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('/login/code')
+    expect(response.headers.location).toBe('/login/error/doesNotMatch')
   })
 })

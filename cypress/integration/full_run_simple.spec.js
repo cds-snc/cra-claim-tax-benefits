@@ -1,8 +1,4 @@
-const {
-  checkTableRows,
-  getBenefitsBreakdownRows,
-  getAddress,
-} = require('../utils.js')
+const { checkTableRows, getBenefitsBreakdownRows, getAddress } = require('../utils.js')
 
 describe('Full run through saying "no" to everything', function() {
   before(function() {
@@ -68,16 +64,16 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
-    //SENIOR PUBLIC TRANSIT TAX CREDIT
-    it('navigates the Senior Public Transit Tax Credit page', function() {
-      cy.confirm({
-        url: '/deductions/senior-public-transit',
-        h1: `Senior's public transit`,
-        id: 'seniorTransitClaim1',
-      })
-  
-      cy.continue()
+  //SENIOR PUBLIC TRANSIT TAX CREDIT
+  it('navigates the Senior Public Transit Tax Credit page', function() {
+    cy.confirm({
+      url: '/deductions/senior-public-transit',
+      h1: `Senior's public transit`,
+      id: 'seniorTransitClaim1',
     })
+
+    cy.continue()
+  })
 
   //TRILLIUM RENT
   it('navigates the Trillium Rent page', function() {
@@ -140,6 +136,17 @@ describe('Full run through saying "no" to everything', function() {
       url: '/vote/optIn',
       h1: 'Vote in the federal election',
       id: 'confirmOptIn1', // click No
+    })
+
+    cy.continue()
+  })
+
+  // VOTER OPT IN
+  it('navigates Confirm Income page', function() {
+    cy.confirm({
+      url: '/confirm-income',
+      h1: 'Confirm 2019 Income',
+      id: 'confirmIncome', 
     })
 
     cy.continue()

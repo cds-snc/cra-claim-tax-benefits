@@ -577,5 +577,13 @@
   "Do you have any eligible dependants?": "Do you have any eligible dependants?",
   "Learn about eligible dependants": "Learn about eligible dependants",
   "Tax credits for eligible dependants": "Tax credits for eligible dependants",
-  "Will you claim tax credits for your eligible dependant or dependants?": "Will you claim tax credits for your eligible dependant or dependants?"
+  "Will you claim tax credits for your eligible dependant or dependants?": "Will you claim tax credits for your eligible dependant or dependants?",
+  "You cannot use this online service because you will claim tax credits for an eligible dependant or eligible dependants. Other secure ways to file are:": "You cannot use this online service because you will claim tax credits for an eligible dependant or eligible dependants. Other secure ways to file are:",
+  "Confirm 2019 Income": "Confirm 2019 Income",
+  "errors.confirmIncome": "errors.confirmIncome",
+  "Check this box to confirm your income was less than 19,564 in 2019": "Check this box to confirm your income was less than 19,564 in 2019",
+  "If your income is above $19,564:": "If your income is above $19,564:",
+  "Check this box to confirm your income was less than $19,564 in 2019": "Check this box to confirm your income was less than $19,564 in 2019",
+  "If your income is above $12,069:": "If your income is above $12,069:",
+  "Check this box to confirm your income was less than $12,069 in 2019": "Check this box to confirm your income was less than $12,069 in 2019"
 }

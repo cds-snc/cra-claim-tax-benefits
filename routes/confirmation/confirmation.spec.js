@@ -75,3 +75,58 @@ describe('Test /review', () => {
     })
   })
 })
+
+describe('Test /confirm-income', () => {
+  const session = require('supertest-session')
+
+  let csrfToken, cookie
+
+  beforeEach(async () => {
+    let testSession = session(app)
+    const getresp = await testSession.get('/login/code')
+    cookie = getresp.headers['set-cookie']
+    csrfToken = extractCsrfToken(getresp)
+  })
+
+  describe('POST responses', () => {
+    test('it returns a 422 response if no values are posted', async () => {
+      const response = await request(app)
+        .post('/confirm-income')
+        .use(withCSRF(cookie, csrfToken))
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it returns a 422 response for no posted value', async () => {
+      const response = await request(app)
+        .post('/confirm-income')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ redirect: '/checkAnswers' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it returns a 500 response if no redirect is provided', async () => {
+      const response = await request(app)
+        .post('/confirm-income')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ confirmIncome: 'confirmIncome' })
+      expect(response.statusCode).toBe(500)
+    })
+
+    test('it returns a 422 response for the wrong value', async () => {
+      const response = await request(app)
+        .post('/confirm-income')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ confirmIncome: 'foo bar', redirect: '/checkAnswers' })
+      expect(response.statusCode).toBe(422)
+    })
+
+    test('it returns a 302 response for the right value', async () => {
+      const response = await request(app)
+        .post('/confirm-income')
+        .use(withCSRF(cookie, csrfToken))
+        .send({ confirmIncome: 'confirmIncome', redirect: '/checkAnswers' })
+      expect(response.statusCode).toBe(302)
+      expect(response.headers.location).toEqual('/checkAnswers')
+    })
+  })
+})

@@ -287,6 +287,17 @@ describe('Full run through saying "yes" to everything', function() {
     cy.continue()
   })
 
+  //CONFIRM INCOME
+  it('navigates the Confirm Income page', function() {
+    cy.confirm({
+      url: '/confirm-income',
+      h1: 'Confirm 2019 Income',
+      id: 'confirmIncome', // click checkbox
+    })
+    
+    cy.continue('Continue')
+  })
+
   // CHECK ANSWERS
   it('navigates the Check Your Answers page', function() {
     cy.url().should('contain', '/checkAnswers')

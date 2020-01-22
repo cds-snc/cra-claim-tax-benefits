@@ -9,12 +9,12 @@ block content
   h1 #{title}
 
   .offramp
-    if(data.login.ageYesNo === 'Yes')
-      p #{__(`You cannot use this online service because your taxable income for 2019 was over $19,563. Other secure ways to file are:`)}
+    if(data.login.ageYesNo === 'No')
+      p #{__(`You cannot use this online service because your 2019 income was $12,070 or higher. Other secure ways to file are:`)}
     else
-      p #{__(`You cannot use this online service because your taxable income for 2019 was over $12,069. Other secure ways to file are:`)}
+      p #{__(`You cannot use this online service because your 2019 income was $19,564 or higher. Other secure ways to file are:`)}
 
-    ul 
+    ul
       li #{__('At a free tax clinic, where you may be able to get help.')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program/need-a-hand-complete-your-tax-return.html#eligible')}>#{__('Learn')}</a> #{__('if you can use a tax clinic.')}
       li #{__('Online with')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview.html')}>#{__('NETFILE')}</a>. <a href=#{__('https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/certified-software-netfile-program.html')}>#{__('Learn')}</a> #{__(' which certified NETFILE software is free, and')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview/eligibility.html')}>#{__('check')}</a> #{__('if you can use it. Certified means CRA approves the software.')}
     div

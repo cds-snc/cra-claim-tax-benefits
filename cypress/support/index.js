@@ -36,7 +36,7 @@ Cypress.Commands.add('login', user => {
   cy.injectAxe().checkA11y()
   cy.confirm({
     url: '/eligibility/taxable-income',
-    h1: '2019 Income',
+    h1: '2019 income',
     id: 'taxableIncome0',
   })
   cy.continue()

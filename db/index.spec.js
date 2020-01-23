@@ -5,8 +5,7 @@ const expectedRow = {
     'd75535de98ecea315854491c8d036f8f$ada904924ee513b2d85d4ef775bbd1d835979dd8341047714da8d000ccec8adc',
   sin:
     '3c983be4174c2711a44953311ee69792$cd18d36c21efd729f3ee8aab191912fb9467dbaba0552652cc6c451ac8a5031a',
-  dateOfBirth:
-    '5d3ac41f0d7b0387a651f2ed2b1d883a$fc2a8d33353897b1c6d723904911b91c6edb09283f7784e93ded0ef9dc659ba2',
+  dateOfBirth: '1977-09-09',
   firstName: 'Gabrielle',
   locked: false,
 }

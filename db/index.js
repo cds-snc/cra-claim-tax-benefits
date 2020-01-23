@@ -74,7 +74,8 @@ var DB = (() => {
       return { error: true }
     }
 
-    const incorrectInfo = [verifyHash(dateOfBirth, row.date_of_birth)].filter(v => v === false)
+    const incorrectInfo = []
+    dateOfBirth != row.date_of_birth && incorrectInfo.push(false)
 
     if (incorrectInfo.length > 1) {
       return { error: true }

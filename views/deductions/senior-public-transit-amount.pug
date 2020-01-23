@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Enter your total 2018 transit costs ')
+  -var title = __('Enter your total 2019 transit costs ')
   -var seniorTransitAmount = hasData(data, 'deductions.seniorTransitAmount') && data.deductions.seniorTransitAmount !== 0 ? data.deductions.seniorTransitAmount : ''
   -var placeholder= currencyWithoutUnit(getLocale())
   -var formattedValue= currencyWithoutUnit(getLocale(), seniorTransitAmount)

@@ -168,7 +168,7 @@ const outputXML = (req, linesToAdd = dataToLine) => {
      * we can add a dynamic name later if we want
      * I just wanted to avoid a bunch of outputs running cypress tests, for example
      */
-    fs.writeFileSync('xml_output/taxfile-2018.xml', data, (err) => {
+    fs.writeFileSync('xml_output/taxfile-2019.xml', data, (err) => {
       if (err) throw err
     })
   }
@@ -297,7 +297,7 @@ const addTaxPayerInfo = (user, locale) => {
             'elements': [
               {
                 'type': 'text',
-                'text': '2018',
+                'text': '2019',
               },
             ],
           },

@@ -27,7 +27,7 @@ const answerInfo = [
     sectionTitle: 'Tax benefits',
     sectionRows: [
       {
-        text: 'Did you use public transit in 2018?',
+        text: 'Did you use public transit in 2019?',
         infoPath: ['deductions.seniorTransitClaim'],
         urlPath: '/deductions/senior-public-transit',
         displayIf: 'deductions.seniorTransitClaim',

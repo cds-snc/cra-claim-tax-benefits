@@ -580,7 +580,6 @@
   "Tax credits for eligible dependants": "Tax credits for eligible dependants",
   "Will you claim tax credits for your eligible dependant or dependants?": "Will you claim tax credits for your eligible dependant or dependants?",
   "You cannot use this online service because you will claim tax credits for an eligible dependant or eligible dependants. Other secure ways to file are:": "You cannot use this online service because you will claim tax credits for an eligible dependant or eligible dependants. Other secure ways to file are:",
-  "Confirm 2019 Income": "Confirm 2019 Income",
   "Check this box to confirm your income was less than 19,564 in 2019": "Check this box to confirm your income was less than 19,564 in 2019",
   "If your income is above $19,564:": "If your income is above $19,564:",
   "Check this box to confirm your income was less than $19,564 in 2019": "Check this box to confirm your income was less than $19,564 in 2019",
@@ -594,5 +593,6 @@
   "When answering the questions about 2020, for:": "When answering the questions about 2020, for:",
   "Example 2: You lived in a rooming house for the first 3 weeks of April 2020. You moved into long-term care for the last week of April 2019. You paid long-term care costs for all four weeks of April, even though you only lived there for the last week.": "Example 2: You lived in a rooming house for the first 3 weeks of April 2020. You moved into long-term care for the last week of April 2019. You paid long-term care costs for all four weeks of April, even though you only lived there for the last week.",
   "If your income is above $12,070:": "If your income is above $12,070:",
-  "Check this box to confirm your income was less than $12,070 in 2019": "Check this box to confirm your income was less than $12,070 in 2019"
+  "Check this box to confirm your income was less than $12,070 in 2019": "Check this box to confirm your income was less than $12,070 in 2019",
+  "Confirm 2019 income": "Confirm 2019 income"
 }

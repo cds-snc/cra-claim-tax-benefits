@@ -165,27 +165,12 @@ describe('Full run through saying "no" to everything', function() {
       .click()
   })
 
-  //REVIEW
-  it('navigates the Review page', function() {
-    cy.confirm({
-      url: '/review',
-      h1: 'Review and file tax return',
-      id: 'review', // click checkbox
-    })
-
-    //check some table data
-    //until we have a more firm grasp on how we're shaping the total refund, i'm just checking benefits
-    checkTableRows(cy, getBenefitsBreakdownRows(this.user), 'dt.breakdown-table__row-key')
-
-    cy.continue('File your taxes now')
-  })
-
   // CONFIRMATION PAGE
   it('checks the Confirmation page', function() {
     cy.url().should('contain', '/confirmation')
     cy.get('h1').should('contain', 'You have filed your 2019 taxes')
     cy.get('th').should('contain', 'Your filing code')
     cy.get('td').should('contain', '5H3P9IO5816')
-    cy.get('p').should('contain', 'You will get your notice of assessment in about 2 weeks.')
+    checkTableRows(cy, getBenefitsBreakdownRows(this.user), 'dt.breakdown-table__row-key')
   })
 })

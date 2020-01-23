@@ -1,0 +1,84 @@
+-var benefits = hasData(data, 'benefits') ? data.benefits : {}
+-var totalBenefits = hasData(data, 'benefits.totalBenefits.amount') ? data.benefits.totalBenefits.amount : 0
+-var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
+-var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
+-var refund = hasData(data, 'refund') ? data.refund : {}
+-var locale = getLocale()
+-
+  var rows =[
+  {
+    "header":"Goods and services tax/harmonized sales tax (GST/HST) credit",
+    "description": "up to $443 for one person, $580 if you have a marriage or common-law partner, and $153 for each child under age 19.",
+    "linkURL":"https://www.canada.ca/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit.html",
+    "payment": "paid yearly"
+  },
+  {
+    "header":"Canada child benefit (CCB)",
+    "description": "a yearly amount which may be up to $6,639 for each child under age 6 and up to $5,602 for each child aged 6 to 17.",
+    "linkURL":"https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview.html",
+    "payment":"paid monthly"
+  },
+  {
+    "header":"Ontario trillium benefit (OTB)",
+    "description": "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.",
+    "linkURL":"https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-ontario.html",
+    "payment":"paid monthly"
+  },
+  {
+    "header":"Climate action incentive (CAI)",
+    "description": "everyone gets this payment. You get 10% extra if you live in a small and rural community.",
+    "linkURL":"https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-449-climate-action-incentive.html",
+    "payment":"paid yearly"
+  },
+  {
+    "header":"Disability tax credit (DTC)",
+    "description": "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application.",
+    "linkURL":"https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html",
+    "payment":"paid monthly"
+  },
+  ]
+
+if (data.login.securityQuestion === '/checkAnswers') || (!data.login.securityQuestion)
+  div
+    .breakdown-table.breakdown-table--review.breakdown-table--answers
+      h2.breakdown-table__heading #{__('We will use your information to file your taxes. You may get a refund. You may also get these benefits and credits:')}
+      each row in rows
+        dl.breakdown-table-data
+          .breakdown-table__row.breakdown-table__row--answers
+            dt.breakdown-table__row-key
+              span #{__(row.header)}
+              dd.breakdown-table__row-value
+                span #{__(row.description)}
+                div.row-link
+                  a(href=__(row.linkURL), target="_blank")
+                    <span>#{__('Learn more')}</span>
+              dd.breakdown-table__row-payment
+                p #{__(row.payment)}
+        hr
+else
+  div
+    p #{__('You can expect the following benefits and refund from your 2018 taxes.')}
+    p #{__('Please check this information. If anything looks wrong, contact CRA before filing by:')}
+    ul
+      li #{__('Phone: 1-800-959-8281')}
+      li #{__('TTY (text telephone): 1-800-665-0354')}
+
+  div
+    .breakdown-table
+      h2.breakdown-table__heading
+        span #{__('Your 2018 tax benefits')}
+        span #{currencyFilter(totalBenefits)}
+
+      p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
+
+      dl.breakdown-table-data
+        each benefit, index in benefits
+          if index !== "totalBenefits"
+            .breakdown-table__row
+              dt.breakdown-table__row-key #{__(`${benefit.name}`)}
+              dd.breakdown-table__row-value #{currencyFilter(benefit.amount)}
+
+        .breakdown-table__row.breakdown-table__row--summary
+          dt.breakdown-table__row-key #{__('Total benefits')}
+          dd.breakdown-table__row-value #{currencyFilter(totalBenefits)}
+

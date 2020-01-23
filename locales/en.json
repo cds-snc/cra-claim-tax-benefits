@@ -40,6 +40,7 @@
   "errors.review": "You must agree to file your tax return. Check the box if you agree.",
   "errors.voterCitizen": "You must be a Canadian citizen to register to vote.",
   "errors.voterConsent": "You must allow CRA to share information with Elections Canada to register to vote",
+  "errors.confirmIncome": "You must confirm your 2019 income. Check the box to confirm.",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/should-you-tell-cra-about-your-change-name.html",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html",
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-330-331-eligible-medical-expenses-you-claim-on-your-tax-return.html#mdcl_xpns": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-330-331-eligible-medical-expenses-you-claim-on-your-tax-return.html#mdcl_xpns",
@@ -616,5 +617,16 @@
   "Use the paper form enclosed in the File taxes to access benefits package you received in the mail": "Use the paper form enclosed in the File taxes to access benefits package you received in the mail",
   "Did any of your 2019 income come from your own business, self-employment, rental income, or investments?": "Did any of your 2019 income come from your own business, self-employment, rental income, or investments?",
   "You cannot use this online service because you had income from your own business, self-employment, rental income, or investments. Other free and secure ways to file are:": "You cannot use this online service because you had income from your own business, self-employment, rental income, or investments. Other free and secure ways to file are:",
-  "You cannot use this online service because you will claim tax credits for an eligible dependant or eligible dependants. Other secure ways to file are:": "You cannot use this online service because you will claim tax credits for an eligible dependant or eligible dependants. Other secure ways to file are:"
+  "You cannot use this online service because you will claim tax credits for an eligible dependant or eligible dependants. Other secure ways to file are:": "You cannot use this online service because you will claim tax credits for an eligible dependant or eligible dependants. Other secure ways to file are:",
+  "Confirm 2019 Income": "Confirm 2019 Income",
+  "Check this box to confirm your income was less than $19,564 in 2019": "Check this box to confirm your income was less than $19,564 in 2019",
+  "Check this box to confirm your income was less than $12,069 in 2019": "Check this box to confirm your income was less than $12,069 in 2019",
+  "If your income is above $12,069:": "If your income is above $12,069:",
+  "If your income is above $19,564:": "If your income is above $19,564:",
+  "You may need to pay tax": "You may need to pay tax",
+  "You will not be able to lower your tax by deducting contributions or costs such as charitable or political donations, medical costs, RRSP or similar contributions": "You will not be able to lower your tax by deducting contributions or costs such as charitable or political donations, medical costs, RRSP or similar contributions",
+  "Income includes:": "Income includes:",
+  "Benefits such as social assistance": "Benefits such as social assistance",
+  "Employment, a pension, or Registered Retirement Savings Plan (RRSP)": "Employment, a pension, or Registered Retirement Savings Plan (RRSP)",
+  "Up to $1000 of interest from Canadian sources, such as a bank or savings account": "Up to $1000 of interest from Canadian sources, such as a bank or savings account"
 }

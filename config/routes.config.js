@@ -51,6 +51,7 @@ const routes = [
   { path: '/deductions/climate-action-incentive' },
   { path: '/vote/optIn' },
   { path: '/vote/confirmRegistration', editInfo: 'vote.voterCitizen' },
+  { path: '/confirm-income' },  
   { path: '/checkAnswers' },
   { path: '/review' },
   { path: '/confirmation' },

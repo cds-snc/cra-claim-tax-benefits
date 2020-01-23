@@ -1,5 +1,4 @@
 const request = require('supertest')
-const { extractCsrfToken, withCSRF } = require('../utils.spec')
 const app = require('../../app.js')
 
 describe('Test confirmation urls', () => {

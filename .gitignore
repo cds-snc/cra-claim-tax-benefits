@@ -90,4 +90,4 @@ coverage
 versions.tf
 
 # Taxfile outputs
-xml_output/taxfile-2018.xml
+xml_output/taxfile-2019.xml

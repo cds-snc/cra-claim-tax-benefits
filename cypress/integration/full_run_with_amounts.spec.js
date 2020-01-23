@@ -79,7 +79,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates the Senior Public Transit Tax Credit AMOUNT page', function() {
     cy.amount({
       url: '/deductions/senior-public-transit/amount',
-      h1: 'Enter your total 2018 transit costs',
+      h1: 'Enter your total 2019 transit costs',
       id: 'seniorTransitAmount',
     })
 
@@ -200,7 +200,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates the Trillium Long Term Care ROOM AND BOARD page', function() {
     cy.amount({
       url: '/trillium/longTermCare/type/roomAndBoard',
-      h1: 'Enter your total 2018 room and board costs in long-term care',
+      h1: 'Enter your total 2019 room and board costs in long-term care',
       id: 'trilliumLongTermCareRoomAndBoardAmount',
     })
 
@@ -291,7 +291,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates the Confirm Income page', function() {
     cy.confirm({
       url: '/confirm-income',
-      h1: 'Confirm 2019 Income',
+      h1: 'Confirm 2019 income',
       id: 'confirmIncome', // click checkbox
     })
     
@@ -328,7 +328,7 @@ describe('Full run through saying "yes" to everything', function() {
   // CONFIRMATION PAGE
   it('checks the Confirmation page', function() {
     cy.url().should('contain', '/confirmation')
-    cy.get('h1').should('contain', 'You have filed your 2018 taxes')
+    cy.get('h1').should('contain', 'You have filed your 2019 taxes')
     cy.get('th').should('contain', 'Your filing code')
     cy.get('td').should('contain', '5H3P9IO5816')
   })

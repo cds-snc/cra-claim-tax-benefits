@@ -67,7 +67,7 @@ block content
         p #{__('Check the box if you gave correct and complete answers to the previous questions. CRA will file your taxes using this online service. Keep your tax slips or receipts for 6 years in case CRA asks for them.')}
   else
     div
-      p #{__('You can expect the following benefits and refund from your 2018 taxes.')}
+      p #{__('You can expect the following benefits and refund from your 2019 taxes.')}
       p #{__('Please check this information. If anything looks wrong, contact CRA before filing by:')}
       ul
         li #{__('Phone: 1-800-959-8281')}
@@ -76,7 +76,7 @@ block content
     div
       .breakdown-table
         h2.breakdown-table__heading
-          span #{__('Your 2018 tax benefits')}
+          span #{__('Your 2019 tax benefits')}
           span #{currencyFilter(totalBenefits)}
 
         p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
@@ -99,7 +99,7 @@ block content
           +validationMessage(errors.review.msg, key)
         .multiple-choice__item
           input(id='review' name='review' type="checkbox" value="review" checked=(value =='review') aria-describedby=(errors ? `review-error` : false))
-          label(for='review') #{__('You agree that CRA can use this information to file your 2018 taxes.')}
+          label(for='review') #{__('You agree that CRA can use this information to file your 2019 taxes.')}
 
     input#redirect(name='redirect', type='hidden', value='/confirmation')
 

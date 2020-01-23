@@ -11,10 +11,10 @@ block content
   h1 #{title}
 
   div
-    p #{__('The government might ask for receipts later. The receipts must cover 2018 energy costs for your principal residence on an Ontario reserve.')}
+    p #{__('The government might ask for receipts later. The receipts must cover 2019 energy costs for your principal residence on an Ontario reserve.')}
 
   form.cra-form(method='post')
-    +textInput('What were your total home energy costs on reserve in 2018?')(class='w-1-2 input-with-unit' name='trilliumEnergyAmount' placeholder=placeholder aria-labelledby='trilliumEnergyAmount__unit trilliumEnergyAmount__label' value=formattedValue)
+    +textInput('What were your total home energy costs on reserve in 2019?')(class='w-1-2 input-with-unit' name='trilliumEnergyAmount' placeholder=placeholder aria-labelledby='trilliumEnergyAmount__unit trilliumEnergyAmount__label' value=formattedValue)
 
     input#redirect(name='redirect', type='hidden', value='/deductions/climate-action-incentive')
 

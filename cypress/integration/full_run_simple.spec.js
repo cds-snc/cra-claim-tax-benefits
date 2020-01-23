@@ -141,7 +141,7 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
-  // VOTER OPT IN
+  // CONFIRM INCOME 
   it('navigates Confirm Income page', function() {
     cy.confirm({
       url: '/confirm-income',

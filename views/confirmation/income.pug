@@ -7,7 +7,7 @@ block content
 
   h1 #{title}
 
-  if(data.login.ageYesNo === 'Yes')
+  if(!data.login.ageYesNo || data.login.ageYesNo === 'Yes')
     p #{__('If your income is above $19,564:')}
   else
     p #{__('If your income is above $12,069:')}
@@ -30,7 +30,7 @@ block content
           +validationMessage(errors.confirmIncome.msg, key)
         .multiple-choice__item
           input(id='confirmIncome' name='confirmIncome' type="checkbox" value="confirmIncome" checked=(value =='confirmIncome') aria-describedby=(errors ? `confirmIncome-error` : false))
-          if(data.login.ageYesNo === 'Yes')
+          if(!data.login.ageYesNo || data.login.ageYesNo === 'Yes')
             label(for='confirmIncome') #{__('Check this box to confirm your income was less than $19,564 in 2019')}
           else
             label(for='confirmIncome') #{__('Check this box to confirm your income was less than $12,069 in 2019')}

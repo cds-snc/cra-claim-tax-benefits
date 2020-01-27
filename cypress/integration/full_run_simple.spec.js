@@ -68,7 +68,7 @@ describe('Full run through saying "no" to everything', function() {
   it('navigates the Senior Public Transit Tax Credit page', function() {
     cy.confirm({
       url: '/deductions/senior-public-transit',
-      h1: `Senior's public transit`,
+      h1: `Senior’s public transit`,
       id: 'seniorTransitClaim1',
     })
 
@@ -141,12 +141,12 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
-  // CONFIRM INCOME 
+  // CONFIRM INCOME
   it('navigates Confirm Income page', function() {
     cy.confirm({
       url: '/confirm-income',
       h1: 'Confirm 2019 income',
-      id: 'confirmIncome', 
+      id: 'confirmIncome',
     })
 
     cy.continue()

@@ -586,7 +586,6 @@
   "If you use this service, you cannot claim tax credits, so you will not get money back for your tuition. You may want to file your taxes another way.": "If you use this service, you cannot claim tax credits, so you will not get money back for your tuition. You may want to file your taxes another way.",
   "You can use ": "You can use ",
   "NETFILE ": "NETFILE ",
-  "to file taxes securely online. ": "to file taxes securely online. ",
   "Learn ": "Learn ",
   "check ": "check ",
   "Foreign income": "Foreign income",
@@ -634,5 +633,7 @@
   "Use this code to call about your taxes or ask for help from CRA by:": "Use this code to call about your taxes or ask for help from CRA by:",
   "A refund could include these benefits and credits:": "A refund could include these benefits and credits:",
   "Step ": "Step ",
-  " of ": " of "
+  " of ": " of ",
+  " to file taxes securely online. ": " to file taxes securely online. ",
+  " which certified NETFILE software is free, and ": " which certified NETFILE software is free, and "
 }

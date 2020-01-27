@@ -7,7 +7,7 @@ block content
 
   h1 #{title}
 
-  if(data.login.ageYesNo === 'No')
+  if hasData(data, 'personal.dateOfBirth') && !is65(data.personal.dateOfBirth)
     p #{__('If your income is above $12,070:')}
   else
     p #{__('If your income is above $19,564:')}

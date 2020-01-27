@@ -23,6 +23,7 @@ const express = require('express'),
     currencyFilter,
     isoDateHintText,
     currencyWithoutUnit,
+    is65,
   } = require('./utils'),
   csrf = require('csurf'),
   cookieConfig = require('./config/cookie.config'),
@@ -58,7 +59,7 @@ app.use(function(req, res, next) {
 
 // set up rate limiter: maximum of five requests per minute
 var limiter = new rateLimit({
-  windowMs: 1*60*1000, // 1 minute
+  windowMs: 1 * 60 * 1000, // 1 minute
   max: 120,
 })
 // apply rate limiter to expensive request page(s) - just the one for now
@@ -116,6 +117,7 @@ app.locals.hasData = hasData
 app.locals.currencyFilter = currencyFilter
 app.locals.sortByLineNumber = sortByLineNumber
 app.locals.isoDateHintText = isoDateHintText
+app.locals.is65 = is65
 
 // configure routes
 require('./routes/start/start.controller')(app)

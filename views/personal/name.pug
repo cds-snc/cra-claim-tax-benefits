@@ -22,7 +22,7 @@ block content
             div #{data.personal.firstName} #{data.personal.lastName}
 
   form.cra-form(method='post')
-    +radiosYesNo('name', 'Is this your name?')
+    +radiosYesNo('name', 'Is this your name?', confirmedName)
 
     input#redirect(name='redirect', type='hidden', value='/personal/address')
 

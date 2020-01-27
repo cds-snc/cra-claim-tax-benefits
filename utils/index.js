@@ -455,15 +455,6 @@ const getNextRoute = req => {
   return defaultRoutes[currentRoute.index + 1]
 }
 
-const getDateDelta = dateOfBirth => {
-  const today = new Date()
-  const newDate = new Date(dateOfBirth)
-  const diffTime = Math.abs(today - newDate)
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-
-  return diffDays
-}
-
 /**
  * Expects an ISO date string to be passed in (eg, '1990-08-10'), and will
  * return true if someone born on that date would be 65 in a given tax year.
@@ -508,6 +499,5 @@ module.exports = {
   returnToCheckAnswers,
   postAmount,
   currencyWithoutUnit,
-  getDateDelta,
   is65,
 }

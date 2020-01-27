@@ -8,7 +8,7 @@ const {
   renderWithData,
   checkErrors,
   postAmount,
-  getDateDelta,
+  is65,
 } = require('./../../utils')
 const {
   trilliumRentSchema,
@@ -31,8 +31,6 @@ const {
   trilliumlongTermCareAmountSchema,
   climateActionIncentiveSchema,
 } = require('./../../schemas')
-
-const SIXTY_FIVE_YEARS_IN_DAYS = 23725
 
 module.exports = function(app) {
   //Start of Trillum Section
@@ -303,9 +301,9 @@ module.exports = function(app) {
 
 // Only skip this page in production. For testing and development, we want to be able to see the senior transit pages just like any other.
 const seniorRedirect = (req, res, next) => {
-  const dobInDays = getDateDelta(req.session.personal.dateOfBirth)
   if (process.env.NODE_ENV === 'production') {
-    if (dobInDays <= SIXTY_FIVE_YEARS_IN_DAYS) {
+    // if under 65, skip this page
+    if (!is65(req.session.personal.dateOfBirth)) {
       return res.redirect('/trillium/rent')
     }
   }

@@ -41,7 +41,6 @@
 if (data.login.securityQuestion === '/checkAnswers') || (!data.login.securityQuestion)
   div
     .breakdown-table.breakdown-table--review.breakdown-table--answers
-      h2.breakdown-table__heading #{__('We will use your information to file your taxes. You may get a refund. You may also get these benefits and credits:')}
       each row in rows
         dl.breakdown-table-data
           .breakdown-table__row.breakdown-table__row--answers
@@ -54,7 +53,6 @@ if (data.login.securityQuestion === '/checkAnswers') || (!data.login.securityQue
                     <span>#{__('Learn more')}</span>
               dd.breakdown-table__row-payment
                 p #{__(row.payment)}
-        hr
 else
   div
     p #{__('You can expect the following benefits and refund from your 2019 taxes.')}

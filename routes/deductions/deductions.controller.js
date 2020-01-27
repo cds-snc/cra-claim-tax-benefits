@@ -33,8 +33,60 @@ const {
 } = require('./../../schemas')
 
 module.exports = function(app) {
-  //Start of Trillum Section
+  // Senior’s public transit tax credit
+  app.get(
+    '/deductions/senior-public-transit',
+    seniorRedirect,
+    renderWithData('deductions/senior-public-transit'),
+  )
 
+  app.post(
+    '/deductions/senior-public-transit',
+    seniorRedirect,
+    checkSchema(seniorTransitSchema),
+    checkErrors('deductions/senior-public-transit'),
+    doYesNo('seniorTransitClaim', ['seniorTransitAmount']),
+    doRedirect,
+  )
+
+  app.get(
+    '/deductions/senior-public-transit/amount',
+    seniorRedirect,
+    renderWithData('deductions/senior-public-transit-amount'),
+  )
+  app.post(
+    '/deductions/senior-public-transit/amount',
+    seniorRedirect,
+    checkSchema(seniorTransitAmountSchema),
+    checkErrors('deductions/senior-public-transit-amount'),
+    (req, res, next) => {
+      req.session.deductions.seniorTransitAmount = postAmount(
+        req.body.seniorTransitAmount,
+        req.locale,
+      )
+      next()
+    },
+    doRedirect,
+  )
+
+  //Climate Action Incentive
+  app.get(
+    '/deductions/climate-action-incentive',
+    renderWithData('deductions/climate-action-incentive'),
+  )
+  app.post(
+    '/deductions/climate-action-incentive',
+    checkSchema(climateActionIncentiveSchema),
+    checkErrors('deductions/climate-action-incentive'),
+    (req, res, next) => {
+      req.session.deductions.climateActionIncentiveIsRural =
+        req.body.climateActionIncentiveIsRural === 'Yes' ? true : false
+      next()
+    },
+    doRedirect,
+  )
+
+  //Start of Trillum Section
   app.get('/trillium/rent', renderWithData('deductions/trillium-rent'))
   app.post(
     '/trillium/rent',
@@ -144,41 +196,6 @@ module.exports = function(app) {
     doRedirect,
   )
 
-  app.get(
-    '/deductions/senior-public-transit',
-    seniorRedirect,
-    renderWithData('deductions/senior-public-transit'),
-  )
-
-  app.post(
-    '/deductions/senior-public-transit',
-    seniorRedirect,
-    checkSchema(seniorTransitSchema),
-    checkErrors('deductions/senior-public-transit'),
-    doYesNo('seniorTransitClaim', ['seniorTransitAmount']),
-    doRedirect,
-  )
-
-  app.get(
-    '/deductions/senior-public-transit/amount',
-    seniorRedirect,
-    renderWithData('deductions/senior-public-transit-amount'),
-  )
-  app.post(
-    '/deductions/senior-public-transit/amount',
-    seniorRedirect,
-    checkSchema(seniorTransitAmountSchema),
-    checkErrors('deductions/senior-public-transit-amount'),
-    (req, res, next) => {
-      req.session.deductions.seniorTransitAmount = postAmount(
-        req.body.seniorTransitAmount,
-        req.locale,
-      )
-      next()
-    },
-    doRedirect,
-  )
-
   app.get('/trillium/longTermCare', renderWithData('deductions/trillium-longTermCare'))
   app.post(
     '/trillium/longTermCare',
@@ -280,23 +297,6 @@ module.exports = function(app) {
     },
     doRedirect,
   )
-
-  //Climate Action Incentive
-  app.get(
-    '/deductions/climate-action-incentive',
-    renderWithData('deductions/climate-action-incentive'),
-  )
-  app.post(
-    '/deductions/climate-action-incentive',
-    checkSchema(climateActionIncentiveSchema),
-    checkErrors('deductions/climate-action-incentive'),
-    (req, res, next) => {
-      req.session.deductions.climateActionIncentiveIsRural =
-        req.body.climateActionIncentiveIsRural === 'Yes' ? true : false
-      next()
-    },
-    doRedirect,
-  )
 }
 
 // Only skip this page in production. For testing and development, we want to be able to see the senior transit pages just like any other.
@@ -304,7 +304,7 @@ const seniorRedirect = (req, res, next) => {
   if (process.env.NODE_ENV === 'production') {
     // if under 65, skip this page
     if (!is65(req.session.personal.dateOfBirth)) {
-      return res.redirect('/trillium/rent')
+      return res.redirect('/deductions/climate-action-incentive')
     }
   }
   return next()

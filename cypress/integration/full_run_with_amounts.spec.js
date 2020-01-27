@@ -86,6 +86,17 @@ describe('Full run through saying "yes" to everything', function() {
     cy.continue()
   })
 
+  //CLIMATE ACTION INCENTIVE
+  it('navigates Climate Action Incentive page', function() {
+    cy.confirm({
+      url: '/deductions/climate-action-incentive',
+      h1: 'Small and rural communities',
+      id: 'climateActionIncentiveIsRural0', // click Yes
+    })
+
+    cy.continue()
+  })
+
   //TRILLIUM RENT
   it('navigates the Trillium Rent page', function() {
     cy.confirm({
@@ -251,17 +262,6 @@ describe('Full run through saying "yes" to everything', function() {
     cy.continue()
   })
 
-  //CLIMATE ACTION INCENTIVE
-  it('navigates Climate Action Incentive page', function() {
-    cy.confirm({
-      url: '/deductions/climate-action-incentive',
-      h1: 'Small and rural communities',
-      id: 'climateActionIncentiveIsRural0', // click Yes
-    })
-
-    cy.continue()
-  })
-
   // VOTER OPT IN
   it('navigates Voter Opt In page', function() {
     cy.confirm({
@@ -294,7 +294,7 @@ describe('Full run through saying "yes" to everything', function() {
       h1: 'Confirm 2019 income',
       id: 'confirmIncome', // click checkbox
     })
-    
+
     cy.continue('Continue')
   })
 

@@ -59,7 +59,7 @@ describe('Test server responses', () => {
         .set('Accept-Language', 'fr-CA, fr;q=0.9, en;q=0.8')
 
       const $ = cheerio.load(response.text)
-      expect($('h1').text()).toEqual('Réclamer des avantages fiscaux')
+      expect($('h1').text()).toEqual('Déclaration de revenus pour un accès aux prestations')
       expect($('html').attr('lang')).toEqual('fr')
     })
 
@@ -67,7 +67,7 @@ describe('Test server responses', () => {
       const response = await request(app).get('/start?lang=fr')
 
       const $ = cheerio.load(response.text)
-      expect($('h1').text()).toEqual('Réclamer des avantages fiscaux')
+      expect($('h1').text()).toEqual('Déclaration de revenus pour un accès aux prestations')
       expect($('html').attr('lang')).toEqual('fr')
     })
   })

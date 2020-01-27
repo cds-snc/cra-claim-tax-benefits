@@ -75,6 +75,17 @@ describe('Full run through saying "no" to everything', function() {
     cy.continue()
   })
 
+  //CLIMATE ACTION INCENTIVE
+  it('navigates Climate Action Incentive page', function() {
+    cy.confirm({
+      url: '/deductions/climate-action-incentive',
+      h1: 'Small and rural communities',
+      id: 'climateActionIncentiveIsRural1', // click No
+    })
+
+    cy.continue()
+  })
+
   //TRILLIUM RENT
   it('navigates the Trillium Rent page', function() {
     cy.confirm({
@@ -114,17 +125,6 @@ describe('Full run through saying "no" to everything', function() {
       url: '/trillium/energy/reserve',
       h1: 'Home on reserve',
       id: 'trilliumEnergyReserveClaim1', // click No
-    })
-
-    cy.continue()
-  })
-
-  //CLIMATE ACTION INCENTIVE
-  it('navigates Climate Action Incentive page', function() {
-    cy.confirm({
-      url: '/deductions/climate-action-incentive',
-      h1: 'Small and rural communities',
-      id: 'climateActionIncentiveIsRural1', // click No
     })
 
     cy.continue()

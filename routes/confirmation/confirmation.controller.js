@@ -1,6 +1,6 @@
 const { checkSchema } = require('express-validator')
 const { doRedirect, renderWithData, checkErrors, getPreviousRoute } = require('./../../utils')
-const { reviewSchema, confirmIncomeSchema } = require('./../../schemas')
+const { confirmIncomeSchema } = require('./../../schemas')
 const { formatAnswerInfo } = require('./checkAnswersFormat')
 const { outputXML } = require('./xmlFormat')
 
@@ -30,10 +30,12 @@ module.exports = function(app) {
   app.get('/feedback', renderWithData('confirmation/feedback'))
 
   app.get('/confirm-income', renderWithData('confirmation/income'))
-  app.post('/confirm-income', checkSchema(confirmIncomeSchema), checkErrors('confirmation/income'), doRedirect)
-
-  app.get('/review', renderWithData('confirmation/review'))
-  app.post('/review', checkSchema(reviewSchema), checkErrors('confirmation/review'), doRedirect)
+  app.post(
+    '/confirm-income',
+    checkSchema(confirmIncomeSchema),
+    checkErrors('confirmation/income'),
+    doRedirect,
+  )
 
   app.get('/checkAnswers', (req, res) => {
     res.render('confirmation/check-answers', {

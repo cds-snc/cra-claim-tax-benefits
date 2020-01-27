@@ -1,12 +1,3 @@
-const reviewSchema = {
-  review: {
-    isIn: {
-      errorMessage: 'errors.review',
-      options: [['review']],
-    },
-  },
-}
-
 const confirmIncomeSchema = {
   confirmIncome: {
     isIn: {
@@ -17,6 +8,5 @@ const confirmIncomeSchema = {
 }
 
 module.exports = {
-  reviewSchema,
   confirmIncomeSchema,
 }

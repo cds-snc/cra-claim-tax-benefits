@@ -1,5 +1,6 @@
 const validator = require('validator')
 const { validationResult } = require('express-validator')
+const parseISO = require('date-fns/parseISO')
 const API = require('./../api')
 const { routes: defaultRoutes } = require('../config/routes.config')
 const cookieConfig = require('../config/cookie.config')
@@ -233,7 +234,7 @@ const postAmount = (amount, locale) => {
 /**
  * Cleans a string of hyphens and spaces
  *
- * ie, "8-4-7339 2 8 3 " => "847 339 283"
+ * ie, "8-4-7339 2 8 3 " => "847339283"
  *
  * @param string sin a string assumed to be a SIN
  */
@@ -400,7 +401,8 @@ const getPreviousRoute = (req, routes = defaultRoutes) => {
        * - or is not an edit page, and is the next logical page
        */
       if (
-        ('editInfo' in previousRouteToCheck && hasData(session, previousRouteToCheck.editInfo, true)) ||
+        ('editInfo' in previousRouteToCheck &&
+          hasData(session, previousRouteToCheck.editInfo, true)) ||
         !('editInfo' in previousRouteToCheck)
       ) {
         return previousRouteToCheck
@@ -448,18 +450,32 @@ const getRouteWithIndexByPath = (path, routes = defaultRoutes) => {
   return routeWithIndex
 }
 
-const getNextRoute = (req) => {
+const getNextRoute = req => {
   const currentRoute = getRouteWithIndexByPath(req.path)
   return defaultRoutes[currentRoute.index + 1]
 }
 
-const getDateDelta = (dateOfBirth) => {
-  const today = new Date()
-  const newDate = new Date(dateOfBirth)
-  const diffTime = Math.abs(today - newDate)
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+/**
+ * Expects an ISO date string to be passed in (eg, '1990-08-10'), and will
+ * return true if someone born on that date would be 65 in a given tax year.
+ *
+ * 65 is the age of seniority in Canada.
+ * default tax year is 2019
+ * throws an Error if the passed-in string isn't parseable as a date
+ *
+ * @param string dateOfBirth an iso date string formatted 'yyyy-mm-dd'
+ * @param obj { taxYear } the year to check someone's age
+ */
+const is65 = (dateOfBirth, { taxYear = 2019 } = {}) => {
+  const AGE_OF_SENIORITY = 65
 
-  return diffDays
+  if (isNaN(parseISO(dateOfBirth).getTime())) {
+    throw new Error(`[is65] Invalid date string: '${dateOfBirth}'`)
+  }
+
+  const yearOfBirth = dateOfBirth.split('-')[0]
+
+  return taxYear - yearOfBirth >= AGE_OF_SENIORITY
 }
 
 module.exports = {
@@ -483,5 +499,5 @@ module.exports = {
   returnToCheckAnswers,
   postAmount,
   currencyWithoutUnit,
-  getDateDelta,
+  is65,
 }

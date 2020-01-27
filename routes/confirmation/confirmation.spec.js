@@ -1,5 +1,6 @@
 const request = require('supertest')
 const app = require('../../app.js')
+const { extractCsrfToken, withCSRF } = require('../utils.spec')
 
 describe('Test confirmation urls', () => {
   const urls = ['/checkAnswers', '/confirmation', '/feedback']

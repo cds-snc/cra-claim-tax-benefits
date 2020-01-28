@@ -32,7 +32,7 @@ describe('Test checkAnswersFormat function with initialSession', () => {
     expect(Object.keys(answerInfo)).toEqual([
       'Personal information',
       'Tax benefits',
-      'Voter Registration',
+      'Voter registration',
       'Income',
     ])
   })
@@ -58,11 +58,11 @@ describe('Test checkAnswersFormat with added displayIf rows for Trillium Rent', 
   })
 })
 
-describe('Test checkAnswersFormat with added displayIf rows for Voter Registration', () => {
+describe('Test checkAnswersFormat with added displayIf rows for Voter registration', () => {
   const answerInfo = formatAnswerInfo({ session: sessionWithVoterRegistration })
 
-  test('it has extra rows in Voter Registration', async () => {
-    expect(answerInfo['Voter Registration'].length).toBe(3)
+  test('it has extra rows in Voter registration', async () => {
+    expect(answerInfo['Voter registration'].length).toBe(3)
   })
 })
 

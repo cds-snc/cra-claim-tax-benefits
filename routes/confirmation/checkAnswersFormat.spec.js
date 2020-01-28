@@ -27,12 +27,13 @@ const sessionWithVoterRegistration = {
 describe('Test checkAnswersFormat function with initialSession', () => {
   const answerInfo = formatAnswerInfo({ session: initialSession })
 
-  test('it has 3 sections with correct key names', async () => {
-    expect(Object.keys(answerInfo).length).toBe(3)
+  test('it has 4 sections with correct key names', async () => {
+    expect(Object.keys(answerInfo).length).toBe(4)
     expect(Object.keys(answerInfo)).toEqual([
       'Personal information',
       'Tax benefits',
       'Voter Registration',
+      'Income',
     ])
   })
 

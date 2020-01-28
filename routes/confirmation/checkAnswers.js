@@ -129,6 +129,16 @@ const answerInfo = [
       },
     ],
   },
+  {
+    sectionTitle: 'Income',
+    sectionRows: [
+      {
+        text: 'Do you confirm that your income was less than $12,070?',
+        infoPath: ['financial.incomeConfirmed'],
+        urlPath: '/confirm-income',
+      },
+    ],
+  },
 ]
 
 module.exports = {

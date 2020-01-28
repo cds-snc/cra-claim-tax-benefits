@@ -611,7 +611,11 @@
   "confirm you believe your answers are correct and complete": "confirmez que vous estimez avoir fourni des réponses exactes et complètes;",
   "allow CRA to file your 2019 taxes with these answers": "autorisez l’ARC à produire votre déclaration de revenus 2019 à l’aide de ces réponses.",
   "Keep your tax slips or receipts for 6 years in case CRA asks for them.": "Veuillez conservez vos feuillets fiscaux et vos reçus pendant 6 ans au cas où l’ARC vous les demanderait.",
-  "Do you confirm that your income was less than $19,564?": "Confirmez-vous que votre revenu est inférieur à 19\u00A0564\u00A0$?",
+  "Do you confirm that your income was less than $19,564?": "Confirmez-vous que votre revenu est inférieur à 19 564 $?",
   "per year, up to $451 for one person, $592 if you have a spouse or common-law partner, and $155 for each child under age 19.": "Montant annuel pouvant s’élever jusqu’à 451 $ pour une personne, jusqu’à 592 $ si vous êtes marié ou que vous avez un conjoint de fait, et jusqu’à 155 $ par enfant de moins de 19 ans.",
-  "paid quarterly": "Versement trimestriel"
+  "paid quarterly": "Versement trimestriel",
+  "about the Climate action incentive": "sur le Paiement de l’incitatif à agir pour le climat",
+  "about the Disability tax credit": "sur le crédit d’impôt pour personnes handicapées",
+  "about the GST/HST credit": "sur le crédit TPS/TVH",
+  "about the Ontario trillium benefit": "sur la Prestation Trillium de l’Ontario"
 }

@@ -9,24 +9,28 @@
   {
     "header":"Climate action incentive (CAI)",
     "description": "everyone gets this payment. You get 10% extra if you live in a small and rural community.",
+    "linkHiddenText":"about the Climate action incentive",
     "linkURL":"https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-449-climate-action-incentive.html",
     "payment":"paid yearly"
   },
   {
     "header":"Disability tax credit (DTC)",
     "description": "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application.",
+    "linkHiddenText":"about the Disability tax credit",
     "linkURL":"https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html",
     "payment":"paid monthly"
   },
   {
     "header":"Goods and services tax/harmonized sales tax (GST/HST) credit",
     "description": "per year, up to $451 for one person, $592 if you have a spouse or common-law partner, and $155 for each child under age 19.",
+    "linkHiddenText":"about the GST/HST credit",
     "linkURL":"https://www.canada.ca/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit.html",
     "payment": "paid quarterly"
   },
   {
     "header":"Ontario trillium benefit (OTB)",
     "description": "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.",
+    "linkHiddenText":"about the Ontario trillium benefit",
     "linkURL":"https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-ontario.html",
     "payment":"paid monthly"
   },
@@ -44,7 +48,8 @@ if (data.login.securityQuestion === '/checkAnswers') || (!data.login.securityQue
                 span #{__(row.description)}
                 div.row-link
                   a(href=__(row.linkURL), target="_blank")
-                    <span>#{__('Learn more')}</span>
+                    span.
+                      #{__('Learn more')}#[span.visually-hidden  #{__(row.linkHiddenText)}]
               dd.breakdown-table__row-payment
                 p #{__(row.payment)}
 else

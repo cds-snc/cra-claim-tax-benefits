@@ -108,7 +108,7 @@ const answerInfo = [
     ],
   },
   {
-    sectionTitle: 'Voter Registration',
+    sectionTitle: 'Voter registration',
     sectionRows: [
       {
         text: 'Registered to vote',

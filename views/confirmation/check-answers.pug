@@ -19,7 +19,7 @@ block content
             each row in section
               .breakdown-table__row.breakdown-table__row--answers
                 if (row.urlPath && row.urlPath.includes('confirm-income') && isSenior)
-                  dt.breakdown-table__row-key #{__(row.text.replace('$12,070', '$19,564'))}
+                  dt.breakdown-table__row-key #{__(row.text.replace('$12,070', '$19,564').replace('12\u00A0070\u00A0$', '19\u00A0564\u00A0$'))}
                 else
                   dt.breakdown-table__row-key #{__(row.text)}
 
@@ -39,10 +39,10 @@ block content
                     a(href=`${row.urlPath}?ref=checkAnswers`)
                       <span>#{__('Review')}<span class="visually-hidden"> #{__(row.text)}</span>
 
-  p.bold Now you can file your taxes
-  p When you accept and file, you:
+  p.bold #{__('Now you can file your taxes')}
+  p #{__('When you accept and file, you:')}
   ul
-    li confirm you believe your answers are correct and complete
-    li allow CRA to file your 2019 taxes with these answers
+    li #{__('confirm you believe your answers are correct and complete')}
+    li #{__('allow CRA to file your 2019 taxes with these answers')}
   +linkButtons('/confirmation', 'Accept and file')
-  p Keep your tax slips or receipts for 6 years in case CRA asks for them. 
+  p #{__('Keep your tax slips or receipts for 6 years in case CRA asks for them.')}

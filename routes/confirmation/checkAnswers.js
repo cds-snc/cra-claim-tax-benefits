@@ -39,6 +39,11 @@ const answerInfo = [
         displayIf: 'deductions.seniorTransitClaim',
       },
       {
+        text: 'Did you live in a small and rural community?',
+        infoPath: ['deductions.climateActionIncentiveIsRural'],
+        urlPath: '/deductions/climate-action-incentive',
+      },
+      {
         text: 'Did you pay rent?',
         infoPath: ['deductions.trilliumRentClaim'],
         urlPath: '/trillium/rent',
@@ -99,11 +104,6 @@ const answerInfo = [
         infoPath: ['deductions.trilliumEnergyAmount'],
         urlPath: '/trillium/energy/cost/amount',
         displayIf: 'deductions.trilliumEnergyCostClaim',
-      },
-      {
-        text: 'Did you live in a small and rural community?',
-        infoPath: ['deductions.climateActionIncentiveIsRural'],
-        urlPath: '/deductions/climate-action-incentive',
       },
     ],
   },

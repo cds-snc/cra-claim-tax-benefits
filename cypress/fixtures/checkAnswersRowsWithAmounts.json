@@ -25,6 +25,10 @@
       "value": "$25.00"
     },
     {
+      "key": "Did you live in a small and rural community?",
+      "value": "Yes"
+    },
+    {
       "key": "Did you pay rent?",
       "value": "Yes"
     },
@@ -63,10 +67,6 @@
     {
       "key": "Yearly energy costs on a reserve",
       "value": "$25.00"
-    },
-    {
-      "key": "Did you live in a small and rural community?",
-      "value": "Yes"
     },
     {
       "key": "Registered to vote",

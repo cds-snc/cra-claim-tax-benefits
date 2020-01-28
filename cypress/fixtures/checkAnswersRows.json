@@ -17,6 +17,10 @@
       "value": "Single"
     },
     {
+      "key": "Did you live in a small and rural community?",
+      "value": "No"
+    },
+    {
       "key": "Did you pay rent?",
       "value": "No"
     },
@@ -30,10 +34,6 @@
     },
     {
       "key": "Did you live on a reserve?",
-      "value": "No"
-    },
-    {
-      "key": "Did you live in a small and rural community?",
       "value": "No"
     },
     {

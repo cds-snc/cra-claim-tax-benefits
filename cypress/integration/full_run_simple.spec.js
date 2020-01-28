@@ -161,7 +161,7 @@ describe('Full run through saying "no" to everything', function() {
     })
 
     cy.get('.buttons-row a')
-      .contains('Agree')
+      .contains('Accept and file')
       .click()
   })
 

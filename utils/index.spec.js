@@ -123,7 +123,7 @@ describe('Test postAmount function', () => {
     },
     {
       input: '$1,000',
-      localse: 'en',
+      locale: 'en',
       expectedResult: '1000',
     },
     {

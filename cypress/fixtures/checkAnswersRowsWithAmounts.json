@@ -25,6 +25,10 @@
       "value": "$25.00"
     },
     {
+      "key": "Did you live in a small and rural community?",
+      "value": "Yes"
+    },
+    {
       "key": "Did you pay rent?",
       "value": "Yes"
     },
@@ -65,7 +69,19 @@
       "value": "$25.00"
     },
     {
-      "key": "Did you live in a small and rural community?",
+      "key": "Registered to vote",
+      "value": "Yes"
+    },
+    {
+      "key": "Canadian citizen",
+      "value": "Yes"
+    },
+    {
+      "key": "Elections Canada will update voter record",
+      "value": "Yes"
+    },
+    {
+      "key": "Do you confirm that your income was less than $12,070?",
       "value": "Yes"
     }
   ]

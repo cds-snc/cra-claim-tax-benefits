@@ -306,7 +306,7 @@ describe('Full run through saying "yes" to everything', function() {
       checkTableRows(cy, rows.rows, 'dt.breakdown-table__row-key')
     })
     cy.get('.buttons-row a')
-      .contains('Agree')
+      .contains('Accept and file')
       .click()
   })
 

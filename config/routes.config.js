@@ -56,7 +56,6 @@ const routes = [
   { path: '/vote/confirmRegistration', editInfo: 'vote.voterCitizen' },
   { path: '/confirm-income' },
   { path: '/checkAnswers' },
-  { path: '/review' },
   { path: '/confirmation' },
   { path: '/feedback', editInfo: 'skip' },
 ]

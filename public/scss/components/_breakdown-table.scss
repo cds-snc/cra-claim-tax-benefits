@@ -17,7 +17,7 @@
   h2#{$table}__heading {
     text-align: left;
     background: $color-grey-light;
-    padding: 28px;
+    padding: $space-md;
     font-size: 1em;
     font-weight: 700;
 
@@ -51,6 +51,15 @@
   dl {
     border-bottom: 2px solid $color-grey-light;
   }
+
+  &--check-answers {
+    dl {
+      border-bottom: none;
+    }
+    
+    max-width: 750px;
+    border-bottom: 2px solid $color-grey-light;
+  }
 }
 
 .breakdown-table__row {
@@ -73,6 +82,7 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     font-size: 0.9em;
+    padding-left: $space-md;
 
     @include md {
       font-size: 1em;
@@ -84,7 +94,9 @@
   &-key {
     margin-bottom: 5px;
     font-weight: 700;
+    
     @include md {
+      padding-left: $space-md;
       font-weight: 400;
       width: 60%;
     }

@@ -450,7 +450,6 @@
   "Check the boxes if:": "Check the boxes if:",
   "You are a Canadian citizen.": "You are a Canadian citizen.",
   "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.": "You allow CRA to give your name, address, date of birth and citizenship status to Elections Canada. Elections Canada uses the information to update voter records.",
-  "Voter Registration": "Voter Registration",
   "Registered to vote": "Registered to vote",
   "Vote in the federal election": "Vote in the federal election",
   "Would you like to vote in the federal election?": "Would you like to vote in the federal election?",
@@ -633,5 +632,15 @@
   "Step ": "Step ",
   " of ": " of ",
   " to file taxes securely online. ": " to file taxes securely online. ",
-  " which certified NETFILE software is free, and ": " which certified NETFILE software is free, and "
+  " which certified NETFILE software is free, and ": " which certified NETFILE software is free, and ",
+  "Accept and file": "Accept and file",
+  "Income": "Income",
+  "Do you confirm that your income was less than $12, 070?": "Do you confirm that your income was less than $12, 070?",
+  "Do you confirm that your income was less than $12,070?": "Do you confirm that your income was less than $12,070?",
+  "Do you confirm that your income was less than $19,564?": "Do you confirm that your income was less than $19,564?",
+  "Now you can file your taxes": "Now you can file your taxes",
+  "When you accept and file, you:": "When you accept and file, you:",
+  "confirm you believe your answers are correct and complete": "confirm you believe your answers are correct and complete",
+  "allow CRA to file your 2019 taxes with these answers": "allow CRA to file your 2019 taxes with these answers",
+  "Keep your tax slips or receipts for 6 years in case CRA asks for them.": "Keep your tax slips or receipts for 6 years in case CRA asks for them."
 }

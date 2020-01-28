@@ -34,6 +34,7 @@ module.exports = function(app) {
     '/confirm-income',
     checkSchema(confirmIncomeSchema),
     checkErrors('confirmation/income'),
+    postConfirmIncome,
     doRedirect,
   )
 
@@ -44,4 +45,11 @@ module.exports = function(app) {
       answerInfo: formatAnswerInfo(req),
     })
   })
+}
+
+const postConfirmIncome = (req, res, next) => {
+  if (req.body.confirmIncome) {
+    req.session.financial.incomeConfirmed = true
+  }
+  next()
 }

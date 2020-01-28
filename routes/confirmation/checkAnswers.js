@@ -39,6 +39,11 @@ const answerInfo = [
         displayIf: 'deductions.seniorTransitClaim',
       },
       {
+        text: 'Did you live in a small and rural community?',
+        infoPath: ['deductions.climateActionIncentiveIsRural'],
+        urlPath: '/deductions/climate-action-incentive',
+      },
+      {
         text: 'Did you pay rent?',
         infoPath: ['deductions.trilliumRentClaim'],
         urlPath: '/trillium/rent',
@@ -100,15 +105,10 @@ const answerInfo = [
         urlPath: '/trillium/energy/cost/amount',
         displayIf: 'deductions.trilliumEnergyCostClaim',
       },
-      {
-        text: 'Did you live in a small and rural community?',
-        infoPath: ['deductions.climateActionIncentiveIsRural'],
-        urlPath: '/deductions/climate-action-incentive',
-      },
     ],
   },
   {
-    sectionTitle: 'Voter Registration',
+    sectionTitle: 'Voter registration',
     sectionRows: [
       {
         text: 'Registered to vote',
@@ -126,6 +126,16 @@ const answerInfo = [
         infoPath: ['vote.voterConsent'],
         urlPath: '/vote/confirmRegistration',
         displayIf: 'vote.confirmOptIn',
+      },
+    ],
+  },
+  {
+    sectionTitle: 'Income',
+    sectionRows: [
+      {
+        text: 'Do you confirm that your income was less than $12,070?',
+        infoPath: ['financial.incomeConfirmed'],
+        urlPath: '/confirm-income',
       },
     ],
   },

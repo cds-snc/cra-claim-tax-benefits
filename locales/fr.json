@@ -464,12 +464,12 @@
   "Canada child benefit (CCB)": "L’Allocation canadienne pour enfants (ACE)",
   "a yearly amount which may be up to $6,639 for each child under age 6 and up to $5,602 for each child aged 6 to 17.": "Montant annuel pouvant s’élever jusqu’à 6 639 $ pour chaque enfant de moins de 6 ans, et jusqu’à 5 602 $ pour chaque enfant âgé de 6 à 17 ans.",
   "paid monthly": "Versement mensuel",
-  "Ontario trillium benefit (OTB)": "La Prestation Trillium de l’Ontario (PTO)",
-  "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.": "Paiement du gouvernement qui aide à assumer les coûts en énergie, en ventes et en impôts fonciers. Le gouvernement verse généralement le montant le 10e jour de chaque mois pendant 12 mois.",
-  "Climate action incentive (CAI)": "Le Paiement de l’incitatif à agir pour le climat",
-  "everyone gets this payment. You get 10% extra if you live in a small and rural community.": "Tout le monde reçoit ce paiement. Si vous vivez dans une région rurale ou une petite collectivité, vous obtenez un supplément équivalant à 10 % de ce paiement.",
-  "Disability tax credit (DTC)": "Le crédit d’impôt pour personnes handicapées (CIPH)",
-  "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application.": "Montant calculé selon votre situation. Vous pourriez obtenir le CIPH si vous avez présenté une demande et que l’ARC l’approuve.",
+  "Ontario trillium benefit (OTB)": "Prestation Trillium de l’Ontario (PTO)",
+  "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.": "Paiement du gouvernement qui aide à assumer les coûts énergétiques, la taxe de vente et l’impôt foncier. Le gouvernement verse généralement le montant le 10e jour de chaque mois pendant 12 mois.",
+  "Climate action incentive (CAI)": "Paiement de l’incitatif à agir pour le climat",
+  "everyone gets this payment. You get 10% extra if you live in a small and rural community.": "Tout le monde reçoit ce paiement. Si vous vivez dans une région rurale ou une petite collectivité, vous obtenez un supplément de 10 %.",
+  "Disability tax credit (DTC)": "Crédit d’impôt pour personnes handicapées (CIPH)",
+  "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application.": "Montant calculé selon votre situation. Vous pourriez obtenir le CIPH si vous avez présenté une demande et que l’ARC l’approuve. Si vous obtenez le CIPH, nous ferons le calcul nécessaire pour vos impôts.",
   "Check the box if you gave correct and complete answers to the previous questions. CRA will file your taxes using this online service. Keep your tax slips or receipts for 6 years in case CRA asks for them.": "Veuillez cocher la case si vous reconnaissez avoir fourni des réponses exactes et complètes aux questions. L’ARC utilisera le présent service pour produire votre déclaration de revenus. Conservez vos relevés ou vos reçus fiscaux pendant six ans au cas où l’ARC demanderait à les obtenir.",
   "Thank you for using the ": "Merci d’avoir utilisé le service en ligne ",
   "Please share your feedback": "Faites-nous part de vos commentaires",
@@ -611,5 +611,7 @@
   "confirm you believe your answers are correct and complete": "confirmez que vous estimez avoir fourni des réponses exactes et complètes;",
   "allow CRA to file your 2019 taxes with these answers": "autorisez l’ARC à produire votre déclaration de revenus 2019 à l’aide de ces réponses.",
   "Keep your tax slips or receipts for 6 years in case CRA asks for them.": "Veuillez conservez vos feuillets fiscaux et vos reçus pendant 6 ans au cas où l’ARC vous les demanderait.",
-  "Do you confirm that your income was less than $19,564?": "Confirmez-vous que votre revenu est inférieur à 19\u00A0564\u00A0$?"
+  "Do you confirm that your income was less than $19,564?": "Confirmez-vous que votre revenu est inférieur à 19\u00A0564\u00A0$?",
+  "per year, up to $451 for one person, $592 if you have a spouse or common-law partner, and $155 for each child under age 19.": "Montant annuel pouvant s’élever jusqu’à 451 $ pour une personne, jusqu’à 592 $ si vous êtes marié ou que vous avez un conjoint de fait, et jusqu’à 155 $ par enfant de moins de 19 ans.",
+  "paid quarterly": "Versement trimestriel"
 }

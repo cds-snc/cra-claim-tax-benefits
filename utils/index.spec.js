@@ -122,6 +122,11 @@ describe('Test postAmount function', () => {
       expectedResult: '10341.28',
     },
     {
+      input: '$1,000',
+      localse: 'en',
+      expectedResult: '1000',
+    },
+    {
       input: '1,025',
       locale: 'en',
       expectedResult: '1025',

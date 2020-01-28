@@ -222,13 +222,13 @@ const postAmount = (amount, locale) => {
   }
 
   if (locale === 'fr') {
-    const formattedAmount = amount.replace(',', '.').replace(/\s/g, '')
+    const formattedAmount = amount.replace(',', '.').replace(/\s/g, '').replace('$', '')
 
     return formattedAmount
   }
 
   //remove commas for English format inputs, just for consistency of storing
-  return amount.replace(/,/g, '')
+  return amount.replace(/,/g, '').replace('$', '')
 }
 
 /**

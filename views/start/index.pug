@@ -17,7 +17,11 @@ block content
     p #{__('start.p3')}
 
     ul
-      li #{__('start.li1')} <i>“#{__('service.name')}”</i>
+      li #{__('start.li1')} 
+        if getLocale() !== 'fr'
+          <i>“#{__('service.name')}”</i>
+        else
+          <i>#{__('service.name')}</i>
       li #{__('start.li2')}
       li #{__('start.li3')}
 

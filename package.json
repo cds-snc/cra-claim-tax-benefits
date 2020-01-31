@@ -37,7 +37,10 @@
     "cypress": "start-server-and-test start:cypress http://localhost:3005 cypress:open",
     "cypress:run": "node ./node_modules/.bin/cypress run",
     "cypress:cli": "start-server-and-test start:cypress http://localhost:3005 cypress:run",
-    "sonar": "sonar-scanner"
+    "sonar": "sonar-scanner",
+    "missing-translations": "node locales/utils.js missing-translations",
+    "missing-keys:en": "node locales/utils.js en",
+    "missing-keys:fr": "node locales/utils.js fr"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",

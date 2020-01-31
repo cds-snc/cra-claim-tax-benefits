@@ -1,7 +1,4 @@
 {
-  "45": "45",
-  "50": "50",
-  "4566": "4566",
   "errors.login.length": "Access code must be 9 characters",
   "errors.login.alphanumeric": "Access code should only contain letters and numbers",
   "errors.login.code": "Access code not recognized",

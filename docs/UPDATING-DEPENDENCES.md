@@ -40,3 +40,25 @@ npm run cypress:cli
 8. Submit a pull request with your updates.
 
 9. Once pull request is approved, merge away! 🚢 [Our app is continuously deployed](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) to our [App Service URL](https://claim-tax-benefits.azurewebsites.net/start) using [Github Actions](https://github.com/features/actions). [Check the latest workflow](https://github.com/cds-snc/cra-claim-tax-benefits/actions) to make sure the app was deployed successfully.
+
+## Updating our `<details>` polyfill
+
+We use [the `<details>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) to hide help text in the app where we don't want to clutter up the interface. (This is known as [progressive disclosure](https://en.wikipedia.org/wiki/Progressive_disclosure)).
+
+The `<details>` element is an easy, semantic way to create an open/close element; however, [it's not supported by all browsers](https://caniuse.com/#search=details) (specifically IE11 and Edge v19 or lower). We’ve addressed this is by using the [details-element-polyfill](https://github.com/javan/details-element-polyfill), which we’ve included as a vendor file in [`/public/js`](https://github.com/cds-snc/cra-claim-tax-benefits/tree/master/public/js).
+
+### Update process for `details-element-polyfill`
+
+1. Check version of our vendored [`details-element-polyfill.js` file](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/public/js/details-element-polyfill.js). (Currently, `2.4.0`.)
+
+2. Visit [javan/details-element-polyfill](https://github.com/javan/details-element-polyfill) on Github.
+
+3. Check current version in [`details-element-polyfill/dist/details-element-polyfill.js`](https://github.com/javan/details-element-polyfill/blob/master/dist/details-element-polyfill.js). (Currently, `2.4.0`.)
+
+4. If the versions are the same, do nothing.
+
+5. If the versions are different, copy [`details-element-polyfill/dist/details-element-polyfill.js`](https://github.com/javan/details-element-polyfill/blob/master/dist/details-element-polyfill.js) into `/public/js/details-element-polyfill.js`.
+
+6. Submit a pull request with your updates.
+
+7. Once pull request is approved, merge away! 🚢 [Our app is continuously deployed](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) to our [App Service URL](https://claim-tax-benefits.azurewebsites.net/start) using [Github Actions](https://github.com/features/actions). [Check the latest workflow](https://github.com/cds-snc/cra-claim-tax-benefits/actions) to make sure the app was deployed successfully.

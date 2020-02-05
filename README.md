@@ -55,7 +55,7 @@ On a Mac, press `Control` + `C` to quit the running application.
 
 The application can be run with a local postgres database (otherwise, it falls back on a JSON file).
 
-To start the app in development mode, alongside the postgres db type `docker-compose up` 
+To start the app in development mode, alongside the postgres db type `docker-compose up`
 
 Docker Desktop already has compose included, but just in case, installation instructions for docker-compose can be found [here](https://docs.docker.com/compose/install/)
 
@@ -111,4 +111,4 @@ On a Mac, press `Control` + `C` to quit the running docker container.
 
 This application is deployed continuously using [Github Actions](https://github.com/features/actions).
 
-However, it’s still a beta service so it might not be 100% reliable. If anything goes wrong, [follow the manual deployment instructions](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md).
+However, it’s still a beta service so it might not be 100% reliable. If anything goes wrong, [follow the manual deployment instructions](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEPLOY.md).

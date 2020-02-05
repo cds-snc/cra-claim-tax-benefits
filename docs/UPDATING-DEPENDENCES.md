@@ -18,7 +18,9 @@ We run this process at least once every 2-week period (ie, once a sprint), or as
 rm -rf package-lock.json ./node_modules
 ```
 
-4. Run the tests.
+4. Install new dependencies with `npm install`.
+
+5. Run the tests.
 
 ```
 npm test
@@ -26,20 +28,20 @@ npm run lint
 npm run cypress:cli
 ```
 
-5. If the tests _fail_, continue to step 6. If the tests _pass_, continue to step 7.
+6. If the tests _fail_, continue to step 6. If the tests _pass_, continue to step 7.
 
-6. Revert to the previous dependency versions (eg, `git checkout -- .`) and run `npm install` to re-download them. Run the tests with the original dependencies to ensure they do actually pass. If they do, you can be sure that your updates broke the tests and not some other random issue.
+7. Revert to the previous dependency versions (eg, `git checkout -- .`) and run `npm install` to re-download them. Run the tests with the original dependencies to ensure they do actually pass. If they do, you can be sure that your updates broke the tests and not some other random issue.
 
    - Return to step 1.
    - When you arrive at step 2, only apply the **minor**, and **patch** upgrades.
    - If any of the tests fail on step 4, revert again but this time apply only the **patch** upgrades.
    - If the tests continue to fail on the patch upgrades, debug the problem(s) until the tests pass and the application works as expected.
 
-7. Boot up the application locally and make sure things look as expected (the cypress tests (`npm run cypress:cli`) cover most of the pages, so this is just a sense check).
+8. Boot up the application locally and make sure things look as expected (the cypress tests (`npm run cypress:cli`) cover most of the pages, so this is just a sense check).
 
-8. Submit a pull request with your updates.
+9. Submit a pull request with your updates.
 
-9. Once pull request is approved, merge away! 🚢 [Our app is continuously deployed](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) to our [App Service URL](https://claim-tax-benefits.azurewebsites.net/start) using [Github Actions](https://github.com/features/actions). [Check the latest workflow](https://github.com/cds-snc/cra-claim-tax-benefits/actions) to make sure the app was deployed successfully.
+10. Once pull request is approved, merge away! 🚢 [Our app is continuously deployed](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) to our [App Service URL](https://claim-tax-benefits.azurewebsites.net/start) using [Github Actions](https://github.com/features/actions). [Check the latest workflow](https://github.com/cds-snc/cra-claim-tax-benefits/actions) to make sure the app was deployed successfully.
 
 ## Updating our `<details>` polyfill
 

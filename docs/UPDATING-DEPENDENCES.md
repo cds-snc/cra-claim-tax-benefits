@@ -38,3 +38,5 @@ npm run cypress:cli
 7. Boot up the application locally and make sure things look as expected (the cypress tests (`npm run cypress:cli`) cover most of the pages, so this is just a sense check).
 
 8. Submit a pull request with your updates.
+
+9. Once pull request is approved, merge away! 🚢 [Our app is continuously deployed](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) to our [App Service URL](https://claim-tax-benefits.azurewebsites.net/start) using [Github Actions](https://github.com/features/actions). [Check the latest workflow](https://github.com/cds-snc/cra-claim-tax-benefits/actions) to make sure the app was deployed successfully.

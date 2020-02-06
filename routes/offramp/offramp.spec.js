@@ -3,22 +3,21 @@ const app = require('../../app.js')
 
 describe('Test /offramp responses', () => {
   const urls = [
-    '/offramp',
     '/offramp/name',
     '/offramp/address',
     '/offramp/residence',
     '/offramp/children',
     '/offramp/dependants',
     '/offramp/tuition',
-    '/offramp/income',
     '/offramp/maritalStatus',
-    '/offramp/financial',
-    '/offramp/securityQuestion',
+    '/offramp/foreign-income',
+    '/offramp/income-sources',
+    '/offramp/taxable-income',
   ]
 
   urls.map(url => {
     test(`it returns a 200 response for ${url}`, async () => {
-      const response = await request(app).get('/offramp')
+      const response = await request(app).get(url)
       expect(response.statusCode).toBe(200)
     })
   })

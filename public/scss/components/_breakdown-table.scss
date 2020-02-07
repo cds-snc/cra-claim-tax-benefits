@@ -56,7 +56,7 @@
     dl {
       border-bottom: none;
     }
-    
+
     max-width: 750px;
     border-bottom: 2px solid $color-grey-light;
   }
@@ -94,7 +94,7 @@
   &-key {
     margin-bottom: 5px;
     font-weight: 700;
-    
+
     @include md {
       padding-left: $space-md;
       font-weight: 400;
@@ -160,6 +160,14 @@
 
   h2.breakdown-table__heading {
     line-height: 1.5em;
+  }
+
+  .breakdown-table__row {
+    &-key,
+    &-value,
+    &-payment {
+      padding-left: 0;
+    }
   }
 
   .breakdown-table__row-key {

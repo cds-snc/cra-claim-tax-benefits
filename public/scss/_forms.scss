@@ -35,6 +35,13 @@ form.cra-form {
 
   @include md {
     max-width: 80%;
+
+    .w-3-4 {
+      width: 50%;
+    }
+    .w-1-2 {
+      width: 30%;
+    }
   }
 
   > div:not(:last-of-type) {
@@ -176,6 +183,7 @@ form.cra-form {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    max-width: 450px;
 
     .buttons--left,
     .buttons--right {

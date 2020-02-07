@@ -113,7 +113,9 @@ main {
 
   h1 {
     border-bottom: 1px solid $color-red;
-    padding-right: 15%;
+    @include md {
+      padding-right: 15%;
+    }
   }
 
   > div {

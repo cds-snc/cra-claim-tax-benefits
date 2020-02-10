@@ -17,12 +17,12 @@ mixin dateInputs(idPrefix, legendText, isoHintText, values, bday = false)
                 +validationMessage(err.msg, err.param)
       div.w-1-4.d--ib(class={['has-error--inline']: errors && errors[`${idPrefix}Day`]})
         label(for=`${idPrefix}Day`) #{__('Day')}
-        input#dobDay(name=`${idPrefix}Day`, type='text', value=values[0], autocomplete=(bday ? 'bday-day' : null), aria-describedby=(errors && errors[`${idPrefix}Day`] ? `${idPrefix}Day-error` : false))
+        input#dobDay.dob-sm(name=`${idPrefix}Day`, type='text', value=values[0], autocomplete=(bday ? 'bday-day' : null), aria-describedby=(errors && errors[`${idPrefix}Day`] ? `${idPrefix}Day-error` : false))
 
       div.w-1-4.d--ib(class={['has-error--inline']: errors && errors[`${idPrefix}Month`]})
         label(for=`${idPrefix}Month`) #{__('Month')}
-        input#dobMonth(name=`${idPrefix}Month`, type='text', value=values[1], autocomplete=(bday ? 'bday-month' : null), aria-describedby=(errors && errors[`${idPrefix}Month`] ? `${idPrefix}Month-error` : false))
+        input#dobMonth.dob-sm(name=`${idPrefix}Month`, type='text', value=values[1], autocomplete=(bday ? 'bday-month' : null), aria-describedby=(errors && errors[`${idPrefix}Month`] ? `${idPrefix}Month-error` : false))
 
-      div.w-1-2.d--ib(class={['has-error--inline']: errors && errors[`${idPrefix}Year`]})
+      div.w-1-3.d--ib(class={['has-error--inline']: errors && errors[`${idPrefix}Year`]})
         label(for=`${idPrefix}Year`) #{__('Year')}
-        input#dobYear(name=`${idPrefix}Year`, type='text', value=values[2], autocomplete=(bday ? 'bday-year' : null), aria-describedby=(errors && errors[`${idPrefix}Year`] ? `${idPrefix}Year-error` : false))
+        input#dobYear.dob-md(name=`${idPrefix}Year`, type='text', value=values[2], autocomplete=(bday ? 'bday-year' : null), aria-describedby=(errors && errors[`${idPrefix}Year`] ? `${idPrefix}Year-error` : false))

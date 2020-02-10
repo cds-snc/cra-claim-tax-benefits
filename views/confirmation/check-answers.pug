@@ -39,10 +39,10 @@ block content
                     a(href=`${row.urlPath}?ref=checkAnswers`)
                       <span>#{__('Review')}<span class="visually-hidden"> #{__(row.text)}</span>
 
-  p.bold #{__('Now you can file your taxes')}
-  p #{__('When you accept and file, you:')}
-  ul
-    li #{__('confirm you believe your answers are correct and complete')}
-    li #{__('allow CRA to file your 2019 taxes with these answers')}
+    p.bold #{__('Now you can file your taxes')}
+    p #{__('When you accept and file, you:')}
+    ul
+      li #{__('confirm you believe your answers are correct and complete')}
+      li #{__('allow CRA to file your 2019 taxes with these answers')}
   +linkButtons('/confirmation', 'Accept and file')
   p #{__('Keep your tax slips or receipts for 6 years in case CRA asks for them.')}

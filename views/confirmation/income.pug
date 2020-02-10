@@ -8,21 +8,22 @@ block content
 
   h1 #{title}
 
-  if !isSenior
-    p #{__('If your income is above $12,070:')}
-  else
-    p #{__('If your income is above $19,564:')}
+  div
+    if !isSenior
+      p #{__('If your income is above $12,070:')}
+    else
+      p #{__('If your income is above $19,564:')}
 
-  ul
-    li #{__('You may need to pay tax')}
-    li #{__('You will not be able to lower your tax by deducting contributions or costs such as charitable or political donations, medical costs, RRSP or similar contributions')}
+    ul
+      li #{__('You may need to pay tax')}
+      li #{__('You will not be able to lower your tax by deducting contributions or costs such as charitable or political donations, medical costs, RRSP or similar contributions')}
 
-  p #{__('Income includes:')}
+    p #{__('Income includes:')}
 
-  ul
-    li #{__('Benefits such as social assistance')}
-    li #{__('Employment, a pension, or Registered Retirement Savings Plan (RRSP)')}
-    li #{__('Up to $1000 of interest from Canadian sources, such as a bank or savings account')}
+    ul
+      li #{__('Benefits such as social assistance')}
+      li #{__('Employment, a pension, or Registered Retirement Savings Plan (RRSP)')}
+      li #{__('Up to $1000 of interest from Canadian sources, such as a bank or savings account')}
 
   form.cra-form(method='post')
     div(class={['has-error']: errors && errors.confirmIncome})

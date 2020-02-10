@@ -10,7 +10,8 @@ block content
 
   h1 #{title}
 
-  p #{__('“Principal residence” means your main home, where you usually lived.')}
+  div
+    p #{__('“Principal residence” means your main home, where you usually lived.')}
   
   form.cra-form(method='post')
     +radiosYesNo('residenceScreening', 'On December 31, 2019, was your principal residence in Ontario?', residenceScreening)

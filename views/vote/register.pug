@@ -1,0 +1,24 @@
+extends ../base
+include ../_includes/banner
+
+block variables
+  -var title = __('Register or update voter information')
+  -var register = !hasData(data, 'vote.register') ? '' : data.vote.register
+block content
+
+  h1 #{title}
+
+  +banner('blue')
+    p #{__('To register or update your registration, CRA shares your information with Elections Canada. Elections Canada uses the information to update the voter list.')}
+
+  form.cra-form(method='post')
+    +radiosYesNo('register', 'Do you allow CRA to give your name, address, date of birth and citizenship to Elections Canada?', register)
+
+    input#redirect(name='redirect', type='hidden', value='/confirm-income')
+
+    div
+      details.
+        <summary><span>#{__('Learn about Elections Canada')}</span></summary>
+        <p>#{__('Elections Canada follows the Canada Elections Act, which is the law about voter information.  Provincial and territorial governments, members of Parliament, registered political parties, and candidates at election time can have your voter information.')}</p>
+
+    +formButtons()

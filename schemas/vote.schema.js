@@ -4,22 +4,16 @@ const optInSchema = {
   confirmOptIn: yesNoSchema(),
 }
 
-const confirmRegistrationSchema = {
-  voterCitizen: {
-    isIn: {
-      errorMessage: 'errors.voterCitizen',
-      options: [[null, 'voterCitizen']],
-    },
-  },
-  voterConsent: {
-    isIn: {
-      errorMessage: 'errors.voterConsent',
-      options: [[null, 'voterConsent']],
-    },
-  },
+const citizenSchema = {
+  citizen: yesNoSchema(),
+}
+
+const registerSchema = {
+  register: yesNoSchema(),
 }
 
 module.exports = {
   optInSchema,
-  confirmRegistrationSchema,
+  citizenSchema,
+  registerSchema,
 }

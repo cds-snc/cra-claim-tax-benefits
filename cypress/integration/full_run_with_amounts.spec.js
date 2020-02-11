@@ -266,23 +266,31 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates Voter Opt In page', function() {
     cy.confirm({
       url: '/vote/optIn',
-      h1: 'Vote in the federal election',
+      h1: 'Vote in the federal election (optional)',
       id: 'confirmOptIn0', // click Yes
     })
 
     cy.continue()
   })
 
-  // VOTER CONFIRMATION
-  it('navigates Voter Confirmation page', function() {
-    cy.url().should('contain', '/vote/confirmRegistration')
-    cy.get('h1').should('contain', 'Register to vote')
+  // VOTER CITIZEN
+  it('navigates Voter Citizen page', function() {
+    cy.confirm({
+      url: '/vote/citizen',
+      h1: 'Register to vote - citizenship',
+      id: 'citizen0', // click Yes
+    })
 
-    cy.get('input#voterCitizen + label').should('have.attr', 'for', 'voterCitizen')
-    cy.get('input#voterCitizen').click()
+    cy.continue()
+  })
 
-    cy.get('input#voterConsent + label').should('have.attr', 'for', 'voterConsent')
-    cy.get('input#voterConsent').click()
+  // VOTER REGISTRATION
+  it('navigates Voter Registration page', function() {
+    cy.confirm({
+      url: '/vote/register',
+      h1: 'Register or update voter information',
+      id: 'register0', // click Yes
+    })
 
     cy.continue()
   })

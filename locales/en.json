@@ -217,7 +217,6 @@
   "Will you claim tax credits for your 2019 tuition?": "Will you claim tax credits for your 2019 tuition?",
   "Will you claim tax credits for your eligible dependant or dependants?": "Will you claim tax credits for your eligible dependant or dependants?",
   "Windsor": "Windsor",
-  "Would you like to vote in the federal election?": "Would you like to vote in the federal election?",
   "Year": "Year",
   "Yearly energy costs on a reserve": "Yearly energy costs on a reserve",
   "Yes": "Yes",
@@ -351,5 +350,16 @@
   "thanks for your Social insurance number": "thanks for your Social insurance number",
   "thanks for your filing code": "thanks for your filing code",
   "which certified NETFILE software is free, and ": "which certified NETFILE software is free, and ",
-  "“Principal residence” means your main home, where you usually lived.": "“Principal residence” means your main home, where you usually lived."
+  "“Principal residence” means your main home, where you usually lived.": "“Principal residence” means your main home, where you usually lived.",
+  "Vote in the federal election (optional)": "Vote in the federal election (optional)",
+  "CRA lets you register to vote or update your voter information when filing taxes.": "CRA lets you register to vote or update your voter information when filing taxes.",
+  "Would you like to vote in the federal election?": "Would you like to vote in the federal election?",
+  "Register to vote - citizenship": "Register to vote - citizenship",
+  "You must be a Canadian citizen to vote.": "You must be a Canadian citizen to vote.",
+  "Are you a Canadian citizen?": "Are you a Canadian citizen?",
+  "Register or update voter information": "Register or update voter information",
+  "To register or update your registration, CRA shares your information with Elections Canada. Elections Canada uses the information to update the voter list.": "To register or update your registration, CRA shares your information with Elections Canada. Elections Canada uses the information to update the voter list.",
+  "Do you allow CRA to give your name, address, date of birth and citizenship to Elections Canada?": "Do you allow CRA to give your name, address, date of birth and citizenship to Elections Canada?",
+  "Learn about Elections Canada": "Learn about Elections Canada",
+  "Elections Canada follows the Canada Elections Act, which is the law about voter information.  Provincial and territorial governments, members of Parliament, registered political parties, and candidates at election time can have your voter information.": "Elections Canada follows the Canada Elections Act, which is the law about voter information.  Provincial and territorial governments, members of Parliament, registered political parties, and candidates at election time can have your voter information."
 }

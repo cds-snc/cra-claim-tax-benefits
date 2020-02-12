@@ -44,7 +44,7 @@ describe('Test /vote responses', () => {
       .use(withCSRF(cookie, csrfToken))
       .send({ confirmOptIn: 'Yes', redirect: '/vote/citizen' })
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toEqual('/vote/citizen')
+    expect(response.headers.location).toEqual('/vote/citizen?ref=checkAnswers')
   })
 
   test('it returns a 200 response for /vote/citizen', async () => {
@@ -68,7 +68,7 @@ describe('Test /vote responses', () => {
       .use(withCSRF(cookie, csrfToken))
       .send({ citizen: 'Yes', redirect: '/vote/register' })
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toEqual('/vote/register')
+    expect(response.headers.location).toEqual('/vote/register?ref=checkAnswers')
   })
 
   test('it returns a 302 and redirects to /checkAnswers when NO is selected', async () => {

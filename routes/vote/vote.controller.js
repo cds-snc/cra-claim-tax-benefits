@@ -30,6 +30,9 @@ module.exports = function(app) {
     checkErrors('vote/register'),
     (req, res, next) => {
       req.session.vote.register = req.body.register
+      if (req.query.ref && req.query.ref === 'checkAnswers') {
+        return returnToCheckAnswers(req, res, false)
+      }
       next()
     },
     doRedirect,
@@ -42,6 +45,9 @@ const postOptIn = (req, res, next) => {
 
   // if yes, go to second page of vote
   if (confirmOptIn === 'Yes') {
+    if (req.query.ref && req.query.ref === 'checkAnswers') {
+      return returnToCheckAnswers(req, res, true)
+    }
     return res.redirect('/vote/citizen')
   }
   // if no, go to confirmation
@@ -59,8 +65,14 @@ const postCitizen = (req, res, next) => {
   req.session.vote.citizen = citizen
 
   if (citizen === 'Yes') {
+    if (req.query.ref && req.query.ref === 'checkAnswers') {
+      return returnToCheckAnswers(req, res, true)
+    }
     return res.redirect('/vote/register')
   }
+
+  req.session.vote.voterConsent = null
+
   if (req.query.ref && req.query.ref === 'checkAnswers') {
     return returnToCheckAnswers(req, res, false)
   }

@@ -245,11 +245,15 @@ module.exports = function(app) {
         'trilliumLongTermCareAmount',
         'trilliumLongTermCareAmountIsFull',
       ]
+      // if there is already data and this selection is the opposite of what's saved,
+      // we need to clear the data
+      if (req.session.deductions[claim] && req.session.deductions[claim] != (req.body[claim] === 'Yes' ? true : false)) {
+        console.log("clearing fields")
+        clearSessionFields(req, fields)
+      }
+
       // set the value in the session
       req.session.deductions[claim] = req.body[claim] === 'Yes' ? true : false
-
-      // clear associated fields regardless of yes / no answer
-      clearSessionFields(req, fields)
 
       // if yes still need to redirect to the proper page
       if (req.body[claim] === 'Yes') {

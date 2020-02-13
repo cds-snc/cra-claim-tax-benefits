@@ -18,8 +18,8 @@ const sessionWithVoterRegistration = {
   ...{
     vote: {
       confirmOptIn: 'Yes',
-      voterCitizen: 'Yes',
-      voterConsent: 'Yes',
+      citizen: 'Yes',
+      register: 'Yes',
     },
   },
 }

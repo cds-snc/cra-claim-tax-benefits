@@ -176,8 +176,7 @@
  },
  "vote": {
     "confirmOptIn": null,
-    "voterPageEdited": 0,
-    "voterCitizen": null,
-    "voterConsent": null
+    "citizen": null,
+    "register": null
  }
 }

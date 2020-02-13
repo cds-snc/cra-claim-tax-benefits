@@ -1,0 +1,20 @@
+extends ../base
+include ../_includes/banner
+
+block variables
+  -var title = __('Register to vote - citizenship')
+  -var citizen = !hasData(data, 'vote.citizen') ? '' : data.vote.citizen
+
+block content
+
+  h1 #{title}
+
+  +banner('blue')
+    p #{__('You must be a Canadian citizen to vote.')}
+
+  form.cra-form(method='post')
+    +radiosYesNo('citizen', 'Are you a Canadian citizen?', citizen)
+
+    input#redirect(name='redirect', type='hidden', value='/confirm-income')
+
+    +formButtons()

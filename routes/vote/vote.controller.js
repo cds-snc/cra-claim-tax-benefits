@@ -2,7 +2,8 @@ const { checkSchema } = require('express-validator')
 const { doRedirect, renderWithData, checkErrors, returnToCheckAnswers } = require('./../../utils')
 const {
   optInSchema,
-  confirmRegistrationSchema,
+  citizenSchema,
+  registerSchema,
 } = require('./../../schemas')
 
 module.exports = function(app) {
@@ -14,12 +15,26 @@ module.exports = function(app) {
     postOptIn,
     doRedirect,
   )
-  app.get('/vote/confirmRegistration', renderWithData('vote/confirmRegistration'))
+  app.get('/vote/citizen', renderWithData('vote/citizen'))
   app.post(
-    '/vote/confirmRegistration',
-    checkSchema(confirmRegistrationSchema),
-    checkErrors('vote/confirmRegistration'),
-    postConfirmRegistration,
+    '/vote/citizen',
+    checkSchema(citizenSchema),
+    checkErrors('vote/citizen'),
+    postCitizen,
+    doRedirect,
+  )
+  app.get('/vote/register', renderWithData('vote/register'))
+  app.post(
+    '/vote/register',
+    checkSchema(registerSchema),
+    checkErrors('vote/register'),
+    (req, res, next) => {
+      req.session.vote.register = req.body.register
+      if (req.query.ref && req.query.ref === 'checkAnswers') {
+        return returnToCheckAnswers(req, res, false)
+      }
+      next()
+    },
     doRedirect,
   )
 }
@@ -30,10 +45,13 @@ const postOptIn = (req, res, next) => {
 
   // if yes, go to second page of vote
   if (confirmOptIn === 'Yes') {
-    return res.redirect('/vote/confirmRegistration')
+    if (req.query.ref && req.query.ref === 'checkAnswers') {
+      return returnToCheckAnswers(req, res, true)
+    }
+    return res.redirect('/vote/citizen')
   }
   // if no, go to confirmation
-  req.session.vote.voterCitizen = null
+  req.session.vote.citizen= null
   req.session.vote.voterConsent = null
 
   if (req.query.ref && req.query.ref === 'checkAnswers') {
@@ -42,9 +60,21 @@ const postOptIn = (req, res, next) => {
   next()
 }
 
-const postConfirmRegistration = (req, res, next) => {
-  req.session.vote.voterCitizen = req.body.voterCitizen == 'voterCitizen' ? 'Yes' : 'No'
-  req.session.vote.voterConsent = req.body.voterConsent == 'voterConsent' ? 'Yes' : 'No'
+const postCitizen = (req, res, next) => {
+  const citizen = req.body.citizen
+  req.session.vote.citizen = citizen
 
+  if (citizen === 'Yes') {
+    if (req.query.ref && req.query.ref === 'checkAnswers') {
+      return returnToCheckAnswers(req, res, true)
+    }
+    return res.redirect('/vote/register')
+  }
+
+  req.session.vote.voterConsent = null
+
+  if (req.query.ref && req.query.ref === 'checkAnswers') {
+    return returnToCheckAnswers(req, res, false)
+  }
   next()
 }

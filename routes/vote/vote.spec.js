@@ -28,46 +28,69 @@ describe('Test /vote responses', () => {
     expect(response.headers.location).toEqual('/checkAnswers')
   })
 
-  test('it returns a 302 and redirects to /vote/confirmRegistration when YES is selected', async () => {
+  test('it returns a 302 and redirects to /vote/citizen when YES is selected', async () => {
     const response = await request(app)
       .post('/vote/optIn')
       .use(withCSRF(cookie, csrfToken))
-      .send({ confirmOptIn: 'Yes', redirect: '/vote/confirmRegistration' })
+      .send({ confirmOptIn: 'Yes', redirect: '/vote/citizen' })
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toEqual('/vote/confirmRegistration')
+    expect(response.headers.location).toEqual('/vote/citizen')
   })
 
-  test('it redirects to the /vote/confirmRegistration page when posting Yes and having come from the checkAnswers page', async () => {
+  test('it redirects to the /vote/citizen page when posting Yes and having come from the checkAnswers page', async () => {
     const response = await request(app)
       .post('/vote/optIn')
       .query({ ref: 'checkAnswers' })
       .use(withCSRF(cookie, csrfToken))
-      .send({ confirmOptIn: 'Yes', redirect: '/vote/confirmRegistration' })
+      .send({ confirmOptIn: 'Yes', redirect: '/vote/citizen' })
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toEqual('/vote/confirmRegistration')
+    expect(response.headers.location).toEqual('/vote/citizen?ref=checkAnswers')
   })
 
-  test('it returns a 200 response for /vote/confirmRegistration', async () => {
-    const response = await request(app).get('/vote/confirmRegistration')
+  test('it returns a 200 response for /vote/citizen', async () => {
+    const response = await request(app).get('/vote/citizen')
     expect(response.statusCode).toBe(200)
   })
 
-  test('it returns a 302 and redirects to /checkAnswers when submitted', async () => {
+  test('it returns a 302 and redirects to /vote/register when YES is selected', async () => {
     const response = await request(app)
-      .post('/vote/confirmRegistration')
+      .post('/vote/citizen')
       .use(withCSRF(cookie, csrfToken))
-      .send({ redirect: '/checkAnswers' })
+      .send({ citizen: 'Yes', redirect: '/vote/register' })
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toEqual('/vote/register')
+  })
+
+  test('it redirects to the /vote/register page when posting Yes and having come from the checkAnswers page', async () => {
+    const response = await request(app)
+      .post('/vote/citizen')
+      .query({ ref: 'checkAnswers' })
+      .use(withCSRF(cookie, csrfToken))
+      .send({ citizen: 'Yes', redirect: '/vote/register' })
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toEqual('/vote/register?ref=checkAnswers')
+  })
+
+  test('it returns a 302 and redirects to /checkAnswers when NO is selected', async () => {
+    const response = await request(app)
+      .post('/vote/citizen')
+      .use(withCSRF(cookie, csrfToken))
+      .send({ citizen: 'No', redirect: '/checkAnswers' })
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toEqual('/checkAnswers')
   })
 
+  test('it returns a 200 response for /vote/register', async () => {
+    const response = await request(app).get('/vote/register')
+    expect(response.statusCode).toBe(200)
+  })
+
   test('it returns a 302 and redirects to /checkAnswers when submitted with data', async () => {
     const response = await request(app)
-      .post('/vote/confirmRegistration')
+      .post('/vote/register')
       .use(withCSRF(cookie, csrfToken))
       .send({
-        voterCitizen: 'voterCitizen',
-        voterConsent: 'voterConsent',
+        register: 'Yes',
         redirect: '/checkAnswers',
       })
     expect(response.statusCode).toBe(302)

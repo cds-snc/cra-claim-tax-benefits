@@ -117,14 +117,14 @@ const answerInfo = [
       },
       {
         text: 'Canadian citizen',
-        infoPath: ['vote.voterCitizen'],
-        urlPath: '/vote/confirmRegistration',
+        infoPath: ['vote.citizen'],
+        urlPath: '/vote/citizen',
         displayIf: 'vote.confirmOptIn',
       },
       {
         text: 'Elections Canada will update voter record',
-        infoPath: ['vote.voterConsent'],
-        urlPath: '/vote/confirmRegistration',
+        infoPath: ['vote.register'],
+        urlPath: '/vote/register',
         displayIf: 'vote.confirmOptIn',
       },
     ],

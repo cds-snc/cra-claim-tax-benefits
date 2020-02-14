@@ -18,7 +18,7 @@
 import 'cypress-axe'
 
 Cypress.Cookies.defaults({
-  whitelist: '_csrf',
+  whitelist: ['_csrf', 'connect.sid'],
 })
 
 Cypress.Commands.add('login', user => {

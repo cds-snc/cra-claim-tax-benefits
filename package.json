@@ -43,6 +43,7 @@
   "dependencies": {
     "app-root-path": "^3.0.0",
     "applicationinsights": "^1.7.0",
+    "clone-deep": "^4.0.1",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
     "csurf": "^1.11.0",

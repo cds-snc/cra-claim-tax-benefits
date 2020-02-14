@@ -111,7 +111,6 @@ Cypress.Commands.add('login', user => {
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/login/sin')
   cy.get('h1').should('contain', 'Enter your Social insurance number (SIN)')
-  cy.get('h2').should('contain', `${user.personal.firstName}, thanks for your filing code.`)
   cy.get('form label').should('have.attr', 'for', 'sin')
   cy.get('form input#sin')
     .type(user.personal.sin)
@@ -124,10 +123,6 @@ Cypress.Commands.add('login', user => {
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/login/dateOfBirth')
   cy.get('h1').should('contain', 'Enter your date of birth')
-  cy.get('h2').should(
-    'contain',
-    `${user.personal.firstName}, thanks for your Social insurance number.`,
-  )
   cy.get('form label')
     .eq(0)
     .should('have.attr', 'for', 'dobDay')

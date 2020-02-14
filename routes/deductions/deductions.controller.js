@@ -248,7 +248,6 @@ module.exports = function(app) {
       // if there is already data and this selection is the opposite of what's saved,
       // we need to clear the data
       if (req.session.deductions[claim] && req.session.deductions[claim] != (req.body[claim] === 'Yes' ? true : false)) {
-        console.log("clearing fields")
         clearSessionFields(req, fields)
       }
 

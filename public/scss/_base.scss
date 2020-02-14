@@ -148,21 +148,6 @@ li:not(:last-of-type) {
   @extend %page-container;
 }
 
-.stepper {
-  margin-bottom: 0;
-
-  p {
-  margin-top: $space-md;
-  margin-bottom: $space-xxs;
-  color: $color-grey-dark;
-  }
-
-  + h1 {
-    margin-top: 0;
-  }
-
-}
-
 .pure-table {
   width: 100%;
   margin-bottom: $space-sm;

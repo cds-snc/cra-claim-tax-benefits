@@ -20,8 +20,6 @@ const getBenefitsBreakdownRows = user => {
   return benefitsRows
 }
 
-const allIncomeRows = user => getIncomeBreakdownRows(user)
-
 const getAddress = address => {
   const fullAddress = [`${address.city}, ${address.province}`, `${address.postalCode}`]
   if (address.line2.en && address.line2.en !== '') {

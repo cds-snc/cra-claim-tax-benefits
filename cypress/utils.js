@@ -8,26 +8,6 @@ const checkTableRows = (cy, rows, tableRowClass) => {
   })
 }
 
-const getIncomeBreakdownRows = user => {
-  const incomeRows = []
-
-  user.financial.incomeSources.map(source => {
-    const incomeRow = {
-      key: source.name,
-      value: `$${source.total.toLocaleString('en-US')}`,
-    }
-    incomeRows.push(incomeRow)
-    return
-  })
-
-  incomeRows.push({
-    key: 'Total Income',
-    value: `$${user.financial.incomes.totalIncome.amount.toLocaleString('en-US')}`,
-  })
-
-  return incomeRows
-}
-
 const getBenefitsBreakdownRows = user => {
   const benefitsKeys = Object.values(user.benefits)
   const benefitsRows = benefitsKeys.map(source => {
@@ -55,7 +35,6 @@ const getAddress = address => {
 
 module.exports = {
   checkTableRows,
-  allIncomeRows,
   getBenefitsBreakdownRows,
   getAddress,
 }

@@ -11,10 +11,11 @@ COMMENT ON ROLE tes IS 'Database user for the claim tax benefits front-end appli
 
 CREATE TABLE public.access_codes
 (
-    code character varying(16) COLLATE pg_catalog."default" NOT NULL,
-    dob character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    code character varying(97) COLLATE pg_catalog."default" NOT NULL,
+    date_of_birth character varying(97) COLLATE pg_catalog."default" NOT NULL,
     login_count numeric NOT NULL,
-    sin character varying(9) COLLATE pg_catalog."default" NOT NULL,
+    sin character varying(97) COLLATE pg_catalog."default" NOT NULL,
+		first_name VARCHAR(30),
     locked boolean NOT NULL,
     CONSTRAINT pk_access_code PRIMARY KEY (code)
 )

@@ -7,14 +7,10 @@ block variables
   -var dobDay = hasData(body, 'dobDay') ? body.dobDay : (hasData(data.login, 'dobDay') ? data.login.dobDay : '')
   -var dobMonth = hasData(body, 'dobMonth') ? body.dobMonth : (hasData(data.login, 'dobMonth') ? data.login.dobMonth : '')
   -var dobYear = hasData(body, 'dobYear') ? body.dobYear : (hasData(data.login, 'dobYear') ? data.login.dobYear : '')
-  -var firstName = hasData(data, 'login.firstName') ? data.login.firstName : (hasData(data, 'personal.firstName') ? data.personal.firstName : '' )
 
 block content
 
   h1 #{title}
-
-  if firstName
-    h2 #{firstName}, #{__('thanks for your Social insurance number')}.
 
   div
     form.cra-form(method='post')

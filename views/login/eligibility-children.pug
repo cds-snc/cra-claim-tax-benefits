@@ -9,7 +9,7 @@ block content
   h1 #{title}
   
   form.cra-form(method='post')
-    +radiosYesNo('children', 'Do you have a child or children under age 18?', children)
+    +radiosYesNo('children', 'On December 31, 2019, did you have a child or children under age 18?', children)
 
     input#redirect(name='redirect', type='hidden', value='/eligibility/dependants')
 

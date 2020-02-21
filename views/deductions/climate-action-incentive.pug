@@ -1,39 +1,128 @@
 extends ../base
 
 block variables
-  -var title = __('Small and rural communities')
+  -var title = __('Census Metropolitan Area')
   -var climateActionIncentiveIsRural = !hasData(data, 'deductions.climateActionIncentiveIsRural') ? '' : data.deductions.climateActionIncentiveIsRural ? 'Yes' : 'No'
 
 block content
 
   h1 #{title}
 
+  div
+    p #{__('The next questions ask about your main home, where you usually lived. CRA calls this your “principal residence”.')}
+
+    p #{__('You can have more than one principal residence during the year, but only one at a time.')}
+
+
   form.cra-form(method='post')
-    +radiosYesNo('climateActionIncentiveIsRural', 'Did you live in a small and rural community in 2019?', climateActionIncentiveIsRural)
+    +radiosYesNo('climateActionIncentiveIsRural', 'Did you live in a Census Metropolitan Area (CMA) in 2019?', climateActionIncentiveIsRural)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/rent')
 
     div
       details.
-        <summary><span>#{__('Check if you live in a small and rural community')}</span></summary>
-        <p>#{__('You live in a small and rural community if you ')}<strong>#{__('do not')}</strong>#{__(' live in:')}</p>
+        <summary><span>#{__('Check if your community is part of a CMA')}</span></summary>
+        <p>#{__('Your community is part of a CMA if you live in: ')}
         <ul>
+          <li>#{__('Adelaide-Metcalfe')}</li>
+          <li>#{__('Ajax')}</li>
+          <li>#{__('Amherstburg')}</li>
+          <li>#{__('Aurora')}</li>
           <li>#{__('Barrie')}</li>
           <li>#{__('Belleville')}</li>
+          <li>#{__('Bradford West Gwillimbury')}</li>
+          <li>#{__('Brampton')}</li>
+          <li>#{__('Brant')}</li>
           <li>#{__('Brantford')}</li>
-          <li>#{__('Greater Sudbury')}</li>
-          <li>#{__('Greater Toronto Area')}</li>
+          <li>#{__('Burlington')}</li>
+          <li>#{__('Caledon')}</li>
+          <li>#{__('Cambridge')}</li>
+          <li>#{__('Cavan Monaghan')}</li>
+          <li>#{__('Central Elgin')}</li>
+          <li>#{__('Chippewas of Georgina Island First Nation')}</li>
+          <li>#{__('Clarence-Rockland')}</li>
+          <li>#{__('Clarington')}</li>
+          <li>#{__('Conmee')}</li>
+          <li>#{__('Curve Lake First Nation 35')}</li>
+          <li>#{__('Douro-Dummer')}</li>
+          <li>#{__('East Gwillimbury')}</li>
+          <li>#{__('Fort Erie')}</li>
+          <li>#{__('Fort William 52')}</li>
+          <li>#{__('Frontenac Islands')}</li>
+          <li>#{__('Georgina')}</li>
+          <li>#{__('Gillies')}</li>
+          <li>#{__('Greater Sudbury / Grand Sudbury')}</li>
+          <li>#{__('Markstay-Warren')}</li>
+          <li>#{__('Grimsby')}</li>
           <li>#{__('Guelph')}</li>
+          <li>#{__('Guelph/Eramosa')}</li>
+          <li>#{__('Halton Hills')}</li>
           <li>#{__('Hamilton')}</li>
+          <li>#{__('Hiawatha First Nation')}</li>
+          <li>#{__('Innisfil')}</li>
+          <li>#{__('King')}</li>
           <li>#{__('Kingston')}</li>
-          <li>#{__('Kitchener-Cambridge-Waterloo')}</li>
+          <li>#{__('Kitchener')}</li>
+          <li>#{__('Lakeshore')}</li>
+          <li>#{__('LaSalle')}</li>
+          <li>#{__('Lincoln')}</li>
           <li>#{__('London')}</li>
+          <li>#{__('Loyalist')}</li>
+          <li>#{__('Markham')}</li>
+          <li>#{__('Middlesex Centre')}</li>
+          <li>#{__('Milton')}</li>
+          <li>#{__('Mississauga')}</li>
+          <li>#{__('Mono')}</li>
+          <li>#{__('Neebing')}</li>
+          <li>#{__('New Tecumseth')}</li>
+          <li>#{__('Newmarket')}</li>
+          <li>#{__('Niagara Falls')}</li>
+          <li>#{__('Niagara-on-the-Lake')}</li>
+          <li>#{__('North Dumfries')}</li>
+          <li>#{__('North Grenville')}</li>
+          <li>#{__('O\'Connor')}</li>
+          <li>#{__('Oakville')}</li>
+          <li>#{__('Oliver Paipoonge')}</li>
+          <li>#{__('Orangeville')}</li>
           <li>#{__('Oshawa')}</li>
-          <li>#{__('Ottawa-Gatineau (Ontario part)')}</li>
+          <li>#{__('Otonabee-South Monaghan')}</li>
+          <li>#{__('Ottawa')}</li>
+          <li>#{__('Pelham')}</li>
           <li>#{__('Peterborough')}</li>
-          <li>#{__('St. Catharines-Niagara')}</li>
+          <li>#{__('Pickering')}</li>
+          <li>#{__('Port Colborne')}</li>
+          <li>#{__('Puslinch')}</li>
+          <li>#{__('Quinte West')}</li>
+          <li>#{__('Richmond Hill')}</li>
+          <li>#{__('Russell')}</li>
+          <li>#{__('Selwyn')}</li>
+          <li>#{__('Shuniah')}</li>
+          <li>#{__('Six Nations (Part) 40')}</li>
+          <li>#{__('South Frontenac')}</li>
+          <li>#{__('Southwold')}</li>
+          <li>#{__('Springwater')}</li>
+          <li>#{__('St. Catharines')}</li>
+          <li>#{__('St. Thomas')}</li>
+          <li>#{__('Stirling-Rawdon')}</li>
+          <li>#{__('Strathroy-Caradoc')}</li>
+          <li>#{__('Tecumseh')}</li>
+          <li>#{__('Thames Centre')}</li>
+          <li>#{__('Thorold')}</li>
           <li>#{__('Thunder Bay')}</li>
+          <li>#{__('Toronto')}</li>
+          <li>#{__('Tyendinaga')}</li>
+          <li>#{__('Uxbridge')}</li>
+          <li>#{__('Vaughan')}</li>
+          <li>#{__('Wahnapitei 11')}</li>
+          <li>#{__('Wainfleet')}</li>
+          <li>#{__('Waterloo')}</li>
+          <li>#{__('Welland')}</li>
+          <li>#{__('Whitby')}</li>
+          <li>#{__('Whitchurch-Stouffville')}</li>
+          <li>#{__('Whitefish Lake 6')}</li>
+          <li>#{__('Wilmot')}</li>
           <li>#{__('Windsor')}</li>
+          <li>#{__('Woolwich')}</li>
         </ul>
 
     +formButtons()

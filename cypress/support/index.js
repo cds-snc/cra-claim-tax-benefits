@@ -99,7 +99,7 @@ Cypress.Commands.add('login', user => {
   // ELIGIBILITY SUCCESS
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/eligibility/success')
-  cy.get('h1').should('contain', 'You can file taxes with this service')
+  cy.get('h1').should('contain', 'Start filing taxes with this service')
   cy.get('a[href="/login/code"]').click()
 
   // LOGIN CODE

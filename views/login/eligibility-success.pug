@@ -1,18 +1,25 @@
 extends ../base
 
 block variables
-  -var title = __('You can file taxes with this service')
+  -var title = __('Start filing taxes with this service')
 
 block content
 
   h1 #{title}
 
   div
+    p #{__('Based on your answers, you can file taxes with this service.')}
+
+    p #{__('Answer a few more questions so CRA can check that it is you. Then the remaining questions help CRA calculate your tax benefits. ')}
+
     p #{__('You will need:')}
 
   ul
-    li #{__('Personal code from the Canada Revenue Agency letter')} <i>#{__('service.name')}</i>
+    li #{__('The code from the CRA letter with this website link.')}
     li #{__('Social insurance number (SIN)')}
     li #{__('Receipts for rent, long-term care, property tax and home energy costs, if you have them')}
 
-  +linkButtons('/login/code', 'Continue')
+  include ../_includes/rentReceipts
+
+  +linkButtons('/login/code', 'Start now')
+

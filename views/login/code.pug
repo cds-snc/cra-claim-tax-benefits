@@ -8,11 +8,11 @@ block content
   h1 #{title}
 
   div
-    p #{__('You can find your personal filing code in the CRA')} <i>#{__('service.name')}</i>#{__(' letter.')}
+    p #{__('Your code is in the CRA letter with this website link.')}
 
   div
     form.cra-form(method='post')
-      +textInput('Personal filing code', null, 'For Example: A5G98S4K1')(class='w-3-4', id='code' name='code', value=data.code)
+      +textInput('Personal filing code', null, 'For example: A5G98S4K1')(class='w-3-4', id='code' name='code', value=data.code)
 
       div
         details.

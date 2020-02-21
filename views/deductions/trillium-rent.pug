@@ -1,20 +1,12 @@
 extends ../base
 
 block variables
-  -var title = __('Rent for the home where you usually lived')
+  -var title = __('Rent')
   -var trilliumRentClaim = !hasData(data, 'deductions.trilliumRentClaim') ? '' : data.deductions.trilliumRentClaim ? 'Yes' : 'No'
 
 block content
 
   h1 #{title}
-
-  div
-    p #{__('The next pages ask about your “principal residence”. “Principal residence” means your main home, where you usually lived.')}
-
-    p #{__('If you paid costs for several homes at the same time, only include costs for the main home where you usually lived.')}
-
-    p #{__('The questions start with rent.')}
-
 
   form.cra-form(method='post')
     +radiosYesNo('trilliumRentClaim', 'At any time in 2019, did you pay rent for your principal residence?', trilliumRentClaim)

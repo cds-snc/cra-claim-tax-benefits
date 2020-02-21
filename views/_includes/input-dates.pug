@@ -7,7 +7,7 @@ mixin dateInputs(idPrefix, legendText, isoHintText, values, bday = false)
       legend
         h2 #{__(legendText)}
 
-      span#dobHint.cra-form-message #{__('For Example:')} #{isoDateHintText(isoHintText)}
+      span#dobHint.cra-form-message #{__('For example:')} #{isoDateHintText(isoHintText)}
 
       if errors && errors[`${idPrefix}Day`] || errors && errors[`${idPrefix}Month`] || errors && errors[`${idPrefix}Year`]
         ul

@@ -101,7 +101,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates the Trillium Rent page', function() {
     cy.confirm({
       url: '/trillium/rent',
-      h1: 'Rent for the home where you usually lived',
+      h1: 'Rent',
       id: 'trilliumRentClaim0', // click Yes
     })
 
@@ -156,7 +156,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates the Property Tax AMOUNT page', function() {
     cy.amount({
       url: '/trillium/propertyTax/amount',
-      h1: 'Enter your property tax',
+      h1: 'Enter taxes on home you owned',
       id: 'trilliumPropertyTaxAmount',
     })
 

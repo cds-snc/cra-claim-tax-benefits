@@ -21,7 +21,7 @@
       "value": "Yes"
     },
     {
-      "key": "Total amount spent on public transit",
+      "key": "What total amount did you spend on public transit in 2019?",
       "value": "$25.00"
     },
     {
@@ -33,7 +33,7 @@
       "value": "Yes"
     },
     {
-      "key": "Rent paid",
+      "key": "How much total rent did you pay for your principal residence in 2019?",
       "value": "$25.00"
     },
     {
@@ -41,7 +41,7 @@
       "value": "Yes"
     },
     {
-      "key": "Property tax paid",
+      "key": "How much total property tax did you pay for your principal residence in 2019?",
       "value": "$25.00"
     },
     {
@@ -49,23 +49,23 @@
       "value": "Yes"
     },
     {
-      "key": "Public or non-profit long-term care home?",
+      "key": "Was it a public or non-profit long-term care home?",
       "value": "Yes"
     },
     {
-      "key": "Long-term care room and board costs",
+      "key": "What were your total long-term care room and board costs in 2019?",
       "value": "$25.00"
     },
     {
-      "key": "Did you live on a reserve?",
+      "key": "At any time in 2019, was your principal residence on reserve land under the Indian Act?",
       "value": "Yes"
     },
     {
-      "key": "Did you have home energy costs on a reserve?",
+      "key": "Did you have home energy costs on reserve?",
       "value": "Yes"
     },
     {
-      "key": "Yearly energy costs on a reserve",
+      "key": "How much were your total 2019 home energy costs on reserve?",
       "value": "$25.00"
     },
     {

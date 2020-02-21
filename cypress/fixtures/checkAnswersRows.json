@@ -1,23 +1,23 @@
 {
   "rows": [
     {
-      "key": "Name",
+      "key": "What is your name?",
       "value": "Gabrielle Roy"
     },
     {
-      "key": "Date of birth",
+      "key": "What is your date of birth?",
       "value": "9 September 1977"
     },
     {
-      "key": "Mailing address",
+      "key": "What is your mailing address?",
       "value": "Unit 202-303 Blake Blvd."
     },
     {
-      "key": "Marital status",
+      "key": "What is your marital status?",
       "value": "Single"
     },
     {
-      "key": "Did you live in a small and rural community?",
+      "key": "Did you live in a Census Metropolitan Area?",
       "value": "No"
     },
     {
@@ -37,7 +37,7 @@
       "value": "No"
     },
     {
-      "key": "Registered to vote",
+      "key": "Do you want to vote?",
       "value": "No"
     },
     {

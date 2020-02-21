@@ -3,21 +3,21 @@ const answerInfo = [
     sectionTitle: 'Personal information',
     sectionRows: [
       {
-        text: 'Name',
+        text: 'What is your name?',
         infoPath: ['personal.firstName', 'personal.lastName'],
         urlPath: '/personal/name',
       },
       {
-        text: 'Date of birth',
+        text: 'What is your date of birth?',
         infoPath: ['personal.dateOfBirth'],
       },
       {
-        text: 'Mailing address',
+        text: 'What is your mailing address?',
         infoPath: ['personal.address'],
         urlPath: '/personal/address',
       },
       {
-        text: 'Marital status',
+        text: 'What is your marital status?',
         infoPath: ['personal.maritalStatus'],
         urlPath: '/personal/maritalStatus',
       },
@@ -39,7 +39,7 @@ const answerInfo = [
         displayIf: 'deductions.seniorTransitClaim',
       },
       {
-        text: 'Did you live in a small and rural community?',
+        text: 'Did you live in a Census Metropolitan Area?',
         infoPath: ['deductions.climateActionIncentiveIsRural'],
         urlPath: '/deductions/climate-action-incentive',
       },
@@ -111,18 +111,18 @@ const answerInfo = [
     sectionTitle: 'Voter registration',
     sectionRows: [
       {
-        text: 'Registered to vote',
+        text: 'Do you want to vote?',
         infoPath: ['vote.confirmOptIn'],
         urlPath: '/vote/optIn',
       },
       {
-        text: 'Canadian citizen',
+        text: 'Are you a Canadian citizen?',
         infoPath: ['vote.citizen'],
         urlPath: '/vote/citizen',
         displayIf: 'vote.confirmOptIn',
       },
       {
-        text: 'Elections Canada will update voter record',
+        text: 'Do you allow CRA to give your information to Elections Canada?',
         infoPath: ['vote.register'],
         urlPath: '/vote/register',
         displayIf: 'vote.confirmOptIn',

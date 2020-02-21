@@ -1,19 +1,19 @@
 {
   "rows": [
     {
-      "key": "Name",
+      "key": "What is your name?",
       "value": "Gabrielle Roy"
     },
     {
-      "key": "Date of birth",
+      "key": "What is your date of birth?",
       "value": "9 September 1977"
     },
     {
-      "key": "Mailing address",
+      "key": "What is your mailing address?",
       "value": "Unit 202-303 Blake Blvd."
     },
     {
-      "key": "Marital status",
+      "key": "What is your marital status?",
       "value": "Single"
     },
     {
@@ -25,7 +25,7 @@
       "value": "$25.00"
     },
     {
-      "key": "Did you live in a small and rural community?",
+      "key": "Did you live in a Census Metropolitan Area?",
       "value": "Yes"
     },
     {
@@ -69,15 +69,15 @@
       "value": "$25.00"
     },
     {
-      "key": "Registered to vote",
+      "key": "Do you want to vote?",
       "value": "Yes"
     },
     {
-      "key": "Canadian citizen",
+      "key": "Are you a Canadian citizen?",
       "value": "Yes"
     },
     {
-      "key": "Elections Canada will update voter record",
+      "key": "Do you allow CRA to give your information to Elections Canada?",
       "value": "Yes"
     },
     {

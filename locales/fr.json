@@ -9,7 +9,6 @@
   "2019 income": "Revenu en 2019",
   "2019 tuition": "Frais de scolarité en 2019",
   "A benefit signup prototype by the Canadian Digital Service": "Un prototype d’inscription à des avantages fiscaux du Service numérique canadien",
-  "A refund could include these benefits and credits:": "Le remboursement pourrait comprendre les prestations et crédits suivants :",
   "Accept and file": "Accepter et produire ma déclaration de revenus",
   "Age 65 and above": "Personnes de 65 ans et plus",
   "An “eligible dependant” may be a family member who usually lives with you and depends on your support, for example with food, shelter, or clothing.": "Une « personne à charge » peut être un membre de votre famille qui vit habituellement avec vous et qui dépend de votre soutien, par exemple pour la nourriture, le logement ou l’habillement.",
@@ -228,7 +227,7 @@
   "You cannot use this online service because your 2019 income was $19,564 or higher. Other secure ways to file are:": "Vous ne pouvez pas utiliser le service en ligne parce que votre revenu imposable pour 2019 est égal ou supérieur à 19 564 $. Voici d’autres moyens sécuritaires de produire votre déclaration :",
   "You can’t use this online service because your address doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:": "Vous ne pouvez pas utiliser le service en ligne parce que votre adresse ne correspond pas à celle que l’ARC a dans votre dossier. Vous pouvez quand même produire votre déclaration à l’aide des moyens sécuritaires suivants :",
   "You can’t use this online service because your marital status doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:": "Vous ne pouvez pas utiliser le service en ligne parce que votre état civil ne correspond pas à celui que l’ARC a dans votre dossier. Vous pouvez quand même produire votre déclaration à l’aide des moyens sécuritaires et gratuits suivants :",
-  "You have filed your 2019 taxes": "Vous avez produit votre déclaration de revenus 2019",
+  "You have finished filing your 2019 taxes": "Vous avez produit votre déclaration de revenus 2019",
   "Your community is part of a CMA if you live in: ": "Vous vivez dans une région rurale ou une petite collectivité si vous ",
   "You may be able to use ": "Vous pouvez utiliser ",
   "You may get a refund. CRA sends refunds by cheque or puts the money in your bank account if you": "Vous pourriez recevoir un remboursement. L’ARC envoie les remboursements par chèque ou verse l’argent dans votre compte bancaire si vous vous",
@@ -290,8 +289,8 @@
   "errors.maritalStatus.maritalStatus": "Vous devez choisir l’une des options",
   "errors.review": "Vous devez accepter de produire votre déclaration de revenus. Cochez la case si vous acceptez.",
   "errors.yesNo": "Vous devez choisir l’une des options",
-  "everyone gets this payment. You get 10% extra if you live in a small and rural community.": "Tout le monde reçoit ce paiement. Si vous vivez dans une région rurale ou une petite collectivité, vous obtenez un supplément de 10 %.",
-  "for CRA direct deposit.": "au dépôt direct.",
+  "everyone gets this payment. You get 10% extra if you live outside a Census Metropolitan Area.": "Tout le monde reçoit ce paiement. Si vous vivez dans une région rurale ou une petite collectivité, vous obtenez un supplément de 10 %.",
+  "for CRA direct deposit. A refund could include benefits and credits. ": "au dépôt direct.",
   "https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/direct-deposit.html": "https://www.canada.ca/fr/agence-revenu/services/a-propos-agence-revenu-canada-arc/depot-direct.html",
   "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit.html": "https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/credit-taxe-produits-services-taxe-vente-harmonisee-tps-tvh.html",
   "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-ontario.html": "https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/programmes-provinciaux-territoriaux/province-ontario.html",
@@ -423,5 +422,6 @@
   "Home that you owned in Ontario": "Home that you owned in Ontario",
   "Your “principal residence” is your main home, where you usually lived.": "Your “principal residence” is your main home, where you usually lived.",
   "Learn about property tax": "Learn about property tax",
-  "Property tax combines municipal and school taxes": "Property tax combines municipal and school taxes"
+  "Property tax combines municipal and school taxes": "Property tax combines municipal and school taxes",
+  "Learn about benefits and credits": "Learn about benefits and credits"
 }

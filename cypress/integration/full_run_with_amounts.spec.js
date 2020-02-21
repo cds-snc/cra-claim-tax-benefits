@@ -321,7 +321,7 @@ describe('Full run through saying "yes" to everything', function() {
   // CONFIRMATION PAGE
   it('checks the Confirmation page', function() {
     cy.url().should('contain', '/confirmation')
-    cy.get('h1').should('contain', 'You have filed your 2019 taxes')
+    cy.get('h1').should('contain', 'You have finished filing your 2019 taxes')
     cy.get('th').should('contain', 'Your filing code')
     cy.get('td').should('contain', '5H3P9IO5816')
     checkTableRows(cy, getBenefitsBreakdownRows(this.user), 'dt.breakdown-table__row-key')

@@ -11,7 +11,6 @@
   "2019 income": "2019 income",
   "2019 tuition": "2019 tuition",
   "A benefit signup prototype by the Canadian Digital Service": "A benefit signup prototype by the Canadian Digital Service",
-  "A refund could include these benefits and credits:": "A refund could include these benefits and credits:",
   "Accept and file": "Accept and file",
   "Age 65 and above": "Age 65 and above",
   "An “eligible dependant” may be a family member who usually lives with you and depends on your support, for example with food, shelter, or clothing.": "An “eligible dependant” may be a family member who usually lives with you and depends on your support, for example with food, shelter, or clothing.",
@@ -246,7 +245,7 @@
   "You cannot use this online service because your 2019 income was $19,564 or higher. Other secure ways to file are:": "You cannot use this online service because your 2019 income was $19,564 or higher. Other secure ways to file are:",
   "You can’t use this online service because your address doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:": "You can’t use this online service because your address doesn't match what CRA has on file. But you can still file your taxes. Other secure ways to file are:",
   "You can’t use this online service because your marital status doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:": "You can’t use this online service because your marital status doesn't match what CRA has on file. But you can still file your taxes. Other free and secure ways to file are:",
-  "You have filed your 2019 taxes": "You have filed your 2019 taxes",
+  "You have finished filing your 2019 taxes": "You have finished filing your 2019 taxes",
   "You live in a small and rural community if you ": "You live in a small and rural community if you ",
   "You may be able to use ": "You may be able to use ",
   "You may get a refund. CRA sends refunds by cheque or puts the money in your bank account if you": "You may get a refund. CRA sends refunds by cheque or puts the money in your bank account if you",
@@ -312,8 +311,8 @@
   "errors.maritalStatus.maritalStatus": "Please select one of the options",
   "errors.review": "You must agree to file your tax return. Check the box if you agree.",
   "errors.yesNo": "You must select one of the options",
-  "everyone gets this payment. You get 10% extra if you live in a small and rural community.": "everyone gets this payment. You get 10% extra if you live in a small and rural community.",
-  "for CRA direct deposit.": "for CRA direct deposit.",
+  "everyone gets this payment. You get 10% extra if you live outside a Census Metropolitan Area.": "everyone gets this payment. You get 10% extra if you live outside a Census Metropolitan Area.",
+  "for CRA direct deposit. A refund could include benefits and credits. ": "for CRA direct deposit. A refund could include benefits and credits. ",
   "https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/direct-deposit.html": "https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/direct-deposit.html",
   "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit.html": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit.html",
   "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-ontario.html": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-ontario.html",
@@ -471,5 +470,6 @@
   "How much total property tax did you pay for your principal residence in 2019?": "How much total property tax did you pay for your principal residence in 2019?",
   "Was your 2019 income from all sources less than $19,564?": "Was your 2019 income from all sources less than $19,564?",
   "Learn about property tax": "Learn about property tax",
-  "Property tax combines municipal and school taxes": "Property tax combines municipal and school taxes"
+  "Property tax combines municipal and school taxes": "Property tax combines municipal and school taxes",
+  "Learn about benefits and credits": "Learn about benefits and credits"
 }

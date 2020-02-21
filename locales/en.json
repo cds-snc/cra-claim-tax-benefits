@@ -33,7 +33,6 @@
   "By phone: 1-800-959-8281": "By phone: 1-800-959-8281",
   "CRA doesn't need your middle name.": "CRA doesn't need your middle name.",
   "CRA lets you register to vote or update your voter information when filing taxes.": "CRA lets you register to vote or update your voter information when filing taxes.",
-  "Are you a Canadian citizen?": "Are you a Canadian citizen?",
   "Cancel": "Cancel",
   "Change your name with CRA": "Change your name with CRA",
   "Check if you live in a small and rural community": "Check if you live in a small and rural community",
@@ -171,7 +170,6 @@
   "Do you want to vote?": "Do you want to vote?",
   "Rent for the home where you usually lived": "Rent for the home where you usually lived",
   "Rent in Ontario": "Rent in Ontario",
-  "How much total rent did you pay for your principal residence in 2019?": "How much total rent did you pay for your principal residence in 2019?",
   "Review": "Review",
   "Screening questions": "Screening questions",
   "Senior’s public transit": "Senior’s public transit",
@@ -467,9 +465,14 @@
   "Home that you owned": "Home that you owned",
   "Home that you owned in Ontario": "Home that you owned in Ontario",
   "Enter taxes on home you owned": "Enter taxes on home you owned",
-  "How much total property tax did you pay for your principal residence in 2019?": "How much total property tax did you pay for your principal residence in 2019?",
   "Was your 2019 income from all sources less than $19,564?": "Was your 2019 income from all sources less than $19,564?",
   "Learn about property tax": "Learn about property tax",
   "Property tax combines municipal and school taxes": "Property tax combines municipal and school taxes",
-  "Learn about benefits and credits": "Learn about benefits and credits"
+  "Learn about benefits and credits": "Learn about benefits and credits",
+  "Date of birth": "Date of birth",
+  "take any tax benefits that you may be able to get with this service": "take any tax benefits that you may be able to get with this service",
+  "You cannot change your answers after you accept and file.": "You cannot change your answers after you accept and file.",
+  "Mailing address": "Mailing address",
+  "Marital status": "Marital status",
+  "What total amount did you spend on public transit in 2019?": "What total amount did you spend on public transit in 2019?"
 }

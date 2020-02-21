@@ -16,7 +16,7 @@ describe('Full run through saying "no" to everything', function() {
     cy.checkA11y()
     cy.get('h1').should('contain', 'File taxes to access benefits')
     cy.get('main a')
-      .should('contain', 'Start now')
+      .should('contain', 'Check now')
       .click()
   })
 
@@ -79,7 +79,7 @@ describe('Full run through saying "no" to everything', function() {
   it('navigates Climate Action Incentive page', function() {
     cy.confirm({
       url: '/deductions/climate-action-incentive',
-      h1: 'Small and rural communities',
+      h1: 'Census Metropolitan Area',
       id: 'climateActionIncentiveIsRural1', // click No
     })
 
@@ -101,7 +101,7 @@ describe('Full run through saying "no" to everything', function() {
   it('navigates the Trillium Property Tax page', function() {
     cy.confirm({
       url: '/trillium/propertyTax',
-      h1: 'Property tax',
+      h1: 'Home that you owned',
       id: 'trilliumPropertyTaxClaim1', // click No
     })
 

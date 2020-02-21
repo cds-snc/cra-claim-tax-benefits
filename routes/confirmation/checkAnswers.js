@@ -33,7 +33,7 @@ const answerInfo = [
         displayIf: 'deductions.seniorTransitClaim',
       },
       {
-        text: 'What total amount did you spend on public transit in 2019',
+        text: 'What total amount did you spend on public transit in 2019?',
         infoPath: ['deductions.seniorTransitAmount'],
         urlPath: '/deductions/senior-public-transit/amount',
         displayIf: 'deductions.seniorTransitClaim',

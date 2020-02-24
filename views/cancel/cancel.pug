@@ -1,0 +1,20 @@
+extends ../base
+
+block variables
+  -var title = __('Cancel your session')
+
+block content
+
+  h1 #{title}
+
+  p #{back}
+
+  div
+    p #{__('Are you sure you want to cancel your session?')}
+
+    p #{__('If you choose to cancel your session, none of your information will be saved or submitted. Your tax return will not be filed.')}
+
+    .buttons-row
+      a(class='cancel' href='/clear' role='button' draggable='false') #{__('Cancel your session')}
+
+      a.transparent(href=back role='button' draggable='false') #{__('Go back')}

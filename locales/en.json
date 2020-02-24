@@ -435,5 +435,9 @@
   "Start now": "Start now",
   "Date of birth": "Date of birth",
   "Mailing address": "Mailing address",
-  "Marital status": "Marital status"
+  "Marital status": "Marital status",
+  "Cancel your session": "Cancel your session",
+  "Do you want to cancel your session?": "Do you want to cancel your session?",
+  "Are you sure you want to cancel your session?": "Are you sure you want to cancel your session?",
+  "If you choose to cancel your session, none of your information will be saved or submitted. Your tax return will not be filed.": "If you choose to cancel your session, none of your information will be saved or submitted. Your tax return will not be filed."
 }

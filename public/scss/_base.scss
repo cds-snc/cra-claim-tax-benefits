@@ -190,6 +190,16 @@ li:not(:last-of-type) {
   button {
     margin-right: $space-sm;
   }
+
+  .cancel {
+    background-color: $color-red;
+    box-shadow: 0 2px 0 #570821;
+
+    &:hover,
+    &:focus {
+      background-color: #990626;
+    }
+  }
 }
 
 .visually-hidden {

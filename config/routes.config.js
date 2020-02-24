@@ -1,6 +1,7 @@
 //list our routes in the flow order in the app
 const routes = [
   { path: '/cancel' },
+  { path: '/clear' },
   { path: '/start' },
   { path: '/eligibility/age' },
   { path: '/eligibility/taxable-income' },

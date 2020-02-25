@@ -303,7 +303,7 @@ describe('Full run through saying "yes" to everything', function() {
       id: 'confirmIncome', // click checkbox
     })
 
-    cy.continue('Continue')
+    cy.continue('Next')
   })
 
   // CHECK ANSWERS

@@ -16,7 +16,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.checkA11y()
     cy.get('h1').should('contain', 'File taxes to access benefits')
     cy.get('main a')
-      .should('contain', 'Start now')
+      .should('contain', 'Check now')
       .click()
   })
 
@@ -90,7 +90,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates Climate Action Incentive page', function() {
     cy.confirm({
       url: '/deductions/climate-action-incentive',
-      h1: 'Small and rural communities',
+      h1: 'Census Metropolitan Area',
       id: 'climateActionIncentiveIsRural0', // click Yes
     })
 
@@ -101,7 +101,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates the Trillium Rent page', function() {
     cy.confirm({
       url: '/trillium/rent',
-      h1: 'Rent for the home where you usually lived',
+      h1: 'Rent',
       id: 'trilliumRentClaim0', // click Yes
     })
 
@@ -134,7 +134,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates the Trillium Property Tax page', function() {
     cy.confirm({
       url: '/trillium/propertyTax',
-      h1: 'Property tax',
+      h1: 'Home that you owned',
       id: 'trilliumPropertyTaxClaim0', // click Yes
     })
 
@@ -145,7 +145,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates the Trillium Property Tax Ontario page', function() {
     cy.confirm({
       url: '/trillium/propertyTax/ontario',
-      h1: 'Property tax in Ontario',
+      h1: 'Home that you owned in Ontario',
       id: 'trilliumPropertyTaxOntario0', // click Yes
     })
 
@@ -156,7 +156,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates the Property Tax AMOUNT page', function() {
     cy.amount({
       url: '/trillium/propertyTax/amount',
-      h1: 'Enter your property tax',
+      h1: 'Enter taxes on home you owned',
       id: 'trilliumPropertyTaxAmount',
     })
 
@@ -321,7 +321,7 @@ describe('Full run through saying "yes" to everything', function() {
   // CONFIRMATION PAGE
   it('checks the Confirmation page', function() {
     cy.url().should('contain', '/confirmation')
-    cy.get('h1').should('contain', 'You have filed your 2019 taxes')
+    cy.get('h1').should('contain', 'You have finished filing your 2019 taxes')
     cy.get('th').should('contain', 'Your filing code')
     cy.get('td').should('contain', '5H3P9IO5816')
     checkTableRows(cy, getBenefitsBreakdownRows(this.user), 'dt.breakdown-table__row-key')

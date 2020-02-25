@@ -2,11 +2,21 @@ extends ../base
 include ../_includes/banner
 
 block variables
-  -var title = __('You have filed your 2019 taxes')
+  -var title = __('You have finished filing your 2019 taxes')
 
 block content
 
   h1 #{title}
+  
+  div
+    p #{__('You will get a notice of assessment in about 2 weeks. The notice proves you filed taxes, and shows if you must pay tax.')}
+
+    p #{__('You may get a refund. CRA sends refunds by cheque or puts the money in your bank account if you')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/direct-deposit.html')}>#{__('register')}</a> #{__('for CRA direct deposit. A refund could include benefits and credits. ')}
+
+  div
+    details
+      <summary><span>#{__('Learn about benefits and credits')}</span></summary>
+      include ../_includes/benefits-table
 
   div
     table.confirmation-table
@@ -20,13 +30,5 @@ block content
     p #{__('Use this code to call about your taxes or ask for help from CRA by:')}
 
     include ../_includes/phone-bullets
-
-    p #{__('You will get a notice of assessment in about 2 weeks. The notice proves you filed taxes, and shows if you must pay tax.')}
-
-    p #{__('You may get a refund. CRA sends refunds by cheque or puts the money in your bank account if you')} <a href=#{__('https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/direct-deposit.html')}>#{__('register')}</a> #{__('for CRA direct deposit.')}
-
-    p #{__('A refund could include these benefits and credits:')}
-
-    include ../_includes/benefits-table
 
     p #{__('Thank you for using this service.')}  <a href="/feeback">#{__('Please help us make it better')}</a>.

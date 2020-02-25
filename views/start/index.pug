@@ -9,21 +9,16 @@ block content
     p #{__('start.p1')}
     p #{__('start.p2')}
 
-    .start-button
-      a(href='/eligibility/age' role='button' draggable='false') #{__('button.start')} <span aria-hidden="true">→</span>
-
     h2 #{__('start.h2-1')}
 
     p #{__('start.p3')}
 
     ul
       li #{__('start.li1')}
-        if getLocale() !== 'fr'
-          <i>“#{__('service.name')}”</i>
-        else
-          <i>#{__('service.name')}</i>
       li #{__('start.li2')}
-      li #{__('start.li3')}
+
+    .start-button
+      a(href='/eligibility/age' role='button' draggable='false') #{__('button.start')} <span aria-hidden="true">→</span>
 
     h2 #{__('start.h2-2')}
 

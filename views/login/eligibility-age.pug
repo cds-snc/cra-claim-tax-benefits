@@ -9,7 +9,7 @@ block content
   h1 #{title}
 
   form.cra-form(method='post')
-    +radiosYesNo('ageYesNo', 'Are you 65 or older?', ageYesNo)
+    +radiosYesNo('ageYesNo', 'On December 31, 2019, were you age 65 or older?', ageYesNo)
 
     input#redirect(name='redirect', type='hidden', value='/eligibility/taxable-income')
 

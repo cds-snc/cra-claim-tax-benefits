@@ -8,11 +8,9 @@ block content
 
   h1 #{title}
 
-  p #{path}
-
   form.cra-form(method='post')
     +radiosYesNo('ageYesNo', 'On December 31, 2019, were you age 65 or older?', ageYesNo)
 
-    input#redirect(name='redirect', type='hidden', value='/eligibility/taxable-income')
+    input#redirect(name='redirect' type='hidden' value='/eligibility/taxable-income')
 
-    +formButtons('Continue', `/cancel?back=${path}`)
+    +formButtons()

@@ -43,6 +43,7 @@ module.exports = function(app) {
       data: req.session,
       prevRoute: getPreviousRoute(req),
       answerInfo: formatAnswerInfo(req),
+      path: req.path,
     })
   })
 }

@@ -437,13 +437,7 @@
   "Mailing address": "Mailing address",
   "Marital status": "Marital status",
   "Cancel your session": "Cancel your session",
-  "Do you want to cancel your session?": "Do you want to cancel your session?",
   "Are you sure you want to cancel your session?": "Are you sure you want to cancel your session?",
-<<<<<<< HEAD
-  "If you choose to cancel your session, none of your information will be saved or submitted. Your tax return will not be filed.": "If you choose to cancel your session, none of your information will be saved or submitted. Your tax return will not be filed."
-=======
-  "By cancelling the session, none of your information will be saved or submitted and your tax return will not be filed.": "By cancelling the session, none of your information will be saved or submitted and your tax return will not be filed.",
   "If you choose to cancel your session, none of your information will be saved or submitted. Your tax return will not be filed.": "If you choose to cancel your session, none of your information will be saved or submitted. Your tax return will not be filed.",
-  "Continue2": "Continue2"
->>>>>>> passing in path as back url
+  "Next": "Next"
 }

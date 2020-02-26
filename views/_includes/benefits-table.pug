@@ -1,8 +1,3 @@
--var benefits = hasData(data, 'benefits') ? data.benefits : {}
--var totalBenefits = hasData(data, 'benefits.totalBenefits.amount') ? data.benefits.totalBenefits.amount : 0
--var incomes = hasData(data, 'financial.incomes') ? data.financial.incomes : {}
--var taxes = hasData(data, 'financial.taxes') ? data.financial.taxes : {}
--var refund = hasData(data, 'refund') ? data.refund : {}
 -var locale = getLocale()
 -
   var rows =[
@@ -36,46 +31,20 @@
   },
   ]
 
-if (data.login.securityQuestion === '/checkAnswers') || (!data.login.securityQuestion)
-  div
-    .breakdown-table.breakdown-table--review.breakdown-table--answers
-      each row in rows
-        dl.breakdown-table-data
-          .breakdown-table__row.breakdown-table__row--answers
-            dt.breakdown-table__row-key
-              span #{__(row.header)}
-              dd.breakdown-table__row-value
-                span #{__(row.description)}
-                div.row-link
-                  a(href=__(row.linkURL), target="_blank")
-                    span.
-                      #{__('Learn more')}#[span.visually-hidden  #{__(row.linkHiddenText)}]
-              dd.breakdown-table__row-payment
-                p #{__(row.payment)}
-else
-  div
-    p #{__('You can expect the following benefits and refund from your 2019 taxes.')}
-    p #{__('Please check this information. If anything looks wrong, contact CRA before filing by:')}
-    ul
-      li #{__('Phone: 1-800-959-8281')}
-      li #{__('TTY (text telephone): 1-800-665-0354')}
 
-  div
-    .breakdown-table
-      h2.breakdown-table__heading
-        span #{__('Your 2019 tax benefits')}
-        span #{currencyFilter(totalBenefits)}
-
-      p.breakdown-table__subheading #{__('Detailed breakdown of benefits')}
-
+div
+  .breakdown-table.breakdown-table--review.breakdown-table--answers
+    each row in rows
       dl.breakdown-table-data
-        each benefit, index in benefits
-          if index !== "totalBenefits"
-            .breakdown-table__row
-              dt.breakdown-table__row-key #{__(`${benefit.name}`)}
-              dd.breakdown-table__row-value #{currencyFilter(benefit.amount)}
-
-        .breakdown-table__row.breakdown-table__row--summary
-          dt.breakdown-table__row-key #{__('Total benefits')}
-          dd.breakdown-table__row-value #{currencyFilter(totalBenefits)}
+        .breakdown-table__row.breakdown-table__row--answers
+          dt.breakdown-table__row-key
+            span #{__(row.header)}
+            dd.breakdown-table__row-value
+              span #{__(row.description)}
+              div.row-link
+                a(href=__(row.linkURL), target="_blank")
+                  span.
+                    #{__('Learn more')}#[span.visually-hidden  #{__(row.linkHiddenText)}]
+            dd.breakdown-table__row-payment
+              p #{__(row.payment)}
 

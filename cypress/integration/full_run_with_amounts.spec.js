@@ -29,7 +29,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/personal/name',
       h1: 'Check your name is correct',
-      id: 'name0',
+      id: 'name',
     })
     cy.continue()
   })
@@ -39,7 +39,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/personal/address',
       h1: 'Check your mailing address',
-      id: 'confirmAddress0',
+      id: 'confirmAddress',
     })
 
     //format address based on apartment/no apartment
@@ -58,7 +58,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/personal/maritalStatus',
       h1: 'Check your marital status',
-      id: 'confirmMaritalStatus0',
+      id: 'confirmMaritalStatus',
     })
 
     cy.continue()
@@ -69,7 +69,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/deductions/senior-public-transit',
       h1: `Senior’s public transit`,
-      id: 'seniorTransitClaim0',
+      id: 'seniorTransitClaim',
     })
 
     cy.continue()
@@ -91,7 +91,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/deductions/climate-action-incentive',
       h1: 'Census Metropolitan Area',
-      id: 'climateActionIncentiveIsRural0', // click Yes
+      id: 'climateActionIncentiveIsRural', // click Yes
     })
 
     cy.continue()
@@ -102,7 +102,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/trillium/rent',
       h1: 'Rent',
-      id: 'trilliumRentClaim0', // click Yes
+      id: 'trilliumRentClaim', // click Yes
     })
 
     cy.continue()
@@ -113,7 +113,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/trillium/rent/ontario',
       h1: 'Rent in Ontario',
-      id: 'trilliumRentOntario0', // click Yes
+      id: 'trilliumRentOntario', // click Yes
     })
 
     cy.continue()
@@ -135,7 +135,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/trillium/propertyTax',
       h1: 'Home that you owned',
-      id: 'trilliumPropertyTaxClaim0', // click Yes
+      id: 'trilliumPropertyTaxClaim', // click Yes
     })
 
     cy.continue()
@@ -146,7 +146,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/trillium/propertyTax/ontario',
       h1: 'Home that you owned in Ontario',
-      id: 'trilliumPropertyTaxOntario0', // click Yes
+      id: 'trilliumPropertyTaxOntario', // click Yes
     })
 
     cy.continue()
@@ -168,7 +168,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/trillium/longTermCare',
       h1: 'Long-term care home',
-      id: 'trilliumLongTermCareClaim0', // click Yes
+      id: 'trilliumLongTermCareClaim', // click Yes
     })
 
     cy.continue()
@@ -179,7 +179,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/trillium/longTermCare/ontario',
       h1: 'Long-term care in Ontario',
-      id: 'trilliumLongTermCareOntario0', // click Yes
+      id: 'trilliumLongTermCareOntario', // click Yes
     })
 
     cy.continue()
@@ -190,7 +190,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/trillium/longTermCare/type',
       h1: 'Public or non-profit long-term care',
-      id: 'trilliumLongTermCareTypeClaim0', // click Yes
+      id: 'trilliumLongTermCareTypeClaim', // click Yes
     })
 
     cy.continue()
@@ -201,7 +201,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/trillium/longTermCare/cost',
       h1: 'Long-term care home costs',
-      id: 'trilliumLongTermCareCost0', // click Yes
+      id: 'trilliumLongTermCareCost', // click Yes
     })
 
     cy.continue()
@@ -223,7 +223,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/trillium/energy/reserve',
       h1: 'Home on reserve',
-      id: 'trilliumEnergyReserveClaim0', // click Yes
+      id: 'trilliumEnergyReserveClaim', // click Yes
     })
 
     cy.continue()
@@ -234,7 +234,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/trillium/energy/reserve/ontario',
       h1: 'Home on reserve in Ontario',
-      id: 'trilliumEnergyReserveOntario0', // click Yes
+      id: 'trilliumEnergyReserveOntario', // click Yes
     })
 
     cy.continue()
@@ -245,7 +245,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/trillium/energy/cost',
       h1: 'Home energy costs on reserve',
-      id: 'trilliumEnergyCostClaim0', // click Yes
+      id: 'trilliumEnergyCostClaim', // click Yes
     })
 
     cy.continue()
@@ -267,7 +267,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/vote/optIn',
       h1: 'Vote in the federal election (optional)',
-      id: 'confirmOptIn0', // click Yes
+      id: 'confirmOptIn', // click Yes
     })
 
     cy.continue()
@@ -278,7 +278,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/vote/citizen',
       h1: 'Register to vote - citizenship',
-      id: 'citizen0', // click Yes
+      id: 'citizen', // click Yes
     })
 
     cy.continue()
@@ -289,7 +289,7 @@ describe('Full run through saying "yes" to everything', function() {
     cy.confirm({
       url: '/vote/register',
       h1: 'Register or update voter information',
-      id: 'register0', // click Yes
+      id: 'register', // click Yes
     })
 
     cy.continue()

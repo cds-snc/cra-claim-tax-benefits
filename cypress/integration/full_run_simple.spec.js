@@ -29,7 +29,7 @@ describe('Full run through saying "no" to everything', function() {
     cy.confirm({
       url: '/personal/name',
       h1: 'Check your name is correct',
-      id: 'name0',
+      id: 'name',
     })
     cy.continue()
   })
@@ -39,7 +39,7 @@ describe('Full run through saying "no" to everything', function() {
     cy.confirm({
       url: '/personal/address',
       h1: 'Check your mailing address',
-      id: 'confirmAddress0',
+      id: 'confirmAddress',
     })
 
     //format address based on apartment/no apartment
@@ -58,7 +58,7 @@ describe('Full run through saying "no" to everything', function() {
     cy.confirm({
       url: '/personal/maritalStatus',
       h1: 'Check your marital status',
-      id: 'confirmMaritalStatus0',
+      id: 'confirmMaritalStatus',
     })
 
     cy.continue()

@@ -37,7 +37,7 @@ Cypress.Commands.add('login', user => {
   cy.confirm({
     url: '/eligibility/taxable-income',
     h1: '2019 income',
-    id: 'taxableIncome0',
+    id: 'taxableIncome',
   })
   cy.continue()
 
@@ -46,8 +46,8 @@ Cypress.Commands.add('login', user => {
   cy.url().should('contain', '/eligibility/residence')
   cy.get('h1').should('contain', 'Province or territory')
 
-  cy.get(`input#residenceScreening0 + label`).should('have.attr', 'for', 'residenceScreening0')
-  cy.get(`input#residenceScreening0`).click()
+  cy.get(`input#residenceScreening + label`).should('have.attr', 'for', 'residenceScreening')
+  cy.get(`input#residenceScreening`).click()
 
   cy.continue()
 

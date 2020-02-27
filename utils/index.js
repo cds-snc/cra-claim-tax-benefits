@@ -106,10 +106,11 @@ const checkErrors = template => {
 
     if (!errors.isEmpty()) {
       return res.status(422).render(template, {
-        prevRoute: getPreviousRoute(req),
-        data: req.session,
         body,
+        data: req.session,
         errors: errorArray2ErrorObject(errors),
+        path: req.path,
+        prevRoute: getPreviousRoute(req),
       })
     }
 

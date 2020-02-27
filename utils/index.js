@@ -155,9 +155,9 @@ const renderWithData = (template, { errorsKey } = {}) => {
     // send a 422 response if errors exist
     res.status(errors ? 422 : 200).render(template, {
       data: req.session,
+      errors,
       path: req.path,
       prevRoute: getPreviousRoute(req),
-      errors,
     })
   }
 }

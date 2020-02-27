@@ -1,9 +1,9 @@
-mixin formButtons(submitButtonText = 'Next')
+mixin formButtons()
   input(type='hidden', name="_csrf", value=csrfToken)
   
   .buttons
     .buttons--left
-      button(type='submit') #{__(submitButtonText)}
+      button(type='submit') #{__('Next')}
     .buttons--right
       if path
         a.transparent.full-width(href=`/cancel?back=${path}` role='button' draggable='false') #{__('Cancel')}

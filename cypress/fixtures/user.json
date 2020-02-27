@@ -1,11 +1,12 @@
 {
   "login": {
     "code": "A5G98S4K1",
-    "auth": false
+    "ageYesNo": null
   },
   "personal": {
     "firstName": "Gabrielle",
     "lastName": "Roy",
+    "confirmedName": null,
     "sin": "540739869",
     "dateOfBirth": "1977-09-09",
     "address": {
@@ -21,97 +22,14 @@
       "city": "Ottawa",
       "province": "Ontario"
     },
+    "confirmedAddress": null,
     "maritalStatus": "Single",
-    "disability": false
+    "confirmedMaritalStatus": null
   },
   "financial": {
-    "incomeConfirmed": true,
-    "incomeSources": [
-      {
-        "name": "RT Holdings Inc.",
-        "total": 7613.16
-      },
-      {
-        "name": "Morden Structural Ltd.",
-        "total": 13691.94
-      }
-    ],
-    "incomes": {
-      "netIncome": {
-        "name": "Net Income",
-        "line": 236,
-        "amount": 19305.10
-      },
-      "taxableIncome": {
-        "name": "Taxable Income",
-        "line": 260,
-        "amount": 19305.10
-      },
-      "totalIncome": {
-        "name": "Total Income",
-        "line": 150,
-        "amount": 21305.10
-      }
-    },
-    "taxableAmount": "$1,000.00"
+    "incomeConfirmed": null
   },
-  "partner": null,
-  "dependents": [
-    {
-      "firstName": "Bernadette",
-      "lastName": "Roy",
-      "dateOfBirth": "1948/09/25",
-      "disability": false,
-      "netIncome": "0",
-      "relationship": "child"
-    },
-    {
-      "firstName": "Clémence",
-      "lastName": "Roy",
-      "dateOfBirth": "1949/10/16",
-      "disability": false,
-      "netIncome": "0",
-      "relationship": "child"
-    }
-  ],
   "deductions": {
-    "disabilityClaim": null,
-    "disabilityAmount": {
-      "name": "Disability",
-      "amount": 0.00
-    },
-    "basicPersonalAmount": {
-      "name": "Basic Personal Amount",
-      "line": 300,
-      "amount": 11809.00
-    },
-    "ageAmount": {
-      "name": "Age Amount",
-      "amount": 7500.00
-    },
-    "partnerAgeClaim": null,
-    "canadaCaregiverClaim": null,
-    "partnerDisabilityClaim": null,
-    "partnerPensionIncomeClaim": null,
-    "pensionIncomeClaim": null,
-    "pensionIncomeClaimAmount": {
-      "name": "Pension",
-      "amount": 700.00
-    },
-    "childcareClaim": null,
-    "childcareAmount": {
-      "name": "Childcare Expenses",
-      "amount": 0.00
-    },
-    "singleParentClaim": null,
-    "dependentDisabilityClaim": null,
-    "amountsFromSpouse": {
-      "name": "Amounts transfered from spouse",
-      "amount": 0.00
-    },
-    "energyPropertyClaim": null,
-    "northernEnergyClaim": null,
-    "seniorHomeownerClaim": null,
     "trilliumRentClaim": null,
     "trilliumRentOntario": null,
     "trilliumRentAmount": 0,
@@ -131,48 +49,27 @@
     "trilliumLongTermCareAmount": 0,
     "climateActionIncentiveIsRural": null
   },
-  "refund": {
-    "totalPayable": {
-      "name": "Total payable",
-      "line": 435,
-      "amount": 1593.00
+ "benefits": {
+    "cai": {
+      "name": "Climate action incentive (CAI)",
+      "description": "everyone gets this payment. You get 10% extra if you live outside a Census Metropolitan Area."
     },
-    "totalDeducted": {
-      "name": "Total deducted",
-      "line": 437,
-      "amount": 2312.88
+    "dtc": {
+      "name": "Disability tax credit (DTC)",
+      "description": "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application."
     },
-    "totalCredits": {
-      "name": "Total credits",
-      "amount": 2500.00
+    "gsthstc": {
+      "name": "Goods and services tax/harmonized sales tax (GST/HST) credit",
+      "description": "per year, up to $451 for one person, $592 if you have a spouse or common-law partner, and $155 for each child under age 19."
     },
-    "totalRefund": {
-      "name": "Total refund",
-      "line": 484,
-      "amount": 719.88
+    "otb": {
+      "name": "Ontario trillium benefit (OTB)",
+      "description": "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months."
     }
   },
- "benefits": {
-  "cai": {
-    "name": "Climate action incentive (CAI)",
-    "description": "everyone gets this payment. You get 10% extra if you live outside a Census Metropolitan Area."
-  },
-  "dtc": {
-    "name": "Disability tax credit (DTC)",
-    "description": "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application."
-  },
-  "gsthstc": {
-     "name": "Goods and services tax/harmonized sales tax (GST/HST) credit",
-     "description": "per year, up to $451 for one person, $592 if you have a spouse or common-law partner, and $155 for each child under age 19."
-  },
-  "otb": {
-    "name": "Ontario trillium benefit (OTB)",
-    "description": "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months."
-  }
-},
  "vote": {
     "confirmOptIn": null,
     "citizen": null,
     "register": null
-}
+  }
 }

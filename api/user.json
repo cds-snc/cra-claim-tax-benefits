@@ -1,7 +1,6 @@
 {
   "login": {
     "code": "A5G98S4K1",
-    "securityQuestion": null,
     "ageYesNo": null
   },
   "personal": {
@@ -25,118 +24,12 @@
     },
     "confirmedAddress": null,
     "maritalStatus": "Single",
-    "confirmedMaritalStatus": null,
-    "disability": false
+    "confirmedMaritalStatus": null
   },
   "financial": {
-    "incomeConfirmed": null,
-    "incomeSources": [
-      {
-        "name": "RT Holdings Inc.",
-        "total": 7613.16
-      },
-      {
-        "name": "Morden Structural Ltd.",
-        "total": 13691.94
-      }
-    ],
-    "incomes": {
-      "totalIncome": {
-        "name": "Total income",
-        "line": 150,
-        "amount": 21305.10
-      },
-      "netIncome": {
-        "name": "Net income",
-        "line": 236,
-        "amount": 19305.10
-      },
-      "taxableIncome": {
-        "name": "Taxable income",
-        "line": 260,
-        "amount": 19305.10
-      }
-    },
-    "taxes": {
-      "federal": {
-        "name": "Net federal tax",
-        "amount": 1060.00,
-        "line": 420
-      },
-      "provincial": {
-        "name": "Net Ontario tax",
-        "amount": 533.00,
-        "line": 428
-      },
-      "CPP": {
-        "name": "Canada Pension Plan (CPP)",
-        "amount": 1213.00
-      },
-      "EI": {
-        "name": "Employment Insurance (EI)",
-        "amount": 456.00
-      }
-    },
-    "totalTax": 3263.00,
-    "taxableAmount": "$1,000.00"
+    "incomeConfirmed": null
   },
-  "partner": null,
-  "dependents": [
-    {
-      "firstName": "Bernadette",
-      "lastName": "Roy",
-      "dateOfBirth": "1948/09/25",
-      "disability": false,
-      "netIncome": "0",
-      "relationship": "child"
-    },
-    {
-      "firstName": "Clémence",
-      "lastName": "Roy",
-      "dateOfBirth": "1949/10/16",
-      "disability": false,
-      "netIncome": "0",
-      "relationship": "child"
-    }
-  ],
   "deductions": {
-    "disabilityClaim": null,
-    "disabilityAmount": {
-      "name": "Disability",
-      "amount": 0.00
-    },
-    "basicPersonalAmount": {
-      "name": "Basic personal amount",
-      "line": 300,
-      "amount": 11809.00
-    },
-    "ageAmount": {
-      "name": "Age Amount",
-      "amount": 7500.00
-    },
-    "partnerAgeClaim": null,
-    "canadaCaregiverClaim": null,
-    "partnerDisabilityClaim": null,
-    "partnerPensionIncomeClaim": null,
-    "pensionIncomeClaim": null,
-    "pensionIncomeClaimAmount": {
-      "name": "Pension",
-      "amount": 700.00
-    },
-    "childcareClaim": null,
-    "childcareAmount": {
-      "name": "Childcare Expenses",
-      "amount": 0.00
-    },
-    "singleParentClaim": null,
-    "dependentDisabilityClaim": null,
-    "amountsFromSpouse": {
-      "name": "Amounts transfered from spouse",
-      "amount": 0.00
-    },
-    "energyPropertyClaim": null,
-    "northernEnergyClaim": null,
-    "seniorHomeownerClaim": null,
     "trilliumRentClaim": null,
     "trilliumRentOntario": null,
     "trilliumRentAmount": 0,
@@ -156,24 +49,6 @@
     "trilliumLongTermCareAmount": 0,
     "climateActionIncentiveIsRural": null
   },
-  "benefits": {
-    "climateActionIncentive": {
-      "name": "Climate action incentive",
-       "amount": "154.00"
-    },
-    "gsthstc": {
-       "name": "Goods and services tax/harmonized sales tax (GST/HST) credit",
-       "amount": "440.00"
-    },
-    "ontarioTrilliumBenefit": {
-       "name": "Ontario Trillium Benefit",
-       "amount": "307.92"
-    },
-    "totalBenefits": {
-       "name": "Total benefits",
-       "amount": "901.92"
-    }
- },
  "vote": {
     "confirmOptIn": null,
     "citizen": null,

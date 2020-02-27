@@ -40,9 +40,10 @@ module.exports = function(app) {
 
   app.get('/checkAnswers', (req, res) => {
     res.render('confirmation/check-answers', {
-      data: req.session,
-      prevRoute: getPreviousRoute(req),
       answerInfo: formatAnswerInfo(req),
+      data: req.session,
+      path: req.path,
+      prevRoute: getPreviousRoute(req),
     })
   })
 }

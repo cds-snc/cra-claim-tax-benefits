@@ -116,7 +116,7 @@ Cypress.Commands.add('login', user => {
     .type(user.personal.sin)
     .should('have.value', user.personal.sin)
   cy.get('form button[type="submit"]')
-    .should('contain', 'Continue')
+    .should('contain', 'Next')
     .click()
 
   // LOGIN DOB
@@ -148,7 +148,7 @@ Cypress.Commands.add('login', user => {
     .should('have.value', dobYear)
 
   cy.get('form button[type="submit"]')
-    .should('contain', 'Continue')
+    .should('contain', 'Next')
     .click()
 })
 
@@ -187,7 +187,7 @@ Cypress.Commands.add('amount', ({ url, h1, id }) => {
     .type('25')
 })
 
-Cypress.Commands.add('continue', (label = 'Continue') => {
+Cypress.Commands.add('continue', (label = 'Next') => {
   cy.get('form button[type="submit"]')
     .should('contain', label)
     .click()

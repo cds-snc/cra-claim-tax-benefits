@@ -106,10 +106,11 @@ const checkErrors = template => {
 
     if (!errors.isEmpty()) {
       return res.status(422).render(template, {
-        prevRoute: getPreviousRoute(req),
-        data: req.session,
         body,
+        data: req.session,
         errors: errorArray2ErrorObject(errors),
+        path: req.path,
+        prevRoute: getPreviousRoute(req),
       })
     }
 
@@ -155,8 +156,9 @@ const renderWithData = (template, { errorsKey } = {}) => {
     // send a 422 response if errors exist
     res.status(errors ? 422 : 200).render(template, {
       data: req.session,
-      prevRoute: getPreviousRoute(req),
       errors,
+      path: req.path,
+      prevRoute: getPreviousRoute(req),
     })
   }
 }

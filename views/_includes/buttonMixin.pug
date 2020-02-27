@@ -1,15 +1,21 @@
-mixin formButtons(submitButtonText = 'Continue', cancelUrl='/clear', cancelText= 'Cancel')
+mixin formButtons()
   input(type='hidden', name="_csrf", value=csrfToken)
   
   .buttons
     .buttons--left
-      button(type='submit') #{__(submitButtonText)}
+      button(type='submit') #{__('Next')}
     .buttons--right
-      a.transparent.full-width(href=cancelUrl role='button' draggable='false') #{__(cancelText)}
+      if path
+        a.transparent.full-width(href=`/cancel?back=${path}` role='button' draggable='false') #{__('Cancel')}
+      else
+        a.transparent.full-width(href=cancelUrl role='button' draggable='false') #{__('Cancel')}
 
 mixin linkButtons(confirmURL, linkButtonText = 'Confirm')
   .buttons-row
     a(href=confirmURL role='button' draggable='false') #{__(linkButtonText)}
-    if block
-        block
-    a.transparent(href='/clear' role='button' draggable='false') #{__('Cancel')}
+    if path
+      a.transparent(href=`/cancel?back=${path}` role='button' draggable='false') #{__('Cancel')}
+    else
+      a.transparent(href=`/cancel` role='button' draggable='false') #{__('Cancel')}
+
+      

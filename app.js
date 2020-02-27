@@ -127,6 +127,7 @@ require('./routes/deductions/deductions.controller')(app)
 require('./routes/vote/vote.controller')(app)
 require('./routes/confirmation/confirmation.controller')(app)
 require('./routes/offramp/offramp.controller')(app)
+require('./routes/cancel/cancel.controller')(app)
 
 // clear session
 app.get('/clear', (req, res) => {

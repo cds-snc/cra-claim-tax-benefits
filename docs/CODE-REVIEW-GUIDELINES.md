@@ -1,6 +1,6 @@
 # Code review guidelines
 
-While solipsism is an interesting philosophical tributary, it’s not a very good way to write long-term maintained software. In general we work in teams at CDS, so we require mandatory code reviews before merging any Pull Request.
+While solipsism is an interesting philosophical tributary, it’s not a very good way to write long-term maintained software. In general [we work in teams at CDS](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEVELOPMENT-WORKFLOW.md), so we require mandatory code reviews before merging any Pull Request.
 
 Just like how all the fun and cool code we love to write often comes down to subjective, individual decisions, the practice of reviewing code is pretty subjective as well — different individuals will do different reviews.
 

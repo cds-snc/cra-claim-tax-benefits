@@ -13,6 +13,7 @@ While this repository is no longer actively maintained, the code is open and ava
 - [Technical overview](#technical-overview)
   - [Use of third-party services](#use-of-third-party-services)
   - [Automated tests](#automated-tests)
+  - [Development workflow](#development-workflow)
 - [Getting started](#getting-started-npm)
   - [Build and run](#build-and-run)
   - [Run tests](#run-tests)
@@ -54,6 +55,11 @@ All new pull requests have a suite of automated tests run against them.
 - [Cypress](https://www.cypress.io/): End-to-end behaviour-driven tests that run through desired user flows
   - [cypress-axe](https://github.com/avanslaars/cypress-axe): We run an accessibility scan per page (using [`axe`](https://www.deque.com/axe/)) to check for violations in the markup
 - [SonarQube](https://www.sonarqube.org/) does a quality analysis gate looking for code smells, diminished code coverage, or bugs.
+
+### Development workflow
+
+- [Our agile development workflow](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEVELOPMENT-WORKFLOW.md)
+- [Guidance on code reviews](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/CODE-REVIEW-GUIDELINES.md)
 
 ## Getting started (npm)
 

@@ -4,9 +4,9 @@
 
 This is a demo of a service to make tax filing faster and easier for a preselected group of eligible low-income Canadians. This service was designed and developed by the [Canadian Digital Service (CDS)](https://digital.canada.ca/) in partnership with the [Canada Revenue Agency (CRA)](https://www.canada.ca/en/revenue-agency.html).
 
-Much of the information needed to file a tax return is already known to CRA. At the same time, low-confidence tax filers are very worried about making mistakes when submitting a tax return. The concept behind this demo application is to provide a wizard-like tax filing experience: presenting the tax filer with information that CRA already has about them and asking them to confirm it rather than having them type it in.
+Much of the information needed to file a tax return is already known to CRA. At the same time, low-confidence tax filers are very worried about making mistakes when submitting a tax return. The concept behind this demo application is to provide a wizard-like tax filing experience: presenting the tax filer with information that CRA already has about them and having them to confirm it rather than asking them type it in.
 
-While this repository is no longer actively maintained, the code is open and available for demonstration purposes or reuse. In addition to an end-to-end flow, it is an example of best-practice development for an API-driven cloud-native frontend application.
+While this repository is no longer actively maintained, the code is open and available for demonstration purposes or reuse. In addition to an end-to-end flow, it is an example of best-practice development for an API-driven, cloud-native frontend application.
 
 ## Table of contents
 
@@ -21,17 +21,17 @@ While this repository is no longer actively maintained, the code is open and ava
 
 ## Technical overview
 
-The Claim Tax Benefits (CTB) application a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and schnazzy [SCSS](https://sass-lang.com/) stylesheets. We used [the express generator](https://expressjs.com/en/starter/generator.html) for application scaffolding, so the structure of the application comes from there. It assumes the existence of a backend API (to receive user data) and a cloud database (for access codes), although these are stubbed out in the app so that it can run as a standalone application for development purposes.
+The Claim Tax Benefits (CTB) application is a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and schnazzy [SCSS](https://sass-lang.com/) stylesheets. The application scaffolding comes from the [the express generator](https://expressjs.com/en/starter/generator.html). It assumes the existence of a backend API (to receive user data) and a cloud database (for storing access codes), although both are stubbed out so the application can run in isolation for development purposes.
 
-As mentioned in the introduction, the CTB application provides a good example of best-practice development practices for a modern web service.
+As mentioned in the introduction, the CTB application models many recommended practices for a modern web service.
 
-- It illustrates a complete end-to-end user journey
-- It incorporates modern best practices for [web form accessibility](https://adamsilver.io/articles/form-design-from-zero-to-hero-all-in-one-blog-post/)
+- It represents the complete online user journey
+- It exemplifies best-practice [web form accessibility](https://adamsilver.io/articles/form-design-from-zero-to-hero-all-in-one-blog-post/)
 - It has various security features, such as [security-minded HTTP headers](https://helmetjs.github.io/), [CSRF protection](https://github.com/expressjs/csurf), and [form validation](https://express-validator.github.io/docs/)
-  It is copiously tested, including end-to-end [cypress](https://www.cypress.io/) tests with [integrated accessibility scans](https://github.com/avanslaars/cypress-axe)
+- It is copiously tested, including end-to-end [cypress](https://www.cypress.io/) tests with [integrated accessibility scans](https://github.com/avanslaars/cypress-axe)
 - It includes a CI/CD pipeline, compatible with [GitHub Actions](https://github.com/features/actions)
 - It can run using [`npm`](https://www.npmjs.com/get-npm) on a \*nix OS or as a [Docker](https://docs.docker.com/install/) container
-- It includes [terraform scripts](https://github.com/cds-snc/cra-claim-tax-benefits/tree/master/scripts) for setting it up either in Azure or AWS
+- It includes [terraform scripts](https://github.com/cds-snc/cra-claim-tax-benefits/tree/master/scripts) for deploying either to Azure or AWS
 
 ## Getting started (npm)
 

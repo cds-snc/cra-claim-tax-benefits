@@ -70,4 +70,4 @@ It’s worth mentioning that the higher-overhead cost of a web framework (like A
 
 With our overall goal of building an accessible, performant, form-based application, I worked through a technical spike to test two approaches side-by-side: Angular vs. Express. The resulting technical spike indicated that proceeding with Angular would be the wrong choice. It presented a much steeper learning curve, it would be harder to build for our requirements, and it would be more difficult to keep it fully accessible.
 
-When building form-based applications — often the case in government — a server-side application MVC application is straightforwardly a better choice for delivering a performant, accessible, resilient user-facing service.
+When building form-based page-by-page flows — often the case in government — a server-side MVC application is generally a safer choice for delivering a simple, accessible, and resilient user-facing service.

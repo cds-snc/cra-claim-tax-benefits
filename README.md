@@ -30,17 +30,17 @@ As mentioned in the introduction, the CTB application models many recommended pr
 - It exemplifies best-practice [web form accessibility](https://adamsilver.io/articles/form-design-from-zero-to-hero-all-in-one-blog-post/)
 - It has various security features, such as [security-minded HTTP headers](https://helmetjs.github.io/), [CSRF protection](https://github.com/expressjs/csurf), and [form validation](https://express-validator.github.io/docs/)
 - It is copiously tested, including end-to-end [cypress](https://www.cypress.io/) tests with [integrated accessibility scans](https://github.com/avanslaars/cypress-axe)
-- It includes a CI/CD pipeline, compatible with [GitHub Actions](https://github.com/features/actions)
-- It can run using [`npm`](https://www.npmjs.com/get-npm) on a \*nix OS or as a [Docker](https://docs.docker.com/install/) container
+- It includes a Continuous Integration and Deployment (CI/CD) pipeline, compatible with [GitHub Actions](https://github.com/features/actions)
+- It can run as a node app on a \*nix OS or as a [Docker](https://docs.docker.com/install/) container
 - It includes [terraform scripts](https://github.com/cds-snc/cra-claim-tax-benefits/tree/master/scripts) for deploying either to Azure or AWS
 
 ### Use of third-party services
 
 We use several third-party services for an improved development workflow and continuous security.
 
-- [GitHub](https://github.com/) is a cloud-based service to store our source code, as well as track changes and facilitate code reviews
-- [GitHub Actions](https://github.com/features/actions) is a CI/CD service that allows us to [test and deploy our code](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) right from GitHub
-  - CI/CD services abound, but we used GitHub actions because it was easy to set up, and with its yml-based configuration it would be easy to move away from
+- [GitHub](https://github.com/) is a cloud-based service that stores our source code, tracks code changes and facilitates code reviews
+- [GitHub Actions](https://github.com/features/actions) is a Continuous Integration and Deployment (CI/CD) service that allows us to [test and deploy our code](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) right from GitHub
+  - CI/CD services abound, but we used GitHub Actions because it was easy to set up, and with its yml-based configuration it would be easy to move away from
 - [Heroku](https://www.heroku.com/home) is a fully-managed platform as a service. We use Heroku [Review Apps](https://devcenter.heroku.com/articles/github-integration-review-apps) to build disposable applications per pull request, facilitating code reviews.
 - [Snyk](https://snyk.io/) is a software as a service product that scans through our dependencies for packages with known issues. It alerts us when a version of a package we’re using has a known exploit.
 - [LGTM](https://lgtm.com/) is a software as a service product for continuous security analysis. It analyzes each pull request for potential security vulnerabilities.

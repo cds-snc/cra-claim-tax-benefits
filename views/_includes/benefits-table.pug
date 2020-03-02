@@ -45,6 +45,12 @@ div
                 a(href=__(row.linkURL), target="_blank")
                   span.
                     #{__('Learn more')}#[span.visually-hidden  #{__(row.linkHiddenText)}]
-            dd.breakdown-table__row-payment
-              p #{__(row.payment)}
+            if (row.header.includes('Ontario trillium benefit (OTB)'))
+              dd.breakdown-table__row-payment
+                p #{__('paid monthly if $360 or more')}
+                p.bold #{__('or')}
+                p #{__('paid yearly if less than $360')}
+            else
+              dd.breakdown-table__row-payment
+                p #{__(row.payment)}
 

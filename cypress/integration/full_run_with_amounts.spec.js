@@ -156,7 +156,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates the Property Tax AMOUNT page', function() {
     cy.amount({
       url: '/trillium/propertyTax/amount',
-      h1: 'Enter taxes on home you owned',
+      h1: 'Enter tax on home you owned',
       id: 'trilliumPropertyTaxAmount',
     })
 

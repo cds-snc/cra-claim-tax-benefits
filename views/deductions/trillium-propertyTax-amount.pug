@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Enter taxes on home you owned')
+  -var title = __('Enter tax on home you owned')
   -var trilliumPropertyTaxAmount = hasData(data, 'deductions.trilliumPropertyTaxAmount') &&  data.deductions.trilliumPropertyTaxAmount !== 0 ? data.deductions.trilliumPropertyTaxAmount : ''
   -var placeholder= currencyWithoutUnit(getLocale())
   -var formattedValue= currencyWithoutUnit(getLocale(), trilliumPropertyTaxAmount)

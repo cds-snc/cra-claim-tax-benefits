@@ -1,6 +1,5 @@
 const validator = require('validator')
 const { validationResult } = require('express-validator')
-const parseISO = require('date-fns/parseISO')
 const API = require('./../api')
 const { routes: defaultRoutes } = require('../config/routes.config')
 const cookieConfig = require('../config/cookie.config')

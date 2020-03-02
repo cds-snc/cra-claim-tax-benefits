@@ -8,7 +8,6 @@ const {
   postAmount,
   currencyWithoutUnit,
   cleanSIN,
-  is65,
 } = require('./index')
 const API = require('./../api')
 
@@ -279,41 +278,6 @@ describe('Test cleanSIN function', () => {
   falseyVals.map(falseyVal => {
     test(`returns original value for falsey value: ${falseyVal}`, () => {
       expect(cleanSIN(falseyVal)).toEqual(falseyVal)
-    })
-  })
-})
-
-describe('Test is65 function', () => {
-  test('is65 throws Error for a bad date string', () => {
-    expect(() => {
-      is65('Hello I am old')
-    }).toThrow('[is65] Invalid date string:')
-  })
-
-  describe('is65 returns false for 1955', () => {
-    test('Jan 1st', () => {
-      expect(is65('1955-01-01')).toBe(false)
-    })
-    test('Dec 31st', () => {
-      expect(is65('1955-12-31')).toBe(false)
-    })
-  })
-
-  describe('is65 returns true for 1954', () => {
-    test('Jan 1st', () => {
-      expect(is65('1954-01-01')).toBe(true)
-    })
-    test('Dec 31st', () => {
-      expect(is65('1954-12-31')).toBe(true)
-    })
-  })
-
-  describe('is65 returns true for 1955 with a taxYear of 2020', () => {
-    test('Jan 1st', () => {
-      expect(is65('1955-01-01', { taxYear: 2020 })).toBe(true)
-    })
-    test('Dec 31st', () => {
-      expect(is65('1955-12-31', { taxYear: 2020 })).toBe(true)
     })
   })
 })

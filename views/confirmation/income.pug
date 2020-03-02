@@ -2,7 +2,6 @@ extends ../base
 
 block variables
   -var title = __('Confirm 2019 income')
-  -var isSenior = hasData(data, 'personal.dateOfBirth') && is65(data.personal.dateOfBirth)
   -var incomeConfirmed = hasData(data, 'financial.incomeConfirmed')
 
 block content
@@ -10,7 +9,7 @@ block content
   h1 #{title}
 
   div
-    if !isSenior
+    if(data.login.ageYesNo !== 'Yes')
       p #{__('If your income from all sources is $12,070 or more:')}
     else
       p #{__('If your income from all sources is $19,564 or more:')}

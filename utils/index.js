@@ -457,29 +457,6 @@ const getNextRoute = req => {
   return defaultRoutes[currentRoute.index + 1]
 }
 
-/**
- * Expects an ISO date string to be passed in (eg, '1990-08-10'), and will
- * return true if someone born on that date would be 65 in a given tax year.
- *
- * 65 is the age of seniority in Canada.
- * default tax year is 2019
- * throws an Error if the passed-in string isn't parseable as a date
- *
- * @param string dateOfBirth an iso date string formatted 'yyyy-mm-dd'
- * @param obj { taxYear } the year to check someone's age
- */
-const is65 = (dateOfBirth, { taxYear = 2019 } = {}) => {
-  const AGE_OF_SENIORITY = 65
-
-  if (isNaN(parseISO(dateOfBirth).getTime())) {
-    throw new Error(`[is65] Invalid date string: '${dateOfBirth}'`)
-  }
-
-  const yearOfBirth = dateOfBirth.split('-')[0]
-
-  return taxYear - yearOfBirth >= AGE_OF_SENIORITY
-}
-
 module.exports = {
   errorArray2ErrorObject,
   checkErrors,
@@ -501,5 +478,4 @@ module.exports = {
   returnToCheckAnswers,
   postAmount,
   currencyWithoutUnit,
-  is65,
 }

@@ -3,8 +3,6 @@ include ../_includes/address
 
 block variables
   -var title = __('Check your answers before filing')
-  -var isSenior = hasData(data, 'personal.dateOfBirth') && is65(data.personal.dateOfBirth)
-
 
 block content
 
@@ -18,7 +16,7 @@ block content
           dl.breakdown-table-data
             each row in section
               .breakdown-table__row.breakdown-table__row--answers
-                if (row.urlPath && row.urlPath.includes('confirm-income') && isSenior)
+                if (row.urlPath && row.urlPath.includes('confirm-income') && data.login.ageYesNo === 'Yes')
                   dt.breakdown-table__row-key #{__(row.text.replace('$12,070', '$19,564').replace('12\u00A0070\u00A0$', '19\u00A0564\u00A0$'))}
                 else
                   dt.breakdown-table__row-key #{__(row.text)}

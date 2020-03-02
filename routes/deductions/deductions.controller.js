@@ -8,7 +8,6 @@ const {
   renderWithData,
   checkErrors,
   postAmount,
-  is65,
 } = require('./../../utils')
 const {
   trilliumRentSchema,
@@ -306,7 +305,7 @@ module.exports = function(app) {
 const seniorRedirect = (req, res, next) => {
   if (process.env.NODE_ENV === 'production') {
     // if under 65, skip this page
-    if (!is65(req.session.personal.dateOfBirth)) {
+    if (req.session.login.ageYesNo !== 'Yes') {
       return res.redirect('/deductions/climate-action-incentive')
     }
   }

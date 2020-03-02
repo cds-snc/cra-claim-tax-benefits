@@ -277,7 +277,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates Voter Citizen page', function() {
     cy.confirm({
       url: '/vote/citizen',
-      h1: 'Register to vote - citizenship',
+      h1: 'Register to vote — citizenship',
       id: 'citizen', // click Yes
     })
 

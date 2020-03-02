@@ -217,7 +217,7 @@
   "Quinte West": "Quinte West",
   "Receipts for rent, long-term care, property tax and home energy costs, if you have them": "de vos reçus ou factures de loyer, de frais de soins de longue durée, de taxes foncières, et de frais d’énergie résidentielle, si vous les avez.",
   "Register or update voter information": "S’inscrire ou mettre ses renseignements à jour",
-  "Register to vote - citizenship": "Inscription au vote – citoyenneté ",
+  "Register to vote — citizenship": "Inscription au vote — citoyenneté ",
   "Rent": "Loyer",
   "Rent in Ontario": "Loyer en Ontario",
   "Review": "Réviser",
@@ -438,5 +438,6 @@
   "Marital status": "État civil",
   "paid monthly if $360 or more": "paid monthly if $360 or more",
   "or": "or",
-  "paid yearly if less than $360": "paid yearly if less than $360"
+  "paid yearly if less than $360": "paid yearly if less than $360",
+  "Next": "Next"
 }

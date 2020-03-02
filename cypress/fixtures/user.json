@@ -1,75 +1,148 @@
-{
-  "login": {
-    "code": "A5G98S4K1",
-    "ageYesNo": null
-  },
-  "personal": {
-    "firstName": "Gabrielle",
-    "lastName": "Roy",
-    "confirmedName": null,
-    "sin": "540739869",
-    "dateOfBirth": "1977-09-09",
-    "address": {
-      "line1": {
-        "en": "303 Blake Blvd.",
-        "fr": "303, boul. Blake"
+[
+  {
+    "login": {
+      "code": "A5G98S4K1",
+      "ageYesNo": null
+    },
+    "personal": {
+      "firstName": "Gabrielle",
+      "lastName": "Roy",
+      "confirmedName": null,
+      "sin": "540739869",
+      "dateOfBirth": "1977-09-09",
+      "address": {
+        "line1": {
+          "en": "303 Blake Blvd.",
+          "fr": "303, boul. Blake"
+        },
+        "line2": {
+          "en": "Unit 202",
+          "fr": "202"
+        },
+        "postalCode": "K2R 3Z9",
+        "city": "Ottawa",
+        "province": "Ontario"
       },
-      "line2": {
-        "en": "Unit 202",
-        "fr": "202"
+      "confirmedAddress": null,
+      "maritalStatus": "Single",
+      "confirmedMaritalStatus": null
+    },
+    "financial": {
+      "incomeConfirmed": null
+    },
+    "deductions": {
+      "trilliumRentClaim": null,
+      "trilliumRentOntario": null,
+      "trilliumRentAmount": 0,
+      "trilliumPropertyTaxClaim": null,
+      "trilliumPropertyTaxOntario": null,
+      "trilliumPropertyTaxAmount": 0,
+      "trilliumEnergyReserveClaim": null,
+      "trilliumEnergyReserveOntario": null,
+      "trilliumEnergyCostClaim": null,
+      "trilliumEnergyAmount": 0,
+      "trilliumLongTermCareClaim": null,
+      "trilliumLongTermCareOntario": null,
+      "trilliumLongTermCareCost": null,
+      "trilliumLongTermCareTypeClaim": null,
+      "trilliumLongTermCareRoomAndBoardAmount": 0,
+      "trilliumLongTermCareAmountIsFull": null,
+      "trilliumLongTermCareAmount": 0,
+      "climateActionIncentiveIsRural": null
+    },
+  "benefits": {
+      "cai": {
+        "name": "Climate action incentive (CAI)",
+        "description": "everyone gets this payment. You get 10% extra if you live outside a Census Metropolitan Area."
       },
-      "postalCode": "K2R 3Z9",
-      "city": "Ottawa",
-      "province": "Ontario"
+      "dtc": {
+        "name": "Disability tax credit (DTC)",
+        "description": "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application."
+      },
+      "gsthstc": {
+        "name": "Goods and services tax/harmonized sales tax (GST/HST) credit",
+        "description": "per year, up to $451 for one person, $592 if you have a spouse or common-law partner, and $155 for each child under age 19."
+      },
+      "otb": {
+        "name": "Ontario trillium benefit (OTB)",
+        "description": "a payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months."
+      }
     },
-    "confirmedAddress": null,
-    "maritalStatus": "Single",
-    "confirmedMaritalStatus": null
-  },
-  "financial": {
-    "incomeConfirmed": null
-  },
-  "deductions": {
-    "trilliumRentClaim": null,
-    "trilliumRentOntario": null,
-    "trilliumRentAmount": 0,
-    "trilliumPropertyTaxClaim": null,
-    "trilliumPropertyTaxOntario": null,
-    "trilliumPropertyTaxAmount": 0,
-    "trilliumEnergyReserveClaim": null,
-    "trilliumEnergyReserveOntario": null,
-    "trilliumEnergyCostClaim": null,
-    "trilliumEnergyAmount": 0,
-    "trilliumLongTermCareClaim": null,
-    "trilliumLongTermCareOntario": null,
-    "trilliumLongTermCareCost": null,
-    "trilliumLongTermCareTypeClaim": null,
-    "trilliumLongTermCareRoomAndBoardAmount": 0,
-    "trilliumLongTermCareAmountIsFull": null,
-    "trilliumLongTermCareAmount": 0,
-    "climateActionIncentiveIsRural": null
-  },
- "benefits": {
-    "cai": {
-      "name": "Climate action incentive (CAI)",
-      "description": "everyone gets this payment. You get 10% extra if you live outside a Census Metropolitan Area."
-    },
-    "dtc": {
-      "name": "Disability tax credit (DTC)",
-      "description": "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application."
-    },
-    "gsthstc": {
-      "name": "Goods and services tax/harmonized sales tax (GST/HST) credit",
-      "description": "per year, up to $451 for one person, $592 if you have a spouse or common-law partner, and $155 for each child under age 19."
-    },
-    "otb": {
-      "name": "Ontario trillium benefit (OTB)",
-      "description": "a payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months."
+  "vote": {
+      "confirmOptIn": null,
+      "citizen": null,
+      "register": null
     }
   },
- "vote": {
-    "confirmOptIn": null,
-    "citizen": null,
-    "register": null
+  {
+    "login": {
+      "code": "A5G98S4K3",
+      "ageYesNo": null
+    },
+    "personal": {
+      "firstName": "Alex",
+      "lastName": "Janvier",
+      "confirmedName": null,
+      "sin": "435073143",
+      "dateOfBirth": "1947-03-03",
+      "address": {
+        "line1": {
+          "en": "144 Steel St",
+          "fr": "144, rue Steel"
+        },
+        "postalCode": "L4M 2G2",
+        "city": "Barrie",
+        "province": "Ontario"
+      },
+      "confirmedAddress": null,
+      "maritalStatus": "Single",
+      "confirmedMaritalStatus": null
+    },
+    "financial": {
+      "incomeConfirmed": null
+    },
+    "deductions": {
+      "trilliumRentClaim": null,
+      "trilliumRentOntario": null,
+      "trilliumRentAmount": 0,
+      "trilliumPropertyTaxClaim": null,
+      "trilliumPropertyTaxOntario": null,
+      "trilliumPropertyTaxAmount": 0,
+      "trilliumEnergyReserveClaim": null,
+      "trilliumEnergyReserveOntario": null,
+      "trilliumEnergyCostClaim": null,
+      "trilliumEnergyAmount": 0,
+      "trilliumLongTermCareClaim": null,
+      "trilliumLongTermCareOntario": null,
+      "trilliumLongTermCareCost": null,
+      "trilliumLongTermCareTypeClaim": null,
+      "trilliumLongTermCareRoomAndBoardAmount": 0,
+      "trilliumLongTermCareAmountIsFull": null,
+      "trilliumLongTermCareAmount": 0,
+      "climateActionIncentiveIsRural": null
+    },
+  "benefits": {
+      "cai": {
+        "name": "Climate action incentive (CAI)",
+        "description": "everyone gets this payment. You get 10% extra if you live outside a Census Metropolitan Area."
+      },
+      "dtc": {
+        "name": "Disability tax credit (DTC)",
+        "description": "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application."
+      },
+      "gsthstc": {
+        "name": "Goods and services tax/harmonized sales tax (GST/HST) credit",
+        "description": "per year, up to $451 for one person, $592 if you have a spouse or common-law partner, and $155 for each child under age 19."
+      },
+      "otb": {
+        "name": "Ontario trillium benefit (OTB)",
+        "description": "a payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months."
+      }
+    },
+  "vote": {
+      "confirmOptIn": null,
+      "citizen": null,
+      "register": null
+    }
   }
-}
+]

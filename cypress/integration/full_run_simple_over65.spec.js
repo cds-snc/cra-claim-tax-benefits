@@ -7,7 +7,7 @@ describe('Full run through saying "no" to everything', function() {
   })
 
   beforeEach(() => {
-    cy.fixture('user').as('user')
+    cy.fixture('userAbove65').as('user')
     cy.injectAxe().checkA11y()
   })
 
@@ -21,7 +21,7 @@ describe('Full run through saying "no" to everything', function() {
   })
 
   it('successfully logs in', function() {
-    cy.login(this.user)
+    cy.login(this.user, true)
   })
 
   //CONFIRM NAME
@@ -143,7 +143,7 @@ describe('Full run through saying "no" to everything', function() {
 
   // CONFIRM INCOME
   it('navigates Confirm Income page', function() {
-    cy.get('p').first().should('contain', '$12,070')
+    cy.get('p').first().should('contain', '$19,564')
 
     cy.confirm({
       url: '/confirm-income',

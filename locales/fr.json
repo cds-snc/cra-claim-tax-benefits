@@ -254,7 +254,7 @@
   "The government might ask for your property tax receipts.": "Le gouvernement pourrait vous demander votre facture de taxes foncières.",
   "The government might ask for your rent receipts.": "Le gouvernement pourrait vous demander vos factures de loyer.",
   "The government might ask for your transit receipts.": "Le gouvernement pourrait vous demander vos reçus de frais de transport.",
-  "The next questions ask about your main home, where you usually lived. CRA calls this your “principal residence”.": "Les questions suivantes concernent votre domicile habituel, soit l’endroit où vous habitez la plupart du temps. L’ARC l’appelle votre «\u00A0résidence principale\u00A0».",
+  "The next questions ask about your main home, where you usually lived. CRA calls this your “principal residence”.": "Les questions suivantes concernent votre domicile habituel, soit l’endroit où vous habitez la plupart du temps. L’ARC l’appelle votre « résidence principale ».",
   "This page is currently under construction": "Cette page est en construction",
   "This site will change as we test ideas.": "Ce site évoluera au fur et à mesure que nous testons des idées.",
   "Thorold": "Thorold",
@@ -339,8 +339,8 @@
   "Your code is in the CRA letter with this website link.": "Votre code personnel de déclaration de revenus se trouve dans la lettre de l’ARC  ayant l’adresse du présent site Web. ",
   "Your community is part of a CMA if you live in: ": "Votre collectivité fait partie d’une RMR si vous vivez à : ",
   "Your filing code": "Votre code de déclaration de revenus",
-  "Your “principal residence” is your main home, where you usually lived.": "Votre «\u00A0résidence principale\u00A0» correspond à votre domicile habituel, soit l’endroit où vous vivez la plupart du temps.",
-  "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.": "Paiement qui aide à assumer les coûts énergétiques, la taxe de vente et l’impôt foncier. Le gouvernement verse généralement le montant le 10e jour de chaque mois pendant 12 mois.",
+  "Your “principal residence” is your main home, where you usually lived.": "Votre « résidence principale » correspond à votre domicile habituel, soit l’endroit où vous vivez la plupart du temps.",
+  "a payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.": "Paiement qui aide à assumer les coûts énergétiques, la taxe de vente et l’impôt foncier. Le gouvernement verse généralement le montant le 10e jour de chaque mois pendant 12 mois.",
   "about the Climate action incentive": "sur le Paiement de l’incitatif à agir pour le climat",
   "about the Disability tax credit": "sur le crédit d’impôt pour personnes handicapées",
   "about the GST/HST credit": "sur le crédit TPS/TVH",
@@ -435,5 +435,6 @@
   "Start now": "Commencer maintenant",
   "Date of birth": "Date de naissance",
   "Mailing address": "Adresse postale",
-  "Marital status": "État civil"
+  "Marital status": "État civil",
+  "paid monthly if $360 or more or paid yearly if less than $360": "paid monthly if $360 or more or paid yearly if less than $360"
 }

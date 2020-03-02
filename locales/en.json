@@ -340,7 +340,7 @@
   "Your community is part of a CMA if you live in: ": "Your community is part of a CMA if you live in: ",
   "Your filing code": "Your filing code",
   "Your “principal residence” is your main home, where you usually lived.": "Your “principal residence” is your main home, where you usually lived.",
-  "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.": "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.",
+  "a payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.": "a payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.",
   "about the Climate action incentive": "about the Climate action incentive",
   "about the Disability tax credit": "about the Disability tax credit",
   "about the GST/HST credit": "about the GST/HST credit",
@@ -439,5 +439,6 @@
   "Cancel your session": "Cancel your session",
   "Are you sure you want to cancel your session?": "Are you sure you want to cancel your session?",
   "If you choose to cancel your session, none of your information will be saved or submitted. Your tax return will not be filed.": "If you choose to cancel your session, none of your information will be saved or submitted. Your tax return will not be filed.",
-  "Next": "Next"
+  "Next": "Next",
+  "paid monthly if $360 or more or paid yearly if less than $360": "paid monthly if $360 or more or paid yearly if less than $360"
 }

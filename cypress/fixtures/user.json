@@ -64,7 +64,7 @@
     },
     "otb": {
       "name": "Ontario trillium benefit (OTB)",
-      "description": "a government payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months."
+      "description": "a payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months."
     }
   },
  "vote": {

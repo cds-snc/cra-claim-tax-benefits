@@ -22,7 +22,7 @@ const getBenefitsBreakdownRows = user => {
 
 const getAddress = address => {
   const fullAddress = [`${address.city}, ${address.province}`, `${address.postalCode}`]
-  if (address.line2.en && address.line2.en !== '') {
+  if (address.line2 && address.line2.en && address.line2.en !== '') {
     fullAddress.unshift(`${address.line2.en}-${address.line1.en}`)
   } else {
     fullAddress.unshift(`${address.line1.en}`)

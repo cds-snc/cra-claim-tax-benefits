@@ -158,7 +158,7 @@ describe('Full run through saying "no" to everything', function() {
   it('navigates the Check Your Answers page', function() {
     cy.url().should('contain', '/checkAnswers')
     cy.get('h1').should('contain', 'Check your answers before filing')
-    cy.fixture('checkAnswersRows.json').then(rows => {
+    cy.fixture('checkAnswersRowsAbove65.json').then(rows => {
       checkTableRows(cy, rows.rows, 'dt.breakdown-table__row-key')
     })
 

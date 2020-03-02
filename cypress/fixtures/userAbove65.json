@@ -1,25 +1,21 @@
 {
   "login": {
-    "code": "A5G98S4K1",
+    "code": "A5G98S4K3",
     "ageYesNo": null
   },
   "personal": {
-    "firstName": "Gabrielle",
-    "lastName": "Roy",
+    "firstName": "Alex",
+    "lastName": "Janvier",
     "confirmedName": null,
-    "sin": "540739869",
-    "dateOfBirth": "1977-09-09",
+    "sin": "435073143",
+    "dateOfBirth": "1947-03-03",
     "address": {
       "line1": {
-        "en": "303 Blake Blvd.",
-        "fr": "303, boul. Blake"
+        "en": "144 Steel St",
+        "fr": "144, rue Steel"
       },
-      "line2": {
-        "en": "Unit 202",
-        "fr": "202"
-      },
-      "postalCode": "K2R 3Z9",
-      "city": "Ottawa",
+      "postalCode": "L4M 2G2",
+      "city": "Barrie",
       "province": "Ontario"
     },
     "confirmedAddress": null,
@@ -73,4 +69,3 @@
     "register": null
   }
 }
-

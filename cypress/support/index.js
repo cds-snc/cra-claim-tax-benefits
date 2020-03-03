@@ -21,7 +21,7 @@ Cypress.Cookies.defaults({
   whitelist: ['_csrf', 'connect.sid'],
 })
 
-Cypress.Commands.add('login', (user, over65) => {
+Cypress.Commands.add('login', (user, { over65 } = {}) => {
   // ELIGIBILITY AGE
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/eligibility/age')

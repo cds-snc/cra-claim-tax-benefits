@@ -1,6 +1,6 @@
 const { checkTableRows, getBenefitsBreakdownRows, getAddress } = require('../utils.js')
 
-describe('Full run through saying "no" to everything', function() {
+describe('Full run through age 65+ saying "no" to everything', function() {
   before(function() {
     cy.visit('/clear')
     cy.visit('/')
@@ -21,7 +21,7 @@ describe('Full run through saying "no" to everything', function() {
   })
 
   it('successfully logs in', function() {
-    cy.login(this.user, true)
+    cy.login(this.user, { over65: true })
   })
 
   //CONFIRM NAME

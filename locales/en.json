@@ -217,7 +217,7 @@
   "Quinte West": "Quinte West",
   "Receipts for rent, long-term care, property tax and home energy costs, if you have them": "Receipts for rent, long-term care, property tax and home energy costs, if you have them",
   "Register or update voter information": "Register or update voter information",
-  "Register to vote - citizenship": "Register to vote - citizenship",
+  "Register to vote — citizenship": "Register to vote — citizenship",
   "Rent": "Rent",
   "Rent in Ontario": "Rent in Ontario",
   "Review": "Review",
@@ -442,5 +442,6 @@
   "Next": "Next",
   "paid monthly if $360 or more": "paid monthly if $360 or more",
   "or": "or",
-  "paid yearly if less than $360": "paid yearly if less than $360"
+  "paid yearly if less than $360": "paid yearly if less than $360",
+  "BETA": "BETA"
 }

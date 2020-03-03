@@ -6,7 +6,7 @@ This is a demo of a service to make tax filing faster and easier for a preselect
 
 Much of the information needed to file a tax return is already known to CRA. At the same time, low-confidence tax filers are very worried about making mistakes when submitting a tax return. The concept behind this demo application is to provide a wizard-like tax filing experience: presenting the tax filer with information that CRA already has about them and having them to confirm it rather than asking them type it in.
 
-While this repository is no longer actively maintained, the code is open and available for demonstration purposes or reuse. In addition to an end-to-end flow, it is an example of best-practice development for an API-driven, cloud-native frontend application.
+[While this repository is no longer actively maintained](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/CONTINUING-DEVELOPMENT.md), the code is open and available for demonstration purposes or reuse. In addition to an end-to-end flow, it is an example of best-practice development for an API-driven, cloud-native frontend application.
 
 ## Table of contents
 
@@ -14,6 +14,7 @@ While this repository is no longer actively maintained, the code is open and ava
   - [Use of third-party services](#use-of-third-party-services)
   - [Automated tests](#automated-tests)
   - [Development workflow](#development-workflow)
+  - [Continuing development](#continuing-development)
 - [Getting started](#getting-started-npm)
   - [Build and run](#build-and-run)
   - [Run tests](#run-tests)
@@ -24,7 +25,9 @@ While this repository is no longer actively maintained, the code is open and ava
 
 The Claim Tax Benefits (CTB) application is a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and schnazzy [SCSS](https://sass-lang.com/) stylesheets. The application scaffolding comes from the [the express generator](https://expressjs.com/en/starter/generator.html). It assumes the existence of a backend API (to receive user data) and a cloud database (for storing access codes), although both are stubbed out so the application can run in isolation for development purposes.
 
-As mentioned in the introduction, the CTB application models many recommended practices for a modern web service.
+[There is a record of the decision to go for Express](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/ADR-EXPRESS-VS-ANGULAR.md), for posterity.
+
+As mentioned in the introduction, the CTB application implements many recommended practices for a modern web service.
 
 - It represents the complete online user journey
 - It exemplifies best-practice [web form accessibility](https://adamsilver.io/articles/form-design-from-zero-to-hero-all-in-one-blog-post/)
@@ -60,6 +63,10 @@ All new pull requests have a suite of automated tests run against them.
 
 - [Our agile development workflow](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEVELOPMENT-WORKFLOW.md)
 - [Guidance on code reviews](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/CODE-REVIEW-GUIDELINES.md)
+
+### Continuing development
+
+[A walkthrough on how to continue development on this project](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/CONTINUING-DEVELOPMENT.md): whether your aim is to rebuild the service in a new technology or to develop and release this codebase specifically.
 
 ## Getting started (npm)
 

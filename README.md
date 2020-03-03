@@ -25,7 +25,9 @@ Much of the information needed to file a tax return is already known to CRA. At 
 
 The Claim Tax Benefits (CTB) application is a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and schnazzy [SCSS](https://sass-lang.com/) stylesheets. The application scaffolding comes from the [the express generator](https://expressjs.com/en/starter/generator.html). It assumes the existence of a backend API (to receive user data) and a cloud database (for storing access codes), although both are stubbed out so the application can run in isolation for development purposes.
 
-As mentioned in the introduction, the CTB application models many recommended practices for a modern web service.
+[There is a record of the decision to go for Express](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/ADR-EXPRESS-VS-ANGULAR.md), for posterity.
+
+As mentioned in the introduction, the CTB application implements many recommended practices for a modern web service.
 
 - It represents the complete online user journey
 - It exemplifies best-practice [web form accessibility](https://adamsilver.io/articles/form-design-from-zero-to-hero-all-in-one-blog-post/)

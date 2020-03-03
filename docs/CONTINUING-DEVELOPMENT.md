@@ -4,7 +4,7 @@ This document describes how to continue development with this codebase — as we
 
 Anyone looking to continue development on this repo, there are basically two scenarios that I can foresee.
 
-1. You want to see the app running and see all the pages so that you can rebuild it [in Angular](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/ADR-EXPRESS-VS-ANGULAR.md) (or something else)
+1. You want to see the app running and see all the pages so that you can rebuild it in some other tech
 2. You want to continue developing this repo specifically
 
 No shade either way, context and priorities and all that. The first scenario is easier to explain, so I'll do it first.

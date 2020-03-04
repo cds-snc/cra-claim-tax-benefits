@@ -6,6 +6,13 @@ This is a demo of a service to make tax filing faster and easier for a preselect
 
 Much of the information needed to file a tax return is already known to CRA. At the same time, low-confidence tax filers are very worried about making mistakes when submitting a tax return. The concept behind this demo application is to provide a wizard-like tax filing experience: presenting the tax filer with information that CRA already has about them and having them to confirm it rather than asking them type it in.
 
+| Demo user 1   | Demo user 2       |
+| ------------- | ----------------- |
+| Gabrielle Roy | Monique Corriveau |
+| `A5G98S4K1`   | `A5G98S4K3`       |
+| `540 739 869` | `435 073 143`     |
+| `09 09 1977`  | `03 03 1947`      |
+
 [While this repository is no longer actively maintained](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/CONTINUING-DEVELOPMENT.md), the code is open and available for demonstration purposes or reuse. In addition to an end-to-end flow, it is an example of best-practice development for an API-driven, cloud-native frontend application.
 
 ## Table of contents

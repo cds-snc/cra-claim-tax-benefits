@@ -21,19 +21,32 @@ Cypress.Cookies.defaults({
   whitelist: ['_csrf', 'connect.sid'],
 })
 
-Cypress.Commands.add('login', user => {
+Cypress.Commands.add('login', (user, { over65 } = {}) => {
   // ELIGIBILITY AGE
   cy.injectAxe().checkA11y()
   cy.url().should('contain', '/eligibility/age')
   cy.get('h1').should('contain', 'Age 65 and above')
 
-  cy.get(`input#ageYesNo1 + label`).should('have.attr', 'for', 'ageYesNo1')
-  cy.get(`input#ageYesNo1`).click()
+  if(over65) {
+    cy.get(`input#ageYesNo + label`).should('have.attr', 'for', 'ageYesNo')
+    cy.get(`input#ageYesNo`).click()
+  } else {
+    cy.get(`input#ageYesNo1 + label`).should('have.attr', 'for', 'ageYesNo1')
+    cy.get(`input#ageYesNo1`).click()
+  }
+  
 
   cy.continue()
 
   // ELIGIBILITY TAXABLE INCOME
   cy.injectAxe().checkA11y()
+
+  if(over65) {
+    cy.get('legend').should('contain', '$19,564')
+  } else {
+    cy.get('legend').should('contain', '$12,070')
+  }
+
   cy.confirm({
     url: '/eligibility/taxable-income',
     h1: '2019 income',

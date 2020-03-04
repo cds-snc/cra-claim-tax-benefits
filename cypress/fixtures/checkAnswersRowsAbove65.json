@@ -1,0 +1,48 @@
+{
+  "rows": [
+    {
+      "key": "What is your name?",
+      "value": "Alex Janvier"
+    },
+    {
+      "key": "What is your date of birth?",
+      "value": "3 March 1947"
+    },
+    {
+      "key": "What is your mailing address?",
+      "value": "144 Steel St."
+    },
+    {
+      "key": "What is your marital status?",
+      "value": "Single"
+    },
+    {
+      "key": "Did you live in a Census Metropolitan Area?",
+      "value": "No"
+    },
+    {
+      "key": "Did you pay rent?",
+      "value": "No"
+    },
+    {
+      "key": "Did you pay property tax?",
+      "value": "No"
+    },
+    {
+      "key": "Did you live in a long-term care home?",
+      "value": "No"
+    },
+    {
+      "key": "At any time in 2019, was your principal residence on reserve land under the Indian Act?",
+      "value": "No"
+    },
+    {
+      "key": "Do you want to vote?",
+      "value": "No"
+    },
+    {
+      "key": "Do you confirm that your income was less than $19,564?",
+      "value": "Yes"
+    }
+  ]
+}

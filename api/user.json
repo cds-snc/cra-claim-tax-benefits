@@ -1,57 +1,112 @@
-{
-  "login": {
-    "code": "A5G98S4K1",
-    "ageYesNo": null
-  },
-  "personal": {
-    "firstName": "Gabrielle",
-    "lastName": "Roy",
-    "confirmedName": null,
-    "sin": "540739869",
-    "dateOfBirth": "1977-09-09",
-    "address": {
-      "line1": {
-        "en": "303 Blake Blvd.",
-        "fr": "303, boul. Blake"
-      },
-      "line2": {
-        "en": "Unit 202",
-        "fr": "202"
-      },
-      "postalCode": "K2R 3Z9",
-      "city": "Ottawa",
-      "province": "Ontario"
+[
+  {
+    "login": {
+      "code": "A5G98S4K1",
+      "ageYesNo": null
     },
-    "confirmedAddress": null,
-    "maritalStatus": "Single",
-    "confirmedMaritalStatus": null
+    "personal": {
+      "firstName": "Gabrielle",
+      "lastName": "Roy",
+      "confirmedName": null,
+      "sin": "540739869",
+      "dateOfBirth": "1977-09-09",
+      "address": {
+        "line1": {
+          "en": "303 Blake Blvd.",
+          "fr": "303, boul. Blake"
+        },
+        "line2": {
+          "en": "Unit 202",
+          "fr": "202"
+        },
+        "postalCode": "K2R 3Z9",
+        "city": "Ottawa",
+        "province": "Ontario"
+      },
+      "confirmedAddress": null,
+      "maritalStatus": "Single",
+      "confirmedMaritalStatus": null
+    },
+    "financial": {
+      "incomeConfirmed": null
+    },
+    "deductions": {
+      "trilliumRentClaim": null,
+      "trilliumRentOntario": null,
+      "trilliumRentAmount": 0,
+      "trilliumPropertyTaxClaim": null,
+      "trilliumPropertyTaxOntario": null,
+      "trilliumPropertyTaxAmount": 0,
+      "trilliumEnergyReserveClaim": null,
+      "trilliumEnergyReserveOntario": null,
+      "trilliumEnergyCostClaim": null,
+      "trilliumEnergyAmount": 0,
+      "trilliumLongTermCareClaim": null,
+      "trilliumLongTermCareOntario": null,
+      "trilliumLongTermCareCost": null,
+      "trilliumLongTermCareTypeClaim": null,
+      "trilliumLongTermCareRoomAndBoardAmount": 0,
+      "trilliumLongTermCareAmountIsFull": null,
+      "trilliumLongTermCareAmount": 0,
+      "climateActionIncentiveIsRural": null
+    },
+    "vote": {
+        "confirmOptIn": null,
+        "citizen": null,
+        "register": null
+    }
   },
-  "financial": {
-    "incomeConfirmed": null
-  },
-  "deductions": {
-    "trilliumRentClaim": null,
-    "trilliumRentOntario": null,
-    "trilliumRentAmount": 0,
-    "trilliumPropertyTaxClaim": null,
-    "trilliumPropertyTaxOntario": null,
-    "trilliumPropertyTaxAmount": 0,
-    "trilliumEnergyReserveClaim": null,
-    "trilliumEnergyReserveOntario": null,
-    "trilliumEnergyCostClaim": null,
-    "trilliumEnergyAmount": 0,
-    "trilliumLongTermCareClaim": null,
-    "trilliumLongTermCareOntario": null,
-    "trilliumLongTermCareCost": null,
-    "trilliumLongTermCareTypeClaim": null,
-    "trilliumLongTermCareRoomAndBoardAmount": 0,
-    "trilliumLongTermCareAmountIsFull": null,
-    "trilliumLongTermCareAmount": 0,
-    "climateActionIncentiveIsRural": null
-  },
- "vote": {
-    "confirmOptIn": null,
-    "citizen": null,
-    "register": null
- }
-}
+  {
+    "login": {
+      "code": "A5G98S4K3",
+      "ageYesNo": null
+    },
+    "personal": {
+      "firstName": "Alex",
+      "lastName": "Janvier",
+      "confirmedName": null,
+      "sin": "435073143",
+      "dateOfBirth": "1947-03-03",
+      "address": {
+        "line1": {
+          "en": "144 Steel St.",
+          "fr": "144, rue Steel"
+        },
+        "postalCode": "L4M 2G2",
+        "city": "Barrie",
+        "province": "Ontario"
+      },
+      "confirmedAddress": null,
+      "maritalStatus": "Single",
+      "confirmedMaritalStatus": null
+    },
+    "financial": {
+      "incomeConfirmed": null
+    },
+    "deductions": {
+      "trilliumRentClaim": null,
+      "trilliumRentOntario": null,
+      "trilliumRentAmount": 0,
+      "trilliumPropertyTaxClaim": null,
+      "trilliumPropertyTaxOntario": null,
+      "trilliumPropertyTaxAmount": 0,
+      "trilliumEnergyReserveClaim": null,
+      "trilliumEnergyReserveOntario": null,
+      "trilliumEnergyCostClaim": null,
+      "trilliumEnergyAmount": 0,
+      "trilliumLongTermCareClaim": null,
+      "trilliumLongTermCareOntario": null,
+      "trilliumLongTermCareCost": null,
+      "trilliumLongTermCareTypeClaim": null,
+      "trilliumLongTermCareRoomAndBoardAmount": 0,
+      "trilliumLongTermCareAmountIsFull": null,
+      "trilliumLongTermCareAmount": 0,
+      "climateActionIncentiveIsRural": null
+    },
+  "vote": {
+      "confirmOptIn": null,
+      "citizen": null,
+      "register": null
+    }
+  }
+]

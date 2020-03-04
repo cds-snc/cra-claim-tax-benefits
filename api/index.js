@@ -1,15 +1,15 @@
-const user = require('./user.json')
+const users = require('./user.json')
 const { verifyHash } = require('./../utils/crypto.utils')
 const cloneDeep = require('clone-deep');
 
-var API = (function(userFound) {
-  const _user = userFound
-
+var API = (function(userFind) {
+  
   const getUser = code => {
-
     code = (code.length === 9) ? code.toUpperCase() : code
     
-    if (code && (code === _user.login.code || verifyHash(_user.login.code, code ,{useInitialSalt: true}))) {
+    const _user = userFind.find( APIUser => APIUser.login.code === code.toUpperCase() || verifyHash(APIUser.login.code, code ,{useInitialSalt: true}))
+    
+    if (_user && code && (code === _user.login.code || verifyHash(_user.login.code, code ,{useInitialSalt: true}))) {
       return cloneDeep(_user)
     }
 
@@ -19,6 +19,6 @@ var API = (function(userFound) {
   return {
     getUser,
   }
-})(user)
+})(users)
 
 module.exports = API

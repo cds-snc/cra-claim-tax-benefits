@@ -1,13 +1,13 @@
 const { checkTableRows, getBenefitsBreakdownRows, getAddress } = require('../utils.js')
 
-describe('Full run through saying "no" to everything', function() {
+describe('Full run through age 65+ saying "no" to everything', function() {
   before(function() {
     cy.visit('/clear')
     cy.visit('/')
   })
 
   beforeEach(() => {
-    cy.fixture('user').as('user')
+    cy.fixture('userAbove65').as('user')
     cy.injectAxe().checkA11y()
   })
 
@@ -21,7 +21,7 @@ describe('Full run through saying "no" to everything', function() {
   })
 
   it('successfully logs in', function() {
-    cy.login(this.user)
+    cy.login(this.user, { over65: true })
   })
 
   //CONFIRM NAME
@@ -143,7 +143,7 @@ describe('Full run through saying "no" to everything', function() {
 
   // CONFIRM INCOME
   it('navigates Confirm Income page', function() {
-    cy.get('p').first().should('contain', '$12,070')
+    cy.get('p').first().should('contain', '$19,564')
 
     cy.confirm({
       url: '/confirm-income',
@@ -158,7 +158,7 @@ describe('Full run through saying "no" to everything', function() {
   it('navigates the Check Your Answers page', function() {
     cy.url().should('contain', '/checkAnswers')
     cy.get('h1').should('contain', 'Check your answers before filing')
-    cy.fixture('checkAnswersRows.json').then(rows => {
+    cy.fixture('checkAnswersRowsAbove65.json').then(rows => {
       checkTableRows(cy, rows.rows, 'dt.breakdown-table__row-key')
     })
 

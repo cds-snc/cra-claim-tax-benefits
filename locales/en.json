@@ -436,12 +436,13 @@
   "Date of birth": "Date of birth",
   "Mailing address": "Mailing address",
   "Marital status": "Marital status",
-  "Cancel your session": "Cancel your session",
-  "Are you sure you want to cancel your session?": "Are you sure you want to cancel your session?",
-  "If you choose to cancel your session, none of your information will be saved or submitted. Your tax return will not be filed.": "If you choose to cancel your session, none of your information will be saved or submitted. Your tax return will not be filed.",
+  "Cancel this session": "Cancel this session",
+  "Are you sure you want to cancel?": "Are you sure you want to cancel?",
   "Next": "Next",
   "paid monthly if $360 or more": "paid monthly if $360 or more",
   "or": "or",
   "paid yearly if less than $360": "paid yearly if less than $360",
-  "BETA": "BETA"
+  "BETA": "BETA",
+  "If you cancel this session, none of your information will be saved.": "If you cancel this session, none of your information will be saved.",
+  "You will need to start a new session if you want to file taxes with this service.": "You will need to start a new session if you want to file taxes with this service."
 }

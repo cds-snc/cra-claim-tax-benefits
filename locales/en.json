@@ -438,10 +438,11 @@
   "Marital status": "Marital status",
   "Cancel this session": "Cancel this session",
   "Are you sure you want to cancel?": "Are you sure you want to cancel?",
-  "If you cancel this session, none of your information will be saved. You will need to start a new session if you want to file taxes with this service.": "If you cancel this session, none of your information will be saved. You will need to start a new session if you want to file taxes with this service.",
   "Next": "Next",
   "paid monthly if $360 or more": "paid monthly if $360 or more",
   "or": "or",
   "paid yearly if less than $360": "paid yearly if less than $360",
-  "BETA": "BETA"
+  "BETA": "BETA",
+  "If you cancel this session, none of your information will be saved.": "If you cancel this session, none of your information will be saved.",
+  "You will need to start a new session if you want to file taxes with this service.": "You will need to start a new session if you want to file taxes with this service."
 }

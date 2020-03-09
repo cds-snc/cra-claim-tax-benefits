@@ -2,39 +2,47 @@
 -
   var rows =[
   {
-    "header":"Climate action incentive (CAI)",
+    "header": "Climate action incentive (CAI)",
+    "frHeader": "Paiement de l’incitatif à agir pour le climat",
     "description": "everyone gets this payment. You get 10% extra if you live outside a Census Metropolitan Area.",
-    "linkHiddenText":"about the Climate action incentive",
-    "linkURL":"https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-449-climate-action-incentive.html",
-    "payment":"paid yearly"
+    "linkHiddenText": "about the Climate action incentive",
+    "linkURL": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-449-climate-action-incentive.html",
+    "payment": "paid yearly"
   },
   {
-    "header":"Disability tax credit (DTC)",
+    "header": "Disability tax credit (DTC)",
+    "frHeader": "Crédit d’impôt pour personnes handicapées (CIPH)",
     "description": "an amount based on your situation. You may be able to get DTC if you have applied and CRA approves your application.",
-    "linkHiddenText":"about the Disability tax credit",
-    "linkURL":"https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html",
-    "payment":"paid monthly"
+    "linkHiddenText": "about the Disability tax credit",
+    "linkURL": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html",
+    "payment": "paid monthly"
   },
   {
-    "header":"Goods and services tax/harmonized sales tax (GST/HST) credit",
+    "header": "Goods and services tax/harmonized sales tax (GST/HST) credit",
+    "frHeader": "Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH)",
     "description": "per year, up to $451 for one person, $592 if you have a spouse or common-law partner, and $155 for each child under age 19.",
-    "linkHiddenText":"about the GST/HST credit",
-    "linkURL":"https://www.canada.ca/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit.html",
+    "linkHiddenText": "about the GST/HST credit",
+    "linkURL": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit.html",
     "payment": "paid quarterly"
   },
   {
-    "header":"Ontario trillium benefit (OTB)",
+    "header": "Ontario trillium benefit (OTB)",
+    "frHeader": "Prestation Trillium de l’Ontario (PTO)",
     "description": "a payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months.",
-    "linkHiddenText":"about the Ontario trillium benefit",
+    "linkHiddenText": "about the Ontario trillium benefit",
     "linkURL":"https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-ontario.html",
-    "payment":"paid monthly if $360 or more or paid yearly if less than $360"
+    "payment": "paid monthly if $360 or more or paid yearly if less than $360"
   },
   ]
 
+-
+  var sortedRows = rows.sort((a, b) => {
+    return (locale === 'fr') ? a.frHeader.localeCompare(b.frHeader) : a.header.localeCompare(b.header)
+  })
 
 div
   .breakdown-table.breakdown-table--review.breakdown-table--answers
-    each row in rows
+    each row in sortedRows
       dl.breakdown-table-data
         .breakdown-table__row.breakdown-table__row--answers
           dt.breakdown-table__row-key

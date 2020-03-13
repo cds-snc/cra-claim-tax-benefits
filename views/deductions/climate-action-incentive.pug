@@ -15,14 +15,14 @@ block content
 
 
   form.cra-form(method='post')
-    +radiosYesNo('climateActionIncentiveIsRural', 'Did you live in a census metropolitan area (CMA) in 2019?', climateActionIncentiveIsRural)
+    +radiosYesNo('climateActionIncentiveIsRural', 'Did you live in a census metropolitan area in 2019?', climateActionIncentiveIsRural)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/rent')
 
     div
       details.
-        <summary><span>#{__('Check if your community is part of a CMA')}</span></summary>
-        <p>#{__('Your community is part of a CMA if you live in: ')}
+        <summary><span>#{__('Check if your community is part of a census metropolitan area')}</span></summary>
+        <p>#{__('Your community is part of a census metropolitan area if you live in: ')}
         <ul>
           <li>#{__('Adelaide-Metcalfe')}</li>
           <li>#{__('Ajax')}</li>

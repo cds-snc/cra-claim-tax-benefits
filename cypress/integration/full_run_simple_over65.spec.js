@@ -79,7 +79,7 @@ describe('Full run through age 65+ saying "no" to everything', function() {
   it('navigates Climate Action Incentive page', function() {
     cy.confirm({
       url: '/deductions/climate-action-incentive',
-      h1: 'Census Metropolitan Area',
+      h1: 'Census metropolitan area',
       id: 'climateActionIncentiveIsRural1', // click No
     })
 
@@ -143,7 +143,9 @@ describe('Full run through age 65+ saying "no" to everything', function() {
 
   // CONFIRM INCOME
   it('navigates Confirm Income page', function() {
-    cy.get('p').first().should('contain', '$19,564')
+    cy.get('p')
+      .first()
+      .should('contain', '$19,564')
 
     cy.confirm({
       url: '/confirm-income',

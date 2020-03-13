@@ -90,7 +90,7 @@ describe('Full run through saying "yes" to everything', function() {
   it('navigates Climate Action Incentive page', function() {
     cy.confirm({
       url: '/deductions/climate-action-incentive',
-      h1: 'Census Metropolitan Area',
+      h1: 'Census metropolitan area',
       id: 'climateActionIncentiveIsRural', // click Yes
     })
 

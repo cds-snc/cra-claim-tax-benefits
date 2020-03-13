@@ -1,7 +1,7 @@
 extends ../base
 
 block variables
-  -var title = __('Census Metropolitan Area')
+  -var title = __('Census metropolitan area')
   -var climateActionIncentiveIsRural = !hasData(data, 'deductions.climateActionIncentiveIsRural') ? '' : data.deductions.climateActionIncentiveIsRural ? 'Yes' : 'No'
 
 block content
@@ -15,7 +15,7 @@ block content
 
 
   form.cra-form(method='post')
-    +radiosYesNo('climateActionIncentiveIsRural', 'Did you live in a Census Metropolitan Area (CMA) in 2019?', climateActionIncentiveIsRural)
+    +radiosYesNo('climateActionIncentiveIsRural', 'Did you live in a census metropolitan area (CMA) in 2019?', climateActionIncentiveIsRural)
 
     input#redirect(name='redirect', type='hidden', value='/trillium/rent')
 

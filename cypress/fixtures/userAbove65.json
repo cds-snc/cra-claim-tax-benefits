@@ -48,7 +48,7 @@
   "benefits": {
     "cai": {
       "name": "Climate action incentive (CAI)",
-      "description": "everyone gets this payment. You get 10% extra if you live outside a Census Metropolitan Area."
+      "description": "everyone gets this payment. You get 10% extra if you live outside a census metropolitan area."
     },
     "dtc": {
       "name": "Disability tax credit (DTC)",

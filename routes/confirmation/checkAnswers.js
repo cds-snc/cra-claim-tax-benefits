@@ -39,7 +39,7 @@ const answerInfo = [
         displayIf: 'deductions.seniorTransitClaim',
       },
       {
-        text: 'Did you live in a Census Metropolitan Area?',
+        text: 'Did you live in a census metropolitan area?',
         infoPath: ['deductions.climateActionIncentiveIsRural'],
         urlPath: '/deductions/climate-action-incentive',
       },
@@ -89,7 +89,8 @@ const answerInfo = [
         displayIf: 'deductions.trilliumLongTermCareAmountIsFull',
       },
       {
-        text: 'At any time in 2019, was your principal residence on reserve land under the Indian Act?',
+        text:
+          'At any time in 2019, was your principal residence on reserve land under the Indian Act?',
         infoPath: ['deductions.trilliumEnergyReserveClaim'],
         urlPath: '/trillium/energy/reserve',
       },

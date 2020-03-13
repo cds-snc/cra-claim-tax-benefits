@@ -49,10 +49,10 @@
     "trilliumLongTermCareAmount": 0,
     "climateActionIncentiveIsRural": null
   },
-"benefits": {
+  "benefits": {
     "cai": {
       "name": "Climate action incentive (CAI)",
-      "description": "everyone gets this payment. You get 10% extra if you live outside a Census Metropolitan Area."
+      "description": "everyone gets this payment. You get 10% extra if you live outside a census metropolitan area."
     },
     "dtc": {
       "name": "Disability tax credit (DTC)",
@@ -67,10 +67,9 @@
       "description": "a payment that helps with energy, sales and property tax. The government usually pays this amount on the 10th day of each month for 12 months."
     }
   },
-"vote": {
+  "vote": {
     "confirmOptIn": null,
     "citizen": null,
     "register": null
   }
 }
-

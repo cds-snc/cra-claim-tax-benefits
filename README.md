@@ -4,7 +4,7 @@
 
 This is a demo of a service to make tax filing faster and easier for a preselected group of eligible low-income Canadians. This service was designed and developed by the [Canadian Digital Service (CDS)](https://digital.canada.ca/) in partnership with the [Canada Revenue Agency (CRA)](https://www.canada.ca/en/revenue-agency.html).
 
-Much of the information needed to file a tax return is already known to CRA. At the same time, low-confidence tax filers are very worried about making mistakes when submitting a tax return. The concept behind this demo application is to provide a wizard-like tax filing experience: presenting the tax filer with information that CRA already has about them and having them to confirm it rather than asking them type it in.
+Much of the information needed to file a tax return is already known to CRA. At the same time, low-confidence tax filers are very worried about making mistakes when submitting a tax return. The concept behind this demo application is to provide a wizard-like tax filing experience: presenting the tax filer with information that CRA already has about them and asking them to confirm it rather than having them type everything in.
 
 | Demo user 1   | Demo user 2       |
 | ------------- | ----------------- |
@@ -30,7 +30,7 @@ Much of the information needed to file a tax return is already known to CRA. At 
 
 ## Technical overview
 
-The Claim Tax Benefits (CTB) application is a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and schnazzy [SCSS](https://sass-lang.com/) stylesheets. The application scaffolding comes from the [the express generator](https://expressjs.com/en/starter/generator.html). It assumes the existence of a backend API (to receive user data) and a cloud database (for storing access codes), although both are stubbed out so the application can run in isolation for development purposes.
+The Claim Tax Benefits (CTB) application is a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and schnazzy [SCSS](https://sass-lang.com/) stylesheets. The application scaffolding comes from [the express generator](https://expressjs.com/en/starter/generator.html). It assumes the existence of a backend API (to receive user data) and a cloud database (for storing access codes), although both are stubbed out so the application can run in isolation for development purposes.
 
 [There is a record of the decision to go for Express](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/ADR-EXPRESS-VS-ANGULAR.md), for posterity.
 
@@ -143,11 +143,11 @@ npm run cypress:cli # these don't open a browser
 
 #### Using Cypress
 
-[Cypress](https://www.cypress.io/) is what we use to write our end-to-end tests. It can run in a browser or in headless mode (ie, on the command line) to step through one or more flows. By running our end-to-end tests frequently, we are making sure sure that new changes to the code don't existing user journies.
+[Cypress](https://www.cypress.io/) is what we use to write our end-to-end tests. It can run in a browser or in headless mode (ie, on the command line) to step through one or more flows. By running our end-to-end tests frequently, we are making sure that new changes to the code don't break existing user journeys.
 
 ### Using SonarQube
 
-[SonarQube](https://www.sonarqube.org/) is an open-source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities on 20+ programming languages. SonarQube is also used to track test coverage percentage and other value-added metrics.
+[SonarQube](https://www.sonarqube.org/) is an open-source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities on more than 20 programming languages. SonarQube is also used to track test coverage percentage and other value-added metrics.
 
 #### Run a SonarQube analysis
 

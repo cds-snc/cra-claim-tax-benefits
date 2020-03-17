@@ -4,7 +4,7 @@
 
 This is a demo of a service to make tax filing faster and easier for a preselected group of eligible low-income Canadians. This service was designed and developed by the [Canadian Digital Service (CDS)](https://digital.canada.ca/) in partnership with the [Canada Revenue Agency (CRA)](https://www.canada.ca/en/revenue-agency.html).
 
-Much of the information needed to file a tax return is already known to CRA. At the same time, low-confidence tax filers are very worried about making mistakes when submitting a tax return. The concept behind this demo application is to provide a wizard-like tax filing experience: presenting the tax filer with information that CRA already has about them and asking them to confirm it rather than having them type everything in.
+CRA already has most of the information that tax-filers include in their returns. At the same time, low-confidence tax filers are very worried about making mistakes when submitting a tax return. Using this information, we aimed to design a service that provides a wizard-like tax filing experience: rather than requiring tax-filers to enter their information, the service presents information that the CRA already has, then asks tax-filers to confirm the information is correct.
 
 | Demo user 1   | Demo user 2       |
 | ------------- | ----------------- |

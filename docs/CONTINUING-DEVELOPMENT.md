@@ -34,7 +34,7 @@ Hooray! Welcome to the hippest app in gov!! To pick up development after some ar
 2. Second, see if you can run the tests. If they all pass (they should), then all's good in the hood.
    - Go see "[Run tests](https://github.com/cds-snc/cra-claim-tax-benefits#run-tests)" in the README.
 3. Update all the dependencies we're using, as many will be out of date.
-   - Follow the [Updating dependencies](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/UPDATING-DEPENDENCES.md) process we have
+   - Follow the [Updating dependencies](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/UPDATING-DEPENDENCIES.md) process we have
    - Fingers crossed it all works :fingers-crossed:
 4. Heck yeah! Get devving!!!
 
@@ -139,7 +139,7 @@ Houra! Bienvenue dans l'application la plus branchée du Gouvernement!! Pour pou
 2. Deuxièmement, exécutez les tests. Si les résultats sont bons, cela veut dire que l'application est en bon état.
    - Voir "[Exécuter les tests](https://github.com/cds-snc/cra-claim-tax-benefits#run-tests)" dans le `README`.
 3. Mettez à jour toutes les dépendances de l'application puisqu'elles ne seront définitivement plus à jour.
-   - Consultez le [processus de mise à jour des dépendances](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/UPDATING-DEPENDENCES.md)
+   - Consultez le [processus de mise à jour des dépendances](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/UPDATING-DEPENDENCIES.md#mettre-à-jour-les-dépendances)
    - Croisez-vous les doigts et espérez que ça fonctionne :fingers-crossed:
 4. Super! Démarrez le développement!!
 

@@ -1,4 +1,4 @@
-[La version française suit.](#---------------------------------------------------------------------)
+[La version française suit.](#continuer-le-développement)
 
 # Continuing development
 
@@ -109,12 +109,12 @@ If there's anything else you need that's not in here, get in touch with [@pcraig
 
 Ce document décrit comment poursuivre le développement avec cette base de code source, en plus de la structure et des technologies utilisées, pour faciliter la remise en vie de ce projet dans le futur.
 
-Il y a principalement deux scénarios envisageabls pour continuer les travaux sur ce *repository*.
+Il y a principalement deux scénarios envisageabls pour continuer les travaux sur ce _repository_.
 
-1. Vous voulez déployer l'application et voir l'entièreté de son contenu, pour que vous puissiez la réécrire dans une autre technologie. 
+1. Vous voulez déployer l'application et voir l'entièreté de son contenu, pour que vous puissiez la réécrire dans une autre technologie.
 2. Vous voulez continuer le développement.
 
-En faisant abstraction du contexte et des priorités, le premier scénario est le plus facile à expliquer, alors nous débuterons avec celui-ci. 
+En faisant abstraction du contexte et des priorités, le premier scénario est le plus facile à expliquer, alors nous débuterons avec celui-ci.
 
 (Note: si des détails manquent dans ce document, contactez [@pcraig3](https://github.com/pcraig3) ou [@charlesmorin](https://github.com/charlesmorin).)
 
@@ -136,32 +136,32 @@ Houra! Bienvenue dans l'application la plus branchée du Gouvernement!! Pour pou
 1. Premièrement, déployez l'application.
    - Consultez la page "[Construire et déployer](https://github.com/cds-snc/cra-claim-tax-benefits#build-and-run)" dans le `README`.
    - L'application sera disponible à l'adresse [http://localhost:3005/](http://localhost:3005/).
-2. Deuxièmement, exécutez les tests. Si les résultats sont bons, cela veut dire que l'application est en bon état. 
+2. Deuxièmement, exécutez les tests. Si les résultats sont bons, cela veut dire que l'application est en bon état.
    - Voir "[Exécuter les tests](https://github.com/cds-snc/cra-claim-tax-benefits#run-tests)" dans le `README`.
 3. Mettez à jour toutes les dépendances de l'application puisqu'elles ne seront définitivement plus à jour.
-   - Consultez le [processus de mise à jour des dépendances](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/UPDATING-DEPENDENCES.md) 
+   - Consultez le [processus de mise à jour des dépendances](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/UPDATING-DEPENDENCES.md)
    - Croisez-vous les doigts et espérez que ça fonctionne :fingers-crossed:
 4. Super! Démarrez le développement!!
 
-### Structure du *repository*
+### Structure du _repository_
 
-| Répertoire                                           | Usage                                                                                          |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `/.github/workflows`                      | Pipelines d'intégration et livraison continue 
-| `/api`                                           | Modèle (voir `user.json`)                                                             |
-| `/bin`                                           | Script d'exécution pour Node.js                                                                      |
-| `/config`                                        | Configurations des modules / middleware npm utilisés                                             |
-| `/cypress`                                       | Tests et intégrations de bout en bout                                                        |
-| `/db`                                            | Conceptuellement, il s'agit de notre base de données cloud avec des codes d'accès                                           |
-| `/docs`                                          | Documentation technique                                                                         |
-| `/locales`                                       | Fichiers de traductions pour les langues officielles (français et anglais)           |
-| `/public`                                        | Ressources statiques (images, scripts, feuilles de styles, icône de favori): tous les styles sont sous `/public/scss`.  |
-| `/routes`                                        | Controlleurs (routes and logique métier) et tests unitaires                                           |
-| `/schemas`                                       | Schémas pour la validation des soumissons de formulaires (`HTTP POST`)                                                 |
-| `/scripts`                                       | Scripts Azure et HashiCorp Terraform scripts pour  *Infrastructure as Code (IaC)*                           |
-| `/utils`                                         | Fonctions utilitaires et [middleware express](https://expressjs.com/en/guide/using-middleware.html) |
-| `/views`                                         | Fichiers de vue [Pug](https://pugjs.org/api/getting-started.html) qui se transpose en HMTL à l'exécution   |
-| `/xml_output`                                    | Tentative très précoce d'un modèle XML IMPÔTNET                                           |
+| Répertoire           | Usage                                                                                                                  |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `/.github/workflows` | Pipelines d'intégration et livraison continue                                                                          |
+| `/api`               | Modèle (voir `user.json`)                                                                                              |
+| `/bin`               | Script d'exécution pour Node.js                                                                                        |
+| `/config`            | Configurations des modules / middleware npm utilisés                                                                   |
+| `/cypress`           | Tests et intégrations de bout en bout                                                                                  |
+| `/db`                | Conceptuellement, il s'agit de notre base de données cloud avec des codes d'accès                                      |
+| `/docs`              | Documentation technique                                                                                                |
+| `/locales`           | Fichiers de traductions pour les langues officielles (français et anglais)                                             |
+| `/public`            | Ressources statiques (images, scripts, feuilles de styles, icône de favori): tous les styles sont sous `/public/scss`. |
+| `/routes`            | Controlleurs (routes and logique métier) et tests unitaires                                                            |
+| `/schemas`           | Schémas pour la validation des soumissons de formulaires (`HTTP POST`)                                                 |
+| `/scripts`           | Scripts Azure et HashiCorp Terraform scripts pour _Infrastructure as Code (IaC)_                                       |
+| `/utils`             | Fonctions utilitaires et [middleware express](https://expressjs.com/en/guide/using-middleware.html)                    |
+| `/views`             | Fichiers de vue [Pug](https://pugjs.org/api/getting-started.html) qui se transpose en HMTL à l'exécution               |
+| `/xml_output`        | Tentative très précoce d'un modèle XML IMPÔTNET                                                                        |
 
 ### Choix technologiques
 
@@ -173,10 +173,10 @@ Houra! Bienvenue dans l'application la plus branchée du Gouvernement!! Pour pou
 - SCSS (styles)
 - Jest (tests unitaires)
 - Cypress (tests de bout en bout)
-- Morgan (*logger* middleware pour les requêtes HTTP)
-- Helmet (middleware pour le *Content Security Policy*)
+- Morgan (_logger_ middleware pour les requêtes HTTP)
+- Helmet (middleware pour le _Content Security Policy_)
 
-#### Intégration et livraison continue 
+#### Intégration et livraison continue
 
 - GitHub Actions
 - SonarCloud.io (SonarQube)

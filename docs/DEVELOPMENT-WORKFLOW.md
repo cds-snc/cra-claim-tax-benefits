@@ -1,10 +1,13 @@
+[La version française suit.](#développement-agile-au-snc)
+
 # Agile development workflow
 
 1. Development sprints are two weeks long.
 2. At the beginning of a sprint, the development team meets with the members of the larger team to discuss priorities for new features.
 3. The development team reviews open issues from the last sprint and prioritizes them with the next development targets.
-4. Developers self-assign issues from the list of open issues in GitHub.
+4. Developers self-assign issues from the list of open issues in Trello or GitHub.
 5. To resolve an issue, a developer:
+
    - Checks out a new branch from master
    - Builds the feature or resolves the bug described in the issue
    - Continuously commits code to their branch at sensible intervals
@@ -19,5 +22,34 @@
    - Other team members approve the pull request after all discussions have been resolved
    - Pull requests are then merged to master by the author of the pull request
    - [GitHub Actions](https://github.com/features/actions) verify once more that all tests pass on the updated master and then deploys the code into production
+
 6. This process is repeated iteratively until a new sprint starts.
 7. At the end of a sprint, the development team reviews the issues completed and suggests improvements for the next sprint.
+
+## ---------------------------------------------------------------------
+
+# Développement Agile au SNC
+
+1. On donne aux sprints de développement des périodes de deux semaines.
+2. Au début d’un sprint, l’équipe de développement se réunit avec les autres membres de la grande équipe afin de discuter des priorités de développement des nouvelles fonctionnalités.
+3. L’équipe de développement examine les problèmes non résolus depuis le dernier sprint et leur accorde la priorité dans les prochains objectifs de développement.
+4. Les développeurs s’attribuent des problèmes à partir de la liste de problèmes non résolus dans Trello ou GitHub.
+5. Pour résoudre un problème, un développeur :
+
+   - consulte une nouvelle branche du master;
+   - élabore la fonctionnalité ou résout le bogue décrit dans le problème;
+   - valide continuellement le code dans sa branche à des intervalles raisonnables;
+   - écrit des tests unitaires et d’intégration pour le code qu’il a ajouté;
+   - modifie ou supprime les tests unitaires et d’intégration pour le code qu’il a modifié;
+   - exécute les tests pour s’assurer que tous les tests sont réussis;
+   - valide le code final, pousse le code dans GitHub et ouvre une demande de tirage dans GitHub;
+   - attend [GitHub Actions](https://github.com/features/actions) pour vérifier que tous nos tests seront réussis;
+   - effectue des vérifications ponctuelles à l’aide des applications d’examen d’Heroku [Review Apps](https://devcenter.heroku.com/articles/github-integration-review-apps);
+   - demande aux autres membres de l’équipe d’examiner la demande de tirage
+   - si d’autres membres de l’équipe ont des commentaires, ils les indiqueront dans GitHub pour que le développeur corrige des erreurs ou en discute;
+   - d’autres membres de l’équipe approuvent la demande de tirage une fois que toutes les discussions en suspens ont été résolues;
+   - les demandes de tirage sont ensuite fusionnées dans master par l’auteur;
+   - [GitHub Actions](https://github.com/features/actions) vérifie encore une fois que tous les tests sont réussis sur le master à jour et déploie le code en production.
+
+6. Ce processus est répété de façon itérative jusqu’à ce qu’un nouveau sprint démarre.
+7. À la fin d’un sprint, l’équipe de développement examine les problèmes et suggère des améliorations pour le prochain sprint.

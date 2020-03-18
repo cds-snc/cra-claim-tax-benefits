@@ -55,7 +55,7 @@
     "express-session": "^1.17.0",
     "express-validator": "^6.4.0",
     "helmet": "^3.21.3",
-    "i18n": "^0.8.5",
+    "i18n": "^0.8.6",
     "memorystore": "^1.6.2",
     "morgan": "~1.9.1",
     "node-sass-middleware": "^0.11.0",
@@ -72,7 +72,7 @@
   "devDependencies": {
     "axe-core": "^3.5.2",
     "cheerio": "^1.0.0-rc.3",
-    "cypress": "^4.1.0",
+    "cypress": "^4.2.0",
     "cypress-axe": "^0.5.3",
     "eslint": "^6.8.0",
     "eslint-plugin-jest": "^23.8.2",
@@ -82,7 +82,7 @@
     "json-comb": "^0.2.41",
     "nodemon": "^2.0.2",
     "sonarqube-scanner": "^2.5.0",
-    "start-server-and-test": "^1.10.10",
+    "start-server-and-test": "^1.10.11",
     "supertest": "^4.0.2",
     "supertest-session": "^4.0.0"
   }

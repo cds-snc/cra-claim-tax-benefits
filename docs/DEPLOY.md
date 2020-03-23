@@ -147,21 +147,21 @@ Congratulations, you are now a unicorn! :unicorn:
 
 # Exécuter un déploiement manuel
 
-Notre application est relativement simple et nous nous efforçons de la conserver simple. Notre processus de déploiement l'est tout autant.
+Notre application est relativement simple et nous nous efforçons de la garder simple. Notre processus de déploiement l'est tout autant.
 
-Pour déployer l'application, vous devez mettre à jour le conteneur dans Azure App Service. (Nous utilisons [Web App for Containers](https://azure.microsoft.com/en-ca/services/app-service/containers/): voir [the Docker Quickstart](https://docs.microsoft.com/en-us/azure/app-service/containers/quickstart-docker-go) si vous voulez vous familiariser avec cet outil).
+Pour déployer l'application, vous devez mettre à jour le conteneur dans Azure App Service. (Nous utilisons [Web App for Containers](https://azure.microsoft.com/en-ca/services/app-service/containers/) : voir [the Docker Quickstart](https://docs.microsoft.com/en-us/azure/app-service/containers/quickstart-docker-go) si vous voulez vous familiariser avec cet outil).
 
-Avant de pouvoir mettre à jour le conteneur dans Azure, nous devons envoyer notre image quelque part. Par défault, App Service puise les images [Docker Hub](https://hub.docker.com/), mais dans notre cas, nos images sont entreposées dans [Azure Container Registry](https://portal.azure.com/#@122gc.onmicrosoft.com/resource/subscriptions/fdf5725d-ea40-468e-81dd-aa1220910f75/resourceGroups/cdscracollab-innovation-rg/providers/Microsoft.ContainerRegistry/registries/claimtaxbenefits/repository).
+Avant de pouvoir mettre à jour le conteneur dans Azure, nous devons envoyer notre image quelque part. Par défaut, App Service puise les images [Docker Hub](https://hub.docker.com/), mais dans notre cas, nos images sont entreposées dans [Azure Container Registry](https://portal.azure.com/#@122gc.onmicrosoft.com/resource/subscriptions/fdf5725d-ea40-468e-81dd-aa1220910f75/resourceGroups/cdscracollab-innovation-rg/providers/Microsoft.ContainerRegistry/registries/claimtaxbenefits/repository).
 
 ## Prérequis pour déployer manuellement
 
-Avant de pouvoir modifier l'application de production, vous devez avoir accès au Azure portal et à Azure Container Registry (ACR). Une fois que vous avez accès, vous pouvez déployer (vous ne devriez peut-être pas.).
+Avant de pouvoir modifier l'application de production, vous devez avoir accès au Azure portal et à Azure Container Registry (ACR). Une fois que vous avez accès, vous pouvez déployer (mais vous ne devriez peut-être pas).
 
-Si vous êtes incertain ou incapable d'y accéder, demandez à Paul Craig ou Charles Morin.
+Si vous êtes incertain ou si vous êtes incapable d'y accéder, demandez à Paul Craig ou à Charles Morin.
 
 ## Étapes pour déployer manuellement
 
-Ces étapes assument que vous avez une version fonctionne sur votre machine, dans un état prêt à déployer.
+Ces étapes assument que vous avez une version qui fonctionne sur votre machine, dans un état prêt à déployer.
 
 Les étapes sont :
 
@@ -190,7 +190,7 @@ Si un argument `GITHUB_SHA_ARG` est passé à Docker pendant la construction, ce
 
 ### Créer un tag sur l'image
 
-Une fois construite, créez un tag avant de téléverser l'image. Le _repository_ dans Azure Container Registry est [`claimtaxbenefits.azurecr.io/cra-claim-tax-benefits`](https://portal.azure.com/#@122gc.onmicrosoft.com/resource/subscriptions/fdf5725d-ea40-468e-81dd-aa1220910f75/resourceGroups/cdscracollab-innovation-rg/providers/Microsoft.ContainerRegistry/registries/claimtaxbenefits/repository), donc vous devez ajouter cette chaine de caractères avant le nom du tag. Le nom du tag est à votre discrétion — préférablement un nom unique et représentatif. Nos déploiements automatisés font cette même recette. Par contre, lors d'un déploiement manuel, vous allez devez réécrire ce tag quelques fois, alors il vaut utilser un nom facile à retenir.
+Une fois construite, créez un tag avant de téléverser l'image. Le _repository_ dans Azure Container Registry est [`claimtaxbenefits.azurecr.io/cra-claim-tax-benefits`](https://portal.azure.com/#@122gc.onmicrosoft.com/resource/subscriptions/fdf5725d-ea40-468e-81dd-aa1220910f75/resourceGroups/cdscracollab-innovation-rg/providers/Microsoft.ContainerRegistry/registries/claimtaxbenefits/repository), donc vous devez ajouter cette chaine de caractères avant le nom du tag. Le nom du tag est à votre discrétion — préférablement un nom unique et représentatif. Nos déploiements automatisés font cette même recette. Par contre, lors d'un déploiement manuel, vous allez devoir réécrire ce tag quelques fois, alors il vaut mieux utiliser un nom facile à retenir.
 
 [Si vous avez passé un `GITHUB_SHA_ARG`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#optional-env-var), vous devriez probablement utiliser la même chose pour le nom du tag.
 
@@ -198,11 +198,11 @@ Une fois construite, créez un tag avant de téléverser l'image. Le _repository
 docker tag base claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:<nom tag désiré>
 ```
 
-#### Exécutez le conteneur localement
+#### Exécuter le conteneur localement
 
-Quoique non absolument nécessaire, rouler le conteneur sur votre machine va vous permettre de faire un test rapide et vous assurez que ce que vous avez construit représente vraiment ce que vous vous attendez de voir.
+Quoique non absolument nécessaire, rouler le conteneur sur votre machine va vous permettre de faire un test rapide et vous assurer que ce que vous avez construit représente vraiment ce que vous vous attendez à voir.
 
-Pour rouler le conteneur localement, utiliser la commande `docker run`.
+Pour rouler le conteneur localement, utilisez la commande `docker run`.
 
 ```
 docker run -it -p 3005:3005 claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:<nom tag désiré>
@@ -210,15 +210,15 @@ docker run -it -p 3005:3005 claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:<
 
 Terminez l'exécution en faisant `ctrl+c` comme dans `npm`.
 
-Vous pouvez également le rouler en arrière-plan comme suit:
+Vous pouvez également le rouler en arrière-plan comme suit :
 
 ```
 docker run -p 3005:3005 claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:<nom tag désiré>
 ```
 
-### Téléversez votre image
+### Téléverser votre image
 
-Une fois l'image construite, identifiée via un tag, (et idéalement déployée sur votre machine), c'est le temps de la téléverser dans Azure Container Registry (ACR).
+Une fois l'image construite et identifiée via un tag (et idéalement déployée sur votre machine), c'est le temps de la téléverser dans Azure Container Registry (ACR).
 
 ```
 docker push claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:<nom tag désiré>
@@ -249,14 +249,14 @@ Cela prend environ 2-4 minutes pour que l'application soit entièrement changée
 
 Les étapes sont :
 
-1. Visitez [https://portal.azure.com/](https://portal.azure.com/)
+1. Visitez [https://portal.azure.com/](https://portal.azure.com/).
 2. Dans le menu de gauche, cliquez sur `App Services`. Si vous ne le trouvez pas, vous pouvez également faire une recherche sur `claim-tax-benefits`.
 3. Cliquez sur `claim-tax-benefits` dans le tableau.
-4. Sous `Settings`, cliquez sur `Container settings`
-5. Identifiez `Image and optional tag (eg 'image:tag')`. Vous devriez voir un champ de saisie avec le nom de l'image actuellement déployée (ex : `claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:{nom_du_tag_actuel}`)
-6. Mettez à jour le nom du tag avec le nouveau nom (ex : `claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:<nom_du_nouveau_tag>`)
-7. Cliquez sur le bouton `Save`
-8. Attendez de voir le message `Settings updated successfully`
+4. Sous `Settings`, cliquez sur `Container settings`.
+5. Identifiez `Image and optional tag (eg 'image:tag')`. Vous devriez voir un champ de saisie avec le nom de l'image actuellement déployée (ex : `claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:{nom_du_tag_actuel}`).
+6. Mettez à jour le nom du tag avec le nouveau nom (ex : `claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:<nom_du_nouveau_tag>`).
+7. Cliquez sur le bouton `Save`.
+8. Attendez de voir le message `Settings updated successfully`.
 
 Cela prend environ 2-4 minutes pour que l'application soit entièrement changée. Vous pouvez voir quel Git commit a été déployé dans la portion `<head>` du code HTML.
 
@@ -266,7 +266,7 @@ Si par exemple vous aimeriez tester quelque chose sans nécessairement écraser 
 
 `az webapp create --resource-group cdscracollab-innovation-rg --plan alphaPlan --name claim-tax-benefits-{nom_du_tag} --deployment-container-image-name claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:{nom_du_tag}`
 
-Vous allez donc recevoir l'URL de votre App Service dans la réponse JSON suivant l'exécution de la commande. L'URL devrait normalement être `https://claim-tax-benefits-{nom_du_tag}.azurewebsites.net`
+Vous allez donc recevoir l'URL de votre App Service dans la réponse JSON suivant l'exécution de la commande. L'URL devrait normalement être `https://claim-tax-benefits-{nom_du_tag}.azurewebsites.net`.
 
 Lorsque vous avez terminé de tester, vous pouvez supprimer le Azure App Service webapp via la commande :
 

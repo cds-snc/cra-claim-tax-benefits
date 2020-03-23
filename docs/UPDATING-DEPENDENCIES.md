@@ -80,19 +80,19 @@ The `<details>` element is an easy, semantic way to create an open/close element
 
 # Mettre à jour les dépendances
 
-Nous utilisons des dépendances `npm` libres pour construire notre application. Ces dépendances sont, pour la plupart, activement développées, et de nouvelles versions sont rendues disponibles de manière généralement regulière.
+Nous utilisons des dépendances `npm` libres pour construire notre application. Ces dépendances sont, pour la plupart, activement développées, et de nouvelles versions sont rendues disponibles de façon plutôt regulière.
 
-Puisque la mise à jour de dépendances corrige de petits bogues ou assure la compatibilité avec de nouvelles plateformes, nous voulons tenir notre base de code à jour de façon rigoureuse. Laisser les dépendances non à jour mène généralement à de mauvaises surprises.
+Puisque la mise à jour de dépendances corrige de petits bogues ou assure la compatibilité avec de nouvelles plateformes, nous voulons tenir notre base de code à jour de façon rigoureuse. Ne pas mettre à jour les dépendances mène généralement à de mauvaises surprises.
 
-Nous exécutons ce processus au minimum une fois par sprint (2 semaines), ou en temps opportun si nous recevons une alerte de vulnérabilité. Pour savoir quand une dépendance a été mise à jour, vous pouvez jeter un oeil [à l'historique git du fichier `package.json`](https://github.com/cds-snc/cra-claim-tax-benefits/commits/master/package.json).
+Nous exécutons ce processus au minimum une fois par sprint (aux 2 semaines), ou en temps opportun si nous recevons une alerte de vulnérabilité. Pour savoir quand une dépendance a été mise à jour, vous pouvez jeter un oeil [à l'historique git du fichier `package.json`](https://github.com/cds-snc/cra-claim-tax-benefits/commits/master/package.json).
 
 ## Le processus de mise à jour
 
-1. Exécutez `npm outdated`. Vous obtiendrez une liste de packages qui ont une version disponible plus récente que celle que vous utilisez en moment.
+1. Exécutez `npm outdated`. Vous obtiendrez une liste de packages qui ont une version disponible plus récente que celle que vous utilisez en ce moment.
 
-2. Appliquez toutes les mises à jour — les correctifs, mineures, et majeures — en changeant le numéro de version dans `package.json` afin que cela corresponde avec la version indiquée dans la colonne `LATEST` lorsque vous avez exécuté la commande `npm`.
+2. Appliquez toutes les mises à jour — les correctifs et les mises à jour mineures et majeures — en changeant le numéro de version dans `package.json` afin que cela corresponde avec la version indiquée dans la colonne `LATEST` lorsque vous avez exécuté la commande `npm`.
 
-3. Supprimez le fichier `package-lock.json` et le répertoire `./node_modules`. Cela va permettre d'assurer que les dépendances transitives seront également mises à jour correctement.
+3. Supprimez le fichier `package-lock.json` et le répertoire `./node_modules`. Cela garantit que les dépendances transitives seront également mises à jour correctement.
 
 Sur macOS
 
@@ -117,39 +117,39 @@ npm run lint
 npm run cypress:cli
 ```
 
-1. Si les tests _échouent_, continuez à l'étape 6. Si les tests _passent_, continuez à l'étape 7.
+1. Si les tests _échouent_, continuez à l'étape 6. Si les tests _réussissent_, continuez à l'étape 7.
 
-2. Revenez à la dernière version des dépendances (ex : `git checkout -- .`) et exécutez `npm install` pour les télécharger de nouveau. Exécutez les tests avec les dépendances originales pour s'assurer qu'ils fonctionnent toujours. Dans la positive, vous savez que ce bris est dû à la mise à jour des dépendances, et non un autre problême non relié.
+2. Revenez à la dernière version des dépendances (ex : `git checkout -- .`) et exécutez `npm install` pour les télécharger de nouveau. Exécutez les tests avec les dépendances originales pour vous assurer qu'ils fonctionnent toujours. Si c'est le cas, vous savez que ce bris est dû à la mise à jour des dépendances, et non à un autre problème non relié.
 
    - Retournez à l'étape 1.
-   - Lorsque vous arrivez à l'étape 2, appliquez les seulement les **mineures** et les **patch**.
+   - Lorsque vous arrivez à l'étape 2, appliquez seulement les mises à jour **mineures** et les **patch**.
    - Si les tests échouent à l'étape 4, renversez à nouveau, et cette fois-ci, appliquez seulement les **patch**.
-   - Si les tests continuent d'échouer sur les **patch**, déboguez le(s) problême(s) jusqu'à ce que les tests passent.
+   - Si les tests continuent d'échouer sur les **patch**, déboguez le(s) problème(s) jusqu'à ce que les tests réussissent.
 
-3. Déployez l'application localement et assurez vous que tout fonctionne comme attendu (les tests cypress (`npm run cypress:cli`).
+3. Déployez l'application localement et assurez-vous que tout fonctionne comme attendu (les tests cypress (`npm run cypress:cli`).
 
 4. Envoyez un pull request avec vos changements.
 
-5. Une fois le pull request approuvé, fusionner le code dans la branche `master`! 🚢 [L'application est continuellement déployée](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) dans notre [Azure App Service](https://claim-tax-benefits.azurewebsites.net/start) via [Github Actions](https://github.com/features/actions). [Jetez un oeil au dernier _workflow_ ](https://github.com/cds-snc/cra-claim-tax-benefits/actions) pour vous assurer que l'application a été déployée correctement. Si une erreur survient, consultez les [instructions de déploiement manuel](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEPLOY.md).
+5. Une fois le pull request approuvé, fusionnez le code dans la branche `master`! 🚢 [L'application est continuellement déployée](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) dans notre [Azure App Service](https://claim-tax-benefits.azurewebsites.net/start) via [Github Actions](https://github.com/features/actions). [Jetez un oeil au dernier _workflow_ ](https://github.com/cds-snc/cra-claim-tax-benefits/actions) pour vous assurer que l'application a été déployée correctement. Si une erreur survient, consultez les [instructions de déploiement manuel](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEPLOY.md).
 
 ## Mise à jour du polyfill `<details>`
 
-Nous utilisons [l'élément `<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) pour cacher le texte d'aide dans l'application ou nous ne voulons pas embourber l'interface. Cette pratique est également nommée [divulgation progressive](https://en.wikipedia.org/wiki/Progressive_disclosure)).
+Nous utilisons [l'élément `<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) pour cacher le texte d'aide dans l'application où nous ne voulons pas embourber l'interface. Cette pratique est également nommée [divulgation progressive](https://en.wikipedia.org/wiki/Progressive_disclosure)).
 
-L'élément `<details>` est une façon simple de créer des afficher/cacher; par contre, ce [n'est pas supporté par tous les navigateurs](https://caniuse.com/#search=details) (plus précisément IE11 et Edge v19 en descendant). Nous avons adressé ce problême en utilisant LE [details-element-polyfill](https://github.com/javan/details-element-polyfill), dont nous avons ajouté comme fichier statique sous [`/public/js`](https://github.com/cds-snc/cra-claim-tax-benefits/tree/master/public/js).
+L'élément `<details>` est une façon simple de créer des afficher/cacher; par contre, ce [n'est pas pris en charge par tous les navigateurs](https://caniuse.com/#search=details) (plus précisément IE11 et Edge v19 et les versions précédentes). Nous avons abordé ce problème en utilisant LE [details-element-polyfill](https://github.com/javan/details-element-polyfill), que nous avons ajouté comme fichier statique sous [`/public/js`](https://github.com/cds-snc/cra-claim-tax-benefits/tree/master/public/js).
 
 ### Processus de mise à jour pour `details-element-polyfill`
 
-1. Vérifiez la version du fichier [`details-element-polyfill.js`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/public/js/details-element-polyfill.js). (Présentement, `2.4.0`.)
+1. Vérifiez la version du fichier [`details-element-polyfill.js`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/public/js/details-element-polyfill.js). (Présentement `2.4.0`.)
 
-2. Visitez [javan/details-element-polyfill](https://github.com/javan/details-element-polyfill) sur Github.
+2. Consultez [javan/details-element-polyfill](https://github.com/javan/details-element-polyfill) sur Github.
 
-3. Vérifiez la dernière version dans [`details-element-polyfill/dist/details-element-polyfill.js`](https://github.com/javan/details-element-polyfill/blob/master/dist/details-element-polyfill.js). (Présentement, `2.4.0`.)
+3. Vérifiez la dernière version dans [`details-element-polyfill/dist/details-element-polyfill.js`](https://github.com/javan/details-element-polyfill/blob/master/dist/details-element-polyfill.js). (Présentement `2.4.0`.)
 
 4. Si les versions sont les mêmes, ne faites rien.
 
-5. Si les versions sont différentes, copiez [`details-element-polyfill/dist/details-element-polyfill.js`](https://github.com/javan/details-element-polyfill/blob/master/dist/details-element-polyfill.js) par dessus `/public/js/details-element-polyfill.js`.
+5. Si les versions sont différentes, copiez [`details-element-polyfill/dist/details-element-polyfill.js`](https://github.com/javan/details-element-polyfill/blob/master/dist/details-element-polyfill.js) par-dessus `/public/js/details-element-polyfill.js`.
 
 6. Créez un pull request avec vos changements.
 
-7. Une fois le pull request approuvé, fusionner le code dans la branche `master`! 🚢 [L'application est continuellement déployée](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) dans notre [Azure App Service](https://claim-tax-benefits.azurewebsites.net/start) via [Github Actions](https://github.com/features/actions). [Jetez un oeil au dernier _workflow_ ](https://github.com/cds-snc/cra-claim-tax-benefits/actions) pour vous assurer que l'application a été déployée correctement. Si une erreur survient, consultez les [instructions de déploiement manuel](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEPLOY.md).
+7. Une fois le pull request approuvé, fusionnez le code dans la branche `master`! 🚢 [L'application est continuellement déployée](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) dans notre [Azure App Service](https://claim-tax-benefits.azurewebsites.net/start) via [Actions Github](https://github.com/features/actions). [Jetez un oeil au dernier _workflow_ ](https://github.com/cds-snc/cra-claim-tax-benefits/actions) pour vous assurer que l'application a été déployée correctement. Si une erreur survient, consultez les [instructions de déploiement manuel](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEPLOY.md).

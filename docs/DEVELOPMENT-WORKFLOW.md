@@ -28,11 +28,11 @@
 
 ## ---------------------------------------------------------------------
 
-# Développement Agile au SNC
+# Déroulement du développement agile
 
-1. On donne aux sprints de développement des périodes de deux semaines.
-2. Au début d’un sprint, l’équipe de développement se réunit avec les autres membres de la grande équipe afin de discuter des priorités de développement des nouvelles fonctionnalités.
-3. L’équipe de développement examine les problèmes non résolus depuis le dernier sprint et leur accorde la priorité dans les prochains objectifs de développement.
+1. Les sprints de développement durent deux semaines.
+2. Au début d’un sprint, l’équipe de développement se réunit avec les autres membres de la grande équipe afin de discuter des priorités pour le développement des nouvelles fonctionnalités.
+3. L’équipe de développement examine les problèmes non résolus depuis le dernier sprint et les met en ordre de priorité avec les prochains objectifs de développement.
 4. Les développeurs s’attribuent des problèmes à partir de la liste de problèmes non résolus dans Trello ou GitHub.
 5. Pour résoudre un problème, un développeur :
 
@@ -43,13 +43,13 @@
    - modifie ou supprime les tests unitaires et d’intégration pour le code qu’il a modifié;
    - exécute les tests pour s’assurer que tous les tests sont réussis;
    - valide le code final, pousse le code dans GitHub et ouvre une demande de tirage dans GitHub;
-   - attend [GitHub Actions](https://github.com/features/actions) pour vérifier que tous nos tests seront réussis;
-   - effectue des vérifications ponctuelles à l’aide des applications d’examen d’Heroku [Review Apps](https://devcenter.heroku.com/articles/github-integration-review-apps);
+   - attend les [Actions GitHub](https://github.com/features/actions) pour vérifier que tous nos tests seront réussis;
+   - effectue des vérifications ponctuelles à l’aide des applications d’examen Heroku [Review Apps](https://devcenter.heroku.com/articles/github-integration-review-apps);
    - demande aux autres membres de l’équipe d’examiner la demande de tirage
    - si d’autres membres de l’équipe ont des commentaires, ils les indiqueront dans GitHub pour que le développeur corrige des erreurs ou en discute;
    - d’autres membres de l’équipe approuvent la demande de tirage une fois que toutes les discussions en suspens ont été résolues;
    - les demandes de tirage sont ensuite fusionnées dans master par l’auteur;
-   - [GitHub Actions](https://github.com/features/actions) vérifie encore une fois que tous les tests sont réussis sur le master à jour et déploie le code en production.
+   - [Actions GitHub](https://github.com/features/actions) vérifie encore une fois que tous les tests sont réussis sur le master à jour et déploie le code en production.
 
 6. Ce processus est répété de façon itérative jusqu’à ce qu’un nouveau sprint démarre.
 7. À la fin d’un sprint, l’équipe de développement examine les problèmes et suggère des améliorations pour le prochain sprint.

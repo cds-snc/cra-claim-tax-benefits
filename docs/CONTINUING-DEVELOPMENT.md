@@ -118,7 +118,7 @@ En faisant abstraction du contexte et des priorités, le premier scénario est l
 
 (Note : si des détails manquent dans ce document, contactez [@pcraig3](https://github.com/pcraig3) ou [@charlesmorin](https://github.com/charlesmorin).)
 
-## 1. Déployez l'application, et voyez toutes les pages.
+## 1. Déployer l'application et voir toutes les pages
 
 Tout ce que vous devez faire est de déployer l'application et trouver toutes les adresses (URL).
 
@@ -129,9 +129,9 @@ Tout ce que vous devez faire est de déployer l'application et trouver toutes le
 
 Tout est bon! Allez vous chercher de la pizza. :pizza:
 
-## 2. Reprenons là où nous nous sommes arrêtés.
+## 2. Reprendre là où nous nous sommes arrêtés
 
-Hourra! Bienvenue dans l'application la plus branchée du gouvernement!! Pour poursuivre le développement, vous voulez vous assurer que l'application tourne rondement et que les tests passent. Ensuite, vous devez obligatoirement mettre à jour les dépendances pour demeurer le plus sécuritaire possible.
+Hourra! Bienvenue dans l'application la plus branchée du gouvernement!! Pour poursuivre le développement, vous voulez vous assurer que l'application tourne rondement et que les tests réussissent. Ensuite, vous devez obligatoirement mettre à jour les dépendances pour demeurer le plus sécurisé possible.
 
 1. Premièrement, déployez l'application.
    - Consultez la page « [Bâtir et exécuter l'app](https://github.com/cds-snc/cra-claim-tax-benefits#build-and-run) » dans le `README`.

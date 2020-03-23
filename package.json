@@ -57,7 +57,7 @@
     "helmet": "^3.21.3",
     "i18n": "^0.8.6",
     "memorystore": "^1.6.2",
-    "morgan": "~1.9.1",
+    "morgan": "~1.10.0",
     "node-sass-middleware": "^0.11.0",
     "path": "^0.12.7",
     "pg": "^7.18.2",
@@ -66,7 +66,7 @@
     "request-promise": "^4.2.5",
     "social-insurance-number": "0.1.0",
     "trim-request": "^1.0.6",
-    "validator": "^12.2.0",
+    "validator": "^13.0.0",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {

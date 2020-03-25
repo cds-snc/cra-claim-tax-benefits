@@ -3,7 +3,6 @@ const globalError = require('http-errors')
 
 // import node modules.
 const express = require('express'),
-  azureApplicationInsights = require('applicationinsights'),
   cookieParser = require('cookie-parser'),
   trimRequest = require('trim-request'),
   compression = require('compression'),
@@ -82,12 +81,6 @@ app.use(
 
 // public assets go here (css, js, etc)
 app.use(express.static(path.join(__dirname, 'public')))
-
-if (process.env.NODE_ENV === 'production' && process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
-  // register to Azure Application Insights service for telemetry purposes
-  // instrumention key is provisioned from Azure App Service application setting (env variable)
-  azureApplicationInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY).start()
-}
 
 // add a request logger
 process.env.NODE_ENV !== 'test' && app.use(morgan(morganConfig))

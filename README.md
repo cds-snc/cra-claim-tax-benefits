@@ -1,5 +1,3 @@
-![](https://github.com/cds-snc/cra-claim-tax-benefits/workflows/Test,%20build,%20deploy/badge.svg)
-
 [La version française suit.](#réclamation-davantages-fiscaux)
 
 # Claim tax benefits / Déclaration de revenus pour un accès aux prestations

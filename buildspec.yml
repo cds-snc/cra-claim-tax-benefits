@@ -1,10 +1,5 @@
 version: 0.2
 
-env:
-  secrets-manager:
-    SONAR_LOGIN: ctb-secrets-manager:SONARQUBE_TOKEN
-  variables:
-    SONAR_URL: "https://sonarcloud.io"
 phases:
   install:
     runtime-versions:
@@ -13,7 +8,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region ca-central-1)
-      # Install dependencies needed for running tests 
+      # Install dependencies needed for running tests
       - npm install
       # Run JS linter
       - npm run lint

@@ -54,7 +54,6 @@ We use several third-party services for an improved development workflow and con
 - [Heroku](https://www.heroku.com/home) is a fully-managed platform as a service. We use Heroku [Review Apps](https://devcenter.heroku.com/articles/github-integration-review-apps) to build disposable applications per pull request, facilitating code reviews.
 - [Snyk](https://snyk.io/) is a software as a service product that scans through our dependencies for packages with known issues. It alerts us when a version of a package we’re using has a known exploit.
 - [LGTM](https://lgtm.com/) is a software as a service product for continuous security analysis. It analyzes each pull request for potential security vulnerabilities.
-- [SonarQube](https://www.sonarqube.org/) is a software as a service product for code quality analysis. It analyzes each pull request for code smells, potential security holes, or bugs to ensure better coding practice.
 
 ### Automated tests
 
@@ -64,7 +63,6 @@ All new pull requests have a suite of automated tests run against them.
 - [ESLint](https://eslint.org/): JavaScript linter that ensures uniform JS throughout the app
 - [Cypress](https://www.cypress.io/): End-to-end behaviour-driven tests that run through desired user flows
   - [cypress-axe](https://github.com/avanslaars/cypress-axe): We run an accessibility scan per page (using [`axe`](https://www.deque.com/axe/)) to check for violations in the markup
-- [SonarQube](https://www.sonarqube.org/) does a quality analysis gate looking for code smells, diminished code coverage, or bugs.
 
 ### Development workflow
 
@@ -145,16 +143,6 @@ npm run cypress:cli # these don't open a browser
 
 [Cypress](https://www.cypress.io/) is what we use to write our end-to-end tests. It can run in a browser or in headless mode (ie, on the command line) to step through one or more flows. By running our end-to-end tests frequently, we are making sure that new changes to the code don't break existing user journeys.
 
-### Using SonarQube
-
-[SonarQube](https://www.sonarqube.org/) is an open-source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities on more than 20 programming languages. SonarQube is also used to track test coverage percentage and other value-added metrics.
-
-#### Run a SonarQube analysis
-
-SonarQube can be executed in two main ways: when pushing to GitHub remote repository, which will trigger a new GitHub Actions execution. The second way to trigger a SonarQube analysis is to invoke the `sonar-scanner` command locally. Install Sonar Scanner using the following procedure: https://brewinstall.org/Install-sonar-scanner-on-Mac-with-Brew/
-
-Configuration file for SonarQube is named `sonar-project.properties`, and is located at the root of the project.
-
 ## Using Docker
 
 ### [Install `docker`](https://docs.docker.com/install/)
@@ -225,7 +213,6 @@ Nous utilisons plusieurs services tiers pour améliorer le déroulement du déve
 - [Heroku](https://www.heroku.com/home) est une plateforme comme service (PaaS) complètement gérée. Nous utilisons [Review Apps](https://devcenter.heroku.com/articles/github-integration-review-apps) de Heroku pour construire des applications jetables à chaque demande de tirage, ce qui facilite la revue de code.
 - [Snyk](https://snyk.io/) est un logiciel comme service qui passe à travers nos dépendances pour voir s’il y a des problèmes. Nous recevons des alertes lorsque la version d’un progiciel a des vulnérabilités connues.
 - [LGTM](https://lgtm.com/) est un logiciel comme service qui effectue l’analyse continue de la sécurité. Il fait une analyse à chaque demande de tirage pour trouver les vulnérabilités de sécurité potentielles.
-- [SonarQube](https://www.sonarqube.org/) est un logiciel comme service qui fait l’analyse de la qualité du code. Il analyse chaque demande de tirage pour trouver des anomalies, des failles de sécurité ou des bogues afin de garantir de bonnes pratiques de codage.
 
 ### Tests automatisés
 
@@ -235,7 +222,6 @@ Chaque demande de tirage subit une suite de tests automatisés.
 - [ESLint](https://eslint.org/) : Linter JavaScript qui assure une uniformité du code JavaScript dans toute l’application
 - [Cypress](https://www.cypress.io/) : Tests basés sur le comportement qui s’exécutent pour vérifier les étapes des parcours utilisateur
   - [cypress-axe](https://github.com/avanslaars/cypress-axe) : Nous effectuons un balayage de chaque page afin de vérifier les violations d’accessibilité dans le code
-- [SonarQube](https://www.sonarqube.org/) : Il analyse chaque demande de tirage pour trouver des anomalies, des failles de sécurité ou des bogues afin de garantir de bonnes pratiques de codage.
 
 ### Continuer le développement
 

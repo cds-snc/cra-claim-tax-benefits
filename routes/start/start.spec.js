@@ -28,9 +28,7 @@ describe('Test server responses', () => {
 
   describe('it renders the h1 text for the /start path', () => {
     test('in English with a language header', async () => {
-      const response = await request(app)
-        .get('/start')
-        .set('Accept-Language', 'en')
+      const response = await request(app).get('/start').set('Accept-Language', 'en')
 
       const $ = cheerio.load(response.text)
       expect($('h1').text()).toEqual('File taxes to access benefits')
@@ -86,7 +84,7 @@ describe('Test server responses', () => {
     )
     expect(response.headers['x-download-options']).toEqual('noopen')
     expect(response.headers['x-content-type-options']).toEqual('nosniff')
-    expect(response.headers['x-xss-protection']).toEqual('1; mode=block')
+    expect(response.headers['x-xss-protection']).toEqual('0')
 
     expect(response.headers['x-powered-by']).toBeUndefined()
   })
@@ -100,7 +98,7 @@ describe('Test server responses', () => {
     */
     expect(response.headers['content-security-policy']).toEqual(
       // eslint-disable-next-line quotes
-      "default-src 'self'; connect-src 'self'; base-uri 'none'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "default-src 'self';connect-src 'self';base-uri 'none';font-src 'self' https://fonts.gstatic.com;img-src 'self' data:;script-src 'self';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     )
   })
 })

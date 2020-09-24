@@ -40,23 +40,23 @@ Hooray! Welcome to the hippest app in gov!! To pick up development after some ar
 
 ### Repository structure
 
-| Folder                                           | Purpose                                                                                          |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `/.github/workflows | CI/CD pipelines/workflows` |
-| `/api`                                           | Domain model (check out `user.json`)                                                             |
-| `/bin`                                           | Runtime script for Node.js                                                                       |
-| `/config`                                        | Configurations for the npm modules/middleware used                                               |
-| `/cypress`                                       | End to end test fixtures and integrations                                                        |
-| `/db`                                            | Conceptually, this is our cloud DB with access codes                                             |
-| `/docs`                                          | Technical documentation                                                                          |
-| `/locales`                                       | Internationalization (i18n) keys to support both English and French official languages           |
-| `/public`                                        | Static resources (images, scripts, stylesheets, favicon): all our styling is in `/public/scss`.  |
-| `/routes`                                        | Controllers (routes and business logic) and unit tests                                           |
-| `/schemas`                                       | Schemas for form validation for our POST routes                                                  |
-| `/scripts`                                       | Azure and HashiCorp Terraform scripts for Infrastructure as Code (IaC)                           |
-| `/utils`                                         | Utility functions and [express middleware](https://expressjs.com/en/guide/using-middleware.html) |
-| `/views`                                         | [Pug](https://pugjs.org/api/getting-started.html) view files that translate to HMTL at runtime   |
-| `/xml_output`                                    | Very early attempt at a NETFILE XML template                                                     |
+| Folder              | Purpose                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------ |
+| `/.github/workflows | CI/CD pipelines/workflows`                                                                       |
+| `/api`              | Domain model (check out `user.json`)                                                             |
+| `/bin`              | Runtime script for Node.js                                                                       |
+| `/config`           | Configurations for the npm modules/middleware used                                               |
+| `/cypress`          | End to end test fixtures and integrations                                                        |
+| `/db`               | Conceptually, this is our cloud DB with access codes                                             |
+| `/docs`             | Technical documentation                                                                          |
+| `/locales`          | Internationalization (i18n) keys to support both English and French official languages           |
+| `/public`           | Static resources (images, scripts, stylesheets, favicon): all our styling is in `/public/scss`.  |
+| `/routes`           | Controllers (routes and business logic) and unit tests                                           |
+| `/schemas`          | Schemas for form validation for our POST routes                                                  |
+| `/scripts`          | Azure and HashiCorp Terraform scripts for Infrastructure as Code (IaC)                           |
+| `/utils`            | Utility functions and [express middleware](https://expressjs.com/en/guide/using-middleware.html) |
+| `/views`            | [Pug](https://pugjs.org/api/getting-started.html) view files that translate to HMTL at runtime   |
+| `/xml_output`       | Very early attempt at a NETFILE XML template                                                     |
 
 ### Technology Choices
 
@@ -74,7 +74,6 @@ Hooray! Welcome to the hippest app in gov!! To pick up development after some ar
 #### Continuous Integration & Delivery
 
 - GitHub Actions
-- SonarCloud.io (SonarQube)
 - Seekret (find secrets in code)
 - Snyk (continuous security analysis)
 - Semmle/LGTM (continuous security analysis)
@@ -156,12 +155,12 @@ Hourra! Bienvenue dans l'application la plus branchée du gouvernement!! Pour po
 | `/docs`              | Documentation technique                                                                                                |
 | `/locales`           | Fichiers de traductions pour les langues officielles (français et anglais)                                             |
 | `/public`            | Ressources statiques (images, scripts, feuilles de styles, icône de favori): tous les styles sont sous `/public/scss`. |
-| `/routes`            | Contrôleurs (routes et logique métier) et tests unitaires                                                            |
-| `/schemas`           | Schémas pour la validation des formulaires soumis (`HTTP POST`)                                                 |
-| `/scripts`           | Scripts Azure et HashiCorp Terraform pour _Infrastructure as Code (IaC)_                                       |
+| `/routes`            | Contrôleurs (routes et logique métier) et tests unitaires                                                              |
+| `/schemas`           | Schémas pour la validation des formulaires soumis (`HTTP POST`)                                                        |
+| `/scripts`           | Scripts Azure et HashiCorp Terraform pour _Infrastructure as Code (IaC)_                                               |
 | `/utils`             | Fonctions utilitaires et [middleware express](https://expressjs.com/en/guide/using-middleware.html)                    |
-| `/views`             | Fichiers de vue [Pug](https://pugjs.org/api/getting-started.html) qui se transposent en HMTL à l'exécution               |
-| `/xml_output`        | Première tentative d'un modèle XML IMPÔTNET                                                                        |
+| `/views`             | Fichiers de vue [Pug](https://pugjs.org/api/getting-started.html) qui se transposent en HMTL à l'exécution             |
+| `/xml_output`        | Première tentative d'un modèle XML IMPÔTNET                                                                            |
 
 ### Choix technologiques
 
@@ -179,7 +178,6 @@ Hourra! Bienvenue dans l'application la plus branchée du gouvernement!! Pour po
 #### Intégration et livraison continue
 
 - Actions GitHub
-- SonarCloud.io (SonarQube)
 - Seekret (recherche de données sensibles dans le code source)
 - Snyk (analyse continue de sécurité)
 - Semmle/LGTM (analyse continue de sécurité)
@@ -204,6 +202,5 @@ Microsoft Azure est le fournisseur de services Cloud
 - Déployer l'application manuellement dans Azure :
   - [à l'aide d'Azure Container Registry](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEPLOY.md)
   - [à l'aide de Docker Hub](https://github.com/cds-snc/cra-claim-tax-benefits/blob/faccd2945ea6dee2a7c165041829d4da28b4f91b/DEPLOY.md)
-- [Exécuter une analyse SonarQube](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md#using-sonarqube)
 
 S'il y a autre chose dont vous avez besoin qui ne fait pas partie de cette documentation, contactez [@pcraig3](https://github.com/pcraig3) ou [@charlesmorin](https://github.com/charlesmorin).

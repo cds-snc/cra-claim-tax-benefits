@@ -20,7 +20,7 @@ All you need to do here is run the app and then find all the URLs.
 1. First, get it to boot up.
    - Check out "[Build and run](https://github.com/cds-snc/cra-claim-tax-benefits#build-and-run)" in the README.
    - The app will be running at [http://localhost:3005/](http://localhost:3005/).
-2. A full list of URLs can be found in [`/config/routes.config.js`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/config/routes.config.js). They're pretty much in order, so you can see them all sequentially.
+2. A full list of URLs can be found in [`/config/routes.config.js`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/config/routes.config.js). They're pretty much in order, so you can see them all sequentially.
 
 All good! Get yerself pizza. :pizza:
 
@@ -34,7 +34,7 @@ Hooray! Welcome to the hippest app in gov!! To pick up development after some ar
 2. Second, see if you can run the tests. If they all pass (they should), then all's good in the hood.
    - Go see "[Run tests](https://github.com/cds-snc/cra-claim-tax-benefits#run-tests)" in the README.
 3. Update all the dependencies we're using, as many will be out of date.
-   - Follow the [Updating dependencies](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/UPDATING-DEPENDENCIES.md) process we have
+   - Follow the [Updating dependencies](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/UPDATING-DEPENDENCIES.md) process we have
    - Fingers crossed it all works :fingers-crossed:
 4. Heck yeah! Get devving!!!
 
@@ -94,11 +94,11 @@ Microsoft Azure is the Cloud Service Provider (CSP)
 
 #### Other topics
 
-- [Build and run the application as a Docker container](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md#using-docker)
+- [Build and run the application as a Docker container](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/README.md#using-docker)
 - Deploy the application manually on Azure:
-  - [using Azure Container Registry](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEPLOY.md)
+  - [using Azure Container Registry](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/DEPLOY.md)
   - [using Docker Hub](https://github.com/cds-snc/cra-claim-tax-benefits/blob/faccd2945ea6dee2a7c165041829d4da28b4f91b/DEPLOY.md)
-- [Run a SonarQube analysis](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md#using-sonarqube)
+- [Run a SonarQube analysis](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/README.md#using-sonarqube)
 
 If there's anything else you need that's not in here, get in touch with [@pcraig3](https://github.com/pcraig3) or [@charlesmorin](https://github.com/charlesmorin).
 
@@ -124,7 +124,7 @@ Tout ce que vous devez faire est de déployer l'application et trouver toutes le
 1. Premièrement, déployez l'application.
    - Consultez la page « [Bâtir et exécuter l'app](https://github.com/cds-snc/cra-claim-tax-benefits#build-and-run) » dans le `README`.
    - L'application sera disponible à l'adresse [http://localhost:3005/](http://localhost:3005/).
-2. Une liste complète des adresses est disponible dans le fichier [`/config/routes.config.js`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/config/routes.config.js). L'ordre des adresses correspond à l'ordre d'exécution logique dans l'application.
+2. Une liste complète des adresses est disponible dans le fichier [`/config/routes.config.js`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/config/routes.config.js). L'ordre des adresses correspond à l'ordre d'exécution logique dans l'application.
 
 Tout est bon! Allez vous chercher de la pizza. :pizza:
 
@@ -138,7 +138,7 @@ Hourra! Bienvenue dans l'application la plus branchée du gouvernement!! Pour po
 2. Deuxièmement, exécutez les tests. Si les résultats sont bons, cela veut dire que l'application est en bon état.
    - Voir "[Exécuter les tests](https://github.com/cds-snc/cra-claim-tax-benefits#run-tests)" dans le `README`.
 3. Mettez à jour toutes les dépendances de l'application puisqu'elles ne seront définitivement plus à jour.
-   - Consultez le [processus de mise à jour des dépendances](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/UPDATING-DEPENDENCIES.md#mettre-à-jour-les-dépendances)
+   - Consultez le [processus de mise à jour des dépendances](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/UPDATING-DEPENDENCIES.md#mettre-à-jour-les-dépendances)
    - Croisez-vous les doigts et espérez que ça fonctionne :fingers-crossed:
 4. Super! Lancez-vous dans le développement!!
 
@@ -198,9 +198,9 @@ Microsoft Azure est le fournisseur de services Cloud
 
 #### Autres sujets
 
-- [Bâtir et exécuter l'application dans un conteneur Docker](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md#using-docker)
+- [Bâtir et exécuter l'application dans un conteneur Docker](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/README.md#using-docker)
 - Déployer l'application manuellement dans Azure :
-  - [à l'aide d'Azure Container Registry](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEPLOY.md)
+  - [à l'aide d'Azure Container Registry](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/DEPLOY.md)
   - [à l'aide de Docker Hub](https://github.com/cds-snc/cra-claim-tax-benefits/blob/faccd2945ea6dee2a7c165041829d4da28b4f91b/DEPLOY.md)
 
 S'il y a autre chose dont vous avez besoin qui ne fait pas partie de cette documentation, contactez [@pcraig3](https://github.com/pcraig3) ou [@charlesmorin](https://github.com/charlesmorin).

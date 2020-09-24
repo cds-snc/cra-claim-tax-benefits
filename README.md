@@ -13,7 +13,7 @@ CRA already has most of the information that tax-filers include in their returns
 | `540 739 869` | `435 073 143`     |
 | `09 09 1977`  | `03 03 1947`      |
 
-[While this repository is no longer actively maintained](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/CONTINUING-DEVELOPMENT.md), the code is open and available for demonstration purposes or reuse. In addition to an end-to-end flow, it is an example of best-practice development for an API-driven, cloud-native frontend application.
+[While this repository is no longer actively maintained](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/CONTINUING-DEVELOPMENT.md), the code is open and available for demonstration purposes or reuse. In addition to an end-to-end flow, it is an example of best-practice development for an API-driven, cloud-native frontend application.
 
 ## Table of contents
 
@@ -32,7 +32,7 @@ CRA already has most of the information that tax-filers include in their returns
 
 The Claim Tax Benefits (CTB) application is a server-side [express](https://expressjs.com/) application using [Pug](https://pugjs.org/api/getting-started.html) templating on the server and schnazzy [SCSS](https://sass-lang.com/) stylesheets. The application scaffolding comes from [the express generator](https://expressjs.com/en/starter/generator.html). It assumes the existence of a backend API (to receive user data) and a cloud database (for storing access codes), although both are stubbed out so the application can run in isolation for development purposes.
 
-[There is a record of the decision to go for Express](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/ADR-EXPRESS-VS-ANGULAR.md), for posterity.
+[There is a record of the decision to go for Express](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/ADR-EXPRESS-VS-ANGULAR.md), for posterity.
 
 As mentioned in the introduction, the CTB application implements many recommended practices for a modern web service.
 
@@ -42,14 +42,14 @@ As mentioned in the introduction, the CTB application implements many recommende
 - It is copiously tested, including end-to-end [cypress](https://www.cypress.io/) tests with [integrated accessibility scans](https://github.com/avanslaars/cypress-axe)
 - It includes a Continuous Integration and Deployment (CI/CD) pipeline, compatible with [GitHub Actions](https://github.com/features/actions)
 - It can run as a node app on a \*nix OS or as a [Docker](https://docs.docker.com/install/) container
-- It includes [terraform scripts](https://github.com/cds-snc/cra-claim-tax-benefits/tree/master/scripts) for deploying either to Azure or AWS
+- It includes [terraform scripts](https://github.com/cds-snc/cra-claim-tax-benefits/tree/main/scripts) for deploying either to Azure or AWS
 
 ### Use of third-party services
 
 We use several third-party services for an improved development workflow and continuous security.
 
 - [GitHub](https://github.com/) is a cloud-based service that stores our source code, tracks code changes and facilitates code reviews
-- [GitHub Actions](https://github.com/features/actions) is a Continuous Integration and Deployment (CI/CD) service that allows us to [test and deploy our code](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) right from GitHub
+- [GitHub Actions](https://github.com/features/actions) is a Continuous Integration and Deployment (CI/CD) service that allows us to [test and deploy our code](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/.github/workflows/testBuildDeploy.yml) right from GitHub
   - CI/CD services abound, but we used GitHub Actions because it was easy to set up, and with its yml-based configuration it would be easy to move away from
 - [Heroku](https://www.heroku.com/home) is a fully-managed platform as a service. We use Heroku [Review Apps](https://devcenter.heroku.com/articles/github-integration-review-apps) to build disposable applications per pull request, facilitating code reviews.
 - [Snyk](https://snyk.io/) is a software as a service product that scans through our dependencies for packages with known issues. It alerts us when a version of a package we’re using has a known exploit.
@@ -66,12 +66,12 @@ All new pull requests have a suite of automated tests run against them.
 
 ### Development workflow
 
-- [Our agile development workflow](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEVELOPMENT-WORKFLOW.md)
-- [Guidance on code reviews](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/CODE-REVIEW-GUIDELINES.md)
+- [Our agile development workflow](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/DEVELOPMENT-WORKFLOW.md)
+- [Guidance on code reviews](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/CODE-REVIEW-GUIDELINES.md)
 
 ### Continuing development
 
-[A walkthrough on how to continue development on this project](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/CONTINUING-DEVELOPMENT.md): whether your aim is to rebuild the service in a new technology or to develop and release this codebase specifically.
+[A walkthrough on how to continue development on this project](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/CONTINUING-DEVELOPMENT.md): whether your aim is to rebuild the service in a new technology or to develop and release this codebase specifically.
 
 ## Getting started (npm)
 
@@ -167,7 +167,7 @@ On a Mac, press `Control` + `C` to quit the running docker container.
 
 This application is deployed continuously using [Github Actions](https://github.com/features/actions).
 
-However, it’s still a beta service so it might not be 100% reliable. If anything goes wrong, [follow the manual deployment instructions](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEPLOY.md).
+However, it’s still a beta service so it might not be 100% reliable. If anything goes wrong, [follow the manual deployment instructions](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/DEPLOY.md).
 
 ## ---------------------------------------------------------------------
 
@@ -181,17 +181,17 @@ Une fois que le déclarant s’est authentifié, l’API envoie les données à 
 
 ## Table des matières
 
-- [Aperçu technique](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md#aperçu-technique)
+- [Aperçu technique](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/README.md#aperçu-technique)
   - [Utilisation de services tiers](https://crazee-docs.netlify.com/aperçu-technique/#utilisation-de-services-tiers)
-  - [Tests automatisés](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md#tests-automatisés)
-  - [Continuer le développement](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md#continuer-le-développement)
+  - [Tests automatisés](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/README.md#tests-automatisés)
+  - [Continuer le développement](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/README.md#continuer-le-développement)
 - [Construire et exécuter l’application](https://crazee-docs.netlify.com/aperçu-technique/#construire-et-exécuter-lapplication)
 
 ## Aperçu technique
 
 L’application Réclamation d’avantages fiscaux (RAF) est une application [express](https://expressjs.com/fr/) côté serveur qui utilise les langages [Pug](https://pugjs.org/api/getting-started.html) pour les gabarits et [SCSS](https://sass-lang.com/) pour les feuilles de styles. L’échafaudage de l’application vient du [générateur d’applications Express](https://expressjs.com/fr/starter/generator.html). Il suppose l’existence d’une API backend (qui reçoit les données de l’utilisateur) et d’une base de données infonuagique (qui stocke les codes d’accès), bien que tous deux soient simulés afin que l’application puisse fonctionner de façon isolée pour le développement.
 
-[Le compte-rendu de la décision d’opter pour Express](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/ADR-EXPRESS-VS-ANGULAR.md) (anglais seulement) est conservé pour la postérité.
+[Le compte-rendu de la décision d’opter pour Express](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/ADR-EXPRESS-VS-ANGULAR.md) (anglais seulement) est conservé pour la postérité.
 
 Comme il est mentionné dans l’introduction, l’application RAF met en œuvre plusieurs pratiques recommandées pour le développement de services Web modernes.
 
@@ -201,14 +201,14 @@ Comme il est mentionné dans l’introduction, l’application RAF met en œuvre
 - Elle est testée de fond en comble, notamment par des tests [cypress](https://www.cypress.io/) bout-en-bout avec des [balayages d’accessibilité intégrés](https://github.com/avanslaars/cypress-axe)
 - Elle comprend une pipeline d’intégration et de déploiement continus (CI/CD) compatible avec les [Actions Github](https://github.com/features/actions)
 - Elle peut s’exécuter en tant qu’application Node sur un \*nix OS ou comme conteneur [Docker](https://docs.docker.com/install/)
-- Elle comprend les [scripts Terraform](https://github.com/cds-snc/cra-claim-tax-benefits/tree/master/scripts) pour les déploiements vers Azure ou AWS
+- Elle comprend les [scripts Terraform](https://github.com/cds-snc/cra-claim-tax-benefits/tree/main/scripts) pour les déploiements vers Azure ou AWS
 
 ### Utilisation de services tiers
 
 Nous utilisons plusieurs services tiers pour améliorer le déroulement du développement et de la sécurité continue.
 
 - [GitHub](https://github.com/) est un service infonuagique qui stocke notre code source, suit les changements au code et facilite les revues de code.
-- [Actions GitHub](https://github.com/features/actions) est un service d’intégration et de déploiement continus (CI/CD) qui nous permet de [tester et déployer notre code](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) directement à partir de GitHub
+- [Actions GitHub](https://github.com/features/actions) est un service d’intégration et de déploiement continus (CI/CD) qui nous permet de [tester et déployer notre code](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/.github/workflows/testBuildDeploy.yml) directement à partir de GitHub
   - Il y a beaucoup de services CI/CD, mais nous avons choisi Actions GitHub car il est très facile à installer, et il serait facile de s’en départir en raison de sa configuration de base yml
 - [Heroku](https://www.heroku.com/home) est une plateforme comme service (PaaS) complètement gérée. Nous utilisons [Review Apps](https://devcenter.heroku.com/articles/github-integration-review-apps) de Heroku pour construire des applications jetables à chaque demande de tirage, ce qui facilite la revue de code.
 - [Snyk](https://snyk.io/) est un logiciel comme service qui passe à travers nos dépendances pour voir s’il y a des problèmes. Nous recevons des alertes lorsque la version d’un progiciel a des vulnérabilités connues.
@@ -229,10 +229,10 @@ Chaque demande de tirage subit une suite de tests automatisés.
 
 ## Construire et exécuter l’application
 
-Veuillez vous référer à la page [README](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md) afin d’obtenir les instructions détaillées pour construire et exécuter l’application.
+Veuillez vous référer à la page [README](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/README.md) afin d’obtenir les instructions détaillées pour construire et exécuter l’application.
 
-- [Guide de démarrage](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md#getting-started-npm) (anglais seulement)
-  - [Construire et exécuter l'application](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md#build-and-run) (anglais seulement)
-  - [Exécuter les tests](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md#run-tests) (anglais seulement)
-- [Utilisation de Docker](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/README.md#using-docker) (anglais seulement)
-- [Déploiement de l’application](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/docs/DEPLOY.md#ex%C3%A9cuter-un-d%C3%A9ploiement-manuel)
+- [Guide de démarrage](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/README.md#getting-started-npm) (anglais seulement)
+  - [Construire et exécuter l'application](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/README.md#build-and-run) (anglais seulement)
+  - [Exécuter les tests](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/README.md#run-tests) (anglais seulement)
+- [Utilisation de Docker](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/README.md#using-docker) (anglais seulement)
+- [Déploiement de l’application](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/docs/DEPLOY.md#ex%C3%A9cuter-un-d%C3%A9ploiement-manuel)

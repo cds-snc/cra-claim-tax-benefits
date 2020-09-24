@@ -28,12 +28,12 @@ These are the steps from the point that you have a local version of the app on y
 
 The steps are:
 
-1. [build a container](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#build-a-container)
-2. [tag your container](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#tag-your-container)
-3. [upload your container](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#upload-your-container)
-4. [update Azure App Service](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#update-azure-app-service)
+1. [build a container](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/DEPLOY.md#build-a-container)
+2. [tag your container](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/DEPLOY.md#tag-your-container)
+3. [upload your container](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/DEPLOY.md#upload-your-container)
+4. [update Azure App Service](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/DEPLOY.md#update-azure-app-service)
 
-Our [`testBuildDeploy.yml`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) file goes through the deployment steps, so you can reverse engineer our deployment from that file, but let’s go through each one in more detail.
+Our [`testBuildDeploy.yml`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/.github/workflows/testBuildDeploy.yml) file goes through the deployment steps, so you can reverse engineer our deployment from that file, but let’s go through each one in more detail.
 
 ### Build a container
 
@@ -57,7 +57,7 @@ I would highly recommend passing a variable in – it makes it dead easy to know
 
 Once built, tag your container before uploading it. The Azure Container Registry repo we’re uploading to is [`claimtaxbenefits.azurecr.io/cra-claim-tax-benefits`](https://portal.azure.com/#@122gc.onmicrosoft.com/resource/subscriptions/fdf5725d-ea40-468e-81dd-aa1220910f75/resourceGroups/cdscracollab-innovation-rg/providers/Microsoft.ContainerRegistry/registries/claimtaxbenefits/repository), so you have to start the tag with that string. Tag it whatever you want — preferably pick a unique tag, but it doesn’t really matter. Our automated deploys tag the containers with the current git SHA, but you’ll have to type it in a few times, so it’s better to pick something more memorable.
 
-[If you passed in a `GITHUB_SHA_ARG`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#optional-env-var), you should probably tag the container with the same string.
+[If you passed in a `GITHUB_SHA_ARG`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/DEPLOY.md#optional-env-var), you should probably tag the container with the same string.
 
 ```
 docker tag base claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:<desired tag name>
@@ -97,7 +97,7 @@ You can update the app on Azure either from your terminal using the [Azure CLI](
 
 ### Update Azure App Service through the CLI
 
-Again, the command to update our app is the last step in the [`testBuildDeploy.yml`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) file, so if you are logged-in with Azure CLI, you should be able to update it with one line.
+Again, the command to update our app is the last step in the [`testBuildDeploy.yml`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/.github/workflows/testBuildDeploy.yml) file, so if you are logged-in with Azure CLI, you should be able to update it with one line.
 
 ```
 az webapp config container set --resource-group cdscracollab-innovation-rg --name claim-tax-benefits --docker-custom-image-name claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:<desired tag name>
@@ -165,12 +165,12 @@ Ces étapes assument que vous avez une version qui fonctionne sur votre machine,
 
 Les étapes sont :
 
-1. [construire l'image](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#build-a-container)
-2. [émettre un tag pour la nouvelle image](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#tag-your-container)
-3. [téléverser l'image](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#upload-your-container)
-4. [mettre à jour Azure App Service](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#update-azure-app-service)
+1. [construire l'image](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/DEPLOY.md#build-a-container)
+2. [émettre un tag pour la nouvelle image](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/DEPLOY.md#tag-your-container)
+3. [téléverser l'image](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/DEPLOY.md#upload-your-container)
+4. [mettre à jour Azure App Service](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/DEPLOY.md#update-azure-app-service)
 
-Notre fichier [`testBuildDeploy.yml`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml) effectue un déploiement, donc vous pouvez faire de la rétro-ingénierie à partir de ce fichier. Allons davantage dans les détails.
+Notre fichier [`testBuildDeploy.yml`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/.github/workflows/testBuildDeploy.yml) effectue un déploiement, donc vous pouvez faire de la rétro-ingénierie à partir de ce fichier. Allons davantage dans les détails.
 
 ### Construire une image Docker
 
@@ -192,7 +192,7 @@ Si un argument `GITHUB_SHA_ARG` est passé à Docker pendant la construction, ce
 
 Une fois construite, créez un tag avant de téléverser l'image. Le _repository_ dans Azure Container Registry est [`claimtaxbenefits.azurecr.io/cra-claim-tax-benefits`](https://portal.azure.com/#@122gc.onmicrosoft.com/resource/subscriptions/fdf5725d-ea40-468e-81dd-aa1220910f75/resourceGroups/cdscracollab-innovation-rg/providers/Microsoft.ContainerRegistry/registries/claimtaxbenefits/repository), donc vous devez ajouter cette chaine de caractères avant le nom du tag. Le nom du tag est à votre discrétion — préférablement un nom unique et représentatif. Nos déploiements automatisés font cette même recette. Par contre, lors d'un déploiement manuel, vous allez devoir réécrire ce tag quelques fois, alors il vaut mieux utiliser un nom facile à retenir.
 
-[Si vous avez passé un `GITHUB_SHA_ARG`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/DEPLOY.md#optional-env-var), vous devriez probablement utiliser la même chose pour le nom du tag.
+[Si vous avez passé un `GITHUB_SHA_ARG`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/DEPLOY.md#optional-env-var), vous devriez probablement utiliser la même chose pour le nom du tag.
 
 ```
 docker tag base claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:<nom tag désiré>
@@ -232,7 +232,7 @@ Vous pouvez mettre à jour l'application via [Azure CLI](https://docs.microsoft.
 
 ### Via Azure CLI
 
-Encore une fois, cette commande fait partie de notre _pipeline_ dans le fichier [`testBuildDeploy.yml`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/master/.github/workflows/testBuildDeploy.yml), donc si vous êtes connecté via Azure CLI, vous devriez pouvoir mettre à jour l'application via une seule ligne de commande.
+Encore une fois, cette commande fait partie de notre _pipeline_ dans le fichier [`testBuildDeploy.yml`](https://github.com/cds-snc/cra-claim-tax-benefits/blob/main/.github/workflows/testBuildDeploy.yml), donc si vous êtes connecté via Azure CLI, vous devriez pouvoir mettre à jour l'application via une seule ligne de commande.
 
 ```
 az webapp config container set --resource-group cdscracollab-innovation-rg --name claim-tax-benefits --docker-custom-image-name claimtaxbenefits.azurecr.io/cra-claim-tax-benefits:<nom tag désiré>

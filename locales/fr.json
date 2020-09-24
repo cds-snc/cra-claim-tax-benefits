@@ -440,11 +440,11 @@
   "or": "ou",
   "paid yearly if less than $360": "Versement annuel pour moins de 360 $",
   "Next": "Suivant",
-  "BETA": "BÊTA",
   "Cancel this session": "Annuler la session",
   "Are you sure you want to cancel?": "Voulez-vous vraiment annuler votre session?",
   "If you cancel this session, none of your information will be saved.": "Si vous annulez la session, aucune de vos réponses ne sera enregistrée.",
   "You will need to start a new session if you want to file taxes with this service.": "Vous devrez commencer une nouvelle session si vous souhaitez produire votre déclaration de revenus avec le présent service.",
   "Prototype": "Prototype",
-  "This is a demo service. It can’t be used to submit a tax filing.": "Il s’agit d’un service de démonstration. Il ne peut pas être utilisé pour soumettre une déclaration d’impôt."
+  "This is a demo service. It can’t be used to submit a tax filing.": "Il s’agit d’un service de démonstration. Il ne peut pas être utilisé pour soumettre une déclaration d’impôt.",
+  "PROTOTYPE": "PROTOTYPE"
 }

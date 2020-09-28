@@ -51,7 +51,7 @@ app.use(
 )
 
 // append csrfToken to all responses
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.csrfToken = req.csrfToken()
   next()
 })
@@ -102,6 +102,17 @@ app.use(trimRequest.all)
 app.use(checkPublic)
 app.use(checkLangQuery)
 
+// on Heroku, redirect from the http url to https
+app.use(function (req, res, next) {
+  if (
+    req.headers['host'] === 'claim-tax-benefits.herokuapp.com' &&
+    req.headers['x-forwarded-proto'] === 'http'
+  ) {
+    return res.redirect('https://' + req.headers.host + req.url)
+  }
+  next()
+})
+
 // Adding values/functions to app.locals means we can access them in our templates
 app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
 app.locals.SINFilter = SINFilter
@@ -128,7 +139,7 @@ app.get('/clear', (req, res) => {
   res.redirect(302, '/')
 })
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(globalError(404))
 })
 
